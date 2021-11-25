@@ -39,6 +39,11 @@ import ChapterList from '@/components/Pages/Chapters/Index.vue'
 import ChapterCreate from '@/components/Pages/Chapters/Create.vue'
 import ChapterEdit from '@/components/Pages/Chapters/Edit.vue'
 
+/*** Begin Subject components */
+import QuestionList from '@/components/Pages/Questions/Index.vue'
+import QuestionCreate from '@/components/Pages/Questions/Create.vue'
+import QuestionEdit from '@/components/Pages/Questions/Edit.vue'
+
 /*** Begin Error component(s)  */
 import ErrorPage from '@/components/Error.vue'
 
@@ -179,6 +184,12 @@ const routes = [
                 meta: { requiresAuth: true, parent: 'chapters' },
             },
         ]
+    },    
+    {
+        path: '/questions',
+        name: 'questions',
+        component: QuestionList,
+        meta: { requiresAuth: true }
     },
     {
         path: '/profile',

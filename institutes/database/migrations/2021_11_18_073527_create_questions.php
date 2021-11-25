@@ -19,6 +19,7 @@ class CreateQuestions extends Migration
             $table->longText('description')->nullable();
             $table->string('board')->nullable();
             $table->string('standard')->nullable();
+            $table->longText('note')->nullable();
 
             //All the relational fields will come after this.
             $table->unsignedBigInteger('difficulty_level');

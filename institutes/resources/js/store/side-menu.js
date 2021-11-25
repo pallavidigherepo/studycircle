@@ -70,6 +70,11 @@ const state = () => {
             title: 'Users'
           }*/
         ]
+      },      
+      {
+        icon: 'ActivityIcon',
+        pageName: 'questions',
+        title: 'Questions',
       },
     ]
   }

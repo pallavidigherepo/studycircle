@@ -14,6 +14,7 @@ import coursesTypeModule from './modules/courses_types/index.js';
 import subjectModule from './modules/subjects/index.js';
 import chapterModule from './modules/chapters/index.js';
 import languageModule from './modules/languages/index.js';
+import questionModule from './modules/questions/index.js';
 
 const store = createStore({
   modules: {
@@ -26,7 +27,8 @@ const store = createStore({
     courses: coursesModule,
     subjects: subjectModule,
     chapters: chapterModule,
-    languages: languageModule
+    languages: languageModule,
+    questions: questionModule
   },
   state() {
     return {
