@@ -4,7 +4,16 @@ export default {
     // This action is used to fetch all the questions present in database
 
     async fetch(context, params) {
-        const response = await axios.get('/api/v1/questions?page='+params.page+'&search='+params.keyword+'&field='+params.field+'&sort='+params.sort) ;
+        
+        const response = await axios.get('/api/v1/questions', 
+            {
+                params: {
+                    page: params.page,
+                    search: params.keyword,
+                    field: params.field,
+                    sort: params.sort
+                }
+            });
 
         if (response.status != 200) {
             const error = new Error('Failed to fetch questions')
@@ -13,7 +22,7 @@ export default {
         
         context.commit('FETCH_QUESTIONS', response.data.questions);
         context.commit('LANGUAGES', response.data.languages);
-        context.commit('ANSWERS', response.data.answers);
+        //context.commit('ANSWERS', response.data.answers);
     },
     
     async create(context, question) {
@@ -59,4 +68,5 @@ export default {
         
         context.commit('VIEW_QUESTION', response.data);
     },
+    
 };

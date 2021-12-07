@@ -25,6 +25,7 @@ import Loading from '@/components/UI/Loading.vue'
 import Pagination from '@/components/UI/Pagination.vue';
 import ExportModal from '@/components/UI/ExportModal.vue';
 import ImportModal from '@/components/UI/ImportModal.vue';
+import AddDropdown from '@/components/UI/AddDropdown.vue';
 
 export default app => {
   app.component('Chart', Chart)
@@ -54,6 +55,8 @@ export default app => {
   app.component('Pagination', Pagination)
   app.component('ExportModal', ExportModal)
   app.component('ImportModal', ImportModal)
+  app.component('AddDropdown', AddDropdown)
+  
   
   for (const [key, icon] of Object.entries(featherIcons)) {
     icon.props.size.default = '24'

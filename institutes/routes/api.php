@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\V1\ChapterController;
 use App\Http\Controllers\Api\V1\TopicController;
 use App\Http\Controllers\Api\V1\ExportController;
 use App\Http\Controllers\Api\V1\ImportController;
+use App\Http\Controllers\Api\V1\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,8 @@ Route::middleware('api')->group(function () {
             Route::resource('v1/topics', TopicController::class);
             Route::post('v1/exports/index', [ExportController::class, 'index'])->name('exports.index');
             Route::post('v1/imports', [ImportController::class, 'store'])->name('imports.store');
+            Route::get('v1/questions/options', [QuestionController::class, 'options'])->name('questions.options');
+            Route::resource('v1/questions', QuestionController::class);
         });
     
 });

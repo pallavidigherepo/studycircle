@@ -189,7 +189,23 @@ const routes = [
         path: '/questions',
         name: 'questions',
         component: QuestionList,
-        meta: { requiresAuth: true }
+        meta: { requiresAuth: true },
+        children: [
+            {
+                path: '/questions/create',
+                name: 'questionCreate',
+                component: QuestionCreate,
+                parent: 'questions',
+                meta: { requiresAuth: true, parent: 'questions'}
+            },
+            {
+                path: '/questions/edit',
+                name: 'questionEdit',
+                component: QuestionEdit,
+                parent: 'questions',
+                meta: { requiresAuth: true, parent: 'questions'}
+            }
+        ]
     },
     {
         path: '/profile',

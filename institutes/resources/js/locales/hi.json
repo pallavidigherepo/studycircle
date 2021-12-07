@@ -9,7 +9,8 @@
         "Course Types": "कोर्स के प्रकार",
         "Courses": "अभ्यासक्रम",
         "Subjects": "विषयों",
-        "Chapters": "अध्याय"
+        "Chapters": "अध्याय",
+        "Question Bank": "प्रश्न बैंक"
     },
     "role": {
         "Role": "भूमिका"
@@ -37,6 +38,17 @@
             "LABEL": "लेबल",
             "ICON": "चिन्ह",
             "LANGUAGE": "भाषा",
+            "ACTIONS": "कार्रवाई"
+        },
+        "Add Subject": "विषय जोड़ने",
+        "Edit Subject": "विषय संपादित करें"
+    },
+    "question": {
+        "header": {
+            "QUESTION": "प्रशन",
+            "TAGS": "टैग",
+            "BOARD": "मंडल",
+            "STANDARD": "कक्षा",
             "ACTIONS": "कार्रवाई"
         },
         "Add Subject": "विषय जोड़ने",
@@ -96,5 +108,9 @@
     "XLSX": "XLSX",
     "CSV": "CSV",
     "PDF": "PDF",
-    "Import": "आयात"
+    "Import": "आयात",
+    "Add New Question": "नया प्रश्न जोड़ें",
+    "Questions": "प्रश्न",
+    "STANDARD": "कक्षा",
+    "List all questions": "सभी प्रश्नों की सूची बनाएं"
 }

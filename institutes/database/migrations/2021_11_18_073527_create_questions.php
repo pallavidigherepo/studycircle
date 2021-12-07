@@ -22,7 +22,9 @@ class CreateQuestions extends Migration
             $table->longText('note')->nullable();
 
             //All the relational fields will come after this.
-            $table->unsignedBigInteger('difficulty_level');
+            $table->unsignedBigInteger('board_id');
+            $table->unsignedBigInteger('standard_id');
+            $table->unsignedBigInteger('difficulty_level_id');
             $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('language_id');
             
@@ -33,7 +35,10 @@ class CreateQuestions extends Migration
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by');
             
-            $table->foreign('difficulty_level')->references('id')->on('question_difficulty_levels');
+            $table->foreign('board_id')->references('id')->on('boards');
+            $table->foreign('standard_id')->references('id')->on('standards');
+
+            $table->foreign('difficulty_level_id')->references('id')->on('question_difficulty_levels');
             $table->foreign('type_id')->references('id')->on('question_types');
             $table->foreign('language_id')->references('id')->on('languages');
             

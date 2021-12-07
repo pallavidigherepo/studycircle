@@ -72,9 +72,9 @@ const state = () => {
         ]
       },      
       {
-        icon: 'ActivityIcon',
+        icon: 'DatabaseIcon',
         pageName: 'questions',
-        title: 'Questions',
+        title: 'Question Bank',
       },
     ]
   }

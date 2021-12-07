@@ -9,7 +9,8 @@
         "Course Types": "अभ्यासक्रमाचे प्रकार",
         "Courses": "अभ्यासक्रम",
         "Subjects": "विषय",
-        "Chapters": "अध्याय"
+        "Chapters": "अध्याय",
+        "Question Bank": "प्रश्न बँक"
     },
     "role": {
         "dasd": "adas"
@@ -41,6 +42,17 @@
         },
         "Add Subject": "विषय जोडा",
         "Edit Subject": "विषय संपादित करा"
+    },
+    "question": {
+        "header": {
+            "QUESTION": "प्रश्न",
+            "TAGS": "टॅग",
+            "BOARD": "बोर्ड",
+            "STANDARD": "वर्ग",
+            "ACTIONS": "क्रिया"
+        },
+        "Add Question": "प्रश्न जोडा",
+        "Edit Question": "प्रश्न संपादित करा"
     },
     "common": {
         "ID": "आयडी",
@@ -97,5 +109,9 @@
     "XLSX": "XLSX",
     "CSV": "CSV",
     "PDF": "PDF",
-    "Import": "आयात करा"
+    "Import": "आयात करा",
+    "Add New Question": "नवीन प्रश्न जोडा",
+    "Questions": "प्रश्न",
+    "STANDARD": "वर्ग",
+    "List all questions": "सर्व प्रश्नांची यादी करा"
 }

@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ asset('meritest/images/ico/favicon.ico') }}" rel="shortcut icon">
@@ -16,9 +18,42 @@
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('meritest/images/ico/android-chrome-512x512.png')}}">
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('meritest/images/ico/apple-touch-icon.png')}}">
 	<link rel="apple-touch-icon-precomposed" href="{{ asset('meritest/images/ico/apple-touch-icon.png')}}">
+    <meta name="title" content="Online Exam Software|Test Generator|Test Maker:MERITEST|Try for free">
+    <meta name="description" content="🔥 Create Online Exams, Generate Test Paper with our Online Exam Software ✔️Easy to use ✔️Fast processing speed ✔️Secure and simple ✔️Save time and Money🔥">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.facebook.com/meritestdotin/">
+    <meta property="og:title" content="Online Exam Software|Test Generator|Test Maker:MERITEST|Try for free">
+    <meta property="og:description" content="🔥 Create Online Exams, Generate Test Paper with our Online Exam Software ✔️Easy to use ✔️Fast processing speed ✔️Secure and simple ✔️Save time and Money🔥">
+    <meta property="og:image" content="https://meritest.in/meritest/images/logo/150_height.png">
 
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://twitter.com/meritestdotin/">
+    <meta property="twitter:title" content="Online Exam Software|Test Generator|Test Maker:MERITEST|Try for free">
+    <meta property="twitter:description" content="🔥 Create Online Exams, Generate Test Paper with our Online Exam Software ✔️Easy to use ✔️Fast processing speed ✔️Secure and simple ✔️Save time and Money🔥">
+    <meta property="twitter:image" content="https://meritest.in/meritest/images/logo/150_height.png">
+
+    <!-- Linkedin -->
+    <meta property="linkedin:card" content="summary_large_image">
+    <meta property="linkedin:url" content="https://www.linkedin.com/company/meritestdotin/">
+    <meta property="linkedin:title" content="Online Exam Software|Test Generator|Test Maker:MERITEST|Try for free">
+    <meta property="linkedin:description" content="🔥 Create Online Exams, Generate Test Paper with our Online Exam Software ✔️Easy to use ✔️Fast processing speed ✔️Secure and simple ✔️Save time and Money🔥">
+    <meta property="linkedin:image" content="https://meritest.in/meritest/images/logo/150_height.png">
+    <!-- Pinterest -->
+    <meta property="pinterest:card" content="summary_large_image">
+    <meta property="pinterest:url" content="https://www.pinterest.com/meritestdotin/">
+    <meta property="pinterest:title" content="Online Exam Software|Test Generator|Test Maker:MERITEST|Try for free">
+    <meta property="pinterest:description" content="🔥 Create Online Exams, Generate Test Paper with our Online Exam Software ✔️Easy to use ✔️Fast processing speed ✔️Secure and simple ✔️Save time and Money🔥">
+    <meta property="pinterest:image" content="https://meritest.in/meritest/images/logo/150_height.png">
+
+    <!-- YouTube -->
+    <meta property="youtube:card" content="summary_large_image">
+    <meta property="youtube:url" content="https://www.youtube.com/channel/UC2jXBWiTxsr-KQlBexxPvXA/">
+    <meta property="youtube:title" content="Online Exam Software|Test Generator|Test Maker:MERITEST|Try for free">
+    <meta property="youtube:description" content="🔥 Create Online Exams, Generate Test Paper with our Online Exam Software ✔️Easy to use ✔️Fast processing speed ✔️Secure and simple ✔️Save time and Money🔥">
+    <meta property="youtube:image" content="https://meritest.in/meritest/images/logo/150_height.png">
     <!-- Styles -->
     
     <!-- CSS Plugins -->

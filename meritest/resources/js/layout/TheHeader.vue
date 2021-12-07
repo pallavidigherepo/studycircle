@@ -81,9 +81,9 @@
                         <li>
                             <a href="/kvpy" title="KVPY">KVPY {{ currentYear }}</a>
                         </li>
-                        <li>
+                        <!--<li>
                             <a href="/mht-cet" title="MHT-CET">MHT-CET {{ currentYear }}</a>
-                        </li>
+                        </li>-->
                         
                     </ul>
                 

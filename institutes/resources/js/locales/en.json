@@ -9,7 +9,8 @@
         "Course Types": "Course Types",
         "Courses": "Courses",
         "Subjects": "Subjects",
-        "Chapters": "Chapters"
+        "Chapters": "Chapters",
+        "Question Bank": "Question Bank"
     },
     "role": {
         "dasd": "adas"
@@ -37,6 +38,17 @@
             "LABEL": "LABEL",
             "ICON": "ICON",
             "LANGUAGE": "LANGUAGE",
+            "ACTIONS": "ACTIONS"
+        },
+        "Add Subject": "Add Subject",
+        "Edit Subject": "Edit Subject"
+    },
+    "question": {
+        "header": {
+            "QUESTION": "QUESTION",
+            "TAGS": "TAGS",
+            "BOARD": "BOARD",
+            "STANDARD": "STANDARD",
             "ACTIONS": "ACTIONS"
         },
         "Add Subject": "Add Subject",
@@ -97,5 +109,9 @@
     "XLSX": "XLSX",
     "CSV": "CSV",
     "PDF": "PDF",
-    "Import": "Import"
+    "Import": "Import",
+    "Add New Question": "Add New Question",
+    "Questions": "Questions",
+    "STANDARD": "STANDARD",
+    "List all questions": "List all questions"
 }

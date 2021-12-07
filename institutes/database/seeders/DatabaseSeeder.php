@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             LanguageSeeder::class,
             DifficultyLevelSeeder::class,
             QuestTypeSeeder::class,
+            BoardSeeder::class,
+            StandardSeeder::class,
             //CourseSeeder::class,
             //CourseTypeSeeder::class,
         ]);
