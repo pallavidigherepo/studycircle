@@ -9,6 +9,9 @@ import Features from '../pages/Features.vue';
 import Kvpy from '../pages/Kvpy.vue';
 import MhtCet from '../pages/MhtCet.vue';
 import Careers from '../pages/Careers.vue';
+import OurTeam from '../pages/OurTeam.vue';
+import OurServices from '../pages/OurServices.vue';
+import OurProducts from '../pages/OurProducts.vue';
 
 const routes = [
     {
@@ -20,6 +23,21 @@ const routes = [
         path: '/about-us',
         name: 'aboutUs',
         component: AboutUs
+    },
+    {
+        path: '/our-team',
+        name: 'ourTeam',
+        component: OurTeam
+    },
+    {
+        path: '/our-services',
+        name: 'ourServices',
+        component: OurServices
+    },
+    {
+        path: '/our-products',
+        name: 'ourProducts',
+        component: OurProducts
     },
     {
         path: '/how-it-works',

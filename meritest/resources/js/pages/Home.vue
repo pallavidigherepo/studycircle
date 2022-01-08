@@ -1,94 +1,8 @@
 <template>
     <div>
-    <!-- start hero-header -->
-        <div class="hero banner">
-        
-            <div class="container">
-            
-                <div class="row">
-                
-                    <div class="main-search-wrapper">
-                
-                        <h2 class="text-center">Which test would you like to give?</h2>
-                        <p class="lead text-center">Practice makes a learner perfect.</p>
-
-                        <div class="input-group">
-                            <input type="text" class="form-control placeholder-type-writter">
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary" type="button"><i class="ion-ios-search-strong"></i></button>
-                            </span>
-                        </div><!-- /input-group -->
-                    
-                        <div class="featured-sm-wrapper">
-                            
-                            <div class="GridLex-gap-30">
-                
-                                <div class="GridLex-grid-noGutter-equalHeight GridLex-grid-center">
-                                
-                                    <div class="GridLex-col-4_sm-4_xs-8_xss-12">
-                                    
-                                        <div class="featured-sm-item clearfix">
-                                            
-                                            <div class="icon">
-                                                <i class="ion-clipboard"></i>
-                                            </div>
-                                            
-                                            <div class="content">
-                                                Many courses coming
-                                            </div>
-                                            
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                    <div class="GridLex-col-4_sm-4_xs-8_xss-12">
-                                    
-                                        <div class="featured-sm-item clearfix">
-                                        
-                                            <div class="icon">
-                                                <i class="ion-person-stalker"></i>
-                                            </div>
-                                            
-                                            <div class="content">
-                                                Many students are joining us
-                                            </div>
-                                            
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                    <div class="GridLex-col-4_sm-4_xs-8_xss-12">
-                                    
-                                        <div class="featured-sm-item clearfix">
-                                        
-                                            <div class="icon">
-                                                <i class="ion-ipad"></i>
-                                            </div>
-                                            
-                                            <div class="content">
-                                                Learn anywhere, anythime you like
-                                            </div>
-                                            
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                </div>
-                                
-                            </div>
-
-                        </div>
-                        
-                    </div>
-                    
-                    
-                </div>
-                
-            </div>
-            
-        </div>
-        <!-- end hero-header -->
-        
+        <!-- start slick hero slider -->
+        <carousal></carousal>
+        <!-- end slick hero slider -->
         <div class="promo-box-bg-color bg-org">
         
             <div class="container">
@@ -101,7 +15,7 @@
                         
                             <div class="GridLex-inner">
                             
-                                <h3>Want to know more about us?</h3>
+                                <h3>Want to know more about our services?</h3>
                                 
                             </div>
                             
@@ -110,7 +24,7 @@
                         <div class="GridLex-col-3_sm-4_xs-12_xss-12">
                         
                             <div class="GridLex-inner">
-                                <router-link to="/about-us" class="btn btn-primary">About Us</router-link>
+                                <router-link to="/our-services" class="btn btn-primary">Our Services</router-link>
                             </div>
                             
                         </div>
@@ -122,7 +36,695 @@
             </div>
             
         </div>
-        <!-- start How It works -->
+        <!-- start Why Us -->
+        <section class="section bg-light">
+        
+            <div class="container">
+            
+                <div class="row">
+                
+                    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                    
+                        <div class="section-title">
+                            <h2 class="text-center">Try Digital Rocket Premium, Free for 30 Days</h2>
+                            <p class="font22 line22 font300 font-roboto-condensed font19-xs">Only <strong class="text-primary">$15 per month</strong> afterwards.</p>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+
+                <div class="icon-fearured-2-wrapper bordered mt-10">
+                    
+                    <div class="GridLex-grid-noGutter-equalHeight">
+
+                        <div class="GridLex-col-7_sm-6_xs-12">
+                        
+                            <div class="icon-fearured-2">
+                                
+                                <h4 class="mb-15">Career Path job guarantee</h4>
+
+                                <div class="content clearfix">
+                                    
+                                    <div class="icon text-primary">
+                                        <i class="icon-trophy"></i>
+                                    </div>
+                                    
+                                    <p>Raising say express had chiefly detract demands she. Quiet led own cause three him marianne attended.</p>
+                                    
+                                </div>
+                            
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="GridLex-col-5_sm-6_xs-12">
+                        
+                            <div class="icon-fearured-2">
+                                
+                                <h4 class="mb-15">Curriculum customized to you</h4>
+
+                                <div class="content clearfix">
+                                    
+                                    <div class="icon text-primary">
+                                        <i class="icon-equalizer"></i>
+                                    </div>
+                                    
+                                    <p>Raising say express had chiefly detract demands she. Quiet led own cause three him marianne attended.</p>
+                                    
+                                </div>
+                            
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="GridLex-col-5_sm-6_xs-12">
+                        
+                            <div class="icon-fearured-2">
+                                
+                                <h4 class="mb-15">Pair with a professional recruiter</h4>
+
+                                <div class="content clearfix">
+                                    
+                                    <div class="icon text-primary">
+                                        <i class="icon-people"></i>
+                                    </div>
+                                    
+                                    <p>Raising say express had chiefly detract demands she. Quiet led own cause three him marianne attended.</p>
+                                    
+                                </div>
+                            
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="GridLex-col-7_sm-6_xs-12">
+                        
+                            <div class="icon-fearured-2">
+                                
+                                <h4 class="mb-15">Meet with your mentor 4x a week</h4>
+
+                                <div class="content clearfix">
+                                    
+                                    <div class="icon text-primary">
+                                        <i class="icon-bubbles"></i>
+                                    </div>
+                                    
+                                    <p>Raising say express had chiefly detract demands she. Quiet led own cause three him marianne attended.</p>
+                                    
+                                </div>
+                            
+                            </div>
+                            
+                        </div>
+                    
+                    </div>
+                    
+                </div>
+                
+                <div class="text-center mt-50">
+                    <a href="#" class="btn btn-primary">Go Premium</a>
+                </div>
+                
+            </div>
+            
+        </section>
+        <!-- end Why Us -->
+
+        <section class="section pt-0">
+            <div class="overflow-hidden half-image-content">
+        
+                <div class="GridLex-grid-noGutter-equalHeight">
+                    
+                    <div class="GridLex-col-6_sm-12_xs-12 bg-img" style="background-image:url('/meritest/images/home/digital_marketing.jpeg'); background-position: top right">
+                    </div>
+                    
+                    <div class="GridLex-col-6_sm-12_xs-12 bg-light">
+                    
+                        <div class="inner">
+                    
+                            <div class="promo-box-02">
+                            
+                                <h3 class="mb-20 text-primary">Join a Community of 1+ Million Students</h3>
+                                <p class="font20 line30 font300 font-roboto-condensed mb-20 font19-xs">Agreement far boy otherwise rapturous incommode favourite. Invitation excellence imprudence understood it continuing to.</p>
+                                <p class="mb-25">Dissuade ecstatic and properly saw entirely sir why laughter endeavor. In on my jointure horrible margaret suitable he followed speedily. Minuter him own clothes but observe country. </p>
+                                
+                                <a href="#" class="btn btn-primary btn-facebook btn-social mt-5 mr-5">Follow us on Facebook</a>
+                                <a href="#" class="btn btn-primary btn-google-plus btn-social mt-5">Join with Google Plus</a>
+                                
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+            <div class="overflow-hidden half-image-content">
+            
+                <div class="GridLex-grid-noGutter-equalHeight">
+
+                    <div class="GridLex-col-6_sm-12_xs-12 bg-light">
+                    
+                        <div class="inner">
+                    
+                            <div class="promo-box-02">
+                            
+                                <h3 class="mb-20 text-primary">Learn from anywhere anytime</h3>
+                                <p class="font20 line30 font300 font-roboto-condensed font19-xs mb-20">On insensible possession oh particular attachment at excellence in. The books arose but miles happy she.</p>
+                                <p class="mb-20">Dissuade ecstatic and properly saw entirely sir why laughter endeavor. In on my jointure horrible margaret suitable he followed speedily.</p>
+                                <div class="mt-30">
+                                    <a href="#" class="btn btn-primary btn-app mt-5 clearfix mr-5">
+                                        <span class="icon">
+                                            <i class="ion-social-apple"></i>
+                                        </span>
+                                        <span class="content">
+                                            Download on the
+                                            <span class="block">App Store</span>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="btn btn-primary btn-app mt-5 clearfix">
+                                        <span class="icon">
+                                            <i class="ion-social-android"></i>
+                                        </span>
+                                        <span class="content">
+                                            Get it on
+                                            <span class="block">Google Play</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="GridLex-col-6_sm-12_xs-12 bg-img" style="background-image:url('/meritest/images/home/grow_business.jpeg');">
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </section>
+        
+        <!-- start Introduction -->
+        <section class="section pt-0">
+        
+            <div class="container">
+
+                <div class="row">
+                
+                    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                    
+                        <div class="section-title">
+                            <h2 class="text-center">What Do You Want to Learn</h2>
+                        </div>
+                    </div>
+                
+                </div>
+                
+                <div class="GridLex-gap-30 mt-10">
+                
+                    <div class="GridLex-grid-noGutter-equalHeight GridLex-grid-center">
+                    
+                        <div class="GridLex-col-3_sm-4_xs-6_xss-12">
+                        
+                            <div class="course-category-icon">
+                                <div class="icon text-primary">
+                                    <i class="icon-basket-loaded"></i>
+                                </div>
+                                <h4><a href="#">Business</a></h4>
+                                <div class="sub-category">
+                                    <a href="#">Finance</a>
+                                    <a href="#">Marketing</a>
+                                    <a href="#">Commerce</a>
+                                    <a href="#">Import/export</a>
+                                    <a href="#">More</a>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        
+                        <div class="GridLex-col-3_sm-4_xs-6_xss-12">
+                        
+                            <div class="course-category-icon">
+                                <div class="icon text-primary">
+                                    <i class="icon-screen-desktop"></i>
+                                </div>
+                                <h4><a href="#">Computer &amp; IT</a></h4>
+                                <div class="sub-category">
+                                    <a href="#">Networking</a>
+                                    <a href="#">Database</a>
+                                    <a href="#">Programming</a>
+                                    <a href="#">Security</a>
+                                    <a href="#">More</a>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        
+                        <div class="GridLex-col-3_sm-4_xs-6_xss-12">
+                        
+                            <div class="course-category-icon">
+                                <div class="icon text-primary">
+                                    <i class="icon-chemistry"></i>
+                                </div>
+                                <h4><a href="#">Science</a></h4>
+                                <div class="sub-category">
+                                    <a href="#">Biology</a>
+                                    <a href="#">Mathematics</a>
+                                    <a href="#">Chemistry</a>
+                                    <a href="#">Physics</a>
+                                    <a href="#">More</a>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        
+                        <div class="GridLex-col-3_sm-4_xs-6_xss-12">
+                        
+                            <div class="course-category-icon">
+                                <div class="icon text-primary">
+                                    <i class="icon-music-tone-alt"></i>
+                                </div>
+                                <h4><a href="#">Music</a></h4>
+                                <div class="sub-category">
+                                    <a href="#">Production</a>
+                                    <a href="#">Ableton Live</a>
+                                    <a href="#">Fundamentals</a>
+                                    <a href="#">Guitar</a>
+                                    <a href="#">More</a>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        
+                        <div class="GridLex-col-3_sm-4_xs-6_xss-12">
+                        
+                            <div class="course-category-icon">
+                                <div class="icon text-primary">
+                                    <i class="icon-vector"></i>
+                                </div>
+                                <h4><a href="#">Design</a></h4>
+                                <div class="sub-category">
+                                    <a href="#">Typography</a>
+                                    <a href="#">Lettering</a>
+                                    <a href="#">Logo</a>
+                                    <a href="#">Photoshop</a>
+                                    <a href="#">More</a>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        
+                        <div class="GridLex-col-3_sm-4_xs-6_xss-12">
+                        
+                            <div class="course-category-icon">
+                                <div class="icon text-primary">
+                                    <i class="icon-camera"></i>
+                                </div>
+                                <h4><a href="#">Photography</a></h4>
+                                <div class="sub-category">
+                                    <a href="#">Digital Photography</a>
+                                    <a href="#">Editing</a>
+                                    <a href="#">Portrait</a>
+                                    <a href="#">Composition</a>
+                                    <a href="#">More</a>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        
+                        <div class="GridLex-col-3_sm-4_xs-6_xss-12">
+                        
+                            <div class="course-category-icon">
+                                <div class="icon text-primary">
+                                    <i class="icon-note"></i>
+                                </div>
+                                <h4><a href="#">Writing</a></h4>
+                                <div class="sub-category">
+                                    <a href="#">Storytelling</a>
+                                    <a href="#">Copywriting</a>
+                                    <a href="#">Screenwriting</a>
+                                    <a href="#">Publishing</a>
+                                    <a href="#">More</a>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        
+                        <div class="GridLex-col-3_sm-4_xs-6_xss-12">
+                        
+                            <div class="course-category-icon">
+                                <div class="icon text-primary">
+                                    <i class="icon-cup"></i>
+                                </div>
+                                <h4><a href="#">Culinary</a></h4>
+                                <div class="sub-category">
+                                    <a href="#">Cooking</a>
+                                    <a href="#">Food &amp; Drink</a>
+                                    <a href="#">Oysters</a>
+                                    <a href="#">Recipe Design</a>
+                                    <a href="#">More</a>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        
+                    </div>
+                
+                </div>
+
+                <div class="text-center mt-50">
+                    <a href="#" class="btn btn-primary">More Categories</a>
+                </div>
+                
+            </div>
+        
+        </section>
+        <!-- end Introduction -->
+
+        <!-- start Top Offer -->
+        <section class="section bg-light">
+        
+            <div class="container">
+            
+                <div class="row">
+                
+                    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                    
+                        <div class="section-title">
+                            <h2 class="text-center">Latest Courses</h2>
+                            <p>However venture pursuit he am mr cordial. Forming musical am hearing studied be luckily. <strong>Ourselves for determine</strong> attending how led gentleman sincerity.</p>
+                        </div>
+                    </div>
+                
+                </div>
+                
+                <div class="course-item-wrapper gap-20">
+                
+                    <div class="GridLex-grid-noGutter-equalHeight GridLex-grid-center">
+                    
+                        <div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
+                            <div class="course-item">
+                                <a href="#">
+                                    <div class="course-item-image">
+                                        <img src="images/course-item/01.jpg" alt="Image" class="img-responsive" />
+                                    </div>
+                                    <div class="course-item-top clearfix">
+                                        <div class="course-item-instructor">
+                                            <div class="image">
+                                                <img src="images/testimonial/01.jpg" alt="Image" class="img-circle" />
+                                            </div>
+                                            <span>Mark Lassoff </span>
+                                        </div>
+                                        <div class="course-item-price bg-danger">
+                                            $19.56
+                                        </div>
+                                    </div>
+                                    <div class="course-item-content">
+                                        <div class="rating-wrapper">
+                                            <div class="rating-item">
+                                                <input type="hidden" class="rating" data-filled="fa fa-star" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="3.5"/>
+                                            </div>
+                                            <span> (7 review)</span>
+                                        </div>
+                                        <h3 class="text-primary">Foundations of Enterprise Development for Windows</h3>
+                                        <p>Create Code That Screams with C++! Hours of Video Lecture, Lab Exercises and Dozens of Code Samples for You To Use! Dave Pither-Patterson</p>
+                                    </div>
+                                    <div class="course-item-bottom clearfix">
+                                        <div><i class="fa fa-folder-open-o"></i><span class="block"> Programming</span></div>
+                                        <div><i class="fa fa-pencil-square-o"></i><span class="block"> 15 Lessons</span></div>
+                                        <div><i class="fa fa-calendar-check-o"></i><span class="block"> 4.5 Hours</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
+                            <div class="course-item">
+                                <a href="#">
+                                    <div class="course-item-image">
+                                        <img src="images/course-item/02.jpg" alt="Image" class="img-responsive" />
+                                    </div>
+                                    <div class="course-item-top clearfix">
+                                        <div class="course-item-instructor">
+                                            <div class="image">
+                                                <img src="images/testimonial/02.jpg" alt="Image" class="img-circle" />
+                                            </div>
+                                            <span>Nicholas Mavrakis</span>
+                                        </div>
+                                        <div class="course-item-price bg-danger">
+                                            $19.56
+                                        </div>
+                                    </div>
+                                    <div class="course-item-content">
+                                        <div class="rating-wrapper">
+                                            <div class="rating-item">
+                                                <input type="hidden" class="rating" data-filled="fa fa-star" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="3.5"/>
+                                            </div>
+                                            <span> (7 review)</span>
+                                        </div>
+                                        <h3 class="text-primary">Food Photography: Shooting at Restaurants</h3>
+                                        <p>She propriety immediate was improving. He or entrance humoured likewise moderate. Much nor game son say feel.</p>
+                                    </div>
+                                    <div class="course-item-bottom clearfix">
+                                        <div><i class="fa fa-folder-open-o"></i><span class="block"> Photography </span></div>
+                                        <div><i class="fa fa-pencil-square-o"></i><span class="block"> 15 Lessons</span></div>
+                                        <div><i class="fa fa-calendar-check-o"></i><span class="block"> 4.5 Hours</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
+                            <div class="course-item">
+                                <a href="#">
+                                    <div class="course-item-image">
+                                        <img src="images/course-item/03.jpg" alt="Image" class="img-responsive" />
+                                    </div>
+                                    <div class="course-item-top clearfix">
+                                        <div class="course-item-instructor">
+                                            <div class="image">
+                                                <img src="images/testimonial/03.jpg" alt="Image" class="img-circle" />
+                                            </div>
+                                            <span>Ange Ermolova</span>
+                                        </div>
+                                        <div class="course-item-price bg-danger">
+                                            $19.56
+                                        </div>
+                                    </div>
+                                    <div class="course-item-content">
+                                                            <div class="rating-wrapper">
+                                                                <div class="rating-item">
+                                                                    <input type="hidden" class="rating" data-filled="fa fa-star" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="3.5"/>
+                                                                </div>
+                                                                <span> (7 review)</span>
+                                                            </div>
+                                        <h3 class="text-primary">Introduction to HTML: Build a Portfolio Website</h3>
+                                        <p>Fulfilled direction use continual set him propriety continued. Saw met applauded favourite deficient newspaper questions consulted</p>
+                                    </div>
+                                    <div class="course-item-bottom clearfix">
+                                        <div><i class="fa fa-folder-open-o"></i><span class="block"> Wed Design</span></div>
+                                        <div><i class="fa fa-pencil-square-o"></i><span class="block"> 15 Lessons</span></div>
+                                        <div><i class="fa fa-calendar-check-o"></i><span class="block"> 4.5 Hours</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
+                            <div class="course-item">
+                                <a href="#">
+                                    <div class="course-item-image">
+                                        <img src="images/course-item/04.jpg" alt="Image" class="img-responsive" />
+                                    </div>
+                                    <div class="course-item-top clearfix">
+                                        <div class="course-item-instructor">
+                                            <div class="image">
+                                                <img src="images/testimonial/02.jpg" alt="Image" class="img-circle" />
+                                            </div>
+                                            <span>Nicholas Mavrakis</span>
+                                        </div>
+                                        <div class="course-item-price bg-danger">
+                                            $19.56
+                                        </div>
+                                    </div>
+                                    <div class="course-item-content">
+                                                            <div class="rating-wrapper">
+                                                                <div class="rating-item">
+                                                                    <input type="hidden" class="rating" data-filled="fa fa-star" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="3.5"/>
+                                                                </div>
+                                                                <span> (7 review)</span>
+                                                            </div>
+                                        <h3 class="text-primary">Foundations of Enterprise Development for Windows</h3>
+                                        <p>Create Code That Screams with C++! Hours of Video Lecture, Lab Exercises and Dozens of Code Samples for You To Use! Dave Pither-Patterson </p>
+                                    </div>
+                                    <div class="course-item-bottom clearfix">
+                                        <div><i class="fa fa-folder-open-o"></i><span class="block"> Programming</span></div>
+                                        <div><i class="fa fa-pencil-square-o"></i><span class="block"> 15 Lessons</span></div>
+                                        <div><i class="fa fa-calendar-check-o"></i><span class="block"> 4.5 Hours</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
+                            <div class="course-item">
+                                <a href="#">
+                                    <div class="course-item-image">
+                                        <img src="images/course-item/05.jpg" alt="Image" class="img-responsive" />
+                                    </div>
+                                    <div class="course-item-top clearfix">
+                                        <div class="course-item-instructor">
+                                            <div class="image">
+                                                <img src="images/testimonial/01.jpg" alt="Image" class="img-circle" />
+                                            </div>
+                                            <span>Mark Lassoff </span>
+                                        </div>
+                                        <div class="course-item-price bg-danger">
+                                            $19.56
+                                        </div>
+                                    </div>
+                                    <div class="course-item-content">
+                                                            <div class="rating-wrapper">
+                                                                <div class="rating-item">
+                                                                    <input type="hidden" class="rating" data-filled="fa fa-star" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="3.5"/>
+                                                                </div>
+                                                                <span> (7 review)</span>
+                                                            </div>
+                                        <h3 class="text-primary">Introduction to HTML: Build a Portfolio Website</h3>
+                                        <p>Fulfilled direction use continual set him propriety continued. Saw met applauded favourite deficient ask him cold feel</p>
+                                    </div>
+                                    <div class="course-item-bottom clearfix">
+                                        <div><i class="fa fa-folder-open-o"></i><span class="block"> Wed Design</span></div>
+                                        <div><i class="fa fa-pencil-square-o"></i><span class="block"> 15 Lessons</span></div>
+                                        <div><i class="fa fa-calendar-check-o"></i><span class="block"> 4.5 Hours</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
+                            <div class="course-item">
+                                <a href="#">
+                                    <div class="course-item-image">
+                                        <img src="images/course-item/06.jpg" alt="Image" class="img-responsive" />
+                                    </div>
+                                    <div class="course-item-top clearfix">
+                                        <div class="course-item-instructor">
+                                            <div class="image">
+                                                <img src="images/testimonial/04.jpg" alt="Image" class="img-circle" />
+                                            </div>
+                                            <span>Suttira Ketkaew</span>
+                                        </div>
+                                        <div class="course-item-price bg-danger">
+                                            $19.56
+                                        </div>
+                                    </div>
+                                    <div class="course-item-content">
+                                                            <div class="rating-wrapper">
+                                                                <div class="rating-item">
+                                                                    <input type="hidden" class="rating" data-filled="fa fa-star" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="3.5"/>
+                                                                </div>
+                                                                <span> (7 review)</span>
+                                                            </div>
+                                        <h3 class="text-primary">Foundations of Enterprise Development for Windows</h3>
+                                        <p>Create Code That Screams with C++! Hours of Video Lecture, Lab Exercises and Dozens of Code Samples for You To Use! Dave Pither-Patterson</p>
+                                    </div>
+                                    <div class="course-item-bottom clearfix">
+                                        <div><i class="fa fa-folder-open-o"></i><span class="block"> Programming</span></div>
+                                        <div><i class="fa fa-pencil-square-o"></i><span class="block"> 15 Lessons</span></div>
+                                        <div><i class="fa fa-calendar-check-o"></i><span class="block"> 4.5 Hours</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
+                            <div class="course-item">
+                                <a href="#">
+                                    <div class="course-item-image">
+                                        <img src="images/course-item/07.jpg" alt="Image" class="img-responsive" />
+                                    </div>
+                                    <div class="course-item-top clearfix">
+                                        <div class="course-item-instructor">
+                                            <div class="image">
+                                                <img src="images/testimonial/03.jpg" alt="Image" class="img-circle" />
+                                            </div>
+                                            <span>Ange Ermolova</span>
+                                        </div>
+                                        <div class="course-item-price bg-danger">
+                                            $19.56
+                                        </div>
+                                    </div>
+                                    <div class="course-item-content">
+                                                            <div class="rating-wrapper">
+                                                                <div class="rating-item">
+                                                                    <input type="hidden" class="rating" data-filled="fa fa-star" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="3.5"/>
+                                                                </div>
+                                                                <span> (7 review)</span>
+                                                            </div>
+                                        <h3 class="text-primary">Foundations of Enterprise Development for Windows</h3>
+                                        <p>Create Code That Screams with C++! Hours of Video Lecture, Lab Exercises and Dozens of Code Samples for You To Use! Dave Pither-Patterson</p>
+                                    </div>
+                                    <div class="course-item-bottom clearfix">
+                                        <div><i class="fa fa-folder-open-o"></i><span class="block"> Programming</span></div>
+                                        <div><i class="fa fa-pencil-square-o"></i><span class="block"> 15 Lessons</span></div>
+                                        <div><i class="fa fa-calendar-check-o"></i><span class="block"> 4.5 Hours</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="GridLex-col-3_mdd-4_sm-6_xs-6_xss-12">
+                            <div class="course-item">
+                                <a href="#">
+                                    <div class="course-item-image">
+                                        <img src="images/course-item/08.jpg" alt="Image" class="img-responsive" />
+                                    </div>
+                                    <div class="course-item-top clearfix">
+                                        <div class="course-item-instructor">
+                                            <div class="image">
+                                                <img src="images/testimonial/02.jpg" alt="Image" class="img-circle" />
+                                            </div>
+                                            <span>Nicholas Mavrakis</span>
+                                        </div>
+                                        <div class="course-item-price bg-danger">
+                                            $19.56
+                                        </div>
+                                    </div>
+                                    <div class="course-item-content">
+                                                            <div class="rating-wrapper">
+                                                                <div class="rating-item">
+                                                                    <input type="hidden" class="rating" data-filled="fa fa-star" data-empty="fa fa-star-o" data-fractions="2" data-readonly value="3.5"/>
+                                                                </div>
+                                                                <span> (7 review)</span>
+                                                            </div>
+                                        <h3 class="text-primary">Food Photography: Shooting at Restaurants</h3>
+                                        <p>She propriety immediate was improving. He or entrance humoured likewise moderate. Much nor game son say feel.</p>
+                                    </div>
+                                    <div class="course-item-bottom clearfix">
+                                        <div><i class="fa fa-folder-open-o"></i><span class="block"> Photography </span></div>
+                                        <div><i class="fa fa-pencil-square-o"></i><span class="block"> 15 Lessons</span></div>
+                                        <div><i class="fa fa-calendar-check-o"></i><span class="block"> 4.5 Hours</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                
+                </div>
+
+            </div>
+            
+        </section>
+        <!-- end Top Offer -->
+        
+        <!-- start Top Destinations -->
         <section class="section pb-70">
         
             <div class="container">
@@ -132,292 +734,96 @@
                     <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                     
                         <div class="section-title">
-                            <h2 class="text-center">Meritest Built For</h2>
+                            <h2 class="text-center">How Edutute Works</h2>
                         </div>
                     </div>
                 
                 </div>
                 
                 <div class="row">
-                    <a href="#" 
-                        data-toggle="modal" 
-                        @click.prevent="selectComp('BuildForTeachers')"
-                        :id="`BuildForTeachers`">
-                        <div class="col-sm-4">
+                
+                    <div class="col-sm-4">
                     
-                            <div class="icon-featured">
-                                
-                                <h4>Teachers</h4>
-                                <span class="icon text-primary"><i class="ion-ios-people-outline"></i></span>
-                                <p>Create Question, Design Test, Assign Test, Generate Result.</p>
+                        <div class="icon-featured">
                             
-                            </div>
+                            <h4>Learn at your own availability</h4>
+                            <span class="icon text-primary"><i class="ion-ios-timer-outline"></i></span>
+                            <p>Raising say express had chiefly detract demands she. Quiet led own cause three him marianne attended.</p>
                         
                         </div>
-                    </a>
-                    <a href="#" 
-                        data-toggle="modal" 
-                        @click.prevent="selectComp('BuildForStudents')"
-                        :id="`BuildForStudents`">
-                        <div class="col-sm-4">
                     
-                            <div class="icon-featured">
-                                
-                                <h4>Students</h4>
-                                <span class="icon text-primary"><i class="ion-ios-people-outline"></i></span>
-                                <p>Learn and do exam practice anytime.</p>
+                    </div>
+                    
+                    <div class="col-sm-4">
+                    
+                        <div class="icon-featured">
                             
-                            </div>
+                            <h4>Learn by watching short video</h4>
+                            <span class="icon text-primary"><i class="ion-ios-film-outline"></i></span>
+                            <p>Prospect humoured mistress to by proposal marianne attended. Simplicity the far admiration preference everything.</p>
                         
                         </div>
-                    </a>
-                    <a href="#" 
-                        data-toggle="modal" 
-                        @click.prevent="selectComp('BuildForParents')"
-                        :id="`BuildForParents`">
-                        <div class="col-sm-4">
-                        
-                            <div class="icon-featured">
-                                
-                                <h4>Parents</h4>
-                                <span class="icon text-primary"><i class="ion-ios-people-outline"></i></span>
-                                <p>Get a complete track of you kid.</p>
+                    
+                    </div>
+                    
+                    <div class="col-sm-4">
+                    
+                        <div class="icon-featured">
                             
-                            </div>
+                            <h4>Learn by real-time doing and pratacing</h4>
+                            <span class="icon text-primary"><i class="ion-ios-compose-outline"></i></span>
+                            <p>Our compass see age uncivil matters weather forbade her minutes. Ready how but truth son new under.</p>
                         
                         </div>
-                    </a>
+                    
+                    </div>
                     
                 </div>
                 
             </div>
             
         </section>
-        <!-- end How It works -->
+        <!-- end Top Destinations -->
         
-        <div class="promo-box-bg-color bg-primary">
-        
+        <!-- start Promo -->
+        <div class="promo-box-bg-img" style="background-image:url('/meritest/images/teacher-bg.jpg');">
             <div class="container">
-            
-                <div class="GridLex-gap-30">
-                    
-                    <div class="GridLex-grid-noGutter-equalHeight GridLex-grid-middle">
-                    
-                        <div class="GridLex-col-9_sm-8_xs-12_xss-12">
-                        
-                            <div class="GridLex-inner">
-                            
-                                <h3>Know more about our features</h3>
-                                
-                            </div>
-                            
-                        </div>
-                        
-                        <div class="GridLex-col-3_sm-4_xs-12_xss-12">
-                        
-                            <div class="GridLex-inner">
-                                <router-link to="/features" class="btn btn-customer-org">Features</router-link>
-                            </div>
-                            
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-
-            </div>
-            
-        </div>
-        <!-- start Online Software Services -->
-        <section class="section">
-        
-            <div class="container">
-
                 <div class="row">
+                
+                    <div class="row">
                 
                     <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                     
-                        <div class="section-title">
-                            <h2 class="text-center">Meritest online exam software solutions</h2>
+                        <div class="section-title mb-30">
+                            <h2 class="text-center">Becoming our course contributor</h2>
+                            <p>Engaged its was evident pleased husband. Ye goodness felicity do disposal dwelling no. First am plate jokes to began of cause an scale.</p>
                         </div>
-                    </div>
-                
-                </div>
-                
-                <div class="category-item-wrapper icon-block item-border mt-10">
-                
-                    <div class="GridLex-gap-20">   
-                    
-                        <div class="GridLex-grid-noGutter-equalHeight">  
-                            
-                            <div v-for="(service, index) in services" 
-                                 :key="index"
-                                 class="GridLex-col-2_sm-3_xs-4_xss-6">
-
-                                <a href="#" 
-                                    data-toggle="modal" 
-                                    @click.prevent="selectComp(service.comp)"
-                                    :id="service.comp">
-                                    <div class="category-item">
-                                        <div class="icon">
-                                            <i :class="service.icon"></i>
-                                        </div>
-                                        <div class="content">
-                                            <h6>{{ service.label }}</h6>
-                                        </div>
-                                    </div>
-                                </a>
-
-                            </div>
-                            
+                        
+                        <div class="text-center mt-40">
+                            <a href="#" class="btn btn-primary">Learn more</a>
                         </div>
                         
                     </div>
-                    
+                
                 </div>
                 
+                </div>
             </div>
-        
-        </section>
-        <!-- end Online Software Services -->
-        <div class="overflow-hidden">
-        
-            <div class="GridLex-grid-noGutter-equalHeight">
-            
-                <div class="GridLex-col-6_sm-12_xs-12 bg-img bg-org">
-                
-                    <div class="promo-box-03 overlay-danger">
-                    
-                        <div class="promo-box-03-inner">
-                        
-                            <h2 class="mb-20 text-white">Join a Student Community</h2>
-                            <p class="mb-25">Join a Student community and avail many possibilities of your success. Join a Student community and avail many possibilities of your success.</p>
-                            
-                            <router-link to="/contact-us" class="btn btn-primary">Contact Us</router-link>
-                            
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-                
-                <div class="GridLex-col-6_sm-12_xs-12 bg-img bg-blue">
-                
-                    <div class="promo-box-03 overlay-primary">
-                        
-                        <div class="promo-box-03-inner">
-                        
-                            <h2 class="mb-20 text-white">Join a Teacher Community</h2>
-                            <p class="mb-25">Join teacher community and unlock features that will make your life much easier. Join teacher community and unlock features that will make your life much easier.</p>
-                            
-                            <router-link to="/contact-us" class="btn btn-customer-org">Contact Us</router-link>
-                        
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-                
-            </div>
-            
         </div>
-        <!-- BEGIN: Component  -->
-
-        <teleport to='#app'>
-            <component v-if="selectComponent !== null" 
-                        :is="selectComponent"
-                        :id="selectComponent"
-                        @close="closeMe"
-                        ></component>
-        </teleport>
-        <!-- END: Component  -->
+        <!-- end Promo -->
     </div>
 </template>
 
 <script>
-import EducationalInstitutions from './home/EducationalInstitutions.vue';
-import CoachingClasses from './home/CoachingClasses.vue';
-import CollageUniversities from './home/CollageUniversities.vue';
-import DistanceEducation from './home/DistanceEducation.vue';
-import ITSolutions from './home/ITSolutions.vue';
-import RecruitmentSurveys from './home/RecruitmentSurveys.vue';
-import SchoolsOlympiads from './home/SchoolsOlympiads.vue';
-import TrainingCertificate from './home/TrainingCertificate.vue';
-import BuildForTeachers from './home/BuildForTeachers.vue';
-import BuildForStudents from './home/BuildForStudents.vue';
-import BuildForParents from './home/BuildForParents.vue';
+import Carousal from './home/Carousal.vue';
 
 export default {
-    components: {
-        EducationalInstitutions,
-        CoachingClasses,
-        CollageUniversities,
-        DistanceEducation,
-        ITSolutions,
-        RecruitmentSurveys,
-        TrainingCertificate,
-        SchoolsOlympiads,
-        BuildForTeachers,
-        BuildForStudents,
-        BuildForParents
-    },
-    data() {
-        return {
-            selectComponent: '',
-            services: {
-               educational: {
-                   label: 'Educational Institutions',
-                   icon: 'fa fa-university',
-                   comp: 'EducationalInstitutions'
-               },
-               coaching: {
-                   label: 'Coaching Classes',
-                   icon: 'icon-screen-desktop',
-                   comp: 'CoachingClasses',
-               },
-               schools: {
-                   label: 'Schools and Olympiads',
-                   icon: 'fa education-icon-schoolclass',
-                   comp: 'SchoolsOlympiads',
-               },
-               collage: {
-                   label: 'College and Universities',
-                   icon: 'fa fa-graduation-cap',
-                   comp: 'CollageUniversities',
-               },
-               recruitment: {
-                   label: 'Recruitment & Surveys',
-                   icon: 'fa fa-users',
-                   comp: 'RecruitmentSurveys',
-               },
-               training: {
-                   label: 'Trainig Certificate',
-                   icon: 'fa education-icon-certificate3',
-                   comp: 'TrainingCertificate',
-               },
-               distance: {
-                   label: 'Distance education',
-                   icon: 'fa fa-location-arrow',
-                   comp: 'DistanceEducation',
-               },
-               it: {
-                   label: 'IT Solutions',
-                   icon: 'fa fa-tablet',
-                   comp: 'ITSolutions',
-               },
-            }
-        }
-    },
-    methods: {
-        selectComp(comp) {
-            this.selectComponent = comp;
-        },
-        closeMe() {
-            this.selectComponent = "";
-        }
+    components: { 
+        Carousal,
     },
 }
 </script>
 
-<style scoped>
+<style>
+
 </style>

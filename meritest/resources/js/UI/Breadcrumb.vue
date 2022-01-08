@@ -3,8 +3,6 @@
 			
         <div class="container">
             
-            <h1 class="page-title">{{ pageTitle }}</h1>
-            
             <div class="row">
             
                 <div class="col-xs-12 col-sm-8">

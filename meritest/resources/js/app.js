@@ -7,7 +7,7 @@ import globalComponents from './global_components.js'
 
 const app = createApp(App)
   .use(router);
-  
+
 globalComponents(app);
 
 app.mount('#app');

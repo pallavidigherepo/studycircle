@@ -58,7 +58,11 @@ a.navbar-brand:hover {
 .navbar-nav > li > a {
     line-height: 70px;
     font-weight: 500;
-    font-size: 13px;
+    /*font-size: 13px;*/
+    font-size: large; /*Added on 27-12-2021*/
+    font-weight: bold; /*Added on 27-12-2021*/
+    color: #656566; /*Added on 27-12-2021*/
+    font-variant-caps: all-small-caps; /*Added on 27-12-2021*/
     padding-top: 0;
     padding-bottom: 0;
     -webkit-transition: all .3s ease-in-out 0;
@@ -66,7 +70,7 @@ a.navbar-brand:hover {
     -ms-transition: all .3s ease-in-out 0;
     -o-transition: all .3s ease-in-out 0;
     transition: all .3s ease-in-out 0;
-    color: #929292;
+    /*color: #929292;*/ /*Changed on 27-12-2021*/
     letter-spacing: 1px
 }
 

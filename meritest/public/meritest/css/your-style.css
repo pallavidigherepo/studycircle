@@ -32,7 +32,6 @@ Created:        18/10/2016
     background-position: top right;
 }
 
-
 .navbar>.container>.navbar-collapse>.navbar-nav>li>a.active {
 	color: #da380d !important;
     background: none !important;

@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import TheHeader from '../layout/TheHeader.vue';
-import TheFooter from '../layout/TheFooter.vue';
+import TheHeader from '../layout/v2/TheHeader.vue';
+import TheFooter from '../layout/v2/TheFooter.vue';
 export default {
     components: {
         TheHeader,
