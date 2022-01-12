@@ -21494,30 +21494,31 @@ __webpack_require__.r(__webpack_exports__);
       //right: '<svg x="0px" y="0px" viewBox="0 0 24 24"><path d="M7.8,21c-0.3,0-0.5-0.1-0.7-0.3c-0.4-0.4-0.4-1,0-1.4l7.4-7.3L7,4.7c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l8.8,8.7l-8.8,8.7C8.3,20.9,8,21,7.8,21z"/></svg>',
       slides: {
         1: {
-          image: '/meritest/images/slides/1.jpeg',
+          image: '/meritest/images/slides/need_a_website_with_mobile.png',
           caption: 'Digital Marketing',
           description: 'We will take care of complete digital marketing solutions according market requirements.'
         },
         2: {
-          image: '/meritest/images/slides/2.jpeg',
+          image: '/meritest/images/slides/our_services.png',
           caption: 'Digital Branding',
           description: 'We will take care of complete digital branding solutions according market requirements.'
         },
         3: {
-          image: '/meritest/images/slides/03.jpeg',
+          image: '/meritest/images/slides/our_products.png',
           caption: 'Content generation',
           description: 'We will take care of complete content generation for your website.'
         },
         4: {
-          image: '/meritest/images/slides/04.jpeg',
+          image: '/meritest/images/slides/we_are_hiring.png',
           caption: 'SEO, SMM',
           description: 'We will take care of complete SEO AND SMM of your website.'
-        },
-        5: {
-          image: '/meritest/images/slides/04.jpeg',
-          caption: 'Website design and development',
-          description: 'We will take care of complete website design and development of your ideas'
         }
+        /*5: {
+            image: '/meritest/images/slides/04.jpeg',
+            caption: 'Website design and development',
+            description: 'We will take care of complete website design and development of your ideas',
+        }*/
+
       }
     };
   }
@@ -24324,36 +24325,21 @@ var _hoisted_2 = {
   "class": "slider"
 };
 var _hoisted_3 = {
-  "class": "container"
+  "class": "image-bg"
 };
 var _hoisted_4 = {
-  "class": "row"
+  "class": "container"
 };
 var _hoisted_5 = {
-  "class": "col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2"
+  "class": "row"
 };
 var _hoisted_6 = {
-  "class": "slick-hero-slider-caption"
-};
-var _hoisted_7 = {
-  "class": "animation fromBottom transitionDelay4 transitionDuration6",
-  style: {
-    "color": "#000000"
-  }
-};
-var _hoisted_8 = {
-  "class": "font22 line34 font300 font-roboto-condensed font19-xs mt-15 mb-30 animation fromBottom transitionDelay6 transitionDuration8",
-  style: {
-    "color": "#000000"
-  }
+  "class": "col-xs-12 col-sm-12 col-md-12"
 };
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
-  href: "#",
-  "class": "animation fromBottom transitionDelay8 transitionDuration10"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
-  "class": "bg-primary"
-}, "More Details")], -1
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "slick-hero-slider-caption"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<h1 class=\"animation fromBottom transitionDelay4 transitionDuration6\" style=\"color: #000000;\">{{ slide.caption }}</h1>\r\n                                            <p class=\"font22 line34 font300 font-roboto-condensed font19-xs mt-15 mb-30 animation fromBottom transitionDelay6 transitionDuration8\" style=\"color: #000000;\">{{ slide.description }}</p>\r\n                                            <a href=\"#\" class=\"animation fromBottom transitionDelay8 transitionDuration10\"><span class=\"bg-primary\">More Details</span></a>")], -1
 /* HOISTED */
 );
 
@@ -24368,18 +24354,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.slides, function (slide, index) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
-          "class": "slick-item slide",
+          "class": "slick-item",
           key: index
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-          "class": "image-bg",
-          style: "background-image:url('" + slide.image + "'); height: 500px; opacity: 2;"
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(slide.caption), 1
-        /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(slide.description), 1
-        /* TEXT */
-        ), _hoisted_9])])])])], 4
-        /* STYLE */
-        )]);
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
+          src: slide.image,
+          alt: "slide.image"
+        }, null, 8
+        /* PROPS */
+        , ["src"]), _hoisted_7])])])])]);
       }), 128
       /* KEYED_FRAGMENT */
       ))];
