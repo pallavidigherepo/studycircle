@@ -47,33 +47,64 @@
 				></div>
 			</div>
 			<div class="px-5 sm:px-20 mt-10 pt-10 border-t border-gray-200 dark:border-dark-5">
-				<keep-alive>
-					<component :is="currentForm"></component>
-				</keep-alive>
+				<div class="font-medium text-base">Basic Selection</div>
+				<form @submit.prevent="submitForm">
+					<div class="grid grid-cols-12 gap-4 gap-y-5 mt-5">
+						<basic-selection />
+						<question-solution />
+						<answer />
+						<preview />
+						
+						<div
+							class="intro-y col-span-12 flex items-center justify-center sm:justify-end mt-5"
+						>
+							<button class="btn btn-secondary w-24">Previous</button>
+							<button class="btn btn-primary w-24 ml-2">Next</button>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 		<!-- END: Wizard Layout -->
 	</div>
 </template>
+
 <script>
-import { ref, reactive, computed, onMounted } from 'vue'
+import { ref, reactive, computed, onMounted } from 'vue';
 
 import BasicSelection from './Partials/BasicSelection.vue';
-import QuesionSolution from  './Partials/QuestionSolution.vue';
+import QuestionSolution from  './Partials/QuestionSolution.vue';
 import Answer from './Partials/Answer.vue';
 import Preview from './Partials/Preview.vue';
 
 export default {
 	components: {
 		BasicSelection,
-		QuesionSolution,
+		QuestionSolution,
 		Answer,
 		Preview
 	},
 	setup() {
 		const currentForm = ref('BasicSelection');
+		const nextForm = ref('QuestionSolution');
+        const totalSteps = 4;
+        const step = 1;
+
+		function formInfo(payloads) {
+			console.log(payloads.form);
+			console.log(payloads.nextForm);
+			currentForm.value = payloads.nextForm;
+			
+		}
+		/*function submitForm(formValues) {
+			console.log(formValues);
+		}*/
 		return {
-			currentForm
+			currentForm,
+			formInfo,
+            totalSteps,
+            step
+			//submitForm
 		}
 	},
 }

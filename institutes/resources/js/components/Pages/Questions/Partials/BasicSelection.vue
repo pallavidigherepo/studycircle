@@ -1,8 +1,7 @@
 <template>
-    <div>
-        <div class="font-medium text-base">Basic Selection</div>
-        <form @submit.prevent="submitForm" class="validate-form">
-            <div class="grid grid-cols-12 gap-4 gap-y-5 mt-5">
+        <!-- <div class="font-medium text-base">Basic Selection</div> -->
+        
+            <!-- <div class="grid grid-cols-12 gap-4 gap-y-5 mt-5"> -->
 				<div class="intro-y col-span-12 sm:col-span-6">
 					<label for="board" class="form-label">{{ $t('Board')}}</label>
 					<TailSelect
@@ -110,16 +109,15 @@
 						<div class="error-msg">{{ error.$message }}</div>
 					</div>
 				</div>
-				<div
+				<!-- <div
 					class="intro-y col-span-12 flex items-center justify-center sm:justify-end mt-5"
 				>
 					<button class="btn btn-secondary w-24">Previous</button>
 					<button class="btn btn-primary w-24 ml-2">Next</button>
-				</div>
-			</div>
-        </form>
+				</div> -->
+			<!-- </div> -->
         
-    </div>
+        
    
 </template>
 
@@ -132,7 +130,7 @@ import { required, helpers } from '@vuelidate/validators'
 import useCrud from '@/hooks/crud.js'
 
 export default {
-    setup(props) {
+    setup(props, context) {
 		const store = useStore();
         const languages = ref('');
 		const boards = ref('');
@@ -144,6 +142,7 @@ export default {
 		const topics = ref('');
 
 		const selectQuestionTypeComponent = ref('');
+		const nextForm = ref('QuestionSolution');
 
 		const mappedTypeComponents = {
 			1: "SingleChoice",
@@ -209,8 +208,8 @@ export default {
 			languages.value = response.data.languages;
 			
 			if (response.status != 200) {
-					const error = new Error('Failed to fetch options')
-					throw error;
+				const error = new Error('Failed to fetch options')
+				throw error;
 			}
 		}
 
@@ -248,19 +247,15 @@ export default {
 
         const submitForm = async() => {
 			try {
-				
 				let response = await submit();
 				if (response) {
-					clearForm();
-					
-					router.push('/questions');
+					context.emit("submitForm", {form, nextForm});
 				} else {
 					return response;
 				}
 			} catch (e) {
 
 			}
-
 		}
 
         return {
@@ -283,7 +278,7 @@ export default {
 			submit,
 			v$,
 			editItem,
-			editMode
+			editMode,
         }
     }
 }

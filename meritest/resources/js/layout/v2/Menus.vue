@@ -24,11 +24,12 @@
         </li>
         <li>
             <router-link to="/blogs">Blogs</router-link>
+            <!-- <a href="#">Blogs</a>
             <ul>
                 <li><router-link to="/kvpy">KVPY</router-link></li>
                 <li><router-link to="/mht-cet">MHT-CET</router-link></li>
-            </ul>
-        </li>              
+            </ul> -->
+        </li>
     </ul>
         
 </template>

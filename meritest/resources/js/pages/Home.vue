@@ -36,119 +36,10 @@
             </div>
             
         </div>
+
+
         <!-- start Why Us -->
-        <section class="section bg-light">
-        
-            <div class="container">
-            
-                <div class="row">
-                
-                    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                    
-                        <div class="section-title">
-                            <h2 class="text-center">Try Digital Rocket Premium, Free for 30 Days</h2>
-                            <p class="font22 line22 font300 font-roboto-condensed font19-xs">Only <strong class="text-primary">$15 per month</strong> afterwards.</p>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-
-                <div class="icon-fearured-2-wrapper bordered mt-10">
-                    
-                    <div class="GridLex-grid-noGutter-equalHeight">
-
-                        <div class="GridLex-col-7_sm-6_xs-12">
-                        
-                            <div class="icon-fearured-2">
-                                
-                                <h4 class="mb-15">Career Path job guarantee</h4>
-
-                                <div class="content clearfix">
-                                    
-                                    <div class="icon text-primary">
-                                        <i class="icon-trophy"></i>
-                                    </div>
-                                    
-                                    <p>Raising say express had chiefly detract demands she. Quiet led own cause three him marianne attended.</p>
-                                    
-                                </div>
-                            
-                            </div>
-                            
-                        </div>
-                        
-                        <div class="GridLex-col-5_sm-6_xs-12">
-                        
-                            <div class="icon-fearured-2">
-                                
-                                <h4 class="mb-15">Curriculum customized to you</h4>
-
-                                <div class="content clearfix">
-                                    
-                                    <div class="icon text-primary">
-                                        <i class="icon-equalizer"></i>
-                                    </div>
-                                    
-                                    <p>Raising say express had chiefly detract demands she. Quiet led own cause three him marianne attended.</p>
-                                    
-                                </div>
-                            
-                            </div>
-                            
-                        </div>
-                        
-                        <div class="GridLex-col-5_sm-6_xs-12">
-                        
-                            <div class="icon-fearured-2">
-                                
-                                <h4 class="mb-15">Pair with a professional recruiter</h4>
-
-                                <div class="content clearfix">
-                                    
-                                    <div class="icon text-primary">
-                                        <i class="icon-people"></i>
-                                    </div>
-                                    
-                                    <p>Raising say express had chiefly detract demands she. Quiet led own cause three him marianne attended.</p>
-                                    
-                                </div>
-                            
-                            </div>
-                            
-                        </div>
-                        
-                        <div class="GridLex-col-7_sm-6_xs-12">
-                        
-                            <div class="icon-fearured-2">
-                                
-                                <h4 class="mb-15">Meet with your mentor 4x a week</h4>
-
-                                <div class="content clearfix">
-                                    
-                                    <div class="icon text-primary">
-                                        <i class="icon-bubbles"></i>
-                                    </div>
-                                    
-                                    <p>Raising say express had chiefly detract demands she. Quiet led own cause three him marianne attended.</p>
-                                    
-                                </div>
-                            
-                            </div>
-                            
-                        </div>
-                    
-                    </div>
-                    
-                </div>
-                
-                <div class="text-center mt-50">
-                    <a href="#" class="btn btn-primary">Go Premium</a>
-                </div>
-                
-            </div>
-            
-        </section>
+        <our-products></our-products>
         <!-- end Why Us -->
 
         <section class="section pt-0">
@@ -156,7 +47,7 @@
         
                 <div class="GridLex-grid-noGutter-equalHeight">
                     
-                    <div class="GridLex-col-6_sm-12_xs-12 bg-img" style="background-image:url('/meritest/images/home/digital_marketing.jpeg'); background-position: top right">
+                    <div class="GridLex-col-6_sm-12_xs-12 bg-img" style="background-image:url('/meritest/images/home/growth_graph_blue.png'); background-position: top right">
                     </div>
                     
                     <div class="GridLex-col-6_sm-12_xs-12 bg-light">
@@ -165,12 +56,12 @@
                     
                             <div class="promo-box-02">
                             
-                                <h3 class="mb-20 text-primary">Join a Community of 1+ Million Students</h3>
-                                <p class="font20 line30 font300 font-roboto-condensed mb-20 font19-xs">Agreement far boy otherwise rapturous incommode favourite. Invitation excellence imprudence understood it continuing to.</p>
-                                <p class="mb-25">Dissuade ecstatic and properly saw entirely sir why laughter endeavor. In on my jointure horrible margaret suitable he followed speedily. Minuter him own clothes but observe country. </p>
+                                <h3 class="mb-20 text-primary">Join us to grow your business</h3>
+                                <p class="font20 line30 font300 font-roboto-condensed mb-20 font19-xs">Grow your business according to present market need.</p>
+                                <p class="mb-25">Meritest helps you to grow your business according to market need. To know more about us  </p>
                                 
-                                <a href="#" class="btn btn-primary btn-facebook btn-social mt-5 mr-5">Follow us on Facebook</a>
-                                <a href="#" class="btn btn-primary btn-google-plus btn-social mt-5">Join with Google Plus</a>
+                                <a href="https://www.facebook.com/meritestdotin" class="btn btn-primary btn-facebook btn-social mt-5 mr-5" target="_blank">Follow us on Facebook</a>
+                                <a href="https://twitter.com/meritestdotin" class="btn btn-primary btn-twitter btn-social mt-5" target="_blank">Follow us on Twitter</a>
                                 
                             </div>
                             
@@ -192,28 +83,12 @@
                     
                             <div class="promo-box-02">
                             
-                                <h3 class="mb-20 text-primary">Learn from anywhere anytime</h3>
-                                <p class="font20 line30 font300 font-roboto-condensed font19-xs mb-20">On insensible possession oh particular attachment at excellence in. The books arose but miles happy she.</p>
-                                <p class="mb-20">Dissuade ecstatic and properly saw entirely sir why laughter endeavor. In on my jointure horrible margaret suitable he followed speedily.</p>
+                                <h3 class="mb-20 text-primary">Website Design and Development</h3>
+                                <p class="font20 line30 font300 font-roboto-condensed font19-xs mb-20">Have idea, but need to shape your idea?</p>
+                                <p class="mb-20">Meritest will help you shape your ideas with all expertise.</p>
                                 <div class="mt-30">
-                                    <a href="#" class="btn btn-primary btn-app mt-5 clearfix mr-5">
-                                        <span class="icon">
-                                            <i class="ion-social-apple"></i>
-                                        </span>
-                                        <span class="content">
-                                            Download on the
-                                            <span class="block">App Store</span>
-                                        </span>
-                                    </a>
-                                    <a href="#" class="btn btn-primary btn-app mt-5 clearfix">
-                                        <span class="icon">
-                                            <i class="ion-social-android"></i>
-                                        </span>
-                                        <span class="content">
-                                            Get it on
-                                            <span class="block">Google Play</span>
-                                        </span>
-                                    </a>
+                                    <router-link to="/our-services" class="btn btn-primary btn-social mt-5">Our Services</router-link>
+                                    
                                 </div>
                             </div>
                             
@@ -221,7 +96,7 @@
                         
                     </div>
                     
-                    <div class="GridLex-col-6_sm-12_xs-12 bg-img" style="background-image:url('/meritest/images/home/grow_business.jpeg');">
+                    <div class="GridLex-col-6_sm-12_xs-12 bg-img" style="background-image:url('/meritest/images/home/web_developer_orange.png');">
                     </div>
                     
                 </div>
@@ -815,11 +690,13 @@
 </template>
 
 <script>
-import Carousal from './home/Carousal.vue';
+import Carousal from './home/V2/Carousal.vue';
+import OurProducts from './home/V2/OurProducts.vue';
 
 export default {
     components: { 
         Carousal,
+        OurProducts,
     },
 }
 </script>

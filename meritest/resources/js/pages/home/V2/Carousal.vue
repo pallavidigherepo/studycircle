@@ -1,43 +1,14 @@
 <template>
-    <div class="slick-hero-slider-wrapper">
-        <div class="slider">
-            <agile autoplay :fade="true" :navButtons="false">
-            
-                <template v-slot:default>
-                    
-                    <div class="slick-item" v-for="(slide, index) in slides" :key="index">
-                
-                        <div class="image-bg">
-                        
-                            <div class="container">
-                            
-                                <div class="row">
-                
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <img :src="slide.image" alt="slide.image" />
-                                        <div class="slick-hero-slider-caption">
-                                            <!--<h1 class="animation fromBottom transitionDelay4 transitionDuration6" style="color: #000000;">{{ slide.caption }}</h1>
-                                            <p class="font22 line34 font300 font-roboto-condensed font19-xs mt-15 mb-30 animation fromBottom transitionDelay6 transitionDuration8" style="color: #000000;">{{ slide.description }}</p>
-                                            <a href="#" class="animation fromBottom transitionDelay8 transitionDuration10"><span class="bg-primary">More Details</span></a>-->
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                </div>
-                            
-                            </div>
-                            
-                        </div>
-                        
-                    </div>
-                    
-                </template>
-                
-            </agile>
+<div clas="slick-hero-slider-wrapper">
+    <agile autoplay>
+        <div v-for="(slide, index) in slides" :key="index">
+            <img :src="slide.image" :alt="slide.image" class="slide" />    
+            <template slot="prevButton"><i class="fa fa-chevron-left"></i></template>
+            <template slot="nextButton"><i class="fa fa-chevron-right"></i></template>
         </div>
         
-
-    </div>
+    </agile>
+</div>
 </template>
 
 <script>
@@ -69,7 +40,12 @@ export default {
                     description: 'We will take care of complete content generation for your website.',
                 },
                 4: {
-                    image: '/meritest/images/slides/we_are_hiring.png',
+                    image: '/meritest/images/slides/we_are_hiring_resize.png',
+                    caption: 'SEO, SMM',
+                    description: 'We will take care of complete SEO AND SMM of your website.',
+                },
+                5: {
+                    image: '/meritest/images/slides/charity.jpeg',
                     caption: 'SEO, SMM',
                     description: 'We will take care of complete SEO AND SMM of your website.',
                 },
@@ -85,7 +61,61 @@ export default {
 </script>
 
 <style>
-.slick-hero-slider-caption {
-    color: #000;
+/*.agile {
+    position: relative;
+    display: block;
+    min-height: 550px;
+    max-width: 1550px;
+}*/
+.agile__nav-button {
+  background: transparent;
+  border: none;
+  /*color: #fff;*/
+  cursor: pointer;
+  /*font-size: 24px;*/
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition-duration: .3s;
+  width: 80px; }
+  .agile__nav-button:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 1; }
+  .agile__nav-button--prev {
+    left: 0; }
+  .agile__nav-button--next {
+    right: 0; }
+
+.agile__dots {
+  bottom: 10px;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%); }
+
+.agile__dot {
+  margin: 0 10px; }
+  .agile__dot button {
+    background-color: transparent;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    display: block;
+    height: 10px;
+    font-size: 0;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+    transition-duration: .3s;
+    width: 10px; }
+  .agile__dot--current button, .agile__dot:hover button {
+    background-color: #fff; }
+
+.slide {
+  display: block;
+  height: 550px;
+  object-fit: cover;
+  width: 100%; 
+  opacity: 1;
 }
+
 </style>
