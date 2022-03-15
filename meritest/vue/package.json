@@ -7,7 +7,17 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.2.13"
+    "@splidejs/vue-splide": "^0.5.18",
+    "@vuelidate/core": "^2.0.0-alpha.35",
+    "@vuelidate/validators": "^2.0.0-alpha.27",
+    "axios": "^0.26.1",
+    "postcss": "^8.4.8",
+    "recaptcha-v3": "^1.10.0",
+    "vue": "^3.2.13",
+    "vue-agile": "^2.0.0",
+    "vue-router": "^4.0.13",
+    "vueperslides": "^2.15.2",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.9.0",

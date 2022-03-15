@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ContactUsController;
+use App\Http\Controllers\Api\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,4 +18,7 @@ use App\Http\Controllers\Api\ContactUsController;
 
 Route::middleware('api')->group(function () {
     Route::post('contactus', [ContactUsController::class, 'store']);
+    Route::get('blogs', [BlogController::class, 'index'])->name('blogs.index');
+    Route::get('blogs/{id}', [BlogController::class, 'show']);
+    
 });
