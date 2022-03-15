@@ -1,0 +1,23 @@
+import "./plugins/jquery-2.2.4.min";
+import "./plugins/jquery-migrate-1.4.1.min";
+import "./bootstrap/js/bootstrap.min";
+import "./plugins/jquery.waypoints.min";
+import "./plugins/jquery.easing.1.3";
+import "./plugins/jquery.easing.1.3"
+import "./plugins/SmoothScroll.min";
+// //import "./spin.min";
+import "./plugins/jquery.introLoader.min";
+import "./plugins/typed";
+import "./plugins/placeholderTypewriter";
+import "./plugins/jquery.slicknav.min";
+import "./plugins/readmore.min";
+import "./plugins/slick.min";
+import "./plugins/jquery.nicescroll.min";
+import "./plugins/creditly";
+import "./plugins/jquery.placeholder.min";
+import "./plugins/select2.full";
+import "./plugins/ion.rangeSlider.min";
+import "./plugins/bootstrap-rating";
+import "./plugins/bootstrap-modalmanager";
+import "./plugins/bootstrap-modal";
+import "./plugins/customs";
