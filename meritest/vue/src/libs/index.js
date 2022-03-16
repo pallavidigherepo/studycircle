@@ -9,7 +9,7 @@ import "./plugins/jquery.introLoader.min";
 import "./plugins/typed";
 import "./plugins/placeholderTypewriter";
 import "./plugins/jquery.slicknav.min";
-import "./plugins/jquery.placeholder.min";
+//import "./plugins/jquery.placeholder.min";
 import "./plugins/select2.full";
 import "./plugins/ion.rangeSlider.min";
 import "./plugins/readmore.min";
