@@ -1,24 +1,72 @@
 <template>
-<div clas="slick-hero-slider-wrapper">
-    <agile autoplay>
-        <div v-for="(slide, index) in slides" :key="index">
-            <img :src="slide.image" :alt="slide.image" class="slide" />    
-            <template slot="prevButton"><i class="fa fa-chevron-left"></i></template>
-            <template slot="nextButton"><i class="fa fa-chevron-right"></i></template>
+  <div clas="slick-hero-slider-wrapper">
+    <div
+      id="bootstrap-carousel-slider"
+      class="carousel slide"
+      data-ride="carousel"
+      data-interval="2000"
+    >
+      <ol class="carousel-indicators">
+        <li
+           data-target="#bootstrap-carousel-slider"
+          :class="{ 'active': index == 1 }"
+          v-for="(slide, index) in slides"
+          :key="slide.id"
+          :data-slide-to="index-1"
+        ></li>
+      </ol>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <!-- First slide -->
+        <div
+          v-for="(slide, index) in slides"
+          :key="slide.id"
+          class="item"
+          :class="{ 'active': index == 1 }"
+        >
+          <div class="image">
+            <img :src="slide.image" :alt="slide.caption" class="d-block w-100" />
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="text-cetre">{{ slide.caption }}</h5>
+            <p>{{ slide.description }}</p>
+          </div>
         </div>
-        
-    </agile>
-</div>
+        <!-- /.item -->
+      </div>
+      <!-- /.carousel-inner -->
+      
+      <!-- Controls -->
+      <a
+        class="left carousel-control"
+        href="#bootstrap-carousel-slider"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-left"
+          ><i class="pe-7s-angle-left" aria-hidden="true"></i
+        ></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a
+        class="right carousel-control"
+        href="#bootstrap-carousel-slider"
+        role="button"
+        data-slide="next"
+      >
+        <span class="carousel-control-right"
+          ><i class="pe-7s-angle-right" aria-hidden="true"></i
+        ></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <!-- /.carousel -->
+  </div>
 </template>
-
 <script>
 
-import { VueAgile } from 'vue-agile'
 export default {
 
-    components: {
-        agile: VueAgile
-    },
     data() {
         return {
             //left: '<svg x="0px" y="0px" viewBox="0 0 24 24"><path d="M16.2,21c0.3,0,0.5-0.1,0.7-0.3c0.4-0.4,0.4-1,0-1.4L9.6,12L17,4.7c0.4-0.4,0.4-1,0-1.4c-0.4-0.4-1-0.4-1.4,0L6.8,12l8.8,8.7C15.7,20.9,16,21,16.2,21z"/></svg>',

@@ -10,34 +10,28 @@
                 <div class="blog-wrapper">
                   <div
                     class="blog-item"
-                    v-for="(blog, index) in blogs.data"
+                    v-for="(blog, index) in blogs"
                     :key="index"
                   >
                     <div class="blog-content">
                       <h3>
                         <router-link
-                          :to="{ name: 'BlogView', params: { id: blog.id } }"
+                          :to="{ name: 'BlogView', params: { url: blog.url } }"
                           class="inverse"
-                          :blog="blog.id"
                         >
                           {{ blog.title }}
                         </router-link>
                       </h3>
                       <ul class="blog-meta">
-                        <li>by <a href="#">Admin</a></li>
-                        <li>by January 09, 2016</li>
-                        <li>
-                          in <a href="#">Adventure</a>, <a href="#">Backpack</a>
-                        </li>
-                        <li>32 comments</li>
+                        <li>Created on {{ dateTime(blog.created_at) }}</li>
+                        
                       </ul>
                       <div
                         class="blog-entry"
                         v-html="blog.content.slice(0, 500)"
                       ></div>
                       <router-link
-                        :to="{ name: 'BlogView', params: { id: blog.id } }"
-                        :blog="blog.id"
+                        :to="{ name: 'BlogView', params: { url: blog.url } }"
                         class="btn btn-primary btn-sm"
                       >
                         Read More <i class="fa fa-long-arrow-right"></i>
@@ -79,6 +73,7 @@
 <script>
 import { ref, onMounted, computed } from "vue";
 import store from "@/store";
+import moment from 'moment';
 
 export default {
   setup() {
@@ -91,9 +86,13 @@ export default {
         //loading.value = false;
       });
     });
+    function dateTime(value) {
+      return moment(value).format('MMMM Do YYYY');
+    }
     return {
       blogs,
-      blogCategories
+      blogCategories,
+      dateTime
     }
   },
 };

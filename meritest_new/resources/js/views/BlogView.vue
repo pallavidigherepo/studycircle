@@ -225,7 +225,7 @@ export default {
         const blogCategories = computed(() => store.state.blogs.blogCategories);
 
         onMounted(() => {
-            store.dispatch("blogs/show", route.params.id).then(() => {
+            store.dispatch("blogs/show", route.params.url).then(() => {
                 //loading.value = false;
             });
         });

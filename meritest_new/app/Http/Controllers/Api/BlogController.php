@@ -18,7 +18,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::orderBy('created_at', 'DESC')->paginate(10);
+        $blogs = BlogResource::collection(Blog::orderBy('created_at', 'DESC')->paginate(10));
         $blogsCategories = BlogCategory::all();
 
         $response = [
@@ -45,9 +45,9 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($url)
     {
-        $blog = Blog::find($id);
+        $blog = Blog::where('url', $url)->orWhere('slug', $url)->first();
         $blogsCategories = BlogCategory::all();
 
         $response = [

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('blog_category_id');
             $table->string('title')->unique();
+            $table->string('slug'); // Field name same as your `saveSlugsTo`
+            $table->string('url')->nullable(true); // Field name same as your `saveSlugsTo`
             $table->longText('content');
             $table->boolean('is_active')->default(true);
             $table->foreign('blog_category_id')->references('id')->on('blog_categories');

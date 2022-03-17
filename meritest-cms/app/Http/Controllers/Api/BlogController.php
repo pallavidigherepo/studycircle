@@ -31,6 +31,7 @@ class BlogController extends Controller
             $inputs = [
                 'title'=> $request->title,
                 'content' => $request->content,
+                'url' => $request->url,
                 'blog_category_id' => $request->blog_category_id,
             ];
             $blog = Blog::create($inputs);

@@ -27,6 +27,9 @@ class BlogRequest extends FormRequest
         return [
             'title' => [
                 'required',
+            ],
+            'url' => [
+                //'required',
                 Rule::unique('blogs')->ignore($this->blog)
             ],
             'content' => [

@@ -105,7 +105,7 @@
         </section>
         
         <!-- start Introduction -->
-        <section class="section pt-0">
+        <!-- <section class="section pt-0">
         
             <div class="container">
 
@@ -278,11 +278,11 @@
                 
             </div>
         
-        </section>
+        </section> -->
         <!-- end Introduction -->
 
         <!-- start Top Offer -->
-        <section class="section bg-light">
+        <!-- <section class="section bg-light">
         
             <div class="container">
             
@@ -596,11 +596,11 @@
 
             </div>
             
-        </section>
+        </section> -->
         <!-- end Top Offer -->
         
         <!-- start Top Destinations -->
-        <section class="section pb-70">
+        <!-- <section class="section pb-70">
         
             <div class="container">
             
@@ -657,11 +657,11 @@
                 
             </div>
             
-        </section>
+        </section> -->
         <!-- end Top Destinations -->
         
         <!-- start Promo -->
-        <div class="promo-box-bg-img" style="background-image:url('/meritest/images/teacher-bg.jpg');">
+        <!-- <div class="promo-box-bg-img" style="background-image:url('/meritest/images/teacher-bg.jpg');">
             <div class="container">
                 <div class="row">
                 
@@ -684,18 +684,18 @@
                 
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- end Promo -->
     </div>
 </template>
 
 <script>
-import Carousal from './home/V2/Carousal.vue';
+//import Carousal from './home/V2/Carousal.vue';
 import OurProducts from './home/V2/OurProducts.vue';
 
 export default {
     components: { 
-        Carousal,
+        //Carousal,
         OurProducts,
     },
 }

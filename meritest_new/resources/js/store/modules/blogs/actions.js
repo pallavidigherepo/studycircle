@@ -10,8 +10,8 @@ export default {
             });
     },
 
-    async show({commit}, id) {
-        return await axiosClient.get(`/blogs/${id}`)
+    async show({commit}, url) {
+        return await axiosClient.get(`/blogs/${url}`)
             .then(({ data }) => {
                 commit('SET_SHOW_BLOG', data);
                 commit('SET_BLOG_CATEGORIES', data);

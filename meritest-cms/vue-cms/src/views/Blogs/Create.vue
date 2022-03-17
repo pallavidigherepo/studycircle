@@ -33,6 +33,34 @@
                   </div>
                 </div>
               </div>
+              <div class="grid grid-cols-3 gap-6">
+                <div class="col-span-3 sm:col-span-4">
+                  <label
+                    for="blog-url"
+                    class="block text-sm font-medium text-gray-700"
+                  >
+                    Url
+                  </label>
+                  <div class="mt-1 flex rounded-md shadow-sm">
+                    <input
+                      type="text"
+                      name="blog-url"
+                      id="blog-url"
+                      v-model="form.url"
+                      class="
+                        focus:ring-indigo-500 focus:border-indigo-500
+                        flex-1
+                        block
+                        w-full
+                        rounded-none rounded-r-md
+                        sm:text-sm
+                        border-gray-300
+                      "
+                      placeholder="Title of blog"
+                    />
+                  </div>
+                </div>
+              </div>
               <div class="col-span-6 sm:col-span-3">
                 <label
                   for="blog-category"
@@ -146,6 +174,7 @@ import store from "@/store";
 
 const form = {
   title: "",
+  url: "",
   content: "",
   blog_category_id: null,
   is_active: true,
