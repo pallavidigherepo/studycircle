@@ -11,7 +11,7 @@ class Blog extends Model
     use HasFactory;
     use HasSlug;
 
-    protected $fillable = array('title', 'url', 'content', 'blog_category_id');
+    protected $fillable = array('title', 'url', 'short_content', 'content', 'blog_category_id');
 
     /**
      * Get the options for generating the slug.

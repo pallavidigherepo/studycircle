@@ -5,7 +5,7 @@
       <div class="equal-content-sidebar-by-gridLex right-sidebar">
         <div class="container">
           <div class="GridLex-grid-noGutter-equalHeight">
-            <div class="GridLex-col-9_sm-8_xs-12_xss-12">
+            <div class="GridLex-col-12_sm-12_xs-12_xss-12">
               <div class="content-wrapper">
                 <div class="blog-wrapper">
                   <div
@@ -23,12 +23,12 @@
                         </router-link>
                       </h3>
                       <ul class="blog-meta">
-                        <li>Created on {{ dateTime(blog.created_at) }}</li>
-                        
+                        <li>Created on <strong>{{ dateTime(blog.created_at) }}</strong></li>
+                        <li>Created by <strong>Sudhir Mishra</strong></li>
                       </ul>
                       <div
                         class="blog-entry"
-                        v-html="blog.content.slice(0, 500)"
+                        v-html="blog.short_content.slice(0, 500)"
                       ></div>
                       <router-link
                         :to="{ name: 'BlogView', params: { url: blog.url } }"
@@ -43,7 +43,7 @@
               </div>
             </div>
 
-            <div class="GridLex-col-3_sm-4_xs-12_xss-12">
+            <!-- <div class="GridLex-col-3_sm-4_xs-12_xss-12">
               <aside class="sidebar-wrapper for-blog">
                 
                 <div class="sidebar-module clearfix">
@@ -62,7 +62,7 @@
                 </div>
 
               </aside>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

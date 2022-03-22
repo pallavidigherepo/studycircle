@@ -221,3 +221,13 @@ dialog {
     margin-top: -40px;
     margin-right: 10px;
 }
+
+
+.text-red{
+    color: red;
+}
+
+.overflow-auto-x {
+    overflow-x: scroll;
+    border: 1px solid #ccc;
+  }

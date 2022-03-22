@@ -30,7 +30,7 @@ class BlogRequest extends FormRequest
             ],
             'url' => [
                 //'required',
-                Rule::unique('blogs')->ignore($this->blog)
+                //Rule::unique('blogs')->ignore($this->blog)
             ],
             'content' => [
                 'required',
