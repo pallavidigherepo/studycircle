@@ -1,7 +1,6 @@
 !function ($) {
 
     $(function(){
-  
       var $window = $(window)
       var $body   = $(document.body)
   
@@ -19,25 +18,26 @@
       $('.scrollspy-container [href=#]').click(function (e) {
         e.preventDefault()
       })
-  
+      var $sideBar = $('.scrollspy-sidebar')
+
+      $sideBar.affix({
+        offset: {
+          top: function () {
+            var offsetTop      = $sideBar.offset().top
+            var sideBarMargin  = parseInt($sideBar.children(0).css('margin-top'), 10)
+            var navOuterHeight = $('.scrollspy-nav').height()
+            return (this.top = offsetTop - navOuterHeight - sideBarMargin)
+          }
+        , bottom: function () {
+            return (this.bottom = $('.scrollspy-footer').outerHeight(true))
+          }
+        }
+      })
       // back to top
       setTimeout(function () {
-        var $sideBar = $('.scrollspy-sidebar')
+        
   
-        $sideBar.affix({
-          offset: {
-            top: function () {
-              var offsetTop      = $sideBar.offset().top
-              var sideBarMargin  = parseInt($sideBar.children(0).css('margin-top'), 10)
-              var navOuterHeight = $('.scrollspy-nav').height()
-  
-              return (this.top = offsetTop - navOuterHeight - sideBarMargin)
-            }
-          , bottom: function () {
-              return (this.bottom = $('.scrollspy-footer').outerHeight(true))
-            }
-          }
-        })
+        
       }, 100)
           
     })

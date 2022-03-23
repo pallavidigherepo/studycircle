@@ -30,12 +30,12 @@
                         class="blog-entry"
                         v-html="blog.short_content.slice(0, 500)"
                       ></div>
-                      <router-link
-                        :to="{ name: 'BlogView', params: { url: blog.url } }"
+                      <a
+                        :href="'/blogs/'+blog.url"
                         class="btn btn-primary btn-sm"
                       >
                         Read More <i class="fa fa-long-arrow-right"></i>
-                      </router-link>
+                      </a>
                     </div>
                   </div>
                 </div>

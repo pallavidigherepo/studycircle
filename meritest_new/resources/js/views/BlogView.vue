@@ -1,16 +1,15 @@
 <template>
     <div>
-        <breadcrumb :pageTitle="'Blogs '"></breadcrumb>
+        <breadcrumb :pageTitle="'Blog: '+blog.title"></breadcrumb>
         <div class="container">
-            <div class="equal-content-sidebar-by-gridLex">					
-                <div v-html="blog.content" />
+            <div class="equal-content-sidebar-by-gridLex" v-html="blog.content">
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import '@/scrollspy_sidebar';
+import '@/scrollspy_sidebar.js';
 import { ref, onMounted, computed } from "vue";
 import store from "@/store";
 import { useRoute } from "vue-router";
