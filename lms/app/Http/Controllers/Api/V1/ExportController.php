@@ -21,11 +21,12 @@ class ExportController extends Controller
      */
     public function index(Request $request)
     {
-        $filename = $request->fileName;
-        $modelName = $request->modelName;
+        $filename = $request->data['fileName'];
+        $modelName = $request->data['modelName'];
 
         // This is done to make exports class dynamic and can be used by any ExportClass 
         $exportClass = "App\\Exports\\".$modelName.'Export';
+        
         $class = new $exportClass;
 
         if ($filename != null) {

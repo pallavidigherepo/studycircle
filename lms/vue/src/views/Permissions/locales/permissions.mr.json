@@ -2,11 +2,14 @@
     "Permissions": "परवानग्या",
     "Export/Print": "निर्यात/मुद्रण",
     "Print": "मुद्रित करा",
+    "Export to CSV": "सीएसवी मध्ये निर्यात करा",
     "Export to Excel": "एक्सेलमध्ये निर्यात करा",
     "Export to PDF": "पीडीएफ वर निर्यात करा",
     "Import": "आयात करा",
     "CSV": "सीएसवी",
     "Excel": "एक्सेल",
+    "CSV/Excel": "सीएसवी/एक्सेल",
+    "Import as CSV/Excel": "सीएसवी/एक्सेल म्हणून आयात करा",
     "Showing": "दाखवत आहे",
     "to": "to",
     "of": "पैकी",
@@ -20,5 +23,6 @@
     "Delete": "हटवा",
     "Permission Name": "परवानगीचे नाव",
     "Cancel": "रद्द करा",
-    "Save": "बचत करणे"
+    "Save": "बचत करणे",
+    "Upload file": "अपलोड फाइल"
   }

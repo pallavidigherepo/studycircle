@@ -4,22 +4,32 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Excel;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ImportController extends Controller
 {
     public function store(Request $request)
     {
-        $file = $request->file('file')->store('import');
+        $file = $request->file('import_file')->store('import');
+        $modelName = $request->modelName;
+        $importClass = "App\\Imports\\".$modelName."Import";
 
-        //$import = new UsersImport;
-        $import->import($file);
-
-        if ($import->failures()->isNotEmpty()) {
-            return back()->withFailures($import->failures());
+        $import = new $importClass;
+        try {
+            Excel::import($import, $file);
+            $response = [
+                'success' => true,
+                'message' => 'All the '.$modelName.'(s) are successfully imported.',
+                'failures' => null,
+            ];
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+             $failures = $e->failures();
+             $response = [
+                'success' => false,
+                'message' => $modelName.'(s) are not imported.',
+                'failures' => $failures,
+             ];
         }
-
-
-        return back()->withStatus('Import in queue, we will send notification after import finished.');
+        return response()->json($response);
     }
 }

@@ -33,6 +33,8 @@
     "highlight.js": "^10.6.0",
     "js-beautify": "^1.13.5",
     "litepicker": "^2.0.11",
+    "lucid": "^2.21.0",
+    "lucide-vue-next": "^0.17.13",
     "pinia": "^2.0.9",
     "tabulator-tables": "^4.9.3",
     "tiny-slider": "^2.9.3",

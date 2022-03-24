@@ -18,12 +18,23 @@ const store = createStore({
         languages: languageModule,
         questions: questionModule*/
     },
-        
+
     state: {
         loading: false
     },
     getters: {},
-    actions: {},
+    actions: {
+        async importMe({commit}, formData) {
+            return await axiosClient
+                .post(`/imports`, formData, {
+                    headers: { 'content-type': 'multipart/form-data' }
+                })
+        },
+        async exportMe({ commit }, payload) {
+            return await axiosClient
+                .post(`/exports/index`, {data: payload}, { responseType: "blob" })
+        }
+    },
     mutations: {},
 });
 

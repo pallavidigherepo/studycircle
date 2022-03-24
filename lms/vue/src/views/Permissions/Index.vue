@@ -1,13 +1,14 @@
 <template>
   <div>
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-      <h2 class="text-lg font-medium mr-auto">{{ t('permissions.Permissions')}}</h2>
+      <h2 class="text-lg font-medium mr-auto">
+        {{ t("permissions.Permissions") }}
+      </h2>
     </div>
     <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
       <!-- BEGIN: Post Content -->
       <div class="intro-y col-span-12 lg:col-span-8">
         <!-- BEGIN: HTML Table Data -->
-
         <div class="intro-y box p-5">
           <div class="overflow-x-auto scrollbar-hidden">
             <div class="grid grid-cols-12 gap-6 mt-5">
@@ -28,28 +29,49 @@
                     data-tw-toggle="dropdown"
                   >
                     <span class="flex items-center justify-center">
-                      {{ t('permissions.Export/Print')}}&nbsp;<DownloadIcon
+                      {{ t("permissions.Export/Print") }}&nbsp;<DownloadIcon
                         class="w-4 h-4"
                       />
                     </span>
                   </button>
                   <div class="dropdown-menu w-40">
                     <ul class="dropdown-content">
+                      <!-- <li>
+                        <a href="javascript:;" class="dropdown-item">
+                          <PrinterIcon class="w-4 h-4 mr-2" />
+                          {{ t("permissions.Print") }}
+                        </a>
+                      </li> -->
                       <li>
-                        <a href="" class="dropdown-item">
-                          <PrinterIcon class="w-4 h-4 mr-2" /> {{ t('permissions.Print') }}
+                        <a
+                          href="javascript:;"
+                          class="dropdown-item"
+                          @click.prevent="exportMe('xlsx')"
+                        >
+                          <FileTextIcon class="w-4 h-4 mr-2" />
+                          {{ t("permissions.Export to Excel") }}
                         </a>
                       </li>
                       <li>
-                        <a href="" class="dropdown-item">
-                          <FileTextIcon class="w-4 h-4 mr-2" /> {{ t('permissions.Export to Excel')}}
+                        <a
+                          href="javascript:;"
+                          class="dropdown-item"
+                          @click.prevent="exportMe('csv')"
+                        >
+                          <FileTextIcon class="w-4 h-4 mr-2" />
+                          {{ t("permissions.Export to CSV") }}
                         </a>
                       </li>
-                      <li>
-                        <a href="" class="dropdown-item">
-                          <FileTextIcon class="w-4 h-4 mr-2" /> {{ t('permissions.Export to PDF')}}
+                      <!-- <li>
+                        <a
+                          href="javascript:;"
+                          class="dropdown-item"
+                          @click.prevent="exportMe('pdf')"
+                        >
+                          <FileTextIcon class="w-4 h-4 mr-2" />
+                          {{ t("permissions.Export to PDF") }}
                         </a>
-                      </li>
+                      </li> -->
                     </ul>
                   </div>
                 </div>
@@ -60,7 +82,7 @@
                     data-tw-toggle="dropdown"
                   >
                     <span class="flex items-center justify-center">
-                      {{ t('permissions.Import')}}&nbsp;<UploadIcon
+                      {{ t("permissions.Import") }}&nbsp;<UploadIcon
                         class="w-4 h-4"
                       />
                     </span>
@@ -68,21 +90,19 @@
                   <div class="dropdown-menu w-40">
                     <ul class="dropdown-content">
                       <li>
-                        <a href="" class="dropdown-item">
-                          <PrinterIcon class="w-4 h-4 mr-2" /> {{ t('permissions.CSV') }}
-                        </a>
-                      </li>
-                      <li>
-                        <a href="" class="dropdown-item">
-                          <FileTextIcon class="w-4 h-4 mr-2" /> {{ t('permissions.Excel')}}
+                        <a href="#" class="dropdown-item" @click="openModal">
+                          <FileTextIcon class="w-4 h-4 mr-2" />
+                          {{ t("permissions.CSV/Excel") }}
                         </a>
                       </li>
                     </ul>
                   </div>
                 </div>
                 <div class="hidden md:block mx-auto text-slate-500">
-                  {{ t('permissions.Showing')}} {{ permissions.from }} {{ t('permissions.to')}} {{ permissions.to }} {{ t('permissions.of') }}
-                  {{ permissions.total }} {{ t('permissions.entries')}}
+                  {{ t("permissions.Showing") }} {{ permissions.from }}
+                  {{ t("permissions.to") }} {{ permissions.to }}
+                  {{ t("permissions.of") }} {{ permissions.total }}
+                  {{ t("permissions.entries") }}
                 </div>
                 <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                   <div class="w-56 relative text-slate-500">
@@ -104,10 +124,18 @@
                 <table class="table table-hover mt-2">
                   <thead>
                     <tr>
-                      <th class="uppercase whitespace-nowrap">{{ t('permissions.Id') }}</th>
-                      <th class="uppercase whitespace-nowrap">{{ t('permissions.Name')}}</th>
-                      <th class="uppercase text-center whitespace-nowrap">{{ t('permissions.Guard Name')}}</th>
-                      <th class="text-center whitespace-nowrap">{{ t('permissions.Action')}}</th>
+                      <th class="uppercase whitespace-nowrap">
+                        {{ t("permissions.Id") }}
+                      </th>
+                      <th class="uppercase whitespace-nowrap">
+                        {{ t("permissions.Name") }}
+                      </th>
+                      <th class="uppercase text-center whitespace-nowrap">
+                        {{ t("permissions.Guard Name") }}
+                      </th>
+                      <th class="text-center whitespace-nowrap">
+                        {{ t("permissions.Action") }}
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -131,14 +159,16 @@
                             href="javascript:;"
                             @click.prevent="editItem(permission)"
                           >
-                            <CheckSquareIcon class="w-4 h-4 mr-1" /> {{ t('permissions.Edit')}}
+                            <CheckSquareIcon class="w-4 h-4 mr-1" />
+                            {{ t("permissions.Edit") }}
                           </a>
                           <a
                             class="flex items-center text-danger"
                             href="javascript:;"
                             @click.prevent="deleteItem(permission)"
                           >
-                            <Trash2Icon class="w-4 h-4 mr-1" /> {{ t('permissions.Delete')}}
+                            <Trash2Icon class="w-4 h-4 mr-1" />
+                            {{ t("permissions.Delete") }}
                           </a>
                         </div>
                       </td>
@@ -164,7 +194,8 @@
       <div class="col-span-12 lg:col-span-4">
         <div class="intro-y box p-5">
           <h2 class="text-lg font-medium mr-auto pt-5 pb-5">
-            {{ t('permissions.'+actionText) }} {{ t('permissions.Permissions')}}
+            {{ t("permissions." + actionText) }}
+            {{ t("permissions.Permissions") }}
           </h2>
           <div
             class="alert alert-danger show flex items-center mb-2"
@@ -176,9 +207,9 @@
           </div>
           <form @submit.prevent="submitForm" class="validate-form">
             <div>
-              <label for="crud-form-1" class="form-label"
-                >{{ t('permissions.Permission Name')}}</label
-              >
+              <label for="crud-form-1" class="form-label">{{
+                t("permissions.Permission Name")
+              }}</label>
               <input
                 id="crud-form-1"
                 type="text"
@@ -197,15 +228,63 @@
                 class="btn btn-outline-secondary w-24 mr-1"
                 @click.prevent="cancel"
               >
-                {{ t('permissions.Cancel')}}
+                {{ t("permissions.Cancel") }}
               </button>
-              <button type="submit" class="btn btn-primary w-24">{{ t('permissions.Save')}}</button>
+              <button type="submit" class="btn btn-primary w-24">
+                {{ t("permissions.Save") }}
+              </button>
             </div>
           </form>
         </div>
       </div>
       <!-- END: Add/Edit permission -->
     </div>
+    <!-- BEGIN: Modal Content -->
+    <Modal
+      :show="headerFooterModalPreview"
+      @hidden="headerFooterModalPreview = false"
+    >
+      <ModalHeader>
+        <h2 class="font-medium text-base mr-auto">
+          {{ t("permissions.Import as CSV/Excel") }}
+        </h2>
+      </ModalHeader>
+      <CustomeAlert
+            v-if="responseMessage"
+            :message="responseMessage"
+            :status="responseStatus"
+            class="col-span-12 sm:col-span-6 flex"
+          />
+      <ModalBody class="grid grid-cols-12 gap-4 gap-y-3">
+        
+        <div class="col-span-12 sm:col-span-8">
+          
+          <label for="modal-form-1" class="form-label">{{
+            t("permissions.Upload file")
+          }}</label>
+          <input
+            id="modal-form-1"
+            type="file"
+            class="form-control"
+            @change="importMe($event)"
+          />
+          <span class="text-primary">Please upload file of type .csv or .xlsx</span>
+        </div>
+      </ModalBody>
+      <ModalFooter>
+        <button
+          type="button"
+          @click="headerFooterModalPreview = false"
+          class="btn btn-outline-secondary w-20 mr-1"
+        >
+          {{ t("permissions.Cancel") }}
+        </button>
+        <!-- <button type="button" class="btn btn-primary w-20">
+          {{ t("permissions.Import") }}
+        </button> -->
+      </ModalFooter>
+    </Modal>
+    <!-- END: Modal Content -->
   </div>
 </template>
 
@@ -217,7 +296,19 @@ import { required, helpers } from "@vuelidate/validators";
 
 import store from "@/stores";
 
-import { useI18n } from 'vue-i18n';
+import { useI18n } from "vue-i18n";
+
+import useImportExport from "@/hooks/import_export.js";
+
+// To show/hide modal
+const headerFooterModalPreview = ref(false);
+
+const options = {
+  modelName: "Permission",
+};
+const { importMe, exportMe, responseStatus, responseMessage } =
+  useImportExport(options);
+
 const { t } = useI18n();
 
 // Variables and actions related to listing.
@@ -228,7 +319,12 @@ onMounted(() => {
     //loading.value = false;
   });
 });
-
+function openModal() {
+  //import_file.value = '';
+  headerFooterModalPreview.value = true;
+  responseMessage.value = "";
+  responseStatus.value = false;
+}
 function getForPage(link) {
   if (!link.url || link.active) {
     return;
@@ -315,7 +411,7 @@ function cancel() {
 
 // BEGIN: Delete
 function deleteItem(permission) {
-  store.dispatch('permissions/delete', permission.id);
+  store.dispatch("permissions/delete", permission.id);
 }
 // END: Delete
 </script>

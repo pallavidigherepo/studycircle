@@ -3,7 +3,7 @@ import axiosClient from "@/axios";
 export default {
     // This action is used to fetch all the permissions present in database
     async list({ commit }, { url = null } = {}) {
-        url = url || "/v1/permissions";
+        url = url || "/permissions";
         return await axiosClient.get(url)
             .then(({ data }) => {
                 commit('SET_PERMISSIONS', data);
@@ -16,14 +16,14 @@ export default {
 
         if (model.id) {
             response = await axiosClient
-                .put(`/v1/permissions/${model.id}`, model)
+                .put(`/permissions/${model.id}`, model)
                 .then(({ data }) => {
                     commit('UPDATE_PERMISSION', model);
                     return data;
                 });
         } else {
             response = await axiosClient
-                .post(`/v1/permissions`, model)
+                .post(`/permissions`, model)
                 .then(({ data }) => {
                     commit('CREATE_PERMISSION', data);
                     return data;
@@ -34,7 +34,7 @@ export default {
     // This action is used to delete permission from serve.
     async delete({ commit }, id) {
         return await axiosClient
-            .delete(`/v1/permissions/${id}`)
+            .delete(`/permissions/${id}`)
             .then((res) => {
                 commit('DELETE_PERMISSION', id);
                 return res;
@@ -63,5 +63,5 @@ export default {
         }
 
         context.commit('FETCH_PERMISSIONS_MODULE_WISE', response.data);
-    }
+    },
 };
