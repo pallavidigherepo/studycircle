@@ -11,6 +11,43 @@ export default {
             permission: null,
             permission_count: 0,
             module_wise_permissions: [],
+            pagination: [],
+            datatable: {
+                export: true,
+                import: true,
+                defaultColumn: "id",
+                defaultOrder: "desc",
+                defaultPage: 1,
+                defaultSearch: "",
+                defaultPerPage: 10,
+                columns: [
+                    {
+                        label: "ID",
+                        field: "id",
+                        sort: true,
+                    },
+                    {
+                        label: "NAME",
+                        field: "name",
+                        sort: true,
+                    },
+                    {
+                        label: "GUARD NAME",
+                        field: "guard_name",
+                        sort: true,
+                    },
+                    {
+                        label: "Actions",
+                        field: false,
+                        sort: false,
+                        actions: {
+                            show: false,
+                            edit: true,
+                            delete: true,
+                        }
+                    }
+                ]
+            }
         }
     },
     actions,

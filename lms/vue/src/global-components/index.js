@@ -17,9 +17,7 @@ import Dropzone from "./dropzone/Main.vue";
 //import FullCalendar from "./calendar/Main.vue";
 //import FullCalendarDraggable from "./calendar/Draggable.vue";
 import * as featherIcons from "@zhuowenli/vue-feather-icons";
-import CustomeAlert from "./Alerts/Index.vue";
-import Breadcrumb from "./Breadcrumb/Index.vue";
-import Pagination from '../components/Listing/Pagination.vue';
+
 import Notification from "./notification/Main.vue";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "./modal";
 import {
@@ -48,6 +46,12 @@ import {
 } from "./preview-component";
 import LucideIcons from "./lucide";
 
+// Begin: Custom components by Pallavi Dighe
+import Datatable from "./Datatable/Index.vue";
+import CustomeAlert from "./Alerts/Index.vue";
+import Breadcrumb from "./Breadcrumb/Index.vue";
+import Pagination from './Listing/Pagination.vue';
+// End: Custom components
 export default (app) => {
   app.component("Chart", Chart);
   //app.component("GoogleMapLoader", GoogleMapLoader);
@@ -89,6 +93,8 @@ export default (app) => {
   app.component("PreviewComponent", PreviewComponent);
   app.component("Preview", Preview);
   app.component("Source", Source);
+  
+  app.component("Datatable", Datatable);
   //app.component("Highlight", Highlight);
   // app.component('BalloonBlockEditor', BalloonBlockEditor)
   // app.component('BalloonEditor', BalloonEditor)

@@ -13,5 +13,12 @@ export default {
 
     getModuleWise(state) {
         return state.module_wise_permissions;
+    },
+
+    datatable(state) {
+        return state.datatable;
+    },
+    meta(state) {
+        return state.pagination;
     }
 }

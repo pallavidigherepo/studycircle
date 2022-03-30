@@ -18,4 +18,24 @@ class Permission extends Model
         'name',
         'guard_name',
     ];
+    
+    /**
+     * The attributes that are searchable.
+     * 
+     * @var array
+     */
+    protected $searchable = [
+        'name',
+        'guard_name',
+    ];
+    
+    /**
+     * The attributes that are sortable.
+     * 
+     * @var array
+     */
+    protected $sortable = [
+        'name',
+        'guard_name',
+    ];
 }

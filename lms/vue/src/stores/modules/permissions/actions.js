@@ -3,10 +3,11 @@ import axiosClient from "@/axios";
 export default {
     // This action is used to fetch all the permissions present in database
     async list({ commit }, { url = null } = {}) {
-        url = url || "/permissions";
+        url = "/permissions"+url;
         return await axiosClient.get(url)
             .then(({ data }) => {
                 commit('SET_PERMISSIONS', data);
+                commit('SET_PAGINATION_LINKS', data.meta.links)
                 return data;
             });
     },

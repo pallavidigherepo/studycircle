@@ -23,7 +23,7 @@
             <router-link to="/contact-us">Contact Us</router-link>
         </li>
         <li>
-            <router-link to="/blogs">Blogs</router-link>
+            <a href="/blogs">Blogs</a>
             <!-- <a href="#">Blogs</a>
             <ul>
                 <li><router-link to="/kvpy">KVPY</router-link></li>

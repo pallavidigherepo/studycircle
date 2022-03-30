@@ -3,6 +3,10 @@ export default {
         state.permissions = payload;
     },
 
+    SET_PAGINATION_LINKS(state, payload) {
+        state.pagination = payload;
+    },
+
     CREATE_PERMISSION(state, payload)
     {
         state.permissions.data.unshift(payload.permission)

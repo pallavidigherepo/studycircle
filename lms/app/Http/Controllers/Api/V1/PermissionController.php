@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use App\Http\Requests\PermissionRequest;
-
+use App\Http\Resources\PermissionResource;
 
 class PermissionController extends Controller
 {
@@ -15,12 +15,25 @@ class PermissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $permissions = Permission::when(request('search'), function ($query) {
-            $query->where('name', 'like', '%'. request('search'). '%');
-        })->orderBy('id', 'desc')->paginate(10);
-        return response()->json($permissions);
+        $field = $request->input('sort_field') ?? 'id';
+        $order = $request->input('sort_order') ?? 'desc';
+        $perPage = $request->input('per_page') ?? 10;
+
+        $permissions = PermissionResource::collection(
+            Permission::when($request->input('search'), function ($query) {
+                $query->where('name', 'like', '%' . request('search') . '%');
+                $query->orWhere('guard_name', 'like', '%' . request('search') . '%');
+            })->orderBy($field, $order)->paginate($perPage)
+        );
+        return $permissions;
+
+        /*$permissions = Permission::when(request('search'), function ($query) {
+            $query->where('name', 'like', '%' . request('search') . '%');
+            $query->where('guard_name', 'like', '%' . request('search') . '%');
+        })->orderBy($field, $order)->paginate($perPage);
+        return response()->json($permissions);*/
     }
 
     /**
@@ -33,7 +46,7 @@ class PermissionController extends Controller
     {
         if ($request->validated()) {
             $inputs = [
-                'name'=> $request->name,
+                'name' => $request->name,
                 'guard_name' => 'web',
             ];
             $permission = Permission::create($inputs);
@@ -104,7 +117,7 @@ class PermissionController extends Controller
             'message' => null,
             'errors' => null,
         ];
-        
+
         if ($permission->delete()) {
             $response = [
                 'success' => true,
@@ -130,7 +143,7 @@ class PermissionController extends Controller
 
             if (count($explodedPermission) > 2) {
                 $j = 0;
-                for ($i = 1; $i < count($explodedPermission); $i++ ) {
+                for ($i = 1; $i < count($explodedPermission); $i++) {
                     $remaining[$j++] = $explodedPermission[$i];
                 }
                 $actionName = implode(' ', array_reverse($remaining));
@@ -141,7 +154,7 @@ class PermissionController extends Controller
             if (isset($remaining) && count($remaining) > 0) {
                 $key = 'Own';
             }
-            $final[$key ." " . ucFirst($moduleName). " Management"][$permissionId] = $actionName;
+            $final[$key . " " . ucFirst($moduleName) . " Management"][$permissionId] = $actionName;
         }
         return response()->json($final);
     }
