@@ -10,6 +10,13 @@
         mt-2
       "
     >
+      <button
+        class="btn btn-primary shadow-md mr-2"
+        v-if="datatableoptions.addNew"
+        @click.prevent="emit('addModel', true)"
+      >
+        {{ t(module + ".Add New") }}
+      </button>
       <div class="dropdown" v-if="datatableoptions.export">
         <button
           class="dropdown-toggle btn btn-primary ml-2"
@@ -188,8 +195,13 @@
     </div>
     <!-- END: Data List -->
     <!-- BEGIN: Pagination -->
-    
-    <Pagination :links="links" :currentPage="currentPage" @paginate="getForPage" @perpage="perPageValue" />
+
+    <Pagination
+      :links="links"
+      :currentPage="currentPage"
+      @paginate="getForPage"
+      @perpage="perPageValue"
+    />
     <!-- END: Pagination -->
     <!-- BEGIN: Modal Content -->
     <Modal
@@ -258,7 +270,7 @@ const props = defineProps({
   },
   addEditOnSamePage: false,
 });
-const emit = defineEmits(["editItem", "deleteItem"]);
+const emit = defineEmits(["addModel", "editItem", "deleteItem"]);
 
 // currentState = $props.module;
 const headerFooterModalPreview = ref(false);
@@ -300,21 +312,21 @@ const urlParams = reactive({
 
 const url = ref(
   "?page=" +
-  urlParams.page +
-  "&sort_field=" +
-  urlParams.column +
-  "&sort_order=" +
-  urlParams.order +
-  "&search=" +
-  urlParams.search +
-  "&per_page=" +
-  urlParams.perpage
+    urlParams.page +
+    "&sort_field=" +
+    urlParams.column +
+    "&sort_order=" +
+    urlParams.order +
+    "&search=" +
+    urlParams.search +
+    "&per_page=" +
+    urlParams.perpage
 );
 
 // Watch to current url parameters change and when this happens we update local url
 watch(
   () => _.cloneDeep(urlParams),
-  (newVal, oldVal) => {      
+  (newVal, oldVal) => {
     url.value =
       "?page=" +
       urlParams.page +
@@ -336,7 +348,7 @@ onMounted(() => {
 
 function fetchList() {
   store
-    .dispatch(props.module + "/list", {url: url.value})
+    .dispatch(props.module + "/list", { url: url.value })
     .then()
     .catch();
 }
@@ -370,11 +382,9 @@ function sorting(field) {
 }
 //End: Sorting
 
-
 // Begin: Searching
 const search = ref("");
-function searchMe(event)
-{
+function searchMe(event) {
   urlParams.search = search.value;
   //console.log(event)
 }

@@ -28,6 +28,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
     //
+    Route::get('v1/permissions/modules', [PermissionController::class, 'modules'])->name('permissions.modules');
     Route::resource('v1/permissions', PermissionController::class);
     Route::resource('v1/roles', RoleController::class);
 

@@ -123,8 +123,6 @@ class PermissionController extends Controller
         return response()->json($response);
     }
 
-
-
     public function modules()
     {
         $permissions = Permission::all();

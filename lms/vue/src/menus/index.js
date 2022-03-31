@@ -4,7 +4,8 @@ import dom from "@left4code/tw-starter/dist/js/dom";
 const findActiveMenu = (subMenu, route) => {
   let match = false;
   subMenu.forEach((item) => {
-    if (item.pageName === route.name && !item.ignore) {
+    // Added a new condition to check whether parent value == item.pageName
+    if ((item.pageName === route.name && !item.ignore) || (item.pageName === route.meta.parent)) {
       match = true;
     } else if (!match && item.subMenu) {
       match = findActiveMenu(item.subMenu, route);

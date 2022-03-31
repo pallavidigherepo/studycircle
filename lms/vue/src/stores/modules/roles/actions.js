@@ -12,8 +12,8 @@ export default {
             });
     },
     
-    async createRole(context, role) {
-        const response = await axios.post('/api/v1/roles', role) ;
+    async create(context, role) {
+        const response = await axiosClient.post('/roles', role) ;
 
         if (response.status != 200) {
             const error = new Error('Failed to fetch roles')

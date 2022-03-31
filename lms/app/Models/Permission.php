@@ -39,7 +39,4 @@ class Permission extends Model
         'guard_name',
     ];
 
-    public function getCountOfAllPermissions() {
-        //return this
-    }
 }

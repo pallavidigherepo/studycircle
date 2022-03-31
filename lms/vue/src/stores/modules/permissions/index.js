@@ -15,6 +15,7 @@ export default {
             datatable: {
                 export: true,
                 import: true,
+                addNew: false,
                 defaultColumn: "id",
                 defaultOrder: "desc",
                 defaultPage: 1,

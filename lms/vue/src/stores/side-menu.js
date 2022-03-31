@@ -23,7 +23,7 @@ export const useSideMenuStore = defineStore("sideMenu", {
             icon: "KeyIcon",
             pageName: "Roles",
             title: "Roles",
-            ignore: false,
+            ignore: true,
           },
           {
             icon: "UsersIcon",

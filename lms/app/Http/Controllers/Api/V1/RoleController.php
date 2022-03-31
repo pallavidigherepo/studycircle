@@ -45,11 +45,11 @@ class RoleController extends Controller
         if ($request->validated()) {
             $inputs = [
                 'name'=> $request->name,
-                'permissions' => $request->permissions,
+                //'permissions' => $request->permissions,
                 'guard_name' => 'web',
             ];
             $role = Role::create($inputs);
-            $role->syncPermissions($inputs['permissions']);
+            $role->syncPermissions($request->permissions);
             $response = [
                 'success' => true,
                 'message' => 'Permission created successfully.',

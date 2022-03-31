@@ -6,6 +6,8 @@ import AuthLayout from "../layouts/AuthLayout.vue";
 import Dashboard from "../views/Dashboard/Index.vue";
 import PermissionIndex from '../views/Permissions/Index.vue';
 import Roles from '../views/Roles/Index.vue';
+import CreateRole from '../views/Roles/Create.vue';
+import EditRole from '../views/Roles/Edit.vue';
 import Users from '../views/Users/Index.vue';
 import Questions from '../views/Questions/Index.vue';
 import CreateUser from '../views/Users/Create.vue';
@@ -32,7 +34,7 @@ const routes = [
         name: "UserManagement",
         component: Users,
         children: [
-          { path: "/users/create", name: "CreatUser", component: CreateUser },
+          { path: "/users/create", name: "CreatUser", component: CreateUser, },
         ]
       },
       {
@@ -44,6 +46,27 @@ const routes = [
         path: "/roles",
         name: "Roles",
         component: Roles,
+        meta: { 
+          parent: 'Roles' 
+        },
+        children: [
+          { 
+            path: "/roles/create", 
+            name: "CreatRole", 
+            component: CreateRole, 
+            meta: { 
+              parent: 'Roles' 
+            }
+          },
+          { 
+            path: "/roles/:id/edit", 
+            name: "EditRole", 
+            component: EditRole, 
+            meta: { 
+              parent: 'Roles' 
+            }, 
+          }
+        ]
       },
       {
         path: "/users",
@@ -57,13 +80,13 @@ const routes = [
       },
     ],
   },
-  
+
   {
     path: "/auth",
     redirect: "/login",
     name: "Auth",
     component: AuthLayout,
-    meta: {isGuest: true},
+    meta: { isGuest: true },
     children: [
       {
         path: "/login",
@@ -94,12 +117,12 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !store.state.auth.user.token) {
-     next({name: "Login"});
+    next({ name: "Login" });
   } else if (store.state.auth.user.token && to.meta.isGuest) {
-     next({name: "Dashboard"})
+    next({ name: "Dashboard" })
   } else {
-      next();
+    next();
   }
- })
+})
 
 export default router;
