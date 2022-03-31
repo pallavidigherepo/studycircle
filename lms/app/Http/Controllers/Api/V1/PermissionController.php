@@ -28,12 +28,6 @@ class PermissionController extends Controller
             })->orderBy($field, $order)->paginate($perPage)
         );
         return $permissions;
-
-        /*$permissions = Permission::when(request('search'), function ($query) {
-            $query->where('name', 'like', '%' . request('search') . '%');
-            $query->where('guard_name', 'like', '%' . request('search') . '%');
-        })->orderBy($field, $order)->paginate($perPage);
-        return response()->json($permissions);*/
     }
 
     /**

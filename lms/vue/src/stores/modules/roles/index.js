@@ -6,8 +6,46 @@ export default {
     namespaced: true,
     state() {
         return {
+            loading: false,
             roles: [],
-            role: [],
+            role: null,
+            pagination: [],
+            datatable: {
+                export: false,
+                import: false,
+                defaultColumn: "id",
+                defaultOrder: "desc",
+                defaultPage: 1,
+                defaultSearch: "",
+                defaultPerPage: 10,
+                columns: [
+                    {
+                        label: "ID",
+                        field: "id",
+                        sort: true,
+                    },
+                    {
+                        label: "NAME",
+                        field: "name",
+                        sort: true,
+                    },
+                    {
+                        label: "PERMISSIONS",
+                        field: "role_out_of_permission",
+                        sort: false,
+                    },
+                    {
+                        label: "Actions",
+                        field: false,
+                        sort: false,
+                        actions: {
+                            show: false,
+                            edit: true,
+                            delete: true,
+                        }
+                    }
+                ]
+            }
         }
     },
     actions,

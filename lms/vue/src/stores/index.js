@@ -3,14 +3,16 @@ import axiosClient from "@/axios";
 
 import authModule from './modules/auth/index.js';
 import permissionModule from './modules/permissions/index.js';
+import roleModule from './modules/roles/index.js';
 
 const store = createStore({
     modules: {
         auth: authModule,
         permissions: permissionModule,
+        roles: roleModule,
         /*users: userModule,
         
-        roles: roleModule,
+        
         coursesType: coursesTypeModule,
         courses: coursesModule,
         subjects: subjectModule,

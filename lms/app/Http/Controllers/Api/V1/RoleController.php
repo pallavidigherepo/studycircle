@@ -20,14 +20,18 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $roles = RoleResource::collection(Role::latest()->orderBy('id', 'DESC')->simplePaginate(10));
-        //dd($roles);
-        /*$roles = Role::when(request('search'), function ($query) {
-                                                    $query->where('name', 'like', '%'. request('search'). '%');
-                                                })->orderBy('id', 'desc')->get();*/
-        return response()->json($roles, 200);
+        $field = $request->input('sort_field') ?? 'id';
+        $order = $request->input('sort_order') ?? 'desc';
+        $perPage = $request->input('per_page') ?? 10;
+
+        $roles = RoleResource::collection(
+            Role::when(request('search'), function ($query) {
+                $query->where('name', 'like', '%' . request('search') . '%');
+            })->orderBy($field, $order)->paginate($perPage)
+        );
+        return $roles;
     }
 
     /**

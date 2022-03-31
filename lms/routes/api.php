@@ -2,10 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Api\V1\AuthController;
 
 //
 use App\Http\Controllers\Api\V1\PermissionController;
+use App\Http\Controllers\Api\V1\RoleController;
 
 use App\Http\Controllers\Api\V1\ExportController;
 use App\Http\Controllers\Api\V1\ImportController;
@@ -28,6 +29,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //
     Route::resource('v1/permissions', PermissionController::class);
+    Route::resource('v1/roles', RoleController::class);
 
     Route::post('v1/exports/index', [ExportController::class, 'index'])->name('exports.index');
     Route::post('v1/imports', [ImportController::class, 'store'])->name('imports.store');
@@ -35,4 +37,4 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('v1/login', [AuthController::class, 'login']);

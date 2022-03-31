@@ -1,7 +1,12 @@
 export default {
-    FETCH_ROLES(state, payload) {
+    SET_ROLES(state, payload) {
         state.roles = payload;
     },
+
+    SET_PAGINATION_LINKS(state, payload) {
+        state.pagination = payload;
+    },
+    
     CREATE_ROLE(state, role)
     {
         state.roles.unshift(role.role)

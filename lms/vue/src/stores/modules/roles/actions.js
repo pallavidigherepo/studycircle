@@ -1,15 +1,15 @@
-import axios from "axios"
+import axiosClient from "@/axios";
 
 export default {
     // This action is used to fetch all the roles present in database
-    async fetchRoles(context) {
-        const response = await axios.get('/api/v1/roles') ;
-
-        if (response.status != 200) {
-            const error = new Error('Failed to fetch roles')
-            throw error;
-        }
-        context.commit('FETCH_ROLES', response.data);
+    async list({ commit }, { url = null } = {}) {
+        url = "/roles"+url;
+        return await axiosClient.get(url)
+            .then(({ data }) => {
+                commit('SET_ROLES', data);
+                commit('SET_PAGINATION_LINKS', data.meta.links)
+                return data;
+            });
     },
     
     async createRole(context, role) {
