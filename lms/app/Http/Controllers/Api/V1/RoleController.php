@@ -62,7 +62,7 @@ class RoleController extends Controller
                 'errors' => $this->validated()->errors(),
             ];
         }
-        return response()->json($response);
+        return response()->json($response, 200);
     }
 
     /**
@@ -143,7 +143,7 @@ class RoleController extends Controller
                 'errors' => $this->validated()->errors(),
             ];
         }
-        return response()->json($response);
+        return response()->json($response, 200);
     }
 
     /**
@@ -167,6 +167,6 @@ class RoleController extends Controller
                 'roles' => RoleResource::collection(Role::latest()->simplePaginate(10)),
             ];
         }
-        return response()->json($response);
+        return response()->json($response, 200);
     }
 }

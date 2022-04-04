@@ -155,6 +155,7 @@ async function submitForm() {
             submitted.value = false;
             router.push({ name: "Roles"});
         } catch(e) {
+            console.log(e)
             isLoading.value = false;
             isErrored.value = true;
             message.value = "This name is already taken.";

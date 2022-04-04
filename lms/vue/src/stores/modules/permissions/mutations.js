@@ -28,7 +28,6 @@ export default {
     },
 
     FETCH_PERMISSIONS_MODULE_WISE(state, payload) {
-        console.log(payload)
         state.module_wise_permissions = payload;
     }
 };

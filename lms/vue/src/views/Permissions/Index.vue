@@ -154,7 +154,6 @@ async function submitForm(event) {
 }
 // Begin: Edit item
 function edit(item) {
-  console.log(item)
   actionText.value = "Edit";
   isEdit.value = true;
   selectedPermission.value = item.id;

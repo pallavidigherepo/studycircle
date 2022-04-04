@@ -36,7 +36,8 @@
 <script setup>
 import { ref, onMounted, computed, watch } from "vue";
 import { useI18n } from "vue-i18n";
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute, useRouter } from "vue-router";
+import store from "@/stores";
 
 const route = useRoute();
 const router = useRouter();
@@ -49,18 +50,34 @@ const listing = ref(true);
 
 function add() {
   listing.value = false;
-  router.push({name: "CreatRole"})
+  router.push({ name: "CreatRole" });
 }
-
+onMounted(() => {
+  if (route.name == "CreatRole" || route.name == "EditRole") {
+    listing.value = false;
+  }
+})
 watch(
   () => route.name,
   (to, from) => {
-    if (to === 'Roles') {
+    if (to === "Roles") {
       listing.value = true;
-        //this.$store.dispatch('roles/fetchRoles');
+      //this.$store.dispatch('roles/fetchRoles');
     }
   }
 );
+
+function edit(item) {
+  listing.value = false;
+  router.push({ 
+    name: "EditRole", 
+    params: { id: item.id } 
+  });
+}
+
+function deleteI(role) {
+  store.dispatch("roles/delete", role.id);
+}
 </script>
 
 <style>

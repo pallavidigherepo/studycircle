@@ -16,8 +16,8 @@ export default {
     },
 
     DELETE_ROLE(state, id) {
-        let index = state.roles.findIndex(item => item.id === id)
-        state.roles.splice(index, 1)
+        let index = state.roles.data.findIndex(item => item.id === id)
+        state.roles.data.splice(index, 1)
     },
 
     UPDATE_ROLE(state, role)

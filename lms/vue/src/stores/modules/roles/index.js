@@ -15,7 +15,7 @@ export default {
                 import: false,
                 addNew: true,
                 defaultColumn: "id",
-                defaultOrder: "desc",
+                defaultOrder: "asc",
                 defaultPage: 1,
                 defaultSearch: "",
                 defaultPerPage: 10,

@@ -12,14 +12,17 @@ export default {
             });
     },
     
-    async create(context, role) {
-        const response = await axiosClient.post('/roles', role) ;
-
-        if (response.status != 200) {
-            const error = new Error('Failed to fetch roles')
-            throw error;
-        }
-        context.commit('CREATE_ROLE', response.data);
+    async create({commit}, role) {
+        return await axiosClient.post('/roles', role)
+                .then(({data}) => {
+                    if (data.success) {
+                        commit('CREATE_ROLE', data);
+                        //return true;
+                    } else {
+                        const error = new Error(data.message)
+                        throw error;
+                    }
+                });
     },
 
     // This action is used to fetch only selected permission
@@ -34,24 +37,26 @@ export default {
     },
 
     // After role submits the form, role information must be updated in database.
-    async updateRole(context, role) {
-        const response = await axios.put(`/api/v1/roles/${role.id}`, role);
-
-        if (response.status != 200) {
-            const error = new Error('Failed to update role')
-            throw error;
-        }
-
-        context.commit('UPDATE_ROLE', role);
+    async update({commit}, role) {
+        return await axiosClient.put(`/roles/${role.id}`, role)
+                .then(({data}) => {
+                    if (data.success) {
+                        commit('UPDATE_ROLE', role);
+                        //return ;
+                    } else {
+                        const error = new Error(data.message)
+                        throw error;
+                    }
+                });
     },
 
     // This action is used to delete role from serve.
-    async deleteRole(context, id) {
-        const response = await axios.delete(`/api/v1/roles/${id}`);
+    async delete({commit}, id) {
+        const response = await axiosClient.delete(`/roles/${id}`);
         if (response.status != 200) {
             const error = new Error('Failed to delete role')
             throw error;
         }
-        context.commit('DELETE_ROLE', id);
+        commit('DELETE_ROLE', id);
     },
 };

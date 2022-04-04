@@ -15,5 +15,19 @@
     "of": "of",
     "entries": "entries",
     "Id": "Id|ID",
-    "Name": "Name|NAME"
+    "Name": "Name|NAME",
+    "Guard Name": "Guard Name|GUARD NAME",
+    "Actions": "Action|ACTION",
+    "ID": "ID",
+    "NAME": "NAME",
+    "GUARD NAME": "GUARD NAME",
+    "ACTIONS": "ACTIONS",
+    "Add": "Add",
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "Permission Name": "Permission Name",
+    "Cancel": "Cancel",
+    "Save": "Save",
+    "Upload file": "Upload file",
+    "Add New": "Add New"
 }
