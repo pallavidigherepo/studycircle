@@ -11,6 +11,7 @@ import EditRole from '../views/Roles/Edit.vue';
 import Users from '../views/Users/Index.vue';
 import Questions from '../views/Questions/Index.vue';
 import CreateUser from '../views/Users/Create.vue';
+import EditUser from '../views/Users/Edit.vue';
 
 import Login from "../views/Auth/Login.vue";
 import ErrorPage from "../views/ErrorPage.vue";
@@ -30,14 +31,6 @@ const routes = [
         component: Dashboard,
       },
       {
-        path: "/users",
-        name: "UserManagement",
-        component: Users,
-        children: [
-          { path: "/users/create", name: "CreatUser", component: CreateUser, },
-        ]
-      },
-      {
         path: "/permissions",
         name: "PermissionIndex",
         component: PermissionIndex,
@@ -46,25 +39,25 @@ const routes = [
         path: "/roles",
         name: "Roles",
         component: Roles,
-        meta: { 
-          parent: 'Roles' 
+        meta: {
+          parent: 'Roles'
         },
         children: [
-          { 
-            path: "/roles/create", 
-            name: "CreatRole", 
-            component: CreateRole, 
-            meta: { 
-              parent: 'Roles' 
+          {
+            path: "/roles/create",
+            name: "CreatRole",
+            component: CreateRole,
+            meta: {
+              parent: 'Roles'
             }
           },
-          { 
-            path: "/roles/:id/edit", 
-            name: "EditRole", 
-            component: EditRole, 
-            meta: { 
-              parent: 'Roles' 
-            }, 
+          {
+            path: "/roles/:id/edit",
+            name: "EditRole",
+            component: EditRole,
+            meta: {
+              parent: 'Roles'
+            },
           }
         ]
       },
@@ -72,6 +65,27 @@ const routes = [
         path: "/users",
         name: "Users",
         component: Users,
+        meta: {
+          parent: 'Users'
+        },
+        children: [
+          {
+            path: "/users/create",
+            name: "CreateUser",
+            component: CreateUser,
+            meta: {
+              parent: 'Users'
+            }
+          },
+          {
+            path: "/users/:id/edit",
+            name: "EditUser",
+            component: EditUser,
+            meta: {
+              parent: 'Users'
+            },
+          }
+        ]
       },
       {
         path: "/questions",

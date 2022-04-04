@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\V1\AuthController;
 //
 use App\Http\Controllers\Api\V1\PermissionController;
 use App\Http\Controllers\Api\V1\RoleController;
+use App\Http\Controllers\Api\V1\UserController;
 
 use App\Http\Controllers\Api\V1\ExportController;
 use App\Http\Controllers\Api\V1\ImportController;
@@ -31,6 +32,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('v1/permissions/modules', [PermissionController::class, 'modules'])->name('permissions.modules');
     Route::resource('v1/permissions', PermissionController::class);
     Route::resource('v1/roles', RoleController::class);
+    Route::get('v1/users/role_list', [UserController::class, 'role_list'])->name('users.role_list');
+    Route::resource('v1/users', UserController::class);
 
     Route::post('v1/exports/index', [ExportController::class, 'index'])->name('exports.index');
     Route::post('v1/imports', [ImportController::class, 'store'])->name('imports.store');

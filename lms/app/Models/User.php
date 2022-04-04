@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'mobile_no',
+        'designation'
     ];
 
     /**
@@ -42,5 +43,29 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+    
+    /**
+     * The attributes that are searchable.
+     * 
+     * @var array
+     */
+    protected $searchable = [
+        'name',
+        'email',
+        'mobile_no',
+        'designation'
+    ];
+    
+    /**
+     * The attributes that are sortable.
+     * 
+     * @var array
+     */
+    protected $sortable = [
+        'name',
+        'email',
+        'mobile_no',
+        'designation'
     ];
 }

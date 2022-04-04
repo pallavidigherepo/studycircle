@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -14,22 +15,20 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::when(request('search'), function ($query) {
-                        $query->where('name', 'like', '%'. request('search'). '%');
-                        $query->orWhere('email', null);
-                        $query->orWhere('mobile_no', 'like', '%'. request('search'). '%');
-                    })
-                    ->orderBy(request('field'), request('sort'))
-                    ->paginate(10);
+        $field = $request->input('sort_field') ?? 'id';
+        $order = $request->input('sort_order') ?? 'desc';
+        $perPage = $request->input('per_page') ?? 10;
 
-        $response = [
-            'users' => $users,
-            'allowedExtensions' => config('app.allowedExtensionForImports'),
-        ];
-        //$apiData = Course::getApiData();
-        return response()->json($response);
+        $users = UserResource::collection(
+            User::when(request('search'), function ($query) {
+                $query->where('name', 'like', '%' . request('search') . '%');
+                $query->orWhere('email', 'like', '%' . request('search') . '%');
+                $query->orWhere('mobile_no', 'like', '%' . request('search') . '%');
+            })->orderBy($field, $order)->paginate($perPage)
+        );
+        return $users;
     }
 
     /**
@@ -75,5 +74,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function role_list()
+    {
+        return response()->json(Role::all()->pluck('name', 'id'), 200);
     }
 }

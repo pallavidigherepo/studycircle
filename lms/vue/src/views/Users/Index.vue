@@ -1,173 +1,83 @@
 <template>
-  <h2 class="intro-y text-lg font-medium mt-10">Users Layout</h2>
-  <div class="grid grid-cols-12 gap-6 mt-5">
-    <div
-      class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2"
-    >
-      <button class="btn btn-primary shadow-md mr-2">Add New User</button>
-      <div class="dropdown">
-        <button
-          class="dropdown-toggle btn px-2 box"
-          aria-expanded="false"
-          data-tw-toggle="dropdown"
-        >
-          <span class="w-5 h-5 flex items-center justify-center">
-            <PlusIcon class="w-4 h-4" />
-          </span>
-        </button>
-        <div class="dropdown-menu w-40">
-          <ul class="dropdown-content">
-            <li>
-              <a href="" class="dropdown-item">
-                <UsersIcon class="w-4 h-4 mr-2" /> Add Group
-              </a>
-            </li>
-            <li>
-              <a href="" class="dropdown-item">
-                <MessageCircleIcon class="w-4 h-4 mr-2" /> Send Message
-              </a>
-            </li>
-          </ul>
-        </div>
+  <div>
+    <template v-if="listing">
+      <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+        <h2 class="text-lg font-medium mr-auto">
+          {{ t("users.Users") }}
+        </h2>
       </div>
-      <div class="hidden md:block mx-auto text-slate-500">
-        Showing 1 to 10 of 150 entries
-      </div>
-      <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-        <div class="w-56 relative text-slate-500">
-          <input
-            type="text"
-            class="form-control w-56 box pr-10"
-            placeholder="Search..."
-          />
-          <SearchIcon class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" />
-        </div>
-      </div>
-    </div>
-    <!-- BEGIN: Users Layout -->
-    <div
-      v-for="(faker, fakerKey) in $_.take($f(), 10)"
-      :key="fakerKey"
-      class="intro-y col-span-12 md:col-span-6"
-    >
-      <div class="box">
-        <div
-          class="flex flex-col lg:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400"
-        >
-          <div class="w-24 h-24 lg:w-12 lg:h-12 image-fit lg:mr-1">
-            <img
-              alt="Icewall Tailwind HTML Admin Template"
-              class="rounded-full"
-              :src="faker.photos[0]"
-            />
-          </div>
-          <div class="lg:ml-2 lg:mr-auto text-center lg:text-left mt-3 lg:mt-0">
-            <a href="" class="font-medium">{{ faker.users[0].name }}</a>
-            <div class="text-slate-500 text-xs mt-0.5">
-              {{ faker.jobs[0] }}
+      <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
+        <!-- BEGIN: Dtatatable Content -->
+        <div class="intro-y col-span-12 lg:col-span-12">
+          <!-- BEGIN: HTML Table Data -->
+
+          <div class="intro-y box p-5">
+            <div class="overflow-x-auto scrollbar-hidden">
+              <Datatable
+                module="users"
+                :importExportOptions="options"
+                @editItem="edit"
+                @deleteItem="deleteI"
+                @addModel="add"
+              />
             </div>
           </div>
-          <div class="flex -ml-2 lg:ml-0 lg:justify-end mt-3 lg:mt-0">
-            <Tippy
-              tag="a"
-              href=""
-              class="w-8 h-8 rounded-full flex items-center justify-center border dark:border-darkmode-400 ml-2 text-slate-400 zoom-in"
-              content="Facebook"
-            >
-              <FacebookIcon class="w-3 h-3 fill-current" />
-            </Tippy>
-            <Tippy
-              tag="a"
-              href=""
-              class="w-8 h-8 rounded-full flex items-center justify-center border dark:border-darkmode-400 ml-2 text-slate-400 zoom-in"
-              content="Twitter"
-            >
-              <TwitterIcon class="w-3 h-3 fill-current" />
-            </Tippy>
-            <Tippy
-              tag="a"
-              href=""
-              class="w-8 h-8 rounded-full flex items-center justify-center border dark:border-darkmode-400 ml-2 text-slate-400 zoom-in"
-              content="Linked In"
-            >
-              <LinkedinIcon class="w-3 h-3 fill-current" />
-            </Tippy>
-          </div>
+          <!-- END: HTML Table Data -->
         </div>
-        <div
-          class="flex flex-wrap lg:flex-nowrap items-center justify-center p-5"
-        >
-          <div class="w-full lg:w-1/2 mb-4 lg:mb-0 mr-auto">
-            <div class="flex text-slate-500 text-xs">
-              <div class="mr-auto">Progress</div>
-              <div>20%</div>
-            </div>
-            <div class="progress h-1 mt-2">
-              <div
-                class="progress-bar w-1/4 bg-primary"
-                role="progressbar"
-                aria-valuenow="0"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
-            </div>
-          </div>
-          <button class="btn btn-primary py-1 px-2 mr-2">Message</button>
-          <button class="btn btn-outline-secondary py-1 px-2">Profile</button>
-        </div>
+        <!-- END: Dtatatable Content -->
       </div>
-    </div>
-    <!-- END: Users Layout -->
-    <!-- BEGIN: Pagination -->
-    <div
-      class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center"
-    >
-      <nav class="w-full sm:w-auto sm:mr-auto">
-        <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#">
-              <ChevronsLeftIcon class="w-4 h-4" />
-            </a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">
-              <ChevronLeftIcon class="w-4 h-4" />
-            </a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">...</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">1</a>
-          </li>
-          <li class="page-item active">
-            <a class="page-link" href="#">2</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">3</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">...</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">
-              <ChevronRightIcon class="w-4 h-4" />
-            </a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">
-              <ChevronsRightIcon class="w-4 h-4" />
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <select class="w-20 form-select box mt-3 sm:mt-0">
-        <option>10</option>
-        <option>25</option>
-        <option>35</option>
-        <option>50</option>
-      </select>
-    </div>
-    <!-- END: Pagination -->
+    </template>
+    <template v-else>
+      <router-view></router-view>
+    </template>
   </div>
 </template>
+
+<script setup>
+import { ref, onMounted, computed, watch } from "vue";
+import { useI18n } from "vue-i18n";
+import { useRoute, useRouter } from "vue-router";
+import store from "@/stores";
+
+const route = useRoute();
+const router = useRouter();
+
+const options = {
+  modelName: "User",
+};
+const { t } = useI18n();
+const listing = ref(true);
+
+function add() {
+  listing.value = false;
+  router.push({ name: "CreateUser" });
+}
+onMounted(() => {
+  if (route.name == "CreateUser" || route.name == "EditUser") {
+    listing.value = false;
+  }
+});
+watch(
+  () => route.name,
+  (to, from) => {
+    if (to === "Users") {
+      listing.value = true;
+    }
+  }
+);
+
+function edit(item) {
+  listing.value = false;
+  router.push({
+    name: "EditUser",
+    params: { id: item.id },
+  });
+}
+
+function deleteI(user) {
+  store.dispatch("users/delete", user.id);
+}
+</script>
+
+<style scoped>
+</style>

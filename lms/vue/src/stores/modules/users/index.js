@@ -6,9 +6,58 @@ export default {
     namespaced: true,
     state() {
         return {
+            loading: false,
             users: [],
             user: null,
-            allowedImportExtensions: [],
+            roleList: [],
+            pagination: [],
+            datatable: {
+                export: true,
+                import: true,
+                addNew: true,
+                defaultColumn: "id",
+                defaultOrder: "asc",
+                defaultPage: 1,
+                defaultSearch: "",
+                defaultPerPage: 10,
+                columns: [
+                    {
+                        label: "ID",
+                        field: "id",
+                        sort: true,
+                    },
+                    {
+                        label: "NAME",
+                        field: "name",
+                        sort: true,
+                    },
+                    {
+                        label: "EMAIL",
+                        field: "email",
+                        sort: true,
+                    },
+                    {
+                        label: "MOBILE NO.",
+                        field: "mobile_no",
+                        sort: false,
+                    },
+                    {
+                        label: "DESIGNATION",
+                        field: "designation",
+                        sort: true,
+                    },
+                    {
+                        label: "Actions",
+                        field: false,
+                        sort: false,
+                        actions: {
+                            show: false,
+                            edit: true,
+                            delete: true,
+                        }
+                    }
+                ]
+            }
         }
     },
     actions,

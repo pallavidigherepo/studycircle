@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-      <h2 class="text-lg font-medium mr-auto">{{ t("users.Add User") }}</h2>
+      <h2 class="text-lg font-medium mr-auto">{{ t("users.Edit User") }}</h2>
       <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
         <router-link
           to="/users"

@@ -6,8 +6,16 @@ export default {
     user(state) {
         return state.user;
     },
-
-    allowedImportExtensions(state) {
-        return state.allowedImportExtensions;
+    
+    datatable(state) {
+        return state.datatable;
+    },
+    meta(state) {
+        return state.pagination;
+    },
+    
+    roleList(state) {
+        return state.roleList;
     }
+
 }

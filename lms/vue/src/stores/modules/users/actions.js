@@ -1,28 +1,28 @@
-import axios from "axios"
+import axiosClient from "@/axios";
 
 export default {
     // This action is used to fetch all the users present in database
-    async fetch(context, params) {
-        const response = await axios.get('/api/v1/users?page='+params.page+'&search='+params.keyword+'&field='+params.field+'&sort='+params.sort) ;
-
-        //const response = await axios.get('/api/v1/users') ;
-
-        if (response.status != 200) {
-            const error = new Error('Failed to fetch users')
-            throw error;
-        }
-        context.commit('FETCH_USERS', response.data.users);
-        context.commit('SET_ALLOWED_IMPORT_EXTENSIONS', response.data.allowedExtensions);
+    async list({ commit }, { url = null } = {}) {
+        url = "/users"+url;
+        return await axiosClient.get(url)
+            .then(({ data }) => {
+                commit('SET_USERS', data);
+                commit('SET_PAGINATION_LINKS', data.meta.links)
+                return data;
+            });
     },
     
-    async create(context, user) {
-        const response = await axios.post('/api/v1/users', user) ;
-
-        if (response.status != 200) {
-            const error = new Error('Failed to fetch users')
-            throw error;
-        }
-        context.commit('CREATE_USER', response.data);
+    async create({commit}, user) {
+        return await axiosClient.post('/users', user)
+                .then(({data}) => {
+                    if (data.success) {
+                        commit('CREATE_USER', data);
+                        //return true;
+                    } else {
+                        const error = new Error(data.message)
+                        throw error;
+                    }
+                });
     },
 
     // This action is used to fetch only selected user
@@ -37,25 +37,27 @@ export default {
     },
 
     // After user submits the form, user information must be updated in database.
-    async update(context, user) {
-        const response = await axios.put(`/api/v1/users/${user.id}`, user);
-
-        if (response.status != 200) {
-            const error = new Error('Failed to update user')
-            throw error;
-        }
-
-        context.commit('UPDATE_USER', user);
+    async update({commit}, user) {
+        return await axiosClient.put(`/roles/${user.id}`, user)
+                .then(({data}) => {
+                    if (data.success) {
+                        commit('UPDATE_USER', user);
+                        //return ;
+                    } else {
+                        const error = new Error(data.message)
+                        throw error;
+                    }
+                });
     },
 
     // This action is used to delete user from serve.
-    async delete(context, id) {
-        const response = await axios.delete(`/api/v1/users/${id}`);
+    async delete({commit}, id) {
+        const response = await axiosClient.delete(`/users/${id}`);
         if (response.status != 200) {
             const error = new Error('Failed to delete user')
             throw error;
         }
-        context.commit('DELETE_USER', id);
+        commit('DELETE_USER', id);
     },
     
     async checkEmailExists(context, user) {
@@ -73,5 +75,14 @@ export default {
                 reject(error);
             })
         })
+    },
+
+
+    async role_list({commit}) {
+        return await axiosClient.get('/users/role_list')
+            .then(({ data }) => {
+                commit('SET_ROLE_LIST', data);
+                return data;
+            });
     }
 };
