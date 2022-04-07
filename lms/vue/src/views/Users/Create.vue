@@ -40,7 +40,7 @@
                 id="form-name"
                 type="text"
                 class="form-control"
-                placeholder="Enter name of user."
+                placeholder="Enter name of user"
                 v-model.trim="user.name"
                 :class="{
                   'border-danger': submitted && v$.name.$errors.length,
@@ -66,7 +66,7 @@
                 id="form-email"
                 type="text"
                 class="form-control"
-                placeholder="Enter email."
+                placeholder="Enter email"
                 v-model.trim="user.email"
                 :class="{
                   'border-danger': submitted && v$.email.$errors.length,
@@ -92,7 +92,7 @@
                 id="form-mobile-number"
                 type="text"
                 class="form-control"
-                placeholder="Enter mobile number."
+                placeholder="Enter mobile number"
                 v-model.trim="user.mobile_no"
                 :class="{
                   'border-danger': submitted && v$.mobile_no.$errors.length,
@@ -111,14 +111,14 @@
             </div>
             <div class="mt-3">
               <label for="form-role" class="form-label"
-                >{{ t("users.Role") }}
+                >{{ t("users.Designation") }}
               </label>
               <div class="mt-2">
                 <TomSelect
                   v-model="user.designation"
                   :options="{
                     placeholder: 'Select role',
-                    allowEmptyOption: true
+                    allowEmptyOption: false,
                   }"
                   class="w-full"
                   :class="{
@@ -177,6 +177,8 @@ import { useRoute, useRouter } from "vue-router";
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 import { useI18n } from "vue-i18n";
+import axiosClient from "@/axios";
+
 const submitted = ref(false);
 
 const isErrored = ref(false);
@@ -188,7 +190,7 @@ const router = useRouter();
 // Now we must get editing details for the selected item
 const { t } = useI18n();
 const user = reactive({
-  id: "",
+  id: null,
   name: "",
   email: "",
   mobile_no: "",
@@ -202,13 +204,26 @@ const rules = computed(() => {
     },
     email: {
       required: helpers.withMessage("Please enter email address.", required),
+
+      // async isUnique (value) {
+      //     if (value === '') return true
+      //     return await axiosClient.get(`/users/is_email_exists/${value}/${user.id}`).then(({data}) => {
+      //       if (data.message) {
+      //         console.log(data)
+      //         return data.message;
+      //       } else {
+      //         return true;
+      //       }
+      //     });
+
+      //   }
     },
     mobile_no: {
       required: helpers.withMessage("Please enter mobile number.", required),
     },
     designation: {
       required: helpers.withMessage("Please select role of user.", required),
-    }
+    },
   };
 });
 
@@ -220,17 +235,18 @@ async function submitForm() {
 
   if (!v$.value.$error) {
     isLoading.value = true;
-    try {
-      //await store.dispatch('roles/create', role);
-      isLoading.value = false;
-      submitted.value = false;
-      router.push({ name: "Roles" });
-    } catch (e) {
-      console.log(e);
-      isLoading.value = false;
-      isErrored.value = true;
-      message.value = "This name is already taken.";
-    }
+    await store
+      .dispatch("users/create", user)
+      .then(() => {
+        isLoading.value = false;
+        submitted.value = false;
+        router.push({ name: "Users" });
+      })
+      .catch((err) => {
+        isLoading.value = false;
+        isErrored.value = true;
+        message.value = err.response.data.message;
+      });
   } else {
     // if ANY fail validation
     return;

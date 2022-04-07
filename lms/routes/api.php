@@ -11,6 +11,8 @@ use App\Http\Controllers\Api\V1\UserController;
 
 use App\Http\Controllers\Api\V1\ExportController;
 use App\Http\Controllers\Api\V1\ImportController;
+use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,6 +35,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('v1/permissions', PermissionController::class);
     Route::resource('v1/roles', RoleController::class);
     Route::get('v1/users/role_list', [UserController::class, 'role_list'])->name('users.role_list');
+    
+    Route::get('v1/users/is_email_exists/{email}/{id}', [UserController::class, 'is_email_exists'])->name('is_email_exists');
     Route::resource('v1/users', UserController::class);
 
     Route::post('v1/exports/index', [ExportController::class, 'index'])->name('exports.index');

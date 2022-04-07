@@ -38,11 +38,11 @@ export default {
 
     // After user submits the form, user information must be updated in database.
     async update({commit}, user) {
-        return await axiosClient.put(`/roles/${user.id}`, user)
+        return await axiosClient.put(`/users/${user.id}`, user)
                 .then(({data}) => {
                     if (data.success) {
                         commit('UPDATE_USER', user);
-                        //return ;
+                        //return true;
                     } else {
                         const error = new Error(data.message)
                         throw error;

@@ -149,17 +149,18 @@ async function submitForm() {
 
     if (!v$.value.$error) {
         isLoading.value = true;
-        try {
-            await store.dispatch('roles/create', role);
-            isLoading.value = false;
-            submitted.value = false;
-            router.push({ name: "Roles"});
-        } catch(e) {
-            console.log(e)
-            isLoading.value = false;
-            isErrored.value = true;
-            message.value = "This name is already taken.";
-        }
+        await store
+            .dispatch("roles/create", role)
+            .then(() => {
+                isLoading.value = false;
+                submitted.value = false;
+                router.push({ name: "Roles" });
+            })
+            .catch((err) => {
+                isLoading.value = false;
+                isErrored.value = true;
+                message.value = err.response.data.message;
+            });
     } else {
         // if ANY fail validation
         return ;

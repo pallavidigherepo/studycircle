@@ -177,6 +177,8 @@ import { useRoute, useRouter } from "vue-router";
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 import { useI18n } from "vue-i18n";
+import axiosClient from "@/axios";
+
 const submitted = ref(false);
 
 const isErrored = ref(false);
@@ -188,12 +190,37 @@ const router = useRouter();
 // Now we must get editing details for the selected item
 const { t } = useI18n();
 const user = reactive({
-  id: "",
+  id: route.params.id,
   name: "",
   email: "",
   mobile_no: "",
   designation: [],
 });
+
+const fetch = async() => {
+    isLoading.value = true;
+    try {
+        let id = route.params.id;
+        //const result = await store.dispatch('roles/edit', id);
+
+        const result = await axiosClient.get(`/users/${id}/edit`);
+        if (result.status != 200) {
+            const error = new Error('Failed to fetch roles')
+            throw error;
+        }
+        user.name = result.data.name;
+        user.email = result.data.email;
+        user.mobile_no = result.data.mobile_no;
+        user.designation = result.data.designation;
+        
+    } catch (e) {
+        isErrored.value = true;
+        message.value = e;
+    } finally {
+        isLoading.value = false;
+    }
+};
+fetch();
 
 const rules = computed(() => {
   return {
@@ -220,17 +247,23 @@ async function submitForm() {
 
   if (!v$.value.$error) {
     isLoading.value = true;
-    try {
-      //await store.dispatch('roles/create', role);
-      isLoading.value = false;
-      submitted.value = false;
-      router.push({ name: "Roles" });
-    } catch (e) {
-      console.log(e);
-      isLoading.value = false;
-      isErrored.value = true;
-      message.value = "This name is already taken.";
-    }
+    await store
+            .dispatch("users/update", user)
+            .then(() => {
+                isLoading.value = false;
+                submitted.value = false;
+                router.push({ name: "Users" });
+            })
+            .catch((err) => {
+                isLoading.value = false;
+                isErrored.value = true;
+                if (err.response) {
+                  message.value = err.response.data.message;
+                } //else {
+                //   message.value = "Oops, something went wrong at our end. Please try again later.";
+                // }
+                
+            }); 
   } else {
     // if ANY fail validation
     return;
