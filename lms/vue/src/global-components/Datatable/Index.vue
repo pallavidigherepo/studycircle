@@ -146,6 +146,7 @@
             </th>
           </tr>
         </thead>
+        
         <tbody>
           <tr
             v-for="(item, index) in items.data"
@@ -186,11 +187,18 @@
                 </div>
               </template>
               <template v-else>
-                {{ item[column.field] }}
+                <template v-if="column.isJson">{{ JSON.parse(item[column.field]) }}</template>
+                <template v-else>{{ item[column.field] }}</template>
+                
               </template>
             </td>
           </tr>
         </tbody>
+        <!-- <tbody v-else>
+          <tr>
+            <td :colspan="datatableoptions.columns.length" class="text-center">Sorry, no records found.</td>
+          </tr>
+        </tbody> -->
       </table>
     </div>
     <!-- END: Data List -->
@@ -201,6 +209,7 @@
       :currentPage="currentPage"
       @paginate="getForPage"
       @perpage="perPageValue"
+      
     />
     <!-- END: Pagination -->
     <!-- BEGIN: Modal Content -->

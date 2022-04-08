@@ -1,6 +1,10 @@
 export default {
-    FETCH_COURSES_TYPES(state, payload) {
+    SET_COURSES_TYPES(state, payload) {
         state.coursesTypes = payload;
+    },
+
+    SET_PAGINATION_LINKS(state, payload) {
+        state.pagination = payload;
     },
     
     CREATE_COURSES_TYPE(state, coursesType)

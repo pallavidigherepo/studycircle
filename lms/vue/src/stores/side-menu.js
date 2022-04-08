@@ -39,25 +39,25 @@ export const useSideMenuStore = defineStore("sideMenu", {
         title: "Courses",
         subMenu: [
           {
-            icon: "",
+            icon: "BoxIcon",
             pageName: "CourseTypes",
             title: "Course types",
             ignore: true,
           },
           {
-            icon: "",
+            icon: "BriefcaseIcon",
             pageName: "Courses",
             title: "Courses",
             ignore: true,
           },
           {
-            icon: "",
+            icon: "BookIcon",
             pageName: "Subjects",
             title: "Subjects",
             ignore: true,
           },
           {
-            icon: "",
+            icon: "BookOpenIcon",
             pageName: "Chapters",
             title: "Chapters",
             ignore: true,

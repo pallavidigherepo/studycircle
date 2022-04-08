@@ -5,6 +5,10 @@ import authModule from './modules/auth/index.js';
 import permissionModule from './modules/permissions/index.js';
 import roleModule from './modules/roles/index.js';
 import userModule from './modules/users/index.js';
+import coursesTypeModule from './modules/courses_types/index.js';
+import coursesModule from './modules/courses/index.js';
+import subjectModule from './modules/subjects/index.js';
+import chapterModule from './modules/chapters/index.js';
 
 const store = createStore({
     modules: {
@@ -13,11 +17,11 @@ const store = createStore({
         roles: roleModule,
         users: userModule,
         
-        /*coursesType: coursesTypeModule,
+        coursesTypes: coursesTypeModule,
         courses: coursesModule,
         subjects: subjectModule,
         chapters: chapterModule,
-        languages: languageModule,
+        /*languages: languageModule,
         questions: questionModule*/
     },
 

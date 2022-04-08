@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CoursesType;
 use App\Http\Requests\CoursesTypeRequest;
+use App\Http\Resources\CoursesTypeResource;
 
 class CoursesTypeController extends Controller
 {
@@ -14,13 +15,20 @@ class CoursesTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $coursesType = CoursesType::when(request('search'), function ($query) {
-            $query->where('label', 'like', '%'. request('search'). '%');
-            $query->orWhere('description', 'like', '%'. request('search'). '%');
-        })->orderBy(request('field'), request('sort'))->paginate(5);
-        return response()->json($coursesType);
+        $field = $request->input('sort_field') ?? 'id';
+        $order = $request->input('sort_order') ?? 'desc';
+        $perPage = $request->input('per_page') ?? 10;
+
+        $coursesTypes = CoursesTypeResource::collection(
+            CoursesType::when($request->input('search'), function ($query) {
+                $query->where('label', 'like', '%' . request('search') . '%');
+                $query->orWhere('description', 'like', '%' . request('search') . '%');
+                $query->orWhere('icon', 'like', '%' . request('search') . '%');
+            })->orderBy($field, $order)->paginate($perPage)
+        );
+        return $coursesTypes;
     }
 
     /**

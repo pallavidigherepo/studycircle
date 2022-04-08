@@ -12,6 +12,10 @@ import Users from '../views/Users/Index.vue';
 import Questions from '../views/Questions/Index.vue';
 import CreateUser from '../views/Users/Create.vue';
 import EditUser from '../views/Users/Edit.vue';
+import CoursesTypes from '../views/CoursesTypes/Index.vue';
+import Courses from '../views/Courses/Index.vue';
+import Subjects from '../views/Subjects/Index.vue';
+import Chapters from '../views/Chapters/Index.vue';
 
 import Login from "../views/Auth/Login.vue";
 import ErrorPage from "../views/ErrorPage.vue";
@@ -86,6 +90,29 @@ const routes = [
             },
           }
         ]
+      },
+      {
+        path: '/courses_types',
+        name: "CourseTypes",
+        component: CoursesTypes,
+        meta: {
+          parent: 'CourseTypes'
+        },
+      },
+      {
+        path: '/courses',
+        name: "Courses",
+        component: Courses
+      },
+      {
+        path: '/subjects',
+        name: "Subjects",
+        component: Subjects
+      },
+      {
+        path: '/chapters',
+        name: "Chapters",
+        component: Chapters
       },
       {
         path: "/questions",
