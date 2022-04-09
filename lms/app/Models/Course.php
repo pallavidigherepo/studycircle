@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use \Conner\Tagging\Taggable;
 use App\Models\CoursesType;
 use App\Models\Subject;
+use Spatie\Tags\HasTags;
 
 
 class Course extends Model
 {
     use HasFactory;
-    use Taggable;
+    use HasTags; 
     
 
     protected $guarded = [];

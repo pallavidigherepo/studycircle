@@ -65,7 +65,7 @@ class CourseController extends Controller
             
     	    $tags = $request->tags;
             $course = Course::create($inputs);
-            $course->tag($tags);
+            $course->attachTags($tags);
             $course->courses_types()->sync($request->type_ids);
             $course->tags = $tags;
             $response = [

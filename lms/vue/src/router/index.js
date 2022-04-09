@@ -102,7 +102,10 @@ const routes = [
       {
         path: '/courses',
         name: "Courses",
-        component: Courses
+        component: Courses,
+        meta: {
+          parent: 'Courses'
+        },
       },
       {
         path: '/subjects',

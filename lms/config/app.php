@@ -172,6 +172,7 @@ return [
          */
         Spatie\Permission\PermissionServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Spatie\Tags\TagsServiceProvider::class,
         /*
          * Application Service Providers...
          */

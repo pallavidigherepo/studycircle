@@ -1,8 +1,16 @@
-import axios from "axios"
+import axiosClient from "@/axios";
 
 export default {
     // This action is used to fetch all the courses present in database
-
+    async list({ commit }, { url = null } = {}) {
+        url = "/courses" + url;
+        return await axiosClient.get(url)
+            .then(({ data }) => {
+                commit('SET_COURSES', data);
+                commit('SET_PAGINATION_LINKS', data.meta.links)
+                return data;
+            });
+    },
     async fetch(context, params) {
         const response = await axios.get('/api/v1/courses?page='+params.page+'&search='+params.keyword+'&field='+params.field+'&sort='+params.sort) ;
 
@@ -14,6 +22,26 @@ export default {
         context.commit('FETCH_COURSES', response.data.courses);
         context.commit('LANGUAGES', response.data.languages);
         context.commit('COURSE_TYPES', response.data.type_ids);
+    },
+
+    async save({ commit }, model) {
+        let response;
+
+        if (model.id) {
+            response = await axiosClient
+                .put(`/courses/${model.id}`, model)
+                .then(({ data }) => {
+                    commit('UPDATE_COURSE', model);
+                    return data;
+                });
+        } else {
+            response = await axiosClient
+                .post(`/courses`, model)
+                .then(({ data }) => {
+                    commit('CREATE_COURSE', data);
+                    return data;
+                });
+        }
     },
     
     async create(context, course) {

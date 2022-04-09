@@ -1,5 +1,5 @@
 export default {
-    FETCH_COURSES(state, payload) {
+    SET_COURSES(state, payload) {
         state.courses = payload;
     },
     CREATE_COURSE(state, course)

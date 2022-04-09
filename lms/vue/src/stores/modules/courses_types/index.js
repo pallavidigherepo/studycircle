@@ -39,7 +39,7 @@ export default {
                         isJson: false,
                     },
                     {
-                        label: "Actions",
+                        label: "ACTIONS",
                         field: false,
                         sort: false,
                         actions: {

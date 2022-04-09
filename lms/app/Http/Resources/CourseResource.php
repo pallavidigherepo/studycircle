@@ -19,11 +19,10 @@ class CourseResource extends JsonResource
             'name' => $this->name,
             'course_code' => $this->course_code,
             'tags' => $this->tags,
+            'course_types' => $this->courses_types,
             'langauge_id' => $this->language_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
-
-        //return parent::toArray($request);
     }
 }

@@ -15,7 +15,7 @@
         v-if="datatableoptions.addNew"
         @click.prevent="emit('addModel', true)"
       >
-        {{ t(module + ".Add New") }}
+        {{ t("common.Add New") }}
       </button>
       <div class="dropdown" v-if="datatableoptions.export">
         <button
@@ -24,7 +24,7 @@
           data-tw-toggle="dropdown"
         >
           <span class="flex items-center justify-center">
-            {{ t(module + ".Export/Print") }}&nbsp;
+            {{ t("common.Export/Print") }}&nbsp;
             <DownloadIcon class="w-4 h-4" />
           </span>
         </button>
@@ -43,7 +43,7 @@
                 @click.prevent="exportMe('xlsx')"
               >
                 <FileTextIcon class="w-4 h-4 mr-2" />
-                {{ t(module + ".Export to Excel") }}
+                {{ t("common.Export to Excel") }}
               </a>
             </li>
             <li>
@@ -53,7 +53,7 @@
                 @click.prevent="exportMe('csv')"
               >
                 <FileTextIcon class="w-4 h-4 mr-2" />
-                {{ t(module + ".Export to CSV") }}
+                {{ t("common.Export to CSV") }}
               </a>
             </li>
             <!-- <li>
@@ -76,7 +76,7 @@
           data-tw-toggle="dropdown"
         >
           <span class="flex items-center justify-center">
-            {{ t(module + ".Import") }}&nbsp;
+            {{ t("common.Import") }}&nbsp;
             <UploadIcon class="w-4 h-4" />
           </span>
         </button>
@@ -85,7 +85,7 @@
             <li>
               <a href="#" class="dropdown-item" @click="openModal">
                 <FileTextIcon class="w-4 h-4 mr-2" />
-                {{ t(module + ".CSV/Excel") }}
+                {{ t("common.CSV/Excel") }}
               </a>
             </li>
           </ul>
@@ -102,7 +102,7 @@
           <input
             type="text"
             class="form-control w-56 pr-10 w-full"
-            placeholder="Search..."
+            :placeholder="t('common.Search')+'...'"
             v-model="search"
             @keyup="searchMe($event)"
           />
@@ -125,7 +125,8 @@
               <template v-if="column.sort">
                 <a href="#" @click.prevent="sorting(column.field, sortOrder)">
                   <div className="flex items-center justify-between">
-                    {{ t(module + "." + column.label) }}
+                    <template v-if="column.label === 'ID' || column.label === 'ACTIONS'">{{ t("common." + column.label) }}</template>
+                    <template v-else>{{ t(module + "." + column.label) }}</template>
 
                     <span v-if="column.field === sortBy">
                       <ChevronUpIcon
@@ -141,7 +142,8 @@
                 </a>
               </template>
               <template v-else>
-                {{ t(module + "." + column.label) }}
+                <template v-if="column.label === 'ID' || column.label === 'ACTIONS'">{{ t("common." + column.label) }}</template>
+                <template v-else>{{ t(module + "." + column.label) }}</template>
               </template>
             </th>
           </tr>
@@ -173,7 +175,7 @@
                     @click.prevent="editMe(item)"
                   >
                     <CheckSquareIcon class="w-4 h-4 mr-1" />
-                    {{ t(module + ".Edit") }}
+                    {{ t("common.Edit") }}
                   </a>
                   <a
                     v-if="column.actions.delete"
@@ -182,14 +184,13 @@
                     @click.prevent="emit('deleteItem', item)"
                   >
                     <Trash2Icon class="w-4 h-4 mr-1" />
-                    {{ t(module + ".Delete") }}
+                    {{ t("common.Delete") }}
                   </a>
                 </div>
               </template>
               <template v-else>
                 <template v-if="column.isJson">{{ JSON.parse(item[column.field]) }}</template>
                 <template v-else>{{ item[column.field] }}</template>
-                
               </template>
             </td>
           </tr>

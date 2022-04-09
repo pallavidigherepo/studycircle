@@ -27,8 +27,7 @@
       <div class="col-span-12 lg:col-span-4">
         <div class="intro-y box p-5">
           <h2 class="text-lg font-medium mr-auto pt-5 pb-5">
-            {{ t("coursesTypes." + actionText) }}
-            {{ t("coursesTypes.Courses Type") }}
+            {{ t("common." + actionText) }}
           </h2>
           <div
             class="alert alert-danger show flex items-center mb-2"
@@ -98,10 +97,10 @@
                 class="btn btn-outline-secondary w-24 mr-1"
                 @click.prevent="cancel"
               >
-                {{ t("coursesTypes.Cancel") }}
+                {{ t("common.Cancel") }}
               </button>
               <button type="submit" class="btn btn-primary w-24">
-                {{ t("coursesTypes.Save") }}
+                {{ t("common.Save") }}
               </button>
             </div>
           </form>

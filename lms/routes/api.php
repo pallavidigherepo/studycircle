@@ -8,10 +8,13 @@ use App\Http\Controllers\Api\V1\PermissionController;
 use App\Http\Controllers\Api\V1\RoleController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\CoursesTypeController;
+use App\Http\Controllers\Api\V1\CourseController;
 
 use App\Http\Controllers\Api\V1\ExportController;
 use App\Http\Controllers\Api\V1\ImportController;
-use App\Models\User;
+use App\Http\Controllers\Api\V1\SubjectController;
+use App\Models\CoursesType;
+use App\Models\Language;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,14 +39,25 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('v1/roles', RoleController::class);
     Route::get('v1/users/role_list', [UserController::class, 'role_list'])->name('users.role_list');
     
-    Route::get('v1/users/is_email_exists/{email}/{id}', [UserController::class, 'is_email_exists'])->name('is_email_exists');
+    //Route::get('v1/users/is_email_exists/{email}/{id}', [UserController::class, 'is_email_exists'])->name('is_email_exists');
     Route::resource('v1/users', UserController::class);
     Route::get('v1/courses_types/list', [CoursesTypeController::class, 'list'])->name('coursesTypes.list');
     Route::resource('v1/courses_types', CoursesTypeController::class);
+    Route::resource('v1/courses', CourseController::class);
+    Route::resource('v1/subjects', SubjectController::class);
+    Route::resource('v1/chapters', ChapterController::class);
     
 
     Route::post('v1/exports/index', [ExportController::class, 'index'])->name('exports.index');
     Route::post('v1/imports', [ImportController::class, 'store'])->name('imports.store');
+
+    Route::get('v1/languages', function() {
+        return Language::all()->pluck('name', 'id');
+    })->name('languages');
+
+    Route::get('v1/course_type_list', function() {
+        return CoursesType::all()->pluck('label', 'id');
+    })->name('course_type_list');
    
 });
 

@@ -26,9 +26,18 @@ const store = createStore({
     },
 
     state: {
-        loading: false
+        loading: false,
+        languages: [],
+        courseTypeList: [],
     },
-    getters: {},
+    getters: {
+        languages(state) {
+            return state.languages;
+        },
+        courseTypeList(state) {
+            return state.courseTypeList;
+        }
+    },
     actions: {
         async importMe({commit}, formData) {
             return await axiosClient
@@ -39,9 +48,34 @@ const store = createStore({
         async exportMe({ commit }, payload) {
             return await axiosClient
                 .post(`/exports/index`, {data: payload}, { responseType: "blob" })
+        },
+        async listLanguages({commit}) {
+            return await axiosClient
+                .get('/languages')
+                .then(({data}) => {
+                    commit('SET_LANGUAGES', data)
+                    return data;
+                })
+        },
+        async listCourseTypes({commit}) {
+            return await axiosClient
+                .get('/course_type_list')
+                .then(({data}) => {
+                    commit('SET_COURSES_TYPES_LIST', data)
+                    return data;
+                })
         }
     },
-    mutations: {},
+    mutations: {
+        SET_LANGUAGES(state, payload) {
+            state.languages = payload;
+        },
+        SET_COURSES_TYPES_LIST(state, payload) {
+            state.courseTypeList = payload;
+        },
+        
+
+    },
 });
 
 export default store;

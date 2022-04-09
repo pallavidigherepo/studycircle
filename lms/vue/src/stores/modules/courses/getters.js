@@ -11,5 +11,13 @@ export default {
 
     course(state) {
         return state.course;
+    },
+
+    datatable(state) {
+        return state.datatable;
+    },
+    
+    meta(state) {
+        return state.pagination;
     }
 }
