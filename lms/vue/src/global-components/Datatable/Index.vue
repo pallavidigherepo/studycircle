@@ -232,7 +232,7 @@
       <ModalBody class="grid grid-cols-12 gap-4 gap-y-3">
         <div class="col-span-12 sm:col-span-8">
           <label for="modal-form-1" class="form-label">{{
-            t("permissions.Upload file")
+            t("common.Upload file")
           }}</label>
           <input
             id="modal-form-1"
@@ -251,7 +251,7 @@
           @click="headerFooterModalPreview = false"
           class="btn btn-outline-secondary w-20 mr-1"
         >
-          {{ t("permissions.Cancel") }}
+          {{ t("common.Cancel") }}
         </button>
         <!-- <button type="button" class="btn btn-primary w-20">
             {{ t("permissions.Import") }}

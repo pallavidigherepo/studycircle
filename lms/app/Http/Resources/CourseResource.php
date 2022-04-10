@@ -14,13 +14,29 @@ class CourseResource extends JsonResource
      */
     public function toArray($request)
     {
+        $tags = array();
+        if (!empty($this->tags)) {
+            foreach ($this->tags as $tag) {
+                $tags[] = $tag->name;
+            }
+        }
+        //$types = [];
+        $types = array();
+        if (!empty($this->courses_types)) {
+            foreach ($this->courses_types as $courseType) {            
+                $types[$courseType->id] = $courseType->id;
+            }
+        }
         return [
             'id' => $this->id,
             'name' => $this->name,
             'course_code' => $this->course_code,
-            'tags' => $this->tags,
-            'course_types' => $this->courses_types,
-            'langauge_id' => $this->language_id,
+            //'tags' => $this->tags,
+            'tags' => $tags,
+            'tags_list' => $tags,
+            'courses_types' => $this->courses_types,
+            'type_ids' => $types,
+            'language_id' => $this->language_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

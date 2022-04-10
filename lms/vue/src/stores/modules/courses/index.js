@@ -31,13 +31,13 @@ export default {
                         label: "CODE",
                         field: "course_code",
                         sort: true,
-                        isJson: true,
+                        isJson: false,
                     },
                     {
                         label: "NAME",
                         field: "name",
                         sort: true,
-                        isJson: true,
+                        isJson: false,
                     },
                     {
                         label: "ACTIONS",

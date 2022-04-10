@@ -61,9 +61,9 @@
                   }"
                 >
                   <option
-                    :value="courseType.id"
+                    :value="index"
                     v-for="(courseType, index) in courseTypes"
-                    :key="index"
+                    :key="random(index)"
                   >
                     {{ JSON.parse(courseType) }}
                   </option>
@@ -134,18 +134,18 @@
               
               <TomSelect
                   id="course-tags"
-                  v-model="model.tags"
+                  v-model="model.tags_list"
+                  :placeholder="t('Tags')"
                   :options="{
-                    create: true,
-                    tags: true
+                    create: true
                   }"
                   class="w-full"
                   multiple
-                  :class="{
-                    'border-danger': submitted && v$.tags.$errors.length,
-                  }"
                 >
-                </TomSelect>
+                <option v-for="(tag, index) in model.tags_list" 
+                          :key="index" 
+                          :value="tag">{{ tag }}</option>
+              </TomSelect>
                 
             </div>
             <div class="text-right mt-5">
@@ -201,7 +201,7 @@ let model = ref({
   type_ids: [],
   name: "",
   course_code: "",
-  tags: [],
+  tags_list: [],
   language_id: 1,
 });
 
@@ -239,7 +239,7 @@ const v$ = useVuelidate(rules, model);
 async function submitForm(event) {
   submitted.value = true;
   v$.value.$validate(); // checks all inputs
-
+//console.log(v$.value)
   if (!v$.value.$error) {
     //loading.value = true;
 
@@ -271,17 +271,18 @@ async function submitForm(event) {
 }
 // Begin: Edit item
 function edit(item) {
+  //submitted.value = false;
   actionText.value = "Edit";
   isEdit.value = true;
   selectedItem.value = item.id;
   model.value = JSON.parse(JSON.stringify(item));
-  //model.value.label = JSON.parse(item.label);
-  //model.value.description = JSON.parse(item.description);
+
 }
 // End: Edit item
 
 // Begin: Cancel editting
 function cancel() {
+  submitted.value = false;
   actionText.value = "Add";
   isEdit.value = false;
   selectedItem.value = "";

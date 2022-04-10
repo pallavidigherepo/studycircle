@@ -2,8 +2,9 @@
 
 namespace App\Imports;
 
-use App\Models\CoursesType;
+use App\Models\Course;
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
@@ -28,12 +29,24 @@ class CourseImport implements ToModel, WithHeadingRow, WithValidation
      */
     public function model(array $row)
     {
-        return new CoursesType([
+        $types = explode(',', ltrim(rtrim($row['course_types'],"]"), "["));
+        
+        $tags = explode(',', ltrim(rtrim($row['tags'],"]"), "["));
+        
+        $inputs = [
             'course_code' => $row['course_code'],
             'name' => $row['name'],
             'language_id' => $row['language_id'],
-            //'created_by' => 
-        ]);
+            'courses_types' => $types,
+            'tags' => $tags,
+            'created_by' => Auth::user()->id,
+            'updated_by' => Auth::user()->id,
+        ];
+        $course = Course::create($inputs);
+        
+        $course->attachTags($tags);
+        $course->courses_types()->sync($types);
+        return $course;
     }
 
     public function rules(): array

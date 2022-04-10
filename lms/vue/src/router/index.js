@@ -4,18 +4,32 @@ import DefaultLayout from "../layouts/DefaultLayout.vue";
 import AuthLayout from "../layouts/AuthLayout.vue";
 
 import Dashboard from "../views/Dashboard/Index.vue";
+
 import PermissionIndex from '../views/Permissions/Index.vue';
+
 import Roles from '../views/Roles/Index.vue';
 import CreateRole from '../views/Roles/Create.vue';
 import EditRole from '../views/Roles/Edit.vue';
+
 import Users from '../views/Users/Index.vue';
-import Questions from '../views/Questions/Index.vue';
 import CreateUser from '../views/Users/Create.vue';
 import EditUser from '../views/Users/Edit.vue';
+
 import CoursesTypes from '../views/CoursesTypes/Index.vue';
+
 import Courses from '../views/Courses/Index.vue';
+
 import Subjects from '../views/Subjects/Index.vue';
+import CreateSubject from '../views/Subjects/Create.vue';
+import EditSubject from '../views/Subjects/Edit.vue';
+
 import Chapters from '../views/Chapters/Index.vue';
+import CreateChapter from '../views/Chapters/Create.vue';
+import EditChapter from '../views/Chapters/Edit.vue';
+
+import Questions from '../views/Questions/Index.vue';
+import CreateQuestion from '../views/Questions/Create.vue';
+import EditQuestion from '../views/Questions/Edit.vue';
 
 import Login from "../views/Auth/Login.vue";
 import ErrorPage from "../views/ErrorPage.vue";
@@ -110,17 +124,80 @@ const routes = [
       {
         path: '/subjects',
         name: "Subjects",
-        component: Subjects
+        component: Subjects,
+        meta: {
+          parent: 'Subjects'
+        },
+        children: [
+          { 
+            path: '/subjects/create', 
+            name: "CreateSubject", 
+            component: CreateSubject, 
+            meta: { 
+              parent: 'Subjects' 
+            } 
+          },
+          { 
+            path: '/subjects/:id/edit', 
+            name: "EditSubject", 
+            component: EditSubject, 
+            meta: { 
+              parent: 'Subjects' 
+            } 
+          }
+        ]
       },
       {
         path: '/chapters',
         name: "Chapters",
-        component: Chapters
+        component: Chapters,
+        meta: {
+          parent: 'Chapters'
+        },
+        children: [
+          { 
+            path: '/chapters/create', 
+            name: "CreateChapter", 
+            component: CreateChapter, 
+            meta: { 
+              parent: 'Chapters' 
+            } 
+          },
+          { 
+            path: '/chapters/:id/edit', 
+            name: "EditChapter", 
+            component: EditChapter, 
+            meta: { 
+              parent: 'Chapters' 
+            } 
+          }
+        ]
       },
       {
         path: "/questions",
         name: "Questions",
         component: Questions,
+        meta: {
+          parent: 'Questions'
+        },
+        children: [
+          { 
+            path: '/questions/create', 
+            name: "CreateQuestion", 
+            component: CreateQuestion, 
+            meta: { 
+              parent: 'Questions' 
+            } 
+          },
+          { 
+            path: '/questions/:id/edit', 
+            name: "EditQuestion", 
+            component: EditQuestion, 
+            meta: { 
+              parent: 'Questions' 
+            } 
+          }
+        ]
       },
     ],
   },

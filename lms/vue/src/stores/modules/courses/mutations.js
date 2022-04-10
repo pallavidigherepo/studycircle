@@ -2,6 +2,11 @@ export default {
     SET_COURSES(state, payload) {
         state.courses = payload;
     },
+
+    SET_PAGINATION_LINKS(state, payload) {
+        state.pagination = payload;
+    },
+    
     CREATE_COURSE(state, course)
     {
         state.courses.data.unshift(course.course)
