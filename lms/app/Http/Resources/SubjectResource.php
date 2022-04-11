@@ -14,6 +14,22 @@ class SubjectResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        $tags = array();
+        if (!empty($this->tags)) {
+            foreach ($this->tags as $tag) {
+                $tags[] = $tag->name;
+            }
+        }
+        return [
+            'id' => $this->id,
+            'label' => json_decode($this->label),
+            'description' => json_decode($this->description),
+            'icon' => $this->icon,
+            'tags' => $tags,
+            'tags_list' => $tags,
+            'language_id' => $this->language_id,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 }

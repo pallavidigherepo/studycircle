@@ -1,7 +1,12 @@
 export default {
-    FETCH_SUBJECTS(state, payload) {
+    SET_SUBJECTS(state, payload) {
         state.subjects = payload;
     },
+
+    SET_PAGINATION_LINKS(state, payload) {
+        state.pagination = payload;
+    },
+    
     CREATE_SUBJECT(state, subject)
     {
         state.subjects.data.unshift(subject.subject)

@@ -1,4 +1,13 @@
 {
-  "Subjects": "Subjects",
-  "Subject": "Subject"
+    "Subjects": "विषय",
+    "Subject": "विषय",
+    "LABEL": "लेबल",
+    "ICON": "आयकॉन",
+    "Add Subject": "विषय जोडा",
+    "Label": "लेबल",
+    "Icon": "आइकन",    
+    "Description": "वर्णन",
+    "Choose Language": "भाषा निवडा",
+    "Tags": "टॅग्ज",
+    "Edit Subject": "विषय संपादित करा"
 }

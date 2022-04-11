@@ -16,7 +16,7 @@
             ml-auto
             sm:ml-0
           "
-          ><ArrowLeftCircleIcon class="w-4 h-4 mr-2" />Back
+          ><ArrowLeftCircleIcon class="w-4 h-4 mr-2" />{{ t('common.Back') }}
         </router-link>
       </div>
     </div>

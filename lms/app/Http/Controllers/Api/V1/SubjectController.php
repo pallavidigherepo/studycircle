@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubjectRequest;
+use App\Http\Resources\SubjectResource;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Models\Language;
@@ -17,32 +18,24 @@ class SubjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //Get all courses list
-        $subjects = Subject::when(request('search'), function ($query) {
-                        $query->where('label', 'like', '%'. request('search'). '%');
-                        $query->where('parent_id', null);
-                        $query->orWhere('description', 'like', '%'. request('search'). '%');
-                    })
-                    ->where('parent_id', null)
-                    ->with('tagged', 'courses_subjects')
-                    ->orderBy(request('field'), request('sort'))
-                    ->paginate(5);
-        
-        $languages = Language::all()->pluck('name', 'id');
-        $courses = Course::all()->pluck('name', 'id');
+        $field = $request->input('sort_field') ?? 'id';
+        $order = $request->input('sort_order') ?? 'desc';
+        $perPage = $request->input('per_page') ?? 10;
 
-        $tags = Subject::with('tagged')->first();
-        
-        $response = [
-            'subjects' => $subjects,
-            'languages' => $languages,
-            'tags' => $tags,
-            'courses' => $courses
-        ];
-        //$apiData = Course::getApiData();
-        return response()->json($response);
+        $subjects = SubjectResource::collection(
+            Subject::when(request('search'), function ($query) {
+                $query->where('parent_id', null);
+                $query->where('label', 'like', '%' . request('search') . '%');
+                $query->orWhere('icon', 'like', '%' . request('search') . '%');
+            })
+                ->where('parent_id', null)
+                //->with('tags', 'courses_subjects')
+                ->orderBy($field, $order)
+                ->paginate($perPage)
+        );
+        return $subjects;
     }
 
     /**
@@ -53,9 +46,10 @@ class SubjectController extends Controller
      */
     public function store(SubjectRequest $request)
     {
+        $tags = $request->tags_list;
         if ($request->validated()) {
             $inputs = [
-                'label'=> json_encode($request->label),
+                'label' => json_encode($request->label),
                 'description' => json_encode($request->description),
                 'icon' => $request->icon,
                 'language_id' => $request->language_id,
@@ -63,12 +57,11 @@ class SubjectController extends Controller
                 'updated_by' => Auth::user()->id,
                 'parent_id' => NULL
             ];
-            
-    	    $tags = $request->tags;
+
             $subject = Subject::create($inputs);
-            
-            $subject->untag();
-            $subject->tag($tags);
+
+            $subject->detachTags($tags);
+            $subject->attachTags($tags);
             $subject->courses_subjects()->sync($request->course_ids);
             $subject->tags = $request->tags;
 
@@ -95,8 +88,7 @@ class SubjectController extends Controller
      */
     public function edit(Subject $subject)
     {
-        $subject->tags;
-        return response()->json($subject);
+        return new SubjectResource(Subject::findOrFail($subject->id));
     }
 
 
@@ -108,7 +100,7 @@ class SubjectController extends Controller
      */
     public function show(Subject $subject)
     {
-        return response()->json($subject); 
+        return response()->json($subject);
     }
 
     /**
@@ -122,22 +114,20 @@ class SubjectController extends Controller
     {
         if ($request->validated()) {
             $inputs = [
-                'label'=> json_encode($request->label),
+                'label' => json_encode($request->label),
                 'description' => json_encode($request->description),
                 'icon' => $request->icon,
                 'language_id' => $request->language_id,
                 'updated_by' => Auth::user()->id,
                 'parent_id' => NULL
             ];
-            
-    	    $tags = $request->tags;
-            $subject->update($inputs);
-            
 
-            $subject->untag();
-            $subject->tag($tags);
+            $subject->update($inputs);
+
+            $subject->detachTags($request->tags_list);
+            $subject->attachTags($request->tags_list);
             $subject->courses_subjects()->sync($request->course_ids);
-            $subject->tags = $request->tags;
+            $subject->tags = $request->tags_list;
 
             $response = [
                 'success' => true,
@@ -167,7 +157,7 @@ class SubjectController extends Controller
             'message' => null,
             'errors' => null,
         ];
-        
+
         if ($subject->delete()) {
             $response = [
                 'success' => true,

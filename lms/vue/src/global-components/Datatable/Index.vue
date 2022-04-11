@@ -220,7 +220,7 @@
     >
       <ModalHeader>
         <h2 class="font-medium text-base mr-auto">
-          {{ t("permissions.Import as CSV/Excel") }}
+          {{ t("common.Import as CSV/Excel") }}
         </h2>
       </ModalHeader>
       <CustomeAlert
