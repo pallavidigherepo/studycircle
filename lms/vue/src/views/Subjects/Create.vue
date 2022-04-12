@@ -149,7 +149,7 @@
               <TomSelect
                 id="subject-tags"
                 v-model="model.tags_list"
-                :placeholder="t('Tags')"
+                :placeholder="t('subjects.Tags')"
                 :options="{
                   create: true,
                 }"

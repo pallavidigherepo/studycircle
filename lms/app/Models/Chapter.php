@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use \Conner\Tagging\Taggable;
+use Spatie\Tags\HasTags;
 use App\Models\Subject;
 
 class Chapter extends Model
 {
     use HasFactory;
-    use Taggable;
+    use HasTags;
 
     /**
      * The table associated with the model.

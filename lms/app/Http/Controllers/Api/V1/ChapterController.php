@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChapterRequest;
+use App\Http\Resources\ChapterResource;
 use App\Models\Chapter;
 use App\Models\Language;
 use App\Models\Subject;
@@ -17,30 +18,25 @@ class ChapterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //Get all courses list
-        $chapters = Chapter::when(request('search'), function ($query) {
-                        $query->where('label', 'like', '%'. request('search'). '%');
-                        $query->orWhere('description', 'like', '%'. request('search'). '%');
-                    })
-                    ->where('parent_id', '!=', null)
-                    ->with('tagged', 'subject')->orderBy(request('field'), request('sort'))->paginate(10);
-        
-        $languages = Language::all()->pluck('name', 'id');
+        $field = $request->input('sort_field') ?? 'id';
+        $order = $request->input('sort_order') ?? 'desc';
+        $perPage = $request->input('per_page') ?? 10;
 
-        $subjects = Subject::all()->where('parent_id', null)->pluck('label', 'id');
-
-        $tags = Chapter::with('tagged')->first();
-        
-        $response = [
-            'chapters' => $chapters,
-            'languages' => $languages,
-            'tags' => $tags,
-            'subjects' => $subjects,
-        ];
-    
-        return response()->json($response);
+        $subjects = ChapterResource::collection(
+            Chapter::when(request('search'), function ($query) {
+                $query->where('parent_id', null);
+                $query->where('label', 'like', '%' . request('search') . '%');
+                $query->orWhere('icon', 'like', '%' . request('search') . '%');
+            })
+                ->where('parent_id', '!=', null)
+                ->with('subject')
+                ->orderBy($field, $order)
+                ->paginate($perPage)
+        );
+        return $subjects;
     }
 
     /**
@@ -62,10 +58,11 @@ class ChapterController extends Controller
                 'parent_id' => $request->parent_id
             ];
             
-    	    $tags = $request->tags;
+    	    //$tags = $request->tags;
             $chapter = Chapter::create($inputs);
-            $chapter->tag($tags);
-            $chapter->tags = $request->tags;
+            $chapter->detachTags($request->tags_list);
+            $chapter->attachTags($request->tags_list);
+            //$chapter->tags = $request->tags;
 
             $response = [
                 'success' => true,
@@ -79,7 +76,7 @@ class ChapterController extends Controller
                 'errors' => $this->validated()->errors(),
             ];
         }
-        return response()->json($response);
+        return response()->json($response, 200);
     }
 
     /**
@@ -90,8 +87,7 @@ class ChapterController extends Controller
      */
     public function edit(Chapter $chapter)
     {
-        $chapter->tags;
-        return response()->json($chapter);
+        return new ChapterResource(Chapter::findOrFail($chapter->id));
     }
 
     /**
@@ -127,13 +123,13 @@ class ChapterController extends Controller
     	    $tags = $request->tags;
             $chapter->update($inputs);
 
-            $chapter->untag();
-            $chapter->tag($tags);
+            $chapter->detachTags($request->tags_list);
+            $chapter->attachTags($request->tags_list);
             $chapter->tags = $request->tags;
 
             $response = [
                 'success' => true,
-                'message' => 'Subject is created successfully.',
+                'message' => 'Chapter is updated successfully.',
                 'chapter' => $chapter,
             ];
         } else {

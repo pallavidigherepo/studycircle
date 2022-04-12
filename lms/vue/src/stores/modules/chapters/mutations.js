@@ -1,7 +1,12 @@
 export default {
-    FETCH_CHAPTERS(state, payload) {
+    SET_CHAPTERS(state, payload) {
         state.chapters = payload;
     },
+
+    SET_PAGINATION_LINKS(state, payload) {
+        state.pagination = payload;
+    },
+    
     CREATE_CHAPTER(state, chapter)
     {
         state.chapters.data.unshift(chapter.chapter)

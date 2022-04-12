@@ -8,7 +8,8 @@ export default {
             subjects: [],
             subject: null,
             languages: [],
-            courses: [],pagination: [],
+            courses: [],
+            pagination: [],
             datatable: {
                 export: true,
                 import: true,

@@ -10,5 +10,13 @@ export default {
     },
     chapter(state) {
         return state.chapter;
+    },   
+
+    datatable(state) {
+        return state.datatable;
+    },
+    
+    meta(state) {
+        return state.pagination;
     }
 }

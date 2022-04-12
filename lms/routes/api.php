@@ -13,8 +13,10 @@ use App\Http\Controllers\Api\V1\CourseController;
 use App\Http\Controllers\Api\V1\ExportController;
 use App\Http\Controllers\Api\V1\ImportController;
 use App\Http\Controllers\Api\V1\SubjectController;
+use App\Http\Controllers\Api\V1\ChapterController;
 use App\Models\CoursesType;
 use App\Models\Language;
+use App\Models\Subject;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +60,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('v1/course_type_list', function() {
         return CoursesType::all()->pluck('label', 'id');
     })->name('course_type_list');
+
+    Route::get('v1/subject_list', function() {
+        return Subject::all()->where('parent_id', null)->pluck('label', 'id');
+    })->name('subject_list');
    
 });
 

@@ -25,9 +25,8 @@ export default {
                 });
     },
 
-    // After permission submits the form, permission information must be updated in database.
+    // After model submits the form, permission information must be updated in database.
     async update({commit}, subject) {
-        console.log(subject.id);
         return await axiosClient.put(`/subjects/${subject.id}`, subject)
                 .then(({data}) => {
                     if (data.success) {
