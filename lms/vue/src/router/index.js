@@ -22,6 +22,7 @@ import Courses from '../views/Courses/Index.vue';
 import Subjects from '../views/Subjects/Index.vue';
 import CreateSubject from '../views/Subjects/Create.vue';
 import EditSubject from '../views/Subjects/Edit.vue';
+import ShowSubject from '../views/Subjects/Show.vue';
 
 import Chapters from '../views/Chapters/Index.vue';
 import CreateChapter from '../views/Chapters/Create.vue';
@@ -141,6 +142,14 @@ const routes = [
             path: '/subjects/:id/edit', 
             name: "EditSubject", 
             component: EditSubject, 
+            meta: { 
+              parent: 'Subjects' 
+            } 
+          },
+          { 
+            path: '/subjects/:id', 
+            name: "ShowSubject", 
+            component: ShowSubject, 
             meta: { 
               parent: 'Subjects' 
             } 

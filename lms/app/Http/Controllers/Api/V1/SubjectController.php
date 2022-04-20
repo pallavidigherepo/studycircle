@@ -99,7 +99,7 @@ class SubjectController extends Controller
      */
     public function show(Subject $subject)
     {
-        return response()->json($subject);
+        return new SubjectResource(Subject::findOrFail($subject->id));
     }
 
     /**

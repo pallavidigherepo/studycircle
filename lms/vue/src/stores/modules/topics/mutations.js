@@ -1,29 +1,29 @@
 export default {
-    FETCH_CHAPTERS(state, payload) {
-        state.chapters = payload;
+
+    SET_TOPICS(state, payload) {
+        state.topics = payload;
     },
-    CREATE_CHAPTER(state, chapter)
+
+    SET_PAGINATION_LINKS(state, payload) {
+        state.pagination = payload;
+    },
+    
+    CREATE_TOPIC(state, chapter)
     {
-        state.chapters.data.unshift(chapter.chapter)
+        state.topics.data.unshift(chapter.chapter)
     },
-    EDIT_CHAPTER(state, payload) {
+    EDIT_TOPIC(state, payload) {
         state.chapter = payload;
     },
 
-    DELETE_CHAPTER(state, id) {
-        let index = state.chapters.data.findIndex(item => item.id === id)
-        state.chapters.data.splice(index, 1)
+    DELETE_TOPIC(state, id) {
+        let index = state.topics.data.findIndex(item => item.id === id)
+        state.topics.data.splice(index, 1)
     },
 
-    UPDATE_CHAPTER(state, chapter)
+    UPDATE_TOPIC(state, chapter)
     {
-        let index = state.chapters.data.findIndex(item => item.id === chapter.id);
-        state.chapters.data[index] = chapter;
+        let index = state.topics.data.findIndex(item => item.id === chapter.id);
+        state.topics.data[index] = chapter;
     },
-    LANGUAGES(state, languages) {
-        state.languages = languages;
-    },
-    SUBJECTS(state, subjects) {
-        state.subjects = subjects;
-    }
 };

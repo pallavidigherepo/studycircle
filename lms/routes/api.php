@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\V1\ExportController;
 use App\Http\Controllers\Api\V1\ImportController;
 use App\Http\Controllers\Api\V1\SubjectController;
 use App\Http\Controllers\Api\V1\ChapterController;
+use App\Http\Controllers\Api\V1\TopicController;
 use App\Models\CoursesType;
 use App\Models\Language;
 use App\Models\Subject;
@@ -33,7 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('v1/logout', [AuthController::class, 'logout']);
 
     //
     Route::get('v1/permissions/modules', [PermissionController::class, 'modules'])->name('permissions.modules');
@@ -48,6 +49,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('v1/courses', CourseController::class);
     Route::resource('v1/subjects', SubjectController::class);
     Route::resource('v1/chapters', ChapterController::class);
+    Route::get('v1/topics/list', [TopicController::class, 'list'])->name('topics.list');
+    Route::resource('v1/topics', TopicController::class);
     
 
     Route::post('v1/exports/index', [ExportController::class, 'index'])->name('exports.index');

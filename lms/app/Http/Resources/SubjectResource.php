@@ -27,6 +27,7 @@ class SubjectResource extends JsonResource
             'icon' => $this->icon,
             'tags' => $tags,
             'tags_list' => $tags,
+            'chapters' => $this->chapters,
             'language_id' => $this->language_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

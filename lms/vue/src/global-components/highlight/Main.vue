@@ -1,20 +1,37 @@
 <template>
-  <pre v-highlight-directive>
-    <slot></slot>
-    <textarea v-model="copySource" class="fixed w-1 h-1"></textarea>
-  </pre>
+  <button @click="copyCode" class="btn py-1 px-2 btn-outline-secondary">
+    <FileIcon class="w-4 h-4 mr-2" /> {{ copyText }}
+  </button>
+  <div class="overflow-y-auto mt-3 rounded-md">
+    <pre class="source-preview" v-highlight-directive>
+      <code class="!-mb-[60px]" :class="type">
+        <slot></slot>
+      </code>
+      <textarea ref="copySourceEl" v-model="copySource" class="absolute w-0 h-0 p-0"></textarea>
+    </pre>
+  </div>
 </template>
 
 <script setup>
+import { ref } from "vue";
 import dom from "@left4code/tw-starter/dist/js/dom";
-import { copySource } from "./index";
 import jsBeautify from "js-beautify";
 import hljs from "highlight.js";
 import _ from "lodash";
 
+const copyText = ref("Copy example code");
+const copySourceEl = ref("");
+const copySource = ref("");
+const props = defineProps({
+  type: {
+    type: String,
+    default: "html",
+  },
+});
+
 const vHighlightDirective = {
-  beforeMount(el) {
-    let source = dom(el).find("code").find("textarea").html();
+  mounted(el) {
+    let source = dom(el).find("code").html();
 
     // Format for beautify
     source = _.replace(source, /&lt;/g, "<");
@@ -35,10 +52,15 @@ const vHighlightDirective = {
     hljs.highlightElement(dom(el).find("code")[0]);
   },
 };
-</script>
 
-<style scoped>
-textarea {
-  margin-left: 1000000px;
-}
-</style>
+const copyCode = () => {
+  copyText.value = "Copied!";
+  setTimeout(() => {
+    copyText.value = "Copy example code";
+  }, 1500);
+
+  copySourceEl.value.select();
+  copySourceEl.value.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+};
+</script>

@@ -23,6 +23,11 @@ export const useTopMenuStore = defineStore("topMenu", {
             pageName: "top-menu-dashboard-overview-3",
             title: "Overview 3",
           },
+          {
+            icon: "",
+            pageName: "top-menu-dashboard-overview-4",
+            title: "Overview 4",
+          },
         ],
       },
       {
@@ -323,6 +328,11 @@ export const useTopMenuStore = defineStore("topMenu", {
                 title: "Notification",
               },
             ],
+          },
+          {
+            icon: "",
+            pageName: "top-menu-tab",
+            title: "Tab",
           },
           {
             icon: "",

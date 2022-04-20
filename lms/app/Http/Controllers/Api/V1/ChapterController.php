@@ -20,14 +20,14 @@ class ChapterController extends Controller
      */
     public function index(Request $request)
     {
-        //Get all courses list
+        //Get all list
         $field = $request->input('sort_field') ?? 'id';
         $order = $request->input('sort_order') ?? 'desc';
         $perPage = $request->input('per_page') ?? 10;
 
-        $subjects = ChapterResource::collection(
+        $chapters = ChapterResource::collection(
             Chapter::when(request('search'), function ($query) {
-                $query->where('parent_id', null);
+                $query->where('parent_id', '!=', null);
                 $query->where('label', 'like', '%' . request('search') . '%');
                 $query->orWhere('icon', 'like', '%' . request('search') . '%');
             })
@@ -36,7 +36,7 @@ class ChapterController extends Controller
                 ->orderBy($field, $order)
                 ->paginate($perPage)
         );
-        return $subjects;
+        return $chapters;
     }
 
     /**

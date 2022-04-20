@@ -169,6 +169,15 @@
               <template v-if="!column.field">
                 <div class="flex items-center">
                   <a
+                    v-if="column.actions.show"
+                    class="flex items-center mr-3"
+                    href="javascript:;"
+                    @click.prevent="showMe(item)"
+                  >
+                    <EyeIcon class="w-4 h-4 mr-1" />
+                    {{ t("common.Show") }}
+                  </a>
+                  <a
                     v-if="column.actions.edit"
                     class="flex items-center mr-3"
                     href="javascript:;"
@@ -280,7 +289,7 @@ const props = defineProps({
   },
   addEditOnSamePage: false,
 });
-const emit = defineEmits(["addModel", "editItem", "deleteItem"]);
+const emit = defineEmits(["addModel", "editItem", "showItem", "deleteItem"]);
 
 // currentState = $props.module;
 const headerFooterModalPreview = ref(false);
@@ -294,6 +303,11 @@ const { importMe, exportMe, responseStatus, responseMessage } = useImportExport(
 function editMe(item) {
   selectedRow.value = item.id;
   emit("editItem", item);
+}
+
+function showMe(item) {
+  selectedRow.value = item.id;
+  emit('showItem', item);
 }
 function openModal() {
   //import_file.value = '';

@@ -53,7 +53,7 @@ export const useSideMenuStore = defineStore("sideMenu", {
           {
             icon: "BookIcon",
             pageName: "Subjects",
-            title: "Subjects",
+            title: "Subjects, Chapters, Topics",
             ignore: true,
           },
           {

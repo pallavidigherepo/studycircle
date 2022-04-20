@@ -1,12 +1,19 @@
 <template>
-  <canvas ref="chartRef"></canvas>
+  <div
+    :style="{
+      width: `${width}px`,
+      height: `${height}px`,
+    }"
+  >
+    <canvas ref="chartRef" :class="class"></canvas>
+  </div>
 </template>
 
 <script setup>
 import { onMounted, ref, inject, watch } from "vue";
 import dom from "@left4code/tw-starter/dist/js/dom";
 import { helper as $h } from "@/utils/helper";
-import Chart from "chart.js";
+import Chart from "chart.js/auto";
 
 const props = defineProps({
   type: {
@@ -27,16 +34,20 @@ const props = defineProps({
     default: () => ({}),
   },
   width: {
-    type: Number,
-    default: 0,
+    type: [Number, String],
+    default: "auto",
   },
   height: {
-    type: Number,
-    default: 0,
+    type: [Number, String],
+    default: "auto",
   },
   refKey: {
     type: String,
     default: null,
+  },
+  class: {
+    type: String,
+    default: "",
   },
 });
 
@@ -59,19 +70,19 @@ const init = () => {
   chartRef.value.instance = chart;
 };
 
-const setSize = () => {
-  if (props.width) {
-    dom(chartRef.value).attr({
-      width: props.width,
-    });
-  }
+// const setSize = () => {
+//   if (props.width) {
+//     dom(chartRef.value).attr({
+//       width: props.width,
+//     });
+//   }
 
-  if (props.height) {
-    dom(chartRef.value).attr({
-      height: props.height,
-    });
-  }
-};
+//   if (props.height) {
+//     dom(chartRef.value).attr({
+//       height: props.height,
+//     });
+//   }
+// };
 
 const bindInstance = () => {
   if (props.refKey) {
@@ -84,7 +95,7 @@ const bindInstance = () => {
 
 onMounted(() => {
   bindInstance();
-  setSize();
+  // setSize();
   init();
 });
 </script>

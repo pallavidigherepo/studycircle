@@ -1,14 +1,13 @@
 export default {
-    chapters(state) {
-        return state.chapters;
+    topics(state) {
+        return state.topics;
     },
-    languages(state) {
-        return state.languages;
+    
+    datatable(state) {
+        return state.datatable;
     },
-    subjects(state) {
-        return state.subjects;
-    },
-    chapter(state) {
-        return state.chapter;
+    
+    meta(state) {
+        return state.pagination;
     }
 }

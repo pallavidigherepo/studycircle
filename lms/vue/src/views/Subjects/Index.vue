@@ -16,6 +16,7 @@
               <Datatable
                 module="subjects"
                 :importExportOptions="options"
+                @showItem="show"
                 @editItem="edit"
                 @deleteItem="deleteI"
                 @addModel="add"
@@ -48,15 +49,16 @@ const options = {
 const { t } = useI18n();
 const listing = ref(true);
 
-function add() {
-  listing.value = false;
-  router.push({ name: "CreateSubject" });
-}
 onMounted(() => {
-  if (route.name == "CreateSubject" || route.name == "EditSubject") {
+  if (
+    route.name == "CreateSubject" ||
+    route.name == "EditSubject" ||
+    route.name == "ShowSubject"
+  ) {
     listing.value = false;
   }
 });
+
 watch(
   () => route.name,
   (to, from) => {
@@ -66,10 +68,23 @@ watch(
   }
 );
 
+function add() {
+  listing.value = false;
+  router.push({ name: "CreateSubject" });
+}
+
 function edit(item) {
   listing.value = false;
   router.push({
     name: "EditSubject",
+    params: { id: item.id },
+  });
+}
+
+function show(item) {
+  listing.value = false;
+  router.push({
+    name: "ShowSubject",
     params: { id: item.id },
   });
 }

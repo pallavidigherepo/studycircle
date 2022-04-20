@@ -38,7 +38,7 @@ class Chapter extends Model
      */
     public function subject()
     {
-        return $this->belongsTo(Subject::class, 'parent_id');
+        return $this->belongsTo(Subject::class, 'parent_id')->where('parent_id', null);
     }
 
     /**
@@ -46,6 +46,7 @@ class Chapter extends Model
      */
     public function topics()
     {
-        return $this->belongsTo(Subject::class, 'parent_id');
+        return $this->hasMany(Topic::class, 'parent_id')->where('parent_id', '!=',  null);
+        //return $this->belongsTo(Subject::class, 'parent_id');
     }
 }

@@ -11,32 +11,32 @@ export default {
                 return data;
             });
     },
-    
-    async create({commit}, subject) {
+
+    async create({ commit }, subject) {
         return await axiosClient.post('/subjects', subject)
-                .then(({data}) => {
-                    if (data.success) {
-                        commit('CREATE_SUBJECT', data);
-                        //return true;
-                    } else {
-                        const error = new Error(data.message)
-                        throw error;
-                    }
-                });
+            .then(({ data }) => {
+                if (data.success) {
+                    commit('CREATE_SUBJECT', data);
+                    //return true;
+                } else {
+                    const error = new Error(data.message)
+                    throw error;
+                }
+            });
     },
 
     // After model submits the form, permission information must be updated in database.
-    async update({commit}, subject) {
+    async update({ commit }, subject) {
         return await axiosClient.put(`/subjects/${subject.id}`, subject)
-                .then(({data}) => {
-                    if (data.success) {
-                        commit('UPDATE_SUBJECT', subject);
-                        //return ;
-                    } else {
-                        const error = new Error(data.message)
-                        throw error;
-                    }
-                });
+            .then(({ data }) => {
+                if (data.success) {
+                    commit('UPDATE_SUBJECT', subject);
+                    //return ;
+                } else {
+                    const error = new Error(data.message)
+                    throw error;
+                }
+            });
     },
 
     // This action is used to delete item from serve.
@@ -48,16 +48,5 @@ export default {
         }
         context.commit('DELETE_SUBJECT', id);
     },
-    // This action is used to fetch all the subjects present in database
 
-    async show(context, id) {
-        const response = await axiosClient.get('/api/v1/subjects/show/'+id) ;
-
-        if (response.status != 200) {
-            const error = new Error('Failed to fetch subjects')
-            throw error;
-        }
-        
-        context.commit('VIEW_SUBJECT', response.data);
-    },
 };

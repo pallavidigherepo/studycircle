@@ -1,5 +1,5 @@
 import "zoom-vanilla.js/dist/zoom-vanilla.min.js";
-import Chart from "./chart/Main.vue";
+//import Chart from "./chart/Main.vue";
 //import GoogleMapLoader from "./google-map-loader/Main.vue";
 //import Highlight from "./highlight/Main.vue";
 import Litepicker from "./litepicker/Main.vue";
@@ -53,7 +53,7 @@ import Breadcrumb from "./Breadcrumb/Index.vue";
 import Pagination from './Listing/Pagination.vue';
 // End: Custom components
 export default (app) => {
-  app.component("Chart", Chart);
+  //app.component("Chart", Chart);
   //app.component("GoogleMapLoader", GoogleMapLoader);
   app.component("Highlight", Highlight);
   app.component("Litepicker", Litepicker);

@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use \Conner\Tagging\Taggable;
+use Spatie\Tags\HasTags;
 use App\Models\Chapter;
 
 class Topic extends Model
 {
     use HasFactory;
-    use Taggable;
+    use HasTags;
 
     /**
      * The table associated with the model.
@@ -38,6 +38,11 @@ class Topic extends Model
      */
     public function chapter()
     {
-        return $this->belongsTo(Chapter::class, 'parent_id');
+        return $this->belongsTo(Chapter::class, 'parent_id')->where('parent_id', '!=', null);
+    }
+
+
+    public function chapters() {
+        return $this->belongsTo(Chapter::class)->with('chapters')->where('parent_id', '!=', null);
     }
 }

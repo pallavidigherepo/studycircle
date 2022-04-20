@@ -33,4 +33,9 @@ class Subject extends Model
     {
         return $this->belongsToMany(Course::class, 'course_subject', 'subject_id', 'course_id');
     }
+
+    public function chapters()
+    {
+        return $this->hasMany(Chapter::class, 'parent_id');
+    }
 }

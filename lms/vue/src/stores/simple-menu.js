@@ -23,6 +23,11 @@ export const useSimpleMenuStore = defineStore("simpleMenu", {
             pageName: "simple-menu-dashboard-overview-3",
             title: "Overview 3",
           },
+          {
+            icon: "",
+            pageName: "simple-menu-dashboard-overview-4",
+            title: "Overview 4",
+          },
         ],
       },
       {
@@ -318,6 +323,11 @@ export const useSimpleMenuStore = defineStore("simpleMenu", {
                 title: "Notification",
               },
             ],
+          },
+          {
+            icon: "",
+            pageName: "simple-menu-tab",
+            title: "Tab",
           },
           {
             icon: "",
