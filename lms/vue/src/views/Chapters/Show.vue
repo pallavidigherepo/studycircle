@@ -2,11 +2,11 @@
   <div>
     <div class="intro-y flex items-center mt-8">
       <h2 class="text-lg font-medium mr-auto">
-        {{ t("subjects.Subject details") }}
+        {{ t("chapters.Chapter details") }}
       </h2>
       <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
         <router-link
-          to="/subjects"
+          :to="'/subjects/'+subjectId"
           class="
             btn
             box
@@ -73,7 +73,7 @@
             "
           >
             <div class="font-medium text-center lg:text-left lg:mt-3">
-              {{ t('subjects.Description')}}
+              {{ t('chapters.Description')}}
             </div>
             <div
               class="
@@ -104,16 +104,12 @@
             "
           >
             <div class="text-center rounded-md w-20 py-3">
-              <div class="font-medium text-primary text-xl">1</div>
-              <div class="text-slate-500">{{ t('subjects.Chapters')}}</div>
-            </div>
-            <div class="text-center rounded-md w-20 py-3">
               <div class="font-medium text-primary text-xl">1k</div>
-              <div class="text-slate-500">{{ t('subjects.Topics')}}</div>
+              <div class="text-slate-500">{{ t('chapters.Topics')}}</div>
             </div>
           </div>
         </div>
-        <ListChapters :subjectName="model.label"></ListChapters>
+        <ListTopics :chapterName="model.label"></ListTopics>
       </div>
   </div>
 </template>
@@ -124,7 +120,7 @@ import { useI18n } from "vue-i18n";
 import { useRoute, useRouter } from "vue-router";
 import axiosClient from "@/axios";
 import store from "@/stores";
-import ListChapters from "@/views/Chapters/Index.vue";
+import ListTopics from "@/views/Topics/Index.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -134,27 +130,25 @@ const isLoading = ref(false);
 const isErrored = ref(false);
 const message = ref("");
 const model = ref("");
-
 const options = {
-  modelName: "Chapter",
+  modelName: "Topic",
 };
 const listing = ref(true);
-const selectedComponent = shallowRef(ListChapters);
 
-
+const subjectId = computed(() => { return model.value.parent_id})
 const fetch = async () => {
   isLoading.value = true;
   try {
     let id = route.params.id;
 
-    const result = await axiosClient.get(`/subjects/${id}`);
+    const result = await axiosClient.get(`/chapters/${id}`);
 
     if (result.status != 200) {
-      const error = new Error("Failed to fetch subject");
+      const error = new Error("Failed to fetch chapter");
       throw error;
     }
     model.value = JSON.parse(JSON.stringify(result.data.data));
-    //selectedComponent.value = ListChapters;
+    
   } catch (e) {
     isErrored.value = true;
     message.value = e;
@@ -168,6 +162,9 @@ onMounted(() => {
 //const chaptersCount = computed(() => { return count(model.value.chapters)});
 
 
+function deleteI(item) {
+  store.dispatch("topics/delete", item.id);
+}
 </script>
 
 <style>

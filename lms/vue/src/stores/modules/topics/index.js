@@ -11,7 +11,7 @@ export default {
             datatable: {
                 export: true,
                 import: true,
-                addNew: true,
+                addNew: false,
                 defaultColumn: "id",
                 defaultOrder: "desc",
                 defaultPage: 1,
@@ -24,12 +24,12 @@ export default {
                         sort: true,
                         isJson: false,
                     },
-                    {
-                        label: "SUBJECT",
-                        field: "subject",
-                        sort: true,
-                        isJson: false,
-                    },
+                    // {
+                    //     label: "SUBJECT",
+                    //     field: "subject",
+                    //     sort: true,
+                    //     isJson: false,
+                    // },
                     {
                         label: "CHAPTER",
                         field: "chapter",
@@ -54,7 +54,7 @@ export default {
                         sort: false,
                         actions: {
                             show: false,
-                            edit: true,
+                            edit: false,
                             delete: true,
                         }
                     }

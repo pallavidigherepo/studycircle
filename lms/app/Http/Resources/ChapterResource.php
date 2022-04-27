@@ -34,7 +34,7 @@ class ChapterResource extends JsonResource
             'tags_list' => $tags,
             'language_id' => $this->language_id,
             'subject' => $subject,
-            'parent_id' => array($this->parent_id),
+            'parent_id' => $this->parent_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

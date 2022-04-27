@@ -9,12 +9,12 @@ use App\Http\Controllers\Api\V1\RoleController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\CoursesTypeController;
 use App\Http\Controllers\Api\V1\CourseController;
-
-use App\Http\Controllers\Api\V1\ExportController;
-use App\Http\Controllers\Api\V1\ImportController;
 use App\Http\Controllers\Api\V1\SubjectController;
 use App\Http\Controllers\Api\V1\ChapterController;
 use App\Http\Controllers\Api\V1\TopicController;
+
+use App\Http\Controllers\Api\V1\ExportController;
+use App\Http\Controllers\Api\V1\ImportController;
 use App\Models\CoursesType;
 use App\Models\Language;
 use App\Models\Subject;
@@ -49,7 +49,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('v1/courses', CourseController::class);
     Route::resource('v1/subjects', SubjectController::class);
     Route::resource('v1/chapters', ChapterController::class);
-    Route::get('v1/topics/list', [TopicController::class, 'list'])->name('topics.list');
+    //Route::get('v1/topics/list', [TopicController::class, 'list'])->name('topics.list');
     Route::resource('v1/topics', TopicController::class);
     
 

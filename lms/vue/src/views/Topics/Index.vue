@@ -14,12 +14,12 @@
           "
         >
           <h2 class="font-medium text-base mr-auto">
-            {{ t("subjects.Chapters") }}
+            {{ t("chapters.List of all the Topics of Chapter") }} {{ chapterName}}
           </h2>
         </div>
           <div class="p-5">
             <Datatable
-              module="chapters"
+              module="topics"
               :importExportOptions="options"
               @showItem="show"
               @editItem="edit"
@@ -51,8 +51,15 @@ const message = ref("");
 const model = ref("");
 const chapterListing = ref(true);
 
+const props = defineProps({
+  chapterName: {
+    type: String,
+    required: false,
+    default: "",
+  }
+});
 const options = {
-  modelName: "Chapter",
+  modelName: "Topic",
   selectedItem: route.params.id
 };
 
@@ -76,10 +83,12 @@ function show(item) {
     name: "ShowChapter",
     params: { id: item.id },
   });
+  //parentId = 
+  //console.log(item)
 }
 
 function deleteI(item) {
-  store.dispatch("chapters/delete", item.id);
+  store.dispatch("topics/delete", item.id);
 }
 </script>
 

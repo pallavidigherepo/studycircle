@@ -16,6 +16,7 @@
               <Datatable
                 module="chapters"
                 :importExportOptions="options"
+                @showItem="show"
                 @editItem="edit"
                 @deleteItem="deleteI"
                 @addModel="add"
@@ -45,6 +46,7 @@ const router = useRouter();
 
 const options = {
   modelName: "Chapter",
+  selectedItem: route.params.id
 };
 const { t } = useI18n();
 const listing = ref(true);
@@ -54,7 +56,11 @@ function add() {
   router.push({ name: "CreateChapter" });
 }
 onMounted(() => {
-  if (route.name == "CreateChapter" || route.name == "EditChapter") {
+  if (
+    route.name == "CreateChapter" ||
+    route.name == "EditChapter" ||
+    route.name == "ShowChapter"
+  ) {
     listing.value = false;
   }
 });
@@ -75,6 +81,13 @@ function edit(item) {
   });
 }
 
+function show(item) {
+  listing.value = false;
+  router.push({
+    name: "ShowChapter",
+    params: { id: item.id },
+  });
+}
 function deleteI(item) {
   store.dispatch("chapters/delete", item.id);
 }

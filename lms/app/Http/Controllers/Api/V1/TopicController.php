@@ -29,12 +29,11 @@ class TopicController extends Controller
 
         $topics = TopicResource::collection(
             Topic::when(request('search'), function ($query) {
-                $query->where('parent_id', '!=', null);
+                $query->where('parent_id', request('item'));
                 $query->where('label', 'like', '%' . request('search') . '%');
                 $query->orWhere('icon', 'like', '%' . request('search') . '%');
             })
-                ->where('parent_id', '!=', null)
-                ->with('chapter')
+                ->where('parent_id', $request->input('item'))
                 ->orderBy($field, $order)
                 ->paginate($perPage)
         );
@@ -81,9 +80,21 @@ class TopicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Topic $topic)
     {
-        //
+        $response = [
+            'success' => false,
+            'message' => null,
+            'errors' => null,
+        ];
+        
+        if ($topic->delete()) {
+            $response = [
+                'success' => true,
+                'message' => 'Topic deleted successfully.',
+            ];
+        }
+        return response()->json($response);
     }
 
     public function list() {

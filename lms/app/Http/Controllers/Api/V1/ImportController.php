@@ -14,7 +14,7 @@ class ImportController extends Controller
         $modelName = $request->modelName;
         $importClass = "App\\Imports\\".$modelName."Import";
 
-        if ($request->selectedItem) {
+        if (isset($request->selectedItem)) {
             $import = new $importClass($request->selectedItem);
         } else {
             $import = new $importClass;

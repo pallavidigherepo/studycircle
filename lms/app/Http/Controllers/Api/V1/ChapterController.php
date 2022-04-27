@@ -96,9 +96,9 @@ class ChapterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Chapter $chapter)
     {
-        //
+        return new ChapterResource(Chapter::findOrFail($chapter->id));
     }
 
     /**
@@ -159,7 +159,7 @@ class ChapterController extends Controller
         if ($chapter->delete()) {
             $response = [
                 'success' => true,
-                'message' => 'Subject deleted successfully.',
+                'message' => 'Chapter deleted successfully.',
             ];
         }
         return response()->json($response);

@@ -53,7 +53,8 @@ onMounted(() => {
   if (
     route.name == "CreateSubject" ||
     route.name == "EditSubject" ||
-    route.name == "ShowSubject"
+    route.name == "ShowSubject"||
+    route.name == "ShowChapter"
   ) {
     listing.value = false;
   }
