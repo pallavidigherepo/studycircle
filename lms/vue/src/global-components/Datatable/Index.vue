@@ -102,7 +102,7 @@
           <input
             type="text"
             class="form-control w-56 pr-10 w-full"
-            :placeholder="t('common.Search')+'...'"
+            :placeholder="t('common.Search') + '...'"
             v-model="search"
             @keyup="searchMe($event)"
           />
@@ -125,8 +125,13 @@
               <template v-if="column.sort">
                 <a href="#" @click.prevent="sorting(column.field, sortOrder)">
                   <div className="flex items-center justify-between">
-                    <template v-if="column.label === 'ID' || column.label === 'ACTIONS'">{{ t("common." + column.label) }}</template>
-                    <template v-else>{{ t(module + "." + column.label) }}</template>
+                    <template
+                      v-if="column.label === 'ID' || column.label === 'ACTIONS'"
+                      >{{ t("common." + column.label) }}</template
+                    >
+                    <template v-else>{{
+                      t(module + "." + column.label)
+                    }}</template>
 
                     <span v-if="column.field === sortBy">
                       <ChevronUpIcon
@@ -142,13 +147,16 @@
                 </a>
               </template>
               <template v-else>
-                <template v-if="column.label === 'ID' || column.label === 'ACTIONS'">{{ t("common." + column.label) }}</template>
+                <template
+                  v-if="column.label === 'ID' || column.label === 'ACTIONS'"
+                  >{{ t("common." + column.label) }}</template
+                >
                 <template v-else>{{ t(module + "." + column.label) }}</template>
               </template>
             </th>
           </tr>
         </thead>
-        
+
         <tbody>
           <tr
             v-for="(item, index) in items.data"
@@ -198,7 +206,9 @@
                 </div>
               </template>
               <template v-else>
-                <template v-if="column.isJson">{{ JSON.parse(item[column.field]) }}</template>
+                <template v-if="column.isJson">{{
+                  JSON.parse(item[column.field])
+                }}</template>
                 <template v-else>{{ item[column.field] }}</template>
               </template>
             </td>
@@ -219,7 +229,6 @@
       :currentPage="currentPage"
       @paginate="getForPage"
       @perpage="perPageValue"
-      
     />
     <!-- END: Pagination -->
     <!-- BEGIN: Modal Content -->
@@ -288,6 +297,11 @@ const props = defineProps({
     required: false,
   },
   addEditOnSamePage: false,
+  showData: {
+    required: false,
+    type: String,
+    default: "",
+  },
 });
 const emit = defineEmits(["addModel", "editItem", "showItem", "deleteItem"]);
 
@@ -307,7 +321,7 @@ function editMe(item) {
 
 function showMe(item) {
   selectedRow.value = item.id;
-  emit('showItem', item);
+  emit("showItem", item);
 }
 function openModal() {
   //import_file.value = '';
@@ -371,10 +385,13 @@ onMounted(() => {
 });
 
 function fetchList() {
+  if (props.showData) {
+    url.value += "&item="+props.showData;
+  }
   store
-    .dispatch(props.module + "/list", { url: url.value })
-    .then()
-    .catch();
+      .dispatch(props.module + "/list", { url: url.value })
+      .then()
+      .catch();
 }
 function getForPage(page) {
   if (page == "Next &raquo;") {

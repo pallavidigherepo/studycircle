@@ -56,12 +56,6 @@ export const useSideMenuStore = defineStore("sideMenu", {
             title: "Subjects, Chapters, Topics",
             ignore: true,
           },
-          {
-            icon: "BookOpenIcon",
-            pageName: "Chapters",
-            title: "Chapters",
-            ignore: true,
-          },
         ],
       },
       "devider",

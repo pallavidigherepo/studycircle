@@ -27,11 +27,11 @@ class ChapterController extends Controller
 
         $chapters = ChapterResource::collection(
             Chapter::when(request('search'), function ($query) {
-                $query->where('parent_id', '!=', null);
                 $query->where('label', 'like', '%' . request('search') . '%');
+                $query->where('parent_id', '=', request('item'));
                 $query->orWhere('icon', 'like', '%' . request('search') . '%');
             })
-                ->where('parent_id', '!=', null)
+                ->where('parent_id', '=', $request->item)
                 ->with('subject')
                 ->orderBy($field, $order)
                 ->paginate($perPage)
