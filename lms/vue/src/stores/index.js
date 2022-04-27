@@ -10,6 +10,7 @@ import coursesModule from './modules/courses/index.js';
 import subjectModule from './modules/subjects/index.js';
 import chapterModule from './modules/chapters/index.js';
 import topicModule from './modules/topics/index.js';
+import questionModule from './modules/questions/index.js';
 
 const store = createStore({
     modules: {
@@ -23,8 +24,9 @@ const store = createStore({
         subjects: subjectModule,
         chapters: chapterModule,
         topics: topicModule,
+        questions: questionModule,
         /*languages: languageModule,
-        questions: questionModule*/
+        */
     },
 
     state: {

@@ -2,11 +2,12 @@ export default {
     questions(state) {
         return state.questions;
     },
-    languages(state) {
-        return state.languages;
+    
+    datatable(state) {
+        return state.datatable;
     },
-
-    question(state) {
-        return state.question;
-    },
+    
+    meta(state) {
+        return state.pagination;
+    }
 };

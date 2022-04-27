@@ -1,6 +1,10 @@
 export default {
-    FETCH_QUESTIONS(state, payload) {
+    SET_QUESTIONS(state, payload) {
         state.questions = payload;
+    },
+
+    SET_PAGINATION_LINKS(state, payload) {
+        state.pagination = payload;
     },
     CREATE_QUESTION(state, question)
     {
