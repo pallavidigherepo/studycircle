@@ -19,6 +19,7 @@
                 @editItem="edit"
                 @deleteItem="deleteI"
                 @addModel="add"
+                :showData="route.params.id"
               />
             </div>
           </div>

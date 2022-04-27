@@ -34,6 +34,9 @@ export default function useImportExport(options) {
         let formData = new FormData();
         formData.append("modelName", modelName);
         formData.append("import_file", import_file.value);
+        if (options.selectedItem) {
+            formData.append('selectedItem', options.selectedItem);
+        }
         store
             .dispatch("importMe", formData)
             .then((res) => {
@@ -53,6 +56,7 @@ export default function useImportExport(options) {
         const req = {
             fileName: downloadFileName.value,
             modelName: modelName,
+            selectedItem: options.selectedItem??options.selectedItem
         };
         await store.dispatch('exportMe', req)
             .then((response) => {

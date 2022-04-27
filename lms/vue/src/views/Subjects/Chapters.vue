@@ -1,38 +1,36 @@
 <template>
   <!-- BEGIN: Chapters list -->
-  <div class="intro-y box col-span-12 lg:col-span-12">
-    <div
-      class="
-        flex
-        items-center
-        px-5
-        py-5
-        sm:py-3
-        border-b border-slate-200/60
-        dark:border-darkmode-400
-      "
-    >
-      <h2 class="font-medium text-base mr-auto">
-        {{ t("subjects.Chapters") }}
-      </h2>
-    </div>
-    <template v-if="chapterListing">
-      <div class="p-5">
-        <Datatable
-          module="chapters"
-          :importExportOptions="options"
-          @showItem="show"
-          @editItem="edit"
-          @deleteItem="deleteI"
-          @addModel="add"
-          :showData="route.params.id"
-        />
+    <div class="grid grid-cols-12 gap-12">
+      <div class="intro-y box col-span-12 lg:col-span-12">
+        <div
+          class="
+            flex
+            items-center
+            px-5
+            py-5
+            sm:py-3
+            border-b border-slate-200/60
+            dark:border-darkmode-400
+          "
+        >
+          <h2 class="font-medium text-base mr-auto">
+            {{ t("subjects.Chapters") }}
+          </h2>
+        </div>
+          <div class="p-5">
+            <Datatable
+              module="chapters"
+              :importExportOptions="options"
+              @showItem="show"
+              @editItem="edit"
+              @deleteItem="deleteI"
+              @addModel="add"
+              :showData="route.params.id"
+            />
+          </div>
       </div>
-    </template>
-    <template v-else>
-      <router-view></router-view>
-    </template>
-  </div>
+    </div>
+
   <!-- END: Chapters list -->
 </template>
 
@@ -53,15 +51,9 @@ const message = ref("");
 const model = ref("");
 const chapterListing = ref(true);
 
-const props = defineProps({
-    subjectId: {
-        required: false,
-        type: Number,
-        default: 0
-    }
-});
 const options = {
   modelName: "Chapter",
+  selectedItem: route.params.id
 };
 
 function add() {

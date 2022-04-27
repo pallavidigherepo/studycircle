@@ -26,12 +26,12 @@ export default {
                         sort: true,
                         isJson: false,
                     },
-                    {
-                        label: "SUBJECT",
-                        field: "subject",
-                        sort: true,
-                        isJson: false,
-                    },
+                    // {
+                    //     label: "SUBJECT",
+                    //     field: "subject",
+                    //     sort: true,
+                    //     isJson: false,
+                    // },
                     {
                         label: "LABEL",
                         field: "label",

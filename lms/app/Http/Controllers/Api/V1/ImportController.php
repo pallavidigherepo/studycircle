@@ -14,7 +14,12 @@ class ImportController extends Controller
         $modelName = $request->modelName;
         $importClass = "App\\Imports\\".$modelName."Import";
 
-        $import = new $importClass;
+        if ($request->selectedItem) {
+            $import = new $importClass($request->selectedItem);
+        } else {
+            $import = new $importClass;
+        }
+        
         try {
             Excel::import($import, $file);
             $response = [
