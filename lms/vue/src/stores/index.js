@@ -34,6 +34,10 @@ const store = createStore({
         languages: [],
         courseTypeList: [],
         subjectList: [],
+        boardList: [],
+        standardList: [],
+        difficultyList: [],
+        typeList: []
     },
     getters: {
         languages(state) {
@@ -44,6 +48,18 @@ const store = createStore({
         },
         listSubjects(state) {
             return state.subjectList;
+        },
+        listBoards(state) {
+            return state.boardList;
+        },
+        listStandards(state) {
+            return state.standardList;
+        },
+        listDifficultyLevel(state) {
+            return state.difficultyList;
+        },
+        listType(state) {
+            return state.typeList;
         }
     },
     actions: {
@@ -80,6 +96,38 @@ const store = createStore({
                     commit('SET_SUBJECTS_LIST', data)
                     return data;
                 })
+        },
+        async listBoard({commit}) {
+            return await axiosClient
+                .get('/board_list')
+                .then(({data}) => {
+                    commit('SET_BOARD_LIST', data)
+                    return data;
+                })
+        },
+        async listStandard({commit}) {
+            return await axiosClient
+                .get('/standard_list')
+                .then(({data}) => {
+                    commit('SET_STANDARD_LIST', data)
+                    return data;
+                })
+        },
+        async listDifficultyLevel({commit}) {
+            return await axiosClient
+                .get('/difficulty_level_list')
+                .then(({data}) => {
+                    commit('SET_DIFFICULTY_LEVEL_LIST', data)
+                    return data;
+                })
+        },
+        async listType({commit}) {
+            return await axiosClient
+                .get('/type_list')
+                .then(({data}) => {
+                    commit('SET_TYPE_LIST', data)
+                    return data;
+                })
         }
     },
     mutations: {
@@ -91,7 +139,19 @@ const store = createStore({
         },
         SET_SUBJECTS_LIST(state, payload) {
             state.subjectList = payload;
-        }
+        },
+        SET_BOARD_LIST(state, payload) {
+            state.boardList = payload;
+        },
+        SET_STANDARD_LIST(state, payload) {
+            state.standardList = payload;
+        },
+        SET_DIFFICULTY_LEVEL_LIST(state, payload) {
+            state.difficultyList = payload;
+        },
+        SET_TYPE_LIST(state, payload) {
+            state.typeList = payload;
+        },
 
     },
 });

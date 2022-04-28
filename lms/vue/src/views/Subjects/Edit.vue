@@ -223,8 +223,6 @@ const fetch = async() => {
     isLoading.value = true;
     try {
         let id = route.params.id;
-        //const result = await store.dispatch('roles/edit', id);
-
         const result = await axiosClient.get(`/subjects/${id}/edit`);
         if (result.status != 200) {
             const error = new Error('Failed to fetch roles')

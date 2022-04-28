@@ -16,8 +16,12 @@ use App\Http\Controllers\Api\V1\TopicController;
 use App\Http\Controllers\Api\V1\ExportController;
 use App\Http\Controllers\Api\V1\ImportController;
 use App\Http\Controllers\Api\V1\QuestionController;
+use App\Models\Board;
 use App\Models\CoursesType;
 use App\Models\Language;
+use App\Models\QuestionDifficultyLevel;
+use App\Models\QuestionType;
+use App\Models\Standard;
 use App\Models\Subject;
 
 /*
@@ -69,6 +73,22 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('v1/subject_list', function() {
         return Subject::all()->where('parent_id', null)->pluck('label', 'id');
     })->name('subject_list');
+
+    Route::get('v1/board_list', function() {
+        return Board::all()->pluck('name', 'id');
+    })->name('board_list');
+
+    Route::get('v1/standard_list', function() {
+        return Standard::all()->pluck('name', 'id');
+    })->name('standard_list');
+
+    Route::get('v1/difficulty_level_list', function() {
+        return QuestionDifficultyLevel::all()->pluck('name', 'id');
+    })->name('difficulty_level_list');
+
+    Route::get('v1/type_list', function() {
+        return QuestionType::all()->pluck('name', 'id');
+    })->name('type_list');
    
 });
 
