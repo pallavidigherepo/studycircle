@@ -5,7 +5,8 @@ const findActiveMenu = (subMenu, route) => {
   let match = false;
   subMenu.forEach((item) => {
     // Added a new condition to check whether parent value == item.pageName
-    if ((item.pageName === route.name && !item.ignore) || (item.pageName === route.meta.parent)) {
+    if ((item.pageName === route.name && !item.ignore) || 
+        (item.pageName === route.meta.parent)) {
       match = true;
     } else if (!match && item.subMenu) {
       match = findActiveMenu(item.subMenu, route);
@@ -16,10 +17,19 @@ const findActiveMenu = (subMenu, route) => {
 
 const nestedMenu = (menu, route) => {
   menu.forEach((item, key) => {
+    
     if (typeof item !== "string") {
       let menuItem = menu[key];
+      let pageAllowed = false;
+      if (item.allowedPages) {
+        pageAllowed = item.allowedPages.includes(item.pageName);
+      } else {
+        pageAllowed = false;
+      }
+      
       menuItem.active =
-        (item.pageName === route.name ||
+        // Code adding to show menu active for main menu's create, edit and show
+        (((item.pageName === route.meta.parent && pageAllowed) || item.pageName === route.name) ||
           (item.subMenu && findActiveMenu(item.subMenu, route))) &&
         !item.ignore;
 

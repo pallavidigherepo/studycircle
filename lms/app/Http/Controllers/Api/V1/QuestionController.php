@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\QuestionResource;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Models\Board;
@@ -21,24 +22,20 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //Get all courses list
-        $questions = Question::when(request('search'), function ($query) {
-                $query->where('question', 'like', '%'. request('search'). '%');
-                    $query->orWhere('description', 'like', '%'. request('search'). '%');
-                })
-                ->orderBy(request('field'), request('sort'))
-                ->paginate(5);
+        $field = $request->input('sort_field') ?? 'id';
+        $order = $request->input('sort_order') ?? 'desc';
+        $perPage = $request->input('per_page') ?? 10;
 
-        $tags = Question::with('tagged')->first();
-
-        $response = [
-            'questions' => $questions,
-            'tags' => $tags,
-            ];
-        //$apiData = Course::getApiData();
-        return response()->json($response);
+        $questions = QuestionResource::collection(
+            Question::when(request('search'), function ($query) {
+                $query->where('question', null);
+            })
+            ->orderBy($field, $order)
+            ->paginate($perPage)
+        );
+        return $questions;
     }
 
     /**
@@ -124,7 +121,7 @@ class QuestionController extends Controller
 
         // Get the list of all the difficulty levels
         $difficultyLevels = QuestionDifficultyLevel::all()->pluck('name', 'id');
-        
+
         // Get the list of all the question types
         $questionTypes = QuestionType::all()->pluck('name', 'id');
 
@@ -151,7 +148,7 @@ class QuestionController extends Controller
             'topics' => $topics,
         ];
 
-        
+
         return response()->json($response);
     }
 }

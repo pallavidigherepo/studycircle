@@ -79,10 +79,11 @@ function edit(item) {
 
 function show(item) {
   chapterListing.value = false;
-  router.push({
-    name: "ShowChapter",
-    params: { id: item.id },
-  });
+  console.log(item);
+  // router.push({
+  //   name: "ShowChapter",
+  //   params: { id: item.id },
+  // });
   //parentId = 
   //console.log(item)
 }

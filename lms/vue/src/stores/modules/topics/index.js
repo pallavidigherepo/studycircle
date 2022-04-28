@@ -53,7 +53,7 @@ export default {
                         field: false,
                         sort: false,
                         actions: {
-                            show: false,
+                            show: true,
                             edit: false,
                             delete: true,
                         }
