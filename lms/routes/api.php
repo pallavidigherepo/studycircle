@@ -17,12 +17,14 @@ use App\Http\Controllers\Api\V1\ExportController;
 use App\Http\Controllers\Api\V1\ImportController;
 use App\Http\Controllers\Api\V1\QuestionController;
 use App\Models\Board;
+use App\Models\Chapter;
 use App\Models\CoursesType;
 use App\Models\Language;
 use App\Models\QuestionDifficultyLevel;
 use App\Models\QuestionType;
 use App\Models\Standard;
 use App\Models\Subject;
+use App\Models\Topic;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +75,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('v1/subject_list', function() {
         return Subject::all()->where('parent_id', null)->pluck('label', 'id');
     })->name('subject_list');
+
+    Route::get('v1/chapter_list/{subjectId}', function($subjectId) {
+        return Chapter::all()->where('parent_id', $subjectId)->pluck('label', 'id');
+    })->name('chapter_list');
+
+    Route::get('v1/topic_list/{chapterId}', function($chapterId) {
+        return Topic::all()->where('parent_id', $chapterId)->pluck('label', 'id');
+    })->name('topic_list');
 
     Route::get('v1/board_list', function() {
         return Board::all()->pluck('name', 'id');

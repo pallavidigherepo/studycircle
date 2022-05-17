@@ -54,7 +54,7 @@
                     'border-danger': submitted && v$.board_id.$errors.length,
                   }"
                 >
-                  <!-- <option>{{ t('questions.Select Board')}}</option> -->
+                  <option>{{ t('questions.Select Board')}}</option>
                   <option
                     v-for="(board, index) in boards"
                     :key="index"
@@ -83,7 +83,7 @@
                     'border-danger': submitted && v$.standard_id.$errors.length,
                   }"
                 >
-                  <!-- <option>{{ t('questions.Select Standard')}}</option> -->
+                  <option>{{ t('questions.Select Standard')}}</option>
                   <option
                     v-for="(standard, indexs) in standards"
                     :key="indexs"
@@ -113,73 +113,13 @@
                       submitted && v$.difficulty_level_id.$errors.length,
                   }"
                 >
-                  <!-- <option>{{ t('questions.Select Difficulty Level')}}</option> -->
+                  <option>{{ t('questions.Select Difficulty Level')}}</option>
                   <option
                     v-for="(level, indexd) in difficultyList"
                     :key="indexd"
                     :value="indexd"
                   >
                     {{ JSON.parse(level) }}
-                  </option>
-                </TomSelect>
-              </div>
-              <div class="intro-y col-span-12 sm:col-span-6">
-                <label for="form-type" class="form-label">{{
-                  t("questions.Choose Question Type")
-                }}</label>
-                <TomSelect
-                  id="form-type"
-                  v-model="model.type_id"
-                  placeholder="Select Type"
-                  :options="{
-                    allowEmptyOption: false,
-                    create: false,
-                    placeholder: 'Select Type',
-                    autocomplete: 'off',
-                    //onChange: changeSelecttype
-                  }"
-                  class="w-full"
-                  :class="{
-                    'border-danger': submitted && v$.type_id.$errors.length,
-                  }"
-                >
-                  <!-- <option>{{ t('questions.Select Question Type')}}</option> -->
-                  <option
-                    v-for="(type, indext) in typeList"
-                    :key="indext"
-                    :value="indext"
-                  >
-                    {{ JSON.parse(type) }}
-                  </option>
-                </TomSelect>
-              </div>
-              <div class="intro-y col-span-12 sm:col-span-6">
-                <label for="form-subject" class="form-label">{{
-                  t("questions.Choose Subject")
-                }}</label>
-                <TomSelect
-                  id="form-subject"
-                  v-model="model.type_id"
-                  placeholder="Select Subject"
-                  :options="{
-                    allowEmptyOption: false,
-                    create: false,
-                    placeholder: 'Select Subject',
-                    autocomplete: 'off',
-                    onChange: selectedSubject
-                  }"
-                  class="w-full"
-                  :class="{
-                    'border-danger': submitted && v$.subject_id.$errors.length,
-                  }"
-                >
-                  <option>{{ t('questions.Select Subject')}}</option>
-                  <option
-                    v-for="(subject, indexsub) in subjects"
-                    :key="indexsub"
-                    :value="indexsub"
-                  >
-                    {{ JSON.parse(subject) }}
                   </option>
                 </TomSelect>
               </div>
@@ -211,6 +151,273 @@
                     {{ language }}
                   </option>
                 </TomSelect>
+              </div>
+              <div class="intro-y col-span-12 sm:col-span-6">
+                <label for="form-subject" class="form-label">{{
+                  t("questions.Choose Subject")
+                }}</label>
+                <TomSelect
+                  id="form-subject"
+                  v-model="model.subject_id"
+                  placeholder="Select Subject"
+                  :options="{
+                    allowEmptyOption: false,
+                    create: false,
+                    placeholder: 'Select Subject',
+                    autocomplete: 'off',
+                    onChange: selectedSubject,
+                  }"
+                  class="w-full"
+                  :class="{
+                    'border-danger': submitted && v$.subject_id.$errors.length,
+                  }"
+                >
+                  <option>{{ t("questions.Select Subject") }}</option>
+                  <option
+                    v-for="(subject, indexsub) in subjects"
+                    :key="indexsub"
+                    :value="indexsub"
+                  >
+                    {{ JSON.parse(subject) }}
+                  </option>
+                </TomSelect>
+              </div>
+              <div class="intro-y col-span-12 sm:col-span-6">
+                <label for="form-chapter" class="form-label">{{
+                  t("questions.Choose Chapter")
+                }}</label>
+                <TomSelect
+                  id="form-chapter"
+                  v-model="model.chapter_id"
+                  placeholder="Select Chapter"
+                  :options="{
+                    allowEmptyOption: false,
+                    create: false,
+                    placeholder: 'Select Chapter',
+                    autocomplete: 'off',
+                    onChange: selectedChapter,
+                  }"
+                  class="w-full"
+                  :class="{
+                    'border-danger': submitted && v$.chapter_id.$errors.length,
+                  }"
+                >
+                  <option>{{ t("questions.Select Chapter") }}</option>
+                  <option
+                    v-for="(chapter, indexchap) in chapters"
+                    :key="indexchap"
+                    :value="indexchap"
+                  >
+                    {{ JSON.parse(chapter) }}
+                  </option>
+                </TomSelect>
+              </div>
+              <div class="intro-y col-span-12 sm:col-span-6">
+                <label for="form-subject" class="form-label">{{
+                  t("questions.Choose Topic")
+                }}</label>
+                <TomSelect
+                  id="form-subject"
+                  v-model="model.topic_id"
+                  placeholder="Select Topic"
+                  :options="{
+                    allowEmptyOption: false,
+                    create: false,
+                    placeholder: 'Select Topic',
+                    autocomplete: 'off',
+                  }"
+                  class="w-full"
+                  :class="{
+                    'border-danger': submitted && v$.topic_id.$errors.length,
+                  }"
+                >
+                  <option>{{ t("questions.Select Topic") }}</option>
+                  <option
+                    v-for="(topic, indextop) in topics"
+                    :key="indextop"
+                    :value="indextop"
+                  >
+                    {{ JSON.parse(topic) }}
+                  </option>
+                </TomSelect>
+              </div>
+              
+            </div>
+            <div class="mt-3">
+                <label for="form-question" class="form-label">{{
+                  t("questions.Question")
+                }}</label>
+                <input
+                  id="form-question"
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter question."
+                  v-model.trim="model.question"
+                  :class="{
+                    'border-danger': submitted && v$.question.$errors.length,
+                  }"
+                />
+                <div
+                  class="text-danger mt-2"
+                  v-for="(error, index) of v$.question.$errors"
+                  :key="index"
+                >
+                  <div class="error-msg">{{ error.$message }}</div>
+                </div>
+            </div>
+            <div class="mt-3">
+              <label for="form-description" class="form-label">{{
+                t("questions.Description")
+              }}</label>
+
+              <div class="py-2">
+                <editor
+                  id="form-description"
+                  v-model="model.description"
+                  :class="{
+                    'border-danger': submitted && v$.description.$errors.length,
+                  }"
+                  initialValue="<p>Initial editor content</p>"
+                  apiKey="n10p1o42akootxkapivj4ecxefdo4zlaqd0ek0aa47ld9js7"
+                  :init="{
+                    height: 200,
+                    menubar: true,
+                    plugins: [
+                      'advlist autolink lists link image charmap',
+                      'searchreplace visualblocks code fullscreen',
+                      'print preview anchor insertdatetime media',
+                      'paste code help wordcount table',
+                    ],
+                    toolbar:
+                      'undo redo | formatselect | bold italic | \
+                                alignleft aligncenter alignright | \
+                                bullist numlist outdent indent | insert | help | \
+                                tiny_mce_wiris_formulaEditor | tiny_mce_wiris_formulaEditorChemistry',
+                  }"
+                >
+                </editor>
+              </div>
+
+              <!-- END: Inbox Content -->
+              <div
+                class="text-danger mt-2"
+                v-for="(error, index) of v$.description.$errors"
+                :key="index"
+              >
+                <div class="error-msg">{{ error.$message }}</div>
+              </div>
+            </div>
+            <div class="mt-3">
+              <label for="form-note" class="form-label">{{
+                t("questions.Note/Explaination")
+              }}</label>
+
+              <div class="py-2">
+                <editor
+                  id="form-note"
+                  v-model="model.note"
+                  :class="{
+                    'border-danger': submitted && v$.note.$errors.length,
+                  }"
+                  initialValue="<p>Initial editor content</p>"
+                  apiKey="n10p1o42akootxkapivj4ecxefdo4zlaqd0ek0aa47ld9js7"
+                  :init="{
+                    height: 200,
+                    menubar: true,
+                    plugins: [
+                      'advlist autolink lists link image charmap',
+                      'searchreplace visualblocks code fullscreen',
+                      'print preview anchor insertdatetime media',
+                      'paste code help wordcount table',
+                    ],
+                    toolbar:
+                      'undo redo | formatselect | bold italic | \
+                                alignleft aligncenter alignright | \
+                                bullist numlist outdent indent | insert | help | \
+                                tiny_mce_wiris_formulaEditor | tiny_mce_wiris_formulaEditorChemistry',
+                  }"
+                >
+                </editor>
+              </div>
+
+              <!-- END: Inbox Content -->
+              <div
+                class="text-danger mt-2"
+                v-for="(error, index) of v$.note.$errors"
+                :key="index"
+              >
+                <div class="error-msg">{{ error.$message }}</div>
+              </div>
+            </div>
+            <div class="intro-y col-span-12 sm:col-span-6">
+                <label for="form-type" class="form-label">{{
+                  t("questions.Choose Question Type")
+                }}</label>
+                <TomSelect
+                  id="form-type"
+                  v-model="model.type_id"
+                  placeholder="Select Type"
+                  :options="{
+                    allowEmptyOption: false,
+                    create: false,
+                    placeholder: 'Select Type',
+                    autocomplete: 'off',
+                    onChange: changeType
+                  }"
+                  class="w-full"
+                  :class="{
+                    'border-danger': submitted && v$.type_id.$errors.length,
+                  }"
+                >
+                  <option>{{ t('questions.Select Question Type')}}</option>
+                  <option
+                    v-for="(type, indext) in typeList"
+                    :key="indext"
+                    :value="indext"
+                  >
+                    {{ JSON.parse(type) }}
+                  </option>
+                </TomSelect>
+              </div>
+            <hr />
+            <div class="py-5 bg-white" v-if="model.type_id != ''">
+              <h3 class="text-2xl flex items-center justify-between">
+                {{ t('questions.Answers')}}
+
+                <!-- Add new answer -->
+                <button
+                  type="button"
+                  @click="addAnswer()"
+                  class="flex items-center text-sm py-1 px-4 rounded-sm text-white bg-gray-600 hover:bg-gray-700"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  {{ t('questions.Add Answer') }}
+                </button>
+                <!--/ Add new question -->
+              </h3>
+              <div v-if="!model.answers.length" class="text-center text-gray-600">
+                {{ t("questions.You don't have any answers created")}}
+              </div>
+              <div v-for="(answer, index) in model.answers" :key="answer.id">
+                <CreateAnswer
+                  :answer="answer"
+                  :index="index"
+                  :type="selectedType"
+                  @change="answerChange"
+                  @addAnswer="addAnswer"
+                  @deleteAnswer="deleteAnswer"
+                />
               </div>
             </div>
             <!-- BEGIN: Slide Over Footer -->
@@ -245,6 +452,7 @@ import { required, helpers } from "@vuelidate/validators";
 import { useI18n } from "vue-i18n";
 import axiosClient from "@/axios";
 import Editor from "@tinymce/tinymce-vue";
+import CreateAnswer from "@/components/answers/Create.vue";
 
 const submitted = ref(false);
 
@@ -256,19 +464,28 @@ const route = useRoute();
 const router = useRouter();
 // Now we must get editing details for the selected item
 const { t } = useI18n();
-const model = reactive({
+const model = ref({
   id: "",
   board_id: "",
   standard_id: "",
   difficulty_level_id: "",
   type_id: "",
   subject_id: "",
+  chapter_id: "",
+  topic_id: "",
   language_id: 1,
+  question: "",
+  description: "",
+  note: "",
+  answers: [],
 });
 
 const selectedSubjectId = ref("");
 const selectedChapterId = ref("");
 const selectedTopicId = ref("");
+const selectedType = ref("");
+const chapters = ref([]);
+const topics = ref([]);
 
 const rules = computed(() => {
   return {
@@ -290,9 +507,24 @@ const rules = computed(() => {
     subject_id: {
       required: helpers.withMessage("Please select subject.", required),
     },
+    chapter_id: {
+      required: helpers.withMessage("Please select chapter.", required),
+    },
+    topic_id: {
+      required: helpers.withMessage("Please select topic.", required),
+    },
     language_id: {
       required: helpers.withMessage("Please select language.", required),
     },
+    question: {
+      required: helpers.withMessage("Please enter question.", required),
+    },
+    description: {
+      required: helpers.withMessage("Please enter description.", required),
+    },
+    note: {
+      required: helpers.withMessage("Please enter note or explaination.", required),
+    }
   };
 });
 
@@ -337,9 +569,41 @@ const difficultyList = computed(() => store.getters.listDifficultyLevel);
 const typeList = computed(() => store.getters.listType);
 const subjects = computed(() => store.getters.listSubjects);
 
-function selectedSubject(val) {
-    selectedSubjectId.value = val;
+async function selectedSubject(subjectId) {
+  selectedSubjectId.value = subjectId;
+  chapters.value = [];
+  topics.value = [];
+  const result = await axiosClient.get(`/chapter_list/${subjectId}`);
+  if (result.status != 200) {
+    const error = new Error("Failed to fetch chapter");
+    throw error;
+  } else {
+    chapters.value = result.data;
+  }
+}
 
+async function selectedChapter(chapterId) {
+  selectedChapterId.value = chapterId;
+  const result = await axiosClient.get(`/topic_list/${chapterId}`);
+  if (result.status != 200) {
+    const error = new Error("Failed to fetch topic");
+    throw error;
+  } else {
+    topics.value = result.data;
+  }
+}
+
+function addAnswer(index) {
+  const newAnswer = {
+    id: "",
+    answer: null,
+    is_correct: false,
+  };
+  model.value.answers.splice(index, 0, newAnswer);
+}
+
+function changeType(type) {
+  selectedType.value = type
 }
 </script>
 
