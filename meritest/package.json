@@ -21,6 +21,7 @@
         "@splidejs/vue-splide": "^0.5.15",
         "@vuelidate/core": "^2.0.0-alpha.22",
         "@vuelidate/validators": "^2.0.0-alpha.19",
+        "cross-env": "^7.0.3",
         "recaptcha-v3": "^1.10.0",
         "vue": "^3.1.5",
         "vue-agile": "^2.0.0",

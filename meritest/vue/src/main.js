@@ -9,7 +9,7 @@ import "./assets/app.css";
 import "./libs";
 
 const app = createApp(App)
-.use(router)
+    .use(router)
 
 globalComponents(app);
 app.mount('#app')

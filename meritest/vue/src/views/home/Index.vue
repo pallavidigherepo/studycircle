@@ -896,7 +896,7 @@
 </template>
 
 <script setup>
-//import Carousal from './V2/Carousal.vue';
+import Carousal from './V2/Carousal.vue';
 import OurProducts from "./V2/OurProducts.vue";
 </script>
 
