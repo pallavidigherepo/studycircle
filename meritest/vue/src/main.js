@@ -6,7 +6,6 @@ import router from './router'
 import globalComponents from './global_components.js';
 
 import "./assets/app.css";
-import "./libs";
 
 const app = createApp(App)
     .use(router)

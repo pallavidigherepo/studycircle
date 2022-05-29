@@ -115,4 +115,11 @@ const slides = {
 .carousel-control, .carousel-control:focus {
   color: #da380d;
 }
+
+.carousel-indicators .active {
+  background-color: #656566;
+}
+.carousel-indicators li {
+  border: 1px solid #656566;
+}
 </style>

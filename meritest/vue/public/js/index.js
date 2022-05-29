@@ -1,6 +1,7 @@
-import "./plugins/jquery-2.2.4.min.js";
+import "./plugins/jquery.easing.1.3";
+//"./plugins/jquery-2.2.4.min.js";
 import "./plugins/jquery-migrate-1.4.1.min.js";
-import "./bootstrap/js/bootstrap.min.js";
+import "../bootstrap/js/bootstrap.min.js";
 import "./plugins/jquery.waypoints.min.js";
 import "./plugins/jquery.easing.1.3.js";
 import "./plugins/SmoothScroll.min.js";

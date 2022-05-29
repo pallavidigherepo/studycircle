@@ -1,11 +1,10 @@
-(function() {
+$(document).ready(function() {
     "use strict";
 
     /**
      * Sticky Header
      */
     $(".container-wrapper").waypoint(function() {
-        alert('aasas');
         $(".navbar").toggleClass("navbar-sticky-function");
         $(".navbar").toggleClass("navbar-sticky");
         return false;
