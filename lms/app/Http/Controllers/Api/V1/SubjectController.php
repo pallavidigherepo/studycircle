@@ -62,7 +62,7 @@ class SubjectController extends Controller
             $subject->detachTags($tags);
             $subject->attachTags($tags);
             $subject->courses_subjects()->sync($request->course_ids);
-            $subject->tags = $request->tags;
+            $subject->tags = $request->tags_list;
 
             $response = [
                 'success' => true,

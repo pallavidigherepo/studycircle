@@ -21,8 +21,7 @@ export default {
                 defaultPage: 1,
                 defaultSearch: "",
                 defaultPerPage: 10,
-                columns: [
-                    {
+                columns: [{
                         label: "ID",
                         field: "id",
                         sort: true,
@@ -38,7 +37,7 @@ export default {
                         sort: true,
                     },
                     {
-                        label: "Actions",
+                        label: "ACTIONS",
                         field: false,
                         sort: false,
                         actions: {

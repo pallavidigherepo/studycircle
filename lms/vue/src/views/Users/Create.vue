@@ -245,7 +245,9 @@ async function submitForm() {
       .catch((err) => {
         isLoading.value = false;
         isErrored.value = true;
-        message.value = err.response.data.message;
+        if (err.response.data) {
+            message.value = err.response.data.message;
+        }
       });
   } else {
     // if ANY fail validation

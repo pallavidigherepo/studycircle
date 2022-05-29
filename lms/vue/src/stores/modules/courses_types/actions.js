@@ -19,7 +19,7 @@ export default {
             response = await axiosClient
                 .put(`/courses_types/${model.id}`, model)
                 .then(({ data }) => {
-                    commit('UPDATE_COURSES_TYPE', model);
+                    commit('UPDATE_COURSES_TYPE', data);
                     return data;
                 });
         } else {

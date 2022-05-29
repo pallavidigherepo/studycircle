@@ -6,9 +6,8 @@ export default {
     SET_PAGINATION_LINKS(state, payload) {
         state.pagination = payload;
     },
-    
-    CREATE_COURSES_TYPE(state, coursesType)
-    {
+
+    CREATE_COURSES_TYPE(state, coursesType) {
         state.coursesTypes.data.unshift(coursesType.coursesType)
     },
     EDIT_COURSES_TYPE(state, payload) {
@@ -20,10 +19,9 @@ export default {
         state.coursesTypes.data.splice(index, 1)
     },
 
-    UPDATE_COURSES_TYPE(state, courseType)
-    {
-        let index = state.coursesTypes.data.findIndex(item => item.id === courseType.id);
-        state.coursesTypes.data[index] = courseType;
+    UPDATE_COURSES_TYPE(state, courseType) {
+        let index = state.coursesTypes.data.findIndex(item => item.id === courseType.coursesType.id);
+        state.coursesTypes.data[index] = courseType.coursesType;
     },
 
     LIST_COURSES_TYPE(state, payload) {

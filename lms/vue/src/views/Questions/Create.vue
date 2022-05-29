@@ -380,6 +380,8 @@
                 </TomSelect>
               </div>
             <hr />
+            
+            <hr class="mt-3" />
             <div class="py-5 bg-white" v-if="model.type_id != ''">
               <h3 class="text-2xl flex items-center justify-between">
                 {{ t('questions.Answers')}}
@@ -387,6 +389,7 @@
                 <!-- Add new answer -->
                 <button
                   type="button"
+                  v-if="showAnswerButton == true"
                   @click="addAnswer()"
                   class="flex items-center text-sm py-1 px-4 rounded-sm text-white bg-gray-600 hover:bg-gray-700"
                 >
@@ -406,8 +409,9 @@
                 </button>
                 <!--/ Add new question -->
               </h3>
+              <hr class="mt-3" />
               <div v-if="!model.answers.length" class="text-center text-gray-600">
-                {{ t("questions.You don't have any answers created")}}
+                {{ t("questions.You do not have any answers created")}}
               </div>
               <div v-for="(answer, index) in model.answers" :key="answer.id">
                 <CreateAnswer
@@ -486,6 +490,7 @@ const selectedTopicId = ref("");
 const selectedType = ref("");
 const chapters = ref([]);
 const topics = ref([]);
+const showAnswerButton = ref(true);
 
 const rules = computed(() => {
   return {
@@ -594,16 +599,43 @@ async function selectedChapter(chapterId) {
 }
 
 function addAnswer(index) {
-  const newAnswer = {
-    id: "",
-    answer: null,
-    is_correct: false,
-  };
-  model.value.answers.splice(index, 0, newAnswer);
+  if (selectedType.value == 5) {
+    //return ;
+  } else {
+    const newAnswer = {
+      id: "",
+      answer: null,
+      is_correct: false,
+    };
+    model.value.answers.splice(index, 0, newAnswer);
+  }
+  
 }
 
+function deleteAnswer(answer) {
+  model.value.answers = model.value.answers.filter((q) => q !== answer);
+}
 function changeType(type) {
-  selectedType.value = type
+  selectedType.value = type;
+  if (type == 5) {
+    //  showAnswerButton.value = false;
+  } else {
+    showAnswerButton.value = true;
+  }
+}
+
+function answerChange(answer) {
+  // Important to explicitelly assign question.data.options, because otherwise it is a Proxy object
+  // and it is lost in JSON.stringify()
+  /*if (question.data.options) {
+    question.data.options = [...question.data.options];
+  }*/
+  model.value.answers = model.value.answers.map((q) => {
+    if (q.id === answer.id) {
+      return JSON.parse(JSON.stringify(answer));
+    }
+    return q;
+  });
 }
 </script>
 

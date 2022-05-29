@@ -252,6 +252,7 @@ async function submitForm() {
             .then(() => {
                 isLoading.value = false;
                 submitted.value = false;
+                isErrored.value = false;
                 router.push({ name: "Users" });
             })
             .catch((err) => {
