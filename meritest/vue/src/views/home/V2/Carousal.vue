@@ -67,19 +67,19 @@
 <script setup>
 const slides = {
   1: {
-    image: "/src/assets/images/slides/1 (1600 × 550 px).png",
+    image: "/images/slides/services.png",
     caption: "Digital Marketing",
     description:
       "We will take care of complete digital marketing solutions according market requirements.",
   },
   2: {
-    image: "/src/assets/images/slides/2 (1600 × 550 px).png",
+    image: "/images/slides/products.png",
     caption: "Digital Branding",
     description:
       "We will take care of complete digital branding solutions according market requirements.",
   },
   3: {
-    image: "/src/assets/images/slides/3 (1600 × 550 px).png",
+    image: "/images/slides/need.png",
     caption: "Content generation",
     description:
       "We will take care of complete content generation for your website.",
