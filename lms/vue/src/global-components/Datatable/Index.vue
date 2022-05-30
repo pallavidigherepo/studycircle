@@ -156,8 +156,8 @@
             </th>
           </tr>
         </thead>
-
-        <tbody>
+        
+        <tbody v-if="showRecords">
           <tr
             v-for="(item, index) in items.data"
             :key="index"
@@ -214,11 +214,12 @@
             </td>
           </tr>
         </tbody>
-        <!-- <tbody v-else>
+        <tbody v-else>
           <tr>
-            <td :colspan="datatableoptions.columns.length" class="text-center">Sorry, no records found.</td>
+            <td :colspan="datatableoptions.columns.length" class="text-center">{{ t("common.Sorry, no records found") }}</td>
           </tr>
-        </tbody> -->
+        </tbody>
+        
       </table>
     </div>
     <!-- END: Data List -->
@@ -277,6 +278,7 @@
       </ModalFooter>
     </Modal>
     <!-- END: Modal Content -->
+    <Loading v-if="loading" fixed></Loading>
   </div>
 </template>
 
@@ -330,15 +332,24 @@ function openModal() {
   responseStatus.value = false;
 }
 
+const showRecords = ref(true);
 const datatableoptions = computed(
   () => store.getters[props.module + "/datatable"]
 );
-const items = computed(() => store.getters[props.module + "/" + props.module]);
+
+const items = computed(() => {
+  let records = store.getters[props.module + "/" + props.module];
+  if (records.data && records.data.length < 1) {
+    showRecords.value = false;
+  }
+  return records;
+});
 const links = computed(() => store.getters[props.module + "/meta"]);
 const currentPage = ref(datatableoptions.value.defaultPage);
 
 const perPageOptions = [10, 20, 30, 40, 50];
 const fetchUrl = ref("");
+const loading = ref(false);
 
 const urlParams = reactive({
   column: datatableoptions.value.defaultColumn,
@@ -385,12 +396,15 @@ onMounted(() => {
 });
 
 function fetchList() {
+  loading.value = true;
   if (props.showData) {
     url.value += "&item="+props.showData;
   }
   store
       .dispatch(props.module + "/list", { url: url.value })
-      .then()
+      .then(() => {
+        loading.value = false;
+      })
       .catch();
 }
 function getForPage(page) {

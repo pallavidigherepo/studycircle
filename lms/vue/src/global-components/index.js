@@ -21,28 +21,28 @@ import * as featherIcons from "@zhuowenli/vue-feather-icons";
 import Notification from "./notification/Main.vue";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "./modal";
 import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownContent,
-  DropdownItem,
-  DropdownHeader,
-  DropdownFooter,
-  DropdownDivider,
+    Dropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownContent,
+    DropdownItem,
+    DropdownHeader,
+    DropdownFooter,
+    DropdownDivider,
 } from "./dropdown";
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "./tab";
 import {
-  AccordionGroup,
-  AccordionItem,
-  Accordion,
-  AccordionPanel,
+    AccordionGroup,
+    AccordionItem,
+    Accordion,
+    AccordionPanel,
 } from "./accordion";
 import { Alert } from "./alert";
 import {
-  PreviewComponent,
-  Preview,
-  Source,
-  Highlight,
+    PreviewComponent,
+    Preview,
+    Source,
+    Highlight,
 } from "./preview-component";
 import LucideIcons from "./lucide";
 
@@ -51,58 +51,60 @@ import Datatable from "./Datatable/Index.vue";
 import CustomeAlert from "./Alerts/Index.vue";
 import Breadcrumb from "./Breadcrumb/Index.vue";
 import Pagination from './Listing/Pagination.vue';
+import Loading from "./Loading/Index.vue";
 // End: Custom components
 export default (app) => {
-  //app.component("Chart", Chart);
-  //app.component("GoogleMapLoader", GoogleMapLoader);
-  app.component("Highlight", Highlight);
-  app.component("Litepicker", Litepicker);
-  app.component("Tippy", Tippy);
-  app.component("TippyContent", TippyContent);
-  app.component("TomSelect", TomSelect);
-  app.component("LoadingIcon", LoadingIcon);
-  app.component("TinySlider", TinySlider);
-  app.component("Dropzone", Dropzone);
-  app.component("ClassicEditor", ClassicEditor);
-  app.component("CustomeAlert", CustomeAlert);
-  app.component("Breadcrumb", Breadcrumb);
-  app.component("Pagination", Pagination);
-  app.component("Notification", Notification);
-  app.component("Modal", Modal);
-  app.component("ModalHeader", ModalHeader);
-  app.component("ModalBody", ModalBody);
-  app.component("ModalFooter", ModalFooter);
-  app.component("Dropdown", Dropdown);
-  app.component("DropdownToggle", DropdownToggle);
-  app.component("DropdownMenu", DropdownMenu);
-  app.component("DropdownContent", DropdownContent);
-  app.component("DropdownItem", DropdownItem);
-  app.component("DropdownHeader", DropdownHeader);
-  app.component("DropdownFooter", DropdownFooter);
-  app.component("DropdownDivider", DropdownDivider);
-  app.component("TabGroup", TabGroup);
-  app.component("TabList", TabList);
-  app.component("Tab", Tab);
-  app.component("TabPanels", TabPanels);
-  app.component("TabPanel", TabPanel);
-  app.component("AccordionGroup", AccordionGroup);
-  app.component("AccordionItem", AccordionItem);
-  app.component("Accordion", Accordion);
-  app.component("AccordionPanel", AccordionPanel);
-  app.component("Alert", Alert);
-  app.component("PreviewComponent", PreviewComponent);
-  app.component("Preview", Preview);
-  app.component("Source", Source);
-  
-  app.component("Datatable", Datatable);
-  //app.component("Highlight", Highlight);
-  // app.component('BalloonBlockEditor', BalloonBlockEditor)
-  // app.component('BalloonEditor', BalloonEditor)
-  // app.component('DocumentEditor', DocumentEditor)
-  // app.component('InlineEditor', InlineEditor)
-  //app.component("FullCalendar", FullCalendar);
-  //app.component("FullCalendarDraggable", FullCalendarDraggable);
-  for (const [key, icon] of Object.entries(LucideIcons)) {
-    app.component(key, icon);
-  }
+    //app.component("Chart", Chart);
+    //app.component("GoogleMapLoader", GoogleMapLoader);
+    app.component("Highlight", Highlight);
+    app.component("Litepicker", Litepicker);
+    app.component("Tippy", Tippy);
+    app.component("TippyContent", TippyContent);
+    app.component("TomSelect", TomSelect);
+    app.component("LoadingIcon", LoadingIcon);
+    app.component("TinySlider", TinySlider);
+    app.component("Dropzone", Dropzone);
+    app.component("ClassicEditor", ClassicEditor);
+    app.component("CustomeAlert", CustomeAlert);
+    app.component("Breadcrumb", Breadcrumb);
+    app.component("Pagination", Pagination);
+    app.component("Notification", Notification);
+    app.component("Modal", Modal);
+    app.component("ModalHeader", ModalHeader);
+    app.component("ModalBody", ModalBody);
+    app.component("ModalFooter", ModalFooter);
+    app.component("Dropdown", Dropdown);
+    app.component("DropdownToggle", DropdownToggle);
+    app.component("DropdownMenu", DropdownMenu);
+    app.component("DropdownContent", DropdownContent);
+    app.component("DropdownItem", DropdownItem);
+    app.component("DropdownHeader", DropdownHeader);
+    app.component("DropdownFooter", DropdownFooter);
+    app.component("DropdownDivider", DropdownDivider);
+    app.component("TabGroup", TabGroup);
+    app.component("TabList", TabList);
+    app.component("Tab", Tab);
+    app.component("TabPanels", TabPanels);
+    app.component("TabPanel", TabPanel);
+    app.component("AccordionGroup", AccordionGroup);
+    app.component("AccordionItem", AccordionItem);
+    app.component("Accordion", Accordion);
+    app.component("AccordionPanel", AccordionPanel);
+    app.component("Alert", Alert);
+    app.component("PreviewComponent", PreviewComponent);
+    app.component("Preview", Preview);
+    app.component("Source", Source);
+
+    app.component("Datatable", Datatable);
+    app.component("Loading", Loading);
+    //app.component("Highlight", Highlight);
+    // app.component('BalloonBlockEditor', BalloonBlockEditor)
+    // app.component('BalloonEditor', BalloonEditor)
+    // app.component('DocumentEditor', DocumentEditor)
+    // app.component('InlineEditor', InlineEditor)
+    //app.component("FullCalendar", FullCalendar);
+    //app.component("FullCalendarDraggable", FullCalendarDraggable);
+    for (const [key, icon] of Object.entries(LucideIcons)) {
+        app.component(key, icon);
+    }
 };

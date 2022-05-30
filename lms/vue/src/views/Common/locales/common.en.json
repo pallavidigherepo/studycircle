@@ -21,10 +21,11 @@
     "Delete": "Delete",
     "Cancel": "Cancel",
     "Save": "Save",
-    "Upload file": "Upload file", 
+    "Upload file": "Upload file",
     "Id": "Id",
     "ID": "ID",
     "Actions": "Actions",
     "ACTIONS": "ACTIONS",
-    "Back": "Back"
+    "Back": "Back",
+    "Sorry, no records found": "Sorry, no records found."
 }
