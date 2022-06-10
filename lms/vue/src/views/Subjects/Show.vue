@@ -104,13 +104,13 @@
             "
           >
             <div class="text-center rounded-md w-20 py-3">
-              <div class="font-medium text-primary text-xl">1</div>
+              <div class="font-medium text-primary text-xl">{{ model.chapters_count }}</div>
               <div class="text-slate-500">{{ t('subjects.Chapters')}}</div>
             </div>
-            <div class="text-center rounded-md w-20 py-3">
-              <div class="font-medium text-primary text-xl">1k</div>
+            <!-- <div class="text-center rounded-md w-20 py-3">
+              <div class="font-medium text-primary text-xl">{{ model.topics_count }}</div>
               <div class="text-slate-500">{{ t('subjects.Topics')}}</div>
-            </div>
+            </div> -->
           </div>
         </div>
         <ListChapters :subjectName="model.label"></ListChapters>

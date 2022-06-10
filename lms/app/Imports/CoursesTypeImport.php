@@ -29,8 +29,8 @@ class CoursesTypeImport implements ToModel, WithHeadingRow, WithValidation
     public function model(array $row)
     {
         return new CoursesType([
-            'label'       => $row['label'],
-            'description' => $row['description'],
+            'label'       => json_encode($row['label']),
+            'description' => json_encode($row['description']),
             'icon'        => $row['icon'],
         ]);
     }

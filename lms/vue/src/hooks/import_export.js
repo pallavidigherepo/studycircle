@@ -44,6 +44,10 @@ export default function useImportExport(options) {
                 responseStatus.value = res.data.success;
                 responseMessage.value = res.data.message;
                 import_file.value = {};
+                if (res.data.success == true) {
+                    //import-export-cancel-button
+                    //fileLink.click();
+                }
             })
             .catch((error) => {
                 //error.response.data;
@@ -82,36 +86,11 @@ export default function useImportExport(options) {
             .catch();
     }
 
-    // Begin: Download demo
-    async function downloadDemo() {
-        downloadFileName.value = modelName + ".xls";
 
-        const req = {
-            fileName: downloadFileName.value,
-            modelName: modelName,
-        };
-        await store.dispatch('downloadDemo', req)
-            .then((response) => {
-                if (response.status === 200) {
-                    form.export_as = "";
-                    var fileURL = window.URL.createObjectURL(new Blob([response.data]));
-                    var fileLink = document.createElement("a");
-                    fileLink.href = fileURL;
-                    fileLink.setAttribute("download", downloadFileName.value);
-                    //fileLink.setAttribute('target', '_blank');
-                    document.body.appendChild(fileLink);
-                    fileLink.click();
-                }
-            })
-            .catch();
-    }
-    // End: Download demo
     return {
         importMe,
         exportMe,
-        downloadDemo,
         responseStatus,
         responseMessage,
-
     }
 }

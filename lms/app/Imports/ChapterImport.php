@@ -45,7 +45,7 @@ class ChapterImport implements ToCollection, WithHeadingRow
          ])->validate();
          
         foreach ($rows as $row) {
-            $tags = explode(',', ltrim(rtrim($row['tags'],"]"), "["));
+            $tags = explode(',', $row['tags']);
         
             $inputs = [
                 'label' => json_encode($row['label']),
@@ -53,14 +53,17 @@ class ChapterImport implements ToCollection, WithHeadingRow
                 'parent_id' => $this->parent_id,
                 'icon' => $row['icon'],
                 'language_id' => $row['language_id'],
-                'tags' => $tags,
+                //'tags' => $tags,
                 'created_by' => Auth::user()->id,
                 'updated_by' => Auth::user()->id,
             ];
             
             $chapter = Chapter::create($inputs);
-            $chapter->detachTags($tags);
-            $chapter->attachTags($tags);
+            if (!empty($tags)) {
+                $chapter->detachTags($tags);
+                $chapter->attachTags($tags);
+            }
+            
         }
     }
     

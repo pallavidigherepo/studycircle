@@ -6,11 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Tags\HasTags;
 use App\Models\Subject;
+//use Spatie\Sluggable\HasSlug;
+//use Spatie\Sluggable\SlugOptions;
 
 class Chapter extends Model
 {
     use HasFactory;
     use HasTags;
+    //use HasSlug;
 
     /**
      * The table associated with the model.
