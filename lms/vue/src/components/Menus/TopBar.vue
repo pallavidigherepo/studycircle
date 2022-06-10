@@ -5,14 +5,14 @@
   >
     <div class="h-full flex items-center">
       <!-- BEGIN: Logo -->
-      <a href="" class="-intro-x hidden md:flex">
+      <router-link :to="{name: 'Dashboard'}" class="-intro-x hidden md:flex">
         <img
-          alt="Icewall Tailwind HTML Admin Template"
+          alt="Learning Management System"
           class="w-6"
           src="@/assets/images/logo.svg"
         />
         <span class="text-white text-lg ml-3"> Meritest LMS </span>
-      </a>
+      </router-link>
       <!-- END: Logo -->
       <!-- BEGIN: Breadcrumb -->
       <Breadcrumb />
@@ -26,6 +26,7 @@
           aria-expanded="false"
           data-tw-toggle="dropdown"
         >
+          
           <img
             alt="Icewall Tailwind HTML Admin Template"
             :src="$f()[9].photos[0]"

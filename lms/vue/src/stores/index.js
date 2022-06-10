@@ -18,7 +18,7 @@ const store = createStore({
         permissions: permissionModule,
         roles: roleModule,
         users: userModule,
-        
+
         coursesTypes: coursesTypeModule,
         courses: coursesModule,
         subjects: subjectModule,
@@ -26,7 +26,7 @@ const store = createStore({
         topics: topicModule,
         questions: questionModule,
         /*languages: languageModule,
-        */
+         */
     },
 
     state: {
@@ -63,7 +63,7 @@ const store = createStore({
         }
     },
     actions: {
-        async importMe({commit}, formData) {
+        async importMe({ commit }, formData) {
             return await axiosClient
                 .post(`/imports`, formData, {
                     headers: { 'content-type': 'multipart/form-data' }
@@ -71,60 +71,64 @@ const store = createStore({
         },
         async exportMe({ commit }, payload) {
             return await axiosClient
-                .post(`/exports/index`, {data: payload}, { responseType: "blob" })
+                .post(`/exports/index`, { data: payload }, { responseType: "blob" })
         },
-        async listLanguages({commit}) {
+        async downloadDemo({ commit }, payload) {
+            return await axiosClient
+                .post(`/exports/demo`, { data: payload }, { responseType: "blob" })
+        },
+        async listLanguages({ commit }) {
             return await axiosClient
                 .get('/languages')
-                .then(({data}) => {
+                .then(({ data }) => {
                     commit('SET_LANGUAGES', data)
                     return data;
                 })
         },
-        async listCourseTypes({commit}) {
+        async listCourseTypes({ commit }) {
             return await axiosClient
                 .get('/course_type_list')
-                .then(({data}) => {
+                .then(({ data }) => {
                     commit('SET_COURSES_TYPES_LIST', data)
                     return data;
                 })
         },
-        async listSubjects({commit}) {
+        async listSubjects({ commit }) {
             return await axiosClient
                 .get('/subject_list')
-                .then(({data}) => {
+                .then(({ data }) => {
                     commit('SET_SUBJECTS_LIST', data)
                     return data;
                 })
         },
-        async listBoard({commit}) {
+        async listBoard({ commit }) {
             return await axiosClient
                 .get('/board_list')
-                .then(({data}) => {
+                .then(({ data }) => {
                     commit('SET_BOARD_LIST', data)
                     return data;
                 })
         },
-        async listStandard({commit}) {
+        async listStandard({ commit }) {
             return await axiosClient
                 .get('/standard_list')
-                .then(({data}) => {
+                .then(({ data }) => {
                     commit('SET_STANDARD_LIST', data)
                     return data;
                 })
         },
-        async listDifficultyLevel({commit}) {
+        async listDifficultyLevel({ commit }) {
             return await axiosClient
                 .get('/difficulty_level_list')
-                .then(({data}) => {
+                .then(({ data }) => {
                     commit('SET_DIFFICULTY_LEVEL_LIST', data)
                     return data;
                 })
         },
-        async listType({commit}) {
+        async listType({ commit }) {
             return await axiosClient
                 .get('/type_list')
-                .then(({data}) => {
+                .then(({ data }) => {
                     commit('SET_TYPE_LIST', data)
                     return data;
                 })

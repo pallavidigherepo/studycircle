@@ -1,28 +1,19 @@
 <template>
   <div class="grid grid-cols-12 gap-6 mt-5">
-    <div
-      class="
+    <div class="
         intro-y
         col-span-12
         flex flex-wrap
         sm:flex-nowrap
         items-center
         mt-2
-      "
-    >
-      <button
-        class="btn btn-primary shadow-md mr-2"
-        v-if="datatableoptions.addNew"
-        @click.prevent="emit('addModel', true)"
-      >
+      ">
+      <button class="btn btn-primary shadow-md mr-2" v-if="datatableoptions.addNew"
+        @click.prevent="emit('addModel', true)">
         {{ t("common.Add New") }}
       </button>
       <div class="dropdown" v-if="datatableoptions.export">
-        <button
-          class="dropdown-toggle btn btn-primary ml-2"
-          aria-expanded="false"
-          data-tw-toggle="dropdown"
-        >
+        <button class="dropdown-toggle btn btn-primary ml-2" aria-expanded="false" data-tw-toggle="dropdown">
           <span class="flex items-center justify-center">
             {{ t("common.Export/Print") }}&nbsp;
             <DownloadIcon class="w-4 h-4" />
@@ -37,21 +28,13 @@
                 </a>
                 </li> -->
             <li>
-              <a
-                href="javascript:;"
-                class="dropdown-item"
-                @click.prevent="exportMe('xlsx')"
-              >
+              <a href="javascript:;" class="dropdown-item" @click.prevent="exportMe('xlsx')">
                 <FileTextIcon class="w-4 h-4 mr-2" />
                 {{ t("common.Export to Excel") }}
               </a>
             </li>
             <li>
-              <a
-                href="javascript:;"
-                class="dropdown-item"
-                @click.prevent="exportMe('csv')"
-              >
+              <a href="javascript:;" class="dropdown-item" @click.prevent="exportMe('csv')">
                 <FileTextIcon class="w-4 h-4 mr-2" />
                 {{ t("common.Export to CSV") }}
               </a>
@@ -70,11 +53,7 @@
         </div>
       </div>
       <div class="dropdown" v-if="datatableoptions.import">
-        <button
-          class="dropdown-toggle btn btn-primary ml-2"
-          aria-expanded="false"
-          data-tw-toggle="dropdown"
-        >
+        <button class="dropdown-toggle btn btn-primary ml-2" aria-expanded="false" data-tw-toggle="dropdown">
           <span class="flex items-center justify-center">
             {{ t("common.Import") }}&nbsp;
             <UploadIcon class="w-4 h-4" />
@@ -99,13 +78,8 @@
       </div>
       <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
         <div class="w-56 relative text-slate-500">
-          <input
-            type="text"
-            class="form-control w-56 pr-10 w-full"
-            :placeholder="t('common.Search') + '...'"
-            v-model="search"
-            @keyup="searchMe($event)"
-          />
+          <input type="text" class="form-control w-56 pr-10 w-full" :placeholder="t('common.Search') + '...'"
+            v-model="search" @keyup="searchMe($event)" />
           <SearchIcon class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" />
         </div>
       </div>
@@ -115,91 +89,54 @@
       <table class="table table-hover mt-2">
         <thead>
           <tr>
-            <th
-              v-for="(column, index) in datatableoptions.columns"
-              :key="index"
-              class="uppercase whitespace-nowrap"
-              :class="{ 'table-report__action w-56': !column.field }"
-              scope="col"
-            >
+            <th v-for="(column, index) in datatableoptions.columns" :key="index" class="uppercase whitespace-nowrap"
+              :class="{ 'table-report__action w-56': !column.field }" scope="col">
               <template v-if="column.sort">
                 <a href="#" @click.prevent="sorting(column.field, sortOrder)">
                   <div className="flex items-center justify-between">
-                    <template
-                      v-if="column.label === 'ID' || column.label === 'ACTIONS'"
-                      >{{ t("common." + column.label) }}</template
-                    >
+                    <template v-if="column.label === 'ID' || column.label === 'ACTIONS'">{{ t("common." + column.label)
+                    }}</template>
                     <template v-else>{{
-                      t(module + "." + column.label)
+                        t(module + "." + column.label)
                     }}</template>
 
                     <span v-if="column.field === sortBy">
-                      <ChevronUpIcon
-                        v-if="sortOrder === 'asc'"
-                        class="w-4 h-4 text-gray-400"
-                      ></ChevronUpIcon>
-                      <ChevronDownIcon
-                        v-else
-                        class="w-4 h-4 text-gray-400"
-                      ></ChevronDownIcon>
+                      <ChevronUpIcon v-if="sortOrder === 'asc'" class="w-4 h-4 text-gray-400"></ChevronUpIcon>
+                      <ChevronDownIcon v-else class="w-4 h-4 text-gray-400"></ChevronDownIcon>
                     </span>
                   </div>
                 </a>
               </template>
               <template v-else>
-                <template
-                  v-if="column.label === 'ID' || column.label === 'ACTIONS'"
-                  >{{ t("common." + column.label) }}</template
-                >
+                <template v-if="column.label === 'ID' || column.label === 'ACTIONS'">{{ t("common." + column.label)
+                }}</template>
                 <template v-else>{{ t(module + "." + column.label) }}</template>
               </template>
             </th>
           </tr>
         </thead>
-        
-        <tbody v-if="showRecords">
-          <tr
-            v-for="(item, index) in items.data"
-            :key="index"
-            class="intro-x"
-            :class="{
-              'bg-secondary': item.id == selectedRow,
-            }"
-          >
-            <td
-              class="whitespace-nowrap"
-              v-for="(column, index) in datatableoptions.columns"
-              :key="index"
-              :class="{
-                'table-report__action w-56 items-center': !column.field,
-              }"
-            >
+
+        <tbody>
+          <tr v-for="(item, index) in items.data" :key="index" class="intro-x" :class="{
+            'bg-secondary': item.id == selectedRow,
+          }">
+            <td class="whitespace-nowrap" v-for="(column, index) in datatableoptions.columns" :key="index" :class="{
+              'table-report__action w-56 items-center': !column.field,
+            }">
               <template v-if="!column.field">
                 <div class="flex items-center">
-                  <a
-                    v-if="column.actions.show"
-                    class="flex items-center mr-3"
-                    href="javascript:;"
-                    @click.prevent="showMe(item)"
-                  >
+                  <a v-if="column.actions.show" class="flex items-center mr-3" href="javascript:;"
+                    @click.prevent="showMe(item)">
                     <EyeIcon class="w-4 h-4 mr-1" />
                     {{ t("common.Show") }}
                   </a>
-                  <a
-                    v-if="column.actions.edit"
-                    class="flex items-center mr-3"
-                    href="javascript:;"
-                    @click.prevent="editMe(item)"
-                  >
+                  <a v-if="column.actions.edit" class="flex items-center mr-3" href="javascript:;"
+                    @click.prevent="editMe(item)">
                     <CheckSquareIcon class="w-4 h-4 mr-1" />
                     {{ t("common.Edit") }}
                   </a>
-                  <a
-                    v-if="column.actions.delete"
-                    class="flex items-center text-danger"
-                    href="javascript:;"
-                    @click.prevent="emit('deleteItem', item)"
-                  >
+                  <a v-if="column.actions.delete" class="flex items-center text-danger" href="javascript:;"
+                    @click.prevent="emit('deleteItem', item)">
                     <Trash2Icon class="w-4 h-4 mr-1" />
                     {{ t("common.Delete") }}
                   </a>
@@ -207,69 +144,110 @@
               </template>
               <template v-else>
                 <template v-if="column.isJson">{{
-                  JSON.parse(item[column.field])
+                    JSON.parse(item[column.field])
                 }}</template>
                 <template v-else>{{ item[column.field] }}</template>
               </template>
             </td>
           </tr>
         </tbody>
-        <tbody v-else>
-          <tr>
-            <td :colspan="datatableoptions.columns.length" class="text-center">{{ t("common.Sorry, no records found") }}</td>
+
+        <tbody v-if="noRecords && !items.data.length">
+          <tr class="intro-x bg-secondary">
+            <td :colspan="datatableoptions.columns.length" class="text-center">
+              {{ t("common.Sorry, no records found") }}
+            </td>
           </tr>
         </tbody>
-        
+
       </table>
     </div>
     <!-- END: Data List -->
     <!-- BEGIN: Pagination -->
 
     <Pagination
-      :links="links"
-      :currentPage="currentPage"
+      :links="links" 
+      :currentPage="currentPage" 
       @paginate="getForPage"
-      @perpage="perPageValue"
-    />
+      @perpage="perPageValue" />
     <!-- END: Pagination -->
     <!-- BEGIN: Modal Content -->
-    <Modal
-      :show="headerFooterModalPreview"
-      @hidden="headerFooterModalPreview = false"
-    >
+    <Modal size="modal-lg" 
+          :show="headerFooterModalPreview" 
+          @hidden="headerFooterModalPreview = false">
       <ModalHeader>
         <h2 class="font-medium text-base mr-auto">
           {{ t("common.Import as CSV/Excel") }}
         </h2>
       </ModalHeader>
-      <CustomeAlert
-        v-if="responseMessage"
-        :message="responseMessage"
-        :status="responseStatus"
-        class="col-span-12 sm:col-span-6 flex"
-      />
+      <CustomeAlert v-if="responseMessage" :message="responseMessage" :status="responseStatus"
+        class="col-span-12 sm:col-span-6 flex" />
       <ModalBody class="grid grid-cols-12 gap-4 gap-y-3">
-        <div class="col-span-12 sm:col-span-8">
-          <label for="modal-form-1" class="form-label">{{
-            t("common.Upload file")
-          }}</label>
-          <input
-            id="modal-form-1"
-            type="file"
-            class="form-control"
-            @change="importMe($event)"
-          />
-          <span class="text-primary"
-            >Please upload file of type .csv or .xlsx</span
-          >
+        <div class="col-span-12 sm:col-span-12 text-center">
+
+          <div class="upload-btn-wrapper">
+            <button class="upload-btn">{{
+                t("common.Upload file")
+            }}</button>
+            <input id="modal-form-1" type="file" name="myfile" @change="importMe($event)" />
+          </div>
+          <div class="col-span-12">
+            <div
+              class="alert alert-outline-warning alert-dismissible bg-warning/20 dark:bg-darkmode-400 dark:border-darkmode-400 mt-5 show"
+              role="alert" style="display: block;">
+              <div class="flex items-center"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="lucide w-6 h-6 mr-3">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z">
+                    </path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                  </svg></span><span class="text-slate-800 dark:text-slate-500">Supports CSV and Excel files.</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-6 gap-6 mt-5">
+              <div class="col-span-6 sm:col-span-6 xl:col-span-3 intro-y">
+                <div class="report-box zoom-in">
+                  <div class="box p-4">
+                    <div class="flex text-center justify-center">
+
+                      <div class="">
+                        <DownloadCloudIcon class="w-10 h-10 ml-0.5" />
+                      </div>
+                    </div>
+                    <div class="text-base text-slate-500 mt-1">
+                      <button class="btn btn-primary " 
+                              @click.prevent="exportMe('xlsx', true)">
+                              {{ t('common.Download Template for EXCEL')}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-span-6 sm:col-span-6 xl:col-span-3 intro-y">
+                <div class="report-box zoom-in">
+                  <div class="box p-5">
+                    <div class="flex text-center justify-center">
+
+                      <div class="">
+                        <DownloadCloudIcon class="w-10 h-10 ml-0.5" />
+                      </div>
+                    </div>
+                    <div class="text-base text-slate-500 mt-1">
+                      <button class="btn btn-primary " 
+                              @click.prevent="exportMe('csv', true)">
+                              {{ t('common.Download Template for CSV')}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </ModalBody>
       <ModalFooter>
-        <button
-          type="button"
-          @click="headerFooterModalPreview = false"
-          class="btn btn-outline-secondary w-20 mr-1"
-        >
+        <button type="button" @click="headerFooterModalPreview = false" class="btn btn-outline-secondary w-20 mr-1">
           {{ t("common.Cancel") }}
         </button>
         <!-- <button type="button" class="btn btn-primary w-20">
@@ -312,7 +290,7 @@ const headerFooterModalPreview = ref(false);
 const { t } = useI18n();
 const selectedRow = ref("");
 
-const { importMe, exportMe, responseStatus, responseMessage } = useImportExport(
+const { importMe, exportMe, downloadDemo, responseStatus, responseMessage } = useImportExport(
   props.importExportOptions
 );
 
@@ -332,15 +310,16 @@ function openModal() {
   responseStatus.value = false;
 }
 
-const showRecords = ref(true);
+const noRecords = ref(false);
 const datatableoptions = computed(
   () => store.getters[props.module + "/datatable"]
 );
 
 const items = computed(() => {
   let records = store.getters[props.module + "/" + props.module];
-  if (records.data && records.data.length < 1) {
-    showRecords.value = false;
+
+  if (records.data && parseInt(records.data.length) < 1) {
+    noRecords.value = true;
   }
   return records;
 });
@@ -361,15 +340,15 @@ const urlParams = reactive({
 
 const url = ref(
   "?page=" +
-    urlParams.page +
-    "&sort_field=" +
-    urlParams.column +
-    "&sort_order=" +
-    urlParams.order +
-    "&search=" +
-    urlParams.search +
-    "&per_page=" +
-    urlParams.perpage
+  urlParams.page +
+  "&sort_field=" +
+  urlParams.column +
+  "&sort_order=" +
+  urlParams.order +
+  "&search=" +
+  urlParams.search +
+  "&per_page=" +
+  urlParams.perpage
 );
 
 // Watch to current url parameters change and when this happens we update local url
@@ -398,14 +377,14 @@ onMounted(() => {
 function fetchList() {
   loading.value = true;
   if (props.showData) {
-    url.value += "&item="+props.showData;
+    url.value += "&item=" + props.showData;
   }
   store
-      .dispatch(props.module + "/list", { url: url.value })
-      .then(() => {
-        loading.value = false;
-      })
-      .catch();
+    .dispatch(props.module + "/list", { url: url.value })
+    .then(() => {
+      loading.value = false;
+    })
+    .catch();
 }
 function getForPage(page) {
   if (page == "Next &raquo;") {
@@ -444,7 +423,31 @@ function searchMe(event) {
   //console.log(event)
 }
 // End: Searching
+
 </script>
 
-<style>
+<style scoped>
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.upload-btn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
 </style>
