@@ -27,9 +27,11 @@ class ExportController extends Controller
         // This is done to make exports class dynamic and can be used by any ExportClass 
         $exportClass = "App\\Exports\\".$modelName.'Export';
         
-        if (isset($request->data['selectedItem'])) {
+        if (isset($request->data['selectedItem']) && !$request->data['demo']) {
             $class = new $exportClass($request->data['selectedItem']);
-        } else {
+        } else if ($request->data['demo']) {
+            $class = new $exportClass(1, true);
+        } else{
             $class = new $exportClass;
         }
 

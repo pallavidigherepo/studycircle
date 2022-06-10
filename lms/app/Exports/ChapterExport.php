@@ -23,19 +23,33 @@ class ChapterExport implements
                         FromQuery
 {
     use Exportable;
+    private $isDemo;
 
-    public function __construct(int $subject)
+    public function __construct(int $subject, bool $demo = false)
     {
         $this->parent_id = $subject;
+        $this->isDemo = $demo;
     }
 
     public function query()
     {
+        if ($this->isDemo) {
+            return Chapter::factory()->count(3)->make();
+        }
         return Chapter::query()->where('parent_id', "=", $this->parent_id);
     }
 
     public function map($chapter): array 
     {
+        if ($this->isDemo) {
+            return [
+                $chapter->subject,
+                $chapter->label,
+                $chapter->description,
+                $chapter->icon,
+                implode(',', $chapter->tags),
+                $chapter->language,            ];
+        }
         return [
             $chapter->id,
             json_decode($chapter->subject->label),
@@ -49,6 +63,16 @@ class ChapterExport implements
     }
 
     public function headings(): array {
+        if ($this->isDemo) {
+            return [
+                'Subject',
+                'Label',
+                'Description',
+                'Icon',
+                'Tags',
+                'Language Id',
+            ];
+        }
         return [
             '#',
             'Subject',

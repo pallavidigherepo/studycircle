@@ -43,7 +43,7 @@ class ChapterImport implements ToCollection, WithHeadingRow
             //'description' => 'required',
             '*.description' => 'required'
          ])->validate();
-
+         
         foreach ($rows as $row) {
             $tags = explode(',', ltrim(rtrim($row['tags'],"]"), "["));
         

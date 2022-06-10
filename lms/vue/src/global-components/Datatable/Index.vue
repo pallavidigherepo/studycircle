@@ -217,7 +217,7 @@
                       </div>
                     </div>
                     <div class="text-base text-slate-500 mt-1">
-                      <button class="btn btn-primary " 
+                      <button class="btn btn-primary h-20" 
                               @click.prevent="exportMe('xlsx', true)">
                               {{ t('common.Download Template for EXCEL')}}</button>
                     </div>
@@ -234,7 +234,7 @@
                       </div>
                     </div>
                     <div class="text-base text-slate-500 mt-1">
-                      <button class="btn btn-primary " 
+                      <button class="btn btn-primary h-20" 
                               @click.prevent="exportMe('csv', true)">
                               {{ t('common.Download Template for CSV')}}</button>
                     </div>
