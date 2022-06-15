@@ -48,7 +48,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('v1/permissions', PermissionController::class);
     Route::resource('v1/roles', RoleController::class);
     Route::get('v1/users/role_list', [UserController::class, 'role_list'])->name('users.role_list');
-    
+
     //Route::get('v1/users/is_email_exists/{email}/{id}', [UserController::class, 'is_email_exists'])->name('is_email_exists');
     Route::resource('v1/users', UserController::class);
     Route::get('v1/courses_types/list', [CoursesTypeController::class, 'list'])->name('coursesTypes.list');
@@ -59,47 +59,50 @@ Route::middleware('auth:sanctum')->group(function () {
     //Route::get('v1/topics/list', [TopicController::class, 'list'])->name('topics.list');
     Route::resource('v1/topics', TopicController::class);
     Route::resource('v1/questions', QuestionController::class);
-    
+
 
     Route::post('v1/exports/index', [ExportController::class, 'index'])->name('exports.index');
     Route::post('v1/imports', [ImportController::class, 'store'])->name('imports.store');
 
-    Route::get('v1/languages', function() {
+    Route::get('v1/languages', function () {
         return Language::all()->pluck('name', 'id');
     })->name('languages');
 
-    Route::get('v1/course_type_list', function() {
+    Route::get('v1/course_type_list', function () {
         return CoursesType::all()->pluck('label', 'id');
     })->name('course_type_list');
 
-    Route::get('v1/subject_list', function() {
+    Route::get('v1/subject_list', function () {
         return Subject::all()->where('parent_id', null)->pluck('label', 'id');
     })->name('subject_list');
 
-    Route::get('v1/chapter_list/{subjectId}', function($subjectId) {
+    Route::get('v1/chapter_list/{subjectId}', function ($subjectId) {
         return Chapter::all()->where('parent_id', $subjectId)->pluck('label', 'id');
     })->name('chapter_list');
 
-    Route::get('v1/topic_list/{chapterId}', function($chapterId) {
+    Route::get('v1/topic_list/{chapterId}', function ($chapterId) {
         return Topic::all()->where('parent_id', $chapterId)->pluck('label', 'id');
     })->name('topic_list');
 
-    Route::get('v1/board_list', function() {
+    Route::get('v1/board_list', function () {
         return Board::all()->pluck('name', 'id');
     })->name('board_list');
 
-    Route::get('v1/standard_list', function() {
+    Route::get('v1/standard_list', function () {
         return Standard::all()->pluck('name', 'id');
     })->name('standard_list');
 
-    Route::get('v1/difficulty_level_list', function() {
+    Route::get('v1/difficulty_level_list', function () {
         return QuestionDifficultyLevel::all()->pluck('name', 'id');
     })->name('difficulty_level_list');
 
-    Route::get('v1/type_list', function() {
-        return QuestionType::all()->pluck('name', 'id');
+    Route::get('v1/type_list', function () {
+        return QuestionType::all()->where('is_active', true)->pluck('name', 'id');
     })->name('type_list');
-   
+
+    Route::get('v1/type_list_paragraph', function () {
+        return QuestionType::all()->where('is_active', true)->where('in_paragraph', true)->pluck('name', 'id');
+    })->name('type_list_paragraph');
 });
 
 

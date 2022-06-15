@@ -15,27 +15,65 @@ class QuestTypeSeeder extends Seeder
     public function run()
     {
         $types = [
-            ['name' => 'Single choice'],
-            ['name' => 'Multiple choice'],
+            [
+                'name' => 'Single choice',
+                'in_paragraph' => true,
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Multiple choice',
+                'in_paragraph' => true,
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Fill in the blanks', 
+                'in_paragraph' => true,
+                'is_active' => true,
+            ],
+            [
+                'name' => 'True or false', 
+                'in_paragraph' => true,
+                'is_active' => true,
+            ],
             //['name' => 'Single scentence'],
             //['name' => 'Muliple scentence'],
-            ['name' => 'Paragraph'],
+            [
+                'name' => 'Paragraph', 
+                'in_paragraph' => false,
+                'is_active' => true,
+            ],
             //['name' => 'Essay'],
             //['name' => 'Brief answer'],
             //['name' => 'Concept'],
             //['name' => 'Theorum'],
-            ['name' => 'Miscellaneous'],
-            ['name' => 'True or false'],
+            [
+                'name' => 'Miscellaneous', 
+                'in_paragraph' => false,
+                'is_active' => false,
+            ],
             //['name' => 'Match the pair'],
-            ['name' => 'Fill in the blanks'],
-            ['name' => 'Audio'],
-            ['name' => 'Image'],
-            ['name' => 'Video'],
+            [
+                'name' => 'Audio', 
+                'in_paragraph' => false,
+                'is_active' => false,
+            ],
+            [
+                'name' => 'Image', 
+                'in_paragraph' => false,
+                'is_active' => false,
+            ],
+            [
+                'name' => 'Video', 
+                'in_paragraph' => false,
+                'is_active' => false,
+            ],
         ];
 
         foreach ($types as $type) {
             $input = [
-                'name' => json_encode($type['name'])
+                'name' => json_encode($type['name']),
+                'in_paragraph' => $type['in_paragraph'],
+                'is_active' => $type['is_active']
             ];
             QuestionType::create($input);
         }

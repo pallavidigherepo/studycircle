@@ -29,12 +29,13 @@
     "Answers": "उत्तरे",
     "Answer": "उत्तर",
     "Add Answer": "उत्तर जोडा",
-    "You do not have any answers created": "तुमच्याकडे कोणतीही उत्तरे तयार केलेली नाहीत.",
+    "You do not have any answers added yet": "आपल्याकडे अद्याप कोणतीही उत्तरे जोडलेली नाहीत.",
     "Is Correct": "बरोबर आहे",
     "Select Board & Standard/Class": "बोर्ड आणि मानक/वर्ग निवडा",
     "Select Difficulty level & Language": "अडचण पातळी आणि भाषा निवडा",
     "Select Subject, Chapter and Topic": "विषय, धडा आणि विषय निवडा",
     "Question & Solution": "प्रश्न आणि उपाय",
     "Select Question Type & Add Answer": "प्रश्न प्रकार निवडा आणि उत्तर जोडा",
-    "Add answers according to the type of question you have selected": "तुम्ही निवडलेल्या प्रश्नाच्या प्रकारानुसार उत्तरे जोडा."
+    "Add answers according to the type of question you have selected": "तुम्ही निवडलेल्या प्रश्नाच्या प्रकारानुसार उत्तरे जोडा.",
+    "Correct answer is": "बरोबर उत्तर आहे?"
 }

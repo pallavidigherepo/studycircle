@@ -1,34 +1,30 @@
 <template>
   <div class="mt-5">
     <template v-if="isTrueFalse()">
-      <select
-        id="question_type"
-        name="question_type"
-        v-model="model.answer"
-        class="
-          mt-1
-          block
-          w-full
-          py-2
-          px-3
-          border border-gray-300
-          bg-white
-          rounded-md
-          shadow-sm
-          focus:outline-none focus:ring-indigo-500 focus:border-indigo-500
-          sm:text-sm
-        "
-      >
-        <option value="true">True</option>
-        <option value="false">False</option>
-      </select>
+      
+      <div class="flex-0">
+        <div class="xl:flex items-center mt-0 first:mt-0">
+          <div class="input-group flex-1">
+            
+            <select
+              id="question_type"
+              name="question_type"
+              v-model="model.answer"
+              class="form-select"
+            >
+              <option value="1">True</option>
+              <option value="0">False</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </template>
     <template v-else>
       <!-- Answer index -->
       <template v-if="shouldHaveOptions()">
         
         <div class="form-inline mt-5 items-start first:mt-0">
-          <label class="form-label mt-2 sm:w-20">{{ index + 1 }}</label>
+          <label class="form-label mt-2 sm:w-20">{{ index + 1 }}.</label>
           <div class="flex-1">
             <div class="xl:flex items-center mt-5 first:mt-0">
               <div class="input-group flex-1">
@@ -43,7 +39,7 @@
                 
                 <div class="input-group-text">
                   <input
-                  v-if="type == 1 || type == 6"
+                  v-if="type == 1 || type == 3"
                   :id="`is_correct`+index"
                   name="is_correct"
                   type="radio"
@@ -72,10 +68,10 @@
                   class="xl:ml-5" 
                   v-if="!isTrueFalse()"
                   @click.prevent="addAnswer()">
-                  <PlusIcon class="w-4 h-4" />
+                  <PlusIcon class="w-5 h-5" />
                 </a>
                 <a href="#" class="ml-3 xl:ml-5" @click.prevent="deleteAnswer()">
-                  <Trash2Icon class="w-4 h-4" />
+                  <Trash2Icon class="w-5 h-5" />
                 </a>
               </div>
             </div>
@@ -98,6 +94,7 @@ const props = defineProps({
   answer: Object,
   index: Number,
   type: [String, Number],
+  typeParagraph: Object,
 });
 const emit = defineEmits(["change", "addAnswer", "deleteAnswer"]);
 
@@ -116,11 +113,11 @@ function setOptions(options) {
 }
 // Check if the question should have options
 function shouldHaveOptions() {
-  return ["1", "2", "6"].includes(props.type);
+  return ["1", "2", "3"].includes(props.type);
 }
 // Check if the question is true/false
 function isTrueFalse() {
-  return ["5"].includes(props.type);
+  return ["4"].includes(props.type);
 }
 // Add option
 function addOption() {

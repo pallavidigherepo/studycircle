@@ -16,6 +16,8 @@ class CreateQuestionTypes extends Migration
         Schema::create('question_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->json('name')->unique();
+            $table->boolean('in_paragraph')->default(true);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

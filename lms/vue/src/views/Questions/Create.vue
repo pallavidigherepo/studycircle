@@ -452,43 +452,62 @@
               class="form-inline items-start flex-col xl:flex-row mt-2 pt-2 first:mt-0 first:pt-0"
               v-if="model.type_id != '' && model.type_id != 'Select Question Type'"
             >
-              <div class="form-label xl:w-64 xl:!mr-10">
-                <div class="text-left">
-                  <div class="flex items-center">
-                    <div class="font-medium">{{ t("questions.Answers")}}</div>
-                  </div>
-                  <div class="leading-relaxed text-slate-500 text-xs mt-3">
-                    {{ t("questions.Add answers according to the type of question you have selected")}}
-                  </div>
-                </div>
-              </div>
-              <div class="w-full mt-3 xl:mt-0 flex-1">
-                <div
-                  class="relative pl-5 pr-5 xl:pr-10 py-10 bg-slate-50 dark:bg-transparent dark:border rounded-md"
-                >
-                    <div v-if="!model.answers.length" class="text-center text-gray-600">
-                      {{ t("questions.You do not have any answers created") }}
+              
+                
+                <div class="form-label xl:w-64 xl:!mr-10">
+                  <div class="text-left">
+                    <div class="flex items-center">
+                      <div class="font-medium">{{ t("questions.Answers")}}</div>
                     </div>
-                    <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
-                      <button
-                        class="btn btn-outline-primary border-dashed w-full"
-                        type="button"
-                         v-if="showAnswerButton == true" @click="addAnswer()"
-                      >
-                        <PlusIcon class="w-4 h-4 mr-2" /> {{ t("questions.Add Answer") }}
-                      </button>
+                    <div class="leading-relaxed text-slate-500 text-xs mt-3">
+                      {{ t("questions.Add answers according to the type of question you have selected")}}
                     </div>
-                  
-                  <div class="mt-5">
-                    
-                    <div v-for="(answer, index) in model.answers" :key="answer.id">
-                      <CreateAnswer :answer="answer" :index="index" :type="selectedType" @change="answerChange"
-                        @addAnswer="addAnswer" @deleteAnswer="deleteAnswer" />
-                    </div>
-                    
                   </div>
                 </div>
-              </div>
+                <div class="w-full mt-3 xl:mt-0 flex-1">
+                  <div
+                    class="relative pl-5 pr-5 xl:pr-10 py-10 bg-slate-50 dark:bg-transparent dark:border rounded-md"
+                  >
+                    <template v-if="model.type_id == 4">
+                      <CreateAnswer :answer="{}" 
+                                    :index="1" 
+                                    :type="selectedType" 
+                                    :typeParagraph="typeListParagraph"
+                                    @change="answerChange"
+                                    @addAnswer="addAnswer" 
+                                    @deleteAnswer="deleteAnswer" />
+                    </template>
+                    <template v-else>
+                      <div v-if="!model.answers.length" class="text-center text-gray-600">
+                              {{ t("questions.You do not have any answers added yet") }}
+                            </div>
+                            <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
+                              <button
+                                class="btn btn-outline-primary border-dashed w-full"
+                                type="button"
+                                v-if="showAnswerButton == true" @click="addAnswer()"
+                              >
+                                <PlusIcon class="w-4 h-4 mr-2" /> {{ t("questions.Add Answer") }}
+                              </button>
+                            </div>
+                          
+                            <div class="mt-5">
+                              
+                              <div v-for="(answer, index) in model.answers" :key="answer.id">
+                                <CreateAnswer :answer="answer" 
+                                              :index="index" 
+                                              :type="selectedType" 
+                                              :typeParagraph="typeListParagraph"
+                                              @change="answerChange"
+                                              @addAnswer="addAnswer" 
+                                              @deleteAnswer="deleteAnswer" />
+                              </div>
+                              
+                            </div>
+                    </template>
+                      
+                  </div>
+                </div>
             </div>
             
           </div>
@@ -629,12 +648,14 @@ onMounted(() => {
   store.dispatch("listType").then().catch();
   store.dispatch("listLanguages").then().catch();
   store.dispatch("listSubjects").then().catch();
+  store.dispatch("listTypeParagraph").then().catch();
 });
 const languages = computed(() => store.getters.languages);
 const boards = computed(() => store.getters.listBoards);
 const standards = computed(() => store.getters.listStandards);
 const difficultyList = computed(() => store.getters.listDifficultyLevel);
 const typeList = computed(() => store.getters.listType);
+const typeListParagraph = computed(() => store.getters.listTypeParagraph);
 const subjects = computed(() => store.getters.listSubjects);
 
 async function selectedSubject(subjectId) {

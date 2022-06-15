@@ -37,7 +37,8 @@ const store = createStore({
         boardList: [],
         standardList: [],
         difficultyList: [],
-        typeList: []
+        typeList: [],
+        typeListParagraph: [],
     },
     getters: {
         languages(state) {
@@ -60,6 +61,9 @@ const store = createStore({
         },
         listType(state) {
             return state.typeList;
+        },
+        listTypeParagraph(state) {
+            return state.typeListParagraph;
         }
     },
     actions: {
@@ -132,6 +136,14 @@ const store = createStore({
                     commit('SET_TYPE_LIST', data)
                     return data;
                 })
+        },
+        async listTypeParagraph({ commit }) {
+            return await axiosClient
+                .get('/type_list_paragraph')
+                .then(({ data }) => {
+                    commit('SET_TYPE_LIST_PARAGRAPH', data)
+                    return data;
+                })
         }
     },
     mutations: {
@@ -155,6 +167,9 @@ const store = createStore({
         },
         SET_TYPE_LIST(state, payload) {
             state.typeList = payload;
+        },
+        SET_TYPE_LIST_PARAGRAPH(state, payload) {
+            state.typeListParagraph = payload;
         },
 
     },
