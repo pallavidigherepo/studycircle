@@ -31,5 +31,11 @@
     "Answer": "Answer",
     "Add Answer": "Add Answer",
     "You do not have any answers created": "You do not have any answers created.",
-    "Is Correct": "Is Correct"
+    "Is Correct": "Is Correct",
+    "Select Board & Standard/Class": "Select Board & Standard/Class",
+    "Select Difficulty level & Language": "Select Difficulty level & Language",
+    "Select Subject, Chapter and Topic": "Select Subject, Chapter and Topic",
+    "Question & Solution": "Question & Solution",
+    "Select Question Type & Add Answer": "Select Question Type & Add Answer",
+    "Add answers according to the type of question you have selected": "Add answers according to the type of question you have selected."
 }

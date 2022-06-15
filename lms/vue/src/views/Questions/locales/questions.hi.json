@@ -30,5 +30,11 @@
     "Answer": "उत्तर",
     "Add Answer": "उत्तर जोड़ें",
     "You do not have any answers created": "आपके पास कोई उत्तर नहीं बनाया गया है।",
-    "Is Correct": "सही है"
+    "Is Correct": "सही है",
+    "Select Board & Standard/Class": "बोर्ड और मानक/वर्ग का चयन करें",
+    "Select Difficulty level & Language": "कठिनाई स्तर और भाषा चुनें",
+    "Select Subject, Chapter and Topic": "विषय, अध्याय और विषय का चयन करें",
+    "Question & Solution": "प्रश्न और समाधान",
+    "Select Question Type & Add Answer": "प्रश्न प्रकार चुनें और उत्तर जोड़ें",
+    "Add answers according to the type of question you have selected": "आपके द्वारा चुने गए प्रश्न के प्रकार के अनुसार उत्तर जोड़ें।"
 }

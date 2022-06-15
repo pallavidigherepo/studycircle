@@ -1,6 +1,5 @@
 <template>
   <div class="mt-5">
-    
     <template v-if="isTrueFalse()">
       <select
         id="question_type"
@@ -26,165 +25,63 @@
     </template>
     <template v-else>
       <!-- Answer index -->
-      <div class="flex items-center justify-between">
-        <h3 class="text-lg font-bold">{{ index + 1 }}. {{ model.answer }}</h3>
-
-        <div class="flex items-center">
-          <!-- Add new answer -->
-          <button
-            type="button"
-            v-if="!isTrueFalse()"
-            @click="addAnswer()"
-            class="
-              flex
-              items-center
-              text-xs
-              py-1
-              px-3
-              mr-2
-              rounded-sm
-              text-white
-              bg-gray-600
-              hover:bg-gray-700
-            "
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-4 w-4"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            {{ t("common.Add") }}
-          </button>
-          <!--/ Add new answer -->
-
-          <!-- Delete answer -->
-          <button
-            type="button"
-            @click="deleteAnswer()"
-            class="
-              flex
-              items-center
-              text-xs
-              py-1
-              px-3
-              rounded-sm
-              border border-transparent
-              text-red-500
-              hover:border-red-600
-            "
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-4 w-4"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            {{ t("common.Delete") }}
-          </button>
-          <!--/ Delete answer -->
-        </div>
-      </div>
-      <!--/ Answer index -->
-      <div class="grid gap-3 grid-cols-12">
-        <!-- Answer -->
-        <template v-if="shouldHaveOptions()">
-          <div class="mt-3 col-span-9">
-            <label
-              :for="'answer_' + index"
-              class="block text-sm font-medium text-gray-700"
-              >{{ t("questions.Answer") }}</label
-            >
-            <textarea
-              v-if="'answer-text' + index"
-              :name="'answer_' + index"
-              v-model="model.answer"
-              @change="dataChange"
-              :id="'answer_' + index"
-              class="
-                mt-1
-                focus:ring-black-500 focus:border-black-500
-                block
-                w-full
-                shadow-sm
-                sm:text-sm
-                border-gray-300
-                rounded-md
-              "
-            ></textarea>
-            <editor
-              v-else
-              :name="'answer_' + index"
-              v-model="model.answer"
-              @change="dataChange"
-              :id="'answer_' + index"
-              initialValue="<p>Initial editor content</p>"
-              apiKey="n10p1o42akootxkapivj4ecxefdo4zlaqd0ek0aa47ld9js7"
-              :init="{
-                height: 200,
-                menubar: true,
-                plugins: [
-                  'advlist autolink lists link image charmap',
-                  'searchreplace visualblocks code fullscreen',
-                  'print preview anchor insertdatetime media',
-                  'paste code help wordcount table',
-                ],
-                toolbar:
-                  'undo redo | formatselect | bold italic | \
-                        alignleft aligncenter alignright | \
-                        bullist numlist outdent indent | insert | help | \
-                        tiny_mce_wiris_formulaEditor | tiny_mce_wiris_formulaEditorChemistry',
-              }"
-            >
-            </editor>
-            <!-- <span><a href="#" @click.prevent="!'answer-text'+index">Click here for editor</a></span> -->
-          </div>
-          <!--/ Answer -->
-
-          <!-- Is Correct -->
-          <div class="mt-3 col-span-3">
-            <div class="form-check mt-5">
-              <input
-                v-if="type == 1 || type == 6"
-                :id="`is_correct`+index"
-                name="is_correct"
-                type="radio"
-                v-model="model.is_correct"
-                class="
-                  form-check-input
-                "
-              />
-              <input
-                v-if="type == 2"
-                :id="`is_correct`+index"
-                name="is_correct"
-                type="checkbox"
-                v-model="model.is_correct"
-                class="
-                  form-check-input
-                "
-              />
-                <label :for="`is_correct`+index" class="form-check-label">{{
-                t("questions.Is Correct")
-              }}</label>
+      <template v-if="shouldHaveOptions()">
+        
+        <div class="form-inline mt-5 items-start first:mt-0">
+          <label class="form-label mt-2 sm:w-20">{{ index + 1 }}</label>
+          <div class="flex-1">
+            <div class="xl:flex items-center mt-5 first:mt-0">
+              <div class="input-group flex-1">
+                <textarea
+                  v-if="'answer-text' + index"
+                  :name="'answer_' + index"
+                  v-model="model.answer"
+                  @change="dataChange"
+                  :id="'answer_' + index"
+                  class="form-control"
+                ></textarea>
+                
+                <div class="input-group-text">
+                  <input
+                  v-if="type == 1 || type == 6"
+                  :id="`is_correct`+index"
+                  name="is_correct"
+                  type="radio"
+                  v-model="model.is_correct"
+                  class="
+                    form-check-input
+                  "
+                />
+                <input
+                  v-if="type == 2"
+                  :id="`is_correct`+index"
+                  name="is_correct"
+                  type="checkbox"
+                  v-model="model.is_correct"
+                  class="
+                    form-check-input
+                  "
+                />
+                  <label :for="`is_correct`+index" class="form-check-label">{{
+                  t("questions.Is Correct")
+                }}</label>
+                </div>
+              </div>
+              <div class="w-20 flex text-slate-500 mt-3 xl:mt-0">
+                <a href="#" 
+                  class="xl:ml-5" 
+                  v-if="!isTrueFalse()"
+                  @click.prevent="addAnswer()">
+                  <PlusIcon class="w-4 h-4" />
+                </a>
+                <a href="#" class="ml-3 xl:ml-5" @click.prevent="deleteAnswer()">
+                  <Trash2Icon class="w-4 h-4" />
+                </a>
+              </div>
             </div>
           </div>
-          <!--/ Is Correct -->
-        </template>
-      </div>
-      <hr class="my-4" />
+        </div>
+      </template>
     </template>
   </div>
 </template>
