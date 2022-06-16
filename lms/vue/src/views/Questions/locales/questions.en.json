@@ -12,6 +12,7 @@
     "Description": "Description",
     "Choose Language": "Choose Language",
     "Tags": "Tags",
+    "Language": "Language",
     "Select Board": "Select Board",
     "Select Standard": "Select Standard",
     "Select Difficulty Level": "Select Difficulty Level",
@@ -38,5 +39,8 @@
     "Question & Solution": "Question & Solution",
     "Select Question Type & Add Answer": "Select Question Type & Add Answer",
     "Add answers according to the type of question you have selected": "Add answers according to the type of question you have selected.",
-    "Correct answer is": "Correct answer is?"
+    "Correct answer is": "Correct answer is?",
+    "Add questions and its answers accordingly": "Add questions and its answers accordingly.",
+    "You do not have any questions added yet": "You do not have any questions added yet.",
+    "Question type": "Question Type"
 }

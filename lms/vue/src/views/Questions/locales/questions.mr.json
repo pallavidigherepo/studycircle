@@ -12,6 +12,7 @@
     "Description": "वर्णन",
     "Choose Language": "भाषा निवडा",
     "Tags": "टॅग्ज",
+    "Language": "भाषा",
     "Select Board": "बोर्ड निवडा",
     "Select Standard": "मानक निवडा",
     "Select Difficulty Level": "अडचण पातळी निवडा",
@@ -37,5 +38,8 @@
     "Question & Solution": "प्रश्न आणि उपाय",
     "Select Question Type & Add Answer": "प्रश्न प्रकार निवडा आणि उत्तर जोडा",
     "Add answers according to the type of question you have selected": "तुम्ही निवडलेल्या प्रश्नाच्या प्रकारानुसार उत्तरे जोडा.",
-    "Correct answer is": "बरोबर उत्तर आहे?"
+    "Correct answer is": "बरोबर उत्तर आहे?",
+    "Add questions and its answers accordingly": "त्यानुसार प्रश्न आणि त्यांची उत्तरे जोडा.",
+    "You do not have any questions added yet": "तुमच्याकडे अद्याप कोणतेही प्रश्न जोडलेले नाहीत.",
+    "Question type": "प्रश्न प्रकार"
 }

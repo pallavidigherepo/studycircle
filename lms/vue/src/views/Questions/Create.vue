@@ -432,15 +432,20 @@
                 </div>
               </div>
               <div class="w-full mt-3 xl:mt-0 flex-1">
-                <TomSelect id="form-type" v-model="model.type_id" placeholder="Select Type" :options="{
-                allowEmptyOption: false,
-                create: false,
-                placeholder: 'Select Type',
-                autocomplete: 'off',
-                onChange: changeType
-              }" class="w-full" :class="{
-  'border-danger': submitted && v$.type_id.$errors.length,
-}">
+                <TomSelect id="form-type" 
+                           v-model="model.type_id" 
+                           placeholder="Select Type" 
+                           :options="{
+                            allowEmptyOption: false,
+                            create: false,
+                            placeholder: 'Select Type',
+                            autocomplete: 'off',
+                            onChange: changeType
+                          }" 
+                          class="w-full" 
+                          :class="{
+                            'border-danger': submitted && v$.type_id.$errors.length,
+                          }">
                 <option>{{ t('questions.Select Question Type') }}</option>
                 <option v-for="(type, indext) in typeList" :key="indext" :value="indext">
                   {{ JSON.parse(type) }}
@@ -450,67 +455,137 @@
             </div>
             <div
               class="form-inline items-start flex-col xl:flex-row mt-2 pt-2 first:mt-0 first:pt-0"
-              v-if="model.type_id != '' && model.type_id != 'Select Question Type'"
+              v-if="model.type_id != '' && model.type_id != 'Select Question Type' && model.type_id!=5"
             >
-              
-                
-                <div class="form-label xl:w-64 xl:!mr-10">
-                  <div class="text-left">
-                    <div class="flex items-center">
-                      <div class="font-medium">{{ t("questions.Answers")}}</div>
-                    </div>
-                    <div class="leading-relaxed text-slate-500 text-xs mt-3">
-                      {{ t("questions.Add answers according to the type of question you have selected")}}
-                    </div>
+              <div class="form-label xl:w-64 xl:!mr-10">
+                <div class="text-left">
+                  <div class="flex items-center">
+                    <div class="font-medium" v-if="model.type_id != 5">{{ t("questions.Answers")}}</div>
+                    
+                  </div>
+                  <div class="leading-relaxed text-slate-500 text-xs mt-3" v-if="model.type_id != 5">
+                    {{ t("questions.Add answers according to the type of question you have selected")}}
                   </div>
                 </div>
-                <div class="w-full mt-3 xl:mt-0 flex-1">
-                  <div
-                    class="relative pl-5 pr-5 xl:pr-10 py-10 bg-slate-50 dark:bg-transparent dark:border rounded-md"
-                  >
-                    <template v-if="model.type_id == 4">
-                      <CreateAnswer :answer="{}" 
-                                    :index="1" 
+              </div>
+              <div class="w-full mt-3 xl:mt-0 flex-1">
+                <div
+                  class="relative pl-5 pr-5 xl:pr-10 py-10 bg-slate-50 dark:bg-transparent dark:border rounded-md"
+                >
+                  <template v-if="model.type_id == 4">
+                    <AnswerEditor :answer="{}" 
+                                  :index="1" 
+                                  :type="selectedType" 
+                                  @change="answerChange"
+                                  @addAnswer="addAnswer" 
+                                  @deleteAnswer="deleteAnswer" />
+                  </template>
+                  <template v-else-if="model.type_id == 5">
+                    <div v-if="!model.questions.length" class="text-center text-gray-600">
+                      {{ t("questions.You do not have any questions added yet") }}
+                    </div>
+                    <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
+                      <button
+                        class="btn btn-outline-primary border-dashed w-full"
+                        type="button"
+                        @click="addQuestion()"
+                      >
+                        <PlusIcon class="w-4 h-4 mr-2" /> {{ t("questions.Add Question") }}
+                      </button>
+                    </div>
+                    <div v-for="(question, index) in model.questions" :key="question.id">
+                      <QuestionEditor :question="question" 
+                                    :index="index" 
                                     :type="selectedType" 
                                     :typeParagraph="typeListParagraph"
-                                    @change="answerChange"
-                                    @addAnswer="addAnswer" 
-                                    @deleteAnswer="deleteAnswer" />
-                    </template>
-                    <template v-else>
-                      <div v-if="!model.answers.length" class="text-center text-gray-600">
-                              {{ t("questions.You do not have any answers added yet") }}
-                            </div>
-                            <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
-                              <button
-                                class="btn btn-outline-primary border-dashed w-full"
-                                type="button"
-                                v-if="showAnswerButton == true" @click="addAnswer()"
-                              >
-                                <PlusIcon class="w-4 h-4 mr-2" /> {{ t("questions.Add Answer") }}
-                              </button>
-                            </div>
-                          
-                            <div class="mt-5">
-                              
-                              <div v-for="(answer, index) in model.answers" :key="answer.id">
-                                <CreateAnswer :answer="answer" 
-                                              :index="index" 
-                                              :type="selectedType" 
-                                              :typeParagraph="typeListParagraph"
-                                              @change="answerChange"
-                                              @addAnswer="addAnswer" 
-                                              @deleteAnswer="deleteAnswer" />
-                              </div>
-                              
-                            </div>
-                    </template>
+                                    @change="questionChange"
+                                    @addQuestion="addQuestion" 
+                                    @deleteQuestion="deleteQuestion" />
+                    </div>
+                  </template>
+                  <template v-else>
+                    <div v-if="!model.answers.length" class="text-center text-gray-600">
+                      {{ t("questions.You do not have any answers added yet") }}
+                    </div>
+                    <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
+                      <button
+                        class="btn btn-outline-primary border-dashed w-full"
+                        type="button"
+                        v-if="showAnswerButton == true" @click="addAnswer()"
+                      >
+                        <PlusIcon class="w-4 h-4 mr-2" /> {{ t("questions.Add Answer") }}
+                      </button>
+                    </div>
+                        
+                    <div class="mt-5">
                       
+                      <div v-for="(answer, index) in model.answers" :key="answer.id">
+                        <AnswerEditor :answer="answer" 
+                                      :index="index" 
+                                      :type="selectedType" 
+                                      :typeParagraph="typeListParagraph"
+                                      @change="answerChange"
+                                      @addAnswer="addAnswer" 
+                                      @deleteAnswer="deleteAnswer" />
+                      </div>
+                    </div>
+                  </template>
+                </div>
+              </div>
+            </div>
+            <div v-else-if="model.type_id == 5" class="intro-y box p-5 mt-5">
+              <div
+                class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5"
+              >
+                <div
+                  class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5"
+                >
+                  <ChevronDownIcon class="w-4 h-4 mr-2" /> Questions of paragraph
+                  <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
+                    <button
+                      class="btn btn-outline-primary border-dashed w-full"
+                      type="button"
+                      @click="addQuestion()"
+                    >
+                      <PlusIcon class="w-4 h-4 mr-2" /> {{ t("questions.Add Question") }}
+                    </button>
                   </div>
                 </div>
+                
+                <div class="mt-5">
+                  <div v-if="!model.questions.length" class="text-center text-gray-600">
+                    {{ t("questions.You do not have any questions added yet") }}
+                  </div>
+                  
+                  <div
+                    class="form-inline items-start flex-col xl:flex-row mt-2 pt-2 first:mt-0 first:pt-0"
+                    v-for="(question, index) in model.questions" :key="question.id"
+                  >
+                    <div class="form-label xl:w-64 xl:!mr-10">
+                      <div class="text-left">
+                        <div class="flex items-center">
+                          <div class="font-medium">{{ t("questions.Question")}} {{ index + 1}}.</div>
+                        </div>
+                        <div class="leading-relaxed text-slate-500 text-xs mt-3">
+                          {{ t("questions.Add questions and its answers accordingly")}}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <QuestionEditor :question="question" 
+                                    :index="index" 
+                                    :type="selectedType" 
+                                    :typeParagraph="typeListParagraph"
+                                    @change="questionChange"
+                                    @addQuestion="addQuestion" 
+                                    @deleteQuestion="deleteQuestion" />
+                  </div>
+                </div>
+              </div>
             </div>
-            
+              
           </div>
+         
         </div>
       </div>
       <!-- END: Product Variant (Details) -->
@@ -538,7 +613,8 @@ import { required, helpers } from "@vuelidate/validators";
 import { useI18n } from "vue-i18n";
 import axiosClient from "@/axios";
 import Editor from "@tinymce/tinymce-vue";
-import CreateAnswer from "@/components/answers/Create.vue";
+import AnswerEditor from "@/components/QuestionAnswerEditor/Answer.vue";
+import QuestionEditor from "@/components/QuestionAnswerEditor/Question.vue";
 
 const submitted = ref(false);
 
@@ -564,6 +640,7 @@ const model = ref({
   description: "",
   note: "",
   answers: [],
+  questions: []
 });
 
 const selectedSubjectId = ref("");
@@ -717,6 +794,35 @@ function answerChange(answer) {
   model.value.answers = model.value.answers.map((q) => {
     if (q.id === answer.id) {
       return JSON.parse(JSON.stringify(answer));
+    }
+    return q;
+  });
+}
+
+
+function addQuestion(index) {
+  const newQuestion = {
+    id: "",
+    type_id: "",
+    question: "",
+    description: "",
+    note: "",
+    answers: [],
+  };
+  model.value.questions.splice(index, 0, newQuestion);
+}
+function deleteQuestion(question) {
+  model.value.questions = model.value.questions.filter((q) => q !== question);
+}
+function questionChange(question) {
+  // Important to explicitelly assign question.data.options, because otherwise it is a Proxy object
+  // and it is lost in JSON.stringify()
+  if (question.answers) {
+    question.answers = [...question.answers];
+  }
+  model.value.questions = model.value.questions.map((q) => {
+    if (q.id === question.id) {
+      return JSON.parse(JSON.stringify(question));
     }
     return q;
   });

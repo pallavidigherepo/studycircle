@@ -8,10 +8,9 @@
       <router-link :to="{name: 'Dashboard'}" class="-intro-x hidden md:flex">
         <img
           alt="Learning Management System"
-          class="w-6"
-          src="@/assets/images/logo.svg"
+          class="w-20"
+          src="@/assets/images/logos/logo.png"
         />
-        <span class="text-white text-lg ml-3"> Meritest LMS </span>
       </router-link>
       <!-- END: Logo -->
       <!-- BEGIN: Breadcrumb -->

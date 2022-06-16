@@ -6,17 +6,17 @@
       <div class="block xl:grid grid-cols-2 gap-4">
         <!-- BEGIN: Login Info -->
         <div class="hidden xl:flex flex-col min-h-screen">
-          <a href="" class="-intro-x flex items-center pt-5">
-            <img
-              alt="Icewall Tailwind HTML Admin Template"
-              class="w-6"
-              src="@/assets/images/logo.svg"
-            />
-            <span class="text-white text-lg ml-3"> Icewall </span>
-          </a>
+          <router-link :to="{name: 'Dashboard'}" class="-intro-x hidden md:flex">
+              <img
+                alt="Learning Management System"
+                class="w-6"
+                src="@/assets/images/logos/MT_icon.png"
+              />
+              <span class="text-white text-lg ml-3"> Meritest LMS </span>
+            </router-link>
           <div class="my-auto">
             <img
-              alt="Icewall Tailwind HTML Admin Template"
+              alt="Meritest Learning Management System"
               class="-intro-x w-1/2 -mt-16"
               src="@/assets/images/illustration.svg"
             />
