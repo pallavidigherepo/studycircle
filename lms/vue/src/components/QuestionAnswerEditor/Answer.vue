@@ -39,28 +39,28 @@
                 
                 <div class="input-group-text">
                   <input
-                  v-if="type == 1 || type == 3"
-                  :id="`is_correct`+index"
-                  name="is_correct"
-                  type="radio"
-                  v-model="model.is_correct"
-                  class="
-                    form-check-input
-                  "
-                />
-                <input
-                  v-if="type == 2"
-                  :id="`is_correct`+index"
-                  name="is_correct"
-                  type="checkbox"
-                  v-model="model.is_correct"
-                  class="
-                    form-check-input
-                  "
-                />
-                  <label :for="`is_correct`+index" class="form-check-label">{{
-                  t("questions.Is Correct")
-                }}</label>
+                    v-if="type == 1 || type == 3"
+                    :id="`is_correct`+index"
+                    name="is_correct"
+                    type="radio"
+                    v-model="model.is_correct"
+                    @change="dataChange"
+                    class="
+                      form-check-input
+                    "
+                  />
+                  <input
+                    v-if="type == 2"
+                    :id="`is_correct`+index"
+                    name="is_correct"
+                    type="checkbox"
+                    v-model="model.is_correct"
+                    @change="dataChange"
+                    class="
+                      form-check-input
+                    "
+                  />
+                  <label :for="`is_correct`+index" class="form-check-label">{{ t("questions.Is Correct") }}</label>
                 </div>
               </div>
               <div class="w-20 flex text-slate-500 mt-3 xl:mt-0">
@@ -105,12 +105,6 @@ const questionTypes = computed(() => store.state.questionTypes);
 function upperCaseFirst(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
-function getOptions() {
-  return model.value.data.options;
-}
-function setOptions(options) {
-  model.value.data.options = options;
-}
 // Check if the question should have options
 function shouldHaveOptions() {
   return ["1", "2", "3"].includes(props.type);
@@ -119,27 +113,11 @@ function shouldHaveOptions() {
 function isTrueFalse() {
   return ["4"].includes(props.type);
 }
-// Add option
-function addOption() {
-  setOptions([...getOptions(), { uuid: uuidv4(), text: "" }]);
-  dataChange();
-}
-// Remove option
-function removeOption(op) {
-  setOptions(getOptions().filter((opt) => opt !== op));
-  dataChange();
-}
-function typeChange() {
-  if (shouldHaveOptions()) {
-    setOptions(getOptions() || []);
-  }
-  dataChange();
-}
 // Emit the data change
 function dataChange() {
   const data = model.value;
   if (!shouldHaveOptions()) {
-    delete data.data.options;
+    delete data.answers;
   }
   emit("change", data);
 }

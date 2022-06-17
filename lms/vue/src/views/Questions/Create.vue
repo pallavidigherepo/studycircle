@@ -495,7 +495,7 @@
                     </div>
                     <div v-for="(question, index) in model.questions" :key="question.id">
                       <QuestionEditor :question="question" 
-                                    :index="index" 
+                                    :questionIndex="index" 
                                     :type="selectedType" 
                                     :typeParagraph="typeListParagraph"
                                     @change="questionChange"
@@ -576,7 +576,7 @@
                                     :index="index" 
                                     :type="selectedType" 
                                     :typeParagraph="typeListParagraph"
-                                    @change="questionChange"
+                                    @questionChange="questionChange"
                                     @addQuestion="addQuestion" 
                                     @deleteQuestion="deleteQuestion" />
                   </div>
@@ -599,6 +599,7 @@
         </button>
       </div>
     </div>
+    {{model}}
     </form>
   </div>
 </template>
@@ -698,7 +699,7 @@ async function submitForm() {
   //
   submitted.value = true;
   v$.value.$validate(); // checks all inputs
-  console.log(v$.value.$errors);
+  //console.log(model);
   if (!v$.value.$error) {
     isLoading.value = true;
     await store
@@ -764,7 +765,7 @@ function addAnswer(index) {
     //return ;
   } else {
     const newAnswer = {
-      id: "",
+      id: makeid(3),
       answer: null,
       is_correct: false,
     };
@@ -788,9 +789,9 @@ function changeType(type) {
 function answerChange(answer) {
   // Important to explicitelly assign question.data.options, because otherwise it is a Proxy object
   // and it is lost in JSON.stringify()
-  /*if (question.data.options) {
-    question.data.options = [...question.data.options];
-  }*/
+  // if (answer.answers) {
+  //   answer.answers = [...question.answers];
+  // }
   model.value.answers = model.value.answers.map((q) => {
     if (q.id === answer.id) {
       return JSON.parse(JSON.stringify(answer));
@@ -802,12 +803,12 @@ function answerChange(answer) {
 
 function addQuestion(index) {
   const newQuestion = {
-    id: "",
+    id: makeid(3),
     type_id: "",
     question: "",
     description: "",
     note: "",
-    answers: [],
+    answers: {},
   };
   model.value.questions.splice(index, 0, newQuestion);
 }
@@ -817,15 +818,28 @@ function deleteQuestion(question) {
 function questionChange(question) {
   // Important to explicitelly assign question.data.options, because otherwise it is a Proxy object
   // and it is lost in JSON.stringify()
-  if (question.answers) {
-    question.answers = [...question.answers];
-  }
+  // if (question.answers) {
+  //   question.answers = [...question.answers];
+  // }
+  
   model.value.questions = model.value.questions.map((q) => {
     if (q.id === question.id) {
       return JSON.parse(JSON.stringify(question));
     }
     return q;
   });
+  //console.log(model.value.questions)
+}
+
+
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
 }
 </script>
 

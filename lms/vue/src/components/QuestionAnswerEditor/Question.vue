@@ -22,7 +22,8 @@
                       <input type="text" 
                             class="form-control" 
                             placeholder="Question" 
-                            v-model="model.question" />
+                            v-model="model.question"
+                            @change="questionChange" />
                       
                   </div>
               </div>
@@ -33,7 +34,9 @@
                     <div class="input-group flex-1">
                         <textarea class="form-control" 
                                   placeholder="Description" 
-                                  v-model="model.description"></textarea>
+                                  v-model="model.description"
+                                  @change="questionChange">
+                        </textarea>
                         
                     </div>
                 </div>
@@ -44,7 +47,8 @@
                     <div class="input-group flex-1">
                         <textarea class="form-control" 
                                   placeholder="Note" 
-                                  v-model="model.note"></textarea>
+                                  v-model="model.note" 
+                                  @change="questionChange"></textarea>
                         
                     </div>
                 </div>
@@ -69,6 +73,7 @@
                     </div>
                 </div>
             </div>
+            {{ model}}
             <div class="xl:ml-20 xl:pl-5 xl:pr-10 mt-5 first:mt-0" v-if="model.type_id != ''">
                 <div v-if="!model.answers.length" class="text-center text-gray-600">
                   {{ t("questions.You do not have any answers added yet") }}
@@ -83,14 +88,9 @@
                   </button>
                 </div>
                 
-                <!-- <button type="button" 
-                        class="btn btn-outline-primary border-dashed w-full" 
-                        @click.prevent="addAnswer()">
-                  <PlusIcon class="w-4 h-4 mr-2"/> {{ t("questions.Add Answer")}}
-                </button> -->
-                <div v-for="(answer, index) in model.answers" :key="answer.id">
+                <div v-for="(answer, indexanswer) in model.answers" :key="indexanswer">
                   <AnswerEditor :answer="answer" 
-                                :index="index" 
+                                :index="indexanswer" 
                                 :type="model.type_id" 
                                 @change="answerChange"
                                 @addAnswer="addAnswer" 
@@ -104,17 +104,20 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 import AnswerEditor from "@/components/QuestionAnswerEditor/Answer.vue";
+import { number } from "@intlify/core-base";
+
 const props = defineProps({
     question: Object,
     index: Number,
+    questionIndex: Number,
     type: [String, Number],
     typeParagraph: Object,
     answer: Object
 });
-const emit = defineEmits(["change", "addQuestion", "deleteQuestion"]);
+const emit = defineEmits(["change", "addQuestion", "deleteQuestion", "questionChange"]);
 const { t } = useI18n();
 const model = ref(JSON.parse(JSON.stringify(props.question)));
 const selectedType = ref("");
@@ -122,10 +125,11 @@ const showAnswerButton = ref(true);
 
 function addAnswer(index) {
     const newAnswer = {
-      id: "",
+      id: makeid(2),
       answer: null,
       is_correct: false,
     };
+    
     model.value.answers.splice(index, 0, newAnswer);
 }
 
@@ -140,14 +144,16 @@ function changeType(type) {
   } else {
     showAnswerButton.value = true;
   }
+  model.value.type_id = type;
 }
 
 function answerChange(answer) {
   // Important to explicitelly assign question.data.options, because otherwise it is a Proxy object
   // and it is lost in JSON.stringify()
-  /*if (question.data.options) {
-    question.data.options = [...question.data.options];
-  }*/
+  if (props.question.answers) {
+    props.question.answers = [...props.question.answers];
+  }
+  
   model.value.answers = model.value.answers.map((q) => {
     if (q.id === answer.id) {
       return JSON.parse(JSON.stringify(answer));
@@ -155,13 +161,27 @@ function answerChange(answer) {
     return q;
   });
 }
-
+function questionChange(question) {
+  //model.value.question = JSON.parse(JSON.stringify(question));
+  emit('questionChange', model.value)
+}
 function addQuestion() {
-  emit("addQuestion", props.index + 1);
+  emit("addQuestion", props.questionIndex + 1);
 }
 function deleteQuestion() {
   emit("deleteQuestion", props.question);
 }
+
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
+
 </script>
 
 <style>
