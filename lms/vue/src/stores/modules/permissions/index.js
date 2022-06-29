@@ -36,16 +36,16 @@ export default {
                         field: "guard_name",
                         sort: true,
                     },
-                    {
-                        label: "ACTIONS",
-                        field: false,
-                        sort: false,
-                        actions: {
-                            show: false,
-                            edit: true,
-                            delete: true,
-                        }
-                    }
+                    // {
+                    //     label: "ACTIONS",
+                    //     field: false,
+                    //     sort: false,
+                    //     actions: {
+                    //         show: false,
+                    //         edit: false,
+                    //         delete: true,
+                    //     }
+                    // }
                 ]
             }
         }

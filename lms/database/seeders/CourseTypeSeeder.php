@@ -16,16 +16,16 @@ class CourseTypeSeeder extends Seeder
     {
         $courseTypes = [
             [
-                'label' => 'Complete Course',
-                'description' => 'Complete Course',
+                'label' => json_encode('Complete Course'),
+                'description' => json_encode('Complete Course'),
             ],
             [
-                'label' => 'Crash Course',
-                'description' => 'Crash Course',
+                'label' => json_encode('Crash Course'),
+                'description' => json_encode('Crash Course'),
             ],
             [
-                'label' => 'Half Yearly',
-                'description' => 'Half yearly course',
+                'label' => json_encode('Half Yearly'),
+                'description' => json_encode('Half yearly course'),
             ]
         ];
 

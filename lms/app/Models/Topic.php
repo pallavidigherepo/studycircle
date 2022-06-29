@@ -45,4 +45,9 @@ class Topic extends Model
     public function chapters() {
         return $this->belongsTo(Chapter::class)->with('chapters')->where('parent_id', '!=', null);
     }
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class, 'parent_id')->where('parent_id', '!=', null);
+    }
 }

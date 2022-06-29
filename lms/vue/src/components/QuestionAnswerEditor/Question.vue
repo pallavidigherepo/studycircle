@@ -23,7 +23,7 @@
                             class="form-control" 
                             placeholder="Question" 
                             v-model="model.question"
-                            @change="questionChange" />
+                            @change="dataChange" />
                       
                   </div>
               </div>
@@ -35,7 +35,7 @@
                         <textarea class="form-control" 
                                   placeholder="Description" 
                                   v-model="model.description"
-                                  @change="questionChange">
+                                  @change="dataChange">
                         </textarea>
                         
                     </div>
@@ -48,7 +48,7 @@
                         <textarea class="form-control" 
                                   placeholder="Note" 
                                   v-model="model.note" 
-                                  @change="questionChange"></textarea>
+                                  @change="dataChange"></textarea>
                         
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                     </div>
                 </div>
             </div>
-            {{ model}}
+            
             <div class="xl:ml-20 xl:pl-5 xl:pr-10 mt-5 first:mt-0" v-if="model.type_id != ''">
                 <div v-if="!model.answers.length" class="text-center text-gray-600">
                   {{ t("questions.You do not have any answers added yet") }}
@@ -88,7 +88,7 @@
                   </button>
                 </div>
                 
-                <div v-for="(answer, indexanswer) in model.answers" :key="indexanswer">
+                <div v-for="(answer, indexanswer) in model.answers" :key="answer.id">
                   <AnswerEditor :answer="answer" 
                                 :index="indexanswer" 
                                 :type="model.type_id" 
@@ -145,6 +145,10 @@ function changeType(type) {
     showAnswerButton.value = true;
   }
   model.value.type_id = type;
+  // if (shouldHaveOptions()) {
+  //   setOptions(getOptions() || []);
+  // }
+  dataChange();
 }
 
 function answerChange(answer) {
@@ -160,10 +164,15 @@ function answerChange(answer) {
     }
     return q;
   });
+  dataChange();
 }
-function questionChange(question) {
+function dataChange(question) {
   //model.value.question = JSON.parse(JSON.stringify(question));
-  emit('questionChange', model.value)
+    const data = model.value;
+    // if (!shouldHaveOptions()) {
+    //   delete data.data.options;
+    // }
+  emit('change', data)
 }
 function addQuestion() {
   emit("addQuestion", props.questionIndex + 1);

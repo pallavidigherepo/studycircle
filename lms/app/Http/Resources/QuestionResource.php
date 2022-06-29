@@ -24,7 +24,11 @@ class QuestionResource extends JsonResource
             'id' => $this->id,
             'question' => $this->question,
             'description' => $this->description,
-            'board_id' => $this->borard_id,
+            'board' => $this->board,
+            'standard' => $this->standard,
+            //'difficulty_level' => $this->difficulty_level,
+            //'subject' => json_decode($this->subject->label),
+            'board_id' => $this->board_id,
             'standard_id' => $this->standard_id,
             'difficulty_level_id' => $this->difficulty_level_id,
             'type_id' => $this->type_id,
@@ -37,6 +41,8 @@ class QuestionResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'tags' => $tags,
+            'answers' => $this->answers,
+            'questions' => $this->questions,
         ];
     }
 }

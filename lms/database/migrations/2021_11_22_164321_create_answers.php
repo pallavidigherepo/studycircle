@@ -19,8 +19,8 @@ class CreateAnswers extends Migration
             $table->boolean('is_correct')->default(false);
             $table->unsignedBigInteger('question_id');
 
-            $table->unsignedBigInteger('created_by');
-            $table->unsignedBigInteger('updated_by');
+            $table->unsignedBigInteger('created_by')->default(0);
+            $table->unsignedBigInteger('updated_by')->default(0);
 
             $table->foreign('question_id')->references('id')->on('questions');
             $table->foreign('created_by')->references('id')->on('users');

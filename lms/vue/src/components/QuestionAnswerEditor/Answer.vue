@@ -24,7 +24,7 @@
       <template v-if="shouldHaveOptions()">
         
         <div class="form-inline mt-5 items-start first:mt-0">
-          <label class="form-label mt-2 sm:w-20">{{ index + 1 }}.</label>
+          <label class="form-label mt-2 sm:w-20">Option {{ index + 1 }}.</label>
           <div class="flex-1">
             <div class="xl:flex items-center mt-5 first:mt-0">
               <div class="input-group flex-1">
@@ -126,6 +126,16 @@ function addAnswer() {
 }
 function deleteAnswer() {
   emit("deleteAnswer", props.answer);
+}
+
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
 }
 </script>
 

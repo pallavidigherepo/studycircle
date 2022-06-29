@@ -13,12 +13,14 @@ class Question extends Model
 
     protected $guarded = [];
 
-    protected $fillable = array('question', 
+    protected $fillable = array(
+                                'parent_id',
+                                'question', 
                                 'description', 
-                                'board', 
-                                'standard', 
+                                'board_id', 
+                                'standard_id', 
                                 'note', 
-                                'difficulty_level', 
+                                'difficulty_level_id', 
                                 'type_id',
                                 'language_id',
                                 'subject_id',
@@ -50,6 +52,14 @@ class Question extends Model
         return $this->hasOne(QuestionType::class);
     }
 
+    public function standard() {
+        return $this->hasOne(Standard::class);
+    }
+
+    public function board() {
+        return $this->hasOne(Board::class);
+    }
+
     public function difficulty_level() {
         return $this->hasOne(QuestionDifficultyLevel::class);
     }
@@ -72,6 +82,14 @@ class Question extends Model
 
     public function updator() {
         return $this->hasOne(User::class);
+    }
+
+    public function questions() {
+        return $this->hasMany(Question::class, 'parent_id');
+    }
+
+    public function answers() {
+        return $this->hasMany(Answer::class);
     }
 
 }

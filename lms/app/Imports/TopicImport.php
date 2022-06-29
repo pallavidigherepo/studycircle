@@ -32,7 +32,7 @@ class TopicImport implements ToCollection, WithHeadingRow
     public function collection(Collection $rows)
     {
          Validator::make($rows->toArray(), [
-            '*.label' => 'required|unique:subjects',
+            '*.label' => 'required',
             //'label' => 'required|unique:subjects',
             // Above is alias for as it always validates in batches
             //'*.label' => 'required|unique:subjects',

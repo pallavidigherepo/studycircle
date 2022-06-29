@@ -18,8 +18,7 @@ export default {
                 defaultPage: 1,
                 defaultSearch: "",
                 defaultPerPage: 10,
-                columns: [
-                    {
+                columns: [{
                         label: "ID",
                         field: "id",
                         sort: true,
@@ -33,13 +32,13 @@ export default {
                     },
                     {
                         label: "Subject",
-                        field: "subject",
+                        field: "subject_id",
                         sort: true,
                         isJson: false,
                     },
                     {
                         label: "CHAPTER",
-                        field: "chapter",
+                        field: "chapter_id",
                         sort: true,
                         isJson: false,
                     },

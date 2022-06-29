@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Models\Question;
+use App\Http\Requests\StoreQuestionRequest;
+use App\Http\Requests\UpdateQuestionRequest;
 use App\Http\Resources\QuestionResource;
 use Illuminate\Http\Request;
-use App\Models\Question;
 use App\Models\Board;
 use App\Models\Standard;
 use App\Models\Language;
@@ -14,6 +16,8 @@ use App\Models\QuestionType;
 use App\Models\Chapter;
 use App\Models\Subject;
 use App\Models\Topic;
+use App\Models\Answer;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
@@ -39,44 +43,102 @@ class QuestionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreQuestionRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreQuestionRequest $request)
     {
-        //
+        //dd($request);
+        // First most: Validate all the request data.
+        $data = $request->validated();
+        $data['created_by'] = Auth::user()->id;
+        $data['updated_by'] = Auth::user()->id;
+        $questionCreated = Question::create($data);
+        // When question is created we need to check if the added question has $request['questions']
+        // If yes then we have save all the questions and approriate answers.
+        if (!empty($request['questions'])) {
+            $questions = $request['questions'];
+            
+            foreach ($questions as $question) {
+                $inputQuestionData = [
+                    'parent_id' => $questionCreated->id,
+                    'question' => $question['question'],
+                    'description' => $question['description'],
+                    'note' => $question['note'],
+                    "type_id" => $question['type_id'],
+                    'board_id' => $data['board_id'],
+                    "standard_id" => $data['standard_id'],
+                    "difficulty_level_id" => $data['difficulty_level_id'],
+                    "subject_id" => $data['subject_id'],
+                    "chapter_id" => $data['chapter_id'],
+                    "topic_id" => $data['topic_id'],
+                    "language_id" => $data['language_id'],
+                    "created_by" => Auth::user()->id,
+                    "updated_by" => Auth::user()->id,
+                ]; 
+                
+                $pQuestion = Question::create($inputQuestionData);
+                // After question is saved/created successfully, we need to add 
+                // answers of that created question.
+                
+                $answers = $question['answers'];
+                if (!empty($answers)) {
+                    $i = 0;
+                    foreach ($answers as $answer) {
+                        if ($answer['is_correct'] == "on" || $answer['is_correct'] == 1) {
+                            $isCorrect = 1;
+                        } else {
+                            $isCorrect = 0;
+                        }
+                        $inputData[$i++] = [
+                            'answer' => $answer['answer'],
+                            'is_correct' => $isCorrect,
+                            'created_by' => Auth::user()->id,
+                            'updated_by' => Auth::user()->id,
+                        ];
+                        //$question->answers()->create($inputData);
+                    }
+                }
+                $pQuestion->answers()->createMany($inputData);
+                $pQuestion->save();
+            }
+        } else {
+            // After question is saved/created successfully, we need to add 
+            // answers of that created question.
+            
+            $answers = $request['answers'];
+            if (!empty($answers)) {
+                $i = 0;
+                foreach ($answers as $answer) {
+                    if ($answer['is_correct'] == "on" || $answer['is_correct'] == 1) {
+                        $isCorrect = 1;
+                    } else {
+                        $isCorrect = 0;
+                    }
+                    $inputData[$i++] = [
+                        'answer' => $answer['answer'],
+                        'is_correct' => $isCorrect,
+                        'created_by' => Auth::user()->id,
+                        'updated_by' => Auth::user()->id,
+                    ];
+                    //$question->answers()->create($inputData);
+                }
+            }
+            $questionCreated->answers()->createMany($inputData);
+            $questionCreated->save();
+        }
+        
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function show(Question $question)
     {
         //
     }
@@ -84,11 +146,11 @@ class QuestionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateQuestionRequest  $request
+     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateQuestionRequest $request, Question $question)
     {
         //
     }
@@ -96,59 +158,11 @@ class QuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Question $question)
     {
         //
-    }
-
-
-    /**
-     * Get all the extra options that will be required in create form
-     * 
-     * @return \Illuminate\Http\Response 
-     */
-    public function options()
-    {
-        $response = [];
-        // Get the list of all the boards
-        $boards = Board::all()->pluck('name', 'id');
-
-        // Get the list of all the standards or classes
-        $standards = Standard::all()->pluck('name', 'id');
-
-        // Get the list of all the difficulty levels
-        $difficultyLevels = QuestionDifficultyLevel::all()->pluck('name', 'id');
-
-        // Get the list of all the question types
-        $questionTypes = QuestionType::all()->pluck('name', 'id');
-
-        // Get the list of all the languages
-        $languages = Language::all()->pluck('name', 'id');
-
-        // Get the list of all the subjects
-        $subjects = Subject::all()->pluck('name', 'id');
-
-        // Get the list of all the chapters
-        $chapters = Chapter::all()->pluck('name', 'id');
-
-        // Get the list of all the topics
-        $topics = Topic::all()->pluck('name', 'id');
-
-        $response = [
-            'boards' => $boards,
-            'standards' => $standards,
-            'difficultyLevels' => $difficultyLevels,
-            'questionTypes' => $questionTypes,
-            'languages' => $languages,
-            'subjects' => $subjects,
-            'chapters' => $chapters,
-            'topics' => $topics,
-        ];
-
-
-        return response()->json($response);
     }
 }

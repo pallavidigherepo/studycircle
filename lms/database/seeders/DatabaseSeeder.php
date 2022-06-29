@@ -20,8 +20,9 @@ class DatabaseSeeder extends Seeder
             QuestTypeSeeder::class,
             BoardSeeder::class,
             StandardSeeder::class,
-            //CourseSeeder::class,
-            //CourseTypeSeeder::class,
+            CourseTypeSeeder::class,
+            CourseSeeder::class,
+            SubjectChapterTopicSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 
