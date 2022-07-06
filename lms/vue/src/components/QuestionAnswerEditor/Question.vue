@@ -54,6 +54,44 @@
                 </div>
             </div>
             <div class="form-inline mt-5 first:mt-0">
+                <label class="form-label sm:w-20">{{
+                        t("questions.Marks")
+                    }}</label>
+                    
+                <div class="flex items-center flex-1 xl:pr-10">
+                    <div class="input-group flex-1">
+                        <input id="form-marks" 
+                              type="text" 
+                              class="form-control" 
+                              placeholder="Marks"
+                              v-model.trim="model.marks"
+                              />                        
+                    </div>
+                </div>
+                <!-- <div class="form-help text-right">
+                  {{ t("questions.These are the marks, if answered correctly")}}
+                </div> -->
+            </div>
+            <div class="form-inline mt-5 first:mt-0">
+                <label class="form-label sm:w-20">{{
+                        t("questions.Negative Marks")
+                    }}</label>
+                <div class="flex items-center flex-1 xl:pr-10">
+                    <div class="input-group flex-1">
+                        <input id="form-negative-marks" 
+                              type="text" 
+                              class="form-control" 
+                              placeholder="Negative Marks"
+                              v-model.trim="model.negative_marks"
+                              />
+                    </div>
+                </div>
+                <!-- <div class="form-help text-right">
+                  {{ t("questions.These are negative marks if answered incorrect")}}
+                </div> -->
+                
+            </div>
+            <div class="form-inline mt-5 first:mt-0">
                 <label class="form-label sm:w-20">{{ t("questions.Question type")}}</label>
                 <div class="flex items-center flex-1 xl:pr-10">
                     <div class="w-full mt-3 xl:mt-0 flex-1">
@@ -63,7 +101,8 @@
                               create: false,
                               placeholder: 'Select Type',
                               autocomplete: 'off',
-                              onChange: changeType
+                              onChange: changeType,
+                              items:model.type_id,
                             }" >
                             <option>{{ t('questions.Select Question Type') }}</option>
                             <option v-for="(type, indext) in typeParagraph" :key="indext" :value="indext">
@@ -75,7 +114,7 @@
             </div>
             
             <div class="xl:ml-20 xl:pl-5 xl:pr-10 mt-5 first:mt-0" v-if="model.type_id != ''">
-                <div v-if="!model.answers.length" class="text-center text-gray-600">
+                <div v-if="model.answers && !model.answers.length" class="text-center text-gray-600">
                   {{ t("questions.You do not have any answers added yet") }}
                 </div>
                 <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
@@ -127,7 +166,7 @@ function addAnswer(index) {
     const newAnswer = {
       id: makeid(2),
       answer: null,
-      is_correct: false,
+      is_correct: 0,
     };
     
     model.value.answers.splice(index, 0, newAnswer);

@@ -40,27 +40,25 @@
                 <div class="input-group-text">
                   <input
                     v-if="type == 1 || type == 3"
-                    :id="`is_correct`+index"
-                    name="is_correct"
+                    :id="`is_correct-`+index"
                     type="radio"
+                    class="form-check-input"
                     v-model="model.is_correct"
+                    :checked="model.is_correct == 1 ?? 'on'"
                     @change="dataChange"
-                    class="
-                      form-check-input
-                    "
-                  />
+                    :value="model.is_correct"
+                  />                  
                   <input
                     v-if="type == 2"
-                    :id="`is_correct`+index"
-                    name="is_correct"
+                    :id="`is_correct-`+index"
                     type="checkbox"
+                    class="form-check-input"
                     v-model="model.is_correct"
+                    :checked="model.is_correct == 1 ?? 'on'"
                     @change="dataChange"
-                    class="
-                      form-check-input
-                    "
+                    :value="model.is_correct == 'true' ? true : false "
                   />
-                  <label :for="`is_correct`+index" class="form-check-label">{{ t("questions.Is Correct") }}</label>
+                  <label :for="`is_correct-`+index" class="form-check-label">{{ t("questions.Is Correct") }}</label>
                 </div>
               </div>
               <div class="w-20 flex text-slate-500 mt-3 xl:mt-0">
@@ -107,11 +105,11 @@ function upperCaseFirst(str) {
 }
 // Check if the question should have options
 function shouldHaveOptions() {
-  return ["1", "2", "3"].includes(props.type);
+  return [1, 2, 3].includes(props.type) || ["1", "2", "3"].includes(props.type);
 }
 // Check if the question is true/false
 function isTrueFalse() {
-  return ["4"].includes(props.type);
+  return [4].includes(props.type);
 }
 // Emit the data change
 function dataChange() {

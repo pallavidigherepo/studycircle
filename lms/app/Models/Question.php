@@ -17,6 +17,8 @@ class Question extends Model
                                 'parent_id',
                                 'question', 
                                 'description', 
+                                'marks', 
+                                'negative_marks', 
                                 'board_id', 
                                 'standard_id', 
                                 'note', 
@@ -31,59 +33,56 @@ class Question extends Model
 
     protected $searchable = [
         'question',
-        'board',
-        'standard',
-        'note',
     ];
 
     protected $sortable = [
         'id',
         'question',
-        'board',
-        'standard',
-        'note',
     ];
 
     public function languages() {
-        return $this->hasOne(Language::class);
+        return $this->belongsTo(Language::class);
     }
 
     public function question_type() {
-        return $this->hasOne(QuestionType::class);
+        return $this->belongsTo(QuestionType::class, 'type_id');
     }
 
     public function standard() {
-        return $this->hasOne(Standard::class);
+        return $this->belongsTo(Standard::class);
     }
 
     public function board() {
-        return $this->hasOne(Board::class);
+        return $this->belongsTo(Board::class);
     }
 
     public function difficulty_level() {
-        return $this->hasOne(QuestionDifficultyLevel::class);
+        return $this->belongsTo(QuestionDifficultyLevel::class);
     }
 
     public function subject() {
-        return $this->hasOne(Subject::class);
+        return $this->belongsTo(Subject::class);
     }
 
     public function chapter() {
-        return $this->hasOne(Chapter::class);
+        return $this->belongsTo(Chapter::class);
     }
 
     public function topic() {
-        return $this->hasOne(Topic::class);
+        return $this->belongsTo(Topic::class);
     }
 
     public function creator() {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function updator() {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
+    public function scopeRoot($query) {
+        $query->whereNull('parent_id');
+    }
     public function questions() {
         return $this->hasMany(Question::class, 'parent_id');
     }

@@ -37,270 +37,269 @@ import ShowTopic from '../views/Topics/Show.vue';
 import Questions from '../views/Questions/Index.vue';
 import CreateQuestion from '../views/Questions/Create.vue';
 import EditQuestion from '../views/Questions/Edit.vue';
+import ShowQuestion from '../views/Questions/Show.vue';
 
 import Login from "../views/Auth/Login.vue";
 import ErrorPage from "../views/ErrorPage.vue";
 
 import store from '@/stores';
 
-const routes = [
-  {
-    path: "/",
-    component: DefaultLayout,
-    redirect: '/dashboard',
-    meta: { requiresAuth: true },
-    children: [
-      {
-        path: "/dashboard",
-        name: "Dashboard",
-        component: Dashboard,
-      },
-      {
-        path: "/permissions",
-        name: "PermissionIndex",
-        component: PermissionIndex,
-      },
-      {
-        path: "/roles",
-        name: "Roles",
-        component: Roles,
-        meta: {
-          parent: 'Roles'
-        },
-        children: [
-          {
-            path: "/roles/create",
-            name: "CreatRole",
-            component: CreateRole,
-            meta: {
-              parent: 'Roles'
-            }
-          },
-          {
-            path: "/roles/:id/edit",
-            name: "EditRole",
-            component: EditRole,
-            meta: {
-              parent: 'Roles'
+const routes = [{
+        path: "/",
+        component: DefaultLayout,
+        redirect: '/dashboard',
+        meta: { requiresAuth: true },
+        children: [{
+                path: "/dashboard",
+                name: "Dashboard",
+                component: Dashboard,
             },
-          }
-        ]
-      },
-      {
-        path: "/users",
-        name: "Users",
-        component: Users,
-        meta: {
-          parent: 'Users'
-        },
-        children: [
-          {
-            path: "/users/create",
-            name: "CreateUser",
-            component: CreateUser,
-            meta: {
-              parent: 'Users'
-            }
-          },
-          {
-            path: "/users/:id/edit",
-            name: "EditUser",
-            component: EditUser,
-            meta: {
-              parent: 'Users'
+            {
+                path: "/permissions",
+                name: "PermissionIndex",
+                component: PermissionIndex,
             },
-          }
-        ]
-      },
-      {
-        path: '/courses_types',
-        name: "CourseTypes",
-        component: CoursesTypes,
-        meta: {
-          parent: 'CourseTypes'
-        },
-      },
-      {
-        path: '/courses',
-        name: "Courses",
-        component: Courses,
-        meta: {
-          parent: 'Courses'
-        },
-      },
-      {
-        path: '/subjects',
-        name: "Subjects",
-        component: Subjects,
-        meta: {
-          parent: 'Subjects'
-        },
-        children: [
-          { 
-            path: '/subjects/create', 
-            name: "CreateSubject", 
-            component: CreateSubject, 
-            meta: { 
-              parent: 'Subjects' 
-            } 
-          },
-          { 
-            path: '/subjects/:id/edit', 
-            name: "EditSubject", 
-            component: EditSubject, 
-            meta: { 
-              parent: 'Subjects' 
-            } 
-          },
-          { 
-            path: '/subjects/:id', 
-            name: "ShowSubject", 
-            component: ShowSubject, 
-            meta: { 
-              parent: 'Subjects' 
-            } 
-          },
-        ]
-      },
-      {
-        path: '/chapters',
-        name: "Chapters",
-        component: Chapters,
-        meta: {
-          parent: 'Subjects'
-        },
-        children: [
-          { 
-            path: '/chapters/create', 
-            name: "CreateChapter", 
-            component: CreateChapter, 
-            meta: { 
-              parent: 'Subjects' 
-            } 
-          },
-          { 
-            path: '/chapters/:id/edit', 
-            name: "EditChapter", 
-            component: EditChapter, 
-            meta: { 
-              parent: 'Subjects' 
-            } 
-          },
-          { 
-            path: '/chapters/:id', 
-            name: "ShowChapter", 
-            component: ShowChapter, 
-            meta: { 
-              parent: 'Subjects' 
-            } 
-          },
-        ]
-      },
-      {
-        path: '/topics',
-        name: "Topics",
-        component: Topics,
-        meta: {
-          parent: 'Subjects'
-        },
-        children: [
-          { 
-            path: '/topics/create', 
-            name: "CreateTopic", 
-            component: CreateTopic, 
-            meta: { 
-              parent: 'Subjects' 
-            } 
-          },
-          { 
-            path: '/topics/:id/edit', 
-            name: "EditTopic", 
-            component: EditTopic, 
-            meta: { 
-              parent: 'Subjects' 
-            } 
-          },
-          { 
-            path: '/topics/:id', 
-            name: "ShowTopic", 
-            component: ShowTopic, 
-            meta: { 
-              parent: 'Subjects' 
-            } 
-          },
-        ]
-      },
-      {
-        path: "/questions",
-        name: "Questions",
-        component: Questions,
-        meta: {
-          parent: 'Questions'
-        },
-        children: [
-          { 
-            path: '/questions/create', 
-            name: "CreateQuestion", 
-            component: CreateQuestion, 
-            meta: { 
-              parent: 'Questions' 
-            } 
-          },
-          { 
-            path: '/questions/:id/edit', 
-            name: "EditQuestion", 
-            component: EditQuestion, 
-            meta: { 
-              parent: 'Questions' 
-            } 
-          }
-        ]
-      },
-    ],
-  },
+            {
+                path: "/roles",
+                name: "Roles",
+                component: Roles,
+                meta: {
+                    parent: 'Roles'
+                },
+                children: [{
+                        path: "/roles/create",
+                        name: "CreatRole",
+                        component: CreateRole,
+                        meta: {
+                            parent: 'Roles'
+                        }
+                    },
+                    {
+                        path: "/roles/:id/edit",
+                        name: "EditRole",
+                        component: EditRole,
+                        meta: {
+                            parent: 'Roles'
+                        },
+                    }
+                ]
+            },
+            {
+                path: "/users",
+                name: "Users",
+                component: Users,
+                meta: {
+                    parent: 'Users'
+                },
+                children: [{
+                        path: "/users/create",
+                        name: "CreateUser",
+                        component: CreateUser,
+                        meta: {
+                            parent: 'Users'
+                        }
+                    },
+                    {
+                        path: "/users/:id/edit",
+                        name: "EditUser",
+                        component: EditUser,
+                        meta: {
+                            parent: 'Users'
+                        },
+                    }
+                ]
+            },
+            {
+                path: '/courses_types',
+                name: "CourseTypes",
+                component: CoursesTypes,
+                meta: {
+                    parent: 'CourseTypes'
+                },
+            },
+            {
+                path: '/courses',
+                name: "Courses",
+                component: Courses,
+                meta: {
+                    parent: 'Courses'
+                },
+            },
+            {
+                path: '/subjects',
+                name: "Subjects",
+                component: Subjects,
+                meta: {
+                    parent: 'Subjects'
+                },
+                children: [{
+                        path: '/subjects/create',
+                        name: "CreateSubject",
+                        component: CreateSubject,
+                        meta: {
+                            parent: 'Subjects'
+                        }
+                    },
+                    {
+                        path: '/subjects/:id/edit',
+                        name: "EditSubject",
+                        component: EditSubject,
+                        meta: {
+                            parent: 'Subjects'
+                        }
+                    },
+                    {
+                        path: '/subjects/:id',
+                        name: "ShowSubject",
+                        component: ShowSubject,
+                        meta: {
+                            parent: 'Subjects'
+                        }
+                    },
+                ]
+            },
+            {
+                path: '/chapters',
+                name: "Chapters",
+                component: Chapters,
+                meta: {
+                    parent: 'Subjects'
+                },
+                children: [{
+                        path: '/chapters/create',
+                        name: "CreateChapter",
+                        component: CreateChapter,
+                        meta: {
+                            parent: 'Subjects'
+                        }
+                    },
+                    {
+                        path: '/chapters/:id/edit',
+                        name: "EditChapter",
+                        component: EditChapter,
+                        meta: {
+                            parent: 'Subjects'
+                        }
+                    },
+                    {
+                        path: '/chapters/:id',
+                        name: "ShowChapter",
+                        component: ShowChapter,
+                        meta: {
+                            parent: 'Subjects'
+                        }
+                    },
+                ]
+            },
+            {
+                path: '/topics',
+                name: "Topics",
+                component: Topics,
+                meta: {
+                    parent: 'Subjects'
+                },
+                children: [{
+                        path: '/topics/create',
+                        name: "CreateTopic",
+                        component: CreateTopic,
+                        meta: {
+                            parent: 'Subjects'
+                        }
+                    },
+                    {
+                        path: '/topics/:id/edit',
+                        name: "EditTopic",
+                        component: EditTopic,
+                        meta: {
+                            parent: 'Subjects'
+                        }
+                    },
+                    {
+                        path: '/topics/:id',
+                        name: "ShowTopic",
+                        component: ShowTopic,
+                        meta: {
+                            parent: 'Subjects'
+                        }
+                    },
+                ]
+            },
+            {
+                path: "/questions",
+                name: "Questions",
+                component: Questions,
+                meta: {
+                    parent: 'Questions'
+                },
+                children: [{
+                        path: '/questions/create',
+                        name: "CreateQuestion",
+                        component: CreateQuestion,
+                        meta: {
+                            parent: 'Questions'
+                        }
+                    },
+                    {
+                        path: '/questions/:id/edit',
+                        name: "EditQuestion",
+                        component: EditQuestion,
+                        meta: {
+                            parent: 'Questions'
+                        }
+                    },
+                    {
+                        path: '/questions/:id',
+                        name: "ShowQuestion",
+                        component: ShowQuestion,
+                        meta: {
+                            parent: 'Questions'
+                        }
+                    },
+                ]
+            },
+        ],
+    },
 
-  {
-    path: "/auth",
-    redirect: "/login",
-    name: "Auth",
-    component: AuthLayout,
-    meta: { isGuest: true },
-    children: [
-      {
-        path: "/login",
-        name: "Login",
-        component: Login,
-      },
-    ],
-  },
-  {
-    path: "/error-page",
-    name: "error-page",
-    component: ErrorPage,
-  },
-  {
-    path: "/:pathMatch(.*)*",
-    component: ErrorPage,
-  },
+    {
+        path: "/auth",
+        redirect: "/login",
+        name: "Auth",
+        component: AuthLayout,
+        meta: { isGuest: true },
+        children: [{
+            path: "/login",
+            name: "Login",
+            component: Login,
+        }, ],
+    },
+    {
+        path: "/error-page",
+        name: "error-page",
+        component: ErrorPage,
+    },
+    {
+        path: "/:pathMatch(.*)*",
+        component: ErrorPage,
+    },
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
-  routes,
-  scrollBehavior(to, from, savedPosition) {
-    return savedPosition || { left: 0, top: 0 };
-  },
+    history: createWebHistory(),
+    routes,
+    scrollBehavior(to, from, savedPosition) {
+        return savedPosition || { left: 0, top: 0 };
+    },
 });
 
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && !store.state.auth.user.token) {
-    next({ name: "Login" });
-  } else if (store.state.auth.user.token && to.meta.isGuest) {
-    next({ name: "Dashboard" })
-  } else {
-    next();
-  }
+    if (to.meta.requiresAuth && !store.state.auth.user.token) {
+        next({ name: "Login" });
+    } else if (store.state.auth.user.token && to.meta.isGuest) {
+        next({ name: "Dashboard" })
+    } else {
+        next();
+    }
 })
 
 export default router;

@@ -31,15 +31,9 @@ export default {
                         isJson: false,
                     },
                     {
-                        label: "Subject",
-                        field: "subject_id",
-                        sort: true,
-                        isJson: false,
-                    },
-                    {
-                        label: "CHAPTER",
-                        field: "chapter_id",
-                        sort: true,
+                        label: "TYPE",
+                        field: "type",
+                        sort: false,
                         isJson: false,
                     },
                     {

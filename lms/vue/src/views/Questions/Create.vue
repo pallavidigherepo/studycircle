@@ -64,8 +64,13 @@
                       {{ board }}
                     </option>
                   </TomSelect>
+                  
+                  <div class="text-danger mt-2" v-for="(error, index) of v$.board_id.$errors" :key="index">
+                    <div class="error-msg">{{ error.$message }}</div>
+                  </div>
                 </div>
               </div>
+              
               <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                 <div class="form-label xl:w-64 xl:!mr-10">
                   <div class="text-left">
@@ -95,6 +100,9 @@
                       {{ standard }}
                     </option>
                   </TomSelect>
+                  <div class="text-danger mt-2" v-for="(error, index) of v$.standard_id.$errors" :key="index">
+                    <div class="error-msg">{{ error.$message }}</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -140,6 +148,9 @@
                       {{ JSON.parse(level) }}
                     </option>
                   </TomSelect>
+                  <div class="text-danger mt-2" v-for="(error, index) of v$.difficulty_level_id.$errors" :key="index">
+                    <div class="error-msg">{{ error.$message }}</div>
+                  </div>
                 </div>
               </div>
               <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
@@ -170,6 +181,9 @@
                       {{ language }}
                     </option>
                   </TomSelect>
+                  <div class="text-danger mt-2" v-for="(error, index) of v$.language_id.$errors" :key="index">
+                    <div class="error-msg">{{ error.$message }}</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -214,6 +228,9 @@
                       {{ JSON.parse(subject) }}
                     </option>
                   </TomSelect>
+                  <div class="text-danger mt-2" v-for="(error, index) of v$.subject_id.$errors" :key="index">
+                    <div class="error-msg">{{ error.$message }}</div>
+                  </div>
                 </div>
               </div>
               <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
@@ -246,6 +263,9 @@
                       {{ JSON.parse(chapter) }}
                     </option>
                   </TomSelect>
+                  <div class="text-danger mt-2" v-for="(error, index) of v$.chapter_id.$errors" :key="index">
+                    <div class="error-msg">{{ error.$message }}</div>
+                  </div>
                 </div>
               </div>
               <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
@@ -277,6 +297,9 @@
                       {{ JSON.parse(topic) }}
                     </option>
                   </TomSelect>
+                  <div class="text-danger mt-2" v-for="(error, index) of v$.topic_id.$errors" :key="index">
+                    <div class="error-msg">{{ error.$message }}</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -395,6 +418,56 @@
                   </div>
                 </div>
               </div>
+              <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                <div class="form-label xl:w-64 xl:!mr-10">
+                  <div class="text-left">
+                    <div class="flex items-center">
+                      <div class="font-medium">{{
+                          t("questions.Marks")
+                      }}</div>
+                      <div
+                        class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                        {{ t("common.Required") }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-full mt-3 xl:mt-0 flex-1">
+                  <input id="form-marks" type="text" class="form-control" placeholder="Marks"
+                    v-model.trim="model.marks" :class="{
+                      'border-danger': submitted && v$.marks.$errors.length,
+                    }" />
+                  <div class="form-help text-right">{{ t("questions.These are the marks, if answered correctly")}}</div>
+                  <div class="text-danger mt-2" v-for="(error, index) of v$.marks.$errors" :key="index">
+                    <div class="error-msg">{{ error.$message }}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                <div class="form-label xl:w-64 xl:!mr-10">
+                  <div class="text-left">
+                    <div class="flex items-center">
+                      <div class="font-medium">{{
+                          t("questions.Negative Marks")
+                      }}</div>
+                      <div
+                        class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                        {{ t("common.Required") }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-full mt-3 xl:mt-0 flex-1">
+                  <input id="form-negative-marks" type="text" class="form-control" placeholder="Negative marks."
+                    v-model.trim="model.negative_marks" :class="{
+                      'border-danger': submitted && v$.negative_marks.$errors.length,
+                    }" />
+                  <div class="form-help text-right">{{ t("questions.These are negative marks if answered incorrect")}}</div>
+                  <div class="text-danger mt-2" v-for="(error, index) of v$.negative_marks.$errors" :key="index">
+                    <div class="error-msg">{{ error.$message }}</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -438,6 +511,9 @@
                       {{ JSON.parse(type) }}
                     </option>
                   </TomSelect>
+                  <div class="text-danger mt-2" v-for="(error, index) of v$.type_id.$errors" :key="index">
+                    <div class="error-msg">{{ error.$message }}</div>
+                  </div>
                 </div>
               </div>
               <div class="form-inline items-start flex-col xl:flex-row mt-2 pt-2 first:mt-0 first:pt-0"
@@ -502,7 +578,7 @@
                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                   <div
                     class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                    <ChevronDownIcon class="w-4 h-4 mr-2" /> Questions of paragraph
+                    <ChevronDownIcon class="w-4 h-4 mr-2" /> {{ t("questions.Questions of paragraph") }}
                     <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
                       <button class="btn btn-outline-primary border-dashed w-full" type="button" @click="addQuestion()">
                         <PlusIcon class="w-4 h-4 mr-2" /> {{ t("questions.Add Question") }}
@@ -542,7 +618,7 @@
         </div>
         <!-- END: Product Variant (Details) -->
         <div class="flex justify-end flex-col md:flex-row gap-2 mt-5">
-          <router-link to="/subjects"
+          <router-link to="/questions"
             class="btn py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 w-full md:w-52">
             {{ t("common.Cancel") }}
           </router-link>
@@ -562,7 +638,7 @@ import { ref, reactive, computed, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import { useVuelidate } from "@vuelidate/core";
-import { required, helpers } from "@vuelidate/validators";
+import { required, helpers, numeric, minValue } from "@vuelidate/validators";
 import { useI18n } from "vue-i18n";
 import axiosClient from "@/axios";
 import Editor from "@tinymce/tinymce-vue";
@@ -591,6 +667,8 @@ const model = ref({
   question: "",
   description: null,
   note: null,
+  marks: "",
+  negative_marks: "",
   type_id: "",
   answers: [],
   questions: []
@@ -682,6 +760,16 @@ const rules = computed(() => {
     },
     note: {
       required: helpers.withMessage("Please enter note or explaination.", required),
+    },
+    marks: {
+      required: helpers.withMessage("Please enter marks for this questions.", required),
+      numeric: helpers.withMessage("Please enter numeric value", numeric),
+      minValue: helpers.withMessage("Please enter minimum one mark.", minValue(1)),
+    },
+    negative_marks: {
+      required: helpers.withMessage("Please enter negative marks for this questions.", required),
+      numeric: helpers.withMessage("Please enter numeric value", numeric),
+      minValue: helpers.withMessage("Please enter minimum one mark.", minValue(1)),
     }
   };
 });
@@ -696,7 +784,7 @@ async function submitForm() {
   if (!v$.value.$error) {
     isLoading.value = true;
     await store
-      .dispatch("questions/create", model.value)
+      .dispatch("questions/save", model.value)
       .then(() => {
         isLoading.value = false;
         submitted.value = false;
@@ -728,23 +816,18 @@ function addQuestion(index) {
   };
   model.value.questions.splice(index, 0, newQuestion);
 }
+
 function deleteQuestion(question) {
   model.value.questions = model.value.questions.filter((q) => q !== question);
 }
+
 function questionChange(question) {
-  // Important to explicitelly assign question.data.options, because otherwise it is a Proxy object
-  // and it is lost in JSON.stringify()
-  if (question.data.options) {
-    question.data.options = [...question.data.options];
-  }
   model.value.questions = model.value.questions.map((q) => {
     if (q.id === question.id) {
-      console.log(JSON.parse(JSON.stringify(question)))
       return JSON.parse(JSON.stringify(question));
     }
     return q;
   });
-  //console.log(model.value.questions)
 }
 
 function addAnswer(index) {
@@ -774,11 +857,6 @@ function changeType(type) {
 }
 
 function answerChange(answer) {
-  // Important to explicitelly assign question.data.options, because otherwise it is a Proxy object
-  // and it is lost in JSON.stringify()
-  // if (answer.answers) {
-  //   answer.answers = [...question.answers];
-  // }
   model.value.answers = model.value.answers.map((q) => {
     if (q.id === answer.id) {
       return JSON.parse(JSON.stringify(answer));

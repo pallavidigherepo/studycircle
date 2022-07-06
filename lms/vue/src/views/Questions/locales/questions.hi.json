@@ -41,5 +41,11 @@
     "Correct answer is": "सही उत्तर है?",
     "Add questions and its answers accordingly": "तदनुसार प्रश्न और उनके उत्तर जोड़ें।",
     "You do not have any questions added yet": "आपने अभी तक कोई प्रश्न नहीं जोड़ा है।",
-    "Question type": "प्रश्न प्रकार"
+    "Question type": "प्रश्न प्रकार",
+    "Edit Question": "प्रश्न संपादित करें",
+    "Marks": "अंक",
+    "Negative Marks": "नकारात्मक अंक",
+    "These are the marks, if answered correctly": "यदि सही उत्तर दिया जाए तो ये अंक हैं।",
+    "These are negative marks if answered incorrect": "गलत उत्तर देने पर ये नकारात्मक अंक हैं।",
+    "Questions of paragraph": "पैराग्राफ के प्रश्न"
 }

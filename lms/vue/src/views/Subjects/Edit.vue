@@ -225,7 +225,7 @@ const fetch = async() => {
         let id = route.params.id;
         const result = await axiosClient.get(`/subjects/${id}/edit`);
         if (result.status != 200) {
-            const error = new Error('Failed to fetch roles')
+            const error = new Error('Failed to fetch subject')
             throw error;
         }
         model.value = JSON.parse(JSON.stringify(result.data.data));        

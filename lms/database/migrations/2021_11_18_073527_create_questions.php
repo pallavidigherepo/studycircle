@@ -17,24 +17,24 @@ class CreateQuestions extends Migration
             $table->bigIncrements('id');
             $table->longText('question')->nullable();
             $table->longText('description')->nullable();
-            $table->string('board')->nullable();
-            $table->string('standard')->nullable();
             $table->longText('note')->nullable();
+            $table->integer('marks')->nullable();
+            $table->integer('negative_marks')->nullable();
 
             //All the relational fields will come after this.
-            $table->unsignedBigInteger('parent_id')->default(null);
-            $table->unsignedBigInteger('board_id');
-            $table->unsignedBigInteger('standard_id');
-            $table->unsignedBigInteger('difficulty_level_id');
-            $table->unsignedBigInteger('type_id');
-            $table->unsignedBigInteger('language_id');
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->unsignedBigInteger('board_id')->nullable();
+            $table->unsignedBigInteger('standard_id')->nullable();
+            $table->unsignedBigInteger('difficulty_level_id')->nullable();
+            $table->unsignedBigInteger('type_id')->nullable();
+            $table->unsignedBigInteger('language_id')->nullable();
             
-            $table->unsignedBigInteger('subject_id');
-            $table->unsignedBigInteger('chapter_id');
-            $table->unsignedBigInteger('topic_id')->default(0);
+            $table->unsignedBigInteger('subject_id')->nullable();
+            $table->unsignedBigInteger('chapter_id')->nullable();
+            $table->unsignedBigInteger('topic_id')->nullable();
 
-            $table->unsignedBigInteger('created_by');
-            $table->unsignedBigInteger('updated_by');
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
             
             $table->foreign('parent_id')->references('id')->on('questions');
             $table->foreign('board_id')->references('id')->on('boards');
@@ -44,8 +44,8 @@ class CreateQuestions extends Migration
             $table->foreign('type_id')->references('id')->on('question_types');
             $table->foreign('language_id')->references('id')->on('languages');
             
-            // $table->foreign('subject_id')->references('id')->on('subjects');            
-            // $table->foreign('chapter_id')->references('parent_id')->on('subjects');            
+            $table->foreign('subject_id')->references('id')->on('subjects');
+            $table->foreign('chapter_id')->references('parent_id')->on('subjects');
             // $table->foreign('topic_id')->references('parent_id')->on('subjects');
 
             $table->foreign('created_by')->references('id')->on('users');

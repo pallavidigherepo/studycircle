@@ -41,5 +41,11 @@
     "Correct answer is": "बरोबर उत्तर आहे?",
     "Add questions and its answers accordingly": "त्यानुसार प्रश्न आणि त्यांची उत्तरे जोडा.",
     "You do not have any questions added yet": "तुमच्याकडे अद्याप कोणतेही प्रश्न जोडलेले नाहीत.",
-    "Question type": "प्रश्न प्रकार"
+    "Question type": "प्रश्न प्रकार",
+    "Edit Question": "प्रश्न संपादित करा",
+    "Marks": "गुण",
+    "Negative Marks": "नकारात्मक गुण",
+    "These are the marks, if answered correctly": "बरोबर उत्तर दिल्यास हे गुण आहेत.",
+    "These are negative marks if answered incorrect": "चुकीचे उत्तर दिले असल्यास हे नकारात्मक गुण आहेत.",
+    "Questions of paragraph": "परिच्छेदाचे प्रश्न"
 }

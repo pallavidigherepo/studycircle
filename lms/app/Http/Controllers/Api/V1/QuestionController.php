@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Question;
-use App\Http\Requests\StoreQuestionRequest;
-use App\Http\Requests\UpdateQuestionRequest;
+use App\Http\Requests\QuestionRequest;
 use App\Http\Resources\QuestionResource;
 use Illuminate\Http\Request;
 use App\Models\Board;
@@ -18,6 +17,8 @@ use App\Models\Subject;
 use App\Models\Topic;
 use App\Models\Answer;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
 
 class QuestionController extends Controller
 {
@@ -34,8 +35,10 @@ class QuestionController extends Controller
 
         $questions = QuestionResource::collection(
             Question::when(request('search'), function ($query) {
-                $query->where('question', null);
+                $query->where('question', NULL);
+                $query->where('question', 'like', '%'. request('search'). '%');                
             })
+            ->whereNull('parent_id')
             ->orderBy($field, $order)
             ->paginate($perPage)
         );
@@ -48,88 +51,163 @@ class QuestionController extends Controller
      * @param  \App\Http\Requests\StoreQuestionRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreQuestionRequest $request)
+    public function store(QuestionRequest $request)
     {
-        //dd($request);
         // First most: Validate all the request data.
-        $data = $request->validated();
-        $data['created_by'] = Auth::user()->id;
-        $data['updated_by'] = Auth::user()->id;
-        $questionCreated = Question::create($data);
-        // When question is created we need to check if the added question has $request['questions']
-        // If yes then we have save all the questions and approriate answers.
-        if (!empty($request['questions'])) {
-            $questions = $request['questions'];
-            
-            foreach ($questions as $question) {
-                $inputQuestionData = [
-                    'parent_id' => $questionCreated->id,
-                    'question' => $question['question'],
-                    'description' => $question['description'],
-                    'note' => $question['note'],
-                    "type_id" => $question['type_id'],
-                    'board_id' => $data['board_id'],
-                    "standard_id" => $data['standard_id'],
-                    "difficulty_level_id" => $data['difficulty_level_id'],
-                    "subject_id" => $data['subject_id'],
-                    "chapter_id" => $data['chapter_id'],
-                    "topic_id" => $data['topic_id'],
-                    "language_id" => $data['language_id'],
-                    "created_by" => Auth::user()->id,
-                    "updated_by" => Auth::user()->id,
-                ]; 
+        if ($request->validated()) {
+            $parentQuestion = $this->__createAndUpdateQuestion($request->toArray());
+            // When question is created we need to check if the added question has $request['questions']
+            // If yes then we have save all the questions and approriate answers.
+            if (!empty($request['questions'])) {
+                $questions = $request['questions'];
                 
-                $pQuestion = Question::create($inputQuestionData);
+                foreach ($questions as $question) {
+                    $pQuestion = $this->__createAndUpdateQuestion($question, $parentQuestion);
+                    // After question is saved/created successfully, we need to add 
+                    // answers of that created question.
+                    $this->__createAndUpdateAnswer($question['answers'], $pQuestion);
+                }
+            } else {
                 // After question is saved/created successfully, we need to add 
                 // answers of that created question.
-                
-                $answers = $question['answers'];
-                if (!empty($answers)) {
-                    $i = 0;
-                    foreach ($answers as $answer) {
-                        if ($answer['is_correct'] == "on" || $answer['is_correct'] == 1) {
-                            $isCorrect = 1;
-                        } else {
-                            $isCorrect = 0;
-                        }
-                        $inputData[$i++] = [
-                            'answer' => $answer['answer'],
-                            'is_correct' => $isCorrect,
-                            'created_by' => Auth::user()->id,
-                            'updated_by' => Auth::user()->id,
-                        ];
-                        //$question->answers()->create($inputData);
-                    }
-                }
-                $pQuestion->answers()->createMany($inputData);
-                $pQuestion->save();
+                $this->__createAndUpdateAnswer($request['answers'], $parentQuestion);
             }
+            $response = [
+                'success' => true,
+                'message' => 'Successfully added'
+            ];
         } else {
-            // After question is saved/created successfully, we need to add 
-            // answers of that created question.
+            $response = [
+                'success' => false,
+                'message' => 'Failed to add'
+            ];
+        }
+        
+        return response()->json($response, 200);
+    }
+
+    private function __createAndUpdateQuestion(Array $inputArray, Question $parentQuestion = null)
+    {
+        //dump($inputArray);
+        $id = null;
+        if (isset($inputArray['id'])) {
+            //dump($inputArray['id']);
+            $alreadyAQuestion = Question::find($inputArray['id']);
+            if ($alreadyAQuestion != null) {
+                $id = $alreadyAQuestion->id != null ? $alreadyAQuestion->id: null;
+            }
             
-            $answers = $request['answers'];
-            if (!empty($answers)) {
-                $i = 0;
-                foreach ($answers as $answer) {
+        }
+        //dump($id);
+        $inputQuestionData = [
+            "id" => $id,
+            'parent_id' => $parentQuestion ? $parentQuestion->id: NULL,
+            'question' => $inputArray['question'],
+            'description' => $inputArray['description'],
+            'note' => $inputArray['note'],
+            "type_id" => $inputArray['type_id'],
+            'board_id' => $parentQuestion ? $parentQuestion->board_id: $inputArray['board_id'],
+            "standard_id" => $parentQuestion ? $parentQuestion->standard_id: $inputArray['standard_id'],
+            "difficulty_level_id" => $parentQuestion ? $parentQuestion->difficulty_level_id: $inputArray['difficulty_level_id'],
+            "subject_id" => $parentQuestion ? $parentQuestion->subject_id: $inputArray['subject_id'],
+            "chapter_id" => $parentQuestion ? $parentQuestion->chapter_id: $inputArray['chapter_id'],
+            "topic_id" => $parentQuestion ? $parentQuestion->topic_id: $inputArray['topic_id'],
+            "language_id" => $parentQuestion ? $parentQuestion->language_id: $inputArray['language_id'],
+            "created_by" => Auth::user()->id,
+            "updated_by" => Auth::user()->id,
+            "marks" => $inputArray['marks'],
+            "negative_marks" => $inputArray['negative_marks'],
+        ]; 
+        if ($id) {
+            if ($alreadyAQuestion->update($inputQuestionData)) {
+                return $alreadyAQuestion;
+            }
+            return ;
+        } else {
+            return Question::create($inputQuestionData);
+        }
+    }
+
+
+    private function __createAndUpdateAnswer(Array $answers, Question $question)
+    {
+        if (!empty($answers)) {
+            // Get ids as plain array of existing answers
+            $existingIds = $question->answers()->pluck('id')->toArray();
+            // Get ids as plain array of new answers
+            $newIds = Arr::pluck($answers, 'id');
+            // Find answers to delete
+            $toDelete = array_diff($existingIds, $newIds);
+            //Find answers to add
+            $toAdd = array_diff($newIds, $existingIds);
+            
+            // Delete answers by $toDelete array
+            Answer::destroy(collect($toDelete));
+            // Create new answers
+            foreach ($answers as $answer) {
+                if (in_array($answer['id'], $toAdd)) {
                     if ($answer['is_correct'] == "on" || $answer['is_correct'] == 1) {
                         $isCorrect = 1;
                     } else {
                         $isCorrect = 0;
                     }
-                    $inputData[$i++] = [
-                        'answer' => $answer['answer'],
-                        'is_correct' => $isCorrect,
-                        'created_by' => Auth::user()->id,
-                        'updated_by' => Auth::user()->id,
-                    ];
-                    //$question->answers()->create($inputData);
+                    $answer['is_correct'] = $isCorrect;
+                    $answer['question_id'] = $question->id;
+                    $answer['created_by'] = Auth::user()->id;
+                    $answer['updated_by'] = Auth::user()->id;
+                    $this->__createAnswer($answer, $question);
                 }
             }
-            $questionCreated->answers()->createMany($inputData);
-            $questionCreated->save();
+
+            // Update existing answers
+            $answerMap = collect($answers)->keyBy('id');
+            foreach ($question->answers as $answer) {
+                if (isset($answerMap[$answer->id])) {
+                    if ($answer['is_correct'] == "on" || $answer['is_correct'] == 1) {
+                        $isCorrect = 1;
+                    } else {
+                        $isCorrect = 0;
+                    }
+                    $answer['is_correct'] = $isCorrect;
+                    $answer['updated_by'] = Auth::user()->id;
+                    //$answer['question_id'] = $question->id;
+                    $this->__updateAnswer($answer, $answerMap[$answer->id]);
+                }
+            }
         }
-        
+    }
+
+    private function __createAnswer($data, $question)
+    {
+        $validator = Validator::make($data, [
+            'answer' => 'required|string',
+            'question_id' => 'exists:App\Models\Question,id',
+            'created_by' => 'exists:App\Models\User,id',
+            'updated_by' => 'exists:App\Models\User,id',
+            'is_correct' => 'required',
+        ]);
+        return Answer::create($validator->validated());
+    }
+
+    /**
+     * Update a answer and return true or false
+     *
+     * @param \App\Models\Answer $answer
+     * @param $data
+     * @return bool
+     * @throws \Illuminate\Validation\ValidationException
+     * @author Pallavi Dighe <pallavi@meritest.in>
+     */
+    private function __updateAnswer(Answer $answer, $data)
+    {
+        $validator = Validator::make($data, [
+            'id' => 'exists:App\Models\Answer,id',
+            'answer' => 'required|string',
+            'updated_by' => 'exists:App\Models\User,id',
+            'is_correct' => 'required',
+        ]);
+
+        return $answer->update($validator->validated());
     }
 
     /**
@@ -138,21 +216,66 @@ class QuestionController extends Controller
      * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function show(Question $question)
+    public function show(Question $question, Request $request)
     {
-        //
+        $question = Question::with('questions.answers', 
+                                    'questions', 
+                                    'answers', 
+                                    'board', 
+                                    'standard', 
+                                    'languages',
+                                    'question_type',
+                                    'difficulty_level',
+                                    'subject',
+                                    'chapter',
+                                    'topic',
+                                    'creator',
+                                    'updator')
+                                ->find($question->id);
+        return response()->json($question, 200);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateQuestionRequest  $request
+     * @param  \App\Http\Requests\QuestionRequest  $request
      * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateQuestionRequest $request, Question $question)
+    public function update(QuestionRequest $request, Question $question)
     {
-        //
+        //dd($request);
+        // First most: Validate all the request data.
+        if ($request->validated()) {
+            $parentQuestion = $this->__createAndUpdateQuestion($request->toArray());
+            // When question is created we need to check if the added question has $request['questions']
+            // If yes then we have save all the questions and approriate answers.
+            if (!empty($request['questions'])) {
+                $questions = $request['questions'];
+                
+                foreach ($questions as $question) {
+                    $pQuestion = $this->__createAndUpdateQuestion($question, $parentQuestion);
+                    // After question is saved/created successfully, we need to add 
+                    // answers of that created question.
+                    $this->__createAndUpdateAnswer($question['answers'], $pQuestion);
+                }
+            } else {
+                // After question is saved/created successfully, we need to add 
+                // answers of that created question.
+                $this->__createAndUpdateAnswer($request['answers'], $parentQuestion);
+            }
+            $response = [
+                'success' => true,
+                'message' => 'Successfully added'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'Failed to add'
+            ];
+        }
+        
+        return response()->json($response, 200);
     }
 
     /**
@@ -163,6 +286,19 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        $response = [
+            'success' => false,
+            'message' => null,
+            'errors' => null,
+        ];
+        // First of all delete all the answers and then delete question.
+        $question->answers()->delete();
+        if ($question->delete()) {            
+            $response = [
+                'success' => true,
+                'message' => 'Question deleted successfully.',
+            ];
+        }
+        return response()->json($response);
     }
 }

@@ -42,5 +42,11 @@
     "Correct answer is": "Correct answer is?",
     "Add questions and its answers accordingly": "Add questions and its answers accordingly.",
     "You do not have any questions added yet": "You do not have any questions added yet.",
-    "Question type": "Question Type"
+    "Question type": "Question Type",
+    "Edit Question": "Edit Question",
+    "Marks": "Marks",
+    "Negative Marks": "Negative Marks",
+    "These are the marks, if answered correctly": "These are the marks, if answered correctly.",
+    "These are negative marks if answered incorrect": "These are negative marks if answered incorrect.",
+    "Questions of paragraph": "Questions of paragraph"
 }

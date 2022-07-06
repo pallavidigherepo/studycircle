@@ -31,16 +31,16 @@ class QuestionRequest extends FormRequest
             'description' => [
                 'required',
             ],
-            'board' => [
+            'board_id' => [
                 'required',
             ],
-            'standard' => [
+            'standard_id' => [
                 'required',
             ],
-            'explaination' => [
+            'note' => [
                 'required',
             ],
-            'difficulty_level' => [
+            'difficulty_level_id' => [
                 'required',
             ],
             'type_id' => [

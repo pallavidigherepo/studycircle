@@ -6,8 +6,7 @@ export default {
     SET_PAGINATION_LINKS(state, payload) {
         state.pagination = payload;
     },
-    CREATE_QUESTION(state, question)
-    {
+    CREATE_QUESTION(state, question) {
         state.questions.data.unshift(question.question)
     },
     EDIT_QUESTION(state, payload) {
@@ -19,8 +18,7 @@ export default {
         state.questions.data.splice(index, 1)
     },
 
-    UPDATE_QUESTION(state, question)
-    {
+    UPDATE_QUESTION(state, question) {
         let index = state.questions.data.findIndex(item => item.id === question.id);
         state.questions.data[index] = question;
     },

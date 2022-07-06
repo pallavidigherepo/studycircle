@@ -11,35 +11,38 @@ export default {
                 return data;
             });
     },
-    
-    async create({commit}, chapter) {
-        return await axiosClient.post('/questions', chapter)
-                .then(({data}) => {
-                    if (data.success) {
-                        commit('CREATE_QUESTION', data);
-                        //return true;
-                    } else {
-                        const error = new Error(data.message)
-                        throw error;
-                    }
+
+    async save({ commit }, model) {
+        let response;
+
+        if (model.id) {
+            response = await axiosClient
+                .put(`/questions/${model.id}`, model)
+                .then(({ data }) => {
+                    commit('UPDATE_QUESTION', model);
+                    return data;
                 });
+        } else {
+            response = await axiosClient
+                .post(`/questions`, model)
+                .then(({ data }) => {
+                    commit('CREATE_QUESTION', data);
+                    return data;
+                });
+        }
     },
 
+    async show({ commit }, id) {
+        let response;
 
-    // After model submits the form, model information must be updated in database.
-    async update({commit}, model) {
-        return await axiosClient.put(`/questions/${model.id}`, model)
-                .then(({data}) => {
-                    if (data.success) {
-                        commit('UPDATE_QUESTION', model);
-                        //return ;
-                    } else {
-                        const error = new Error(data.message)
-                        throw error;
-                    }
-                });
+        response = await axiosClient
+            .get(`/questions/${id}`)
+            .then(({ data }) => {
+                console.log(data)
+                commit('VIEW_QUESTION', data);
+                return data;
+            });
     },
-    
 
     // This action is used to delete permission from serve.
     async delete(context, id) {
@@ -50,5 +53,5 @@ export default {
         }
         context.commit('DELETE_QUESTION', id);
     },
-    
+
 };
