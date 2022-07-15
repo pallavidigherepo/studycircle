@@ -801,6 +801,21 @@ const rules = computed(() => {
     },
     negative_marks: {
       required: helpers.withMessage("Please enter note or explaination.", required),
+    },
+    /*questions: {
+      $each: helpers.forEach({
+        question: {
+          required
+        }
+      })
+    },
+    */
+    answers: {
+      $each: helpers.forEach({
+        answer: {
+          required: helpers.withMessage('Please enter answer.', required),
+        }
+      })
     }
   };
 });

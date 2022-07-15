@@ -86,6 +86,117 @@ class QuestionController extends Controller
         return response()->json($response, 200);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Question  $question
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Question $question, Request $request)
+    {
+        $question = Question::with('questions.answers', 
+                                    'questions', 
+                                    'answers', 
+                                    'board', 
+                                    'standard', 
+                                    'languages',
+                                    'question_type',
+                                    'difficulty_level',
+                                    'subject',
+                                    'chapter',
+                                    'topic',
+                                    'creator',
+                                    'updator')
+                                ->find($question->id);
+        return response()->json($question, 200);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\QuestionRequest  $request
+     * @param  \App\Models\Question  $question
+     * @return \Illuminate\Http\Response
+     */
+    public function update(QuestionRequest $request, Question $question)
+    {
+        //dd($request);
+        // First most: Validate all the request data.
+        if ($request->validated()) {
+            $parentQuestion = $this->__createAndUpdateQuestion($request->toArray());
+            // When question is created we need to check if the added question has $request['questions']
+            // If yes then we have save all the questions and approriate answers.
+            if (!empty($request['questions'])) {
+                $questions = $request['questions'];
+                // Get ids as plain array of existing questions
+                $existingIds = $question->questions()->pluck('id')->toArray();
+                // Get ids as plain array of new questions
+                $newIds = Arr::pluck($questions, 'id');
+                // Find questions to delete
+                $toDelete = array_diff($existingIds, $newIds);
+                //Find questions to add
+                $toAdd = array_diff($newIds, $existingIds);
+                
+                // Delete answers by $toDelete array
+                if (!empty($toDelete)) {
+                    foreach ($toDelete as $id) {
+                        $toDeleteQuestion = Question::find($id);
+                        $toDeleteQuestion->answers()->delete();
+                        $toDeleteQuestion->delete();
+                    }
+                }
+
+                foreach ($questions as $question) {
+                    if (in_array($question['id'], $toAdd)) {
+                        $pQuestion = $this->__createAndUpdateQuestion($question, $parentQuestion);
+                        // After question is saved/created successfully, we need to add 
+                        // answers of that created question.
+                        $this->__createAndUpdateAnswer($question['answers'], $pQuestion);
+                    }                    
+                }
+            } else {
+                // After question is saved/created successfully, we need to add 
+                // answers of that created question.
+                $this->__createAndUpdateAnswer($request['answers'], $parentQuestion);
+            }
+            $response = [
+                'success' => true,
+                'message' => 'Successfully added'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'Failed to add'
+            ];
+        }
+        
+        return response()->json($response, 200);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Question  $question
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Question $question)
+    {
+        $response = [
+            'success' => false,
+            'message' => null,
+            'errors' => null,
+        ];
+        // First of all delete all the answers and then delete question.
+        $question->answers()->delete();
+        if ($question->delete()) {            
+            $response = [
+                'success' => true,
+                'message' => 'Question deleted successfully.',
+            ];
+        }
+        return response()->json($response);
+    }
+
     private function __createAndUpdateQuestion(Array $inputArray, Question $parentQuestion = null)
     {
         //dump($inputArray);
@@ -96,7 +207,6 @@ class QuestionController extends Controller
             if ($alreadyAQuestion != null) {
                 $id = $alreadyAQuestion->id != null ? $alreadyAQuestion->id: null;
             }
-            
         }
         //dump($id);
         $inputQuestionData = [
@@ -208,97 +318,5 @@ class QuestionController extends Controller
         ]);
 
         return $answer->update($validator->validated());
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Question $question, Request $request)
-    {
-        $question = Question::with('questions.answers', 
-                                    'questions', 
-                                    'answers', 
-                                    'board', 
-                                    'standard', 
-                                    'languages',
-                                    'question_type',
-                                    'difficulty_level',
-                                    'subject',
-                                    'chapter',
-                                    'topic',
-                                    'creator',
-                                    'updator')
-                                ->find($question->id);
-        return response()->json($question, 200);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\QuestionRequest  $request
-     * @param  \App\Models\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function update(QuestionRequest $request, Question $question)
-    {
-        //dd($request);
-        // First most: Validate all the request data.
-        if ($request->validated()) {
-            $parentQuestion = $this->__createAndUpdateQuestion($request->toArray());
-            // When question is created we need to check if the added question has $request['questions']
-            // If yes then we have save all the questions and approriate answers.
-            if (!empty($request['questions'])) {
-                $questions = $request['questions'];
-                
-                foreach ($questions as $question) {
-                    $pQuestion = $this->__createAndUpdateQuestion($question, $parentQuestion);
-                    // After question is saved/created successfully, we need to add 
-                    // answers of that created question.
-                    $this->__createAndUpdateAnswer($question['answers'], $pQuestion);
-                }
-            } else {
-                // After question is saved/created successfully, we need to add 
-                // answers of that created question.
-                $this->__createAndUpdateAnswer($request['answers'], $parentQuestion);
-            }
-            $response = [
-                'success' => true,
-                'message' => 'Successfully added'
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Failed to add'
-            ];
-        }
-        
-        return response()->json($response, 200);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Question $question)
-    {
-        $response = [
-            'success' => false,
-            'message' => null,
-            'errors' => null,
-        ];
-        // First of all delete all the answers and then delete question.
-        $question->answers()->delete();
-        if ($question->delete()) {            
-            $response = [
-                'success' => true,
-                'message' => 'Question deleted successfully.',
-            ];
-        }
-        return response()->json($response);
     }
 }

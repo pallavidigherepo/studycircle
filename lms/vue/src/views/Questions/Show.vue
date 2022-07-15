@@ -277,101 +277,94 @@
                   {{ question ? JSON.parse(question.question_type.name): null }}
                 </div>
               </div>
-              <!-- <div class="form-inline items-start flex-col xl:flex-row mt-2 pt-2 first:mt-0 first:pt-0"
-                v-if="model.type_id != '' && model.type_id != 'Select Question Type' && model.type_id != 5">
+              <div class="form-inline items-start flex-col xl:flex-row mt-2 pt-2 first:mt-0 first:pt-0"
+                v-if="question && (question.answers.length > 0)">
                 <div class="form-label xl:w-64 xl:!mr-10">
                   <div class="text-left">
                     <div class="flex items-center">
-                      <div class="font-medium" v-if="model.type_id != 5">{{ t("questions.Answers") }}</div>
+                      <div class="font-medium">{{ t("questions.Answers") }}</div>
 
-                    </div>
-                    <div class="leading-relaxed text-slate-500 text-xs mt-3" v-if="model.type_id != 5">
-                      {{ t("questions.Add answers according to the type of question you have selected") }}
                     </div>
                   </div>
                 </div>
                 <div class="w-full mt-3 xl:mt-0 flex-1">
                   <div class="relative pl-5 pr-5 xl:pr-10 py-10 bg-slate-50 dark:bg-transparent dark:border rounded-md">
-                    <template v-if="model.type_id == 4">
-                      <AnswerEditor :answer="{}" :index="1" :type="selectedType" @change="answerChange"
-                        @addAnswer="addAnswer" @deleteAnswer="deleteAnswer" />
+                    <template v-if="question.type_id == 4">
+                      Answers List
                     </template>
-                    <template v-else-if="model.type_id == 5">
-                      <div v-if="!model.questions.length" class="text-center text-gray-600">
+                    <template v-else-if="question.type_id == 5">
+                      <div v-if="!question.questions.length" class="text-center text-gray-600">
                         {{ t("questions.You do not have any questions added yet") }}
                       </div>
-                      <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
-                        <button class="btn btn-outline-primary border-dashed w-full" type="button"
-                          @click="addQuestion()">
-                          <PlusIcon class="w-4 h-4 mr-2" /> {{ t("questions.Add Question") }}
-                        </button>
-                      </div>
-                      <div v-for="(question, index) in model.questions" :key="question.id">
-                        <QuestionEditor :question="question" :questionIndex="index" :type="selectedType"
-                          :typeParagraph="typeListParagraph" @change="questionChange" @addQuestion="addQuestion"
-                          @deleteQuestion="deleteQuestion" />
+                      
+                      <div v-for="(question, index) in question.questions" :key="index">
+                        Question list wrwer rwewwr
                       </div>
                     </template>
                     <template v-else>
-                      <div v-if="!model.answers.length" class="text-center text-gray-600">
+                      <div v-if="!question.answers.length" class="text-center text-gray-600">
                         {{ t("questions.You do not have any answers added yet") }}
-                      </div>
-                      <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
-                        <button class="btn btn-outline-primary border-dashed w-full" type="button"
-                          v-if="showAnswerButton == true" @click="addAnswer()">
-                          <PlusIcon class="w-4 h-4 mr-2" /> {{ t("questions.Add Answer") }}
-                        </button>
                       </div>
 
                       <div class="mt-5">
 
-                        <div v-for="(answer, index) in model.answers" :key="answer.id">
-                          <AnswerEditor :answer="answer" :index="index" :type="selectedType"
-                            :typeParagraph="typeListParagraph" @change="answerChange" @addAnswer="addAnswer"
-                            @deleteAnswer="deleteAnswer" />
+                        <div v-for="answer in question.answers" :key="answer.id">
+                          Answer list
                         </div>
                       </div>
                     </template>
                   </div>
                 </div>
               </div>
-              <div v-else-if="model.type_id == 5" class="intro-y box p-5 mt-5">
+              <div v-else-if="question && question.type_id == 5" class="intro-y box p-5 mt-5">
                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                   <div
                     class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                     <ChevronDownIcon class="w-4 h-4 mr-2" /> {{ t("questions.Questions of paragraph") }}
-                    <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
-                      <button class="btn btn-outline-primary border-dashed w-full" type="button" @click="addQuestion()">
-                        <PlusIcon class="w-4 h-4 mr-2" /> {{ t("questions.Add Question") }}
-                      </button>
-                    </div>
+                    
                   </div>
 
                   <div class="mt-5">
-                    <div v-if="!model.questions.length" class="text-center text-gray-600">
+                    <div v-if="!question.questions.length" class="text-center text-gray-600">
                       {{ t("questions.You do not have any questions added yet") }}
                     </div>
-
-                    <div class="form-inline items-start flex-col xl:flex-row mt-2 pt-2 first:mt-0 first:pt-0"
-                      v-for="(question, index) in model.questions" :key="question.id">
-                      <div class="form-label xl:w-64 xl:!mr-10">
-                        <div class="text-left">
-                          <div class="flex items-center">
-                            <div class="font-medium">{{ t("questions.Question") }} {{ index + 1 }}.</div>
-                          </div>
-                          <div class="leading-relaxed text-slate-500 text-xs mt-3">
-                            {{ t("questions.Add questions and its answers accordingly") }}
+                    <template v-else>
+                      <div class="form-inline items-start flex-col xl:flex-row mt-2 pt-2 first:mt-0 first:pt-0"
+                        v-for="(questionArr, index) in question.questions" :key="questionArr.id">
+                        <div class="form-label xl:w-64 xl:!mr-10">
+                          <div class="text-left">
+                            <div class="flex items-center">
+                              <div class="font-medium">{{ t("questions.Question") }} {{ index + 1 }}.</div>
+                            </div>
+                            <div class="leading-relaxed text-slate-500 text-xs mt-3">
+                              {{ t("questions.Add questions and its answers accordingly") }}
+                            </div>
                           </div>
                         </div>
+                        
+                        Question List ddg dfgd
                       </div>
-
-                      <QuestionEditor :question="question" :index="index" :type="selectedType"
-                        :typeParagraph="typeListParagraph" @change="questionChange" @addQuestion="addQuestion"
-                        @deleteQuestion="deleteQuestion" />
-                    </div>
+                      <table>
+                        <thead>
+                          <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </template>
+                    
                   </div>
                 </div>
-              </div> -->
+              </div>
 
             </div>
 
