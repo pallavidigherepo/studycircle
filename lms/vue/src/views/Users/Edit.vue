@@ -93,14 +93,14 @@
                 type="text"
                 class="form-control"
                 placeholder="Enter mobile number."
-                v-model.trim="user.mobile_no"
+                v-model.trim="user.mobile"
                 :class="{
-                  'border-danger': submitted && v$.mobile_no.$errors.length,
+                  'border-danger': submitted && v$.mobile.$errors.length,
                 }"
               />
               <div
                 class="text-danger mt-2"
-                v-for="(error, index) of v$.mobile_no.$errors"
+                v-for="(error, index) of v$.mobile.$errors"
                 :key="index"
               >
                 <div class="error-msg">{{ error.$message }}</div>
@@ -189,11 +189,11 @@ const route = useRoute();
 const router = useRouter();
 // Now we must get editing details for the selected item
 const { t } = useI18n();
-const user = reactive({
+const user = ref({
   id: route.params.id,
   name: "",
   email: "",
-  mobile_no: "",
+  mobile: "",
   designation: [],
 });
 
@@ -208,10 +208,11 @@ const fetch = async() => {
             const error = new Error('Failed to fetch roles')
             throw error;
         }
-        user.name = result.data.name;
-        user.email = result.data.email;
-        user.mobile_no = result.data.mobile_no;
-        user.designation = result.data.designation;
+        user.value = JSON.parse(JSON.stringify(result.data));
+        // user.name = result.data.name;
+        // user.email = result.data.email;
+        // user.mobile_no = result.data.mobile;
+        // user.designation = result.data.designation;
         
     } catch (e) {
         isErrored.value = true;
@@ -230,7 +231,7 @@ const rules = computed(() => {
     email: {
       required: helpers.withMessage("Please enter email address.", required),
     },
-    mobile_no: {
+    mobile: {
       required: helpers.withMessage("Please enter mobile number.", required),
     },
     designation: {
@@ -248,7 +249,7 @@ async function submitForm() {
   if (!v$.value.$error) {
     isLoading.value = true;
     await store
-            .dispatch("users/update", user)
+            .dispatch("users/update", user.value)
             .then(() => {
                 isLoading.value = false;
                 submitted.value = false;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
+use App\Models\ProfileUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -27,7 +28,7 @@ class UserController extends Controller
             User::when(request('search'), function ($query) {
                 $query->where('name', 'like', '%' . request('search') . '%');
                 $query->orWhere('email', 'like', '%' . request('search') . '%');
-                $query->orWhere('mobile_no', 'like', '%' . request('search') . '%');
+                //$query->orWhere('mobile_no', 'like', '%' . request('search') . '%');
             })->orderBy($field, $order)->paginate($perPage)
         );
         return $users;
@@ -45,11 +46,15 @@ class UserController extends Controller
             $inputs = [
                 'name'=> $request->name,
                 'email' => $request->email,
-                'mobile_no' => $request->mobile_no,
-                'designation' => $request->designation,
                 'password' => Hash::make(123456789)
             ];
             $user = User::create($inputs);
+            $profile = new ProfileUser([
+                'mobile' => $request->mobile,
+                'designation' => $request->designation,
+            ]);
+            $user->profile_user()->save($profile);
+
             $user->assignRole($inputs['designation']);
             $response = [
                 'success' => true,
@@ -68,7 +73,8 @@ class UserController extends Controller
 
 
     public function edit(User $user) {
-        return response()->json($user, 200);
+        $response = new UserResource(User::findOrFail($user->id));
+        return response()->json($response, 200);
     }
 
     /**
@@ -95,16 +101,18 @@ class UserController extends Controller
             $inputs = [
                 'name'=> $request->name,
                 'email' => $request->email,
-                'mobile_no' => $request->mobile_no,
-                'designation' => $request->designation,
             ];
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->mobile_no = $request->mobile_no;
-            $user->designation = $request->designation;
+            
+            /*$profile = new ProfileUser([
+                'mobile' => $request->mobile,
+                'designation' => $request->designation,
+            ]);
+            $user->profile_user()->save($profile);*/
 
             $user->save($inputs);
-            $user->assignRole($inputs['designation']);
+            $user->assignRole($request->designation);
 
             $response = [
                 'success' => true,

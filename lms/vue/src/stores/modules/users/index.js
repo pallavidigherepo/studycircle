@@ -20,8 +20,7 @@ export default {
                 defaultPage: 1,
                 defaultSearch: "",
                 defaultPerPage: 10,
-                columns: [
-                    {
+                columns: [{
                         label: "ID",
                         field: "id",
                         sort: true,
@@ -37,8 +36,8 @@ export default {
                         sort: true,
                     },
                     {
-                        label: "MOBILE NO.",
-                        field: "mobile_no",
+                        label: "MOBILE",
+                        field: "mobile",
                         sort: false,
                     },
                     {

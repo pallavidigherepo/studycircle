@@ -7,6 +7,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 use App\Models\User;
+use App\Models\ProfileUser;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -91,11 +92,14 @@ class RoleAndPermissionSeeder extends Seeder
         $ownerInput = [
             'name'=> 'Institute Owner',
             'email' => 'owner@gmail.com',
-            'password' => Hash::make(123456789),
-            'mobile_no' => 1234567890,
-            'designation' => 'Owner',
+            'password' => Hash::make(123456789),            
         ];
         $ownerUser = User::create($ownerInput);
+        $profile = new ProfileUser([            
+            'mobile' => 1234567890,
+            'designation' => 'Owner',
+        ]);
+        $ownerUser->profile_user()->save($profile);
         $ownerUser->assignRole($owner);
 
         $superAdmin = Role::create(['name' => 'Super Admin']);
@@ -106,11 +110,13 @@ class RoleAndPermissionSeeder extends Seeder
             'name'=> 'Super Admin',
             'email' => 'superadmin@gmail.com',
             'password' => Hash::make(123456789),
-            'mobile_no' => 1234567890,
-            'designation' => 'Super Admin',
         ];
         $superAdminUser = User::create($superAdminInput);
-        
+        $profile = new ProfileUser([
+            'mobile' => 1234567890,
+            'designation' => 'Super Admin',
+        ]);
+        $superAdminUser->profile_user()->save($profile);
         $superAdminUser->assignRole($superAdmin);
 
         $admin = Role::create(['name' => 'Administrator']);
@@ -121,11 +127,14 @@ class RoleAndPermissionSeeder extends Seeder
             'name'=> 'Admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make(123456789),
-            'mobile_no' => 1234567890,
-            'designation' => 'Administrator',
+            
         ];
+        $profile = new ProfileUser([
+            'mobile' => 1234567890,
+            'designation' => 'Administrator',
+        ]);
         $adminUser = User::create($adminInput);
-        
+        $adminUser->profile_user()->save($profile);
         $adminUser->assignRole($admin);
 
         $teacher = Role::create(['name' => 'Teacher']);
@@ -152,22 +161,27 @@ class RoleAndPermissionSeeder extends Seeder
             'name'=> 'Teacher 1',
             'email' => 'teacher1@gmail.com',
             'password' => Hash::make(123456789),
-            'mobile_no' => 1234567890,
-            'designation' => 'Teacher',
         ];
+        $profile = new ProfileUser([
+            'mobile' => 1234567890,
+            'designation' => 'Teacher',
+        ]);
         $teacher1 = User::create($teacherInput1);
-        
+        $teacher1->profile_user()->save($profile);
         $teacher1->assignRole($teacher);
 
         $teacherInput2 = [
             'name'=> 'Teacher 2',
             'email' => 'teacher2@gmail.com',
             'password' => Hash::make(123456789),
-            'mobile_no' => 1234567890,
-            'designation' => 'Teacher',
         ];
+        $profile = new ProfileUser([
+            'mobile' => 1234567890,
+            'designation' => 'Teacher',
+        ]);
         $teacher2 = User::create($teacherInput2);
-        
+        $teacher2->profile_user()->save($profile);
+
         $teacher2->assignRole($teacher);
 
         $assistantTeacher = Role::create(['name' => 'Assistant Teacher']);
@@ -189,10 +203,13 @@ class RoleAndPermissionSeeder extends Seeder
             'name'=> 'Assistant Teacher',
             'email' => 'assistantteacher@gmail.com',
             'password' => Hash::make(123456789),
-            'mobile_no' => 1234567890,
-            'designation' => 'Assistant Teacher',
         ];
+        $profile = new ProfileUser([            
+            'mobile' => 1234567890,
+            'designation' => 'Assistant Teacher',
+        ]);
         $assistantTeacherUser = User::create($assistantTeacherInput);
+        $assistantTeacherUser->profile_user()->save($profile);
         
         $assistantTeacherUser->assignRole($assistantTeacher);
     }

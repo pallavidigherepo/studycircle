@@ -15,6 +15,7 @@ class CreateProfileUsers extends Migration
     {
         Schema::create('profile_users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->string('alt_email')->nullable(true);
             $table->string('mobile')->nullable(true);
             $table->string('alt_mobile')->nullable(true);
@@ -24,6 +25,8 @@ class CreateProfileUsers extends Migration
             $table->text('qualification')->nullable(true);
             $table->string('avatar')->nullable(true);
             $table->string('designation')->nullable();
+
+            $table->foreign('user_id')->references('id')->on('users');
 
             $table->timestamps();
             $table->softDeletes();

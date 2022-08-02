@@ -33,12 +33,12 @@ class UserRequest extends FormRequest
                 'email',
                 Rule::unique('users')->ignore($this->user)
             ],
-            'mobile_no' => [
+            /*'mobile' => [
                 'required'
             ],
             'designation' => [
                 'required'
-            ]
+            ]*/
         ];
     }
 }

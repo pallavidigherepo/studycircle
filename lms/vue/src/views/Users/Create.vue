@@ -93,14 +93,14 @@
                 type="text"
                 class="form-control"
                 placeholder="Enter mobile number"
-                v-model.trim="user.mobile_no"
+                v-model.trim="user.mobile"
                 :class="{
-                  'border-danger': submitted && v$.mobile_no.$errors.length,
+                  'border-danger': submitted && v$.mobile.$errors.length,
                 }"
               />
               <div
                 class="text-danger mt-2"
-                v-for="(error, index) of v$.mobile_no.$errors"
+                v-for="(error, index) of v$.mobile.$errors"
                 :key="index"
               >
                 <div class="error-msg">{{ error.$message }}</div>
@@ -193,7 +193,7 @@ const user = reactive({
   id: null,
   name: "",
   email: "",
-  mobile_no: "",
+  mobile: "",
   designation: [],
 });
 
@@ -218,7 +218,7 @@ const rules = computed(() => {
 
       //   }
     },
-    mobile_no: {
+    mobile: {
       required: helpers.withMessage("Please enter mobile number.", required),
     },
     designation: {
