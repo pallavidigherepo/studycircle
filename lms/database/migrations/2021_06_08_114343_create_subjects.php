@@ -30,8 +30,8 @@ class CreateSubjects extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('board_id')->references('id')->on('boards');
-            $table->foreign('standard_id')->references('id')->on('standards');
+            //$table->foreign('board_id')->references('id')->on('boards');
+           // $table->foreign('standard_id')->references('id')->on('standards');
             $table->foreign('language_id')->references('id')->on('languages');
             $table->foreign('parent_id')->references('id')->on('subjects');
             $table->foreign('created_by')->references('id')->on('users');

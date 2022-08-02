@@ -16,6 +16,9 @@ use App\Http\Controllers\Api\V1\TopicController;
 use App\Http\Controllers\Api\V1\ExportController;
 use App\Http\Controllers\Api\V1\ImportController;
 use App\Http\Controllers\Api\V1\QuestionController;
+use App\Http\Controllers\Api\V1\StudentController;
+use App\Http\Controllers\Api\V1\ProfileController;
+
 use App\Models\Board;
 use App\Models\Chapter;
 use App\Models\CoursesType;
@@ -59,6 +62,8 @@ Route::middleware('auth:sanctum')->group(function () {
     //Route::get('v1/topics/list', [TopicController::class, 'list'])->name('topics.list');
     Route::resource('v1/topics', TopicController::class);
     Route::resource('v1/questions', QuestionController::class);
+    Route::resource('v1/students', StudentController::class);
+    Route::resource('v1/profile', ProfileController::class);
 
 
     Route::post('v1/exports/index', [ExportController::class, 'index'])->name('exports.index');

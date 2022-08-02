@@ -39,7 +39,13 @@ import CreateQuestion from '../views/Questions/Create.vue';
 import EditQuestion from '../views/Questions/Edit.vue';
 import ShowQuestion from '../views/Questions/Show.vue';
 
+import Students from '../views/Students/Index.vue';
+import CreateStudent from '../views/Students/Create.vue';
+import EditStudent from '../views/Students/Edit.vue';
+import ShowStudent from '../views/Students/Show.vue';
+
 import Login from "../views/Auth/Login.vue";
+import Profile from "../views/Auth/Profile.vue";
 import ErrorPage from "../views/ErrorPage.vue";
 
 import store from '@/stores';
@@ -50,6 +56,11 @@ const routes = [{
         redirect: '/dashboard',
         meta: { requiresAuth: true },
         children: [{
+                path: "/profile",
+                name: "Profile",
+                component: Profile,
+            },
+            {
                 path: "/dashboard",
                 name: "Dashboard",
                 component: Dashboard,
@@ -253,6 +264,39 @@ const routes = [{
                         component: ShowQuestion,
                         meta: {
                             parent: 'Questions'
+                        }
+                    },
+                ]
+            },
+            {
+                path: "/students",
+                name: "Students",
+                component: Students,
+                meta: {
+                    parent: 'Students'
+                },
+                children: [{
+                        path: '/students/create',
+                        name: "CreateStudent",
+                        component: CreateStudent,
+                        meta: {
+                            parent: 'Students'
+                        }
+                    },
+                    {
+                        path: '/students/:id/edit',
+                        name: "EditStudent",
+                        component: EditStudent,
+                        meta: {
+                            parent: 'Students'
+                        }
+                    },
+                    {
+                        path: '/students/:id',
+                        name: "ShowStudent",
+                        component: ShowStudent,
+                        meta: {
+                            parent: 'Students'
                         }
                     },
                 ]

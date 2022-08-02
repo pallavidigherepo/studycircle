@@ -14,7 +14,17 @@ class Subject extends Model
     
     protected $guarded = [];
 
-    protected $fillable = array('label', 'description', 'icon', 'language_id', 'parent_id', 'created_by', 'updated_by');
+    protected $fillable = array(
+        'label', 
+        'description', 
+        'icon', 
+        'language_id', 
+        'parent_id', 
+        'board_id', 
+        'standard_id', 
+        'created_by', 
+        'updated_by'
+    );
 
     protected $searchable = [
         'label',
@@ -37,5 +47,15 @@ class Subject extends Model
     public function chapters()
     {
         return $this->hasMany(Chapter::class, 'parent_id');
+    }
+
+    public function board()
+    {
+        return $this->belongsTo(Board::class, 'board_id');
+    }
+
+    public function standard()
+    {
+        return $this->belongsTo(Standard::class, 'standard_id');
     }
 }

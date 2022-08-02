@@ -9,7 +9,8 @@ export default {
             user: {
                 data: {},
                 token: sessionStorage.getItem("TOKEN"),
-            }
+            },
+            profile: {}
         }
     },
     actions,

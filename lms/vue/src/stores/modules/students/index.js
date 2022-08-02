@@ -5,10 +5,9 @@ export default {
     namespaced: true,
     state() {
         return {
-            subjects: [],
-            subject: null,
+            students: [],
+            question: null,
             languages: [],
-            courses: [],
             pagination: [],
             datatable: {
                 export: true,
@@ -26,20 +25,26 @@ export default {
                         isJson: false,
                     },
                     {
-                        label: "LABEL",
-                        field: "label",
+                        label: "NAME",
+                        field: "name",
                         sort: true,
                         isJson: false,
                     },
                     {
-                        label: "BOARD",
-                        field: "board",
-                        sort: false,
+                        label: "EMAIL",
+                        field: "email",
+                        sort: true,
                         isJson: false,
                     },
                     {
                         label: "STANDARD",
                         field: "standard",
+                        sort: false,
+                        isJson: false,
+                    },
+                    {
+                        label: "BOARD",
+                        field: "board",
                         sort: false,
                         isJson: false,
                     },

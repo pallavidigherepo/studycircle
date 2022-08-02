@@ -1,19 +1,26 @@
 import axiosClient from "@/axios";
 
 export default {
-    login({commit}, user) {
+    login({ commit }, user) {
         return axiosClient.post('/login', user)
-            .then(({data}) => {
+            .then(({ data }) => {
                 commit('setUser', data.user);
                 commit('setToken', data.token)
                 return data;
             })
     },
-    logout({commit}) {
+    logout({ commit }) {
         return axiosClient.post('/logout')
             .then(response => {
-            commit('logout')
-            return response;
-        })
+                commit('logout')
+                return response;
+            })
     },
+    profile({ commit }) {
+        return axiosClient.get('/profile')
+            .then(({ data }) => {
+                commit('userProfile', data)
+            })
+            .catch((e) => {})
+    }
 }

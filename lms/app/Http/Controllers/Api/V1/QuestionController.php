@@ -35,7 +35,6 @@ class QuestionController extends Controller
 
         $questions = QuestionResource::collection(
             Question::when(request('search'), function ($query) {
-                $query->where('question', NULL);
                 $query->where('question', 'like', '%'. request('search'). '%');                
             })
             ->whereNull('parent_id')

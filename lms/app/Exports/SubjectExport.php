@@ -46,6 +46,8 @@ class SubjectExport implements
             $subject->id,
             json_decode($subject->label),
             json_decode($subject->description),
+            $subject->board_id,
+            $subject->standard_id,
             $subject->icon,
             $subject->tags->pluck('name'),
             $subject->language_id,
@@ -54,10 +56,23 @@ class SubjectExport implements
     }
 
     public function headings(): array {
+        if ($this->isDemo) {
+            return [
+                'Label',
+                'Description',
+                'Board',
+                'Standard',
+                'Icon',
+                'Tags',
+                'Language Id',
+            ];
+        }
         return [
             '#',
             'Label',
             'Description',
+            'Board',
+            'Standard',
             'Icon',
             'Tags',
             'Language Id',

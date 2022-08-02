@@ -36,6 +36,52 @@
           <form @submit.prevent="submitForm" class="validate-form">
             <div>
               <label for="form-label" class="form-label">{{
+                t("subjects.Board")
+              }}</label>
+              <TomSelect id="form-board" 
+                v-model="model.board_id" 
+                :placeholder="'Select Board'" 
+                :options="{
+                  allowEmptyOption: false,
+                  create: false,
+                  placeholder: 'Select Board',
+                  autocomplete: 'off',
+                }" 
+                class="w-full" 
+                :class="{ 'border-danger': submitted && v$.board_id.$errors.length,}">
+                <option>{{ t('questions.Select Board') }}</option>
+                <option v-for="(board, index) in boards" :key="index" :value="index">
+                  {{ board }}
+                </option>
+              </TomSelect>
+              
+              <div class="text-danger mt-2" v-for="(error, index) of v$.board_id.$errors" :key="index">
+                <div class="error-msg">{{ error.$message }}</div>
+              </div>
+            </div>
+            <div class="mt-3">
+              <label for="form-label" class="form-label">{{
+                t("subjects.Standard")
+              }}</label>
+              <TomSelect id="form-standard" v-model="model.standard_id" placeholder="Select Standard" :options="{
+                allowEmptyOption: false,
+                create: false,
+                placeholder: 'Select Standard',
+                autocomplete: 'off',
+              }" class="w-full" :class="{
+'border-danger': submitted && v$.standard_id.$errors.length,
+}">
+                <option>{{ t('questions.Select Standard') }}</option>
+                <option v-for="(standard, indexs) in standards" :key="indexs" :value="indexs">
+                  {{ standard }}
+                </option>
+              </TomSelect>
+              <div class="text-danger mt-2" v-for="(error, index) of v$.standard_id.$errors" :key="index">
+                <div class="error-msg">{{ error.$message }}</div>
+              </div>
+            </div>
+            <div class="mt-3">
+              <label for="form-label" class="form-label">{{
                 t("subjects.Label")
               }}</label>
               <input
@@ -211,6 +257,8 @@ const router = useRouter();
 const { t } = useI18n();
 const model = reactive({
   id: "",
+  board_id: "",
+  standard_id: "",
   label: "",
   description: null,
   icon: "",
@@ -220,6 +268,12 @@ const model = reactive({
 
 const rules = computed(() => {
   return {
+    board_id: {
+      required: helpers.withMessage("Please select board.", required),
+    },
+    standard_id: {
+      required: helpers.withMessage("Please select standard.", required),
+    },
     label: {
       required: helpers.withMessage("Please enter label.", required),
     },
@@ -260,7 +314,13 @@ async function submitForm() {
     return;
   }
 }
+
+const boards = computed(() => store.getters.listBoards);
+const standards = computed(() => store.getters.listStandards);
+
 onMounted(() => {
+  store.dispatch("listBoard").then().catch();
+  store.dispatch("listStandard").then().catch();
   store.dispatch("listLanguages").then().catch();
 });
 const languages = computed(() => store.getters.languages);

@@ -22,8 +22,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'mobile_no',
-        'designation'
     ];
 
     /**
@@ -53,8 +51,6 @@ class User extends Authenticatable
     protected $searchable = [
         'name',
         'email',
-        'mobile_no',
-        'designation'
     ];
     
     /**
@@ -65,7 +61,25 @@ class User extends Authenticatable
     protected $sortable = [
         'name',
         'email',
-        'mobile_no',
-        'designation'
     ];
+    
+    public function profile_user() 
+    {
+        return $this->hasOne(ProfileUser::class);
+    }
+
+    public function courses() 
+    {
+        return $this->hasMany(Course::class);
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class);
+    }
 }

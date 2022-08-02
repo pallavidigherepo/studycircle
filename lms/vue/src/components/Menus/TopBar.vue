@@ -27,14 +27,15 @@
         >
           
           <img
-            alt="Icewall Tailwind HTML Admin Template"
-            :src="$f()[9].photos[0]"
+            :alt="userInfo.name"
+            :src="`https://eu.ui-avatars.com/api/?name=`+userInfo.name"
           />
         </div>
         <div class="dropdown-menu w-56" >
           <ul
             class="dropdown-content bg-primary/80 before:block before:absolute before:bg-black before:inset-0 before:rounded-md before:z-[-1] text-white"
           >
+          
             <li class="p-2">
               <div class="font-medium">
                 {{ userInfo.name }}
@@ -45,9 +46,9 @@
             </li>
             <li><hr class="dropdown-divider border-white/[0.08]" /></li>
             <li>
-              <a href="" class="dropdown-item hover:bg-white/5">
+              <router-link :to="{name: 'Profile'}" class="dropdown-item hover:bg-white/5">
                 <UserIcon class="w-4 h-4 mr-2" /> Profile
-              </a>
+              </router-link>
             </li>
             <li><hr class="dropdown-divider border-white/[0.08]" /></li>
             <li>
@@ -83,7 +84,8 @@ const hideSearchDropdown = () => {
   searchDropdown.value = false;
 };
 
-const userInfo = computed(() => store.state.auth.user.data);
+//const userInfo = computed(() => store.state.auth.user.data);
+const userInfo = computed(() => JSON.parse(sessionStorage.getItem("USER")));
 
 function logout() {
     dom(".dropdown-menu").removeClass("show").addClass("hide");

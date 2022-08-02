@@ -11,6 +11,7 @@ import subjectModule from './modules/subjects/index.js';
 import chapterModule from './modules/chapters/index.js';
 import topicModule from './modules/topics/index.js';
 import questionModule from './modules/questions/index.js';
+import studentModule from './modules/students/index.js';
 
 const store = createStore({
     modules: {
@@ -25,6 +26,7 @@ const store = createStore({
         chapters: chapterModule,
         topics: topicModule,
         questions: questionModule,
+        students: studentModule,
         /*languages: languageModule,
          */
     },

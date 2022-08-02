@@ -25,6 +25,8 @@ class SubjectChapterTopicSeeder extends Seeder
                 'created_by' => 1,
                 'updated_by' => 1,
                 'parent_id' => NULL,
+                'board_id' => 1,
+                'standard_id' => 1,
                 'tags' => ['english'],
                 'chapters' => [
                     [
@@ -43,6 +45,8 @@ class SubjectChapterTopicSeeder extends Seeder
                         'created_by' => 1,
                         'updated_by' => 1,
                         'parent_id' => NULL,
+                        'board_id' => 1,
+                        'standard_id' => 1,
                         'tags' => ['english', 'a-letter-to-GOD'],
                         'topics' => [
                             [
@@ -53,6 +57,8 @@ class SubjectChapterTopicSeeder extends Seeder
                                 'created_by' => 1,
                                 'updated_by' => 1,
                                 'parent_id' => NULL,
+                                'board_id' => 1,
+                                'standard_id' => 1,
                                 'tags' => ['english', 'a-letter-to-GOD', 'faith']
                             ],
                             [
@@ -63,6 +69,8 @@ class SubjectChapterTopicSeeder extends Seeder
                                 'created_by' => 1,
                                 'updated_by' => 1,
                                 'parent_id' => NULL,
+                                'board_id' => 1,
+                                'standard_id' => 1,
                                 'tags' => ['english', 'a-letter-to-GOD', 'faith']
                             ]
                         ]
@@ -75,6 +83,8 @@ class SubjectChapterTopicSeeder extends Seeder
                         'created_by' => 1,
                         'updated_by' => 1,
                         'parent_id' => NULL,
+                        'board_id' => 1,
+                        'standard_id' => 1,
                         'tags' => ['english'],
                         'topics' => [
                             [
@@ -85,6 +95,8 @@ class SubjectChapterTopicSeeder extends Seeder
                                 'created_by' => 1,
                                 'updated_by' => 1,
                                 'parent_id' => NULL,
+                                'board_id' => 1,
+                                'standard_id' => 1,
                                 'tags' => ['english']
                             ]
                         ]
@@ -100,6 +112,8 @@ class SubjectChapterTopicSeeder extends Seeder
                 'created_by' => 1,
                 'updated_by' => 1,
                 'parent_id' => NULL,
+                'board_id' => 1,
+                'standard_id' => 1,
                 'tags' => ['mathematics'],
                 'chapters' => [
                     [
@@ -110,6 +124,8 @@ class SubjectChapterTopicSeeder extends Seeder
                         'created_by' => 1,
                         'updated_by' => 1,
                         'parent_id' => NULL,
+                        'board_id' => 1,
+                        'standard_id' => 1,
                         'tags' => ['mathematics', 'real_number'],
                         'topics' => [
                             [
@@ -120,6 +136,8 @@ class SubjectChapterTopicSeeder extends Seeder
                                 'created_by' => 1,
                                 'updated_by' => 1,
                                 'parent_id' => NULL,
+                                'board_id' => 1,
+                                'standard_id' => 1,
                                 'tags' => ['real_number']
                             ]
                         ]
@@ -139,6 +157,8 @@ class SubjectChapterTopicSeeder extends Seeder
                 'created_by' => $input['created_by'],
                 'updated_by' => $input['updated_by'],
                 'parent_id' => $input['parent_id'],
+                'board_id' => $input['board_id'],
+                'standard_id' => $input['standard_id'],
             ];
             $subjectCreated = Subject::create($subject);
             $subjectCreated->attachTags($input['tags']);
@@ -154,6 +174,8 @@ class SubjectChapterTopicSeeder extends Seeder
                     'language_id' => $chapter['language_id'],
                     'created_by' => $chapter['created_by'],
                     'updated_by' => $chapter['updated_by'],
+                    'board_id' => $input['board_id'],
+                    'standard_id' => $input['standard_id'],
                 ];
                 $chapterCreated = Chapter::create($chapterInput);
                 $chapterCreated->attachTags($chapter['tags']);
@@ -167,6 +189,8 @@ class SubjectChapterTopicSeeder extends Seeder
                         'language_id' => $topic['language_id'],
                         'created_by' => $topic['created_by'],
                         'updated_by' => $topic['updated_by'],
+                        'board_id' => $input['board_id'],
+                        'standard_id' => $input['standard_id'],
                     ];
                     $topicCreated = Topic::create($toicInput);
                     $topicCreated->attachTags($topic['tags']);

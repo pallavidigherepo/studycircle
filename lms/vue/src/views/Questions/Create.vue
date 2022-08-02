@@ -548,7 +548,7 @@
                       <div v-for="(question, index) in model.questions" :key="question.id">
                         <QuestionEditor :question="question" :questionIndex="index" :type="selectedType"
                           :typeParagraph="typeListParagraph" @change="questionChange" @addQuestion="addQuestion"
-                          @deleteQuestion="deleteQuestion" />
+                          @deleteQuestion="deleteQuestion" :errors="model.questions[index].errors ? model.questions[index].errors: null" />
                           
                       </div>
                       
@@ -609,7 +609,7 @@
 
                       <QuestionEditor :question="question" :index="index" :type="selectedType"
                         :typeParagraph="typeListParagraph" @change="questionChange" @addQuestion="addQuestion"
-                        @deleteQuestion="deleteQuestion" />
+                        @deleteQuestion="deleteQuestion" :errors="model.questions[index].errors ? model.questions[index].errors: null" />
                       
                     </div>
                   </div>
@@ -620,7 +620,6 @@
 
           </div>
         </div>
-        {{ model.questions}}
         <!-- END: Product Variant (Details) -->
         <div class="flex justify-end flex-col md:flex-row gap-2 mt-5">
           <router-link to="/questions"
@@ -695,6 +694,7 @@ const model = ref({
         {
           answer: '',
           is_correct: null,
+          errors: [],
         }
       ],
       errors: [],
@@ -800,49 +800,48 @@ const rules = computed(() => {
       numeric: helpers.withMessage("Please enter numeric value", numeric),
       minValue: helpers.withMessage("Please enter minimum one mark.", minValue(0.1)),
     },
-    // answers: {     
-    //   required: requiredIf(function() {
-    //     return model.value.type_id != 5;
-    //   }),
-    //   //minLength: minLength(1),
-    //   $each: helpers.forEach({
-    //      answer: {
-    //        required: helpers.withMessage('Please enter answer.', required),
-    //     },
-    //     /*is_correct: {
-    //       required: helpers.withMessage('Please enter answer.', required),
-    //     },*/
-    //   })
-    // },
-    // questions: {
-    //   required: requiredIf(function () {
-    //     return model.value.type_id == 5;
-    //   }),
-    //   $each: helpers.forEach({
-    //     question: {
-    //       required: helpers.withMessage('Please enter question.', required),
-    //     },
-    //     description: {
-    //       required: helpers.withMessage('Please enter description.', required),
-    //     },
-    //     note: {
-    //       required: helpers.withMessage('Please enter note.', required),
-    //     },
-    //     type_id: {
-    //       required: helpers.withMessage('Please select type.', required),
-    //     },
-    //     answers: minLength(1),
-    //     $each: helpers.forEach({
-    //       answer: {
-    //         required: helpers.withMessage('Please enter answer.', required),
-    //       }
-    //     })
-    //   })
-    // }
   };
 });
 
+const rulesForQuestion = computed(() => {
+  return {
+    question: {
+      required: helpers.withMessage('Please enter question.', required),
+    },
+    description: {
+      required: helpers.withMessage('Please enter description.', required),
+    },
+    note: {
+      required: helpers.withMessage('Please enter note.', required),
+    },
+    type_id: {
+      required: helpers.withMessage('Please select type.', required),
+    },
+    marks: {
+      required: helpers.withMessage("Please enter marks for this questions.", required),
+      numeric: helpers.withMessage("Please enter numeric value", numeric),
+      minValue: helpers.withMessage("Please enter minimum one mark.", minValue(1)),
+    },
+    negative_marks: {
+      required: helpers.withMessage("Please enter negative marks for this questions.", required),
+      numeric: helpers.withMessage("Please enter numeric value", numeric),
+      minValue: helpers.withMessage("Please enter minimum one mark.", minValue(0.1)),
+    },
+    answers: minLength(1),
+  }
+});
+
+const rulesForAnswer = computed(() => {
+  return {
+    answer: {
+      required: helpers.withMessage('Please enter answer.', required),
+    },
+  }
+}); 
+
 const v$ = useVuelidate(rules, model);
+const vQ$ = ref();
+const vA$ = ref();
 
 async function submitForm() {
   //
@@ -852,12 +851,13 @@ async function submitForm() {
 
   if (!v$.value.$error && !isErrored.value) {
     isLoading.value = true;
-    return ;
+    //return ;
     await store
       .dispatch("questions/save", model.value)
       .then(() => {
         isLoading.value = false;
         submitted.value = false;
+        isErrored.value = false;
         router.push({ name: "Questions" });
       })
       .catch((err) => {
@@ -891,76 +891,43 @@ function validateQuestionAnswers()
         model.value.answers.errors
       } else {
         for (let index = 0; index < model.value.answers.length; index++) {
+          const valA$ = useVuelidate(rulesForAnswer, model.value.answers[index]);
+          valA$.value.$validate();
           
-          if (model.value.answers[index].answer == '') {
-            
-            validationErrors.value = {
-              answer: "Please enter answer.",
-            }
-            isErrored.value = true;
-            if (!model.value.answers[index].errors[index] && 
-                model.value.answers[index].errors.length < 1) {
-              model.value.answers[index].errors.splice(index, 0, validationErrors.value);
+          if (valA$.value.$error) {
+            if (!model.value.answers[index].errors[index]) {
+              isErrored.value = true;
+              model.value.answers[index].errors.splice(0, 0, valA$.value);
             }
           }
         }
       }
     } else if (model.value.type_id == 5) {
-      // Check if questions array is set.
-      let questionErrors = {
-        question: '',
-        description: '',
-        note: '',
-        marks: '',
-        negative_marks: '',
-        type_id: '',
-        answers: []
-      }
+      
       for (let index = 0; index < model.value.questions.length; index++) {
-          
-          if (model.value.questions[index].question == '') {
-            questionErrors.question = "Please enter answer.";
-            
-          }
-          if (model.value.questions[index].description == '') {
-            questionErrors.description = "Please enter description.";
-          }
-          if (model.value.questions[index].note == '') {
-            questionErrors.note = "Please enter note.";
-            
-          }
-          if (model.value.questions[index].marks == '') {
-            questionErrors.marks = "Please enter marks.";
-            
-          }
-          if (model.value.questions[index].negative_marks == '') {
-            questionErrors.negative_marks = "Please enter negative marks.";
-          }
-          if (model.value.questions[index].type_id == '') {
-            questionErrors.type_id = "Please select type.";
-          }
-          
-          if (!model.value.questions[index].errors[index] && 
-              model.value.questions[index].errors.length < 1) {
-
-            isErrored.value = true;
-            validationErrors.value = {
-              question: questionErrors.question,
-              description: questionErrors.description,
-              note: questionErrors.note,
-              marks: questionErrors.marks,
-              negative_marks: questionErrors.negative_marks,
-              type_id: questionErrors.type_id
-            }
-            model.value.questions[index].errors.splice(index, 0, validationErrors.value);
+        const valQ$ = useVuelidate(rulesForQuestion, model.value.questions[index]);
+        valQ$.value.$validate();
+        
+        if (valQ$.value.$error) {
+          if (!model.value.questions[index].errors[index]) {
+              model.value.questions[index].errors.splice(0, 0, valQ$.value);
           }
         }
-        console.log(questionErrors)
+        
+        for (let ans = 0; ans < model.value.questions[index].answers.length; ans++) {
+          const valA$ = useVuelidate(rulesForAnswer, model.value.questions[index].answers[ans]);
+          valA$.value.$validate();
+          
+          if (valA$.value.$error) {
+            if (!model.value.questions[index].answers[ans].errors[ans]) {
+                model.value.questions[index].answers[ans].errors.splice(0, 0, valA$.value);
+            }
+          }
+        }
+      }
     }
   }
-  
 }
-
 function addQuestion(index) {
   const newQuestion = {    
     id: makeid(3),
@@ -974,6 +941,7 @@ function addQuestion(index) {
       {
         answer: '',
         is_correct: null,
+        errors: []
       }
     ],
     errors: [],

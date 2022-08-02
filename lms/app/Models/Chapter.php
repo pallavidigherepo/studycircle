@@ -24,7 +24,17 @@ class Chapter extends Model
 
     protected $guarded = [];
 
-    protected $fillable = array('label', 'description', 'icon', 'language_id', 'parent_id', 'created_by', 'updated_by');
+    protected $fillable = array(
+        'label', 
+        'description', 
+        'icon', 
+        'language_id', 
+        'parent_id',
+        'board_id', 
+        'standard_id',  
+        'created_by', 
+        'updated_by'
+    );
 
     protected $searchable = [
         'label',
