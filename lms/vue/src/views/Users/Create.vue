@@ -111,7 +111,7 @@
             </div>
             <div class="mt-3">
               <label for="form-role" class="form-label"
-                >{{ t("users.Designation") }}
+                >{{ t("users.Role") }}
               </label>
               <div class="mt-2">
                 <TomSelect

@@ -1,4 +1,5 @@
 import axiosClient from "@/axios";
+import store from "@/stores";
 
 export default {
     login({ commit }, user) {
@@ -7,6 +8,10 @@ export default {
                 commit('setUser', data.user);
                 commit('setToken', data.token)
                 return data;
+            })
+            .catch(e => {
+                const error = new Error('The provided credentials are not correct.')
+                throw error;
             })
     },
     logout({ commit }) {
@@ -22,5 +27,13 @@ export default {
                 commit('userProfile', data)
             })
             .catch((e) => {})
+    },
+    save({ commit }, payload) {
+        return axiosClient.put('/profile/' + payload.id, payload)
+            .then(({ data }) => {
+                commit('userProfile', data);
+            })
+            .catch((e) => {})
+
     }
 }

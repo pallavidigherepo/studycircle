@@ -70,16 +70,16 @@ class User extends Authenticatable
 
     public function courses() 
     {
-        return $this->hasMany(Course::class);
+        return $this->hasMany(Course::class, 'created_by');
     }
 
     public function questions()
     {
-        return $this->hasMany(Question::class);
+        return $this->hasMany(Question::class, 'created_by');
     }
 
     public function subjects()
     {
-        return $this->hasMany(Subject::class);
+        return $this->hasMany(Subject::class, 'created_by');
     }
 }

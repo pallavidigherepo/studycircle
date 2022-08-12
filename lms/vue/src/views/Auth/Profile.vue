@@ -9,16 +9,14 @@
                 <div class="flex flex-col lg:flex-row border-b border-slate-200/60 dark:border-darkmode-400 pb-5 -mx-5">
                     <div class="flex flex-1 px-5 items-center justify-center lg:justify-start">
                         <div class="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 image-fit relative">
-                            <img 
-                                :alt="user.name" 
-                                class="rounded-full"
-                                :src="`https://eu.ui-avatars.com/api/?size=225&name=`+user.name" />
+                            <img :alt="user.name" class="rounded-full"
+                                :src="`https://eu.ui-avatars.com/api/?size=225&name=` + user.name" />
                         </div>
                         <div class="ml-5">
                             <div class="w-24 sm:w-40 truncate sm:whitespace-normal font-medium text-lg">
                                 {{ user.name }}
                             </div>
-                            <div class="text-slate-500">{{  user.designation }}</div>
+                            <div class="text-slate-500">{{ user.designation }}</div>
                         </div>
                     </div>
                     <div
@@ -59,16 +57,16 @@
                 </div>
                 <TabList class="nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center">
                     <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
-                        <UserIcon class="w-4 h-4 mr-2" /> Profile
+                        <UserIcon class="w-4 h-4 mr-2" /> {{ t("auth.Profile") }}
                     </Tab>
                     <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
-                        <ShieldIcon class="w-4 h-4 mr-2" /> Account
+                        <ShieldIcon class="w-4 h-4 mr-2" /> {{ t("auth.Account") }}
                     </Tab>
                     <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
-                        <LockIcon class="w-4 h-4 mr-2" /> Change Password
+                        <LockIcon class="w-4 h-4 mr-2" /> {{ t("auth.Change Password") }}
                     </Tab>
                     <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
-                        <SettingsIcon class="w-4 h-4 mr-2" /> Settings
+                        <SettingsIcon class="w-4 h-4 mr-2" /> {{ t("auth.Settings") }}
                     </Tab>
                 </TabList>
             </div>
@@ -80,447 +78,103 @@
                         <div class="intro-y box col-span-12 lg:col-span-6">
                             <div
                                 class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                                <h2 class="font-medium text-base mr-auto">Latest Uploads</h2>
-                                <Dropdown class="ml-auto sm:hidden">
-                                    <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
-                                        <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />
-                                    </DropdownToggle>
-                                    <DropdownMenu class="w-40">
-                                        <DropdownContent>
-                                            <DropdownItem>All Files</DropdownItem>
-                                        </DropdownContent>
-                                    </DropdownMenu>
-                                </Dropdown>
-                                <button class="btn btn-outline-secondary hidden sm:flex">
-                                    All Files
-                                </button>
+                                <h2 class="font-medium text-base mr-auto">{{ t("auth.Latest Courses") }}</h2>
+
                             </div>
                             <div class="p-5">
-                                <div class="flex items-center">
-                                    <div class="file">
-                                        <a href="" class="w-12 file__icon file__icon--directory"></a>
-                                    </div>
-                                    <div class="ml-4">
-                                        <a class="font-medium" href="">Documentation</a>
-                                        <div class="text-slate-500 text-xs mt-0.5">40 KB</div>
-                                    </div>
-                                    <Dropdown class="ml-auto">
-                                        <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
-                                            <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />
-                                        </DropdownToggle>
-                                        <DropdownMenu class="w-40">
-                                            <DropdownContent>
-                                                <DropdownItem>
-                                                    <UsersIcon class="w-4 h-4 mr-2" /> Share File
-                                                </DropdownItem>
-                                                <DropdownItem>
-                                                    <TrashIcon class="w-4 h-4 mr-2" /> Delete
-                                                </DropdownItem>
-                                            </DropdownContent>
-                                        </DropdownMenu>
-                                    </Dropdown>
+                                <div class="overflow-x-auto">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="whitespace-nowrap">#</th>
+                                                <th class="whitespace-nowrap">{{ t("courses.Name") }}</th>
+                                                <th class="whitespace-nowrap">{{ t("courses.Code") }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(course, index) in profileCourses" :key="course.id">
+                                                <td>{{ index + 1 }}</td>
+                                                <td>{{ course.name }}</td>
+                                                <td>{{ course.course_code }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <div class="flex items-center mt-5">
-                                    <div class="file">
-                                        <a href="" class="w-12 file__icon file__icon--file">
-                                            <div class="file__icon__file-name text-xs">MP3</div>
-                                        </a>
-                                    </div>
-                                    <div class="ml-4">
-                                        <a class="font-medium" href="">Celine Dion - Ashes</a>
-                                        <div class="text-slate-500 text-xs mt-0.5">40 KB</div>
-                                    </div>
-                                    <Dropdown class="ml-auto">
-                                        <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
-                                            <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />
-                                        </DropdownToggle>
-                                        <DropdownMenu class="w-40">
-                                            <DropdownContent>
-                                                <DropdownItem>
-                                                    <UsersIcon class="w-4 h-4 mr-2" /> Share File
-                                                </DropdownItem>
-                                                <DropdownItem>
-                                                    <TrashIcon class="w-4 h-4 mr-2" /> Delete
-                                                </DropdownItem>
-                                            </DropdownContent>
-                                        </DropdownMenu>
-                                    </Dropdown>
-                                </div>
-                                <div class="flex items-center mt-5">
-                                    <div class="file">
-                                        <a href="" class="w-12 file__icon file__icon--empty-directory"></a>
-                                    </div>
-                                    <div class="ml-4">
-                                        <a class="font-medium" href="">Resources</a>
-                                        <div class="text-slate-500 text-xs mt-0.5">0 KB</div>
-                                    </div>
-                                    <Dropdown class="ml-auto">
-                                        <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
-                                            <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />
-                                        </DropdownToggle>
-                                        <DropdownMenu class="w-40">
-                                            <DropdownContent>
-                                                <DropdownItem>
-                                                    <UsersIcon class="w-4 h-4 mr-2" /> Share File
-                                                </DropdownItem>
-                                                <DropdownItem>
-                                                    <TrashIcon class="w-4 h-4 mr-2" /> Delete
-                                                </DropdownItem>
-                                            </DropdownContent>
-                                        </DropdownMenu>
-                                    </Dropdown>
-                                </div>
+
                             </div>
                         </div>
                         <!-- END: Latest Uploads -->
                         <!-- BEGIN: Work In Progress -->
                         <TabGroup class="intro-y box col-span-12 lg:col-span-6">
                             <div
-                                class="flex items-center px-5 py-5 sm:py-0 border-b border-slate-200/60 dark:border-darkmode-400">
-                                <h2 class="font-medium text-base mr-auto">Work In Progress</h2>
-                                <Dropdown class="ml-auto sm:hidden">
-                                    <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
-                                        <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />
-                                    </DropdownToggle>
-                                    <DropdownMenu class="w-40">
-                                        <DropdownContent tag="div">
-                                            <TabList class="block">
-                                                <Tab :fullWidth="false" class="dropdown-item cursor-pointer">New</Tab>
-                                                <Tab :fullWidth="false" class="dropdown-item cursor-pointer">Last Week
-                                                </Tab>
-                                            </TabList>
-                                        </DropdownContent>
-                                    </DropdownMenu>
-                                </Dropdown>
-                                <TabList class="nav-link-tabs w-auto ml-auto hidden sm:flex">
-                                    <Tab :fullWidth="false" class="py-5 cursor-pointer">New</Tab>
-                                    <Tab :fullWidth="false" class="py-5 cursor-pointer">Last Week</Tab>
-                                </TabList>
+                                class="mt-5 flex items-center px-5 py-5 sm:py-0 border-b border-slate-200/60 dark:border-darkmode-400">
+                                <h2 class="font-medium text-base mr-auto">{{ t("auth.") }}</h2>
+                                
                             </div>
                             <div class="p-5">
-                                <TabPanels>
-                                    <TabPanel>
-                                        <div>
-                                            <div class="flex">
-                                                <div class="mr-auto">Pending Tasks</div>
-                                                <div>20%</div>
-                                            </div>
-                                            <div class="progress h-1 mt-2">
-                                                <div class="progress-bar w-1/2 bg-primary" role="progressbar"
-                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                        <div class="mt-5">
-                                            <div class="flex">
-                                                <div class="mr-auto">Completed Tasks</div>
-                                                <div>2 / 20</div>
-                                            </div>
-                                            <div class="progress h-1 mt-2">
-                                                <div class="progress-bar w-1/4 bg-primary" role="progressbar"
-                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                        <div class="mt-5">
-                                            <div class="flex">
-                                                <div class="mr-auto">Tasks In Progress</div>
-                                                <div>42</div>
-                                            </div>
-                                            <div class="progress h-1 mt-2">
-                                                <div class="progress-bar w-3/4 bg-primary" role="progressbar"
-                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                        <a href="" class="btn btn-secondary block w-40 mx-auto mt-5">View More
-                                            Details</a>
-                                    </TabPanel>
-                                </TabPanels>
+                                
                             </div>
                         </TabGroup>
                         <!-- END: Work In Progress -->
-                        <!-- BEGIN: Daily Sales -->
-                        <div class="intro-y box col-span-12 lg:col-span-6">
-                            <div
-                                class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                                <h2 class="font-medium text-base mr-auto">Daily Sales</h2>
-                                <Dropdown class="ml-auto sm:hidden">
-                                    <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
-                                        <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />
-                                    </DropdownToggle>
-                                    <DropdownMenu class="w-40">
-                                        <DropdownContent>
-                                            <DropdownItem>
-                                                <FileIcon class="w-4 h-4 mr-2" /> Download Excel
-                                            </DropdownItem>
-                                        </DropdownContent>
-                                    </DropdownMenu>
-                                </Dropdown>
-                                <button class="btn btn-outline-secondary hidden sm:flex">
-                                    <FileIcon class="w-4 h-4 mr-2" /> Download Excel
-                                </button>
-                            </div>
-                            <div class="p-5">
-                                <div class="relative flex items-center">
-                                    <div class="w-12 h-12 flex-none image-fit">
-                                        <img alt="Midone Tailwind HTML Admin Template" class="rounded-full"
-                                            :src="$f()[0].photos[0]" />
-                                    </div>
-                                    <div class="ml-4 mr-auto">
-                                        <a href="" class="font-medium">{{ $f()[0].users[0].name }}</a>
-                                        <div class="text-slate-500 mr-5 sm:mr-5">
-                                            Bootstrap 4 HTML Admin Template
-                                        </div>
-                                    </div>
-                                    <div class="font-medium text-slate-600 dark:text-slate-500">
-                                        +$19
-                                    </div>
-                                </div>
-                                <div class="relative flex items-center mt-5">
-                                    <div class="w-12 h-12 flex-none image-fit">
-                                        <img alt="Midone Tailwind HTML Admin Template" class="rounded-full"
-                                            :src="$f()[1].photos[0]" />
-                                    </div>
-                                    <div class="ml-4 mr-auto">
-                                        <a href="" class="font-medium">{{ $f()[1].users[0].name }}</a>
-                                        <div class="text-slate-500 mr-5 sm:mr-5">
-                                            Tailwind HTML Admin Template
-                                        </div>
-                                    </div>
-                                    <div class="font-medium text-slate-600 dark:text-slate-500">
-                                        +$25
-                                    </div>
-                                </div>
-                                <div class="relative flex items-center mt-5">
-                                    <div class="w-12 h-12 flex-none image-fit">
-                                        <img alt="Midone Tailwind HTML Admin Template" class="rounded-full"
-                                            :src="$f()[2].photos[0]" />
-                                    </div>
-                                    <div class="ml-4 mr-auto">
-                                        <a href="" class="font-medium">{{ $f()[2].users[0].name }}</a>
-                                        <div class="text-slate-500 mr-5 sm:mr-5">
-                                            Vuejs HTML Admin Template
-                                        </div>
-                                    </div>
-                                    <div class="font-medium text-slate-600 dark:text-slate-500">
-                                        +$21
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END: Daily Sales -->
-                        <!-- BEGIN: Latest Tasks -->
-                        <TabGroup class="intro-y box col-span-12 lg:col-span-6">
-                            <div
-                                class="flex items-center px-5 py-5 sm:py-0 border-b border-slate-200/60 dark:border-darkmode-400">
-                                <h2 class="font-medium text-base mr-auto">Latest Tasks</h2>
-                                <Dropdown class="ml-auto sm:hidden">
-                                    <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
-                                        <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />
-                                    </DropdownToggle>
-                                    <DropdownMenu class="w-40">
-                                        <DropdownContent tag="div">
-                                            <TabList class="block">
-                                                <Tab :fullWidth="false" class="dropdown-item cursor-pointer">New</Tab>
-                                                <Tab :fullWidth="false" class="dropdown-item cursor-pointer">Last Week
-                                                </Tab>
-                                            </TabList>
-                                        </DropdownContent>
-                                    </DropdownMenu>
-                                </Dropdown>
-                                <TabList class="nav-link-tabs w-auto ml-auto hidden sm:flex">
-                                    <Tab :fullWidth="false" class="py-5 cursor-pointer">New</Tab>
-                                    <Tab :fullWidth="false" class="py-5 cursor-pointer">Last Week</Tab>
-                                </TabList>
-                            </div>
-                            <div class="p-5">
-                                <TabPanels>
-                                    <TabPanel>
-                                        <div class="flex items-center">
-                                            <div class="border-l-2 border-primary dark:border-primary pl-4">
-                                                <a href="" class="font-medium">Create New Campaign</a>
-                                                <div class="text-slate-500">10:00 AM</div>
-                                            </div>
-                                            <div class="form-check form-switch ml-auto">
-                                                <input class="form-check-input" type="checkbox" />
-                                            </div>
-                                        </div>
-                                        <div class="flex items-center mt-5">
-                                            <div class="border-l-2 border-primary dark:border-primary pl-4">
-                                                <a href="" class="font-medium">Meeting With Client</a>
-                                                <div class="text-slate-500">02:00 PM</div>
-                                            </div>
-                                            <div class="form-check form-switch ml-auto">
-                                                <input class="form-check-input" type="checkbox" />
-                                            </div>
-                                        </div>
-                                        <div class="flex items-center mt-5">
-                                            <div class="border-l-2 border-primary dark:border-primary pl-4">
-                                                <a href="" class="font-medium">Create New Repository</a>
-                                                <div class="text-slate-500">04:00 PM</div>
-                                            </div>
-                                            <div class="form-check form-switch ml-auto">
-                                                <input class="form-check-input" type="checkbox" />
-                                            </div>
-                                        </div>
-                                    </TabPanel>
-                                </TabPanels>
-                            </div>
-                        </TabGroup>
-                        <!-- END: Latest Tasks -->
-                        <!-- BEGIN: New Products -->
+                       
+                        <!-- BEGIN: Subject -->
                         <div class="intro-y box col-span-12">
                             <div
                                 class="flex items-center px-5 py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                                <h2 class="font-medium text-base mr-auto">New Products</h2>
-                                <button class="tiny-slider-navigator btn btn-outline-secondary px-2 mr-2"
-                                    @click="prevNewProducts">
-                                    <ChevronLeftIcon class="w-4 h-4" />
-                                </button>
-                                <button class="tiny-slider-navigator btn btn-outline-secondary px-2"
-                                    @click="nextNewProducts">
-                                    <ChevronRightIcon class="w-4 h-4" />
-                                </button>
+                                <h2 class="font-medium text-base mr-auto">{{ t("subjects.Subjects")}}</h2>
+                                
                             </div>
-                            <div id="new-products" class="tiny-slider py-5">
-                                <TinySlider ref-key="newProductsRef">
-                                    <div v-for="(faker, fakerKey) in $_.take($f(), 5)" :key="fakerKey" class="px-5">
-                                        <div class="flex flex-col lg:flex-row items-center pb-5">
-                                            <div
-                                                class="flex flex-col sm:flex-row items-center pr-5 lg:border-r border-slate-200/60 dark:border-darkmode-400">
-                                                <div class="sm:mr-5">
-                                                    <div class="w-20 h-20 image-fit">
-                                                        <img alt="Midone Tailwind HTML Admin Template"
-                                                            class="rounded-full" :src="faker.images[0]" />
-                                                    </div>
-                                                </div>
-                                                <div class="mr-auto text-center sm:text-left mt-3 sm:mt-0">
-                                                    <a href="" class="font-medium text-lg">{{
-                                                            faker.products[0].name
-                                                    }}</a>
-                                                    <div class="text-slate-500 mt-1 sm:mt-0">
-                                                        {{ faker.news[0].shortContent }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="w-full lg:w-auto mt-6 lg:mt-0 pt-4 lg:pt-0 flex-1 flex items-center justify-center px-5 border-t lg:border-t-0 border-slate-200/60 dark:border-darkmode-400">
-                                                <div class="text-center rounded-md w-20 py-3">
-                                                    <div class="font-medium text-primary text-xl">
-                                                        {{ faker.totals[0] }}
-                                                    </div>
-                                                    <div class="text-slate-500">Orders</div>
-                                                </div>
-                                                <div class="text-center rounded-md w-20 py-3">
-                                                    <div class="font-medium text-primary text-xl">
-                                                        {{ faker.totals[1] }}k
-                                                    </div>
-                                                    <div class="text-slate-500">Purchases</div>
-                                                </div>
-                                                <div class="text-center rounded-md w-20 py-3">
-                                                    <div class="font-medium text-primary text-xl">
-                                                        {{ faker.totals[0] }}
-                                                    </div>
-                                                    <div class="text-slate-500">Reviews</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="flex flex-col sm:flex-row items-center border-t border-slate-200/60 dark:border-darkmode-400 pt-5">
-                                            <div
-                                                class="w-full sm:w-auto flex justify-center sm:justify-start items-center border-b sm:border-b-0 border-slate-200/60 dark:border-darkmode-400 pb-5 sm:pb-0">
-                                                <div
-                                                    class="px-3 py-2 text-primary bg-primary/10 dark:bg-darkmode-400 dark:text-slate-300 rounded font-medium mr-3">
-                                                    {{ faker.dates[0] }}
-                                                </div>
-                                                <div class="text-slate-500">Date of Release</div>
-                                            </div>
-                                            <div class="flex sm:ml-auto mt-5 sm:mt-0">
-                                                <button class="btn btn-secondary w-20 ml-auto">
-                                                    Preview
-                                                </button>
-                                                <button class="btn btn-secondary w-20 ml-2">
-                                                    Details
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </TinySlider>
+                            <div id="subjects" class="py-5">
+                                <div class="overflow-x-auto">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="whitespace-nowrap">#</th>
+                                                <th class="whitespace-nowrap">{{ t("subjects.Label") }}</th>
+                                                <th class="whitespace-nowrap">{{ t("subjects.Icon") }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(subject, index) in profileSubjects" :key="subject.id">
+                                                <td>{{ index + 1 }}</td>
+                                                <td>{{ JSON.parse(subject.label) }}</td>
+                                                <td>{{ subject.icon }}</td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                        <!-- END: New Products -->
+                        <!-- END: Subjects -->
                         <!-- BEGIN: New Authors -->
                         <div class="intro-y box col-span-12">
                             <div
                                 class="flex items-center px-5 py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                                <h2 class="font-medium text-base mr-auto">New Authors</h2>
-                                <button class="tiny-slider-navigator btn btn-outline-secondary px-2 mr-2"
-                                    @click="prevNewAuthors">
-                                    <ChevronLeftIcon class="w-4 h-4" />
-                                </button>
-                                <button class="tiny-slider-navigator btn btn-outline-secondary px-2"
-                                    @click="nextNewAuthors">
-                                    <ChevronRightIcon class="w-4 h-4" />
-                                </button>
+                                <h2 class="font-medium text-base mr-auto">{{ t("questions.Questions") }}</h2>
+                                
                             </div>
-                            <div id="new-authors" class="tiny-slider py-5">
-                                <TinySlider ref-key="newAuthorsRef">
-                                    <div v-for="(faker, fakerKey) in $_.take($f(), 5)" :key="fakerKey" class="px-5">
-                                        <div class="flex flex-col lg:flex-row items-center pb-5">
-                                            <div
-                                                class="flex-1 flex flex-col sm:flex-row items-center pr-5 lg:border-r border-slate-200/60 dark:border-darkmode-400">
-                                                <div class="sm:mr-5">
-                                                    <div class="w-20 h-20 image-fit">
-                                                        <img alt="Midone Tailwind HTML Admin Template"
-                                                            class="rounded-full" :src="faker.photos[0]" />
-                                                    </div>
-                                                </div>
-                                                <div class="mr-auto text-center sm:text-left mt-3 sm:mt-0">
-                                                    <a href="" class="font-medium text-lg">{{
-                                                            faker.users[0].name
-                                                    }}</a>
-                                                    <div class="text-slate-500 mt-1 sm:mt-0">
-                                                        {{ faker.jobs[0] }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="w-full lg:w-auto mt-6 lg:mt-0 pt-4 lg:pt-0 flex-1 flex flex-col justify-center items-center lg:items-start px-5 border-t lg:border-t-0 border-slate-200/60 dark:border-darkmode-400">
-                                                <div class="flex items-center">
-                                                    <a href=""
-                                                        class="w-8 h-8 rounded-full flex items-center justify-center border mr-2 text-slate-400">
-                                                        <FacebookIcon class="w-3 h-3 fill-current" />
-                                                    </a>
-                                                    {{ faker.users[0].email }}
-                                                </div>
-                                                <div class="flex items-center mt-2">
-                                                    <a href=""
-                                                        class="w-8 h-8 rounded-full flex items-center justify-center border mr-2 text-slate-400">
-                                                        <TwitterIcon class="w-3 h-3 fill-current" />
-                                                    </a>
-                                                    {{ faker.users[0].name }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="flex flex-col sm:flex-row items-center border-t border-slate-200/60 dark:border-darkmode-400 pt-5">
-                                            <div
-                                                class="w-full sm:w-auto flex justify-center sm:justify-start items-center border-b sm:border-b-0 border-slate-200/60 dark:border-darkmode-400 pb-5 sm:pb-0">
-                                                <div
-                                                    class="px-3 py-2 text-primary bg-primary/10 dark:bg-darkmode-400 dark:text-slate-300 rounded font-medium mr-3">
-                                                    {{ faker.dates[0] }}
-                                                </div>
-                                                <div class="text-slate-500">Joined Date</div>
-                                            </div>
-                                            <div class="flex sm:ml-auto mt-5 sm:mt-0">
-                                                <button class="btn btn-secondary w-20 ml-auto">
-                                                    Message
-                                                </button>
-                                                <button class="btn btn-secondary w-20 ml-2">
-                                                    Profile
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </TinySlider>
+                            
+                            <div id="subjects" class="py-5">
+                                <div class="overflow-x-auto">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="whitespace-nowrap">#</th>
+                                                <th class="whitespace-nowrap">{{ t("questions.Question") }}</th>
+                                                <th class="whitespace-nowrap">{{ t("questions.Board") }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(question, index) in profileQuestions" :key="question.id">
+                                                <td>{{ index + 1 }}</td>
+                                                <td>{{ question.question }}</td>
+                                                <td>{{ question.board_id }}</td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                         <!-- END: New Authors -->
@@ -532,85 +186,133 @@
                         <div class="intro-y box col-span-12 lg:col-span-12">
                             <div
                                 class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                                <h2 class="font-medium text-base mr-auto">Account Information</h2>
+                                <h2 class="font-medium text-base mr-auto">{{ t("auth.Account Information") }}</h2>
 
                             </div>
-                            <div class="p-5">
-                                <div class="flex items-center">
-                                    <div class="file">
-                                        <a href="" class="w-12 file__icon file__icon--directory"></a>
+                            <form @submit.prevent="submitAccount">
+                                <div class="p-5">
+                                    <div>
+                                        <label for="alt-email" class="form-label">{{ t("auth.Alternate Email")
+                                        }}</label>
+                                        <input id="alt-email" type="email" class="form-control"
+                                            placeholder="Enter Alternate Email" v-model.trim="modelAccount.alt_email"
+                                            :class="{
+                                                'border-danger': submitted && v$.alt_email.$errors.length,
+                                            }" />
+                                        <div class="text-danger mt-2" v-for="(error, index) of v$.alt_email.$errors"
+                                            :key="index">
+                                            <div class="error-msg">{{ error.$message }}</div>
+                                        </div>
                                     </div>
-                                    <div class="ml-4">
-                                        <a class="font-medium" href="">Documentation</a>
-                                        <div class="text-slate-500 text-xs mt-0.5">40 KB</div>
+                                    <div class="mt-3">
+                                        <label for="mobile" class="form-label">{{ t("auth.Mobile Number") }}</label>
+                                        <input id="mobile" type="text" class="form-control"
+                                            placeholder="Enter Mobile Number" v-model.trim="modelAccount.mobile" :class="{
+                                                'border-danger': submitted && v$.mobile.$errors.length,
+                                            }" />
+                                        <div class="text-danger mt-2" v-for="(error, index) of v$.mobile.$errors"
+                                            :key="index">
+                                            <div class="error-msg">{{ error.$message }}</div>
+                                        </div>
                                     </div>
-                                    <Dropdown class="ml-auto">
-                                        <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
-                                            <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />
-                                        </DropdownToggle>
-                                        <DropdownMenu class="w-40">
-                                            <DropdownContent>
-                                                <DropdownItem>
-                                                    <UsersIcon class="w-4 h-4 mr-2" /> Share File
-                                                </DropdownItem>
-                                                <DropdownItem>
-                                                    <TrashIcon class="w-4 h-4 mr-2" /> Delete
-                                                </DropdownItem>
-                                            </DropdownContent>
-                                        </DropdownMenu>
-                                    </Dropdown>
+                                    <div class="mt-3">
+                                        <label for="alt-mobile" class="form-label">{{ t("auth.Alternate Mobile Number")}}</label>
+                                        <input id="alt-mobile" type="text" class="form-control"
+                                            placeholder="Enter Alternate Mobile No"
+                                            v-model.trim="modelAccount.alt_mobile" :class="{
+                                                'border-danger': submitted && v$.alt_mobile.$errors.length,
+                                            }" />
+                                        <div class="text-danger mt-2" v-for="(error, index) of v$.alt_mobile.$errors"
+                                            :key="index">
+                                            <div class="error-msg">{{ error.$message }}</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <label for="address" class="form-label">{{ t("auth.Address") }}</label>
+                                        <textarea id="address" class="form-control" placeholder="Enter Address"
+                                            v-model.trim="modelAccount.address" :class="{
+                                                'border-danger': submitted && v$.address.$errors.length,
+                                            }"></textarea>
+
+                                        <div class="text-danger mt-2" v-for="(error, index) of v$.address.$errors"
+                                            :key="index">
+                                            <div class="error-msg">{{ error.$message }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <label for="alt-address" class="form-label">{{ t("auth.Alternate Address")}}</label>
+                                        <textarea id="alt-address" class="form-control"
+                                            placeholder="Enter Alternate Address"
+                                            v-model.trim="modelAccount.alt_address" :class="{
+                                                'border-danger': submitted && v$.alt_address.$errors.length,
+                                            }"></textarea>
+
+                                        <div class="text-danger mt-2" v-for="(error, index) of v$.alt_address.$errors"
+                                            :key="index">
+                                            <div class="error-msg">{{ error.$message }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <label for="gender" class="form-label">{{ t("auth.Gender") }}</label>
+                                        <TomSelect id="gender" v-model="modelAccount.gender" placeholder="Select Gender"
+                                            :options="{
+                                                allowEmptyOption: false,
+                                                create: false,
+                                                placeholder: 'Select Gender',
+                                                autocomplete: 'off',
+                                                items: modelAccount.gender,
+                                            }" class="w-full" :class="{
+    'border-danger': submitted && v$.gender.$errors.length,
+}">
+                                            <option value="">{{ t('common.Select Gender') }}</option>
+                                            <option value="male">{{ t('common.Male') }}</option>
+                                            <option value="female">{{ t('common.Female') }}</option>
+                                            <option value="other">{{ t('common.Other') }}</option>
+                                        </TomSelect>
+
+                                        <div class="text-danger mt-2" v-for="(error, index) of v$.gender.$errors"
+                                            :key="index">
+                                            <div class="error-msg">{{ error.$message }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <label for="qualification" class="form-label">{{
+                                                t("auth.Qualification")
+                                        }}</label>
+                                        <input id="qualification" type="text" v-model="modelAccount.qualification"
+                                            placeholder="Enter your qualification" class="form-control w-full" :class="{
+                                                'border-danger': submitted && v$.qualification.$errors.length,
+                                            }" />
+
+                                        <div class="text-danger mt-2" v-for="(error, index) of v$.qualification.$errors"
+                                            :key="index">
+                                            <div class="error-msg">{{ error.$message }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <label for="designation" class="form-label">{{ t("auth.Designation") }}</label>
+                                        <input id="designation" type="text" v-model="modelAccount.designation"
+                                            placeholder="Enter your designation" class="form-control w-full" :class="{
+                                                'border-danger': submitted && v$.designation.$errors.length,
+                                            }" />
+
+                                        <div class="text-danger mt-2" v-for="(error, index) of v$.designation.$errors"
+                                            :key="index">
+                                            <div class="error-msg">{{ error.$message }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right mt-5 p-5">
+                                        <button type="button" class="btn btn-outline-secondary w-24 mr-1"
+                                            @click.prevent="cancel">
+                                            {{ t("common.Cancel") }}
+                                        </button>
+                                        <button type="submit" class="btn btn-primary w-24">
+                                            {{ t("common.Save") }}
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="flex items-center mt-5">
-                                    <div class="file">
-                                        <a href="" class="w-12 file__icon file__icon--file">
-                                            <div class="file__icon__file-name text-xs">MP3</div>
-                                        </a>
-                                    </div>
-                                    <div class="ml-4">
-                                        <a class="font-medium" href="">Celine Dion - Ashes</a>
-                                        <div class="text-slate-500 text-xs mt-0.5">40 KB</div>
-                                    </div>
-                                    <Dropdown class="ml-auto">
-                                        <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
-                                            <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />
-                                        </DropdownToggle>
-                                        <DropdownMenu class="w-40">
-                                            <DropdownContent>
-                                                <DropdownItem>
-                                                    <UsersIcon class="w-4 h-4 mr-2" /> Share File
-                                                </DropdownItem>
-                                                <DropdownItem>
-                                                    <TrashIcon class="w-4 h-4 mr-2" /> Delete
-                                                </DropdownItem>
-                                            </DropdownContent>
-                                        </DropdownMenu>
-                                    </Dropdown>
-                                </div>
-                                <div class="flex items-center mt-5">
-                                    <div class="file">
-                                        <a href="" class="w-12 file__icon file__icon--empty-directory"></a>
-                                    </div>
-                                    <div class="ml-4">
-                                        <a class="font-medium" href="">Resources</a>
-                                        <div class="text-slate-500 text-xs mt-0.5">0 KB</div>
-                                    </div>
-                                    <Dropdown class="ml-auto">
-                                        <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
-                                            <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />
-                                        </DropdownToggle>
-                                        <DropdownMenu class="w-40">
-                                            <DropdownContent>
-                                                <DropdownItem>
-                                                    <UsersIcon class="w-4 h-4 mr-2" /> Share File
-                                                </DropdownItem>
-                                                <DropdownItem>
-                                                    <TrashIcon class="w-4 h-4 mr-2" /> Delete
-                                                </DropdownItem>
-                                            </DropdownContent>
-                                        </DropdownMenu>
-                                    </Dropdown>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                         <!-- END: Latest Uploads -->
 
@@ -618,16 +320,53 @@
                 </TabPanel>
                 <TabPanel>
                     <div class="grid grid-cols-12 gap-6">
+
                         <!-- BEGIN: Latest Uploads -->
                         <div class="intro-y box col-span-12 lg:col-span-12">
                             <div
                                 class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                                <h2 class="font-medium text-base mr-auto">Change Password</h2>
+                                <h2 class="font-medium text-base mr-auto">{{ t("auth.Change Password") }}</h2>
 
                             </div>
-                            <div class="p-5">
-                                
-                            </div>
+                            <form @submit.prevent="submitPasswordForm">
+                                <div class="p-5">
+                                    <div>
+                                        <label for="password" class="form-label">{{ t("auth.Password") }}</label>
+                                        <input id="password" type="password" class="form-control"
+                                            placeholder="Enter Password" v-model.trim="modelPassword.password" :class="{
+                                                'border-danger': submitted && vP$.password.$errors.length,
+                                            }" />
+                                        <div class="text-danger mt-2" v-for="(error, index) of vP$.password.$errors"
+                                            :key="index">
+                                            <div class="error-msg">{{ error.$message }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <label for="confirm-password" class="form-label">
+                                            {{ t("auth.Confirm Password")}}
+                                        </label>
+                                        <input id="confirm-password" type="password" class="form-control"
+                                            placeholder="Confirm Password" v-model.trim="modelPassword.confirm_password"
+                                            :class="{
+                                                'border-danger': submitted && vP$.confirm_password.$errors.length,
+                                            }" />
+                                        <div class="text-danger mt-2"
+                                            v-for="(error, index) of vP$.confirm_password.$errors" :key="index">
+                                            <div class="error-msg">{{ error.$message }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-right mt-5 p-5">
+                                    <button type="button" class="btn btn-outline-secondary w-24 mr-1"
+                                        @click.prevent="cancel">
+                                        {{ t("common.Cancel") }}
+                                    </button>
+                                    <button type="submit" class="btn btn-primary w-24">
+                                        {{ t("common.Save") }}
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                         <!-- END: Latest Uploads -->
 
@@ -644,7 +383,7 @@
 
                             </div>
                             <div class="p-5">
-                                
+
                             </div>
                         </div>
                         <!-- END: Latest Uploads -->
@@ -658,40 +397,177 @@
 </template>
 
 <script setup>
-import { ref, provide, computed, onMounted } from "vue";
+import { ref, provide, computed, onMounted, reactive } from "vue";
+
+import { useVuelidate } from "@vuelidate/core";
+import { required, helpers, sameAs, minLength, email, numeric } from "@vuelidate/validators";
+
 import store from "@/stores";
+
+import { useI18n } from "vue-i18n";
+import axiosClient from "@/axios";
+const { t } = useI18n();
 
 const user = computed(() => JSON.parse(sessionStorage.getItem("USER")));
 
+// store.getters['users/profile']);
+const profileCourses = ref();
+const profileSubjects = ref();
+const profileQuestions = ref();
+
+const modelAccount = ref({
+    id: '',
+    alt_email: '',
+    mobile: '',
+    alt_mobile: '',
+    address: '',
+    alt_address: '',
+    gender: '',
+    qualification: '',
+    avatar: '',
+    designation: '',
+});
+
+const modelPassword = reactive({
+    id: '',
+    password: '',
+    confirm_password: '',
+    isChangePassword: true,
+});
+
+const submitted = ref(false);
+const rules = computed(() => {
+    return {
+        password: {
+            required: helpers.withMessage("Please enter password.", required),
+            minLength: helpers.withMessage("Enter password of minimum length 9.", minLength(9)),
+        },
+        confirm_password: {
+            required: helpers.withMessage("Please enter confirm password.", required),
+            sameAs: helpers.withMessage("Password and confirm password does not match.", sameAs(modelPassword.password))
+        },
+    };
+});
+
+
+const vP$ = useVuelidate(rules, modelPassword);
+
+const accountRules = computed(() => {
+    return {
+        alt_email: {
+            //required: helpers.withMessage("Please enter email address.", required),
+            email: helpers.withMessage("Enter valid email address.", email),
+        },
+        mobile: {
+            required: helpers.withMessage("Please enter mobile number.", required),
+            numeric: helpers.withMessage("Enter valid mobile number.", numeric),
+            minLength: helpers.withMessage("Enter valid mobile number with minimum length of 10 digits.", minLength(10)),
+        },
+        alt_email: {
+            //required: helpers.withMessage("Please enter email address.", required),
+            email: helpers.withMessage("Enter valid email address.", email),
+        },
+        alt_mobile: {
+            //required: helpers.withMessage("Please enter mobile number.", required),       
+            numeric: helpers.withMessage("Enter valid mobile number.", numeric),
+            minLength: helpers.withMessage("Enter valid mobile number with minimum length of 10 digits.", minLength(10)),
+        },
+        address: {
+            //required: helpers.withMessage("Please enter your address.", required),
+        },
+        alt_address: {
+            //required: helpers.withMessage("Please enter alternate address.", required),
+        },
+        gender: {
+            //required: helpers.withMessage("Please select your gender.", required),
+        },
+        qualification: {
+            //required: helpers.withMessage("Please enter your qualification.", required),
+        },
+        designation: {
+            //required: helpers.withMessage("Please enter your designation.", required),
+        },
+    };
+});
+const v$ = useVuelidate(accountRules, modelAccount);
+
 const newProductsRef = ref();
 const newAuthorsRef = ref();
+const isLoading = ref(false);
+
+async function submitPasswordForm() {
+    submitted.value = true;
+    vP$.value.$validate(); // checks all inputs
+
+    if (!vP$.value.$error) {
+
+        isLoading.value = true;
+        await store
+            .dispatch("auth/save", modelPassword)
+            .then(() => {
+                isLoading.value = false;
+                submitted.value = false;
+                //router.push({ name: "Chapters" });
+            })
+            .catch((err) => {
+                isLoading.value = false;
+                isErrored.value = true;
+                //if (err.response) {
+                message.value = err.response.data.message;
+                //}
+
+            });
+    } else {
+        // if ANY fail validation
+        return;
+    }
+}
+
+
+
+async function submitAccount() {
+    submitted.value = true;
+    v$.value.$validate(); // checks all inputs
+
+    if (!v$.value.$error) {
+
+        isLoading.value = true;
+        await store
+            .dispatch("auth/save", modelAccount.value)
+            .then(() => {
+                isLoading.value = false;
+                submitted.value = false;
+                //router.push({ name: "Chapters" });
+            })
+            .catch((err) => {
+                isLoading.value = false;
+                isErrored.value = true;
+                //if (err.response) {
+                message.value = err.response.data.message;
+                //}
+
+            });
+    } else {
+        // if ANY fail validation
+        return;
+    }
+}
 
 onMounted(() => {
-    store.dispatch("auth/profile");
-})
-
-provide("bind[newProductsRef]", (el) => {
-    newProductsRef.value = el;
+    fetch();
+    //store.dispatch("auth/profile");
 });
 
-provide("bind[newAuthorsRef]", (el) => {
-    newAuthorsRef.value = el;
-});
-
-const prevNewProducts = () => {
-    const el = newProductsRef.value;
-    el.tns.goTo("prev");
-};
-const nextNewProducts = () => {
-    const el = newProductsRef.value;
-    el.tns.goTo("next");
-};
-const prevNewAuthors = () => {
-    const el = newAuthorsRef.value;
-    el.tns.goTo("prev");
-};
-const nextNewAuthors = () => {
-    const el = newAuthorsRef.value;
-    el.tns.goTo("next");
-};
+const fetch = async () => {
+    const result = await axiosClient.get('/profile');
+    if (result.status !== 200) {
+        const error = new Error('Failed to fetch profile information.')
+        throw error;
+    }
+    modelAccount.value = JSON.parse(JSON.stringify(result.data));
+    modelPassword.id = JSON.parse(JSON.stringify(result.data.id));
+    profileCourses.value = result.data.user.courses;
+    profileSubjects.value = result.data.user.subjects;
+    profileQuestions.value = result.data.user.questions;
+}
 </script>

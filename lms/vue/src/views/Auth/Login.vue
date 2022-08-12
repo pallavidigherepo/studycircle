@@ -75,8 +75,14 @@
               A few more clicks to sign in to your account. Manage all your
               e-commerce accounts in one place
             </div>
-            <ErrorAlert v-if="errorMsg" :message="errorMsg" />
-          
+            <div
+              class="alert alert-danger show flex items-center mb-2"
+              role="alert"
+              v-if="errorMsg"
+            >
+              <AlertOctagonIcon class="w-6 h-6 mr-2" />
+              {{ errorMsg }}
+            </div>
             <form @submit.prevent="login">
               <div class="intro-x mt-8">
                 <input
@@ -169,8 +175,9 @@ function login() {
       });
     })
     .catch((err) => {
+      //console.log(err)
       loading.value = false;
-      errorMsg.value = err.response.data.message;
+      errorMsg.value = "The provided credentials are not correct.";
     });
 }
 </script>

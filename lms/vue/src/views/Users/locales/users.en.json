@@ -17,6 +17,7 @@
     "Id": "Id|ID",
     "Name": "Name|NAME",
     "Email": "Email|EMAIL",
+    "Role": "Role",
     "Actions": "Action|ACTION",
     "ID": "ID",
     "NAME": "NAME",

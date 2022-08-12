@@ -10,7 +10,7 @@ export const useSideMenuStore = defineStore("sideMenu", {
             {
                 icon: "UsersIcon",
                 pageName: "UserManagement",
-                title: "Users",
+                title: "Users & Students",
                 subMenu: [{
                         icon: "SettingsIcon",
                         pageName: "PermissionIndex",
@@ -29,15 +29,15 @@ export const useSideMenuStore = defineStore("sideMenu", {
                         title: "Users",
                         ignore: false,
                     },
+                    {
+                        icon: "UsersIcon",
+                        pageName: "Students",
+                        title: "Students",
+                        ignore: false,
+                    },
                 ],
             },
-            {
-                icon: "UsersIcon",
-                pageName: "Students",
-                title: "Students",
-                ignore: false,
-                allowedPages: ['Students', 'CreateStudent', 'EditStudent', 'ShowStudent'],
-            },
+
             "devider",
             {
                 icon: "BoxIcon",

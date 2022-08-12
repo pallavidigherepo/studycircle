@@ -17,6 +17,7 @@ class ProfileUser extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
         'user_id',
         'alt_email',
         'mobile',
@@ -30,6 +31,7 @@ class ProfileUser extends Model
     ];
 
     protected $searchable = [
+        'id',
         'alt_email',
         'mobile',
         'alt_mobile',

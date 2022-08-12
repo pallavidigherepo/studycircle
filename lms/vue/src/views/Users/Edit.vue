@@ -250,7 +250,8 @@ async function submitForm() {
     isLoading.value = true;
     await store
             .dispatch("users/update", user.value)
-            .then(() => {
+            .then(({response}) => {
+              //alert("Upated successfully");
                 isLoading.value = false;
                 submitted.value = false;
                 isErrored.value = false;

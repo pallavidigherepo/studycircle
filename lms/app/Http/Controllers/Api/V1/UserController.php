@@ -105,15 +105,15 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             
-            /*$profile = new ProfileUser([
+            $profile = ProfileUser::where('user_id', '=', $user->id)->first();
+           
+            $user->save($inputs);
+            $user->assignRole($request->designation);
+            
+            $profile->update([
                 'mobile' => $request->mobile,
                 'designation' => $request->designation,
             ]);
-            $user->profile_user()->save($profile);*/
-
-            $user->save($inputs);
-            $user->assignRole($request->designation);
-
             $response = [
                 'success' => true,
                 'message' => 'User updated successfully.',

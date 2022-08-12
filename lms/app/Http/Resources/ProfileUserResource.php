@@ -14,6 +14,11 @@ class ProfileUserResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'user' => UserResource::collection($this->user),
+            
+            'mobile' => $this->mobile,
+        ];
     }
 }
