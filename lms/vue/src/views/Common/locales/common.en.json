@@ -31,5 +31,9 @@
     "Download Demo": "Download Demo",
     "Download Template for EXCEL": "Download Template for EXCEL",
     "Download Template for CSV": "Download Template for CSV",
-    "Required": "Required"
+    "Required": "Required",
+    "Select Gender": "Select Gender",
+    "Male": "Male",
+    "Female": "Female",
+    "Other": "Other"
 }

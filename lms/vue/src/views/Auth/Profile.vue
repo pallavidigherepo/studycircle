@@ -109,20 +109,20 @@
                             <div
                                 class="mt-5 flex items-center px-5 py-5 sm:py-0 border-b border-slate-200/60 dark:border-darkmode-400">
                                 <h2 class="font-medium text-base mr-auto">{{ t("auth.") }}</h2>
-                                
+
                             </div>
                             <div class="p-5">
-                                
+
                             </div>
                         </TabGroup>
                         <!-- END: Work In Progress -->
-                       
+
                         <!-- BEGIN: Subject -->
                         <div class="intro-y box col-span-12">
                             <div
                                 class="flex items-center px-5 py-3 border-b border-slate-200/60 dark:border-darkmode-400">
                                 <h2 class="font-medium text-base mr-auto">{{ t("subjects.Subjects")}}</h2>
-                                
+
                             </div>
                             <div id="subjects" class="py-5">
                                 <div class="overflow-x-auto">
@@ -140,7 +140,7 @@
                                                 <td>{{ JSON.parse(subject.label) }}</td>
                                                 <td>{{ subject.icon }}</td>
                                             </tr>
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -152,9 +152,9 @@
                             <div
                                 class="flex items-center px-5 py-3 border-b border-slate-200/60 dark:border-darkmode-400">
                                 <h2 class="font-medium text-base mr-auto">{{ t("questions.Questions") }}</h2>
-                                
+
                             </div>
-                            
+
                             <div id="subjects" class="py-5">
                                 <div class="overflow-x-auto">
                                     <table class="table table-striped">
@@ -171,7 +171,7 @@
                                                 <td>{{ question.question }}</td>
                                                 <td>{{ question.board_id }}</td>
                                             </tr>
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -192,6 +192,30 @@
                             <form @submit.prevent="submitAccount">
                                 <div class="p-5">
                                     <div>
+                                        <label class="block text-sm font-medium text-gray-700"> Photo </label>
+                                        <div class="mt-1 flex items-center">
+                                            <span class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
+                                            <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                            </svg>
+                                            </span>
+                                            <button type="button" class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Change</button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="avatar" class="form-label">{{ t("auth.Avatar")
+                                        }}</label>
+                                        <input id="avatar"
+                                                type="file"
+                                                class="form-control"
+                                                placeholder="Avatar"
+                                             />
+                                        <!-- <div class="text-danger mt-2" v-for="(error, index) of v$.alt_email.$errors"
+                                            :key="index">
+                                            <div class="error-msg">{{ error.$message }}</div>
+                                        </div> -->
+                                    </div>
+                                    <div class="mt-3">
                                         <label for="alt-email" class="form-label">{{ t("auth.Alternate Email")
                                         }}</label>
                                         <input id="alt-email" type="email" class="form-control"
@@ -410,7 +434,6 @@ const { t } = useI18n();
 
 const user = computed(() => JSON.parse(sessionStorage.getItem("USER")));
 
-// store.getters['users/profile']);
 const profileCourses = ref();
 const profileSubjects = ref();
 const profileQuestions = ref();
@@ -463,12 +486,8 @@ const accountRules = computed(() => {
             numeric: helpers.withMessage("Enter valid mobile number.", numeric),
             minLength: helpers.withMessage("Enter valid mobile number with minimum length of 10 digits.", minLength(10)),
         },
-        alt_email: {
-            //required: helpers.withMessage("Please enter email address.", required),
-            email: helpers.withMessage("Enter valid email address.", email),
-        },
         alt_mobile: {
-            //required: helpers.withMessage("Please enter mobile number.", required),       
+            //required: helpers.withMessage("Please enter mobile number.", required),
             numeric: helpers.withMessage("Enter valid mobile number.", numeric),
             minLength: helpers.withMessage("Enter valid mobile number with minimum length of 10 digits.", minLength(10)),
         },

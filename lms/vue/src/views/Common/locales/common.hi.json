@@ -31,5 +31,9 @@
     "Download Demo": "डेमो डाउनलोड करें",
     "Download Template for EXCEL": "एक्सेल के लिए टेम्पलेट डाउनलोड करें",
     "Download Template for CSV": "CSV के लिए टेम्प्लेट डाउनलोड करें",
-    "Required": "आवश्यक"
+    "Required": "आवश्यक",
+    "Select Gender": "लिंग चुनें",
+    "Male": "पुरुष",
+    "Female": "स्त्री",
+    "Other": "अन्य"
 }

@@ -7,75 +7,98 @@ use App\Http\Resources\ProfileUserResource;
 use App\Http\Resources\UserResource;
 use App\Models\ProfileUser;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * This class is ProfileController class with all profile management related functions and variables.
+ *
+ * @package Meritest_LMS_Profile_Controller
+ * @author Pallavi Dighe <pallavi@meritest.in>
+ * @acces public
+ * @version 1.0
+ * @since 1.0
+ * @see http://lms.meritest.in/profile
+ */
 class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        // Here we will find all the data of logged in user
+        // Here we will find all the data of logged-in user
         $user = Auth::user();
-        $profile = ProfileUser::where('user_id', $user->id)->with('user.courses', 'user.questions', 'user.subjects')->get();
-        //dd($profile);
-        $response = $user;
-        //$profile = auth()->user()->load('profile_user', 'courses', 'questions', 'subjects'); 
-        //$profile = [];
+        $profile = ProfileUser::with([
+                'user.courses' => function($query) {
+                    $query->limit(5);
+                    $query->orderBy('created_at', 'desc');
+                },
+                'user.questions' => function ($query) {
+                    $query->limit(5);
+                    $query->orderBy('created_at', 'desc');
+                },
+                'user.subjects' => function ($query) {
+                    $query->limit(5);
+                    $query->orderBy('created_at', 'desc');
+                }])
+            ->where('user_id', $user->id)
+            ->get();
+
         return response()->json($profile[0], 200);
     }
 
-    
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        //
+        $response = [];
+        return response()->json($response, 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
+     * @param ProfileUser $profile
+     * @return JsonResponse
      */
-    public function show(ProfileUser $profile)
+    public function show(ProfileUser $profile): JsonResponse
     {
-        //
+        $response = [];
+        return response()->json($response, 200);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param ProfileUser $profile
+     * @return JsonResponse
      */
-    public function update(Request $request, ProfileUser $profile)
+    public function update(Request $request, ProfileUser $profile): JsonResponse
     {
         $inputs = $response = [];
-        
-        // First of all we need to check which form is submitted. 
+        // First of all we need to check which form is submitted.
         // Change Password for Account information form.
+        $user = Auth::user();
         if ($request->isChangePassword) {
-            $user = Auth::user();
-            $elequont = User::findOrFail($user->id);
+            $eloquent = User::findOrFail($user->id);
             $inputs = [
-                'password'=> Hash::make($request->password),
+                'password' => Hash::make($request->password),
             ];
         } else {
             // Else: User profile information will be updated.
-            $user = Auth::user();
-            $userElequont = User::findOrFail($user->id);
+
             $inputs = [
                 'alt_email' => $request->alt_email,
                 'mobile' => $request->mobile,
@@ -86,11 +109,11 @@ class ProfileController extends Controller
                 'qualification' => $request->qualification,
                 'designation' => $request->designation,
             ];
-            $elequont = $profile;
+            $eloquent = $profile;
             $profile->update($inputs);
         }
         if (!empty($inputs)) {
-            if ($elequont->update($inputs)) {
+            if ($eloquent->update($inputs)) {
                 $response = [
                     'success' => true,
                     'message' => 'Account information is saved successfully.',
@@ -105,21 +128,22 @@ class ProfileController extends Controller
                     'profile' => $profile,
                 ];
             }
-            
+
         }
 
         return response()->json($response, 200);
-        
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
+     * @param ProfileUser $profile
+     * @return JsonResponse
      */
-    public function destroy(ProfileUser $profile)
+    public function destroy(ProfileUser $profile): JsonResponse
     {
-        //
+        $response = [];
+        return response()->json($response, 200);
     }
 }
