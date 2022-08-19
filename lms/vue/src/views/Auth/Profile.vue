@@ -9,8 +9,19 @@
                 <div class="flex flex-col lg:flex-row border-b border-slate-200/60 dark:border-darkmode-400 pb-5 -mx-5">
                     <div class="flex flex-1 px-5 items-center justify-center lg:justify-start">
                         <div class="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 image-fit relative">
-                            <img :alt="user.name" class="rounded-full"
-                                :src="`https://eu.ui-avatars.com/api/?size=225&name=` + user.name" />
+
+
+                            <img
+                                v-if="profile && profile.avatar"
+                                :alt="user.name"
+                                class="rounded-full"
+                                :src="profile.avatar" />
+                            <img
+                                v-else
+                                :alt="user.name"
+                                class="rounded-full"
+                                :src="`https://eu.ui-avatars.com/api/?size=225&name=` + user.name"
+                                />
                         </div>
                         <div class="ml-5">
                             <div class="w-24 sm:w-40 truncate sm:whitespace-normal font-medium text-lg">
@@ -29,31 +40,15 @@
                                 <MailIcon class="w-4 h-4 mr-2" />
                                 {{ user.email }}
                             </div>
-                            <!-- <div class="truncate sm:whitespace-normal flex items-center mt-3">
-                                <InstagramIcon class="w-4 h-4 mr-2" /> Instagram
-                                {{ user.name }}
+                            <div class="truncate sm:whitespace-normal flex items-center mt-3"
+                                 v-if="profile && profile.mobile">
+                                <PhoneIcon class="w-4 h-4 mr-2" />
+                                {{ profile.mobile }}
                             </div>
-                            <div class="truncate sm:whitespace-normal flex items-center mt-3">
-                                <TwitterIcon class="w-4 h-4 mr-2" /> Twitter
-                                {{ user.name }}
-                            </div> -->
+
                         </div>
                     </div>
-                    <div
-                        class="mt-6 lg:mt-0 flex-1 flex items-center justify-center px-5 border-t lg:border-0 border-slate-200/60 dark:border-darkmode-400 pt-5 lg:pt-0">
-                        <div class="text-center rounded-md w-20 py-3">
-                            <div class="font-medium text-primary text-xl">201</div>
-                            <div class="text-slate-500">Orders</div>
-                        </div>
-                        <div class="text-center rounded-md w-20 py-3">
-                            <div class="font-medium text-primary text-xl">1k</div>
-                            <div class="text-slate-500">Purchases</div>
-                        </div>
-                        <div class="text-center rounded-md w-20 py-3">
-                            <div class="font-medium text-primary text-xl">492</div>
-                            <div class="text-slate-500">Reviews</div>
-                        </div>
-                    </div>
+
                 </div>
                 <TabList class="nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center">
                     <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
@@ -65,9 +60,6 @@
                     <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
                         <LockIcon class="w-4 h-4 mr-2" /> {{ t("auth.Change Password") }}
                     </Tab>
-                    <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
-                        <SettingsIcon class="w-4 h-4 mr-2" /> {{ t("auth.Settings") }}
-                    </Tab>
                 </TabList>
             </div>
             <!-- END: Profile Info -->
@@ -75,7 +67,7 @@
                 <TabPanel>
                     <div class="grid grid-cols-12 gap-6">
                         <!-- BEGIN: Latest Uploads -->
-                        <div class="intro-y box col-span-12 lg:col-span-6">
+                        <div class="intro-y box col-span-12 lg:col-span-12">
                             <div
                                 class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
                                 <h2 class="font-medium text-base mr-auto">{{ t("auth.Latest Courses") }}</h2>
@@ -104,18 +96,6 @@
                             </div>
                         </div>
                         <!-- END: Latest Uploads -->
-                        <!-- BEGIN: Work In Progress -->
-                        <TabGroup class="intro-y box col-span-12 lg:col-span-6">
-                            <div
-                                class="mt-5 flex items-center px-5 py-5 sm:py-0 border-b border-slate-200/60 dark:border-darkmode-400">
-                                <h2 class="font-medium text-base mr-auto">{{ t("auth.") }}</h2>
-
-                            </div>
-                            <div class="p-5">
-
-                            </div>
-                        </TabGroup>
-                        <!-- END: Work In Progress -->
 
                         <!-- BEGIN: Subject -->
                         <div class="intro-y box col-span-12">
@@ -192,28 +172,31 @@
                             <form @submit.prevent="submitAccount">
                                 <div class="p-5">
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700"> Photo </label>
+                                        <label class="block text-sm font-medium text-gray-700"> {{ t("auth.Avatar") }} </label>
                                         <div class="mt-1 flex items-center">
-                                            <span class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
-                                            <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                            </svg>
-                                            </span>
-                                            <button type="button" class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Change</button>
+                                            <img
+                                                v-if="modelAccount.avatar"
+                                                :src="modelAccount.avatar"
+                                                :alt="user.name"
+                                                class="w-64 h-48 object-cover"
+                                            />
+                                            <img  v-else :alt="user.name" class="rounded-full"
+                                                 :src="`https://eu.ui-avatars.com/api/?size=50&name=` + user.name" />
+
+                                            <button
+                                                type="button"
+                                                class="relative overflow-hidden ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                            >
+                                                <input
+                                                    type="file"
+                                                    @change="onImageChoose"
+                                                    accept="image/png, image/jpeg, image/jpg"
+                                                    class="absolute left-0 top-0 right-0 bottom-0 opacity-0 cursor-pointer rounded-full"
+                                                />
+                                                {{ t("auth.Change Avatar") }}
+                                            </button>
+
                                         </div>
-                                    </div>
-                                    <div>
-                                        <label for="avatar" class="form-label">{{ t("auth.Avatar")
-                                        }}</label>
-                                        <input id="avatar"
-                                                type="file"
-                                                class="form-control"
-                                                placeholder="Avatar"
-                                             />
-                                        <!-- <div class="text-danger mt-2" v-for="(error, index) of v$.alt_email.$errors"
-                                            :key="index">
-                                            <div class="error-msg">{{ error.$message }}</div>
-                                        </div> -->
                                     </div>
                                     <div class="mt-3">
                                         <label for="alt-email" class="form-label">{{ t("auth.Alternate Email")
@@ -396,24 +379,6 @@
 
                     </div>
                 </TabPanel>
-
-                <TabPanel>
-                    <div class="grid grid-cols-12 gap-6">
-                        <!-- BEGIN: Latest Uploads -->
-                        <div class="intro-y box col-span-12 lg:col-span-12">
-                            <div
-                                class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                                <h2 class="font-medium text-base mr-auto">Settings</h2>
-
-                            </div>
-                            <div class="p-5">
-
-                            </div>
-                        </div>
-                        <!-- END: Latest Uploads -->
-
-                    </div>
-                </TabPanel>
             </TabPanels>
         </TabGroup>
     </div>
@@ -421,7 +386,7 @@
 </template>
 
 <script setup>
-import { ref, provide, computed, onMounted, reactive } from "vue";
+import { ref, computed, onMounted, reactive } from "vue";
 
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers, sameAs, minLength, email, numeric } from "@vuelidate/validators";
@@ -434,6 +399,7 @@ const { t } = useI18n();
 
 const user = computed(() => JSON.parse(sessionStorage.getItem("USER")));
 
+const profile = ref();
 const profileCourses = ref();
 const profileSubjects = ref();
 const profileQuestions = ref();
@@ -477,6 +443,9 @@ const vP$ = useVuelidate(rules, modelPassword);
 
 const accountRules = computed(() => {
     return {
+        /*avatar: {
+            file_size_validation
+        },*/
         alt_email: {
             //required: helpers.withMessage("Please enter email address.", required),
             email: helpers.withMessage("Enter valid email address.", email),
@@ -508,10 +477,19 @@ const accountRules = computed(() => {
         },
     };
 });
+const file_size_validation = (value) =>  {
+
+    if (!value) {
+        return true;
+    }
+    return true;
+    //let file = value;
+    //console.log(value)
+    //return (file.size < 2097152);
+}
+
 const v$ = useVuelidate(accountRules, modelAccount);
 
-const newProductsRef = ref();
-const newAuthorsRef = ref();
 const isLoading = ref(false);
 
 async function submitPasswordForm() {
@@ -556,6 +534,7 @@ async function submitAccount() {
             .then(() => {
                 isLoading.value = false;
                 submitted.value = false;
+                fetch();
                 //router.push({ name: "Chapters" });
             })
             .catch((err) => {
@@ -580,13 +559,28 @@ onMounted(() => {
 const fetch = async () => {
     const result = await axiosClient.get('/profile');
     if (result.status !== 200) {
-        const error = new Error('Failed to fetch profile information.')
-        throw error;
+        throw new Error('Failed to fetch profile information.')
     }
     modelAccount.value = JSON.parse(JSON.stringify(result.data));
     modelPassword.id = JSON.parse(JSON.stringify(result.data.id));
+    profile.value = result.data;
     profileCourses.value = result.data.user.courses;
     profileSubjects.value = result.data.user.subjects;
     profileQuestions.value = result.data.user.questions;
+}
+function onImageChoose(ev) {
+    const file = ev.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+        // The field to send on backend and apply validations
+        modelAccount.value.avatar = reader.result;
+        ev.target.value = "";
+    };
+    reader.readAsDataURL(file);
+}
+
+function cancel()
+{
+
 }
 </script>

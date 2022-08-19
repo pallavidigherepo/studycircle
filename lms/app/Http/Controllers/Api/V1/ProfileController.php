@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\URL;
 
 /**
  * This class is ProfileController class with all profile management related functions and variables.
@@ -49,8 +53,10 @@ class ProfileController extends Controller
                 }])
             ->where('user_id', $user->id)
             ->get();
+        $p = $profile[0];
+        $p->avatar = $p->avatar ? URL::to($p->avatar) : null;
 
-        return response()->json($profile[0], 200);
+        return response()->json($p, 200);
     }
 
 
@@ -84,6 +90,7 @@ class ProfileController extends Controller
      * @param Request $request
      * @param ProfileUser $profile
      * @return JsonResponse
+     * @throws \Exception
      */
     public function update(Request $request, ProfileUser $profile): JsonResponse
     {
@@ -91,6 +98,7 @@ class ProfileController extends Controller
         // First of all we need to check which form is submitted.
         // Change Password for Account information form.
         $user = Auth::user();
+
         if ($request->isChangePassword) {
             $eloquent = User::findOrFail($user->id);
             $inputs = [
@@ -98,7 +106,6 @@ class ProfileController extends Controller
             ];
         } else {
             // Else: User profile information will be updated.
-
             $inputs = [
                 'alt_email' => $request->alt_email,
                 'mobile' => $request->mobile,
@@ -109,6 +116,16 @@ class ProfileController extends Controller
                 'qualification' => $request->qualification,
                 'designation' => $request->designation,
             ];
+            // Check if image was given and save on local file system
+
+            if (isset($request->avatar)) {
+                if ($profile->avatar) {
+                    $absolutePath = public_path($profile->avatar);
+                    File::delete($absolutePath);
+                }
+                $relativePath  = $this->saveImage($request->avatar);
+                $inputs['avatar'] = $relativePath;
+            }
             $eloquent = $profile;
             $profile->update($inputs);
         }
@@ -130,9 +147,7 @@ class ProfileController extends Controller
             }
 
         }
-
         return response()->json($response, 200);
-
     }
 
     /**
@@ -145,5 +160,47 @@ class ProfileController extends Controller
     {
         $response = [];
         return response()->json($response, 200);
+    }
+
+    /**
+     * Save image in local file system and return saved image path
+     *
+     * @param $image
+     * @throws \Exception
+     * @author Pallavi Dighe <pallavi@meritest.in>
+     */
+    private function saveImage($image): string
+    {
+        // Check if image is valid base64 string
+        if (preg_match('/^data:image\/(\w+);base64,/', $image, $type)) {
+            // Take out the base64 encoded text without mime type
+            $image = substr($image, strpos($image, ',') + 1);
+            // Get file extension
+            $type = strtolower($type[1]); // jpg, png, gif
+
+            // Check if file is an image
+            if (!in_array($type, ['jpg', 'jpeg', 'gif', 'png'])) {
+                throw new \Exception('invalid image type');
+            }
+            $image = str_replace(' ', '+', $image);
+            $image = base64_decode($image);
+
+            if ($image === false) {
+                throw new \Exception('base64_decode failed');
+            }
+        } else {
+            throw new \Exception('did not match data URI with image data');
+        }
+
+        $dir = 'storage/images/';
+        $file = Str::random() . '.' . $type;
+        $absolutePath = public_path($dir);
+        $relativePath = $dir . $file;
+        if (!File::exists($absolutePath)) {
+            File::makeDirectory($absolutePath, 0755, true);
+        }
+        file_put_contents($relativePath, $image);
+
+        return $relativePath;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * User: Pallavi
+ * User: Pallavi Dighe
  * Date: 04/02/2022
  * Time: 01:09 AM
  */
@@ -34,7 +34,7 @@ class AuthController extends Controller
             ]
         ]);
 
-        /** @var \App\Models\User $user */
+        /** @var User $user */
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -52,7 +52,7 @@ class AuthController extends Controller
     {
         $credentials = $request->validate([
             //'email' => 'required|email|string|exists:users,email', // This will give error message of email specifice
-            'email' => 'required|email|string', 
+            'email' => 'required|email|string',
             'password' => [
                 'required',
             ],
