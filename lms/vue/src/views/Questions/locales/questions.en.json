@@ -26,7 +26,7 @@
     "Choose Subject": "Choose Subject",
     "Choose Chapter": "Choose Chapter",
     "Choose Topic": "Choose Topic",
-    "Note/Explaination": "Note/Explaination",
+    "Note/Explanation": "Note/Explanation",
     "Choose Question Type": "Choose Question Type",
     "Answers": "Answers",
     "Answer": "Answer",
@@ -49,5 +49,11 @@
     "These are the marks, if answered correctly": "These are the marks, if answered correctly.",
     "These are negative marks if answered incorrect": "These are negative marks if answered incorrect.",
     "Questions of paragraph": "Questions of paragraph",
-    "Board": "Board"
+    "Board": "Board",
+    "Import questions in bulk": "Import questions in bulk",
+    "Add Question & Answers Manually": "Add Question & Answers Manually",
+    "You can add question manually or import it in bulk": "You can add question manually OR import it in bulk.",
+    "Expected Time": "Expected Time",
+    "Expected time to answer this question in minutes": "Expected time to answer this question in minutes.",
+    "TYPE": "TYPE"
 }

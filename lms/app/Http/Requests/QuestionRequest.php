@@ -8,11 +8,16 @@ use Illuminate\Validation\Rule;
 class QuestionRequest extends FormRequest
 {
     /**
+     * @var mixed
+     */
+    public $add_question_manually;
+
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -22,24 +27,24 @@ class QuestionRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'question' => [
+            /*'question' => [
                 'required',
             ],
             'description' => [
                 'required',
-            ],
+            ],*/
             'board_id' => [
                 'required',
             ],
             'standard_id' => [
                 'required',
             ],
-            'note' => [
+            /*'note' => [
                 'required',
-            ],
+            ],*/
             'difficulty_level_id' => [
                 'required',
             ],

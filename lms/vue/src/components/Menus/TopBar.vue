@@ -13,18 +13,18 @@
       <!-- END: Breadcrumb -->
 
       <!-- BEGIN: Account Menu -->
-      <div class="intro-x dropdown w-8 h-8">
+      <div class="intro-x dropdown w-8 h-8" v-if="userInfo">
         <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in scale-110"
           role="button" aria-expanded="false" data-tw-toggle="dropdown">
 
-          <img :alt="userInfo.name" :src="`https://eu.ui-avatars.com/api/?name=` + userInfo.name" />
+          <img v-if="userInfo" :alt="userInfo.name" :src="`https://eu.ui-avatars.com/api/?name=` + userInfo.name" />
         </div>
         <div class="dropdown-menu w-56">
           <ul
             class="dropdown-content bg-primary/80 before:block before:absolute before:bg-black before:inset-0 before:rounded-md before:z-[-1] text-white">
 
             <li class="p-2">
-              <div class="font-medium">
+              <div class="font-medium" v-if="userInfo">
                 {{ userInfo.name }}
               </div>
               <div class="text-xs text-white/60 mt-0.5 dark:text-slate-500">
@@ -35,7 +35,7 @@
               <hr class="dropdown-divider border-white/[0.08]" />
             </li>
             <li>
-              <router-link :to="{ name: 'Profile' }" 
+              <router-link :to="{ name: 'Profile' }"
                 class="dropdown-item hover:bg-white/5"
                 @click="dom('.dropdown-menu').removeClass('show').addClass('hide');"
                 >

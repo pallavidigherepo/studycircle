@@ -20,7 +20,12 @@
                 @editItem="edit"
                 @deleteItem="deleteI"
                 @addModel="add"
-              />
+              >
+                  <template v-slot:info>
+
+                  </template>
+
+              </Datatable>
             </div>
           </div>
           <!-- END: HTML Table Data -->

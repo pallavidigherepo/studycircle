@@ -15,6 +15,14 @@ class StandardSeeder extends Seeder
     public function run()
     {
         $types = [
+            ['name' => '1st'],
+            ['name' => '2nd'],
+            ['name' => '3rd'],
+            ['name' => '4th'],
+            ['name' => '5th'],
+            ['name' => '6th'],
+            ['name' => '7th'],
+            ['name' => '8th'],
             ['name' => '9th'],
             ['name' => '10th'],
             ['name' => '11th'],

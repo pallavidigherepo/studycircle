@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Chapter;
+use App\Models\Subject;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -43,28 +44,28 @@ class ChapterImport implements ToCollection, WithHeadingRow
             //'description' => 'required',
             '*.description' => 'required'
          ])->validate();
-         
+        $subject = Subject::findOrFail($this->parent_id);
         foreach ($rows as $row) {
             $tags = explode(',', $row['tags']);
-        
             $inputs = [
                 'label' => json_encode($row['label']),
                 'description' => json_encode($row['description']),
+                'board_id' => $subject->board_id,
+                'standard_id' => $subject->standard_id,
                 'parent_id' => $this->parent_id,
                 'icon' => $row['icon'],
                 'language_id' => $row['language_id'],
-                //'tags' => $tags,
                 'created_by' => Auth::user()->id,
                 'updated_by' => Auth::user()->id,
             ];
-            
+
             $chapter = Chapter::create($inputs);
             if (!empty($tags)) {
                 $chapter->detachTags($tags);
                 $chapter->attachTags($tags);
             }
-            
+
         }
     }
-    
+
 }

@@ -14,21 +14,38 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class SubjectExport implements 
+class SubjectExport implements
                     WithMapping,
-                    Responsable, 
-                    ShouldAutoSize, 
-                    WithHeadings, 
+                    Responsable,
+                    ShouldAutoSize,
+                    WithHeadings,
                     WithEvents,
                     FromCollection
 
 {
     use Exportable;
+
+    /**
+     * @var bool
+     */
+    private $isDemo;
+
+    /**
+     * @param int $question
+     * @param bool $demo
+     */
+    public function __construct(bool $demo = false)
+    {
+        $this->isDemo = $demo;
+    }
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
+        if ($this->isDemo) {
+            return Subject::factory()->count(3)->make();
+        }
         return SubjectResource::collection(Subject::all());
     }
 
@@ -40,7 +57,7 @@ class SubjectExport implements
         return Course::query();
     }*/
 
-    public function map($subject): array 
+    public function map($subject): array
     {
         return [
             $subject->id,
@@ -84,7 +101,7 @@ class SubjectExport implements
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {
-                $event->sheet->getStyle('A1:F1')->applyFromArray([
+                $event->sheet->getStyle('A1:G1')->applyFromArray([
                     'font'=> [
                         'bold' => true,
                     ],

@@ -72,6 +72,13 @@ export const useSideMenuStore = defineStore("sideMenu", {
                 ignore: false,
                 allowedPages: ['Questions', 'CreateQuestion', 'EditQuestion', 'ShowQuestion'],
 
+            },{
+                icon: "BriefcaseIcon",
+                pageName: "Templates",
+                title: "Questionnaire",
+                ignore: false,
+                allowedPages: ['Questionnaire', 'Templates', 'CreateTemplate', 'EditTemplate'],
+
             },
         ],
     }),

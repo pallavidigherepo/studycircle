@@ -25,7 +25,7 @@
     "Choose Subject": "विषय चुनें",
     "Choose Chapter": "अध्याय चुनें",
     "Choose Topic": "विषय चुनें",
-    "Note/Explaination": "नोट/स्पष्टीकरण",
+    "Note/Explanation": "नोट/स्पष्टीकरण",
     "Choose Question Type": "प्रश्न प्रकार चुनें",
     "Answers": "उत्तर",
     "Answer": "उत्तर",
@@ -48,5 +48,11 @@
     "These are the marks, if answered correctly": "यदि सही उत्तर दिया जाए तो ये अंक हैं।",
     "These are negative marks if answered incorrect": "गलत उत्तर देने पर ये नकारात्मक अंक हैं।",
     "Questions of paragraph": "पैराग्राफ के प्रश्न",
-    "Board": "बोर्ड"
+    "Board": "बोर्ड",
+    "Import questions in bulk": "थोक में प्रश्न आयात करें",
+    "Add Question & Answers Manually": "प्रश्न और उत्तर मैन्युअल रूप से जोड़ें",
+    "You can add question manually or import it in bulk": "आप मैन्युअल रूप से प्रश्न जोड़ सकते हैं या आप इसे थोक में आयात कर सकते हैं।",
+    "Expected Time": "अपेक्षित समय",
+    "Expected time to answer this question in minutes": "इस प्रश्न का उत्तर मिनटों में देने का अपेक्षित समय।",
+    "TYPE": "प्रकार"
 }

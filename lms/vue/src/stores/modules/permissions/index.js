@@ -13,8 +13,8 @@ export default {
             module_wise_permissions: [],
             pagination: [],
             datatable: {
-                export: true,
-                import: true,
+                export: false,
+                import: false,
                 addNew: false,
                 defaultColumn: "id",
                 defaultOrder: "desc",

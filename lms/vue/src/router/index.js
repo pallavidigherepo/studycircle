@@ -39,6 +39,12 @@ import CreateQuestion from '../views/Questions/Create.vue';
 import EditQuestion from '../views/Questions/Edit.vue';
 import ShowQuestion from '../views/Questions/Show.vue';
 
+import Templates from '../views/Templates/Index.vue';
+import CreateTemplate from '../views/Templates/Create.vue';
+import EditTemplate from '../views/Templates/Edit.vue';
+import ShowTemplate from '../views/Templates/Show.vue';
+import PaperGenerator from "../views/Templates/PaperGenerator.vue";
+
 import Students from '../views/Students/Index.vue';
 import CreateStudent from '../views/Students/Create.vue';
 import EditStudent from '../views/Students/Edit.vue';
@@ -266,6 +272,48 @@ const routes = [{
                             parent: 'Questions'
                         }
                     },
+                ]
+            },
+            {
+                path: "/templates",
+                name: "Templates",
+                component: Templates,
+                meta: {
+                    parent: 'Templates'
+                },
+                children: [{
+                    path: '/templates/create',
+                    name: "CreateTemplate",
+                    component: CreateTemplate,
+                    meta: {
+                        parent: 'Templates'
+                    }
+                },
+                    {
+                        path: '/templates/:id/edit',
+                        name: "EditTemplate",
+                        component: EditTemplate,
+                        meta: {
+                            parent: 'Templates'
+                        }
+                    },
+                    {
+                        path: '/templates/:id',
+                        name: "ShowTemplate",
+                        component: ShowTemplate,
+                        meta: {
+                            parent: 'Templates'
+                        }
+                    },
+                    {
+                        path: '/templates/:id/generate_paper',
+                        name: "PaperGenerator",
+                        component: PaperGenerator,
+                        meta: {
+                            parent: 'Templates'
+                        }
+
+                    }
                 ]
             },
             {

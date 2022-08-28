@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Imports\QuestionImport;
 use App\Models\Question;
 use App\Http\Requests\QuestionRequest;
 use App\Http\Resources\QuestionResource;
@@ -16,10 +17,15 @@ use App\Models\Chapter;
 use App\Models\Subject;
 use App\Models\Topic;
 use App\Models\Answer;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
+/**
+ *
+ */
 class QuestionController extends Controller
 {
     /**
@@ -33,55 +39,61 @@ class QuestionController extends Controller
         $order = $request->input('sort_order') ?? 'desc';
         $perPage = $request->input('per_page') ?? 10;
 
-        $questions = QuestionResource::collection(
+        return QuestionResource::collection(
             Question::when(request('search'), function ($query) {
-                $query->where('question', 'like', '%'. request('search'). '%');                
+                $query->where('question', 'like', '%'. request('search'). '%');
             })
             ->whereNull('parent_id')
             ->orderBy($field, $order)
             ->paginate($perPage)
         );
-        return $questions;
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreQuestionRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param QuestionRequest $request
+     * @return Response
      */
     public function store(QuestionRequest $request)
     {
-        // First most: Validate all the request data.
-        if ($request->validated()) {
-            $parentQuestion = $this->__createAndUpdateQuestion($request->toArray());
-            // When question is created we need to check if the added question has $request['questions']
-            // If yes then we have save all the questions and approriate answers.
-            if (!empty($request['questions'])) {
-                $questions = $request['questions'];
-                
-                foreach ($questions as $question) {
-                    $pQuestion = $this->__createAndUpdateQuestion($question, $parentQuestion);
-                    // After question is saved/created successfully, we need to add 
-                    // answers of that created question.
-                    $this->__createAndUpdateAnswer($question['answers'], $pQuestion);
-                }
-            } else {
-                // After question is saved/created successfully, we need to add 
-                // answers of that created question.
-                $this->__createAndUpdateAnswer($request['answers'], $parentQuestion);
-            }
-            $response = [
-                'success' => true,
-                'message' => 'Successfully added'
-            ];
+        //dd($request);
+        // Firstly we need to check if questions are added manually OR it is imported in bulk.
+        if (!$request->add_question_manually) {
+            // We are here because we are doing bulk imports.
+            $response = $this->__importQuestionInBulk($request);
         } else {
-            $response = [
-                'success' => false,
-                'message' => 'Failed to add'
-            ];
+            // First most: Validate all the request data.
+            if ($request->validated()) {
+                $parentQuestion = $this->__createAndUpdateQuestion($request->toArray());
+                // When question is created we need to check if the added question has $request['questions']
+                // If yes then we have save all the questions and appropriate answers.
+                if (isset($request['questions']) && !empty($request['questions'])) {
+                    $questions = $request['questions'];
+
+                    foreach ($questions as $question) {
+                        $pQuestion = $this->__createAndUpdateQuestion($question, $parentQuestion);
+                        // After question is saved/created successfully, we need to add
+                        // answers of that created question.
+                        $this->__createAndUpdateAnswer($question['answers'], $pQuestion);
+                    }
+                } else {
+                    // After question is saved/created successfully, we need to add
+                    // answers of that created question.
+                    $this->__createAndUpdateAnswer($request['answers'], $parentQuestion);
+                }
+                $response = [
+                    'success' => true,
+                    'message' => 'Successfully added'
+                ];
+            } else {
+                $response = [
+                    'success' => false,
+                    'message' => 'Failed to add'
+                ];
+            }
         }
-        
+
         return response()->json($response, 200);
     }
 
@@ -93,11 +105,11 @@ class QuestionController extends Controller
      */
     public function show(Question $question, Request $request)
     {
-        $question = Question::with('questions.answers', 
-                                    'questions', 
-                                    'answers', 
-                                    'board', 
-                                    'standard', 
+        $question = Question::with('questions.answers',
+                                    'questions',
+                                    'answers',
+                                    'board',
+                                    'standard',
                                     'languages',
                                     'question_type',
                                     'difficulty_level',
@@ -135,7 +147,7 @@ class QuestionController extends Controller
                 $toDelete = array_diff($existingIds, $newIds);
                 //Find questions to add
                 $toAdd = array_diff($newIds, $existingIds);
-                
+
                 // Delete answers by $toDelete array
                 if (!empty($toDelete)) {
                     foreach ($toDelete as $id) {
@@ -148,13 +160,13 @@ class QuestionController extends Controller
                 foreach ($questions as $question) {
                     if (in_array($question['id'], $toAdd)) {
                         $pQuestion = $this->__createAndUpdateQuestion($question, $parentQuestion);
-                        // After question is saved/created successfully, we need to add 
+                        // After question is saved/created successfully, we need to add
                         // answers of that created question.
                         $this->__createAndUpdateAnswer($question['answers'], $pQuestion);
-                    }                    
+                    }
                 }
             } else {
-                // After question is saved/created successfully, we need to add 
+                // After question is saved/created successfully, we need to add
                 // answers of that created question.
                 $this->__createAndUpdateAnswer($request['answers'], $parentQuestion);
             }
@@ -168,7 +180,7 @@ class QuestionController extends Controller
                 'message' => 'Failed to add'
             ];
         }
-        
+
         return response()->json($response, 200);
     }
 
@@ -187,13 +199,42 @@ class QuestionController extends Controller
         ];
         // First of all delete all the answers and then delete question.
         $question->answers()->delete();
-        if ($question->delete()) {            
+        if ($question->delete()) {
             $response = [
                 'success' => true,
                 'message' => 'Question deleted successfully.',
             ];
         }
         return response()->json($response);
+    }
+
+
+    /**
+     * @param $request
+     * @return array
+     */
+    private function __importQuestionInBulk($request): array
+    {
+        try {
+            $file = $request->file('import')->store('import');
+            $importClass = "App\\Imports\\QuestionImport";
+            $import = new $importClass($request);
+
+            Excel::import($import, $file);
+            $response = [
+                'success' => true,
+                'message' => 'All the questions are successfully imported.',
+                'failures' => null,
+            ];
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            $failures = $e->failures();
+            $response = [
+                'success' => false,
+                'message' => 'Question(s) are not imported.',
+                'failures' => $failures,
+            ];
+        }
+        return $response;
     }
 
     private function __createAndUpdateQuestion(Array $inputArray, Question $parentQuestion = null)
@@ -226,7 +267,7 @@ class QuestionController extends Controller
             "updated_by" => Auth::user()->id,
             "marks" => $inputArray['marks'],
             "negative_marks" => $inputArray['negative_marks'],
-        ]; 
+        ];
         if ($id) {
             if ($alreadyAQuestion->update($inputQuestionData)) {
                 return $alreadyAQuestion;
@@ -249,7 +290,7 @@ class QuestionController extends Controller
             $toDelete = array_diff($existingIds, $newIds);
             //Find answers to add
             $toAdd = array_diff($newIds, $existingIds);
-            
+
             // Delete answers by $toDelete array
             Answer::destroy(collect($toDelete));
             // Create new answers
@@ -317,5 +358,10 @@ class QuestionController extends Controller
         ]);
 
         return $answer->update($validator->validated());
+    }
+
+    private function __fetchQuestionForPaperGeneration()
+    {
+
     }
 }

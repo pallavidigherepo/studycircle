@@ -29,6 +29,8 @@ class SubjectRequest extends FormRequest
                 'required',
                 Rule::unique('subjects')->ignore($this->subject)
             ],
+            'board_id' => 'required',
+            'standard_id' => 'required'
             /*'tags' => [
                 'required',
             ],*/

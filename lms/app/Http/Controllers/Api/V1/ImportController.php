@@ -19,7 +19,7 @@ class ImportController extends Controller
         } else {
             $import = new $importClass;
         }
-        
+
         try {
             Excel::import($import, $file);
             $response = [

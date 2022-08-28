@@ -14,11 +14,11 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class ChapterExport implements 
+class ChapterExport implements
                         WithMapping,
-                        Responsable, 
-                        ShouldAutoSize, 
-                        WithHeadings, 
+                        Responsable,
+                        ShouldAutoSize,
+                        WithHeadings,
                         WithEvents,
                         FromQuery
 {
@@ -39,7 +39,7 @@ class ChapterExport implements
         return Chapter::query()->where('parent_id', "=", $this->parent_id);
     }
 
-    public function map($chapter): array 
+    public function map($chapter): array
     {
         if ($this->isDemo) {
             return [

@@ -35,5 +35,9 @@
     "Select Gender": "लिंग चुनें",
     "Male": "पुरुष",
     "Female": "स्त्री",
-    "Other": "अन्य"
+    "Other": "अन्य",
+    "OR": "या",
+    "Supports CSV and Excel files": "सीएसवी और एक्सेल फाइलों का समर्थन करता है",
+    "Drop files here or click to upload": "फ़ाइलें यहाँ छोड़ें या अपलोड करने के लिए क्लिक करें।",
+    "Upload file to import": "आयात करने के लिए फ़ाइल अपलोड करें"
 }

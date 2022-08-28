@@ -12,6 +12,7 @@ import chapterModule from './modules/chapters/index.js';
 import topicModule from './modules/topics/index.js';
 import questionModule from './modules/questions/index.js';
 import studentModule from './modules/students/index.js';
+import templateModule from './modules/templates/index';
 
 const store = createStore({
     modules: {
@@ -19,7 +20,6 @@ const store = createStore({
         permissions: permissionModule,
         roles: roleModule,
         users: userModule,
-
         coursesTypes: coursesTypeModule,
         courses: coursesModule,
         subjects: subjectModule,
@@ -27,6 +27,7 @@ const store = createStore({
         topics: topicModule,
         questions: questionModule,
         students: studentModule,
+        templates: templateModule,
         /*languages: languageModule,
          */
     },

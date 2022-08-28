@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\V1\ImportController;
 use App\Http\Controllers\Api\V1\QuestionController;
 use App\Http\Controllers\Api\V1\StudentController;
 use App\Http\Controllers\Api\V1\ProfileController;
+use App\Http\Controllers\Api\V1\TemplateController;
 
 use App\Models\Board;
 use App\Models\Chapter;
@@ -64,6 +65,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('v1/questions', QuestionController::class);
     Route::resource('v1/students', StudentController::class);
     Route::resource('v1/profile', ProfileController::class);
+    Route::resource('v1/templates', TemplateController::class);
 
 
     Route::post('v1/exports/index', [ExportController::class, 'index'])->name('exports.index');
@@ -77,8 +79,12 @@ Route::middleware('auth:sanctum')->group(function () {
         return CoursesType::all()->pluck('label', 'id');
     })->name('course_type_list');
 
-    Route::get('v1/subject_list', function () {
-        return Subject::all()->where('parent_id', null)->pluck('label', 'id');
+    Route::get('v1/subject_list/{boardId}/{standardId}', function ($boardId, $standardId) {
+        return Subject::all()
+            ->where('board_id', $boardId)
+            ->where('standard_id', $standardId)
+            ->where('parent_id', null)
+            ->pluck('label', 'id');
     })->name('subject_list');
 
     Route::get('v1/chapter_list/{subjectId}', function ($subjectId) {

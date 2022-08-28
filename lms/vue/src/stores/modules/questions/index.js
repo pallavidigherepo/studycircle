@@ -11,7 +11,7 @@ export default {
             pagination: [],
             datatable: {
                 export: true,
-                import: true,
+                import: false,
                 addNew: true,
                 defaultColumn: "id",
                 defaultOrder: "desc",

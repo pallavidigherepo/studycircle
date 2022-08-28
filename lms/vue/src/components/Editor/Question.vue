@@ -5,8 +5,8 @@
           class="relative pl-5 pr-5 xl:pr-10 py-10 bg-slate-50 dark:bg-transparent dark:border rounded-md"
         >
           <div class="w-20 flex text-slate-500 xl:mt-1 absolute top-0 right-0 mr-4">
-            <a href="#" 
-              class="xl:ml-5" 
+            <a href="#"
+              class="xl:ml-5"
               @click.prevent="addQuestion()">
               <PlusIcon class="w-5 h-5" />
             </a>
@@ -19,9 +19,9 @@
               <label class="form-label sm:w-20">{{ t("questions.Question") }}</label>
               <div class="flex items-center flex-1 xl:pr-10">
                   <div class="flex-1">
-                      <input type="text" 
-                            class="form-control" 
-                            placeholder="Question" 
+                      <input type="text"
+                            class="form-control"
+                            placeholder="Question"
                             v-model="model.question"
                             @change="dataChange"
                             :class="{
@@ -35,15 +35,15 @@
                       </template>
                   </div>
               </div>
-              
+
             </div>
-            
+
             <div class="form-inline mt-5 first:mt-0">
                 <label class="form-label sm:w-20">{{ t("questions.Description") }}</label>
                 <div class="flex items-center flex-1 xl:pr-10">
                     <div class="flex-1">
-                        <textarea class="form-control" 
-                                  placeholder="Description" 
+                        <textarea class="form-control"
+                                  placeholder="Description"
                                   v-model="model.description"
                                   @change="dataChange"
                                   :class="{
@@ -62,9 +62,9 @@
                 <label class="form-label sm:w-20">{{ t("questions.Note/Explaination")}}</label>
                 <div class="flex items-center flex-1 xl:pr-10">
                     <div class="flex-1">
-                        <textarea class="form-control" 
-                                  placeholder="Note" 
-                                  v-model="model.note" 
+                        <textarea class="form-control"
+                                  placeholder="Note"
+                                  v-model="model.note"
                                   @change="dataChange"
                                   :class="{
                                     'border-danger': errors[index] && errors[index].note.$errors.length,
@@ -81,12 +81,12 @@
                 <label class="form-label sm:w-20">{{
                         t("questions.Marks")
                     }}</label>
-                    
+
                 <div class="flex items-center flex-1 xl:pr-10">
                     <div class="flex-1">
-                        <input id="form-marks" 
-                              type="text" 
-                              class="form-control" 
+                        <input id="form-marks"
+                              type="text"
+                              class="form-control"
                               placeholder="Marks"
                               v-model.trim="model.marks"
                               @change="dataChange"
@@ -98,7 +98,7 @@
                           <div class="text-danger mt-2" v-for="(error, indexd) of errors[index].marks.$errors" :key="indexd">
                             <div class="error-msg">{{ error.$message }}</div>
                           </div>
-                        </template>                    
+                        </template>
                     </div>
                 </div>
                 <!-- <div class="form-help text-right">
@@ -111,9 +111,9 @@
                     }}</label>
                 <div class="flex items-center flex-1 xl:pr-10">
                     <div class="flex-1">
-                        <input id="form-negative-marks" 
-                              type="text" 
-                              class="form-control" 
+                        <input id="form-negative-marks"
+                              type="text"
+                              class="form-control"
                               placeholder="Negative Marks"
                               v-model.trim="model.negative_marks"
                               @change="dataChange"
@@ -125,19 +125,19 @@
                           <div class="text-danger mt-2" v-for="(error, indexd) of errors[index].negative_marks.$errors" :key="indexd">
                             <div class="error-msg">{{ error.$message }}</div>
                           </div>
-                        </template> 
+                        </template>
                     </div>
                 </div>
                 <!-- <div class="form-help text-right">
                   {{ t("questions.These are negative marks if answered incorrect")}}
                 </div> -->
-                
+
             </div>
             <div class="form-inline mt-5 first:mt-0">
                 <label class="form-label sm:w-20">{{ t("questions.Question type")}}</label>
                 <div class="flex items-center flex-1 xl:pr-10">
                     <div class="w-full mt-3 xl:mt-0 flex-1">
-                        <TomSelect id="form-type" v-model="model.type_id" placeholder="Select Type" 
+                        <TomSelect id="form-type" v-model="model.type_id" placeholder="Select Type"
                             :options="{
                               allowEmptyOption: false,
                               create: false,
@@ -150,16 +150,16 @@
                             <option v-for="(type, indext) in typeParagraph" :key="indext" :value="indext">
                               {{ JSON.parse(type) }}
                             </option>
-                          </TomSelect>
+                        </TomSelect>
                           <template v-if="errors[index]">
                             <div class="text-danger mt-2" v-for="(error, indexd) of errors[index].type_id.$errors" :key="indexd">
                               <div class="error-msg">{{ error.$message }}</div>
                             </div>
-                          </template> 
+                          </template>
                     </div>
                 </div>
             </div>
-            
+
             <div class="xl:ml-20 xl:pl-5 xl:pr-10 mt-5 first:mt-0" v-if="model.type_id != ''">
                 <div v-if="model.answers && !model.answers.length" class="text-center text-gray-600">
                   {{ t("questions.You do not have any answers added yet") }}
@@ -173,13 +173,13 @@
                     <PlusIcon class="w-4 h-4 mr-2" /> {{ t("questions.Add Answer") }}
                   </button>
                 </div>
-                
+
                 <div v-for="(answer, indexanswer) in model.answers" :key="answer.id">
-                  <AnswerEditor :answer="answer" 
-                                :index="indexanswer" 
-                                :type="model.type_id" 
+                  <AnswerEditor :answer="answer"
+                                :index="indexanswer"
+                                :type="model.type_id"
                                 @change="answerChange"
-                                @addAnswer="addAnswer" 
+                                @addAnswer="addAnswer"
                                 @deleteAnswer="deleteAnswer" />
                 </div>
             </div>
@@ -187,13 +187,13 @@
         </div>
       </div>
       {{ model }}
-  </div>    
+  </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
-import AnswerEditor from "@/components/QuestionAnswerEditor/Answer.vue";
+import AnswerEditor from "@/components/Editor/Answer.vue";
 
 const props = defineProps({
     question: Object,
@@ -217,7 +217,7 @@ function addAnswer(index) {
       answer: null,
       is_correct: 0,
     };
-    
+
     model.value.answers.splice(index, 0, newAnswer);
 }
 
@@ -242,7 +242,7 @@ function answerChange(answer) {
   if (props.question.answers) {
     props.question.answers = [...props.question.answers];
   }
-  
+
   model.value.answers = model.value.answers.map((q) => {
     if (q.id === answer.id) {
       return JSON.parse(JSON.stringify(answer));

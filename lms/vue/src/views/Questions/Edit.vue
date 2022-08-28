@@ -52,17 +52,18 @@
                   </div>
                 </div>
                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                  <TomSelect id="form-board" 
-                            v-model="model.board_id" 
-                            :placeholder="'Select Board'" 
+                  <TomSelect id="form-board"
+                            v-model="model.board_id"
+                            :placeholder="'Select Board'"
                             :options="{
                                 allowEmptyOption: false,
                                 create: false,
                                 placeholder: 'Select Board',
                                 autocomplete: 'off',
                                 items:model.board_id,
-                            }" 
-                            class="w-full" 
+                                onChange: selectedBoard,
+                            }"
+                            class="w-full"
                             :class="{ 'border-danger': submitted && v$.board_id.$errors.length,}"
                     >
                     <option v-for="(board, index) in boards" :key="index" :value="index">
@@ -96,6 +97,7 @@
                     placeholder: 'Select Standard',
                     autocomplete: 'off',
                     items:model.standard_id,
+                    onChange: selectedStandard,
                   }" class="w-full" :class="{
   'border-danger': submitted && v$.standard_id.$errors.length,
 }">
@@ -241,9 +243,9 @@
                   </div>
                 </div>
                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                  <TomSelect id="form-chapter" 
-                          v-model="model.chapter_id" 
-                          placeholder="Select Chapter" 
+                  <TomSelect id="form-chapter"
+                          v-model="model.chapter_id"
+                          placeholder="Select Chapter"
                           :options="{
                             allowEmptyOption: false,
                             create: false,
@@ -251,12 +253,12 @@
                             autocomplete: 'off',
                             onChange: selectedChapter,
                             items:model.chapter_id,
-                          }" 
+                          }"
                           class="w-full" :class="{
                             'border-danger': submitted && v$.chapter_id.$errors.length,
                     }">
-                    <option v-for="(chapter, indexchap) in chapters" 
-                          :key="indexchap" 
+                    <option v-for="(chapter, indexchap) in chapters"
+                          :key="indexchap"
                           :value="indexchap">
                       {{ JSON.parse(chapter) }}
                     </option>
@@ -279,17 +281,17 @@
                   </div>
                 </div>
                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                  <TomSelect id="form-subject" 
-                    v-model="model.topic_id" 
-                    placeholder="Select Topic" 
+                  <TomSelect id="form-subject"
+                    v-model="model.topic_id"
+                    placeholder="Select Topic"
                     :options="{
                         allowEmptyOption: false,
                         create: false,
                         placeholder: 'Select Topic',
                         autocomplete: 'off',
                         items:model.topic_id,
-                    }" 
-                    class="w-full" 
+                    }"
+                    class="w-full"
                     :class="{ 'border-danger': submitted && v$.topic_id.$errors.length,}">
                     <option v-for="(topic, indextop) in topics" :value="indextop" :key="indextop">
                       {{ JSON.parse(topic) }}
@@ -492,9 +494,9 @@
                   </div>
                 </div>
                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                  <TomSelect id="form-question-type" 
-                      v-model="model.type_id" 
-                      placeholder="Select Type" 
+                  <TomSelect id="form-question-type"
+                      v-model="model.type_id"
+                      placeholder="Select Type"
                       :options="{
                           allowEmptyOption: false,
                           create: false,
@@ -502,8 +504,8 @@
                           autocomplete: 'off',
                           onChange: changeType,
                           items:model.type_id,
-                      }" 
-                      class="w-full" 
+                      }"
+                      class="w-full"
                       :class="{ 'border-danger': submitted && v$.type_id.$errors.length, }">
 
                     <option v-for="(type, index) in typeList" :key="index" :value="index">
@@ -639,8 +641,8 @@ import { required, helpers } from "@vuelidate/validators";
 import { useI18n } from "vue-i18n";
 import axiosClient from "@/axios";
 import Editor from "@tinymce/tinymce-vue";
-import AnswerEditor from "@/components/QuestionAnswerEditor/Answer.vue";
-import QuestionEditor from "@/components/QuestionAnswerEditor/Question.vue";
+import AnswerEditor from "@/components/Editor/Answer.vue";
+import QuestionEditor from "@/components/Editor/Question.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -694,11 +696,14 @@ const fetch = async() => {
         model.value = JSON.parse(JSON.stringify(result.data));
         model.value.answers = result.data.answers;
         selectedType.value = result.data.type_id;
+        selectedBoard(model.value.board_id);
+        // Once all the data is populated, we have to get list of all the chapters of selected subject
+        // selectedStandard(model.value.standard_id, model.value.board_id);
         // Once all the data is populated, we have to get list of all the chapters of selected subject
         selectedSubject(model.value.subject_id);
         // Now, get list of all the topics of selected chapter
         selectedChapter(model.value.chapter_id);
-        //console.log(model.value);    
+        //console.log(model.value);
     } catch (e) {
         isErrored.value = true;
         message.value = e;
@@ -707,11 +712,13 @@ const fetch = async() => {
     }
 };
 
-
+const selectedBoardtId = ref("");
+const selectedStandardtId = ref("");
 const selectedSubjectId = ref("");
 const selectedChapterId = ref("");
 const selectedTopicId = ref("");
 const selectedType = ref("");
+const subjects = ref("");
 const chapters = ref([]);
 const topics = ref([]);
 const showAnswerButton = ref(true);
@@ -723,7 +730,6 @@ onMounted(() => {
   store.dispatch("listDifficultyLevel").then().catch();
   store.dispatch("listType").then().catch();
   store.dispatch("listLanguages").then().catch();
-  store.dispatch("listSubjects").then().catch();
   store.dispatch("listTypeParagraph").then().catch();
 });
 const languages = computed(() => store.getters.languages);
@@ -732,7 +738,28 @@ const standards = computed(() => store.getters.listStandards);
 const difficultyList = computed(() => store.getters.listDifficultyLevel);
 const typeList = computed(() => store.getters.listType);
 const typeListParagraph = computed(() => store.getters.listTypeParagraph);
-const subjects = computed(() => store.getters.listSubjects);
+
+function selectedBoard(boardId) {
+    selectedBoardtId.value = boardId;
+
+    selectedStandard(model.value.standard_id, boardId);
+}
+
+async function selectedStandard(standardId, boardId) {
+    if (!selectedBoardtId.value || !standardId) {
+        return;
+    }
+    selectedStandardtId.value = standardId;
+    subjects.value = [];
+    chapters.value = [];
+    topics.value = [];
+    const result = await axiosClient.get(`/subject_list/${selectedBoardtId.value}/${standardId}`);
+    if (result.status !== 200) {
+        throw new Error("Failed to fetch chapter");
+    } else {
+        subjects.value = result.data;
+    }
+}
 
 async function selectedSubject(subjectId) {
   selectedSubjectId.value = subjectId;
@@ -841,7 +868,7 @@ async function submitForm() {
         if (err.response.data) {
           message.value = err.response.data.message;
         }
-        
+
       });
   } else {
     // if ANY fail validation

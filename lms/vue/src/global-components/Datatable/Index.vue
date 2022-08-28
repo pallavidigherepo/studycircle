@@ -62,7 +62,7 @@
         <div class="dropdown-menu w-40">
           <ul class="dropdown-content">
             <li>
-              <a href="#" class="dropdown-item" @click="openModal">
+              <a href="#" class="dropdown-item" @click.prevent="openModal">
                 <FileTextIcon class="w-4 h-4 mr-2" />
                 {{ t("common.CSV/Excel") }}
               </a>
@@ -93,7 +93,7 @@
               :class="{ 'table-report__action w-56': !column.field }" scope="col">
               <template v-if="column.sort">
                 <a href="#" @click.prevent="sorting(column.field, sortOrder)">
-                  <div className="flex items-center justify-between">
+                  <div class="flex items-center justify-between">
                     <template v-if="column.label === 'ID' || column.label === 'ACTIONS'">{{ t("common." + column.label)
                     }}</template>
                     <template v-else>{{
@@ -117,48 +117,53 @@
         </thead>
 
         <tbody>
-          <tr v-for="(item, index) in items.data" :key="index" class="intro-x" :class="{
+            <template v-if="items">
+                <tr v-for="(item, index) in items.data" :key="index" class="intro-x" :class="{
             'bg-secondary': item.id == selectedRow,
           }">
-            <td class="whitespace-nowrap" v-for="(column, index) in datatableoptions.columns" :key="index" :class="{
+                    <td class="whitespace-nowrap" v-for="(column, index) in datatableoptions.columns" :key="index" :class="{
               'table-report__action w-56 items-center': !column.field,
             }">
-              <template v-if="!column.field">
-                <div class="flex items-center">
-                  <a v-if="column.actions.show" class="flex items-center mr-3" href="javascript:;"
-                    @click.prevent="showMe(item)">
-                    <EyeIcon class="w-4 h-4 mr-1" />
-                    {{ t("common.Show") }}
-                  </a>
-                  <a v-if="column.actions.edit" class="flex items-center mr-3" href="javascript:;"
-                    @click.prevent="editMe(item)">
-                    <CheckSquareIcon class="w-4 h-4 mr-1" />
-                    {{ t("common.Edit") }}
-                  </a>
-                  <a v-if="column.actions.delete" class="flex items-center text-danger" href="javascript:;"
-                    @click.prevent="emit('deleteItem', item)">
-                    <Trash2Icon class="w-4 h-4 mr-1" />
-                    {{ t("common.Delete") }}
-                  </a>
-                </div>
-              </template>
-              <template v-else>
-                <template v-if="column.isJson">{{
-                    JSON.parse(item[column.field])
-                }}</template>
-                <template v-else>{{ item[column.field] }}</template>
-              </template>
-            </td>
-          </tr>
-        </tbody>
+                        <template v-if="!column.field">
+                            <div class="flex items-center">
+                                <a v-if="column.actions.show" class="flex items-center mr-3" href="javascript:;"
+                                   @click.prevent="showMe(item)">
+                                    <EyeIcon class="w-4 h-4 mr-1" />
+                                    {{ t("common.Show") }}
+                                </a>
+                                <a v-if="column.actions.edit" class="flex items-center mr-3" href="javascript:;"
+                                   @click.prevent="editMe(item)">
+                                    <CheckSquareIcon class="w-4 h-4 mr-1" />
+                                    {{ t("common.Edit") }}
+                                </a>
+                                <a v-if="column.actions.delete" class="flex items-center text-danger" href="javascript:;"
+                                   @click.prevent="emit('deleteItem', item)">
+                                    <Trash2Icon class="w-4 h-4 mr-1" />
+                                    {{ t("common.Delete") }}
+                                </a>
+                            </div>
+                        </template>
+                        <template v-else>
+                            <template v-if="column.isJson">{{
+                                    JSON.parse(item[column.field])
+                                }}</template>
+                            <template v-else>{{ item[column.field] }}</template>
+                        </template>
+                    </td>
+                </tr>
+            </template>
 
-        <tbody v-if="noRecords && !items.data.length">
-          <tr class="intro-x bg-secondary">
-            <td :colspan="datatableoptions.columns.length" class="text-center">
-              {{ t("common.Sorry, no records found") }}
-            </td>
-          </tr>
         </tbody>
+        <template v-if="items">
+            <tbody v-if="noRecords && !items.data.length">
+                <tr class="intro-x bg-secondary">
+                    <td :colspan="datatableoptions.columns.length" class="text-center">
+                        {{ t("common.Sorry, no records found") }}
+                    </td>
+                </tr>
+            </tbody>
+        </template>
+
 
       </table>
     </div>
@@ -166,27 +171,27 @@
     <!-- BEGIN: Pagination -->
 
     <Pagination
-      :links="links" 
-      :currentPage="currentPage" 
+      :links="links"
+      :currentPage="currentPage"
       @paginate="getForPage"
       @perpage="perPageValue" />
     <!-- END: Pagination -->
     <!-- BEGIN: Modal Content -->
-    <Modal size="modal-lg" 
-          :show="headerFooterModalPreview" 
+    <Modal size="modal-lg"
+          :show="headerFooterModalPreview"
           @hidden="headerFooterModalPreview = false">
       <ModalHeader>
         <h2 class="font-medium text-base mr-auto">
           {{ t("common.Import as CSV/Excel") }}
         </h2>
       </ModalHeader>
-      <CustomeAlert v-if="responseMessage" 
-                    :message="responseMessage" 
+      <CustomeAlert v-if="responseMessage"
+                    :message="responseMessage"
                     :status="responseStatus"
                     class="col-span-12 sm:col-span-6 flex" />
       <ModalBody class="grid grid-cols-12 gap-4 gap-y-3">
         <div class="col-span-12 sm:col-span-12 text-center">
-
+            <slot name="info"></slot>
           <div class="upload-btn-wrapper">
             <button class="upload-btn">{{
                 t("common.Upload file")
@@ -197,6 +202,7 @@
             <div
               class="alert alert-outline-warning alert-dismissible bg-warning/20 dark:bg-darkmode-400 dark:border-darkmode-400 mt-5 show"
               role="alert" style="display: block;">
+
               <div class="flex items-center"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="lucide w-6 h-6 mr-3">
@@ -205,6 +211,7 @@
                     <line x1="12" y1="9" x2="12" y2="13"></line>
                     <line x1="12" y1="17" x2="12.01" y2="17"></line>
                   </svg></span><span class="text-slate-800 dark:text-slate-500">Supports CSV and Excel files.</span>
+
               </div>
             </div>
 
@@ -219,7 +226,7 @@
                       </div>
                     </div>
                     <div class="text-base text-slate-500 mt-1">
-                      <button class="btn btn-primary h-20" 
+                      <button class="btn btn-primary h-20"
                               @click.prevent="exportMe('xlsx', true)">
                               {{ t('common.Download Template for EXCEL')}}</button>
                     </div>
@@ -236,7 +243,7 @@
                       </div>
                     </div>
                     <div class="text-base text-slate-500 mt-1">
-                      <button class="btn btn-primary h-20" 
+                      <button class="btn btn-primary h-20"
                               @click.prevent="exportMe('csv', true)">
                               {{ t('common.Download Template for CSV')}}</button>
                     </div>
@@ -249,9 +256,9 @@
         </div>
       </ModalBody>
       <ModalFooter>
-        <button @click="headerFooterModalPreview = false" 
-                type="button" 
-                class="btn btn-outline-secondary w-20 mr-1" 
+        <button @click="headerFooterModalPreview = false"
+                type="button"
+                class="btn btn-outline-secondary w-20 mr-1"
                 id="import-export-cancel-button">
           {{ t("common.Cancel") }}
         </button>
@@ -262,7 +269,7 @@
     </Modal>
     <!-- END: Modal Content -->
     <Loading v-if="loading" fixed></Loading>
-  
+
   </div>
 </template>
 
@@ -354,10 +361,18 @@ function proceedAction() {
 async function exportMe(export_as, isDemo) {
     const demo = ref(false);
 
+    let todayDate = new Date();
+
+    let name = modelName + "-" + todayDate.getDate() + "-"
+        + (todayDate.getMonth()+1)  + "-"
+        + todayDate.getFullYear() + "-"
+        + todayDate.getHours() + "-"
+        + todayDate.getMinutes() + "-"
+        + todayDate.getSeconds();
     if (!isDemo) {
-        downloadFileName.value = modelName + "." + export_as;
+        downloadFileName.value = name + "." + export_as;
     } else {
-        downloadFileName.value = "Template for " + modelName + "." + export_as;
+        downloadFileName.value = "Template for " + name + "." + export_as;
         demo.value = true;
     }
     const req = {

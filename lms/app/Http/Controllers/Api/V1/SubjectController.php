@@ -50,6 +50,8 @@ class SubjectController extends Controller
             $inputs = [
                 'label' => json_encode($request->label),
                 'description' => json_encode($request->description),
+                'board_id' => $request->board_id,
+                'standard_id' => $request->standard_id,
                 'icon' => $request->icon,
                 'language_id' => $request->language_id,
                 'created_by' => Auth::user()->id,
@@ -115,6 +117,8 @@ class SubjectController extends Controller
             $inputs = [
                 'label' => json_encode($request->label),
                 'description' => json_encode($request->description),
+                'board_id' => $request->board_id,
+                'standard_id' => $request->standard_id,
                 'icon' => $request->icon,
                 'language_id' => $request->language_id,
                 'updated_by' => Auth::user()->id,

@@ -15,9 +15,9 @@ class BoardSeeder extends Seeder
     public function run()
     {
         $types = [
-            ['name' => 'State Board'],
             ['name' => 'CBSE'],
             ['name' => 'IGCSE'],
+            ['name' => 'State Board'],
         ];
 
         foreach ($types as $type) {

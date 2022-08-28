@@ -20,6 +20,7 @@ class CreateQuestions extends Migration
             $table->longText('note')->nullable();
             $table->integer('marks')->nullable();
             $table->integer('negative_marks')->nullable();
+            $table->integer('expected_time')->nullable();
 
             //All the relational fields will come after this.
             $table->unsignedBigInteger('parent_id')->nullable();
@@ -28,14 +29,14 @@ class CreateQuestions extends Migration
             $table->unsignedBigInteger('difficulty_level_id')->nullable();
             $table->unsignedBigInteger('type_id')->nullable();
             $table->unsignedBigInteger('language_id')->nullable();
-            
+
             $table->unsignedBigInteger('subject_id')->nullable();
             $table->unsignedBigInteger('chapter_id')->nullable();
             $table->unsignedBigInteger('topic_id')->nullable();
 
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
-            
+
             $table->foreign('parent_id')->references('id')->on('questions');
             $table->foreign('board_id')->references('id')->on('boards');
             $table->foreign('standard_id')->references('id')->on('standards');
@@ -43,7 +44,7 @@ class CreateQuestions extends Migration
             $table->foreign('difficulty_level_id')->references('id')->on('question_difficulty_levels');
             $table->foreign('type_id')->references('id')->on('question_types');
             $table->foreign('language_id')->references('id')->on('languages');
-            
+
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->foreign('chapter_id')->references('parent_id')->on('subjects');
             // $table->foreign('topic_id')->references('parent_id')->on('subjects');

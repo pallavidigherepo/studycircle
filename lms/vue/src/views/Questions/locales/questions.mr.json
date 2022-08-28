@@ -25,7 +25,7 @@
     "Choose Subject": "विषय निवडा",
     "Choose Chapter": "धडा निवडा",
     "Choose Topic": "विषय निवडा",
-    "Note/Explaination": "टीप/स्पष्टीकरण",
+    "Note/Explanation": "टीप/स्पष्टीकरण",
     "Choose Question Type": "प्रश्न प्रकार निवडा",
     "Answers": "उत्तरे",
     "Answer": "उत्तर",
@@ -48,5 +48,11 @@
     "These are the marks, if answered correctly": "बरोबर उत्तर दिल्यास हे गुण आहेत.",
     "These are negative marks if answered incorrect": "चुकीचे उत्तर दिले असल्यास हे नकारात्मक गुण आहेत.",
     "Questions of paragraph": "परिच्छेदाचे प्रश्न",
-    "Board": "बोर्ड"
+    "Board": "बोर्ड",
+    "Import questions in bulk": "मोठ्या प्रमाणात प्रश्न आयात करा",
+    "Add Question & Answers Manually": "प्रश्न आणि उत्तरे व्यक्तिचलितपणे जोडा",
+    "You can add question manually or import it in bulk": "तुम्ही प्रश्न व्यक्तिचलितपणे जोडू शकता किंवा तुम्ही ते मोठ्या प्रमाणात आयात करू शकता.",
+    "Expected Time": "अपेक्षित वेळ",
+    "Expected time to answer this question in minutes": "या प्रश्नाचे उत्तर काही मिनिटांत मिळण्यासाठी वेळ अपेक्षित आहे.",
+    "TYPE": "प्रकार"
 }
