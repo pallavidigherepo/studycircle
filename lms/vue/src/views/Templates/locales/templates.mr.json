@@ -52,5 +52,9 @@
     "All Chapters": "सर्व अध्याय",
     "All Topics": "सर्व विषय",
     "Select Subject": "विषय निवडा",
-    "While fetching questions make sure to have all the above selections like Difficulty level Subject Chapter and Topic If you have NOT selected these questions will be fetched without any conditions": "प्रश्न आणताना, वरील सर्व निवडी आहेत याची खात्री करा, जसे की: अडचण पातळी, विषय, अध्याय आणि विषय. तुम्ही हे निवडले नसल्यास, कोणत्याही अटीशिवाय प्रश्न मिळवले जातील."
+    "While fetching questions make sure to have all the above selections like Difficulty level Subject Chapter and Topic If you have NOT selected these questions will be fetched without any conditions": "प्रश्न आणताना, वरील सर्व निवडी आहेत याची खात्री करा, जसे की: अडचण पातळी, विषय, अध्याय आणि विषय. तुम्ही हे निवडले नसल्यास, कोणत्याही अटीशिवाय प्रश्न मिळवले जातील.",
+    "Paper Name": "प्रश्नपत्रिकेचे नाव",
+    "Make sure you have selected your subject": "तुम्ही तुमचा विषय निवडला असल्याची खात्री करा.",
+    "Question type": "प्रश्न प्रकार",
+    "Fetch Questions": "प्रश्न आणा"
 }

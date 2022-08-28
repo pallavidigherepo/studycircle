@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TemplateRequest;
 use App\Http\Resources\TemplateResourse;
+use App\Models\QuestionType;
 use App\Models\Template;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;

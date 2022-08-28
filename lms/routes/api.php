@@ -19,6 +19,7 @@ use App\Http\Controllers\Api\V1\QuestionController;
 use App\Http\Controllers\Api\V1\StudentController;
 use App\Http\Controllers\Api\V1\ProfileController;
 use App\Http\Controllers\Api\V1\TemplateController;
+use App\Http\Controllers\Api\V1\GenerateQuestionPaperController;
 
 use App\Models\Board;
 use App\Models\Chapter;
@@ -66,6 +67,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('v1/students', StudentController::class);
     Route::resource('v1/profile', ProfileController::class);
     Route::resource('v1/templates', TemplateController::class);
+    Route::resource('v1/generated_questions', GenerateQuestionPaperController::class);
 
 
     Route::post('v1/exports/index', [ExportController::class, 'index'])->name('exports.index');

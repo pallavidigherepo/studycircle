@@ -152,12 +152,14 @@ watch(model.value, async (oldVal, newVal) => {
 function dataChange() {
     emit("change", model.value);
 }
-function changeType(type) {
-    model.value.type_id = type;
-    dataChange();
-}
 function addSection() {
     emit("addSection", props.index + 1);
+}
+function changeType(type) {
+    let questTypeArray = JSON.parse(JSON.stringify(props.questionTypes));
+    model.value.type_id = type;
+    model.value.type_name = questTypeArray[type];
+    dataChange();
 }
 function deleteSection() {
     emit("deleteSection", props.section);

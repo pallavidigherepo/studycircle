@@ -53,5 +53,9 @@
     "All Chapters": "All Chapters",
     "All Topics": "All Topics",
     "Select Subject": "Select Subject",
-    "While fetching questions make sure to have all the above selections like Difficulty level Subject Chapter and Topic If you have NOT selected these questions will be fetched without any conditions": "While fetching questions, make sure to have all the above selections, like: Difficulty level, Subject, Chapter and Topic. If you have NOT selected these, questions will be fetched without any conditions."
+    "While fetching questions make sure to have all the above selections like Difficulty level Subject Chapter and Topic If you have NOT selected these questions will be fetched without any conditions": "While fetching questions, make sure to have all the above selections. Like: Difficulty level, Subject, Chapter and Topic. If you have NOT selected these, questions will be fetched without any conditions.",
+    "Paper Name": "Paper Name",
+    "Make sure you have selected your subject": "Make sure, you have selected your subject.",
+    "Question type": "Question type",
+    "Fetch Questions": "Fetch Questions"
 }

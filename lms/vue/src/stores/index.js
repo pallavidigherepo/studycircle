@@ -13,6 +13,7 @@ import topicModule from './modules/topics/index.js';
 import questionModule from './modules/questions/index.js';
 import studentModule from './modules/students/index.js';
 import templateModule from './modules/templates/index';
+import generateQuestionModule from './modules/generate_questions/index';
 
 const store = createStore({
     modules: {
@@ -28,6 +29,7 @@ const store = createStore({
         questions: questionModule,
         students: studentModule,
         templates: templateModule,
+        generated_questions: generateQuestionModule,
         /*languages: languageModule,
          */
     },

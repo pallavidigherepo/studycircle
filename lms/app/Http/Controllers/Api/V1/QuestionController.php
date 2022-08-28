@@ -35,18 +35,44 @@ class QuestionController extends Controller
      */
     public function index(Request $request)
     {
-        $field = $request->input('sort_field') ?? 'id';
-        $order = $request->input('sort_order') ?? 'desc';
-        $perPage = $request->input('per_page') ?? 10;
+        if (isset($request->paper_generation) && $request->paper_generation) {
+            return QuestionResource::collection(
+                Question::when(request('paper_generation'), function ($query) {
+                    $query->where('board_id', request('board_id'));
+                    $query->where('standard_id', request('standard_id'));
+                    $query->where('subject_id', request('subject_id'));
+                    if (request('difficulty_level_id') != null) {
+                        $query->where('difficulty_level_id', request('difficulty_level_id'));
+                    }
+                    if (request('chapter_id') != null) {
+                        $query->where('chapter_id', request('chapter_id'));
+                    }
+                    if (request('topic_id') !=null ) {
+                        $query->where('topic_id', request('topic_id'));
+                    }
+                    if (request('type_id') !=null) {
+                        $query->where('type_id', request('type_id'));
+                    }
+                })
+                    ->whereNull('parent_id')
+                    //->orderBy($field, $order)
+                    ->paginate(10)
+            );
+        } else {
+            $field = $request->input('sort_field') ?? 'id';
+            $order = $request->input('sort_order') ?? 'desc';
+            $perPage = $request->input('per_page') ?? 10;
 
-        return QuestionResource::collection(
-            Question::when(request('search'), function ($query) {
-                $query->where('question', 'like', '%'. request('search'). '%');
-            })
-            ->whereNull('parent_id')
-            ->orderBy($field, $order)
-            ->paginate($perPage)
-        );
+            return QuestionResource::collection(
+                Question::when(request('search'), function ($query) {
+                    $query->where('question', 'like', '%'. request('search'). '%');
+                })
+                    ->whereNull('parent_id')
+                    ->orderBy($field, $order)
+                    ->paginate($perPage)
+            );
+        }
+
     }
 
     /**

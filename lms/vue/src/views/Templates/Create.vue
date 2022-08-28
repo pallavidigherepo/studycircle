@@ -609,6 +609,7 @@ function addSection(index) {
             total_marks: '',
             marks_per_question: '',
             type_id: '',
+            type_name: '',
             errors: [],
         };
         model.value.sections.splice(index, 0, newSection);

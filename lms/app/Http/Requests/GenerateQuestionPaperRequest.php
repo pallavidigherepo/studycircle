@@ -13,7 +13,7 @@ class GenerateQuestionPaperRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class GenerateQuestionPaperRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string',
+            'subject_id' => 'required',
+            'template_id' => 'required',
+            'generated_questions' => 'required'
         ];
     }
 }

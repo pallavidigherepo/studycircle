@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GenerateQuestionPaperRequest;
-use App\Models\GeneratQuestionPaper;
+use App\Models\GenerateQuestionPaper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GenerateQuestionPaperController extends Controller
 {
@@ -36,10 +37,12 @@ class GenerateQuestionPaperController extends Controller
                 'template_id' => $request->template_id,
                 'difficulty_level_id' => $request->difficulty_level_id,
                 'is_auto' => $request->is_auto,
-                'generated_questions' => $request->generated_questions,
+                'created_by' => Auth::user()->id,
+                'updated_by' => Auth::user()->id,
+                'generated_questions' => json_encode($request->generated_questions),
             ];
 
-            GeneratQuestionPaper::create($input);
+            GenerateQuestionPaper::create($input);
         }
 
     }
@@ -62,7 +65,7 @@ class GenerateQuestionPaperController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(GenerateQuestionPaperRequest $request, GeneratQuestionPaper $generatQuestionPaper)
+    public function update(GenerateQuestionPaperRequest $request, GenerateQuestionPaper $generateQuestionPaper)
     {
         if ($request->validated()) {
             $input = [
@@ -75,7 +78,7 @@ class GenerateQuestionPaperController extends Controller
                 'is_auto' => $request->is_auto,
                 'generated_questions' => $request->generated_questions,
             ];
-            $generatQuestionPaper->update($input);
+            $generateQuestionPaper->update($input);
         }
     }
 

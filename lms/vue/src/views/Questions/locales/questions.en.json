@@ -55,5 +55,7 @@
     "You can add question manually or import it in bulk": "You can add question manually OR import it in bulk.",
     "Expected Time": "Expected Time",
     "Expected time to answer this question in minutes": "Expected time to answer this question in minutes.",
-    "TYPE": "TYPE"
+    "TYPE": "TYPE",
+    "MARKS": "MARKS",
+    "NEGATIVE MARKS": "NEGATIVE MARKS"
 }

@@ -54,5 +54,7 @@
     "You can add question manually or import it in bulk": "आप मैन्युअल रूप से प्रश्न जोड़ सकते हैं या आप इसे थोक में आयात कर सकते हैं।",
     "Expected Time": "अपेक्षित समय",
     "Expected time to answer this question in minutes": "इस प्रश्न का उत्तर मिनटों में देने का अपेक्षित समय।",
-    "TYPE": "प्रकार"
+    "TYPE": "प्रकार",
+    "MARKS": "अंक",
+    "NEGATIVE MARKS": "नकारात्मक अंक"
 }
