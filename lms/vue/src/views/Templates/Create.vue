@@ -56,15 +56,15 @@
                                     </div>
                                 </div>
                                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                                    <TomSelect id="form-board" v-model="model.board_id" :class="{
-  'border-danger': submitted && v$.board_id.$errors.length,
-}"
+                                    <TomSelect id="form-board" v-model="model.board_id" :class="{'border-danger': submitted && v$.board_id.$errors.length,}"
                                                :options="{
-                    allowEmptyOption: false,
-                    create: false,
-                    placeholder: 'Select Board',
-                    autocomplete: 'off',
-                  }" :placeholder="'Select Board'" class="w-full">
+                                                    allowEmptyOption: false,
+                                                    create: false,
+                                                    placeholder: 'Select Board',
+                                                    autocomplete: 'off',
+                                                  }"
+                                               :placeholder="'Select Board'"
+                                               class="w-full">
                                         <option>{{ t('questions.Select Board') }}</option>
                                         <option v-for="(board, index) in boards" :key="index" :value="index">
                                             {{ board }}
@@ -95,15 +95,19 @@
                                     </div>
                                 </div>
                                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                                    <TomSelect id="form-standard" v-model="model.standard_id"
+                                    <TomSelect id="form-standard"
+                                               v-model="model.standard_id"
                                                :class="{
-  'border-danger': submitted && v$.standard_id.$errors.length,
-}" :options="{
-                    allowEmptyOption: false,
-                    create: false,
-                    placeholder: 'Select Standard',
-                    autocomplete: 'off',
-                  }" class="w-full" placeholder="Select Standard">
+                                                  'border-danger': submitted && v$.standard_id.$errors.length,
+                                               }"
+                                               :options="{
+                                                    allowEmptyOption: false,
+                                                    create: false,
+                                                    placeholder: 'Select Standard',
+                                                    autocomplete: 'off',
+                                                  }"
+                                               class="w-full"
+                                               placeholder="Select Standard">
                                         <option>{{ t('questions.Select Standard') }}</option>
                                         <option v-for="(standard, indexs) in standards" :key="indexs" :value="indexs">
                                             {{ standard }}
@@ -155,6 +159,37 @@
                                            placeholder="Template Name." type="text"/>
                                     <div class="form-help text-right">Maximum character 0/70</div>
                                     <div v-for="(error, index) of v$.name.$errors" :key="index"
+                                         class="text-danger mt-2">
+                                        <div class="error-msg">{{ error.$message }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                <div class="form-label xl:w-64 xl:!mr-10">
+                                    <div class="text-left">
+                                        <div class="flex items-center">
+                                            <div class="font-medium">{{
+                                                    t("templates.Description")
+                                                }}
+                                            </div>
+                                            <div
+                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                {{ t("common.Required") }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-full mt-3 xl:mt-0 flex-1">
+                                    <textarea class="form-control"
+                                              v-model="model.description"
+                                              :class="{'border-danger': submitted && v$.name.$errors.length,}"
+                                              id="form-description"
+                                              placeholder="Enter Description. "
+                                    >
+
+                                    </textarea>
+                                    <div class="form-help text-right">Like: Note:- All Questions are Compusory.</div>
+                                    <div v-for="(error, index) of v$.description.$errors" :key="index"
                                          class="text-danger mt-2">
                                         <div class="error-msg">{{ error.$message }}</div>
                                     </div>
@@ -497,6 +532,7 @@ const model = ref({
     board_id: "",
     standard_id: "",
     name: "",
+    description: "",
     total_marks: '',
     duration: '',
     has_section: false,
@@ -527,6 +563,9 @@ const rules = computed(() => {
         },
         name: {
             required: helpers.withMessage("Please enter name of template.", required),
+        },
+        description: {
+            required: helpers.withMessage("Please enter description of template.", required),
         },
         total_marks: {
             required: helpers.withMessage("Please enter total marks of template.", required),

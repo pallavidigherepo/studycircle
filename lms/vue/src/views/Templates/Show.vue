@@ -5,6 +5,20 @@
                 {{ t("templates.Question Paper Format Details") }}
             </h2>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
+<!--                <router-link v-if="template"
+                             :to="{name: 'PaperGenerator', params: {id: template.id}}"
+                             class="
+                                btn
+                                btn-warning-soft
+                                mr-2
+                                flex
+                                items-center
+                                ml-auto
+                                sm:ml-0
+                                ">
+                    <ServerIcon class="w-4 h-4 mr-2"/>
+                    {{ t("templates.List Generated Question Papers") }}
+                </router-link>-->
                 <router-link v-if="template"
                              :to="{name: 'PaperGenerator', params: {id: template.id}}"
                              class="

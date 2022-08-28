@@ -83,9 +83,9 @@ class QuestionController extends Controller
      */
     public function store(QuestionRequest $request)
     {
-        //dd($request);
+
         // Firstly we need to check if questions are added manually OR it is imported in bulk.
-        if (!$request->add_question_manually) {
+        if ($request->add_question_manually === false) {
             // We are here because we are doing bulk imports.
             $response = $this->__importQuestionInBulk($request);
         } else {
@@ -157,10 +157,10 @@ class QuestionController extends Controller
      */
     public function update(QuestionRequest $request, Question $question)
     {
-        //dd($request);
         // First most: Validate all the request data.
         if ($request->validated()) {
             $parentQuestion = $this->__createAndUpdateQuestion($request->toArray());
+
             // When question is created we need to check if the added question has $request['questions']
             // If yes then we have save all the questions and approriate answers.
             if (!empty($request['questions'])) {
@@ -265,16 +265,14 @@ class QuestionController extends Controller
 
     private function __createAndUpdateQuestion(Array $inputArray, Question $parentQuestion = null)
     {
-        //dump($inputArray);
         $id = null;
         if (isset($inputArray['id'])) {
-            //dump($inputArray['id']);
             $alreadyAQuestion = Question::find($inputArray['id']);
             if ($alreadyAQuestion != null) {
                 $id = $alreadyAQuestion->id != null ? $alreadyAQuestion->id: null;
             }
         }
-        //dump($id);
+
         $inputQuestionData = [
             "id" => $id,
             'parent_id' => $parentQuestion ? $parentQuestion->id: NULL,
@@ -321,7 +319,7 @@ class QuestionController extends Controller
             Answer::destroy(collect($toDelete));
             // Create new answers
             foreach ($answers as $answer) {
-                if (in_array($answer['id'], $toAdd)) {
+                if (isset($answer['id']) && in_array($answer['id'], $toAdd)) {
                     if ($answer['is_correct'] == "on" || $answer['is_correct'] == 1) {
                         $isCorrect = 1;
                     } else {

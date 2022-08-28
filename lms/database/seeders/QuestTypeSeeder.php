@@ -36,17 +36,17 @@ class QuestTypeSeeder extends Seeder
                 'is_active' => true,
             ],
             [
+                'name' => 'Paragraph',
+                'in_paragraph' => false,
+                'is_active' => true,
+            ],
+            [
                 'name' => 'Subjective',
                 'in_paragraph' => true,
                 'is_active' => true,
             ],
             //['name' => 'Single scentence'],
             //['name' => 'Muliple scentence'],
-            [
-                'name' => 'Paragraph',
-                'in_paragraph' => false,
-                'is_active' => true,
-            ],
             //['name' => 'Essay'],
             //['name' => 'Brief answer'],
             //['name' => 'Concept'],

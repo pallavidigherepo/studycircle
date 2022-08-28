@@ -75,42 +75,46 @@ class QuestionImport implements ToModel, WithHeadingRow, WithValidation
             'updated_by' => Auth::user()->id,
         ];
         $question = Question::create($inputArray);
-        $correctAnswerId = $row['correct_answers'];
-        if ($question) {
-            $answerArray = [
-                'answer' => $row['option_1'],
-                'question_id' => $question->id,
-                'is_correct' => true ?? $correctAnswerId == 1,
-                'created_by' => Auth::user()->id,
-                'updated_by' => Auth::user()->id,
-            ];
-            Answer::create($answerArray);
-            $answerArray = [
-                'answer' => $row['option_2'],
-                'question_id' => $question->id,
-                'is_correct' => true ?? $correctAnswerId == 2,
-                'created_by' => Auth::user()->id,
-                'updated_by' => Auth::user()->id,
-            ];
-            Answer::create($answerArray);
-            $answerArray = [
-                'answer' => $row['option_3'],
-                'question_id' => $question->id,
-                'is_correct' => true ?? $correctAnswerId == 3,
-                'created_by' => Auth::user()->id,
-                'updated_by' => Auth::user()->id,
-            ];
-            Answer::create($answerArray);
+        
+        if ($this->type_id != 5) {
+            $correctAnswerId = $row['correct_answers'];
+            if ($question) {
+                $answerArray = [
+                    'answer' => $row['option_1'],
+                    'question_id' => $question->id,
+                    'is_correct' => true ?? $correctAnswerId == 1,
+                    'created_by' => Auth::user()->id,
+                    'updated_by' => Auth::user()->id,
+                ];
+                Answer::create($answerArray);
+                $answerArray = [
+                    'answer' => $row['option_2'],
+                    'question_id' => $question->id,
+                    'is_correct' => true ?? $correctAnswerId == 2,
+                    'created_by' => Auth::user()->id,
+                    'updated_by' => Auth::user()->id,
+                ];
+                Answer::create($answerArray);
+                $answerArray = [
+                    'answer' => $row['option_3'],
+                    'question_id' => $question->id,
+                    'is_correct' => true ?? $correctAnswerId == 3,
+                    'created_by' => Auth::user()->id,
+                    'updated_by' => Auth::user()->id,
+                ];
+                Answer::create($answerArray);
 
-            $answerArray = [
-                'answer' => $row['option_4'],
-                'question_id' => $question->id,
-                'is_correct' => true ?? $correctAnswerId == 4,
-                'created_by' => Auth::user()->id,
-                'updated_by' => Auth::user()->id,
-            ];
-            Answer::create($answerArray);
+                $answerArray = [
+                    'answer' => $row['option_4'],
+                    'question_id' => $question->id,
+                    'is_correct' => true ?? $correctAnswerId == 4,
+                    'created_by' => Auth::user()->id,
+                    'updated_by' => Auth::user()->id,
+                ];
+                Answer::create($answerArray);
+            }
         }
+
 
     }
 

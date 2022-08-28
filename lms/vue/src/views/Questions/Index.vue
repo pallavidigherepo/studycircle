@@ -61,6 +61,7 @@ onMounted(() => {
     route.name == "ShowQuestion"
   ) {
     listing.value = false;
+
   }
 });
 

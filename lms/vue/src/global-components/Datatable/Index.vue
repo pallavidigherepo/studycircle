@@ -119,7 +119,7 @@
         <tbody>
             <template v-if="items">
                 <tr v-for="(item, index) in items.data" :key="index" class="intro-x" :class="{
-            'bg-secondary': item.id == selectedRow,
+            'bg-secondary': item && item.id == selectedRow,
           }">
                     <td class="whitespace-nowrap" v-for="(column, index) in datatableoptions.columns" :key="index" :class="{
               'table-report__action w-56 items-center': !column.field,

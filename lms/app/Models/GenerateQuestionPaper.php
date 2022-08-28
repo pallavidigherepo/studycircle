@@ -16,7 +16,7 @@ class GenerateQuestionPaper extends Model
      *
      * @var string
      */
-    protected $table = 'generated_question_papers';
+protected $table = 'generated_question_papers';
 
     /**
      * @var array
