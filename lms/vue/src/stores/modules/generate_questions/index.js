@@ -10,9 +10,9 @@ export default {
             languages: [],
             pagination: [],
             datatable: {
-                export: true,
+                export: false,
                 import: false,
-                addNew: true,
+                addNew: false,
                 defaultColumn: "id",
                 defaultOrder: "desc",
                 defaultPage: 1,
@@ -25,20 +25,14 @@ export default {
                         isJson: false,
                     },
                     {
-                        label: "QUESTION",
-                        field: "question",
+                        label: "NAME",
+                        field: "name",
                         sort: true,
                         isJson: false,
                     },
                     {
-                        label: "TYPE",
-                        field: "type",
-                        sort: false,
-                        isJson: false,
-                    },
-                    {
-                        label: "STANDARD",
-                        field: "standard",
+                        label: "TEMPLATE",
+                        field: "type_id",
                         sort: false,
                         isJson: false,
                     },
@@ -49,12 +43,24 @@ export default {
                         isJson: false,
                     },
                     {
+                        label: "STANDARD",
+                        field: "standard",
+                        sort: false,
+                        isJson: false,
+                    },
+                    {
+                        label: "SUBJECT",
+                        field: "standard",
+                        sort: false,
+                        isJson: false,
+                    },
+                    {
                         label: "ACTIONS",
                         field: false,
                         sort: false,
                         actions: {
                             show: true,
-                            edit: true,
+                            edit: false,
                             delete: true,
                         }
                     }

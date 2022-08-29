@@ -539,22 +539,20 @@
                 <div class="py-5 sm:py-10">
                     <div class="overflow-x-auto">
                         <table class="table">
-
                             <template v-if="template.has_section">
                                 <tr v-for="(section, index) in model.generated_questions.sections" :key="index">
                                     <template v-if="section.questions.length > 0">
 
-                                        <td class="border-b-2 dark:border-darkmode-400 whitespace-nowrap">
-                                            <div class="flex font-medium">Question: {{ index+1 }}.&nbsp;{{ section.name }}</div>
-                                            <div class="text-right">({{ section.total_marks}})</div>
+                                        <td class="dark:border-darkmode-400 whitespace-nowrap">
+                                            <div class="flex font-medium">Q&nbsp;{{ parseInt(index) + 1 }}.&nbsp;{{ section.name }}</div>
+                                            <div class="text-right font-medium">({{ section.total_marks}})</div>
 
-                                            <table >
+                                            <table class="border-none">
                                                 <tr v-for="(question, qidx) in section.questions" :key="qidx">
-                                                    <td>{{ qidx + 1}})
-                                                        {{ question.question }}
-                                                        <table>
+                                                    <td  class="border-none whitespace-nowrap">{{ qidx + 1}})&nbsp;{{ question.question }}
+                                                        <table class="border-none">
                                                             <tr v-for="(answer, aidx) in question.answers" :key="aidx">
-                                                                <td> {{aidx + 1}})&nbsp;{{answer.answer}}</td>
+                                                                <td class="border-none whitespace-nowrap"> {{aidx + 1}})&nbsp;{{answer.answer}}</td>
                                                             </tr>
                                                         </table>
                                                     </td>
@@ -585,7 +583,24 @@
                 </button>
             </div>
         </template>
-
+        <!-- BEGIN: Modal Content -->
+        <Modal :show="successModalPreview" @hidden="successModalPreview = false">
+            <ModalBody class="p-0">
+                <div class="p-5 text-center">
+                    <CheckCircleIcon class="w-16 h-16 text-success mx-auto mt-3" />
+                    <div class="text-3xl mt-5">Success!</div>
+                    <div class="text-slate-500 mt-2">
+                        You have successfully generated question paper!
+                    </div>
+                </div>
+                <div class="px-5 pb-8 text-center">
+                    <button type="button" @click="successModalPreview = false" class="btn btn-primary w-24">
+                        Ok
+                    </button>
+                </div>
+            </ModalBody>
+        </Modal>
+        <!-- END: Modal Content -->
         <Loading v-if="isLoading" fixed></Loading>
     </div>
 </template>
@@ -617,6 +632,9 @@ const template = ref();
 const boardId = ref();
 const standardId = ref();
 const subjects = ref();
+const preview = ref(false);
+const successModalPreview = ref(false);
+const warningModalPreview = ref(false);
 
 const model = ref({
     id: "",
@@ -639,6 +657,7 @@ onMounted(() => {
 
 const difficultyList = computed(() => store.getters.listDifficultyLevel);
 const userInfo = computed(() => JSON.parse(sessionStorage.getItem("USER")));
+
 const fetch = async () => {
     isLoading.value = true;
     try {
@@ -661,7 +680,8 @@ const fetch = async () => {
     } finally {
         isLoading.value = false;
     }
-};
+}
+
 async function selectedStandard(standardId, boardId) {
     subjects.value = [];
     chapters.value = [];
@@ -695,7 +715,7 @@ async function selectedChapter(chapterId) {
         topics.value = result.data;
     }
 }
-const warningModalPreview = ref(false)
+
 async function fetchQuestions(section, index)  {
     if (!model.value.subject_id) {
         warningModalPreview.value = true;
@@ -712,14 +732,14 @@ async function fetchQuestions(section, index)  {
         limit = section.total_questions;
     }
     let url = "paper_generation="+true
-                +"&board_id="+boardId.value
-                +"&standard_id="+standardId.value
-                +"&subject_id="+model.value.subject_id
-                +"&chapter_id="+model.value.chapter_id
-                +"&topic_id="+model.value.topic_id
-                +"&difficulty_level_id="+model.value.difficulty_level_id
-                +"&type_id="+typeId
-                +"&limit="+ limit;
+        +"&board_id="+boardId.value
+        +"&standard_id="+standardId.value
+        +"&subject_id="+model.value.subject_id
+        +"&chapter_id="+model.value.chapter_id
+        +"&topic_id="+model.value.topic_id
+        +"&difficulty_level_id="+model.value.difficulty_level_id
+        +"&type_id="+typeId
+        +"&limit="+ limit;
 
     const result = await axiosClient.get("/questions?"+ url);
 
@@ -756,7 +776,7 @@ const rules = computed(() => {
     };
 });
 const v$ = useVuelidate(rules, model);
-const preview = ref(false);
+
 async function submitForm(pre) {
 
     submitted.value = true;
@@ -776,8 +796,7 @@ async function submitForm(pre) {
                     isLoading.value = false;
                     submitted.value = false;
                     isErrored.value = false;
-
-                    //router.push({name: "Questions"});
+                    router.push({name: "GeneratedQuestionPapers"});
                 })
                 .catch((err) => {
                     isLoading.value = false;

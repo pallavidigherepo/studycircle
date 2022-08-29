@@ -74,10 +74,10 @@ export const useSideMenuStore = defineStore("sideMenu", {
 
             },{
                 icon: "BriefcaseIcon",
-                pageName: "Templates",
+                pageName: "QuestionnaireDashboard",
                 title: "Questionnaire",
                 ignore: false,
-                allowedPages: ['Questionnaire', 'Templates', 'CreateTemplate', 'EditTemplate'],
+                allowedPages: ['QuestionnaireDashboard', 'Questionnaire', 'Templates', 'CreateTemplate', 'EditTemplate'],
 
             },
         ],

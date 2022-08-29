@@ -6,7 +6,7 @@ export default {
         url = "/generated_questions" + url;
         return await axiosClient.get(url)
             .then(({ data }) => {
-                commit('SET_QUESTIONS', data);
+                commit('SET_GENERATED_QUESTIONS', data);
                 commit('SET_PAGINATION_LINKS', data.meta.links)
                 return data;
             });
@@ -26,7 +26,7 @@ export default {
             response = await axiosClient
                 .post(`/generated_questions`, model)
                 .then(({ data }) => {
-                    commit('CREATE_GENERATE_QUESTION', data);
+                    commit('CREATE_GENERATED_QUESTION', data);
                     return data;
                 });
         }

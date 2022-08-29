@@ -39,11 +39,15 @@ import CreateQuestion from '../views/Questions/Create.vue';
 import EditQuestion from '../views/Questions/Edit.vue';
 import ShowQuestion from '../views/Questions/Show.vue';
 
+import QuestionnaireDashboard from "../views/Questionnaire/Index.vue";
+
 import Templates from '../views/Templates/Index.vue';
 import CreateTemplate from '../views/Templates/Create.vue';
 import EditTemplate from '../views/Templates/Edit.vue';
 import ShowTemplate from '../views/Templates/Show.vue';
-import PaperGenerator from "../views/Templates/PaperGenerator.vue";
+
+import PaperGenerator from "../views/GeneratedQuestions/Create.vue";
+import GeneratedQuestionPapers from "../views/GeneratedQuestions/Index.vue";
 
 import Students from '../views/Students/Index.vue';
 import CreateStudent from '../views/Students/Create.vue';
@@ -275,18 +279,33 @@ const routes = [{
                 ]
             },
             {
+                path: "/questionnaire",
+                name: "QuestionnaireDashboard",
+                component: QuestionnaireDashboard,
+
+            },
+
+            {
+                path: "/generated_question_papers",
+                name: "GeneratedQuestionPapers",
+                component: GeneratedQuestionPapers,
+                meta: {
+                    parent: 'QuestionnaireDashboard'
+                },
+            },
+            {
                 path: "/templates",
                 name: "Templates",
                 component: Templates,
                 meta: {
-                    parent: 'Templates'
+                    parent: 'QuestionnaireDashboard'
                 },
                 children: [{
                     path: '/templates/create',
                     name: "CreateTemplate",
                     component: CreateTemplate,
                     meta: {
-                        parent: 'Templates'
+                        parent: 'QuestionnaireDashboard'
                     }
                 },
                     {
@@ -294,7 +313,7 @@ const routes = [{
                         name: "EditTemplate",
                         component: EditTemplate,
                         meta: {
-                            parent: 'Templates'
+                            parent: 'QuestionnaireDashboard'
                         }
                     },
                     {
@@ -302,7 +321,7 @@ const routes = [{
                         name: "ShowTemplate",
                         component: ShowTemplate,
                         meta: {
-                            parent: 'Templates'
+                            parent: 'QuestionnaireDashboard'
                         }
                     },
                     {
@@ -310,7 +329,7 @@ const routes = [{
                         name: "PaperGenerator",
                         component: PaperGenerator,
                         meta: {
-                            parent: 'Templates'
+                            parent: 'QuestionnaireDashboard'
                         }
 
                     }
