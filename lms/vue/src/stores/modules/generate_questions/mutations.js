@@ -7,19 +7,20 @@ export default {
         state.pagination = payload;
     },
     CREATE_GENERATED_QUESTION(state, generated_question) {
-        state.generated_question.data.unshift(generated_question)
+        state.generated_questions.data.unshift(generated_question)
     },
+
     EDIT_QUESTION(state, payload) {
         state.question = payload;
     },
 
     DELETE_GENERATED_QUESTION(state, id) {
-        let index = state.generated_question.data.findIndex(item => item.id === id)
-        state.generated_question.data.splice(index, 1)
+        let index = state.generated_questions.data.findIndex(item => item.id === id)
+        state.generated_questions.data.splice(index, 1)
     },
 
     UPDATE_GENERATED_QUESTION(state, question) {
-        let index = state.generated_question.data.findIndex(item => item.id === question.id);
-        state.generated_question.data[index] = question;
+        let index = state.generated_questions.data.findIndex(item => item.id === question.id);
+        state.generated_questions.data[index] = question;
     },
 };

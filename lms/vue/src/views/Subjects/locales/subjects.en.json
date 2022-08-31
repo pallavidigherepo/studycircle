@@ -5,7 +5,7 @@
     "ICON": "ICON",
     "Add Subject": "Add Subject",
     "Label": "Label",
-    "Icon": "Icon",    
+    "Icon": "Icon",
     "Description": "Description",
     "Choose Language": "Choose Language",
     "Tags": "Tags",
@@ -13,5 +13,7 @@
     "Subject details": "Subject details",
     "Chapters": "Chapters",
     "Topics": "Topics",
-    "List of all the Chapters of": "List of all the Chapters of"
+    "List of all the Chapters of": "List of all the Chapters of",
+    "BOARD": "BOARD",
+    "STANDARD": "STANDARD"
 }

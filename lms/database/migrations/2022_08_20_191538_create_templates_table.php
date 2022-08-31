@@ -16,6 +16,7 @@ class CreateTemplatesTable extends Migration
         Schema::create('templates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->longText('description')->nullable();
             $table->unsignedBigInteger('board_id');
             $table->unsignedBigInteger('standard_id');
             $table->integer('total_marks');

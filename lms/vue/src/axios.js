@@ -11,7 +11,6 @@ axiosClient.interceptors.request.use(config => {
     config.headers.Authorization = `Bearer ${stores.state.auth.user.token}`
     return config;
 });
-  
 axiosClient.interceptors.response.use(response => {
     return response;
 }, error => {
@@ -23,5 +22,5 @@ axiosClient.interceptors.response.use(response => {
     }
     throw error;
 })
-  
+
 export default axiosClient;

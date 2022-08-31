@@ -404,9 +404,13 @@ const router = createRouter({
 
 
 router.beforeEach((to, from, next) => {
-    if (to.meta.requiresAuth && !store.state.auth.user.token) {
+    let token = sessionStorage.getItem("TOKEN");
+    // OLD: Removed, because state was not removing its token if user deleted session storage manually.
+    //let token = store.state.auth.user.token;
+
+    if (to.meta.requiresAuth && !token) {
         next({ name: "Login" });
-    } else if (store.state.auth.user.token && to.meta.isGuest) {
+    } else if (token && to.meta.isGuest) {
         next({ name: "Dashboard" })
     } else {
         next();

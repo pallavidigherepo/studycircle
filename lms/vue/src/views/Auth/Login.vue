@@ -142,6 +142,7 @@
         <!-- END: Login Form -->
       </div>
     </div>
+      <Loading v-if="loading" fixed></Loading>
   </div>
 </template>
 
@@ -170,9 +171,11 @@ function login() {
     .dispatch("auth/login", user)
     .then(() => {
       loading.value = false;
-      router.push({
+      router.back();
+
+      /*router.push({
         name: "Dashboard",
-      });
+      });*/
     })
     .catch((err) => {
       //console.log(err)

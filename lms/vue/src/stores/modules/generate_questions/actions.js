@@ -19,15 +19,20 @@ export default {
             response = await axiosClient
                 .put(`/generated_questions/${model.id}`, model)
                 .then(({ data }) => {
-                    commit('UPDATE_QUESTION', model);
-                    return data;
+                    commit('UPDATE_GENERATED_QUESTION', model);
                 });
         } else {
             response = await axiosClient
                 .post(`/generated_questions`, model)
                 .then(({ data }) => {
-                    commit('CREATE_GENERATED_QUESTION', data);
-                    return data;
+                    if (data.success) {
+                        //commit('CREATE_GENERATED_QUESTION', data.generatedQuestionPaper);
+                        return true;
+                    } else {
+                        const error = new Error(data.message)
+                        throw error;
+                    }
+
                 });
         }
     },
@@ -44,14 +49,14 @@ export default {
             });
     },
 
-    // This action is used to delete permission from serve.
+    // This action is used to delete question paper from serve.
     async delete(context, id) {
         const response = await axiosClient.delete(`/generated_questions/${id}`);
         if (response.status != 200) {
-            const error = new Error('Failed to delete question')
+            const error = new Error('Failed to delete question paper')
             throw error;
         }
-        context.commit('DELETE_QUESTION', id);
+        context.commit('DELETE_GENERATED_QUESTION', id);
     },
 
 };

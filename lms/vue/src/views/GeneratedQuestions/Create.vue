@@ -8,15 +8,15 @@
                 <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                     <router-link to="/templates"
                                  class="
-                        btn
-                        box
-                        text-gray-700
-                        dark:text-gray-300
-                        mr-2
-                        flex
-                        items-center
-                        ml-auto
-                        sm:ml-0
+                                    btn
+                                    box
+                                    text-gray-700
+                                    dark:text-gray-300
+                                    mr-2
+                                    flex
+                                    items-center
+                                    ml-auto
+                                    sm:ml-0
                       ">
                         <ArrowLeftCircleIcon class="w-4 h-4 mr-2"/>
                         {{ t("templates.Question Paper Formats") }}
@@ -471,8 +471,12 @@
                         {{ t("common.Cancel") }}
                     </router-link>
 
-                    <button class="btn py-3 btn-primary w-full md:w-52" type="submit">
-                        {{ t("templates.Preview Generated Paper") }}
+                    <button class="btn py-3 btn-primary w-full md:w-52" type="submit" @click="isOnline = true">
+                        {{ t("generated_questions.Preview Generated Paper In Online Mode") }}
+                    </button>
+
+                    <button class="btn py-3 btn-primary w-full md:w-52" type="submit" @click="isOnline = false">
+                        {{ t("generated_questions.Preview Generated Paper In Offline Mode") }}
                     </button>
                 </div>
             </form>
@@ -528,13 +532,8 @@
                     </div>
                 </div>
                 <div class="border-b border-slate-200/60 dark:border-darkmode-400 text-center sm:text-left">
-                    <div class="p-5">
-                        Note:-<br/>
-                        All Questions are compulsory. <br>
-                        Numbers on the right indicate full marks.
-                    </div>
+                    <div class="p-5" v-html="template.description"></div>
 
-                    {{ template.description }}
                 </div>
                 <div class="py-5 sm:py-10">
                     <div class="overflow-x-auto">
@@ -552,7 +551,24 @@
                                                     <td  class="border-none whitespace-nowrap">{{ qidx + 1}})&nbsp;{{ question.question }}
                                                         <table class="border-none">
                                                             <tr v-for="(answer, aidx) in question.answers" :key="aidx">
-                                                                <td class="border-none whitespace-nowrap"> {{aidx + 1}})&nbsp;{{answer.answer}}</td>
+                                                                <td class="border-none whitespace-nowrap">
+                                                                    {{aidx + 1}})&nbsp;
+                                                                    <template v-if="isOnline">
+                                                                            <input
+                                                                                v-if="question.type_id == 1 || question.type_id == 3"
+                                                                                :id="`is_correct-`+index"
+                                                                                type="radio"
+                                                                                class="form-check-input"                                                                            />
+                                                                            <input
+                                                                                v-if="question.type_id == 2"
+                                                                                :id="`is_correct-`+index"
+                                                                                type="checkbox"
+                                                                                class="form-check-input"
+                                                                            />
+                                                                            {{answer.answer}}
+                                                                    </template>
+                                                                    <template v-else>{{answer.answer}}</template>
+                                                                </td>
                                                             </tr>
                                                         </table>
                                                     </td>
@@ -583,24 +599,6 @@
                 </button>
             </div>
         </template>
-        <!-- BEGIN: Modal Content -->
-        <Modal :show="successModalPreview" @hidden="successModalPreview = false">
-            <ModalBody class="p-0">
-                <div class="p-5 text-center">
-                    <CheckCircleIcon class="w-16 h-16 text-success mx-auto mt-3" />
-                    <div class="text-3xl mt-5">Success!</div>
-                    <div class="text-slate-500 mt-2">
-                        You have successfully generated question paper!
-                    </div>
-                </div>
-                <div class="px-5 pb-8 text-center">
-                    <button type="button" @click="successModalPreview = false" class="btn btn-primary w-24">
-                        Ok
-                    </button>
-                </div>
-            </ModalBody>
-        </Modal>
-        <!-- END: Modal Content -->
         <Loading v-if="isLoading" fixed></Loading>
     </div>
 </template>
@@ -614,7 +612,6 @@ import store from '@/stores';
 import axiosClient from "@/axios";
 import {useVuelidate} from "@vuelidate/core";
 import {helpers, minLength, minValue, numeric, required, requiredIf} from "@vuelidate/validators";
-import {Tab} from "../../global-components/tab";
 
 const route = useRoute();
 const router = useRouter();
@@ -635,6 +632,7 @@ const subjects = ref();
 const preview = ref(false);
 const successModalPreview = ref(false);
 const warningModalPreview = ref(false);
+const isOnline = ref(false);
 
 const model = ref({
     id: "",
@@ -789,20 +787,20 @@ async function submitForm(pre) {
             isLoading.value = false;
             submitted.value = false;
         } else {
-            preview.value = false;
             await store
                 .dispatch("generated_questions/save", model.value)
                 .then(() => {
                     isLoading.value = false;
                     submitted.value = false;
                     isErrored.value = false;
-                    router.push({name: "GeneratedQuestionPapers"});
+                    preview.value = false;
+                    router.push({ name: "GeneratedQuestionPapers" });
                 })
                 .catch((err) => {
                     isLoading.value = false;
                     submitted.value = false;
                     isErrored.value = true;
-                    if (err.response.data) {
+                    if (err.response && err.response.data) {
                         message.value = err.response.data.message;
                     }
 

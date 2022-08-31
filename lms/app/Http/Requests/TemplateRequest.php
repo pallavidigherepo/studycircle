@@ -25,6 +25,7 @@ class TemplateRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
+            'description' => 'required|string',
             'board_id' => 'required',
             'standard_id' => 'required',
             'total_marks' => 'required',

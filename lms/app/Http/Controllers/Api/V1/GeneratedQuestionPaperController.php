@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\GenerateQuestionPaperRequest;
-use App\Http\Resources\GenerateQuestionPaperResource;
-use App\Models\GenerateQuestionPaper;
+use App\Http\Requests\GeneratedQuestionPaperRequest;
+use App\Http\Resources\GeneratedQuestionPaperResource;
+use App\Models\GeneratedQuestionPaper;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class GenerateQuestionPaperController extends Controller
+class GeneratedQuestionPaperController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,8 +23,8 @@ class GenerateQuestionPaperController extends Controller
         $order = $request->input('sort_order') ?? 'desc';
         $perPage = $request->input('per_page') ?? 10;
 
-        return GenerateQuestionPaperResource::collection(
-            GenerateQuestionPaper::when(request('search'), function ($query) {
+        return GeneratedQuestionPaperResource::collection(
+            GeneratedQuestionPaper::when(request('search'), function ($query) {
                 $query->where('name', 'like', '%'. request('search'). '%');
             })
                 ->orderBy($field, $order)
@@ -37,8 +38,12 @@ class GenerateQuestionPaperController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(GenerateQuestionPaperRequest $request)
+    public function store(GeneratedQuestionPaperRequest $request)
     {
+        $response = [
+            'success' => false,
+            'message' => 'Failed to add'
+        ];
         if ($request->validated()) {
             $input = [
                 'name' => $request->name,
@@ -53,9 +58,15 @@ class GenerateQuestionPaperController extends Controller
                 'generated_questions' => json_encode($request->generated_questions),
             ];
 
-            GenerateQuestionPaper::create($input);
-        }
+            $generatedQuestionPaper = GeneratedQuestionPaper::create($input);
 
+            $response = [
+                'success' => true,
+                'message' => 'Question paper successfully generated.',
+                'generatedQuestionPaper' => $generatedQuestionPaper,
+            ];
+        }
+        return response()->json($response, 200);
     }
 
     /**
@@ -76,7 +87,7 @@ class GenerateQuestionPaperController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(GenerateQuestionPaperRequest $request, GenerateQuestionPaper $generateQuestionPaper)
+    public function update(GeneratedQuestionPaperRequest $request, GeneratedQuestionPaper $generateQuestionPaper)
     {
         if ($request->validated()) {
             $input = [
@@ -96,11 +107,24 @@ class GenerateQuestionPaperController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  GeneratedQuestionPaper $generateQuestionPaper
+     * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(int $id): JsonResponse
     {
-        //
+        $response = [
+            'success' => false,
+            'message' => null,
+            'errors' => null,
+        ];
+        $generatedQuestionPaper = GeneratedQuestionPaper::findOrFail($id);
+        if ($generatedQuestionPaper->delete()) {
+            unset($response);
+            $response = [
+                'success' => true,
+                'message' => 'Question paper deleted successfully.',
+            ];
+        }
+        return response()->json($response);
     }
 }

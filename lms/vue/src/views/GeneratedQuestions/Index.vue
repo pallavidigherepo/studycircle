@@ -96,7 +96,7 @@ function show(item) {
 }
 
 function deleteI(item) {
-    store.dispatch("templates/delete", item.id);
+    store.dispatch("generated_questions/delete", item.id);
 }
 </script>
 

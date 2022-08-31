@@ -44,7 +44,7 @@ export default {
             });
     },
 
-    // This action is used to delete permission from serve.
+    // This action is used to delete question from serve.
     async delete(context, id) {
         const response = await axiosClient.delete(`/questions/${id}`);
         if (response.status != 200) {

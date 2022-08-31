@@ -6,17 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class GenerateQuestionPaper extends Model
+class GeneratedQuestionPaper extends Model
 {
     use HasFactory;
-
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-protected $table = 'generated_question_papers';
 
     /**
      * @var array
@@ -97,5 +89,13 @@ protected $table = 'generated_question_papers';
     public function updator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function difficulty_level(): BelongsTo
+    {
+        return $this->belongsTo(QuestionDifficultyLevel::class);
     }
 }

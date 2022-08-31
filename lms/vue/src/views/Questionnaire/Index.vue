@@ -122,9 +122,16 @@
 </template>
 
 <script setup>
-import { ref, provide } from "vue";
+import {ref, provide, onMounted} from "vue";
 import {useI18n} from "vue-i18n";
 
 const {t} = useI18n();
 
+onMounted(() => {
+    fetch();
+});
+
+function fetch() {
+
+}
 </script>

@@ -34,6 +34,7 @@ class Question extends Model
                                 'standard_id',
                                 'note',
                                 'difficulty_level_id',
+                                'add_question_manually',
                                 'type_id',
                                 'language_id',
                                 'subject_id',

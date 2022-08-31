@@ -32,7 +32,7 @@ export default {
                     },
                     {
                         label: "TEMPLATE",
-                        field: "type_id",
+                        field: "template",
                         sort: false,
                         isJson: false,
                     },
@@ -50,7 +50,7 @@ export default {
                     },
                     {
                         label: "SUBJECT",
-                        field: "standard",
+                        field: "subject",
                         sort: false,
                         isJson: false,
                     },

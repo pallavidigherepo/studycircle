@@ -75,43 +75,46 @@ class QuestionImport implements ToModel, WithHeadingRow, WithValidation
             'updated_by' => Auth::user()->id,
         ];
         $question = Question::create($inputArray);
-        
-        if ($this->type_id != 5) {
-            $correctAnswerId = $row['correct_answers'];
+
+        if ($this->type_id != 6) {
             if ($question) {
                 $answerArray = [
                     'answer' => $row['option_1'],
                     'question_id' => $question->id,
-                    'is_correct' => true ?? $correctAnswerId == 1,
+                    'is_correct' => $row['correct_answers'] === 1,
                     'created_by' => Auth::user()->id,
                     'updated_by' => Auth::user()->id,
                 ];
                 Answer::create($answerArray);
+                unset($answerArray);
                 $answerArray = [
                     'answer' => $row['option_2'],
                     'question_id' => $question->id,
-                    'is_correct' => true ?? $correctAnswerId == 2,
+                    'is_correct' => $row['correct_answers'] === 2,
                     'created_by' => Auth::user()->id,
                     'updated_by' => Auth::user()->id,
                 ];
                 Answer::create($answerArray);
+                unset($answerArray);
                 $answerArray = [
                     'answer' => $row['option_3'],
                     'question_id' => $question->id,
-                    'is_correct' => true ?? $correctAnswerId == 3,
+                    'is_correct' => $row['correct_answers'] === 3,
                     'created_by' => Auth::user()->id,
                     'updated_by' => Auth::user()->id,
                 ];
                 Answer::create($answerArray);
+                unset($answerArray);
 
                 $answerArray = [
                     'answer' => $row['option_4'],
                     'question_id' => $question->id,
-                    'is_correct' => true ?? $correctAnswerId == 4,
+                    'is_correct' => $row['correct_answers'] === 4,
                     'created_by' => Auth::user()->id,
                     'updated_by' => Auth::user()->id,
                 ];
                 Answer::create($answerArray);
+                unset($answerArray);
             }
         }
 

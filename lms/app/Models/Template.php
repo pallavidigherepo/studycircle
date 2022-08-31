@@ -20,6 +20,7 @@ class Template extends Model
      */
     protected $fillable = array(
         'name',
+        'description',
         'board_id',
         'standard_id',
         'total_marks',
@@ -43,6 +44,7 @@ class Template extends Model
      */
     protected $searchable = [
         'name',
+        'description'
     ];
 
     /**

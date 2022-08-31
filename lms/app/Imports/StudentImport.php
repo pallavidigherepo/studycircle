@@ -56,7 +56,7 @@ class StudentImport implements ToModel, WithHeadingRow, WithValidation
             'standard_id' => $row['standard_id'],
             'language_id' => $row['language_id'],
             'course_id' => $row['course_id'],
-            
+
             //$table->string('roll_number')->unique();
         ]);
         return Student::create($student);

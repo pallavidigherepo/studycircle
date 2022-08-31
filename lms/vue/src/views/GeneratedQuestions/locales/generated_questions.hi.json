@@ -62,5 +62,7 @@
     "Generate Paper": "पेपर उत्पन्न करें",
     "Question": "प्रशन",
     "Generated Question Papers": "उत्पन्न प्रश्न पत्र",
-    "TEMPLATE": "खाका"
+    "TEMPLATE": "खाका",
+    "Preview Generated Paper In Online Mode": "Preview Generated Paper In Online Mode",
+    "Preview Generated Paper In Offline Mode": "Preview Generated Paper In Offline Mode"
 }
