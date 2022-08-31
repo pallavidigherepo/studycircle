@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\GeneratedQuestionPaper;
+use App\Models\Template;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\AuthController;
@@ -118,7 +120,11 @@ Route::middleware('auth:sanctum')->group(function () {
     })->name('type_list_paragraph');
 
     Route::get('v1/questionnaire', function () {
-        //return
+        $templateCount = Template::all()->count();
+        $generatedQuestionPaperCount = GeneratedQuestionPaper::all()->count();
+        $latestTemplates = Template::latest()->take(5)->get();
+        $latestQuestionPaper = GeneratedQuestionPaper::latest()->take(5)->get();
+        return compact('templateCount', 'generatedQuestionPaperCount', 'latestTemplates', 'latestQuestionPaper');
     })->name('questionnaire');
 });
 
