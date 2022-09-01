@@ -5,6 +5,20 @@
         {{ t("questions.Question Details") }}
       </h2>
       <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
+          <router-link v-if="question"
+                       :to="{ name: 'EditQuestion', params: { id:question.id } }"
+                       class="
+                            btn
+                            btn-success
+                            mr-2
+                            flex
+                            items-center
+                            ml-auto
+                            sm:ml-0
+                          ">
+              <EditIcon class="w-4 h-4 mr-2"/>
+              {{ t("questions.Edit Question") }}
+          </router-link>
         <router-link to="/questions" class="
             btn
             box
@@ -31,7 +45,7 @@
               <ChevronDownIcon class="w-4 h-4 mr-2" /> {{ t("questions.Selected Board & Standard/Class") }}
             </div>
             <div class="mt-5">
-            
+
               <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                 <div class="form-label xl:w-64 xl:!mr-10">
                   <div class="text-left">
@@ -82,7 +96,7 @@
                       <div class="font-medium">{{
                           t("questions.Difficulty Level")
                       }}</div>
-                      
+
                     </div>
                   </div>
                 </div>
@@ -97,7 +111,7 @@
                       <div class="font-medium">{{
                           t("questions.Language")
                       }}</div>
-                      
+
                     </div>
 
                   </div>
@@ -126,7 +140,7 @@
                       <div class="font-medium">{{
                           t("questions.Choose Subject")
                       }}</div>
-                      
+
                     </div>
                   </div>
                 </div>
@@ -141,7 +155,7 @@
                       <div class="font-medium">{{
                           t("questions.Choose Chapter")
                       }}</div>
-                      
+
                     </div>
 
                   </div>
@@ -185,7 +199,7 @@
                       <div class="font-medium">{{
                           t("questions.Question")
                       }}</div>
-                      
+
                     </div>
                   </div>
                 </div>
@@ -296,7 +310,7 @@
                       <div v-if="!question.questions.length" class="text-center text-gray-600">
                         {{ t("questions.You do not have any questions added yet") }}
                       </div>
-                      
+
                       <div v-for="(question, index) in question.questions" :key="index">
                         Question list wrwer rwewwr
                       </div>
@@ -321,7 +335,7 @@
                   <div
                     class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                     <ChevronDownIcon class="w-4 h-4 mr-2" /> {{ t("questions.Questions of paragraph") }}
-                    
+
                   </div>
 
                   <div class="mt-5">
@@ -341,7 +355,7 @@
                             </div>
                           </div>
                         </div>
-                        
+
                         Question List ddg dfgd
                       </div>
                       <table>
@@ -355,13 +369,13 @@
                         <tbody>
                           <tr>
                             <td>
-                              
+
                             </td>
                           </tr>
                         </tbody>
                       </table>
                     </template>
-                    
+
                   </div>
                 </div>
               </div>
@@ -371,7 +385,7 @@
           </div>
         </div>
         <!-- END: Product Variant (Details) -->
-        
+
       </div>
     <Loading v-if="isLoading" fixed></Loading>
   </div>
@@ -401,7 +415,7 @@ const fetch = async() => {
                     isLoading.value = false;
                 })
                 .catch((err) => {
-                    isLoading.value = false;                    
+                    isLoading.value = false;
                 });
     } catch (e) {
         message.value = e;

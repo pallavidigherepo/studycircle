@@ -22,13 +22,14 @@ export const useSideMenuStore = defineStore("sideMenu", {
                         pageName: "Roles",
                         title: "Roles",
                         ignore: false,
+                        allowedPages: ['Roles', 'CreateRole', 'EditRole', 'ShowRole'],
                     },
                     {
                         icon: "UsersIcon",
                         pageName: "Users",
                         title: "Users",
                         ignore: false,
-                        allowedPages: ['Users', 'CreateUser', 'EditUser', 'ShowUser', 'ShowUser'],
+                        allowedPages: ['Users', 'CreateUser', 'EditUser', 'ShowUser'],
                     },
                     {
                         icon: "UsersIcon",

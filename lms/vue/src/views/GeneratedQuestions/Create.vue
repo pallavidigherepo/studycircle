@@ -546,10 +546,10 @@
                                             <div class="flex font-medium">Q&nbsp;{{ parseInt(index) + 1 }}.&nbsp;{{ section.name }}</div>
                                             <div class="text-right font-medium">({{ section.total_marks}})</div>
 
-                                            <table class="border-none">
+                                            <table class="border-none w-full ">
                                                 <tr v-for="(question, qidx) in section.questions" :key="qidx">
                                                     <td  class="border-none whitespace-nowrap">{{ qidx + 1}})&nbsp;{{ question.question }}
-                                                        <table class="border-none">
+                                                        <table class="w-full border-none">
                                                             <tr v-for="(answer, aidx) in question.answers" :key="aidx">
                                                                 <td class="border-none whitespace-nowrap">
                                                                     {{aidx + 1}})&nbsp;
@@ -567,11 +567,19 @@
                                                                             />
                                                                             {{answer.answer}}
                                                                     </template>
-                                                                    <template v-else>{{answer.answer}}</template>
+                                                                    <template v-else>{{answer.answer}}<template v-if="answer.is_correct">
+                                                                        <div class="ml-5 btn btn-success">Correct Answer</div>
+                                                                    </template></template>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="w-full border-none whitespace-nowrap bg-primary/80 box text-white flex items-center mb-2 mt-2">
+                                                                    <span class="font-medium ">{{ t("questions.Note/Explanation") }}</span> :&nbsp;{{ question.note }}
                                                                 </td>
                                                             </tr>
                                                         </table>
                                                     </td>
+
                                                 </tr>
                                             </table>
                                         </td>
