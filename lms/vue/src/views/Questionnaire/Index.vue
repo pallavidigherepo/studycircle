@@ -65,7 +65,9 @@
                                 <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
                                     <div class="ml-4 mr-auto">
                                         <div class="font-medium">
-                                            {{ template.name }}
+                                            <router-link :to="{name: 'ShowTemplate', params: {id: template.id}}">
+                                                {{ template.name }}
+                                            </router-link>
                                         </div>
                                     </div>
                                 </div>
@@ -73,7 +75,7 @@
                             <router-link
                                 to="/templates"
                                 class="intro-x w-full block text-center rounded-md py-3 border border-dotted border-slate-400 dark:border-darkmode-300 text-slate-500"
-                            >{{ t("templates.View More") }}</router-link
+                            >{{ t("common.View More") }}</router-link
                             >
                         </div>
                     </div>
@@ -94,7 +96,9 @@
                                 <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
                                     <div class="ml-4 mr-auto">
                                         <div class="font-medium">
+                                            <router-link :to="{name: 'ShowGeneratedQuestionPaper', params: {id: questionPaper.id}}">
                                             {{ questionPaper.name }}
+                                            </router-link>
                                         </div>
                                     </div>
                                 </div>

@@ -21,13 +21,14 @@ export const useSideMenuStore = defineStore("sideMenu", {
                         icon: "KeyIcon",
                         pageName: "Roles",
                         title: "Roles",
-                        ignore: true,
+                        ignore: false,
                     },
                     {
                         icon: "UsersIcon",
                         pageName: "Users",
                         title: "Users",
                         ignore: false,
+                        allowedPages: ['Users', 'CreateUser', 'EditUser', 'ShowUser', 'ShowUser'],
                     },
                     {
                         icon: "UsersIcon",
@@ -47,13 +48,13 @@ export const useSideMenuStore = defineStore("sideMenu", {
                         icon: "BoxIcon",
                         pageName: "CourseTypes",
                         title: "Course types",
-                        ignore: true,
+                        ignore: false,
                     },
                     {
                         icon: "BriefcaseIcon",
                         pageName: "Courses",
                         title: "Courses",
-                        ignore: true,
+                        ignore: false,
                     },
                 ],
             },
@@ -66,19 +67,32 @@ export const useSideMenuStore = defineStore("sideMenu", {
             },
             "devider",
             {
-                icon: "DatabaseIcon",
-                pageName: "Questions",
-                title: "Questions",
-                ignore: false,
-                allowedPages: ['Questions', 'CreateQuestion', 'EditQuestion', 'ShowQuestion'],
-
-            },{
                 icon: "BriefcaseIcon",
-                pageName: "QuestionnaireDashboard",
+                pageName: "Questionnaire",
                 title: "Questionnaire",
-                ignore: false,
-                allowedPages: ['QuestionnaireDashboard', 'Questionnaire', 'Templates', 'CreateTemplate', 'EditTemplate'],
-
+                subMenu: [
+                    {
+                        icon: "DatabaseIcon",
+                        pageName: "Questions",
+                        title: "Questions",
+                        ignore: false,
+                        allowedPages: ['Questions', 'CreateQuestion', 'EditQuestion', 'ShowQuestion'],
+                    },
+                    {
+                        icon: "ListIcon",
+                        pageName: "Templates",
+                        title: "Question Paper Formats",
+                        ignore: false,
+                        allowedPages: ['Templates', 'CreateTemplate', 'EditTemplate', 'ShowTemplate'],
+                    },
+                    {
+                        icon: "ArchiveIcon",
+                        pageName: "GeneratedQuestionPapers",
+                        title: "Generated Question Papers",
+                        ignore: false,
+                        allowedPages: ['GeneratedQuestionPapers', 'ShowGeneratedQuestionPaper'],
+                    },
+                ]
             },
         ],
     }),

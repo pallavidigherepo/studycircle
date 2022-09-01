@@ -148,14 +148,14 @@
 
 <script setup>
 import store from "@/stores";
-import { useRouter } from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import { ref } from "vue";
 
 import DarkModeSwitcher from "@/components/Switchers/DarkMode/Index.vue";
 import MainColorSwitcher from "@/components/Switchers/Color/Index.vue";
 
 const router = useRouter();
-
+const route = useRoute();
 const user = {
   email: "",
   password: "",
@@ -171,11 +171,15 @@ function login() {
     .dispatch("auth/login", user)
     .then(() => {
       loading.value = false;
-      router.back();
-
-      /*router.push({
-        name: "Dashboard",
-      });*/
+      if (route.redirectedFrom.fullPath == '/') {
+            router.push({
+              name: "Dashboard",
+          });
+      } else {
+          router.push({
+              name: route.redirectedFrom.name
+          });
+      }
     })
     .catch((err) => {
       //console.log(err)
