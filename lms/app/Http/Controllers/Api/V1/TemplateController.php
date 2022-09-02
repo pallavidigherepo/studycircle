@@ -51,6 +51,7 @@ class TemplateController extends Controller
                 'board_id' => $request->board_id,
                 'standard_id' => $request->standard_id,
                 'name' => $request->name,
+                'description' => $request->description,
                 'total_marks' => $request->total_marks,
                 'duration' => $request->duration,
                 'has_section' => $request->has_section,

@@ -65,5 +65,9 @@
     "TEMPLATE": "टेम्प्लेट",
     "Preview Generated Paper In Online Mode": "Preview Generated Paper In Online Mode",
     "Preview Generated Paper In Offline Mode": "Preview Generated Paper In Offline Mode",
-    "Latest Question Papers": "नवीनतम प्रश्नपत्रिका"
+    "Latest Question Papers": "नवीनतम प्रश्नपत्रिका",
+    "Fetch Questions Automatically": "प्रश्न स्वयंचलितपणे आणा",
+    "Fetch Questions Manually": "मॅन्युअली प्रश्न मिळवा",
+    "Fetch questions": "प्रश्न आणा"
+
 }

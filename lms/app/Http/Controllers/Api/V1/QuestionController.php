@@ -56,6 +56,7 @@ class QuestionController extends Controller
                 })
                     ->whereNull('parent_id')
                     //->orderBy($field, $order)
+                    ->inRandomOrder()
                     ->paginate(10)
             );
         } else {

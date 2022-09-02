@@ -171,7 +171,8 @@ function login() {
     .dispatch("auth/login", user)
     .then(() => {
       loading.value = false;
-      if (route.redirectedFrom.fullPath == '/') {
+      //console.log(route.redirectedFrom)
+      if (!route.redirectedFrom || route.redirectedFrom.fullPath == '/') {
             router.push({
               name: "Dashboard",
           });

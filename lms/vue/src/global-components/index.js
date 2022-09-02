@@ -52,6 +52,7 @@ import CustomeAlert from "./Alerts/Index.vue";
 import Breadcrumb from "./Breadcrumb/Index.vue";
 import Pagination from './Listing/Pagination.vue';
 import Loading from "./Loading/Index.vue";
+import Info from "./Alerts/Info.vue";
 // End: Custom components
 export default (app) => {
     //app.component("Chart", Chart);
@@ -97,6 +98,7 @@ export default (app) => {
 
     app.component("Datatable", Datatable);
     app.component("Loading", Loading);
+    app.component("Info", Info);
     //app.component("Highlight", Highlight);
     // app.component('BalloonBlockEditor', BalloonBlockEditor)
     // app.component('BalloonEditor', BalloonEditor)

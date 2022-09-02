@@ -13,6 +13,7 @@
                     <Trash2Icon class="w-5 h-5" />
                 </a>
             </div>
+
             <div>
                 <div class="form-inline mt-5 first:mt-0">
                     <label class="form-label sm:w-20">{{ t("templates.Name") }}</label>
@@ -24,6 +25,7 @@
                                    v-model="model.name"
                                    @change="dataChange"
                             />
+
                         </div>
                     </div>
                 </div>

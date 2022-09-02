@@ -56,5 +56,6 @@
     "Expected time to answer this question in minutes": "या प्रश्नाचे उत्तर काही मिनिटांत मिळण्यासाठी वेळ अपेक्षित आहे.",
     "TYPE": "प्रकार",
     "MARKS": "मार्क्स",
-    "NEGATIVE MARKS": "नकारात्मक गुण"
+    "NEGATIVE MARKS": "नकारात्मक गुण",
+    "Correct Answer": "बरोबर उत्तर"
 }

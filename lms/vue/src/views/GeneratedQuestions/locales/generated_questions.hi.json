@@ -65,5 +65,9 @@
     "TEMPLATE": "खाका",
     "Preview Generated Paper In Online Mode": "Preview Generated Paper In Online Mode",
     "Preview Generated Paper In Offline Mode": "Preview Generated Paper In Offline Mode",
-    "Latest Question Papers": "नवीनतम प्रश्न पत्र"
+    "Latest Question Papers": "नवीनतम प्रश्न पत्र",
+    "Fetch Questions Automatically": "स्वचालित रूप से प्रश्न प्राप्त करें",
+    "Fetch Questions Manually": "मैन्युअल रूप से प्रश्न प्राप्त करें",
+    "Fetch questions": "प्रश्न प्राप्त करें"
+
 }

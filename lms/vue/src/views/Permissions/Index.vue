@@ -7,7 +7,7 @@
     </div>
     <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
       <!-- BEGIN: Post Content -->
-      <div class="intro-y col-span-12 lg:col-span-8">
+      <div class="intro-y col-span-12 " :class="!showAddForm ? 'lg:col-span-12' : 'lg:col-span-8' ">
         <!-- BEGIN: HTML Table Data -->
 
         <div class="intro-y box p-5">
@@ -24,7 +24,7 @@
       </div>
       <!-- END: Post Content -->
       <!-- BEGIN: Add/Edit permission -->
-      <div class="col-span-12 lg:col-span-4">
+      <div v-if="showAddForm" class="col-span-12 lg:col-span-4">
         <div class="intro-y box p-5">
           <h2 class="text-lg font-medium mr-auto pt-5 pb-5">
             {{ t("common." + actionText) }}
@@ -101,7 +101,7 @@ let submitted = ref(false);
 let message = ref("");
 let isErrored = ref(false);
 let selectedPermission = ref("");
-
+const showAddForm = computed(() => { return store.state.permissions.datatable.addNew })
 let model = ref({
   id: "",
   name: "",

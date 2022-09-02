@@ -32,48 +32,64 @@
                             <div
                                 class="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5 mb-5"
                             >
-                                <div class="font-medium text-base truncate">{{ t("templates.Question Paper Format Details") }}</div>
+                                <div class="font-medium text-base truncate">
+                                    {{ t("templates.Question Paper Format Details") }}
+                                </div>
 
                             </div>
                             <div class="flex items-center">
-                                <ClipboardIcon class="w-4 h-4 text-slate-500 mr-2" />
-                                {{ t("templates.Format Name") }}: <span class="underline decoration-dotted ml-1">{{ template ? template.name: null}}</span>
+                                <ClipboardIcon class="w-4 h-4 text-slate-500 mr-2"/>
+                                {{ t("common.Name") }}: <span
+                                class="underline decoration-dotted ml-1">{{ template ? template.name : null }}</span>
                             </div>
                             <div class="flex items-center mt-3">
-                                <CalendarIcon class="w-4 h-4 text-slate-500 mr-2" />
-                                {{ t("templates.Board") }}: <span class="ml-2">{{ template ? template.board : null }}</span>
+                                <CalendarIcon class="w-4 h-4 text-slate-500 mr-2"/>
+                                {{ t("templates.Board") }}: <span class="ml-2">{{
+                                    template ? template.board : null
+                                }}</span>
                             </div>
                             <div class="flex items-center mt-3">
-                                <BookOpenIcon class="w-4 h-4 text-slate-500 mr-2" />
-                                {{ t("templates.Standard") }}: <span class="ml-2">{{ template ? template.standard : null  }}</span>
+                                <BookOpenIcon class="w-4 h-4 text-slate-500 mr-2"/>
+                                {{ t("templates.Standard") }}: <span class="ml-2">{{
+                                    template ? template.standard : null
+                                }}</span>
                             </div>
                             <div class="flex items-center mt-3">
-                                <ColumnsIcon class="w-4 h-4 text-slate-500 mr-2" />
-                                {{ t("templates.Total Marks") }}: <span class="ml-2">{{ template ? template.total_marks : null }}</span>
+                                <ColumnsIcon class="w-4 h-4 text-slate-500 mr-2"/>
+                                {{ t("templates.Total Marks") }}: <span
+                                class="ml-2">{{ template ? template.total_marks : null }}</span>
                             </div>
                             <div class="flex items-center mt-3">
-                                <ClockIcon class="w-4 h-4 text-slate-500 mr-2" />
-                                {{ t("templates.Duration") }}: <span class="ml-2">{{ template ? template.duration : null }}</span>
+                                <ClockIcon class="w-4 h-4 text-slate-500 mr-2"/>
+                                {{ t("templates.Duration") }}: <span class="ml-2">{{
+                                    template ? template.duration : null
+                                }}</span>
                             </div>
                             <div class="flex items-center mt-3">
-                                <PlayIcon class="w-4 h-4 text-slate-500 mr-2" />
-                                {{ t("templates.Active") }}: <span class="ml-2">{{ template ? template.is_active : null }}</span>
+                                <PlayIcon class="w-4 h-4 text-slate-500 mr-2"/>
+                                {{ t("templates.Active") }}: <span class="ml-2">{{
+                                    template ? template.is_active : null
+                                }}</span>
                             </div>
                             <div class="flex items-center mt-3">
-                                <ServerIcon class="w-4 h-4 text-slate-500 mr-2" />
-                                {{ t("templates.Has Section") }}: <span class="ml-2">{{ template ? template.has_section : null }}</span>
+                                <ServerIcon class="w-4 h-4 text-slate-500 mr-2"/>
+                                {{ t("templates.Has Section") }}: <span
+                                class="ml-2">{{ template ? template.has_section : null }}</span>
                             </div>
                             <div v-if="!(template && template.has_section)" class="flex items-center mt-3">
-                                <SidebarIcon class="w-4 h-4 text-slate-500 mr-2" />
-                                {{ t("templates.Total Questions") }}:<span class="ml-2">{{ template ? template.total_questions : null }}</span>
+                                <SidebarIcon class="w-4 h-4 text-slate-500 mr-2"/>
+                                {{ t("templates.Total Questions") }}:<span
+                                class="ml-2">{{ template ? template.total_questions : null }}</span>
                             </div>
                             <div v-if="!(template && template.has_section)" class="flex items-center mt-3">
-                                <SidebarIcon class="w-4 h-4 text-slate-500 mr-2" />
-                                {{ t("templates.Compulsory Questions") }}: <span class="ml-2">{{ template ? template.compulsory_questions : null }}</span>
+                                <SidebarIcon class="w-4 h-4 text-slate-500 mr-2"/>
+                                {{ t("templates.Compulsory Questions") }}: <span
+                                class="ml-2">{{ template ? template.compulsory_questions : null }}</span>
                             </div>
                             <div v-if="!(template && template.has_section)" class="flex items-center mt-3">
-                                <SidebarIcon class="w-4 h-4 text-slate-500 mr-2" />
-                                {{ t("templates.Question type") }}:<span class="ml-2">{{ template ? template.type_name : null }}</span>
+                                <SidebarIcon class="w-4 h-4 text-slate-500 mr-2"/>
+                                {{ t("templates.Question type") }}:<span
+                                class="ml-2">{{ template ? template.type_name : null }}</span>
                             </div>
                         </div>
                     </div>
@@ -93,7 +109,8 @@
                                         {{ t("templates.Select Subject Chapter and topic") }}
                                     </div>
                                     <div class="mt-5">
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                        <div
+                                            class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label xl:w-64 xl:!mr-10">
                                                 <div class="text-left">
                                                     <div class="flex items-center">
@@ -121,7 +138,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div v-if="template && !template.has_section" class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                        <div v-if="template && !template.has_section"
+                                             class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label xl:w-64 xl:!mr-10">
                                                 <div class="text-left">
                                                     <div class="flex items-center">
@@ -148,7 +166,8 @@
                                                       autocomplete: 'off',
                                                     }">
                                                     <option>{{ t('questions.Select Difficulty Level') }}</option>
-                                                    <option v-for="(level, indexd) in difficultyList" :key="indexd" :value="indexd">
+                                                    <option v-for="(level, indexd) in difficultyList" :key="indexd"
+                                                            :value="indexd">
                                                         {{ JSON.parse(level) }}
                                                     </option>
                                                 </TomSelect>
@@ -158,7 +177,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                        <div
+                                            class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label xl:w-64 xl:!mr-10">
                                                 <div class="text-left">
                                                     <div class="flex items-center">
@@ -194,7 +214,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                        <div
+                                            class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label xl:w-64 xl:!mr-10">
                                                 <div class="text-left">
                                                     <div class="flex items-center">
@@ -225,7 +246,8 @@
                                                 </TomSelect>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                        <div
+                                            class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label xl:w-64 xl:!mr-10">
                                                 <div class="text-left">
                                                     <div class="flex items-center">
@@ -249,18 +271,18 @@
                                                            class="w-full"
                                                            placeholder="Select Topic">
                                                     <option>{{ t("templates.All Topics") }}</option>
-                                                    <option v-for="(topic, indextop) in topics" :key="indextop" :value="indextop">
+                                                    <option v-for="(topic, indextop) in topics" :key="indextop"
+                                                            :value="indextop">
                                                         {{ JSON.parse(topic) }}
                                                     </option>
                                                 </TomSelect>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                                 <!-- END: Subject, Chapter and Topic selection -->
 
-                                <template  v-if="template && template.has_section">
+                                <template v-if="template && template.has_section">
 
                                     <div class="intro-y box overflow-hidden mt-5">
                                         <div class="border-b border-slate-200/60 dark:border-darkmode-400 sm:text-left">
@@ -268,16 +290,9 @@
                                                 <div class="font-bold text-xl">{{ t("templates.Sections") }}</div>
                                             </div>
                                             <!-- BEGIN: Notification -->
-                                            <Alert
-                                                class="intro-y col-span-11 alert-warning-soft alert-dismissible mb-6 mt-5"
-                                                v-slot="{ dismiss }"
-                                                role="alert"
-                                            >
-                                                <div class="flex items-center">
-                                                    <span><InfoIcon class="w-10 h-10 mr-2" /></span>
-                                                    <span>{{ t("templates.While fetching questions make sure to have all the above selections like Difficulty level Subject Chapter and Topic If you have NOT selected these questions will be fetched without any conditions") }}</span>
-                                                </div>
-                                            </Alert>
+                                            <info :typeClass="'alert-warning-soft'"
+                                                  :message="'templates.While fetching questions make sure to have all the above selections like Difficulty level Subject Chapter and Topic If you have NOT selected these questions will be fetched without any conditions'"/>
+
                                             <!-- BEGIN: Notification -->
                                             <template v-for="(section, index) in template.sections" :key="index">
                                                 <template v-if="section.name != null">
@@ -292,25 +307,34 @@
                                                                 {{ section.type_name }}
                                                             </div>
                                                             <div class="mt-3">
+
                                                                 <div class="form-check form-switch">
                                                                     <div class="form-label xl:!mr-10">
-                                                                        {{ t("templates.Section questions") }}
+                                                                        {{ t("generated_questions.Fetch questions") }}
                                                                     </div>
-                                                                    <span class="mr-2">Auto</span>
-                                                                    <input id="form-is-active"
-                                                                           class="form-check-input"
-                                                                           type="checkbox"
-                                                                    />
-                                                                    <span class="ml-2">Manual</span>
-                                                                    <button class="btn btn-primary ml-5" @click.prevent="fetchQuestions(section, index)">
-                                                                        {{ t("templates.Fetch Questions") }}</button>
+                                                                    <button class="btn btn-primary"
+                                                                            @click.prevent="fetchQuestions(section, index)">
+                                                                        {{ t("generated_questions.Fetch Questions Automatically") }}
+                                                                    </button>
+                                                                    <button class="btn btn-primary ml-5"
+                                                                            @click.prevent="fetchQuestions(section, index)">
+                                                                        {{ t("generated_questions.Fetch Questions Manually") }}
+                                                                    </button>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="lg:text-right mt-10 lg:mt-0 lg:ml-auto">
-                                                            <div class="font-medium mt-3 text-left">{{ section.total_marks }} {{ t("templates.Marks")}}</div>
-                                                            <div class="font-medium mt-3 text-left">{{ section.total_questions }} {{ t("templates.Questions") }}</div>
-                                                            <div class="font-medium mt-3 text-left">{{ section.compulsory_questions }} {{ t("templates.Compulsory Questions") }}</div>
+                                                            <div class="font-medium mt-3 text-left">
+                                                                {{ section.total_marks }} {{ t("templates.Marks") }}
+                                                            </div>
+                                                            <div class="font-medium mt-3 text-left">
+                                                                {{ section.total_questions }}
+                                                                {{ t("templates.Questions") }}
+                                                            </div>
+                                                            <div class="font-medium mt-3 text-left">
+                                                                {{ section.compulsory_questions }}
+                                                                {{ t("templates.Compulsory Questions") }}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="py-2">
@@ -318,7 +342,9 @@
                                                             <table class="table">
                                                                 <thead>
                                                                 <tr>
-                                                                    <th class="border-b-2 dark:border-darkmode-400 whitespace-nowrap">#</th>
+                                                                    <th class="border-b-2 dark:border-darkmode-400 whitespace-nowrap">
+                                                                        #
+                                                                    </th>
                                                                     <th class="border-b-2 dark:border-darkmode-400 whitespace-nowrap">
                                                                         {{ t("questions.QUESTION") }}
                                                                     </th>
@@ -334,8 +360,12 @@
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                <template v-if="model.generated_questions.sections[index] && model.generated_questions.sections[index].questions.length > 0">
-                                                                    <tr v-for="(question, qidx) in model.generated_questions.sections[index].questions" :key="qidx">
+                                                                <template
+                                                                    v-if="model.generated_questions.sections[index] &&
+                                                                        model.generated_questions.sections[index].questions &&
+                                                                        model.generated_questions.sections[index].questions.length > 0">
+                                                                    <tr v-for="(question, qidx) in model.generated_questions.sections[index].questions"
+                                                                        :key="qidx">
                                                                         <td class="border-b dark:border-darkmode-400">
                                                                             {{ question.id }}
                                                                         </td>
@@ -349,12 +379,13 @@
                                                                             {{ question.negative_marks }}
                                                                         </td>
                                                                         <td class="text-center border-b dark:border-darkmode-400 w-32">
-                                                                            <div class="text-center items-center justify-center">
+                                                                            <div
+                                                                                class="text-center items-center justify-center">
 
                                                                                 <a class="text-danger items-center"
                                                                                    href="javascript:;"
                                                                                    @click.prevent="removeQuestion(question, index, qidx)">
-                                                                                    <Trash2Icon class="w-4 h-4 mr-1" />
+                                                                                    <Trash2Icon class="w-4 h-4 mr-1"/>
                                                                                 </a>
                                                                             </div>
                                                                         </td>
@@ -362,7 +393,8 @@
                                                                 </template>
                                                                 <template v-else>
                                                                     <tr>
-                                                                        <td colspan="5" class="border-b dark:border-darkmode-400">
+                                                                        <td colspan="5"
+                                                                            class="border-b dark:border-darkmode-400">
                                                                             No Questions.
                                                                         </td>
                                                                     </tr>
@@ -392,8 +424,10 @@
                                                                type="checkbox"
                                                         />
                                                         <span class="ml-2">Manual</span>
-                                                        <button class="btn btn-primary ml-5" @click.prevent="fetchQuestions()">
-                                                            {{ t("templates.Fetch Questions") }}</button>
+                                                        <button class="btn btn-primary ml-5"
+                                                                @click.prevent="fetchQuestions()">
+                                                            {{ t("templates.Fetch Questions") }}
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -401,7 +435,9 @@
                                                 <table class="table">
                                                     <thead>
                                                     <tr>
-                                                        <th class="border-b-2 dark:border-darkmode-400 whitespace-nowrap">#</th>
+                                                        <th class="border-b-2 dark:border-darkmode-400 whitespace-nowrap">
+                                                            #
+                                                        </th>
                                                         <th class="border-b-2 dark:border-darkmode-400 whitespace-nowrap">
                                                             {{ t("questions.QUESTION") }}
                                                         </th>
@@ -417,8 +453,10 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <template v-if="model.generated_questions && model.generated_questions.length > 0">
-                                                        <tr v-for="(question, qidx) in model.generated_questions" :key="qidx">
+                                                    <template
+                                                        v-if="model.generated_questions && model.generated_questions.length > 0">
+                                                        <tr v-for="(question, qidx) in model.generated_questions"
+                                                            :key="qidx">
                                                             <td class="border-b dark:border-darkmode-400">
                                                                 {{ question.id }}
                                                             </td>
@@ -437,7 +475,7 @@
                                                                     <a class="text-danger items-center"
                                                                        href="javascript:;"
                                                                        @click.prevent="removeQuestion(question)">
-                                                                        <Trash2Icon class="w-4 h-4 mr-1" />
+                                                                        <Trash2Icon class="w-4 h-4 mr-1"/>
                                                                     </a>
                                                                 </div>
                                                             </td>
@@ -484,9 +522,11 @@
             <Modal :show="warningModalPreview" @hidden="warningModalPreview = false">
                 <ModalBody class="p-0">
                     <div class="p-5 text-center">
-                        <XCircleIcon class="w-16 h-16 text-warning mx-auto mt-3" />
+                        <XCircleIcon class="w-16 h-16 text-warning mx-auto mt-3"/>
                         <div class="text-3xl mt-5">Oops...</div>
-                        <div class="text-slate-500 mt-2">{{ t("templates.Make sure you have selected your subject") }}</div>
+                        <div class="text-slate-500 mt-2">
+                            {{ warningMessage }}
+                        </div>
                     </div>
                     <div class="px-5 pb-8 text-center">
                         <button type="button" @click="warningModalPreview = false" class="btn w-24 btn-primary">
@@ -511,6 +551,9 @@
                     </a>
                 </div>
             </div>
+            <info :typeClass="'alert-primary'"
+                  :message="'templates.Text message which is highlighted in blue is Solution OR Explanation of question'"/>
+
             <div class="intro-y box overflow-hidden mt-5">
                 <div
                     class="border-b border-slate-200/60 dark:border-darkmode-400 text-center sm:text-left"
@@ -521,19 +564,25 @@
                         </div>
                         <div class=" mt-10 lg:mt-0 lg:ml-auto text-center">
                             <div class="text-lg font-medium mt-2">{{ model.name }}</div>
-                            <div class="text-lg font-medium mt-2">{{ t("templates.Standard") }} : {{ model.template.standard }}</div>
-                            <div class="text-lg font-medium mt-2">{{ t("templates.Subject") }}: {{ model.subject_id}}</div>
+                            <div class="text-lg font-medium mt-2">{{ t("templates.Standard") }} :
+                                {{ model.template.standard }}
+                            </div>
+                            <div class="text-lg font-medium mt-2">{{ t("templates.Subject") }}: {{ model.subject_id }}
+                            </div>
                         </div>
                         <div class="lg:text-left mt-10 lg:mt-0 lg:ml-auto pr-2">
-                            <div class="text-lg font-medium mt-2">Date: </div>
-                            <div class="text-lg font-medium mt-2">{{ t("templates.Total Marks") }}: {{ template.total_marks }}</div>
-                            <div class="text-lg font-medium mt-2" v-if="!template.has_section">{{ t("templates.Total Questions") }}: {{ template.total_questions }}</div>
+                            <div class="text-lg font-medium mt-2">Date:</div>
+                            <div class="text-lg font-medium mt-2">{{ t("templates.Total Marks") }}:
+                                {{ template.total_marks }}
+                            </div>
+                            <div class="text-lg font-medium mt-2" v-if="!template.has_section">
+                                {{ t("templates.Total Questions") }}: {{ template.total_questions }}
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="border-b border-slate-200/60 dark:border-darkmode-400 text-center sm:text-left">
                     <div class="p-5" v-html="template.description"></div>
-
                 </div>
                 <div class="py-5 sm:py-10">
                     <div class="overflow-x-auto">
@@ -543,38 +592,46 @@
                                     <template v-if="section.questions.length > 0">
 
                                         <td class="dark:border-darkmode-400 whitespace-nowrap">
-                                            <div class="flex font-medium">Q&nbsp;{{ parseInt(index) + 1 }}.&nbsp;{{ section.name }}</div>
-                                            <div class="text-right font-medium">({{ section.total_marks}})</div>
+                                            <div class="flex font-medium">Q&nbsp;{{
+                                                    parseInt(index) + 1
+                                                }}.&nbsp;{{ section.name }}
+                                            </div>
+                                            <div class="text-right font-medium">({{ section.total_marks }})</div>
 
                                             <table class="border-none w-full ">
                                                 <tr v-for="(question, qidx) in section.questions" :key="qidx">
-                                                    <td  class="border-none whitespace-nowrap">{{ qidx + 1}})&nbsp;{{ question.question }}
+                                                    <td class="border-none whitespace-nowrap">
+                                                        {{ qidx + 1 }})&nbsp;{{ question.question }}
                                                         <table class="w-full border-none">
                                                             <tr v-for="(answer, aidx) in question.answers" :key="aidx">
                                                                 <td class="border-none whitespace-nowrap">
-                                                                    {{aidx + 1}})&nbsp;
+                                                                    {{ aidx + 1 }})&nbsp;
                                                                     <template v-if="isOnline">
-                                                                            <input
-                                                                                v-if="question.type_id == 1 || question.type_id == 3"
-                                                                                :id="`is_correct-`+index"
-                                                                                type="radio"
-                                                                                class="form-check-input"                                                                            />
-                                                                            <input
-                                                                                v-if="question.type_id == 2"
-                                                                                :id="`is_correct-`+index"
-                                                                                type="checkbox"
-                                                                                class="form-check-input"
-                                                                            />
-                                                                            {{answer.answer}}
+                                                                        <input
+                                                                            v-if="question.type_id == 1 || question.type_id == 3"
+                                                                            :id="`is_correct-`+index"
+                                                                            type="radio"
+                                                                            class="form-check-input"
+                                                                            name="is_correct"
+                                                                        />
+                                                                        <input
+                                                                            v-if="question.type_id == 2"
+                                                                            :id="`is_correct-`+index"
+                                                                            type="checkbox"
+                                                                            class="form-check-input"
+                                                                            name="is_correct"
+                                                                        />
+                                                                        {{ answer.answer }}
                                                                     </template>
-                                                                    <template v-else>{{answer.answer}}<template v-if="answer.is_correct">
-                                                                        <div class="ml-5 btn btn-success">Correct Answer</div>
-                                                                    </template></template>
+                                                                    <template v-else>{{ answer.answer }}</template>
+                                                                    <template v-if="answer.is_correct">
+                                                                        <div class="ml-5 btn btn-success">{{ t("questions.Correct Answer") }}</div>
+                                                                    </template>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="w-full border-none whitespace-nowrap bg-primary/80 box text-white flex items-center mb-2 mt-2">
-                                                                    <span class="font-medium ">{{ t("questions.Note/Explanation") }}</span> :&nbsp;{{ question.note }}
+                                                                    {{ question.note }}
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -587,7 +644,7 @@
                                 </tr>
                             </template>
                             <template v-else>
-                                <tr v-for="(question, index) in model.generated_questions.questions" :key="index">
+                                <tr v-for="(question, index) in model.generated_questions" :key="index">
                                     <td>{{ question.question }}</td>
                                 </tr>
                             </template>
@@ -608,6 +665,7 @@
             </div>
         </template>
         <Loading v-if="isLoading" fixed></Loading>
+
     </div>
 </template>
 
@@ -620,7 +678,7 @@ import store from '@/stores';
 import axiosClient from "@/axios";
 import {useVuelidate} from "@vuelidate/core";
 import {helpers, minLength, minValue, numeric, required, requiredIf} from "@vuelidate/validators";
-
+import dom from "@left4code/tw-starter/dist/js/dom";
 const route = useRoute();
 const router = useRouter();
 const {t} = useI18n();
@@ -642,6 +700,7 @@ const successModalPreview = ref(false);
 const warningModalPreview = ref(false);
 const isOnline = ref(false);
 
+const warningMessage = ref("");
 const model = ref({
     id: "",
     name: "",
@@ -651,7 +710,7 @@ const model = ref({
     difficulty_level_id: "",
     is_auto: true,
     template_id: route.params.id,
-    template : {},
+    template: {},
     generated_questions: {
         sections: {}
     }
@@ -722,9 +781,10 @@ async function selectedChapter(chapterId) {
     }
 }
 
-async function fetchQuestions(section, index)  {
+async function fetchQuestions(section, index) {
     if (!model.value.subject_id) {
         warningModalPreview.value = true;
+        warningMessage.value = "Make sure you have selected your subject";
         return;
     }
     let typeId = "";
@@ -737,17 +797,18 @@ async function fetchQuestions(section, index)  {
         typeId = section.type_id;
         limit = section.total_questions;
     }
-    let url = "paper_generation="+true
-        +"&board_id="+boardId.value
-        +"&standard_id="+standardId.value
-        +"&subject_id="+model.value.subject_id
-        +"&chapter_id="+model.value.chapter_id
-        +"&topic_id="+model.value.topic_id
-        +"&difficulty_level_id="+model.value.difficulty_level_id
-        +"&type_id="+typeId
-        +"&limit="+ limit;
 
-    const result = await axiosClient.get("/questions?"+ url);
+    let url = "paper_generation=" + true
+        + "&board_id=" + boardId.value
+        + "&standard_id=" + standardId.value
+        + "&subject_id=" + model.value.subject_id
+        + "&chapter_id=" + model.value.chapter_id
+        + "&topic_id=" + model.value.topic_id
+        + "&difficulty_level_id=" + model.value.difficulty_level_id
+        + "&type_id=" + typeId
+        + "&limit=" + limit;
+
+    const result = await axiosClient.get("/questions?" + url);
 
     if (result.status !== 200) {
         throw new Error("Failed to fetch questions");
@@ -773,7 +834,9 @@ const rules = computed(() => {
         difficulty_level_id: {
             required: helpers.withMessage(
                 "Please select difficulty level.",
-                requiredIf(() => { return !template.value.has_section })
+                requiredIf(() => {
+                    return !template.value.has_section
+                })
             ),
         },
         subject_id: {
@@ -787,9 +850,14 @@ async function submitForm(pre) {
 
     submitted.value = true;
     v$.value.$validate(); // checks all inputs
-
+    /*if (!validateSectionQuestions()) {
+        warningModalPreview.value = true;
+        warningMessage.value = "Make sure you have added questions for each section.";
+        return;
+    }*/
     if (!v$.value.$error) {
         isLoading.value = true;
+        warningMessage.value = "";
         if (pre) {
             preview.value = true;
             isLoading.value = false;
@@ -802,7 +870,7 @@ async function submitForm(pre) {
                     submitted.value = false;
                     isErrored.value = false;
                     preview.value = false;
-                    router.push({ name: "GeneratedQuestionPapers" });
+                    router.push({name: "GeneratedQuestionPapers"});
                 })
                 .catch((err) => {
                     isLoading.value = false;
@@ -814,12 +882,22 @@ async function submitForm(pre) {
 
                 });
         }
-
-
     } else {
         // if ANY fail validation
         return;
     }
+}
+
+function validateSectionQuestions() {
+    if ((template.value.sections.length !== Object.keys(model.value.generated_questions.sections).length)) {
+        return false;
+    }
+    for(const [key, value] of Object.entries(model.value.generated_questions.sections)) {
+        if (value.questions.length <= 0) {
+            return false;
+        }
+    }
+    return true;
 }
 
 function removeQuestion(question, sectionIndex, questionIndex) {
@@ -830,9 +908,6 @@ function removeQuestion(question, sectionIndex, questionIndex) {
     }
 }
 
-function upperCaseFirst(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-}
 </script>
 
 <style scoped>

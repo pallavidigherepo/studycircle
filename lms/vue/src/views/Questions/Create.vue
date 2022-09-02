@@ -13,17 +13,9 @@
             </div>
         </div>
         <!-- BEGIN: Notification -->
-        <Alert
-            class="intro-y col-span-11 alert-warning alert-dismissible mb-6 mt-5"
-            v-slot="{ dismiss }"
-            role="alert"
-        >
-            <div class="flex items-center">
-                <span><InfoIcon class="w-4 h-4 mr-2"/></span>
-                <span>{{ t("questions.You can add question manually or import it in bulk") }}</span>
-
-            </div>
-        </Alert>
+        <info :typeClass="'alert-warning'"
+              class="mb-6 mt-5"
+              :message="'questions.You can add question manually or import it in bulk'"/>
         <!-- BEGIN: Notification -->
         <div v-if="isErrored" class="alert alert-danger show flex items-center mb-2" role="alert">
             <AlertOctagonIcon class="w-6 h-6 mr-2"/>
