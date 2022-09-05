@@ -23,4 +23,7 @@ export default {
         let index = state.generated_questions.data.findIndex(item => item.id === question.id);
         state.generated_questions.data[index] = question;
     },
+    VIEW_GENERATED_QUESTION_PAPER(state, payload) {
+        state.generated_question = payload;
+    }
 };

@@ -208,6 +208,7 @@
                                                         {{ JSON.parse(subject) }}
                                                     </option>
                                                 </TomSelect>
+                                                <input type="hidden" v-model="model.subject" />
                                                 <div v-for="(error, index) of v$.subject_id.$errors"
                                                      :key="index" class="text-danger mt-2">
                                                     <div class="error-msg">{{ error.$message }}</div>
@@ -538,120 +539,14 @@
             <!-- END: Modal Content -->
         </template>
         <template v-else>
-            <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-                <h2 class="text-lg font-medium mr-auto">
-                    {{ t("templates.Preview Generated Question Paper") }}
-                </h2>
-                <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-                    <a href="javascript:;"
-                       @click.prevent="preview=!preview"
-                       class="btn box text-gray-700 dark:text-gray-300 mr-2 flex items-center ml-auto sm:ml-0">
-                        <ArrowLeftCircleIcon class="w-4 h-4 mr-2"/>
-                        {{ t("common.Back") }}
-                    </a>
-                </div>
-            </div>
-            <info :typeClass="'alert-primary'"
-                  :message="'templates.Text message which is highlighted in blue is Solution OR Explanation of question'"/>
+            <Preview :data="model"
+                     :preview="preview"
+                     :userInfo="userInfo"
+                     :template="template"
+                     :isOnline="isOnline"
+                     :isCreate="true"
+                     @back="back" />
 
-            <div class="intro-y box overflow-hidden mt-5">
-                <div
-                    class="border-b border-slate-200/60 dark:border-darkmode-400 text-center sm:text-left"
-                >
-                    <div class="flex flex-col lg:flex-row sm:px-1 pt-1 pb-1 sm:pb-10 border-b">
-                        <div class="h-full p-5 items-center ">
-                            <div class="font-semibold text-2xl">{{ userInfo.name }}</div>
-                        </div>
-                        <div class=" mt-10 lg:mt-0 lg:ml-auto text-center">
-                            <div class="text-lg font-medium mt-2">{{ model.name }}</div>
-                            <div class="text-lg font-medium mt-2">{{ t("templates.Standard") }} :
-                                {{ model.template.standard }}
-                            </div>
-                            <div class="text-lg font-medium mt-2">{{ t("templates.Subject") }}: {{ model.subject_id }}
-                            </div>
-                        </div>
-                        <div class="lg:text-left mt-10 lg:mt-0 lg:ml-auto pr-2">
-                            <div class="text-lg font-medium mt-2">Date:</div>
-                            <div class="text-lg font-medium mt-2">{{ t("templates.Total Marks") }}:
-                                {{ template.total_marks }}
-                            </div>
-                            <div class="text-lg font-medium mt-2" v-if="!template.has_section">
-                                {{ t("templates.Total Questions") }}: {{ template.total_questions }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="border-b border-slate-200/60 dark:border-darkmode-400 text-center sm:text-left">
-                    <div class="p-5" v-html="template.description"></div>
-                </div>
-                <div class="py-5 sm:py-10">
-                    <div class="overflow-x-auto">
-                        <table class="table">
-                            <template v-if="template.has_section">
-                                <tr v-for="(section, index) in model.generated_questions.sections" :key="index">
-                                    <template v-if="section.questions.length > 0">
-
-                                        <td class="dark:border-darkmode-400 whitespace-nowrap">
-                                            <div class="flex font-medium">Q&nbsp;{{
-                                                    parseInt(index) + 1
-                                                }}.&nbsp;{{ section.name }}
-                                            </div>
-                                            <div class="text-right font-medium">({{ section.total_marks }})</div>
-
-                                            <table class="border-none w-full ">
-                                                <tr v-for="(question, qidx) in section.questions" :key="qidx">
-                                                    <td class="border-none whitespace-nowrap">
-                                                        {{ qidx + 1 }})&nbsp;{{ question.question }}
-                                                        <table class="w-full border-none">
-                                                            <tr v-for="(answer, aidx) in question.answers" :key="aidx">
-                                                                <td class="border-none whitespace-nowrap">
-                                                                    {{ aidx + 1 }})&nbsp;
-                                                                    <template v-if="isOnline">
-                                                                        <input
-                                                                            v-if="question.type_id == 1 || question.type_id == 3"
-                                                                            :id="`is_correct-`+index"
-                                                                            type="radio"
-                                                                            class="form-check-input"
-                                                                            name="is_correct"
-                                                                        />
-                                                                        <input
-                                                                            v-if="question.type_id == 2"
-                                                                            :id="`is_correct-`+index"
-                                                                            type="checkbox"
-                                                                            class="form-check-input"
-                                                                            name="is_correct"
-                                                                        />
-                                                                        {{ answer.answer }}
-                                                                    </template>
-                                                                    <template v-else>{{ answer.answer }}</template>
-                                                                    <template v-if="answer.is_correct">
-                                                                        <div class="ml-5 btn btn-success">{{ t("questions.Correct Answer") }}</div>
-                                                                    </template>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="w-full border-none whitespace-nowrap bg-primary/80 box text-white flex items-center mb-2 mt-2">
-                                                                    {{ question.note }}
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </td>
-
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </template>
-                                </tr>
-                            </template>
-                            <template v-else>
-                                <tr v-for="(question, index) in model.generated_questions" :key="index">
-                                    <td>{{ question.question }}</td>
-                                </tr>
-                            </template>
-                        </table>
-                    </div>
-                </div>
-            </div>
             <div class="flex justify-end flex-col md:flex-row gap-2 mt-5">
                 <router-link
                     class="btn py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 w-full md:w-52"
@@ -678,7 +573,8 @@ import store from '@/stores';
 import axiosClient from "@/axios";
 import {useVuelidate} from "@vuelidate/core";
 import {helpers, minLength, minValue, numeric, required, requiredIf} from "@vuelidate/validators";
-import dom from "@left4code/tw-starter/dist/js/dom";
+import Preview from "@/components/GeneratedQuestionPaper/Preview.vue";
+
 const route = useRoute();
 const router = useRouter();
 const {t} = useI18n();
@@ -697,7 +593,7 @@ const standardId = ref();
 const subjects = ref();
 const preview = ref(false);
 const successModalPreview = ref(false);
-const warningModalPreview = ref(false);
+let warningModalPreview = ref(false);
 const isOnline = ref(false);
 
 const warningMessage = ref("");
@@ -705,6 +601,7 @@ const model = ref({
     id: "",
     name: "",
     subject_id: "",
+    subject: "",
     chapter_id: "",
     topic_id: "",
     difficulty_level_id: "",
@@ -760,6 +657,7 @@ async function selectedStandard(standardId, boardId) {
 }
 
 async function selectedSubject(subjectId) {
+    model.value.generated_questions = [];
     selectedSubjectId.value = subjectId;
     chapters.value = [];
     topics.value = [];
@@ -767,6 +665,8 @@ async function selectedSubject(subjectId) {
     if (result.status !== 200) {
         throw new Error("Failed to fetch chapter");
     } else {
+        const resultSubject = await axiosClient.get(`/get_subject_name/${subjectId}`);
+        model.value.subject = resultSubject.data;
         chapters.value = result.data;
     }
 }
@@ -850,11 +750,11 @@ async function submitForm(pre) {
 
     submitted.value = true;
     v$.value.$validate(); // checks all inputs
-    /*if (!validateSectionQuestions()) {
+    if (template.value.has_section && !validateSectionQuestions()) {
         warningModalPreview.value = true;
         warningMessage.value = "Make sure you have added questions for each section.";
         return;
-    }*/
+    }
     if (!v$.value.$error) {
         isLoading.value = true;
         warningMessage.value = "";
@@ -908,6 +808,9 @@ function removeQuestion(question, sectionIndex, questionIndex) {
     }
 }
 
+function back() {
+    preview.value = !preview.value;
+}
 </script>
 
 <style scoped>

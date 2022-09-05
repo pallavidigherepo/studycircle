@@ -91,6 +91,11 @@ Route::middleware('auth:sanctum')->group(function () {
             ->pluck('label', 'id');
     })->name('subject_list');
 
+    Route::get('v1/get_subject_name/{subjectId}', function ($subjectId) {
+        $subject = Subject::findOrFail($subjectId);
+        return json_decode($subject->label);
+    })->name('get_subject_name');
+
     Route::get('v1/chapter_list/{subjectId}', function ($subjectId) {
         return Chapter::all()->where('parent_id', $subjectId)->pluck('label', 'id');
     })->name('chapter_list');

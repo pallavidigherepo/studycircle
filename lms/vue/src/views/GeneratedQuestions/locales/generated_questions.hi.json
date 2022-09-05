@@ -68,6 +68,10 @@
     "Latest Question Papers": "नवीनतम प्रश्न पत्र",
     "Fetch Questions Automatically": "स्वचालित रूप से प्रश्न प्राप्त करें",
     "Fetch Questions Manually": "मैन्युअल रूप से प्रश्न प्राप्त करें",
-    "Fetch questions": "प्रश्न प्राप्त करें"
+    "Fetch questions": "प्रश्न प्राप्त करें",
+    "Print for Student": "छात्र के लिए प्रिंट",
+    "Print for Teacher": "शिक्षक के लिए प्रिंट",
+    "Preview and Print for Student": "छात्र के लिए पूर्वावलोकन और प्रिंट",
+    "Preview and Print for Teacher": "शिक्षक के लिए पूर्वावलोकन और प्रिंट"
 
 }

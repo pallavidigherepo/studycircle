@@ -43,8 +43,7 @@ export default {
         response = await axiosClient
             .get(`/generated_questions/${id}`)
             .then(({ data }) => {
-                console.log(data)
-                commit('VIEW_QUESTION', data);
+                commit('VIEW_GENERATED_QUESTION_PAPER', data.data);
                 return data;
             });
     },

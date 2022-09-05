@@ -90,7 +90,7 @@ function edit(item) {
 function show(item) {
     listing.value = false;
     router.push({
-        name: "ShowTemplate",
+        name: "ShowGeneratedQuestionPaper",
         params: { id: item.id },
     });
 }
