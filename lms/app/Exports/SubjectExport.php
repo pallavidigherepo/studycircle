@@ -50,16 +50,20 @@ class SubjectExport implements
         return SubjectResource::collection(Subject::all());
     }
 
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    /*public function query()
-    {
-        return Course::query();
-    }*/
 
     public function map($subject): array
     {
+        if ($this->isDemo) {
+            return [
+                json_decode($subject->label),
+                json_decode($subject->description),
+                $subject->board_id,
+                $subject->standard_id,
+                $subject->icon,
+                $subject->tags,
+                $subject->language_id,
+            ];
+        }
         return [
             $subject->id,
             json_decode($subject->label),
