@@ -194,7 +194,7 @@ const user = ref({
   name: "",
   email: "",
   mobile: "",
-  designation: [],
+  designation: "",
 });
 
 const fetch = async() => {
@@ -209,11 +209,6 @@ const fetch = async() => {
             throw error;
         }
         user.value = JSON.parse(JSON.stringify(result.data));
-        // user.name = result.data.name;
-        // user.email = result.data.email;
-        // user.mobile_no = result.data.mobile;
-        // user.designation = result.data.designation;
-        
     } catch (e) {
         isErrored.value = true;
         message.value = e;
@@ -265,8 +260,8 @@ async function submitForm() {
                 } //else {
                 //   message.value = "Oops, something went wrong at our end. Please try again later.";
                 // }
-                
-            }); 
+
+            });
   } else {
     // if ANY fail validation
     return;

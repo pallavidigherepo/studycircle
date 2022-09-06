@@ -343,7 +343,6 @@
                                                     </div>
                                                 </div>
                                                 <SectionEditor :section="section"
-                                                               :errors="model.sections[index].errors ? model.sections[index].errors: null"
                                                                :index="index"
                                                                :questionTypes="typeList"
                                                                @addSection="addSection"
@@ -389,7 +388,11 @@
                                             {{ JSON.parse(type) }}
                                         </option>
                                     </TomSelect>
-
+                                    <div v-for="(error, index) of v$.type_id.$errors"
+                                         :key="index"
+                                         class="text-danger mt-2">
+                                        <div class="error-msg">{{ error.$message }}</div>
+                                    </div>
                                 </div>
                             </div>
                             <div v-if="!model.has_section"
@@ -659,10 +662,8 @@ async function submitForm() {
 
         if (errorResponse.$property === "sections") {
             if (errorResponse.$response.$errors) {
-                //console.log(errorResponse.$response);
                 errorResponse.$response.$errors.forEach(function (value, index) {
-                    let sectionErrorResponse = JSON.parse(JSON.stringify(value));
-                    model.value.sections[index].errors = sectionErrorResponse;
+                    model.value.sections[index].errors = JSON.parse(JSON.stringify(value));
                     sectionValidated.value = false;
                 });
             }

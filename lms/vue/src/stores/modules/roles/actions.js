@@ -11,18 +11,25 @@ export default {
                 return data;
             });
     },
-    
-    async create({commit}, role) {
-        return await axiosClient.post('/roles', role)
-                .then(({data}) => {
-                    if (data.success) {
-                        commit('CREATE_ROLE', data);
-                        //return true;
-                    } else {
-                        const error = new Error(data.message)
-                        throw error;
-                    }
+
+    async save({ commit }, model) {
+        let response;
+
+        if (model.id) {
+            response = await axiosClient
+                .put(`/roles/${model.id}`, model)
+                .then(({ data }) => {
+                    commit('UPDATE_ROLE', model);
+                    return true;
                 });
+        } else {
+            response = await axiosClient
+                .post(`/roles`, model)
+                .then(({ data }) => {
+                    commit('CREATE_ROLE', data);
+                    return true;
+                });
+        }
     },
 
     // This action is used to fetch only selected permission
@@ -34,20 +41,6 @@ export default {
             throw error;
         }
         context.commit('EDIT_ROLE', response.data);
-    },
-
-    // After role submits the form, role information must be updated in database.
-    async update({commit}, role) {
-        return await axiosClient.put(`/roles/${role.id}`, role)
-                .then(({data}) => {
-                    if (data.success) {
-                        commit('UPDATE_ROLE', role);
-                        //return ;
-                    } else {
-                        const error = new Error(data.message)
-                        throw error;
-                    }
-                });
     },
 
     // This action is used to delete role from serve.

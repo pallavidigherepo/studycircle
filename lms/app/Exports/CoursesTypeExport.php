@@ -13,25 +13,41 @@ use Maatwebsite\Excel\Events\AfterSheet;
 
 use App\Models\CoursesType;
 
-class CoursesTypeExport implements 
-        FromQuery, 
-        Responsable, 
-        ShouldAutoSize, 
-        WithMapping, 
-        WithHeadings, 
+class CoursesTypeExport implements
+        FromQuery,
+        Responsable,
+        ShouldAutoSize,
+        WithMapping,
+        WithHeadings,
         WithEvents
 {
     use Exportable;
-    
+
+    /**
+     * @var bool
+     */
+    private $isDemo;
+
+    /**
+     * @param bool $demo
+     */
+    public function __construct(bool $demo = false)
+    {
+        $this->isDemo = $demo;
+    }
+
     /**
     * @return \Illuminate\Support\Collection
     */
     public function query()
     {
+        if ($this->isDemo) {
+            return CoursesType::factory()->count(1)->make();
+        }
         return CoursesType::query();
     }
 
-    public function map($coursesType): array 
+    public function map($coursesType): array
     {
         return [
             $coursesType->id,
@@ -43,6 +59,13 @@ class CoursesTypeExport implements
     }
 
     public function headings(): array {
+        if ($this->isDemo) {
+            return [
+                'Label',
+                'Description',
+                'Icon',
+            ];
+        }
         return [
             '#',
             'Label',
@@ -50,13 +73,14 @@ class CoursesTypeExport implements
             'Icon',
             'Created At'
         ];
+
     }
 
     public function registerEvents(): array
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {
-                $event->sheet->getStyle('A1:F1')->applyFromArray([
+                $event->sheet->getStyle('A1:C1')->applyFromArray([
                     'font'=> [
                         'bold' => true,
                     ],

@@ -865,7 +865,7 @@ async function submitForm() {
       .catch((err) => {
         isLoading.value = false;
         isErrored.value = true;
-        if (err.response.data) {
+        if (err.response) {
           message.value = err.response.data.message;
         }
 

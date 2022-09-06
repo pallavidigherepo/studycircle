@@ -114,26 +114,25 @@
                 >{{ t("users.Role") }}
               </label>
               <div class="mt-2">
-                <TomSelect
-                  v-model="user.designation"
-                  :options="{
-                    placeholder: 'Select role',
-                    allowEmptyOption: false,
-                  }"
-                  class="w-full"
-                  :class="{
-                    'border-danger': submitted && v$.designation.$errors.length,
-                  }"
-                >
-                  <option value="">Select Role</option>
-                  <option
-                    :value="role.id"
-                    v-for="(role, index) in roles"
-                    :key="index"
+                  <TomSelect id="form-type"
+                             v-model="user.designation"
+                             placeholder="Select Type"
+                             :options="{
+                                  allowEmptyOption: false,
+                                  create: false,
+                                  placeholder: 'Select Type',
+                                  autocomplete: 'off',
+                                }"
                   >
-                    {{ role }}
-                  </option>
-                </TomSelect>
+                      <option>{{ t('users.Select Role') }}</option>
+                      <option
+                          :value="role.id"
+                          v-for="(role, index) in roles"
+                          :key="index"
+                      >
+                          {{ role }}
+                      </option>
+                  </TomSelect>
               </div>
               <div
                 class="text-danger mt-2"
@@ -194,7 +193,7 @@ const user = reactive({
   name: "",
   email: "",
   mobile: "",
-  designation: [],
+  designation: "",
 });
 
 const rules = computed(() => {

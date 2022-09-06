@@ -25,7 +25,11 @@
                                    v-model="model.name"
                                    @change="dataChange"
                             />
-
+<!--                            <div v-for="(error, index) of model.errors.name"
+                                 :key="index"
+                                 class="text-danger mt-2">
+                                <div class="error-msg">{{ error.$message }}</div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -141,7 +145,7 @@ const props = defineProps({
 const emit = defineEmits(["change", "addSection", "deleteSection"]);
 
 const model = ref(JSON.parse(JSON.stringify(props.section)));
-
+//const model = props.section;
 watch(model.value, async (oldVal, newVal) => {
     if (props.total_marks >= newVal.total_marks) {
         // TODO:

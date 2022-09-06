@@ -321,9 +321,13 @@
                       </div>
 
                       <div class="mt-5">
-
+                        <table class="table">
+                            <tr v-for="answer in question.answers" :key="answer.id">
+                                <td class="whitespace-nowrap">{{answer.answer}}<span class="ml-5 btn btn-success" v-if="answer.is_correct">Correct</span></td>
+                            </tr>
+                        </table>
                         <div v-for="answer in question.answers" :key="answer.id">
-                          Answer list
+                          <div class="flex"></div>
                         </div>
                       </div>
                     </template>
@@ -397,6 +401,7 @@ import { ref, computed, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import { useI18n } from "vue-i18n";
+import {Tab} from "../../global-components/tab";
 
 const route = useRoute();
 const router = useRouter();

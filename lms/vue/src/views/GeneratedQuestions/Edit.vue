@@ -290,7 +290,10 @@
                                                     </button>
                                                 </div>
                                             </div>
-
+                                            <div v-for="(error, index) of v$.sections.$errors" :key="index"
+                                                 class="text-danger mt-2">
+                                                <div class="error-msg">{{ error.$message }}</div>
+                                            </div>
                                             <div v-if="!model.sections.length" class="text-center text-gray-600">
                                                 {{ t("templates.You do not have any section added yet") }}
                                             </div>
@@ -309,7 +312,6 @@
                                                     </div>
                                                 </div>
                                                 <SectionEditor :section="section"
-                                                               :errors="model.sections[index].errors ? model.sections[index].errors: null"
                                                                :index="index"
                                                                :questionTypes="typeList"
                                                                :total_marks="model.total_marks"
@@ -432,7 +434,46 @@ const rules = computed(() => {
             minValue: helpers.withMessage("Duration should be greater than 0", minValue(1)),
         },
         sections:{
-
+            minLength: helpers.withMessage("Please create at-least one section.", requiredIf(function () {
+                return model.value.has_section;
+            })),
+            $each: helpers.forEach({
+                name: {
+                    required: helpers.withMessage("Please enter the name of section.", requiredIf(function (){
+                        return model.value.has_section;
+                    })),
+                },
+                description: {
+                    required: helpers.withMessage("Please enter description of section.", requiredIf(function (){
+                        return model.value.has_section;
+                    })),
+                },
+                type_id: {
+                    required: helpers.withMessage("Please select type id of section.", requiredIf(function (){
+                        return model.value.has_section;
+                    })),
+                },
+                total_questions: {
+                    required: helpers.withMessage("Please enter total number of questions.", requiredIf(function (){
+                        return model.value.has_section;
+                    })),
+                },
+                compulsory_questions: {
+                    required: helpers.withMessage("Please enter number of compulsory questions.", requiredIf(function (){
+                        return model.value.has_section;
+                    })),
+                },
+                total_marks: {
+                    required: helpers.withMessage("Please enter total marks of section.", requiredIf(function (){
+                        return model.value.has_section;
+                    })),
+                },
+                marks_per_question: {
+                    required: helpers.withMessage("Please enter marks per question of section.", requiredIf(function (){
+                        return model.value.has_section;
+                    })),
+                }
+            })
         },
         total_questions: {
             required: helpers.withMessage("Please enter total marks of template.", requiredIf(function () {
@@ -498,7 +539,6 @@ function addSection(index) {
         total_marks: '',
         marks_per_question: '',
         type_id: '',
-        errors: [],
     };
     model.value.sections.splice(index, 0, newSection);
 }

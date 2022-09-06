@@ -110,7 +110,8 @@ class QuestionController extends Controller
                 }
                 $response = [
                     'success' => true,
-                    'message' => 'Successfully added'
+                    'message' => 'Successfully added',
+                    'question' => $request,
                 ];
             } else {
                 $response = [

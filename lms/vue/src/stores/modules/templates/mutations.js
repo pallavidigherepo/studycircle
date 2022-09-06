@@ -19,7 +19,7 @@ export default {
     },
 
     UPDATE_TEMPLATE(state, template) {
-        let index = state.templates.data.findIndex(item => item.id === question.id);
+        let index = state.templates.data.findIndex(item => item.id === template.id);
         state.templates.data[index] = template;
     },
     LANGUAGES(state, languages) {

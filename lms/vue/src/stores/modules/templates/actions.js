@@ -20,14 +20,14 @@ export default {
                 .put(`/templates/${model.id}`, model)
                 .then(({ data }) => {
                     commit('UPDATE_TEMPLATE', model);
-                    return data;
+                    return true;
                 });
         } else {
             response = await axiosClient
                 .post(`/templates`, model)
                 .then(({ data }) => {
                     commit('CREATE_TEMPLATE', data);
-                    return data;
+                    return true;
                 });
         }
     },

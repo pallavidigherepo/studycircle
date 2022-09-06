@@ -19,15 +19,15 @@ export default {
             response = await axiosClient
                 .put(`/questions/${model.id}`, model)
                 .then(({ data }) => {
-                    commit('UPDATE_QUESTION', model);
-                    return data;
+                    //commit('UPDATE_QUESTION', model);
+                    return true;
                 });
         } else {
             response = await axiosClient
                 .post(`/questions`, model)
                 .then(({ data }) => {
-                    commit('CREATE_QUESTION', data);
-                    return data;
+                    //commit('CREATE_QUESTION', data);
+                    return true;
                 });
         }
     },

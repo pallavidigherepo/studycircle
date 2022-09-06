@@ -19,9 +19,9 @@
                     <form @submit.prevent = "submitForm" class="validate-form">
                         <div>
                             <label for="form-name" class="form-label">Name</label>
-                            <input id="form-name" 
-                                    type="text" 
-                                    class="form-control" 
+                            <input id="form-name"
+                                    type="text"
+                                    class="form-control"
                                     placeholder="Enter name of role."
                                     v-model.trim="role.name"
                                     :class="{ 'border-theme-21': submitted && v$.name.$errors.length }"
@@ -34,7 +34,7 @@
                             </span>-->
                         </div>
                         <div class="mt-3">
-                            
+
                             <label for="form-permission" class="form-label">Permission</label>
                                 <div
                                 class="p-5 flex flex-col-reverse sm:flex-row text-gray-600 border-b border-gray-200 dark:border-dark-1"
@@ -44,22 +44,22 @@
                                 >
                                     <h2>Edit permissions by clicking on select all or toggling individual permissions per category</h2>
                                 </div>
-                            
+
                             </div>
-                            <div class="mt-3 py-2" 
-                                v-for="(permission, index) in listPermissions" 
+                            <div class="mt-3 py-2"
+                                v-for="(permission, index) in listPermissions"
                                 :key="index">
                                 <div class="roles">
                                     <label>{{ index }}</label>
                                 </div>
                                 <div class="flex flex-col sm:flex-row mt-2">
 
-                                    <div class="form-check mr-2" 
-                                        v-for="(individualPerms, perIdx) in permission" 
+                                    <div class="form-check mr-2"
+                                        v-for="(individualPerms, perIdx) in permission"
                                         :key="perIdx">
-                                        <input :id="individualPerms" 
-                                            class="form-check-input" 
-                                            type="checkbox" 
+                                        <input :id="individualPerms"
+                                            class="form-check-input"
+                                            type="checkbox"
                                             v-model="role.permissions"
                                             :value="perIdx"
                                             :class="{ 'border-theme-21': submitted && v$.permissions.$errors.length }" />
@@ -67,7 +67,7 @@
                                     </div>
                                 </div>
                             </div>
-                                
+
                             <!-- END: Inbox Content -->
                             <div class="text-theme-21 mt-2" v-for="(error, index) of v$.permissions.$errors" :key="index">
                                 <div class="error-msg">{{ error.$message }}</div>
@@ -77,7 +77,7 @@
                             </span>-->
                         </div>
                         <!-- BEGIN: Slide Over Footer -->
-                        
+
                         <div class="text-right w-full bottom-0">
                             <router-link to="/roles" class="btn btn-outline-secondary w-20 mr-1" >
                                 Cancel
@@ -90,8 +90,8 @@
                     </form>
                 </div>
                 <!-- BEGIN: Post Content -->
-                
-                
+
+
             </div>
             <!-- END: Post Content -->
         </div>
@@ -108,7 +108,7 @@ import { required, helpers } from '@vuelidate/validators'
 import axiosClient from "@/axios";
 
 const submitted = ref(false);
-        
+
 const isErrored = ref(false);
 const message = ref('');
 const isLoading = ref(false);
@@ -169,7 +169,7 @@ async function submitForm() {
     if (!v$.value.$error) {
         isLoading.value = true;
         await store
-            .dispatch("roles/update", role)
+            .dispatch("roles/save", role)
             .then(() => {
                 isLoading.value = false;
                 submitted.value = false;
@@ -178,10 +178,10 @@ async function submitForm() {
             .catch((err) => {
                 isLoading.value = false;
                 isErrored.value = true;
-                if (err.response.data) {
+                if (err.response) {
                     message.value = err.response.data.message;
                 }
-            });            
+            });
     } else {
         // if ANY fail validation
         return ;
@@ -195,7 +195,7 @@ const listPermissions = computed(() => {
 
 <style scoped>
 .roles {
-    float: left; 
+    float: left;
     width: 18rem;
 }
 

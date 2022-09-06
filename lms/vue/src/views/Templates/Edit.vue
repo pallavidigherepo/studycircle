@@ -323,6 +323,139 @@
                                 </div>
 
                             </div>
+                            <div v-if="!model.has_section"
+                                 class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                <div class="form-label xl:w-64 xl:!mr-10">
+                                    <div class="text-left">
+                                        <div class="flex items-center">
+                                            <div class="font-medium">{{
+                                                    t("templates.Question Type")
+                                                }}
+                                            </div>
+                                            <div
+                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                {{ t("common.Required") }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-full mt-3 xl:mt-0 flex-1">
+                                    <TomSelect id="form-type"
+                                               v-model="model.type_id"
+                                               placeholder="Select Type"
+                                               :options="{
+                                                  allowEmptyOption: false,
+                                                  create: false,
+                                                  placeholder: 'Select Type',
+                                                  autocomplete: 'off',
+                                                  items: model.type_id
+                                                }"
+                                    >
+                                        <option>{{ t('questions.Select Question Type') }}</option>
+                                        <option v-for="(type, id) in typeList" :key="id" :value="id">
+                                            {{ JSON.parse(type) }}
+                                        </option>
+                                    </TomSelect>
+                                    <div v-for="(error, index) of v$.type_id.$errors"
+                                         :key="index"
+                                         class="text-danger mt-2">
+                                        <div class="error-msg">{{ error.$message }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-if="!model.has_section"
+                                 class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                <div class="form-label xl:w-64 xl:!mr-10">
+                                    <div class="text-left">
+                                        <div class="flex items-center">
+                                            <div class="font-medium">{{
+                                                    t("templates.Total Questions")
+                                                }}
+                                            </div>
+                                            <div
+                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                {{ t("common.Required") }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-full mt-3 xl:mt-0 flex-1">
+                                    <input id="form-name"
+                                           v-model.trim="model.total_questions"
+                                           :class="{ 'border-danger': submitted && v$.total_questions.$errors.length, }"
+                                           class="form-control"
+                                           placeholder="Total Number of Questions."
+                                           type="number"/>
+                                    <div class="form-help text-right">Maximum character 0/70</div>
+                                    <div v-for="(error, index) of v$.total_questions.$errors"
+                                         :key="index"
+                                         class="text-danger mt-2">
+                                        <div class="error-msg">{{ error.$message }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-if="!model.has_section"
+                                 class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                <div class="form-label xl:w-64 xl:!mr-10">
+                                    <div class="text-left">
+                                        <div class="flex items-center">
+                                            <div class="font-medium">{{
+                                                    t("templates.Compulsory Questions")
+                                                }}
+                                            </div>
+                                            <div
+                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                {{ t("common.Required") }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-full mt-3 xl:mt-0 flex-1">
+                                    <input id="form-name"
+                                           v-model.trim="model.compulsory_questions"
+                                           :class="{ 'border-danger': submitted && v$.compulsory_questions.$errors.length, }"
+                                           class="form-control"
+                                           placeholder="Compulsory Questions."
+                                           type="number"/>
+                                    <div class="form-help text-right">Maximum character 0/70</div>
+                                    <div v-for="(error, index) of v$.compulsory_questions.$errors"
+                                         :key="index"
+                                         class="text-danger mt-2">
+                                        <div class="error-msg">{{ error.$message }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-if="!model.has_section"
+                                 class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                <div class="form-label xl:w-64 xl:!mr-10">
+                                    <div class="text-left">
+                                        <div class="flex items-center">
+                                            <div class="font-medium">{{
+                                                    t("templates.Marks per Question")
+                                                }}
+                                            </div>
+                                            <div
+                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                {{ t("common.Required") }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-full mt-3 xl:mt-0 flex-1">
+                                    <input id="form-name"
+                                           v-model.trim="model.marks_per_question"
+                                           :class="{ 'border-danger': submitted && v$.marks_per_question.$errors.length, }"
+                                           class="form-control"
+                                           placeholder="Compulsory Questions."
+                                           type="number"/>
+                                    <div class="form-help text-right">Maximum character 0/70</div>
+                                    <div v-for="(error, index) of v$.marks_per_question.$errors"
+                                         :key="index"
+                                         class="text-danger mt-2">
+                                        <div class="error-msg">{{ error.$message }}</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -373,12 +506,15 @@ const model = ref({
     board_id: "",
     standard_id: "",
     name: "",
-    total_marks: 0,
-    duration: 0,
+    description: "",
+    total_marks: '',
+    duration: '',
     has_section: false,
     is_active: true,
     sections: [],
     total_questions: '',
+    compulsory_questions: '',
+    marks_per_question: '',
     type_id: '',
 });
 // Watch to current survey data change and when this happens we update local model
@@ -431,9 +567,49 @@ const rules = computed(() => {
             required: helpers.withMessage("Please enter duration of template.", required),
             minValue: helpers.withMessage("Duration should be greater than 0", minValue(1)),
         },
-        sections:{
+        /*sections:{
 
-        },
+            required: helpers.withMessage("Please create at-least one section.", requiredIf(function () {
+                return model.value.has_section;
+            })),
+            $each: helpers.forEach({
+                name: {
+                    required: helpers.withMessage("Please enter the name of section.", requiredIf(function (){
+                        return model.value.has_section;
+                    })),
+                },
+                description: {
+                    required: helpers.withMessage("Please enter description of section.", requiredIf(function (){
+                        return model.value.has_section;
+                    })),
+                },
+                type_id: {
+                    required: helpers.withMessage("Please select type id of section.", requiredIf(function (){
+                        return model.value.has_section;
+                    })),
+                },
+                total_questions: {
+                    required: helpers.withMessage("Please enter total number of questions.", requiredIf(function (){
+                        return model.value.has_section;
+                    })),
+                },
+                compulsory_questions: {
+                    required: helpers.withMessage("Please enter number of compulsory questions.", requiredIf(function (){
+                        return model.value.has_section;
+                    })),
+                },
+                total_marks: {
+                    required: helpers.withMessage("Please enter total marks of section.", requiredIf(function (){
+                        return model.value.has_section;
+                    })),
+                },
+                marks_per_question: {
+                    required: helpers.withMessage("Please enter marks per question of section.", requiredIf(function (){
+                        return model.value.has_section;
+                    })),
+                }
+            })
+        },*/
         total_questions: {
             required: helpers.withMessage("Please enter total marks of template.", requiredIf(function () {
                 return !model.value.has_section;
@@ -451,17 +627,37 @@ const rules = computed(() => {
                 return !model.value.has_section;
             })),
         },
+        marks_per_question: {
+            required: helpers.withMessage("Please enter marks per question.", requiredIf(function () {
+                return !model.value.has_section;
+            })),
+            minValue: helpers.withMessage("Total marks should be greater than 0", minValue(1)),
+        },
     };
 });
 
 const v$ = useVuelidate(rules, model);
-
+const sectionValidated = ref(true);
 async function submitForm() {
-
     submitted.value = true;
     v$.value.$validate(); // checks all inputs
 
-    if (!v$.value.$error ) {
+    if (model.value.has_section) {
+        v$.value.$errors.forEach(function (value, index, array) {
+            let errorResponse = JSON.parse(JSON.stringify(value));
+
+            if (errorResponse.$property === "sections") {
+                if (errorResponse.$response.$errors) {
+                    errorResponse.$response.$errors.forEach(function (value, index) {
+                        model.value.sections[index].errors = JSON.parse(JSON.stringify(value));
+                        sectionValidated.value = false;
+                    });
+                }
+            }
+        });
+    }
+
+    if (!v$.value.$error && sectionValidated.value) {
         isLoading.value = true;
 
         await store
@@ -476,7 +672,7 @@ async function submitForm() {
                 isLoading.value = false;
                 submitted.value = false;
                 isErrored.value = true;
-                if (err.response.data) {
+                if (err.response) {
                     message.value = err.response.data.message;
                 }
 

@@ -38,6 +38,7 @@ class SubjectExport implements
     {
         $this->isDemo = $demo;
     }
+
     /**
     * @return \Illuminate\Support\Collection
     */

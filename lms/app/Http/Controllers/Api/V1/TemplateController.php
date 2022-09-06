@@ -64,10 +64,11 @@ class TemplateController extends Controller
                 'sections' => $request->has_section ? json_encode($request->sections) : null,
             ];
 
-            if (Template::create($inputData)) {
+            if ($template = Template::create($inputData)) {
                 $response = [
                     'success' => true,
-                    'message' => 'Successfully added'
+                    'message' => 'Successfully added',
+                    'template' => $template,
                 ];
             }
         }
