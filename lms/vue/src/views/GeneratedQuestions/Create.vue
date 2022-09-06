@@ -317,10 +317,10 @@
                                                                             @click.prevent="fetchQuestions(section, index)">
                                                                         {{ t("generated_questions.Fetch Questions Automatically") }}
                                                                     </button>
-<!--                                                                    <button class="btn btn-primary ml-5"
+                                                                    <button class="btn btn-primary ml-5"
                                                                             @click.prevent="fetchQuestions(section, index)">
                                                                         {{ t("generated_questions.Fetch Questions Manually") }}
-                                                                    </button>-->
+                                                                    </button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -419,11 +419,7 @@
                                                         <div class="form-label xl:!mr-10">
                                                             {{ t("templates.Section questions") }}
                                                         </div>
-                                                        <button class="btn btn-primary"
-                                                                @click.prevent="fetchQuestions()">
-                                                            {{ t("generated_questions.Fetch Questions Automatically") }}
-                                                        </button>
-<!--                                                        <span class="mr-2">Auto</span>
+                                                        <span class="mr-2">Auto</span>
                                                         <input id="form-is-active"
                                                                class="form-check-input"
                                                                type="checkbox"
@@ -432,7 +428,7 @@
                                                         <button class="btn btn-primary ml-5"
                                                                 @click.prevent="fetchQuestions()">
                                                             {{ t("templates.Fetch Questions") }}
-                                                        </button>-->
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -661,7 +657,7 @@ async function selectedStandard(standardId, boardId) {
 }
 
 async function selectedSubject(subjectId) {
-    model.value.generated_questions = [];
+    model.value.generated_questions.sections = {};
     selectedSubjectId.value = subjectId;
     chapters.value = [];
     topics.value = [];
