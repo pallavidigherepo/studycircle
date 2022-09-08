@@ -6,10 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-
-
 /**
+ * This class is Question model class with all question management related functions and variables.
  *
+ * @package Meritest_LMS_User_Model
+ * @author Pallavi Dighe <pallavi@meritest.in>
+ * @acces public
+ * @version 1.0
+ * @since 1.0
+ * @see http://lms.meritest.in/questions
  */
 class Question extends Model
 {

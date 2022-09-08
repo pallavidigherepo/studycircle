@@ -6,23 +6,32 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Tags\HasTags;
 use App\Models\Course;
-
+/**
+ * This class is Subject model class with all subject management related functions and variables.
+ *
+ * @package Meritest_LMS_User_Model
+ * @author Pallavi Dighe <pallavi@meritest.in>
+ * @acces public
+ * @version 1.0
+ * @since 1.0
+ * @see http://lms.meritest.in/subjects
+ */
 class Subject extends Model
 {
     use HasFactory;
     use HasTags;
-    
+
     protected $guarded = [];
 
     protected $fillable = array(
-        'label', 
-        'description', 
-        'icon', 
-        'language_id', 
-        'parent_id', 
-        'board_id', 
-        'standard_id', 
-        'created_by', 
+        'label',
+        'description',
+        'icon',
+        'language_id',
+        'parent_id',
+        'board_id',
+        'standard_id',
+        'created_by',
         'updated_by'
     );
 

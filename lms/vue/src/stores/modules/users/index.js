@@ -41,9 +41,9 @@ export default {
                         sort: false,
                     },
                     {
-                        label: "DESIGNATION",
+                        label: "ROLE",
                         field: "designation",
-                        sort: true,
+                        sort: false,
                     },
                     {
                         label: "Actions",

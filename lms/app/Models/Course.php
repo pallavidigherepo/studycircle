@@ -7,13 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\CoursesType;
 use App\Models\Subject;
 use Spatie\Tags\HasTags;
-
-
+/**
+ * This class is Course model class with all course management related functions and variables.
+ *
+ * @package Meritest_LMS_User_Model
+ * @author Pallavi Dighe <pallavi@meritest.in>
+ * @acces public
+ * @version 1.0
+ * @since 1.0
+ * @see http://lms.meritest.in/courses
+ */
 class Course extends Model
 {
     use HasFactory;
-    use HasTags; 
-    
+    use HasTags;
+
 
     protected $guarded = [];
 
@@ -37,7 +45,7 @@ class Course extends Model
     {
         return $this->belongsToMany(CoursesType::class, 'course_type', 'course_id', 'type_id');
     }
-    
+
     public function subjects()
     {
         return $this->belongsToMany(Subject::class);

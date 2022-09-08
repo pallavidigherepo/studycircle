@@ -8,7 +8,16 @@ use Spatie\Tags\HasTags;
 use App\Models\Subject;
 //use Spatie\Sluggable\HasSlug;
 //use Spatie\Sluggable\SlugOptions;
-
+/**
+ * This class is Chapter model class with all chapter management related functions and variables.
+ *
+ * @package Meritest_LMS_User_Model
+ * @author Pallavi Dighe <pallavi@meritest.in>
+ * @acces public
+ * @version 1.0
+ * @since 1.0
+ * @see http://lms.meritest.in/subjects
+ */
 class Chapter extends Model
 {
     use HasFactory;
@@ -25,14 +34,14 @@ class Chapter extends Model
     protected $guarded = [];
 
     protected $fillable = array(
-        'label', 
-        'description', 
-        'icon', 
-        'language_id', 
+        'label',
+        'description',
+        'icon',
+        'language_id',
         'parent_id',
-        'board_id', 
-        'standard_id',  
-        'created_by', 
+        'board_id',
+        'standard_id',
+        'created_by',
         'updated_by'
     );
 
