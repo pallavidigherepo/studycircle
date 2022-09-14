@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             CourseTypeSeeder::class,
             CourseSeeder::class,
             SubjectChapterTopicSeeder::class,
+            BatchSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

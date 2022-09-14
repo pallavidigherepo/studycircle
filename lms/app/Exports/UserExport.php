@@ -57,12 +57,20 @@ class UserExport implements
      */
     public function map($user): array
     {
+        if ($this->isDemo) {
+            return [
+                $user->name,
+                $user->email,
+                $user->mobile,
+                $user->designation,
+            ];
+        }
         return [
             $user->id,
             $user->name,
             $user->email,
-            $user->mobile,
-            $user->designation,
+            $user->profile_user->mobile,
+            $user->profile_user->designation,
             $user->created_at,
         ];
     }

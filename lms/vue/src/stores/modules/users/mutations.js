@@ -9,7 +9,7 @@ export default {
 
     CREATE_USER(state, user)
     {
-        state.users.unshift(user.user)
+        state.users.unshift(user)
     },
     EDIT_USER(state, payload) {
         state.user = payload;
@@ -29,5 +29,5 @@ export default {
     SET_ROLE_LIST(state, payload) {
         state.roleList = payload;
     }
-    
+
 };

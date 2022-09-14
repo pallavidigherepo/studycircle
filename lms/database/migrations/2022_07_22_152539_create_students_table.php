@@ -17,9 +17,12 @@ class CreateStudentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('roll_number')->unique();
+            $table->string('aadhaar')->unique();
+            $table->boolean('is_aadhaar_verified')->default(false);
             $table->unsignedBigInteger('board_id')->nullable(true);
             $table->unsignedBigInteger('standard_id')->nullable(true);
             $table->unsignedBigInteger('language_id')->nullable(true);
+            $table->unsignedBigInteger('batch_id')->nullable(true);
             $table->unsignedBigInteger('course_id')->nullable(true);
             $table->string('email')->unique();
             $table->string('password');
@@ -47,6 +50,7 @@ class CreateStudentsTable extends Migration
             $table->foreign('board_id')->references('id')->on('boards');
             $table->foreign('standard_id')->references('id')->on('standards');
             $table->foreign('language_id')->references('id')->on('languages');
+            $table->foreign('batch_id')->references('id')->on('batches');
 
             $table->timestamps();
             $table->softDeletes();

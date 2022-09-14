@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProfileUserResource extends JsonResource
+class BatchResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,10 +14,6 @@ class ProfileUserResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id' => $this->id,
-            'user' => UserResource::collection($this->user),
-            'mobile' => $this->mobile,
-        ];
+        return parent::toArray($request);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\V1\BatchController;
+use App\Models\Batch;
 use App\Models\GeneratedQuestionPaper;
 use App\Models\Template;
 use Illuminate\Http\Request;
@@ -56,21 +58,19 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('v1/roles', RoleController::class);
     Route::get('v1/users/role_list', [UserController::class, 'role_list'])->name('users.role_list');
 
-    //Route::get('v1/users/is_email_exists/{email}/{id}', [UserController::class, 'is_email_exists'])->name('is_email_exists');
     Route::resource('v1/users', UserController::class);
     Route::get('v1/courses_types/list', [CoursesTypeController::class, 'list'])->name('coursesTypes.list');
+    Route::resource('v1/batches', BatchController::class);
     Route::resource('v1/courses_types', CoursesTypeController::class);
     Route::resource('v1/courses', CourseController::class);
     Route::resource('v1/subjects', SubjectController::class);
     Route::resource('v1/chapters', ChapterController::class);
-    //Route::get('v1/topics/list', [TopicController::class, 'list'])->name('topics.list');
     Route::resource('v1/topics', TopicController::class);
     Route::resource('v1/questions', QuestionController::class);
     Route::resource('v1/students', StudentController::class);
     Route::resource('v1/profile', ProfileController::class);
     Route::resource('v1/templates', TemplateController::class);
     Route::resource('v1/generated_questions', GeneratedQuestionPaperController::class);
-
 
     Route::post('v1/exports/index', [ExportController::class, 'index'])->name('exports.index');
     Route::post('v1/imports', [ImportController::class, 'store'])->name('imports.store');
@@ -107,6 +107,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('v1/board_list', function () {
         return Board::all()->pluck('name', 'id');
     })->name('board_list');
+
+    Route::get('v1/batch_list', function () {
+        return Batch::all()->pluck('name', 'id');
+    })->name('batch_list');
 
     Route::get('v1/standard_list', function () {
         return Standard::all()->pluck('name', 'id');

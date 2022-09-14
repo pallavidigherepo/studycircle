@@ -55,6 +55,9 @@ import CreateStudent from '../views/Students/Create.vue';
 import EditStudent from '../views/Students/Edit.vue';
 import ShowStudent from '../views/Students/Show.vue';
 
+import SettingIndex from '../views/Settings/Index.vue';
+import Batches from '../views/Batches/Index.vue';
+
 import Login from "../views/Auth/Login.vue";
 import Profile from "../views/Auth/Profile.vue";
 import ErrorPage from "../views/ErrorPage.vue";
@@ -376,6 +379,16 @@ const routes = [{
                     },
                 ]
             },
+            {
+                path: '/settings',
+                name: "SettingIndex",
+                component: SettingIndex,
+            },
+            {
+                path: '/batches',
+                name: "Batches",
+                component: Batches,
+            }
         ],
     },
 

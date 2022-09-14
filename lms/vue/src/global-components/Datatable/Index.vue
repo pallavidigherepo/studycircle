@@ -188,6 +188,7 @@
       <CustomeAlert v-if="responseMessage"
                     :message="responseMessage"
                     :status="responseStatus"
+                    :errors="responseErrors"
                     class="col-span-12 sm:col-span-6 flex" />
       <ModalBody class="grid grid-cols-12 gap-4 gap-y-3">
         <div class="col-span-12 sm:col-span-12 text-center">
@@ -308,6 +309,7 @@ const modelName = props.importExportOptions.modelName;
 const options = props.importExportOptions;
 const responseStatus = ref(false);
 const responseMessage = ref('');
+const responseErrors = ref("");
 
 const form = {
     export_as: ""
@@ -345,10 +347,14 @@ function proceedAction() {
         .then((res) => {
             responseStatus.value = res.data.success;
             responseMessage.value = res.data.message;
+            responseErrors.value = res.data.failures ?? null;
+
             import_file.value = {};
             if (res.data.success == true) {
                 setTimeout(() => {
                   headerFooterModalPreview.value = false;
+                  responseStatus.value = false;
+                  responseMessage.value = "";
                   fetchList();
                 }, 1000);
             }

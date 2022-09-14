@@ -9,18 +9,22 @@ const getDateFormat = format => {
 }
 
 const setValue = (props, emit) => {
-  const format = getDateFormat(props.options.format)
+  const format = getDateFormat(props.options.format);
+  let date = "";
   if (!props.modelValue.length) {
-    let date = dayjs().format(format)
+    date = dayjs().format(format);
     date +=
       !props.options.singleMode && props.options.singleMode !== undefined
         ? ' - ' +
           dayjs()
             .add(1, 'month')
             .format(format)
-        : ''
-    emit('update:modelValue', date)
+        : '';
+
+  } else {
+      date = props.modelValue;
   }
+  emit('update:modelValue', date);
 }
 
 const init = (el, props, emit) => {

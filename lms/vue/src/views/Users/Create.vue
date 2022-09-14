@@ -141,9 +141,6 @@
               >
                 <div class="error-msg">{{ error.$message }}</div>
               </div>
-              <!--<span v-if="submitted && v$.users.$error" class="text-theme-24 mt-2">
-                                {{ v$.users.$errors[0].$message }}
-                            </span>-->
             </div>
             <!-- BEGIN: Slide Over Footer -->
 
@@ -165,6 +162,7 @@
       </div>
       <!-- END: Post Content -->
     </div>
+      <Loading v-if="isLoading" fixed></Loading>
   </div>
 </template>
 
@@ -174,7 +172,7 @@ import { ref, reactive, computed, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import { useVuelidate } from "@vuelidate/core";
-import { required, helpers } from "@vuelidate/validators";
+import { required, helpers, email, minLength, numeric } from "@vuelidate/validators";
 import { useI18n } from "vue-i18n";
 import axiosClient from "@/axios";
 
@@ -203,22 +201,12 @@ const rules = computed(() => {
     },
     email: {
       required: helpers.withMessage("Please enter email address.", required),
-
-      // async isUnique (value) {
-      //     if (value === '') return true
-      //     return await axiosClient.get(`/users/is_email_exists/${value}/${user.id}`).then(({data}) => {
-      //       if (data.message) {
-      //         console.log(data)
-      //         return data.message;
-      //       } else {
-      //         return true;
-      //       }
-      //     });
-
-      //   }
+        email: helpers.withMessage("Please enter valid email address", email),
     },
     mobile: {
       required: helpers.withMessage("Please enter mobile number.", required),
+        minLength: helpers.withMessage("Please enter valid mobile number", minLength(10)),
+        numeric: helpers.withMessage("Please enter valid mobile number", numeric),
     },
     designation: {
       required: helpers.withMessage("Please select role of user.", required),
@@ -235,7 +223,7 @@ async function submitForm() {
   if (!v$.value.$error) {
     isLoading.value = true;
     await store
-      .dispatch("users/create", user)
+      .dispatch("users/save", user)
       .then(() => {
         isLoading.value = false;
         submitted.value = false;
@@ -244,7 +232,7 @@ async function submitForm() {
       .catch((err) => {
         isLoading.value = false;
         isErrored.value = true;
-        if (err.response.data) {
+        if (err.response) {
             message.value = err.response.data.message;
         }
       });

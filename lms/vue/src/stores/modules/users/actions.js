@@ -11,18 +11,26 @@ export default {
                 return data;
             });
     },
-    
-    async create({commit}, user) {
-        return await axiosClient.post('/users', user)
-                .then(({data}) => {
-                    if (data.success) {
-                        commit('CREATE_USER', data);
-                        //return true;
-                    } else {
-                        const error = new Error(data.message)
-                        throw error;
-                    }
+
+    async save({ commit }, model) {
+        let response;
+
+        if (model.id) {
+            response = await axiosClient
+                .put(`/users/${model.id}`, model)
+                .then(({ data }) => {
+                    //commit('UPDATE_USER', model);
+                    return true;
                 });
+        } else {
+            response = await axiosClient
+                .post(`/users`, model)
+                .then(({ data }) => {
+                    //console.log(data)
+                    //commit('CREATE_USER', data.user);
+                    return true;
+                });
+        }
     },
 
     // This action is used to fetch only selected user
@@ -36,20 +44,6 @@ export default {
         context.commit('EDIT_USER', response.data.user);
     },
 
-    // After user submits the form, user information must be updated in database.
-    async update({commit}, user) {
-        return await axiosClient.put(`/users/${user.id}`, user)
-                .then(({data}) => {
-                    if (data.success) {
-                        commit('UPDATE_USER', user);
-                        //return true;
-                    } else {
-                        const error = new Error(data.message)
-                        throw error;
-                    }
-                });
-    },
-
     // This action is used to delete user from serve.
     async delete({commit}, id) {
         const response = await axiosClient.delete(`/users/${id}`);
@@ -59,7 +53,7 @@ export default {
         }
         commit('DELETE_USER', id);
     },
-    
+
     async checkEmailExists(context, user) {
         return new Promise((resolve, reject) => {
             // Do something here... lets say, a http call using vue-resource

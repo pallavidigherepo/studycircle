@@ -1,11 +1,12 @@
 <template>
   <div>
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-            <h2 class="text-lg font-medium mr-auto">Edit Role</h2>
+            <h2 class="text-lg font-medium mr-auto">{{ t("roles.Edit Role") }}</h2>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                 <router-link to="/roles"
                             class="btn box text-gray-700 dark:text-gray-300 mr-2 flex items-center ml-auto sm:ml-0"
-                            ><ArrowLeftCircleIcon class="w-4 h-4 mr-2" />Back
+                            ><ArrowLeftCircleIcon class="w-4 h-4 mr-2" />
+                    {{ t("common.Back") }}
                 </router-link>
             </div>
         </div>
@@ -18,7 +19,7 @@
                     </div>
                     <form @submit.prevent = "submitForm" class="validate-form">
                         <div>
-                            <label for="form-name" class="form-label">Name</label>
+                            <label for="form-name" class="form-label">{{ t("roles.Name") }}</label>
                             <input id="form-name"
                                     type="text"
                                     class="form-control"
@@ -29,20 +30,17 @@
                             <div class="text-theme-21 mt-2" v-for="(error, index) of v$.name.$errors" :key="index">
                                 <div class="error-msg">{{ error.$message }}</div>
                             </div>
-                            <!--<span v-if="submitted && v$.name.$error" class="text-theme-21 mt-2">
-                                {{ v$.name.$errors[0].$message }}
-                            </span>-->
                         </div>
                         <div class="mt-3">
 
-                            <label for="form-permission" class="form-label">Permission</label>
+                            <label for="form-permission" class="form-label">{{ t("roles.Permission") }}</label>
                                 <div
                                 class="p-5 flex flex-col-reverse sm:flex-row text-gray-600 border-b border-gray-200 dark:border-dark-1"
                                 >
                                 <div
                                     class="flex items-center mt-3 sm:mt-0 border-t sm:border-0 border-gray-200 pt-5 sm:pt-0 mt-5 sm:mt-0 -mx-5 sm:mx-0 px-5 sm:px-0"
                                 >
-                                    <h2>Edit permissions by clicking on select all or toggling individual permissions per category</h2>
+                                    <h2>{{ t("roles.Select permissions by toggling individual permissions per category")}}</h2>
                                 </div>
 
                             </div>
@@ -67,33 +65,21 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- END: Inbox Content -->
                             <div class="text-theme-21 mt-2" v-for="(error, index) of v$.permissions.$errors" :key="index">
                                 <div class="error-msg">{{ error.$message }}</div>
                             </div>
-                            <!--<span v-if="submitted && v$.permissions.$error" class="text-theme-24 mt-2">
-                                {{ v$.permissions.$errors[0].$message }}
-                            </span>-->
                         </div>
-                        <!-- BEGIN: Slide Over Footer -->
-
                         <div class="text-right w-full bottom-0">
                             <router-link to="/roles" class="btn btn-outline-secondary w-20 mr-1" >
-                                Cancel
+                                {{ t("common.Cancel") }}
                             </router-link>
                             <button type="submit" class="btn btn-primary w-20">
-                                Save
+                                {{ t("common.Save") }}
                             </button>
                         </div>
-                        <!-- END: Slide Over Footer -->
                     </form>
                 </div>
-                <!-- BEGIN: Post Content -->
-
-
             </div>
-            <!-- END: Post Content -->
         </div>
     </div>
 </template>
@@ -106,7 +92,9 @@ import { useRoute, useRouter } from 'vue-router';
 import { useVuelidate } from '@vuelidate/core';
 import { required, helpers } from '@vuelidate/validators'
 import axiosClient from "@/axios";
+import {useI18n} from "vue-i18n";
 
+const { t } = useI18n();
 const submitted = ref(false);
 
 const isErrored = ref(false);

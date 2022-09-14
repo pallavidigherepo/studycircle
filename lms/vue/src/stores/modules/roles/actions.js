@@ -19,14 +19,14 @@ export default {
             response = await axiosClient
                 .put(`/roles/${model.id}`, model)
                 .then(({ data }) => {
-                    commit('UPDATE_ROLE', model);
+                    //commit('UPDATE_ROLE', JSON.parse(JSON.stringify(data.role)));
                     return true;
                 });
         } else {
             response = await axiosClient
                 .post(`/roles`, model)
                 .then(({ data }) => {
-                    commit('CREATE_ROLE', data);
+                    //commit('CREATE_ROLE', data);
                     return true;
                 });
         }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateStudentRequest extends FormRequest
 {
@@ -24,7 +25,18 @@ class UpdateStudentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => [
+                'required',
+            ],
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('students')->ignore($this->student)
+            ],
+            'aadhaar' => [
+                'required',
+                Rule::unique('students')->ignore($this->student)
+            ],
         ];
     }
 }

@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
+use App\Models\Permission;
 use App\Models\ProfileUser;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use Psy\Util\Json;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -16,7 +19,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index(Request $request)
     {
@@ -38,7 +41,7 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(UserRequest $request)
     {
@@ -55,7 +58,7 @@ class UserController extends Controller
             ]);
             $user->profile_user()->save($profile);
 
-            $user->assignRole($inputs['designation']);
+            $user->assignRole($request->designation);
             $response = [
                 'success' => true,
                 'message' => 'User created successfully.',
@@ -73,7 +76,15 @@ class UserController extends Controller
 
 
     public function edit(User $user) {
-        $response = new UserResource(User::findOrFail($user->id));
+
+        $response = [
+            'user' => new UserResource(User::findOrFail($user->id)),
+            //'userRoles' => $user->getAllRoles()->pluck('id'),
+            //'userPermissions' => $user->getAllPermissions()->pluck('id'),
+            //'allRoles' => Role::query()->select(['name','id'])->get(),
+            //'allPermissions' => Permission::query()->select(['name','id'])->get(),
+        ];
+
         return response()->json($response, 200);
     }
 
@@ -81,7 +92,7 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -93,7 +104,7 @@ class UserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(UserRequest $request, User $user)
     {
@@ -104,12 +115,12 @@ class UserController extends Controller
             ];
             $user->name = $request->name;
             $user->email = $request->email;
-            
+
             $profile = ProfileUser::where('user_id', '=', $user->id)->first();
-           
+
             $user->save($inputs);
             $user->assignRole($request->designation);
-            
+
             $profile->update([
                 'mobile' => $request->mobile,
                 'designation' => $request->designation,
@@ -132,12 +143,25 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  User  $user
+     * @return Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $response = [
+            'success' => false,
+            'message' => null,
+            'errors' => null,
+        ];
+        // First of all delete all the answers and then delete question.
+        $user->profile_user()->delete();
+        if ($user->delete()) {
+            $response = [
+                'success' => true,
+                'message' => 'User deleted successfully.',
+            ];
+        }
+        return response()->json($response);
     }
 
 
@@ -159,7 +183,7 @@ class UserController extends Controller
             ];
         }
         return response()->json($response, 200);
-        
-        
+
+
     }
 }

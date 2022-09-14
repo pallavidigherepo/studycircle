@@ -21,11 +21,13 @@ class ImportController extends Controller
         }
 
         try {
-            Excel::import($import, $file);
+            $importResponse = Excel::import($import, $file);
+            //dd($import->errors()); exit();
             $response = [
                 'success' => true,
                 'message' => 'All the '.$modelName.'(s) are successfully imported.',
                 'failures' => null,
+                'errors' => $importResponse,
             ];
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
              $failures = $e->failures();

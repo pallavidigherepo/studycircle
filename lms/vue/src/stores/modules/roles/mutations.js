@@ -6,7 +6,7 @@ export default {
     SET_PAGINATION_LINKS(state, payload) {
         state.pagination = payload;
     },
-    
+
     CREATE_ROLE(state, role)
     {
         state.roles.unshift(role.role)

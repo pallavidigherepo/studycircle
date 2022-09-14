@@ -14,6 +14,7 @@ import questionModule from './modules/questions/index.js';
 import studentModule from './modules/students/index.js';
 import templateModule from './modules/templates/index';
 import generateQuestionModule from './modules/generate_questions/index';
+import batchModule from './modules/batches/index';
 
 const store = createStore({
     modules: {
@@ -30,6 +31,7 @@ const store = createStore({
         students: studentModule,
         templates: templateModule,
         generated_questions: generateQuestionModule,
+        batches: batchModule,
         /*languages: languageModule,
          */
     },
@@ -57,6 +59,9 @@ const store = createStore({
         },
         listBoards(state) {
             return state.boardList;
+        },
+        listBatches(state) {
+            return state.batchList;
         },
         listStandards(state) {
             return state.standardList;
@@ -118,6 +123,14 @@ const store = createStore({
                     return data;
                 })
         },
+        async listBatch({ commit }) {
+            return await axiosClient
+                .get('/batch_list')
+                .then(({ data }) => {
+                    commit('SET_BATCH_LIST', data)
+                    return data;
+                })
+        },
         async listStandard({ commit }) {
             return await axiosClient
                 .get('/standard_list')
@@ -163,6 +176,9 @@ const store = createStore({
         },
         SET_BOARD_LIST(state, payload) {
             state.boardList = payload;
+        },
+        SET_BATCH_LIST(state, payload) {
+            state.batchList = payload;
         },
         SET_STANDARD_LIST(state, payload) {
             state.standardList = payload;
