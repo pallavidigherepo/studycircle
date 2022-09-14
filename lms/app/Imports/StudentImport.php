@@ -3,11 +3,14 @@
 namespace App\Imports;
 
 use App\Models\Student;
+use Carbon\Carbon;
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
+use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel\Date;
 
 class StudentImport implements ToModel, WithHeadingRow, WithValidation
 {
@@ -22,22 +25,24 @@ class StudentImport implements ToModel, WithHeadingRow, WithValidation
             'delimiter' => ';'
         ];
     }
+
     /**
      * @param array $row
      *
      * @return \Illuminate\Database\Eloquent\Model|null
+     * @throws \Exception
      */
     public function model(array $row)
     {
-        $student =  new Student([
+        $input = [
             'name' => $row['name'],
             'email' => $row['email'],
             'password' => Hash::make(123456789),
+            'aadhaar' => $row['aadhaar'],
             'mobile' => $row['mobile'],
-            'alt_mobile' => $row['alt_mobile'],
+            'alt_mobile' => $row['alternate_mobile'],
             'gender' => $row['gender'],
-            'avatar' => $row['avatar'],
-            'dob' => $row['dob'],
+            'dob' => Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['date_of_birth'])),
             'permanent_address' => $row['permanent_address'],
             'address' => $row['address'],
             'mother_name' => $row['mother_name'],
@@ -52,14 +57,15 @@ class StudentImport implements ToModel, WithHeadingRow, WithValidation
             'father_occupation' => $row['father_occupation'],
             'parent_email' => $row['parent_email'],
             'parent_password' => Hash::make(123456789),
-            'board_id' => $row['board_id'],
-            'standard_id' => $row['standard_id'],
-            'language_id' => $row['language_id'],
-            'course_id' => $row['course_id'],
-
-            //$table->string('roll_number')->unique();
-        ]);
-        return Student::create($student);
+            'board_id' => $row['board'],
+            'standard_id' => $row['standard'],
+            'language_id' => $row['language'],
+            'course_id' => $row['course'],
+        ];
+        $student = Student::create($input);
+        $student->roll_number = generate_student_roll_number();
+        $student->save();
+        return $student;
     }
 
     public function rules(): array
@@ -67,10 +73,7 @@ class StudentImport implements ToModel, WithHeadingRow, WithValidation
         return [
             'name' => 'required',
             'email' => 'required|unique:students',
-            // Above is alias for as it always validates in batches
             '*.email' => 'required|unique:students',
-
-            // Can also use callback validation rules
             'mobile' => 'required',
             '*.mobile' => 'required',
         ];

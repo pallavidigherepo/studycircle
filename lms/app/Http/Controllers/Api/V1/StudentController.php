@@ -52,12 +52,7 @@ class StudentController extends Controller
         if ($request->validated()) {
             $student = Student::create($this->saveFields($request));
 
-            $startOfYear = Carbon::now()->startOfYear();
-            $endOfYear = Carbon::now()->endOfYear();
-            $students = Student::where('created_at', '>' , $startOfYear)->where('created_at', '<', $endOfYear)->get();
-            $count = count($students) + 1;
-
-            $student->roll_number = Carbon::now()->toDateString() . '-' . $count;
+            $student->roll_number = generate_student_roll_number();
 
             // Check if image was given and save on local file system
             if (isset($request->avatar)) {
@@ -65,7 +60,7 @@ class StudentController extends Controller
                     $absolutePath = public_path($request->avatar);
                     File::delete($absolutePath);
                 }
-                $student->avatar  = $this->saveImage($request->avatar);
+                $student->avatar  = save_image($request->avatar, 'students');
             }
 
             $student->save();
@@ -115,7 +110,7 @@ class StudentController extends Controller
                     $absolutePath = public_path($student->avatar);
                     File::delete($absolutePath);
                 }
-                $student->avatar  = $this->saveImage($request->avatar);
+                $student->avatar  = save_image($request->avatar, 'students');;
             }
 
             $student->save();
@@ -148,6 +143,10 @@ class StudentController extends Controller
             'message' => null,
             'errors' => null,
         ];
+        if ($student->avatar) {
+            $absolutePath = public_path($student->avatar);
+            File::delete($absolutePath);
+        }
         if ($student->delete()) {
             $response = [
                 'success' => true,
@@ -155,48 +154,6 @@ class StudentController extends Controller
             ];
         }
         return response()->json($response);
-    }
-
-    /**
-     * Save image in local file system and return saved image path
-     *
-     * @param $image
-     * @throws \Exception
-     * @author Pallavi Dighe <pallavi@meritest.in>
-     */
-    private function saveImage($image): string
-    {
-        // Check if image is valid base64 string
-        if (preg_match('/^data:image\/(\w+);base64,/', $image, $type)) {
-            // Take out the base64 encoded text without mime type
-            $image = substr($image, strpos($image, ',') + 1);
-            // Get file extension
-            $type = strtolower($type[1]); // jpg, png, gif
-
-            // Check if file is an image
-            if (!in_array($type, ['jpg', 'jpeg', 'gif', 'png'])) {
-                throw new \Exception('invalid image type');
-            }
-            $image = str_replace(' ', '+', $image);
-            $image = base64_decode($image);
-
-            if ($image === false) {
-                throw new \Exception('base64_decode failed');
-            }
-        } else {
-            throw new \Exception('did not match data URI with image data');
-        }
-
-        $dir = 'storage/images/students/';
-        $file = Str::random() . '.' . $type;
-        $absolutePath = public_path($dir);
-        $relativePath = $dir . $file;
-        if (!File::exists($absolutePath)) {
-            File::makeDirectory($absolutePath, 0755, true);
-        }
-        file_put_contents($relativePath, $image);
-
-        return $relativePath;
     }
 
     /**

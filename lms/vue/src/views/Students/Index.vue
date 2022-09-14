@@ -16,6 +16,7 @@
               <Datatable
                 module="students"
                 :importExportOptions="options"
+                @showItem="show"
                 @editItem="edit"
                 @deleteItem="deleteI"
                 @addModel="add"
@@ -65,7 +66,13 @@ watch(
     }
   }
 );
-
+function show(item) {
+    listing.value = false;
+    router.push({
+        name: "ShowStudent",
+        params: { id: item.id },
+    });
+}
 function edit(item) {
   listing.value = false;
   router.push({

@@ -13,42 +13,59 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use phpDocumentor\Reflection\Types\Void_;
 
-class StudentExport implements 
+class StudentExport implements
                         WithMapping,
-                        Responsable, 
-                        ShouldAutoSize, 
-                        WithHeadings, 
+                        Responsable,
+                        ShouldAutoSize,
+                        WithHeadings,
                         WithEvents,
                         FromCollection
 {
     use Exportable;
+
     /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+     * @var bool
+     */
+    private $isDemo;
+
+    /**
+     * @param int $question
+     * @param bool $demo
+     */
+    public function __construct(bool $demo = false)
     {
-        return StudentResource::collection(Student::all());
+        $this->isDemo = $demo;
     }
 
     /**
     * @return \Illuminate\Support\Collection
     */
-    /*public function query()
+    public function collection()
     {
-        return Course::query();
-    }*/
+        if ($this->isDemo) {
+            return Student::factory()->count(1)->make();
+        }
+        return StudentResource::collection(Student::all());
+    }
 
-    public function map($student): array 
+    public function map($student): array
     {
+        if ($this->isDemo) {
+            return array();
+        }
         return [
             $student->id,
             $student->name,
+            $student->board->name,
+            $student->standard->name,
+            $student->course_id,
+            $student->language_id,
             $student->email,
             $student->mobile,
             $student->alt_mobile,
             $student->gender,
-            $student->avatar,
             $student->dob,
             $student->permanent_address,
             $student->address,
@@ -63,11 +80,7 @@ class StudentExport implements
             $student->father_qualification,
             $student->father_occupation,
             $student->parent_email,
-            $student->parent_password,
-            $student->board_id,
-            $student->standard_id,
-            $student->language_id,
-            $student->course_id,
+            $student->created_at,
         ];
     }
 
@@ -80,6 +93,7 @@ class StudentExport implements
                 'Course',
                 'Language',
                 'Email',
+                'Aadhaar',
                 'Mobile',
                 'Alternate Mobile',
                 'Gender',
@@ -132,7 +146,7 @@ class StudentExport implements
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {
-                $event->sheet->getStyle('A1:F1')->applyFromArray([
+                $event->sheet->getStyle('A1:Z1')->applyFromArray([
                     'font'=> [
                         'bold' => true,
                     ],
