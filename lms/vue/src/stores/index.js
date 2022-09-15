@@ -39,6 +39,7 @@ const store = createStore({
     state: {
         loading: false,
         languages: [],
+        courseList: [],
         courseTypeList: [],
         subjectList: [],
         boardList: [],
@@ -50,6 +51,9 @@ const store = createStore({
     getters: {
         languages(state) {
             return state.languages;
+        },
+        courseList(state) {
+            return state.courseList;
         },
         courseTypeList(state) {
             return state.courseTypeList;
@@ -96,6 +100,14 @@ const store = createStore({
                 .get('/languages')
                 .then(({ data }) => {
                     commit('SET_LANGUAGES', data)
+                    return data;
+                })
+        },
+        async listCourses({ commit }) {
+            return await axiosClient
+                .get('/courses_list')
+                .then(({ data }) => {
+                    commit('SET_COURSES_LIST', data)
                     return data;
                 })
         },
@@ -167,6 +179,9 @@ const store = createStore({
     mutations: {
         SET_LANGUAGES(state, payload) {
             state.languages = payload;
+        },
+        SET_COURSES_LIST(state, payload) {
+            state.courseList = payload;
         },
         SET_COURSES_TYPES_LIST(state, payload) {
             state.courseTypeList = payload;

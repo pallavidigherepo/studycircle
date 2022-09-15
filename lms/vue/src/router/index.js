@@ -49,6 +49,7 @@ import ShowTemplate from '../views/Templates/Show.vue';
 import PaperGenerator from "../views/GeneratedQuestions/Create.vue";
 import GeneratedQuestionPapers from "../views/GeneratedQuestions/Index.vue";
 import ShowGeneratedQuestionPaper from "../views/GeneratedQuestions/Show.vue";
+import AssignToStudent from "../views/GeneratedQuestions/AssignStudent.vue";
 
 import Students from '../views/Students/Index.vue';
 import CreateStudent from '../views/Students/Create.vue';
@@ -305,6 +306,15 @@ const routes = [{
                     parent: 'GeneratedQuestionPapers'
                 },
             },
+            {
+                path: "/generated_question_papers/assign/:id",
+                name: "AssignToStudent",
+                component: AssignToStudent,
+                meta: {
+                    parent: 'GeneratedQuestionPapers'
+                },
+            },
+
             {
                 path: "/templates",
                 name: "Templates",

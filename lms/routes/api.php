@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\BatchController;
 use App\Models\Batch;
+use App\Models\Course;
 use App\Models\GeneratedQuestionPaper;
 use App\Models\Template;
 use Illuminate\Http\Request;
@@ -78,6 +79,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('v1/languages', function () {
         return Language::all()->pluck('name', 'id');
     })->name('languages');
+
+    Route::get('v1/courses_list', function () {
+        return Course::all()->pluck('name', 'id');
+    })->name('courses_list');
 
     Route::get('v1/course_type_list', function () {
         return CoursesType::all()->pluck('label', 'id');

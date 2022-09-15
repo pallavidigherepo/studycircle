@@ -54,7 +54,7 @@ function add() {
   router.push({ name: "CreateStudent" });
 }
 onMounted(() => {
-  if (route.name == "CreateStudent" || route.name == "EditStudent") {
+  if (route.name == "CreateStudent" || route.name == "EditStudent" || route.name == "ShowStudent") {
     listing.value = false;
   }
 });

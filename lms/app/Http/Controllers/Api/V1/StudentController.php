@@ -29,15 +29,28 @@ class StudentController extends Controller
         $field = $request->input('sort_field') ?? 'id';
         $order = $request->input('sort_order') ?? 'desc';
         $perPage = $request->input('per_page') ?? 10;
+        $batch = $request->input('batch_id') ?? null;
+        $course = $request->input('course_id') ?? null;
+        if (!$batch && !$course) {
+            return StudentResource::collection(
+                Student::when(request('search'), function ($query) {
+                    $query->where('name', 'like', '%'. request('search'). '%');
+                })
 
-        $students = StudentResource::collection(
-            Student::when(request('search'), function ($query) {
-                $query->where('name', 'like', '%'. request('search'). '%');
-            })
-            ->orderBy($field, $order)
-            ->paginate($perPage)
-        );
-        return $students;
+                    ->orderBy($field, $order)
+                    ->paginate($perPage)
+            );
+        } else {
+            return StudentResource::collection(
+                Student::when(request('search'), function ($query) {
+                    $query->where('name', 'like', '%'. request('search'). '%');
+                })
+                    ->where('batch_id', $batch)
+                    ->where('course_id', $course)
+                    ->orderBy($field, $order)
+                    ->paginate($perPage)
+            );
+        }
     }
 
     /**

@@ -5,6 +5,13 @@
                 {{ t("templates.Preview Generated Question Paper") }}
             </h2>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
+                <button class="btn mr-2 btn-warning-soft"
+                        v-if="!isCreate"
+                        @click.prevent="assignToStudent(data)"
+                        >
+                    <UsersIcon class="w-4 h-4 mr-2"/>
+                    {{ t("generated_questions.Assign") }}
+                </button>
                 <button class="btn mr-2"
                         v-if="!isCreate"
                         @click.prevent="printGeneratedQuestion(false)"
@@ -98,7 +105,10 @@ import { ref } from "vue";
 import ListQuestion from "./ListQuestion.vue";
 
 import {useI18n} from "vue-i18n";
+import {useRoute, useRouter} from "vue-router";
 
+const route = useRoute();
+const router = useRouter();
 const {t} = useI18n();
 
 const props = defineProps({
@@ -120,6 +130,13 @@ function printGeneratedQuestion(withSolutions = false){
 }
 function printMe() {
     window.print();
+}
+
+function assignToStudent(item) {
+    router.push({
+        name: "AssignToStudent",
+        params: { id: item.id },
+    });
 }
 </script>
 

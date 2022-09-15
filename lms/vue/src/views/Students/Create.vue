@@ -918,6 +918,7 @@ async function submitForm()
 }
 
 onMounted(() => {
+    store.dispatch("listCourses").then().catch();
     store.dispatch("listBoard").then().catch();
     store.dispatch("listStandard").then().catch();
     store.dispatch("listLanguages").then().catch();
