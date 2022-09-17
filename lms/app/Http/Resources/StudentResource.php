@@ -44,6 +44,8 @@ class StudentResource extends JsonResource
             'father_qualification' => $this->father_qualification,
             'father_occupation' => $this->father_occupation,
             'avatar' => $this->avatar ? URL::to($this->avatar) : null,
+            'generated_questions' => $this->generated_question_papers(),
+            'student_papers' => $this->student_papers,
         ];
     }
 }

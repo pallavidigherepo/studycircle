@@ -1,10 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\V1\BatchController;
-use App\Models\Batch;
-use App\Models\Course;
-use App\Models\GeneratedQuestionPaper;
-use App\Models\Template;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\AuthController;
@@ -25,6 +21,8 @@ use App\Http\Controllers\Api\V1\StudentController;
 use App\Http\Controllers\Api\V1\ProfileController;
 use App\Http\Controllers\Api\V1\TemplateController;
 use App\Http\Controllers\Api\V1\GeneratedQuestionPaperController;
+use App\Http\Controllers\Api\V1\BatchController;
+use App\Http\Controllers\Api\V1\StudentPaperController;
 
 use App\Models\Board;
 use App\Models\Chapter;
@@ -35,6 +33,10 @@ use App\Models\QuestionType;
 use App\Models\Standard;
 use App\Models\Subject;
 use App\Models\Topic;
+use App\Models\Batch;
+use App\Models\Course;
+use App\Models\GeneratedQuestionPaper;
+use App\Models\Template;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +74,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('v1/profile', ProfileController::class);
     Route::resource('v1/templates', TemplateController::class);
     Route::resource('v1/generated_questions', GeneratedQuestionPaperController::class);
+    Route::resource('v1/student_papers', StudentPaperController::class);
 
     Route::post('v1/exports/index', [ExportController::class, 'index'])->name('exports.index');
     Route::post('v1/imports', [ImportController::class, 'store'])->name('imports.store');

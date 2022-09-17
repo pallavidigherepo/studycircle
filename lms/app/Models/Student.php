@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 /**
  * This class is Student model class with all student management related functions and variables.
  *
- * @package Meritest_LMS_User_Model
+ * @package Meritest_LMS_Student_Model
  * @author Pallavi Dighe <pallavi@meritest.in>
  * @acces public
  * @version 1.0
@@ -125,5 +125,15 @@ class Student extends Model
     public function language(): BelongsTo
     {
         return $this->belongsTo(Language::class, 'language_id');
+    }
+
+    public function generated_question_papers() :HasMany
+    {
+        return $this->hasMany(GeneratedQuestionPaper::class);
+    }
+
+    public function student_papers() :HasMany
+    {
+        return $this->hasMany(StudentPaper::class);
     }
 }

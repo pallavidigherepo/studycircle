@@ -86,18 +86,18 @@
                         <UserIcon class="w-4 h-4 mr-2" /> {{ t("students.Information") }}
                     </Tab>
                     <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
-                        <ShieldIcon class="w-4 h-4 mr-2" /> {{ t("students.Paper Solved") }}
+                        <ServerIcon class="w-4 h-4 mr-2" /> {{ t("students.Papers") }}
                     </Tab>
                     <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
-                        <LockIcon class="w-4 h-4 mr-2" /> {{ t("students.Results") }}
+                        <TrendingUpIcon class="w-4 h-4 mr-2" /> {{ t("students.Results") }}
                     </Tab>
                 </TabList>
             </div>
             <!-- END: Profile Info -->
             <TabPanels class="mt-5">
+                <!-- BEGIN: Basic Information -->
                 <TabPanel>
                     <div class="grid grid-cols-12 gap-6">
-                        <!-- BEGIN: Latest Uploads -->
                         <div class="intro-y box col-span-12 lg:col-span-12">
                             <div
                                 class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
@@ -478,39 +478,108 @@
 
                             </div>
                         </div>
-                        <!-- END: Latest Uploads -->
                     </div>
                 </TabPanel>
+                <!-- END: Basic Information -->
+                <!-- BEGIN: Student Papers -->
                 <TabPanel>
                     <div class="grid grid-cols-12 gap-6">
-                        <!-- BEGIN: Latest Uploads -->
                         <div class="intro-y box col-span-12 lg:col-span-12">
                             <div
                                 class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                                <h2 class="font-medium text-base mr-auto">{{ t("auth.Account Information") }}</h2>
+                                <h2 class="font-medium text-base mr-auto">{{ t("students.Papers") }}</h2>
+                            </div>
+                            <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
+                                <div v-for="(paper, index) in student.student_papers"
+                                     :key="index"
+                                     class="intro-y col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3"
+                                >
+                                    <div class="box">
+                                        <div class="p-5">
+                                            <div class="h-40 2xl:h-40 image-fit rounded-md overflow-hidden before:block before:absolute before:w-full before:h-full before:top-0 before:left-0 before:z-10 before:bg-gradient-to-t before:from-black before:to-black/10">
+                                                <div class="absolute bottom-0 text-white px-5 pb-6 z-10">
+                                                    <span class="block font-medium text-base">
+                                                        {{ paper.solved_questions.name}}
+                                                    </span>
+                                                    <span class="text-white/90 text-xs mt-3">{{ paper.solved_questions.subject}}</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="text-slate-600 dark:text-slate-500 mt-5">
+                                                <div class="flex items-center">
+                                                    <LinkIcon class="w-4 h-4 mr-2" /> {{ t("students.Total Marks") }}: {{ paper.total_marks }}
+                                                </div>
+                                                <div class="flex items-center mt-2">
+                                                    <ClockIcon class="w-4 h-4 mr-2" /> {{ t("templates.Duration") }}: {{ paper.solved_questions.template_info.duration }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="flex justify-center lg:justify-end items-center p-5 border-t border-slate-200/60 dark:border-darkmode-400"
+                                        >
+                                            <button class="flex items-center mr-1 btn btn-success-soft"
+                                                    v-if="paper.attempted_on">
+                                                {{ t("students.Show Result") }}
+                                            </button>
+                                            <button v-else
+                                                    class="flex items-center btn btn-primary-soft"
+                                                    @click.prevent="openConfirmation(paper)"
+                                            >
+                                                {{ t("students.Take Test") }}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <!-- END: Latest Uploads -->
 
                     </div>
                 </TabPanel>
+                <!-- END: Student Papers -->
+                <!-- BEGIN: Student Results -->
                 <TabPanel>
                     <div class="grid grid-cols-12 gap-6">
-
-                        <!-- BEGIN: Latest Uploads -->
                         <div class="intro-y box col-span-12 lg:col-span-12">
                             <div
                                 class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                                <h2 class="font-medium text-base mr-auto">{{ t("auth.Change Password") }}</h2>
+                                <h2 class="font-medium text-base mr-auto">{{ t("students.Results") }}</h2>
 
                             </div>
                         </div>
-                        <!-- END: Latest Uploads -->
-
                     </div>
                 </TabPanel>
+                <!-- END: Student Results -->
             </TabPanels>
         </TabGroup>
+        <!-- BEGIN: Confirmation Modal -->
+        <Modal
+            :show="takeTestConfirmationModal"
+            @hidden="takeTestConfirmationModal = false"
+        >
+            <ModalBody class="p-0">
+                <div class="p-5 text-center">
+
+                    <AlertTriangleIcon class="w-16 h-16 text-warning mx-auto mt-3" />
+                    <div class="text-3xl mt-5">{{ t("common.Are you sure") }}?</div>
+                    <div class="text-slate-500 mt-2">
+                        {{ t("students.Do you really want to take the test") }}? <br />
+                        {{ t("students.This process cannot be undone") }}.
+                    </div>
+                </div>
+                <div class="px-5 pb-8 text-center">
+                    <button
+                        type="button"
+                        @click="takeTestConfirmationModal = false"
+                        class="btn btn-outline-secondary w-24 mr-1"
+                    >
+                        {{ t("common.Cancel") }}
+                    </button>
+                    <button type="button" class="btn btn-danger w-24" @click.prevent="startTest">{{ t("common.Yes") }}</button>
+                </div>
+            </ModalBody>
+        </Modal>
+        <!-- END: Confirmation Modal -->
+        <Loading v-if="isLoading" fixed></Loading>
     </div>
 
 </template>
@@ -520,12 +589,17 @@ import { ref, onMounted} from "vue";
 import { useI18n } from "vue-i18n";
 import axiosClient from "@/axios";
 import {useRoute, useRouter} from "vue-router";
+import {Tab} from "../../global-components/tab";
 
 const { t } = useI18n();
 
 const route = useRoute();
 const router = useRouter();
 const isLoading = ref(false);
+
+let takeTestConfirmationModal = ref(false);
+const warningMessage = ref("");
+const selectedPaper = ref();
 
 const student = ref({
     id: route.params.id,
@@ -578,5 +652,15 @@ const fetch = async () => {
 function cancel()
 {
 
+}
+
+function openConfirmation(paper) {
+    selectedPaper.value = paper;
+    takeTestConfirmationModal.value = true;
+}
+
+function startTest() {
+    takeTestConfirmationModal.value = false;
+    selectedPaper.value;
 }
 </script>

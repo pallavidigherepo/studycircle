@@ -15,6 +15,7 @@ import studentModule from './modules/students/index.js';
 import templateModule from './modules/templates/index';
 import generateQuestionModule from './modules/generate_questions/index';
 import batchModule from './modules/batches/index';
+import studentPaperModule from './modules/student_papers/index.js';
 
 const store = createStore({
     modules: {
@@ -32,6 +33,7 @@ const store = createStore({
         templates: templateModule,
         generated_questions: generateQuestionModule,
         batches: batchModule,
+        student_papers: studentPaperModule,
         /*languages: languageModule,
          */
     },

@@ -34,7 +34,7 @@
                         </div>
                         <div class="mt-5">
 
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label xl:w-64 xl:!mr-10">
                                     <div class="text-left">
                                         <div class="flex items-center">
@@ -73,7 +73,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label xl:w-64 xl:!mr-10">
                                     <div class="text-left">
                                         <div class="flex items-center">
@@ -125,7 +125,7 @@
                         </div>
                         <div class="mt-5">
 
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline items-start flex-col xl:flex-row mt-2 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label xl:w-64 xl:!mr-10">
                                     <div class="text-left">
                                         <div class="flex items-center">
@@ -162,7 +162,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline items-start flex-col xl:flex-row mt-2 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label xl:w-64 xl:!mr-10">
                                     <div class="text-left">
                                         <div class="flex items-center">
@@ -212,7 +212,7 @@
                         </div>
                         <div class="mt-5">
 
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label xl:w-64 xl:!mr-10">
                                     <div class="text-left">
                                         <div class="flex items-center">
@@ -250,7 +250,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label xl:w-64 xl:!mr-10">
                                     <div class="text-left">
                                         <div class="flex items-center">
@@ -289,7 +289,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label xl:w-64 xl:!mr-10">
                                     <div class="text-left">
                                         <div class="flex items-center">
@@ -330,8 +330,8 @@
                     </div>
                 </div>
                 <!-- END: Subject, Chapter and Topic selection -->
-                <div class="mt-3 text-center justify-center">
-                    <div class="mt-2 text-center w-full">
+                <div class="mt-5 mb-5 text-center justify-center">
+                    <div class="mt-1 text-center w-full">
                         <div class="form-check form-switch text-center justify-center">
                             <input id="checkbox-switch-7"
                                    class="form-check-input"
@@ -344,7 +344,7 @@
 
                     </div>
                 </div>
-                <div v-if="!addQuestionManually" class="intro-y box p-5 mt-5">
+                <div v-if="!addQuestionManually" class="intro-y box p-5 mt-3">
 
                     <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                         <div
@@ -354,8 +354,8 @@
                             {{ t("questions.Import questions in bulk") }}
 
                         </div>
-                        <div class="mt-5 box col-span-12">
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                        <div class="mt-5 col-span-12">
+                            <div class="form-inline items-start flex-col xl:flex-row mt-2 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label xl:w-64 xl:!mr-10">
                                     <div class="text-left">
                                         <div class="flex items-center">
@@ -393,8 +393,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div
-                                class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0 w-full">
+                            <div class="form-inline items-start flex-col xl:flex-row mt-2 pt-5 first:mt-0 first:pt-0 w-full">
 
                                 <div class="w-full">
                                     <div class="text-center">
@@ -480,7 +479,7 @@
                 </div>
 
                 <!-- BEGIN: Question and Solution -->
-                <div v-if="addQuestionManually" class="intro-y box p-5 mt-5">
+                <div v-if="addQuestionManually" class="intro-y box p-5 mt-3">
 
                     <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                         <div
@@ -491,9 +490,8 @@
 
                         </div>
 
-                        <div class="mt-5">
-
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                        <div class="mt-2">
+                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label xl:w-64 xl:!mr-10">
                                     <div class="text-left">
                                         <div class="flex items-center">
@@ -521,7 +519,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label xl:w-64 xl:!mr-10">
                                     <div class="text-left">
                                         <div class="flex items-center">
@@ -563,7 +561,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label xl:w-64 xl:!mr-10">
                                     <div class="text-left">
                                         <div class="flex items-center">
@@ -605,7 +603,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label xl:w-64 xl:!mr-10">
                                     <div class="text-left">
                                         <div class="flex items-center">
@@ -634,7 +632,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label xl:w-64 xl:!mr-10">
                                     <div class="text-left">
                                         <div class="flex items-center">
@@ -664,7 +662,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label xl:w-64 xl:!mr-10">
                                     <div class="text-left">
                                         <div class="flex items-center">
@@ -698,14 +696,14 @@
                 </div>
                 <!-- END: Subject, Chapter and Topic selection -->
                 <!-- BEGIN: Product Variant (Details) -->
-                <div v-if="addQuestionManually" class="intro-y box p-5 mt-5">
+                <div v-if="addQuestionManually" class="intro-y box p-5 mt-3">
                     <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                         <div
                             class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                             <ChevronDownIcon class="w-4 h-4 mr-2"/>
                             {{ t("questions.Select Question Type & Add Answer") }}
                         </div>
-                        <div class="mt-5">
+                        <div class="mt-1">
 
                             <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label xl:w-64 xl:!mr-10">
@@ -745,9 +743,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div
-                                v-if="model.type_id != '' && model.type_id != 'Select Question Type' && model.type_id != 5"
-                                class="form-inline items-start flex-col xl:flex-row mt-2 pt-2 first:mt-0 first:pt-0">
+                            <div v-if="model.type_id !== '' && model.type_id !== 'Select Question Type' && model.type_id !== 5"
+                                class="form-inline items-start flex-col xl:flex-row mt-1 pt-2 first:mt-0 first:pt-0">
                                 <div class="form-label xl:w-64 xl:!mr-10">
                                     <div class="text-left">
                                         <div class="flex items-center">
@@ -825,7 +822,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div v-else-if="model.type_id == 5" class="intro-y box p-5 mt-5">
+                            <div v-else-if="model.type_id === 5" class="intro-y box p-5 mt-1">
                                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                                     <div
                                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
@@ -876,13 +873,11 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
                 <!-- END: Product Variant (Details) -->
-                <div class="flex justify-end flex-col md:flex-row gap-2 mt-5">
+                <div class="flex justify-end flex-col md:flex-row gap-2 mt-1">
                     <router-link
                         class="btn py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 w-full md:w-52"
                         to="/questions">

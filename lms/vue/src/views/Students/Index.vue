@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, watch } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRoute, useRouter } from "vue-router";
 import store from "@/stores";
@@ -54,7 +54,7 @@ function add() {
   router.push({ name: "CreateStudent" });
 }
 onMounted(() => {
-  if (route.name == "CreateStudent" || route.name == "EditStudent" || route.name == "ShowStudent") {
+  if (route.name === "CreateStudent" || route.name === "EditStudent" || route.name === "ShowStudent") {
     listing.value = false;
   }
 });

@@ -16,7 +16,7 @@ class CreateStudentsTable extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('roll_number')->unique();
+            $table->string('roll_number')->nullable(true)->unique();
             $table->string('aadhaar')->unique();
             $table->boolean('is_aadhaar_verified')->default(false);
             $table->unsignedBigInteger('board_id')->nullable(true);
