@@ -74,6 +74,17 @@
     "Preview and Print for Student": "छात्र के लिए पूर्वावलोकन और प्रिंट",
     "Preview and Print for Teacher": "शिक्षक के लिए पूर्वावलोकन और प्रिंट",
     "Preview": "पूर्वावलोकन",
-    "Assign": "सौंपना"
-
+    "Assign": "सौंपना",
+    "Select Course": "कोर्स चुनें",
+    "Select Batch": "बैच का चयन करें",
+    "Assign to Students": "छात्रों को असाइन करें",
+    "Question Paper Details": "प्रश्न पत्र विवरण",
+    "Select Batch and Course of Students": "छात्रों के बैच और पाठ्यक्रम का चयन करें",
+    "Can Retest": "पुन: परीक्षण कर सकते हैं",
+    "Starts On": "पर शुरू होता है",
+    "Choose Course": "कोर्स चुनें",
+    "Show result": "परिणाम दिखाओ",
+    "No Students": "कोई छात्र नहीं",
+    "Show result on": "परिणाम दिखाएं",
+    "Fetch Students": "Fetch Students"
 }

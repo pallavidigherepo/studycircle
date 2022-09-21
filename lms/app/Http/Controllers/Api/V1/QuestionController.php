@@ -84,6 +84,7 @@ class QuestionController extends Controller
      */
     public function store(QuestionRequest $request)
     {
+        //dump($request->add_question_manually);
         // Firstly we need to check if questions are added manually OR it is imported in bulk.
         if (!$request->add_question_manually) {
             // We are here because we are doing bulk imports.

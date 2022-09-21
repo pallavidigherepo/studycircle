@@ -8,11 +8,6 @@ use Illuminate\Validation\Rule;
 class QuestionRequest extends FormRequest
 {
     /**
-     * @var mixed
-     */
-    public $add_question_manually;
-
-    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool

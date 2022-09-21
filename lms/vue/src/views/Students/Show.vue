@@ -4,7 +4,7 @@
             <h2 class="text-lg font-medium mr-auto">{{ t("students.Student Details") }}</h2>
 
             <router-link v-if="student"
-                         :to="{name: 'EditStudent', params:{id:student.id}}"
+                         :to="{ name: 'EditStudent', params: { id: student.id } }"
                          class="
                                 btn
                                 btn-success
@@ -489,47 +489,38 @@
                                 class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
                                 <h2 class="font-medium text-base mr-auto">{{ t("students.Papers") }}</h2>
                             </div>
-                            <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
-                                <div v-for="(paper, index) in student.student_papers"
-                                     :key="index"
-                                     class="intro-y col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3"
-                                >
-                                    <div class="box">
-                                        <div class="p-5">
-                                            <div class="h-40 2xl:h-40 image-fit rounded-md overflow-hidden before:block before:absolute before:w-full before:h-full before:top-0 before:left-0 before:z-10 before:bg-gradient-to-t before:from-black before:to-black/10">
-                                                <div class="absolute bottom-0 text-white px-5 pb-6 z-10">
-                                                    <span class="block font-medium text-base">
-                                                        {{ paper.solved_questions.name}}
-                                                    </span>
-                                                    <span class="text-white/90 text-xs mt-3">{{ paper.solved_questions.subject}}</span>
-                                                </div>
-                                            </div>
+                            <div class="pos intro-y grid grid-cols-12 gap-5 mt-5" v-if="papers">
+                                <template v-for="(paper, index) in papers.can_take_test"
+                                          :key="index">
 
-                                            <div class="text-slate-600 dark:text-slate-500 mt-5">
-                                                <div class="flex items-center">
-                                                    <LinkIcon class="w-4 h-4 mr-2" /> {{ t("students.Total Marks") }}: {{ paper.total_marks }}
-                                                </div>
-                                                <div class="flex items-center mt-2">
-                                                    <ClockIcon class="w-4 h-4 mr-2" /> {{ t("templates.Duration") }}: {{ paper.solved_questions.template_info.duration }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="flex justify-center lg:justify-end items-center p-5 border-t border-slate-200/60 dark:border-darkmode-400"
-                                        >
-                                            <button class="flex items-center mr-1 btn btn-success-soft"
-                                                    v-if="paper.attempted_on">
-                                                {{ t("students.Show Result") }}
-                                            </button>
-                                            <button v-else
-                                                    class="flex items-center btn btn-primary-soft"
-                                                    @click.prevent="openConfirmation(paper)"
-                                            >
-                                                {{ t("students.Take Test") }}
-                                            </button>
-                                        </div>
+                                    <div class="intro-y box col-span-12 md:col-span-12 lg:col-span-12 xl:col-span-12">
+                                        <Alert class="alert-primary mb-2 font-bold"> {{ index }} </Alert>
+
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="whitespace-nowrap">#</th>
+                                                    <th class="whitespace-nowrap">Paper Name</th>
+                                                    <th class="whitespace-nowrap">Total Marks</th>
+                                                    <th class="whitespace-nowrap">Total Duration</th>
+                                                    <th class="whitespace-nowrap">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr v-for="(paperInfos, pidx) in paper" :key="pidx">
+                                                <td class="whitespace-nowrap">{{ pidx+1 }}</td>
+                                                <td class="whitespace-nowrap">{{ paperInfos.question_paper_name }}</td>
+                                                <td class="whitespace-nowrap">{{ paperInfos.total_marks }}</td>
+                                                <td class="whitespace-nowrap">{{ paperInfos.total_time }}</td>
+                                                <td class="whitespace-nowrap">
+                                                    <button class="btn btn-success-soft" @click.prevent="startTest(paperInfos)">Take Test</button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                </div>
+                                </template>
+
                             </div>
                         </div>
 
@@ -545,6 +536,40 @@
                                 <h2 class="font-medium text-base mr-auto">{{ t("students.Results") }}</h2>
 
                             </div>
+                            <div class="pos intro-y grid grid-cols-12 gap-5 mt-5" v-if="papers">
+                                <template v-for="(paper, index) in papers.test_taken"
+                                          :key="index">
+
+                                    <div class="intro-y box col-span-12 md:col-span-12 lg:col-span-12 xl:col-span-12">
+                                        <Alert class="alert-primary mb-2 font-bold"> {{ index }} </Alert>
+
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th class="whitespace-nowrap">#</th>
+                                                <th class="whitespace-nowrap">Paper Name</th>
+                                                <th class="whitespace-nowrap">Total Marks</th>
+                                                <th class="whitespace-nowrap">Total Duration</th>
+                                                <th class="whitespace-nowrap">Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr v-for="(paperInfos, pidx) in paper" :key="pidx">
+                                                <td class="whitespace-nowrap">{{ pidx+1 }}</td>
+                                                <td class="whitespace-nowrap">{{ paperInfos.question_paper_name }}</td>
+                                                <td class="whitespace-nowrap">{{ paperInfos.total_marks }}</td>
+                                                <td class="whitespace-nowrap">{{ paperInfos.total_time }}</td>
+                                                <td class="whitespace-nowrap">
+                                                    <button class="btn btn-success-soft" @click.prevent="showResult(paperInfos)">Show Result</button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </template>
+
+                            </div>
+
                         </div>
                     </div>
                 </TabPanel>
@@ -600,6 +625,8 @@ const isLoading = ref(false);
 let takeTestConfirmationModal = ref(false);
 const warningMessage = ref("");
 const selectedPaper = ref();
+const isErrored = ref();
+const message = ref();
 
 const student = ref({
     id: route.params.id,
@@ -627,6 +654,7 @@ const student = ref({
     father_qualification: "",
     father_occupation: "",
 });
+const papers = ref();
 
 onMounted(() => {
     fetch();
@@ -637,11 +665,12 @@ const fetch = async () => {
     try {
         let id = route.params.id;
         const result = await axiosClient.get(`/students/${id}`);
-        if (result.status != 200) {
-            const error = new Error('Failed to fetch student information.')
-            throw error;
+        if (result.status !== 200) {
+            throw new Error('Failed to fetch student information.')
         }
-        student.value = JSON.parse(JSON.stringify(result.data.data));
+        let response = JSON.parse(JSON.stringify(result.data));
+        student.value = response.info;
+        papers.value = response.manipulated;
     } catch (e) {
         isErrored.value = true;
         message.value = e;
@@ -654,13 +683,12 @@ function cancel()
 
 }
 
-function openConfirmation(paper) {
-    selectedPaper.value = paper;
+function startTest() {
     takeTestConfirmationModal.value = true;
+    selectedPaper.value;
 }
 
-function startTest() {
-    takeTestConfirmationModal.value = false;
-    selectedPaper.value;
+function showResult() {
+
 }
 </script>

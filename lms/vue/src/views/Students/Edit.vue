@@ -1007,7 +1007,7 @@ const fetch = async() => {
             const error = new Error('Failed to fetch student information.')
             throw error;
         }
-        model.value = JSON.parse(JSON.stringify(result.data.data));
+        model.value = JSON.parse(JSON.stringify(result.data.info));
     } catch (e) {
         isErrored.value = true;
         message.value = e;

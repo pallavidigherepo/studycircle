@@ -45,6 +45,7 @@ class CreateStudentsTable extends Migration
             $table->string('father_occupation')->nullable(true);
             $table->string('parent_email');
             $table->string('parent_password');
+            $table->string('student_discount')->nullable(true);
 
             $table->foreign('course_id')->references('id')->on('courses');
             $table->foreign('board_id')->references('id')->on('boards');

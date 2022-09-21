@@ -53,3 +53,14 @@ if (!function_exists('save_image')) {
         return $relativePath;
     }
 }
+
+if (!function_exists('generate_unique_code')) {
+    function generate_unique_code():string
+    {
+        $startOfYear = Carbon::now()->startOfYear();
+        $endOfYear = Carbon::now()->endOfYear();
+        $students = Student::where('created_at', '>' , $startOfYear)->where('created_at', '<', $endOfYear)->orderBy('name', 'asc')->get();
+        $count = count($students) + 1;
+        return Carbon::now()->toDateString() . '-' . $count;
+    }
+}

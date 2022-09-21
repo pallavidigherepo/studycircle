@@ -5,7 +5,7 @@
                 {{ t("generated_questions.Assign to Students") }}
             </h2>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-                <router-link to="/generated_questions"
+                <router-link to="/generated_question_papers"
                              class="
                                 btn
                                 box
@@ -29,7 +29,7 @@
         >
             <AlertOctagonIcon class="w-6 h-6 mr-2" />
             <template v-if="errors && errors.length > 0">
-                <span v-for="(error, index) in errors">
+                <span v-for="(error, index) in errors" :key="index">
                     {{ error }}
                 </span>
             </template>
@@ -80,14 +80,14 @@
 
                         <div class="flex items-center mt-3">
                             <PlayIcon class="w-4 h-4 text-slate-500 mr-2"/>
-                            {{ t("templates.Active") }}: <span class="ml-2">{{
-                                paperInfo ? paperInfo.template_info.is_active : null
-                            }}</span>
+                            {{ t("templates.Active") }}: <span class="ml-2">
+                                {{ paperInfo ? (paperInfo.template_info.is_active === 1 ? "Yes" : "No") : null }}
+                            </span>
                         </div>
                         <div class="flex items-center mt-3">
                             <ServerIcon class="w-4 h-4 text-slate-500 mr-2"/>
                             {{ t("templates.Has Section") }}: <span
-                            class="ml-2">{{ paperInfo ? paperInfo.template_info.has_section : null }}</span>
+                            class="ml-2">{{ paperInfo ? (paperInfo.template_info.has_section === 1 ? "Yes" : "No") : null }}</span>
                         </div>
                         <div v-if="!(paperInfo && paperInfo.template_info.has_section)" class="flex items-center mt-3">
                             <SidebarIcon class="w-4 h-4 text-slate-500 mr-2"/>
@@ -111,7 +111,7 @@
                         <div
                             class="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5 mb-5"
                         >
-                            <div class="font-medium text-base truncate">{{ t("templates.Assign to Students") }}</div>
+                            <div class="font-medium text-base truncate">{{ t("generated_questions.Assign to Students") }}</div>
                         </div>
                         <div class="overflow-auto lg:overflow-visible mt-3">
                             <!-- BEGIN: Subject, Chapter and Topic selection -->
@@ -127,7 +127,7 @@
                                             <div class="text-left">
                                                 <div class="flex items-center">
                                                     <div class="font-medium">{{
-                                                            t("students.Choose Batch")
+                                                            t("generated_questions.Choose Batch")
                                                         }}
                                                     </div>
                                                     <div
@@ -150,7 +150,7 @@
                                                           autocomplete: 'off',
                                                           onChange: selectedBatch
                                                         }">
-                                                <option>{{ t('questions.Select Batch') }}</option>
+                                                <option>{{ t('generated_questions.Select Batch') }}</option>
                                                 <option v-for="(batch, indexb) in batches" :key="indexb"
                                                         :value="indexb">
                                                     {{ batch }}
@@ -167,7 +167,7 @@
                                             <div class="text-left">
                                                 <div class="flex items-center">
                                                     <div class="font-medium">{{
-                                                            t("questions.Choose Course")
+                                                            t("generated_questions.Choose Course")
                                                         }}
                                                     </div>
                                                     <div
@@ -190,7 +190,7 @@
                                                           autocomplete: 'off',
                                                           onChange: selectedCourse,
                                                         }">
-                                                <option>{{ t('questions.Select Course') }}</option>
+                                                <option>{{ t('generated_questions.Select Course') }}</option>
                                                 <option v-for="(course, indexc) in courses"
                                                         :key="indexc"
                                                         :value="indexc">
@@ -201,6 +201,88 @@
                                                  :key="index" class="text-danger mt-2">
                                                 <div class="error-msg">{{ error.$message }}</div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                        <div class="form-label xl:w-64 xl:!mr-10">
+                                            <div class="text-left">
+                                                <div class="flex items-center">
+                                                    <div class="font-medium">{{
+                                                            t("generated_questions.Starts On")
+                                                        }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="w-full mt-3 xl:mt-0 flex-1">
+                                            <Litepicker v-model="model.start_end_date"
+                                                        :options="{
+                                                            autoApply: false,
+                                                            singleMode: false,
+                                                            numberOfColumns: 2,
+                                                            numberOfMonths: 2,
+                                                            showWeekNumbers: true,
+                                                            format: 'YYYY-MM-DD',
+                                                            dropdowns: {
+                                                                minYear: 1990,
+                                                                maxYear: null,
+                                                                months: true,
+                                                                years: true,
+                                                            },
+                                                        }"
+                                                        class="form-control block mx-auto" />
+
+                                        </div>
+                                    </div>
+                                    <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                        <div class="form-label xl:w-64 xl:!mr-10">
+                                            <div class="text-left">
+                                                <div class="flex items-center">
+                                                    <div class="font-medium">{{
+                                                            t("generated_questions.Can Retest")
+                                                        }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="w-full mt-3 xl:mt-0 flex-1">
+                                            <div class="form-check form-switch">
+                                                <input id="form-has-section"
+                                                    v-model.trim="model.can_retest"
+                                                    class="form-check-input"
+                                                    type="checkbox"
+                                                />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                        <div class="form-label xl:w-64 xl:!mr-10">
+                                            <div class="text-left">
+                                                <div class="flex items-center">
+                                                    <div class="font-medium">{{
+                                                            t("generated_questions.Show result on")
+                                                        }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="w-full mt-3 xl:mt-0 flex-1">
+                                            <Litepicker v-model="model.show_result_on"
+                                                        :options="{
+                                                            autoApply: false,
+                                                            singleMode: true,
+                                                            showWeekNumbers: true,
+                                                            format: 'YYYY-MM-DD',
+                                                            dropdowns: {
+                                                                minYear: 1990,
+                                                                maxYear: null,
+                                                                months: true,
+                                                                years: true,
+                                                            },
+                                                        }"
+                                                        class="form-control block mx-auto" />
+
                                         </div>
                                     </div>
                                 </div>
@@ -263,7 +345,7 @@
                                                     <tr>
                                                         <td colspan="3"
                                                             class="border-b dark:border-darkmode-400 text-center">
-                                                            {{ t("students.No Students") }}.
+                                                            {{ t("generated_questions.No Students") }}.
                                                         </td>
                                                     </tr>
                                                 </template>
@@ -324,8 +406,12 @@ const model = ref({
     id: "",
     batch_id: "",
     course_id: "",
+    subject_id: "",
     generated_question_paper_id: route.params.id,
     solved_questions: "",
+    start_end_date: "",
+    can_retest: false,
+    show_result_on: "",
     students: {},
 });
 onMounted(() => {
@@ -347,7 +433,8 @@ const fetch = async () => {
             throw new Error('Failed to fetch template');
         }
         paperInfo.value = JSON.parse(JSON.stringify(result.data.data));
-        model.value.solved_questions = JSON.parse(JSON.stringify(result.data.data));
+        model.value.solved_questions = paperInfo.value;
+        model.value.subject_id = paperInfo.value.subject_id;
         isLoading.value = false;
     } catch (e) {
         message.value = e;
@@ -439,6 +526,10 @@ async function submitForm() {
 
 function removeStudent(student) {
     model.value.students = model.value.students.filter((q) => q !== student);
+}
+
+function setRestest() {
+    model.value.can_retest = !model.value.can_retest;
 }
 </script>
 

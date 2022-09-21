@@ -75,5 +75,18 @@
     "Preview and Print for Student": "Preview and Print for Student",
     "Preview and Print for Teacher": "Preview and Print for Teacher",
     "Preview": "Preview",
-    "Assign": "Assign"
+    "Assign": "Assign",
+    "Select Course": "Select Course",
+    "Select Batch": "Select Batch",
+    "Assign to Students": "Assign to Students",
+    "Question Paper Details": "Question Paper Details",
+    "Select Batch and Course of Students": "Select Batch and Course of Students",
+    "Can Retest": "Can Retest",
+    "Starts On": "Starts On",
+    "Choose Course": "Choose Course",
+    "Choose Batch": "Choose Batch",
+    "Show result": "Show result",
+    "No Students": "No Students",
+    "Show result on": "Show result on",
+    "Fetch Students": "Fetch Students"
 }

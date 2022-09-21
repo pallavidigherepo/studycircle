@@ -7,6 +7,7 @@ use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Http\Resources\StudentResource;
 use App\Models\Student;
+use App\Models\StudentPaper;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
@@ -96,12 +97,14 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Student  $student
+     * @return array
      */
-    public function show(Student $student)
+    public function show(Student $student) :array
     {
-        return new StudentResource(Student::findOrFail($student->id));
+        $studentModel = new Student();
+        // We need manipulated data of student so that he/she cannot do any kind of cheating.
+        return $studentModel->manipulateStudentInfo(new StudentResource(Student::findOrFail($student->id)));
     }
 
     /**

@@ -30,6 +30,7 @@ class StudentPaper extends Model
         'course_id',
         'generated_question_paper_id',
         'student_id',
+        'subject_id',
         'attempted_on',
         'total_time',
         'total_time_taken',
@@ -38,6 +39,11 @@ class StudentPaper extends Model
         'solved_questions',
         'created_by',
         'updated_by',
+        'unique_code',
+        'start_date',
+        'end_date',
+        'can_retest',
+        'show_result_on'
     ];
 
     /**
@@ -48,6 +54,11 @@ class StudentPaper extends Model
     protected $casts = [
         'solved_questions' => 'array'
     ];
+
+    public function subject(): BelongsTo
+    {
+        return $this->belongsTo(Subject::class, 'subject_id');
+    }
 
     public function batch(): BelongsTo
     {

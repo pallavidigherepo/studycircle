@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 
 /**
@@ -49,13 +50,19 @@ class StudentPaperController extends Controller
     public function store(StoreStudentPaperRequest $request)
     {
         if ($request->validated()) {
+            $startEndDate = explode(' - ', $request->start_end_date);
             $input = [
                 'generated_question_paper_id' => $request->generated_question_paper_id,
                 'batch_id' => $request->batch_id,
                 'course_id' => $request->course_id,
+                'subject_id' => $request->subject_id,
                 'solved_questions' => $request->solved_questions,
                 'total_marks' => $request->solved_questions['template_info']['total_marks'],
                 'total_time' => $request->solved_questions['template_info']['duration'],
+                'start_date' => $startEndDate[0],
+                'end_date' => $startEndDate[1],
+                'can_retest' => $request->can_retest,
+                'show_result_on' => $request->show_result_on,
                 'created_by' => Auth::user()->id,
                 'updated_by' => Auth::user()->id,
             ];
@@ -78,6 +85,7 @@ class StudentPaperController extends Controller
                 $i = 0;
                 foreach ($studentToAdd as $studentId) {
                     $input['student_id'] = $studentId;
+                    $input['unique_code'] = Str::random(15);
                     $studentPaper[$i++] = StudentPaper::create($input);
                 }
             }
