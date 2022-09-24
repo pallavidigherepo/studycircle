@@ -2,20 +2,19 @@
 
 namespace App\Imports;
 
-use App\Models\Enquiry;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Inquiry;
 use Maatwebsite\Excel\Concerns\ToModel;
 
-class EnquiryImport implements ToModel
+class InquiryImport implements ToModel
 {
     /**
     * @param array $row
     *
-    * @return Model|null
+    * @return \Illuminate\Database\Eloquent\Model|null
     */
     public function model(array $row)
     {
-        return new Enquiry([
+        return new Inquiry([
             //
         ]);
     }

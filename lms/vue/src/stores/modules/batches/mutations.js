@@ -7,11 +7,11 @@ export default {
         state.pagination = payload;
     },
 
-    CREATE_BATCH(state, batch) {
-        state.batches.data.unshift(batch.batch)
+    CREATE_BATCH(state, payload) {
+        state.batches.data.unshift(payload.batch)
     },
     EDIT_BATCH(state, payload) {
-        state.batch = payload;
+        state.batch = payload.batch;
     },
 
     DELETE_BATCH(state, id) {

@@ -25,7 +25,8 @@
                 @click="linkTo(menu, router, $event)"
             >
                 <div class="side-menu__icon">
-                <component :is="menu.icon" />
+                    <component v-if="menu.icon" :is="menu.icon" />
+                    <ZapIcon v-else />
                 </div>
                 <div class="side-menu__title">
                 {{ menu.title }}
@@ -58,7 +59,8 @@
                     @click="linkTo(subMenu, router, $event)"
                     >
                     <div class="side-menu__icon">
-                        <component :is="subMenu.icon" />
+                        <component v-if="subMenu.icon" :is="subMenu.icon" />
+                        <ZapIcon v-else />
                     </div>
                     <div class="side-menu__title">
                         {{ subMenu.title }}
@@ -99,7 +101,8 @@
                             @click="linkTo(lastSubMenu, router, $event)"
                         >
                             <div class="side-menu__icon">
-                            <ZapIcon />
+                                <component v-if="lastSubMenu.icon" :is="lastSubMenu.icon" />
+                                <ZapIcon v-else />
                             </div>
                             <div class="side-menu__title">
                             {{ lastSubMenu.title }}

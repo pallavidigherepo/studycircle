@@ -41,13 +41,13 @@ class BatchController extends Controller
         if ($request->validated()) {
             $inputs = [
                 'name'=> $request->name,
-                'is_active'=> $request->is_active,
+                'is_active'=> $request->is_active ?: !$request->is_active,
             ];
             $batch = Batch::create($inputs);
             $response = [
                 'success' => true,
                 'message' => 'Batch created successfully.',
-                'coursesType' => $batch,
+                'batch' => $batch,
             ];
         } else {
             $response = [
@@ -81,7 +81,7 @@ class BatchController extends Controller
     {
         if ($request->validated()) {
             $batch->name = $request->name;
-            $batch->is_active = $request->is_active;
+            $batch->is_active = $request->is_active ?: !$request->is_active;
 
             $batch->save();
             $response = [

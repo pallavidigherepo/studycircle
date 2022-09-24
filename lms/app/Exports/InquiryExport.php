@@ -2,16 +2,16 @@
 
 namespace App\Exports;
 
-use App\Models\Enquiry;
+use App\Models\Inquiry;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class EnquiryExport implements FromCollection
+class InquiryExport implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return Enquiry::all();
+        return Inquiry::all();
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\AuthController;
@@ -23,6 +22,10 @@ use App\Http\Controllers\Api\V1\TemplateController;
 use App\Http\Controllers\Api\V1\GeneratedQuestionPaperController;
 use App\Http\Controllers\Api\V1\BatchController;
 use App\Http\Controllers\Api\V1\StudentPaperController;
+use App\Http\Controllers\Api\V1\InquiryFollowupTypeController;
+use App\Http\Controllers\Api\V1\InquirySourceController;
+use App\Http\Controllers\Api\V1\InquiryStatusController;
+use App\Http\Controllers\Api\V1\InquiryController;
 
 use App\Models\Board;
 use App\Models\Chapter;
@@ -75,6 +78,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('v1/templates', TemplateController::class);
     Route::resource('v1/generated_questions', GeneratedQuestionPaperController::class);
     Route::resource('v1/student_papers', StudentPaperController::class);
+    Route::resource('v1/inquiry_statuses', InquiryStatusController::class);
+    Route::resource('v1/inquiry_sources', InquirySourceController::class);
+    Route::resource('v1/inquiry_followup_types', InquiryFollowupTypeController::class);
+    Route::resource('v1/inquiries', InquiryController::class);
 
     Route::post('v1/exports/index', [ExportController::class, 'index'])->name('exports.index');
     Route::post('v1/imports', [ImportController::class, 'store'])->name('imports.store');

@@ -16,6 +16,10 @@ import templateModule from './modules/templates/index';
 import generateQuestionModule from './modules/generate_questions/index';
 import batchModule from './modules/batches/index';
 import studentPaperModule from './modules/student_papers/index.js';
+import inquiryModule from "./modules/inquiries/index.js";
+import inquiryStatusModule from "./modules/inquiry_statuses/index.js";
+import inquirySourcesModule from "./modules/inquiry_sources/index.js";
+import inquiryFollowUpTypeModule from "./modules/inquiry_followup_types/index.js";
 
 const store = createStore({
     modules: {
@@ -33,7 +37,10 @@ const store = createStore({
         templates: templateModule,
         generated_questions: generateQuestionModule,
         batches: batchModule,
-        student_papers: studentPaperModule,
+        inquiries: inquiryModule,
+        inquiry_followup_types: inquiryFollowUpTypeModule,
+        inquiry_sources: inquirySourcesModule,
+        inquiry_statuses: inquiryStatusModule,
         /*languages: languageModule,
          */
     },

@@ -7,7 +7,7 @@
         </h2>
       </div>
       <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
-        <!-- BEGIN: Dtatatable Content -->
+        <!-- BEGIN: Datatable Content -->
         <div class="intro-y col-span-12 lg:col-span-12">
           <!-- BEGIN: HTML Table Data -->
 
@@ -30,7 +30,7 @@
           </div>
           <!-- END: HTML Table Data -->
         </div>
-        <!-- END: Dtatatable Content -->
+        <!-- END: Datatable Content -->
       </div>
     </template>
     <template v-else>
@@ -56,9 +56,9 @@ const listing = ref(true);
 
 onMounted(() => {
   if (
-    route.name == "CreateQuestion" ||
-    route.name == "EditQuestion" ||
-    route.name == "ShowQuestion"
+    route.name === "CreateQuestion" ||
+    route.name === "EditQuestion" ||
+    route.name === "ShowQuestion"
   ) {
     listing.value = false;
 

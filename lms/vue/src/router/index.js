@@ -56,8 +56,15 @@ import CreateStudent from '../views/Students/Create.vue';
 import EditStudent from '../views/Students/Edit.vue';
 import ShowStudent from '../views/Students/Show.vue';
 
+
 import SettingIndex from '../views/Settings/Index.vue';
 import Batches from '../views/Batches/Index.vue';
+import Standards from '../views/Standards/Index.vue';
+import Boards from '../views/Boards/Index.vue';
+import InquiryStatuses from '../views/InquiryStatuses/Index.vue';
+import InquirySources from '../views/InquirySources/Index.vue';
+import InquiryFollowupTypes from '../views/InquiryFollowupTypes/Index.vue';
+import Inquiries from '../views/Inquiries/Index.vue';
 
 import Login from "../views/Auth/Login.vue";
 import Profile from "../views/Auth/Profile.vue";
@@ -135,6 +142,55 @@ const routes = [{
                     }
                 ]
             },
+            {
+                path: '/boards',
+                name: "Boards",
+                component: Boards,
+                meta: {
+                    parent: 'Boards'
+                },
+            },
+            {
+                path: '/standards',
+                name: "Standards",
+                component: Standards,
+                meta: {
+                    parent: 'Standards'
+                },
+            },
+            {
+                path: '/inquiry_statuses',
+                name: "InquiryStatuses",
+                component: InquiryStatuses,
+                meta: {
+                    parent: 'InquiryStatuses'
+                },
+            },
+            {
+                path: '/inquiry_follow_up_types',
+                name: "InquiryFollowupTypes",
+                component: InquiryFollowupTypes,
+                meta: {
+                    parent: 'InquiryFollowupTypes'
+                },
+            },
+            {
+                path: '/inquiry_sources',
+                name: "InquirySources",
+                component: InquirySources,
+                meta: {
+                    parent: 'InquirySources'
+                },
+            },
+            {
+                path: '/inquiries',
+                name: "Inquiries",
+                component: Inquiries,
+                meta: {
+                    parent: 'Inquiries'
+                },
+            },
+
             {
                 path: '/courses_types',
                 name: "CourseTypes",

@@ -125,7 +125,7 @@
                 <tbody>
                 <template v-if="items">
                     <tr v-for="(item, index) in items.data" :key="index" :class="{
-            'bg-secondary': item && item.id == selectedRow,
+            'bg-secondary': item && item.id === selectedRow,
           }" class="intro-x">
                         <td v-for="(column, index) in datatableoptions.columns" :key="index" :class="{
               'table-report__action w-56 items-center': !column.field,
@@ -520,7 +520,7 @@ function fetchList() {
 }
 
 function getForPage(page) {
-    if (page == "Next &raquo;") {
+    if (page === "Next &raquo;") {
         urlParams.page = parseInt(urlParams.page) + 1;
     } else if (page === "&laquo; Previous" && parseInt(urlParams.page) > 1) {
         urlParams.page = parseInt(urlParams.page) - 1;
@@ -538,7 +538,7 @@ let sortBy = ref("id");
 let sortOrder = ref("desc");
 
 function sorting(field) {
-    if (field == sortBy.value) {
+    if (field === sortBy.value) {
         sortOrder.value = sortOrder.value === "asc" ? "desc" : "asc";
     } else {
         sortBy.value = field;

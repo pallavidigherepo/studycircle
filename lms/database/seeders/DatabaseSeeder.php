@@ -24,6 +24,9 @@ class DatabaseSeeder extends Seeder
             CourseSeeder::class,
             SubjectChapterTopicSeeder::class,
             BatchSeeder::class,
+            InquirySourceSeeder::class,
+            InquiryStatusSeeder::class,
+            InquiryTypeSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

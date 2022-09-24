@@ -63,9 +63,9 @@
                                     t("batches.Active")
                                 }}</label>
                             <input id="batches-is-active"
+                                   v-model="model.is_active"
                                    class="form-check-input ml-5"
                                    type="checkbox"
-                                   v-model="model.is_active"
                             />
                         </div>
                         <div class="text-right mt-5">
@@ -116,10 +116,10 @@ let message = ref("");
 let isErrored = ref(false);
 let selectedItem = ref("");
 
-let model = ref({
+const model = ref({
     id: "",
     name: "",
-    is_active: true,
+    is_active: "",
 });
 
 const rules = computed(() => {
@@ -145,7 +145,7 @@ async function submitForm(event) {
         await store
             .dispatch("batches/save", model.value)
             .then(() => {
-                // After dispatch we have to reset the model value
+                // After dispatch, we have to reset the model value
                 if (!isEdit.value) {
                     model.value = JSON.parse(JSON.stringify(model));
                 }
@@ -171,6 +171,7 @@ async function submitForm(event) {
 }
 // Begin: Edit item
 function edit(item) {
+    console.log(item)
     actionText.value = "Edit";
     isEdit.value = true;
     selectedItem.value = item.id;

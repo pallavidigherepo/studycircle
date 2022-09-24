@@ -43,7 +43,7 @@ export default {
                     {
                         label: "ROLE",
                         field: "designation",
-                        sort: false,
+                        sort: true,
                     },
                     {
                         label: "Actions",

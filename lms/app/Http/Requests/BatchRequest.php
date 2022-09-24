@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class BatchRequest extends FormRequest
 {
@@ -24,7 +25,10 @@ class BatchRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique'
+            'name' => [
+                'required',
+                Rule::unique('batches')->ignore($this->batch)
+            ],
         ];
     }
 }

@@ -8,70 +8,146 @@ export const useSideMenuStore = defineStore("sideMenu", {
                 title: "Dashboard",
             },
             {
-                icon: "SettingsIcon",
+                icon: "AwardIcon",
                 pageName: "SettingManagement",
-                title: "Master Data",
-                subMenu: [{
-                    icon: "SettingsIcon",
-                    pageName: "SettingIndex",
-                    title: "Basic Information",
-                    ignore: false,
-                },
+                title: "Academics",
+                subMenu: [
                     {
-                        icon: "LayersIcon",
-                        pageName: "Batches",
-                        title: "Batches",
+                        icon: "BookmarkIcon",
+                        pageName: "SettingIndex",
+                        title: "Basic Information",
                         ignore: false,
                     },
                     {
-                        icon: "BoxIcon",
-                        pageName: "CourseTypes",
-                        title: "Course types",
+                        icon: "SettingsIcon",
+                        pageName: "MasterData",
+                        title: "Master Data",
                         ignore: false,
+                        subMenu: [
+                            {
+                                icon: "ListIcon",
+                                pageName: "Batches",
+                                title: "Batches",
+                                ignore: false,
+                            },
+                            {
+                                icon: "LayersIcon",
+                                pageName: "Boards",
+                                title: "Boards",
+                                ignore: false,
+                            },
+                            {
+                                icon: "ListIcon",
+                                pageName: "Standards",
+                                title: "Standards",
+                                ignore: false,
+                            },
+                        ]
+                    },
+                ]
+            },
+            {
+                icon: "ActivityIcon",
+                pageName: "SettingManagement",
+                title: "Inquiries",
+                subMenu: [
+                    {
+                        icon: "MessageSquareIcon",
+                        pageName: "Inquiries",
+                        title: "Inquiries",
+                        ignore: false,
+                        allowedPages: ['Inquiries', 'CreateInquiry', 'EditInquiry', 'ShowInquiry'],
                     },
                     {
-                        icon: "BriefcaseIcon",
-                        pageName: "Courses",
-                        title: "Courses",
+                        icon: "SettingsIcon",
+                        pageName: "InquirySettingData",
+                        title: "Master Data",
                         ignore: false,
-                    },
-                    {
-                        icon: "BookIcon",
-                        pageName: "Subjects",
-                        title: "Subjects",
-                        ignore: false,
-                        allowedPages: ['Subjects', 'CreateSubject', 'EditSubject', 'ShowSubject', 'ShowChapter'],
+                        subMenu: [
+                            {
+                                icon: "LayersIcon",
+                                pageName: "InquiryStatuses",
+                                title: "Inquiry Status",
+                                ignore: false,
+                            },
+                            {
+                                icon: "LayersIcon",
+                                pageName: "InquiryFollowupTypes",
+                                title: "Inquiry Follow-Up Types",
+                                ignore: false,
+                            },
+                            {
+                                icon: "LayersIcon",
+                                pageName: "InquirySources",
+                                title: "Inquiry Sources",
+                                ignore: false,
+                            },
+                        ]
                     },
                 ]
             },
             'devider',
             {
                 icon: "BriefcaseIcon",
-                pageName: "Questionnaire",
-                title: "Questionnaire",
+                pageName: "Exams",
+                title: "Exams",
                 subMenu: [
                     {
-                        icon: "DatabaseIcon",
-                        pageName: "Questions",
-                        title: "Questions",
-                        ignore: false,
-                        allowedPages: ['Questions', 'CreateQuestion', 'EditQuestion', 'ShowQuestion'],
+                        icon: "BriefcaseIcon",
+                        pageName: "Questionnaire",
+                        title: "Questionnaire",
+                        subMenu: [
+                            {
+                                icon: "DatabaseIcon",
+                                pageName: "Questions",
+                                title: "Questions",
+                                ignore: false,
+                                allowedPages: ['Questions', 'CreateQuestion', 'EditQuestion', 'ShowQuestion'],
+                            },
+                            {
+                                icon: "ListIcon",
+                                pageName: "Templates",
+                                title: "Question Paper Formats",
+                                ignore: false,
+                                allowedPages: ['Templates', 'CreateTemplate', 'EditTemplate', 'ShowTemplate'],
+                            },
+                            {
+                                icon: "ArchiveIcon",
+                                pageName: "GeneratedQuestionPapers",
+                                title: "Generated Question Papers",
+                                ignore: false,
+                                allowedPages: ['GeneratedQuestionPapers', 'ShowGeneratedQuestionPaper'],
+                            },
+                        ]
                     },
                     {
-                        icon: "ListIcon",
-                        pageName: "Templates",
-                        title: "Question Paper Formats",
-                        ignore: false,
-                        allowedPages: ['Templates', 'CreateTemplate', 'EditTemplate', 'ShowTemplate'],
+                        icon: "SettingsIcon",
+                        pageName: "MasterData",
+                        title: "Master Data",
+                        subMenu: [
+                            {
+                                icon: "BoxIcon",
+                                pageName: "CourseTypes",
+                                title: "Course types",
+                                ignore: false,
+                            },
+                            {
+                                icon: "BriefcaseIcon",
+                                pageName: "Courses",
+                                title: "Courses",
+                                ignore: false,
+                            },
+                            {
+                                icon: "BookIcon",
+                                pageName: "Subjects",
+                                title: "Subjects",
+                                ignore: false,
+                                allowedPages: ['Subjects', 'CreateSubject', 'EditSubject', 'ShowSubject', 'ShowChapter'],
+                            },
+                        ],
                     },
-                    {
-                        icon: "ArchiveIcon",
-                        pageName: "GeneratedQuestionPapers",
-                        title: "Generated Question Papers",
-                        ignore: false,
-                        allowedPages: ['GeneratedQuestionPapers', 'ShowGeneratedQuestionPaper'],
-                    },
-                ]
+                ],
+
             },
             'devider',
             {

@@ -13,6 +13,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Psy\Util\Json;
 use Spatie\Permission\Models\Role;
+use function PHPUnit\Framework\returnArgument;
 
 class UserController extends Controller
 {
@@ -27,14 +28,13 @@ class UserController extends Controller
         $order = $request->input('sort_order') ?? 'desc';
         $perPage = $request->input('per_page') ?? 10;
 
-        $users = UserResource::collection(
+        return UserResource::collection(
             User::when(request('search'), function ($query) {
                 $query->where('name', 'like', '%' . request('search') . '%');
                 $query->orWhere('email', 'like', '%' . request('search') . '%');
                 //$query->orWhere('mobile_no', 'like', '%' . request('search') . '%');
             })->orderBy($field, $order)->paginate($perPage)
         );
-        return $users;
     }
 
     /**
