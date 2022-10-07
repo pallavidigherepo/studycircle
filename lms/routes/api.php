@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\SettingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\AuthController;
@@ -82,6 +83,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('v1/inquiry_sources', InquirySourceController::class);
     Route::resource('v1/inquiry_followup_types', InquiryFollowupTypeController::class);
     Route::resource('v1/inquiries', InquiryController::class);
+    Route::resource('v1/settings', SettingController::class);
 
     Route::post('v1/exports/index', [ExportController::class, 'index'])->name('exports.index');
     Route::post('v1/imports', [ImportController::class, 'store'])->name('imports.store');
