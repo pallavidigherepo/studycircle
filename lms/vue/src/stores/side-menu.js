@@ -2,7 +2,8 @@ import { defineStore } from "pinia";
 
 export const useSideMenuStore = defineStore("sideMenu", {
     state: () => ({
-        menu: [{
+        menu: [
+            {
                 icon: "HomeIcon",
                 pageName: "Dashboard",
                 title: "Dashboard",
@@ -12,12 +13,12 @@ export const useSideMenuStore = defineStore("sideMenu", {
                 pageName: "SettingManagement",
                 title: "Academics",
                 subMenu: [
-                    {
+                    /*{
                         icon: "BookmarkIcon",
                         pageName: "SettingIndex",
                         title: "Basic Information",
                         ignore: false,
-                    },
+                    },*/
                     {
                         icon: "SettingsIcon",
                         pageName: "MasterData",
@@ -189,7 +190,21 @@ export const useSideMenuStore = defineStore("sideMenu", {
                         ignore: false,
                         allowedPages: ['Students', 'CreateStudent', 'EditStudent', 'ShowStudent'],
                     },
+                    {
+                        icon: "UsersIcon",
+                        pageName: "Parents",
+                        title: "Parents",
+                        ignore: false,
+                        allowedPages: ['Parents', 'EditParent', 'ShowParent'],
+                    },
                 ],
+            },
+            {
+                icon: "SettingsIcon",
+                pageName: "SettingIndex",
+                title: "Control Panel",
+                ignore: false,
+                allowedPages: ['SettingIndex'],
             },
         ],
     }),

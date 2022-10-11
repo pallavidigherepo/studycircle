@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Hash;
+use function Illuminate\Events\queueable;
 
 /**
  * This class is Student model class with all student management related functions and variables.
@@ -31,6 +32,7 @@ class Student extends Model
      */
     protected $fillable = [
         'name',
+        'parent_id',
         'email',
         'password',
         'roll_number',
@@ -47,18 +49,6 @@ class Student extends Model
         'dob',
         'permanent_address',
         'address',
-        'mother_name',
-        'mother_email',
-        'mother_mobile',
-        'mother_qualification',
-        'mother_occupation',
-        'father_name',
-        'father_email',
-        'father_mobile',
-        'father_qualification',
-        'father_occupation',
-        'parent_email',
-        'parent_password',
     ];
 
     /**
@@ -103,6 +93,14 @@ class Student extends Model
         'name',
         'email',
     ];
+
+    /**
+     * @return HasOne
+     */
+    public function student_parent(): HasOne
+    {
+        return $this->hasOne(StudentParent::class, 'parent_id');
+    }
 
     /**
      * @return BelongsTo
@@ -274,18 +272,43 @@ class Student extends Model
             'dob' => $request->dob,
             'permanent_address' => $request->permanent_address,
             'address' => $request->address,
-            'mother_name' => $request->mother_name,
-            'mother_email' => $request->mother_email,
-            'mother_mobile' => $request->mother_mobile,
-            'mother_qualification' => $request->mother_qualification,
-            'mother_occupation' => $request->mother_occupation,
-            'father_name' => $request->father_name,
-            'father_email' => $request->father_email,
-            'father_mobile' => $request->father_mobile,
-            'father_qualification' => $request->father_qualification,
-            'father_occupation' => $request->father_occupation,
-            'parent_email' => $request->father_email,
-            'parent_password' => Hash::make(123456789),
         ];
+    }
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::creating(queueable(function ($student)
+        {
+            //First we need to check if parent information is already available?
+            //If yes use that selected parent_id
+            $studentParent = StudentParent::firstOrCreate(
+                ['parent_email' => $student['father_email']],
+                [
+                    'parent_email' => $student['father_email'],
+                    'parent_password' => Hash::make(123456789),
+                    'parent_aadhaar_number' => $student['parent_aadhaar_number'],
+                    'mother_name' => $student['mother_name'],
+                    'mother_email' => $student['mother_email'],
+                    'mother_mobile' => $student['mother_mobile'],
+                    'mother_qualification' => $student['mother_qualification'],
+                    'mother_occupation' => $student['mother_occupation'],
+                    'father_name' => $student['father_name'],
+                    'father_email' => $student['father_email'],
+                    'father_mobile' => $student['father_mobile'],
+                    'father_qualification' => $student['father_qualification'],
+                    'father_occupation' => $student['father_occupation'],
+                ]
+            );
+        }));
+
+        static::created(queueable(function ($student)
+        {
+            
+        }));
     }
 }

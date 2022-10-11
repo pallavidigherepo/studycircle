@@ -16,6 +16,7 @@ class CreateBoards extends Migration
         Schema::create('boards', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->nullable();
+
             $table->timestamps();
         });
     }

@@ -17,6 +17,7 @@ class CreateBatches extends Migration
             $table->bigIncrements('id');
             $table->string("name");
             $table->boolean("is_active")->default(true);
+
             $table->timestamps();
         });
     }

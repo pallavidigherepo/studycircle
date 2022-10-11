@@ -9,7 +9,7 @@ use App\Models\Course;
 /**
  * This class is Subject model class with all subject management related functions and variables.
  *
- * @package Meritest_LMS_User_Model
+ * @package Meritest_LMS_Subject_Model
  * @author Pallavi Dighe <pallavi@meritest.in>
  * @acces public
  * @version 1.0

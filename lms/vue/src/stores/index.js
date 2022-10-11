@@ -20,6 +20,8 @@ import inquiryModule from "./modules/inquiries/index.js";
 import inquiryStatusModule from "./modules/inquiry_statuses/index.js";
 import inquirySourcesModule from "./modules/inquiry_sources/index.js";
 import inquiryFollowUpTypeModule from "./modules/inquiry_followup_types/index.js";
+import parentModule from "./modules/parents/index.js";
+import settingModule from "./modules/settings/index.js";
 
 const store = createStore({
     modules: {
@@ -41,6 +43,8 @@ const store = createStore({
         inquiry_followup_types: inquiryFollowUpTypeModule,
         inquiry_sources: inquirySourcesModule,
         inquiry_statuses: inquiryStatusModule,
+        parents: parentModule,
+        settings: settingModule,
         /*languages: languageModule,
          */
     },

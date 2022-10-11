@@ -8,9 +8,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Traits\HasPermissions;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use function Illuminate\Events\queueable;
 
 
 /**
@@ -106,5 +109,24 @@ class User extends Authenticatable
         $roles = $this->roles;
 
         return $roles->sort()->values();
+    }
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::created(queueable(function ($user)
+        {
+            //When user is created we also need to insert row in profile user
+            $profile = [
+                'user_id' => $user->id,
+                'mobile' => $user->mobile_number,
+                'designation' => 'Owner',
+            ];
+            ProfileUser::create($profile);
+        }));
     }
 }

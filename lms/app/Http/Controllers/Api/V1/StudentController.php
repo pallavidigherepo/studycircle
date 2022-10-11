@@ -56,6 +56,13 @@ class StudentController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * LOGIC: When a student is created, following steps are followed
+     * STEP 1: Check if parent's information is available in parents table. If parent is available, then use that parent_id
+     *          else, create a new parent and then use that id for storing student.
+     * STEP 2: After parent_id is retrieved, student will be mapped accordingly.
+     * STEP 3: After student is stored, check if there is any other student is available to that parent. If there is
+     *          any student available then we need to update/insert records in student_siblings
+     *          table with "reverse mapping".
      *
      * @param StoreStudentRequest $request
      * @return Response
@@ -64,8 +71,7 @@ class StudentController extends Controller
     public function store(StoreStudentRequest $request)
     {
         if ($request->validated()) {
-            $studentModel = new Student();
-            $student = Student::create($studentModel->saveFields($request));
+            $student = Student::create($request->toArray());
 
             $student->roll_number = generate_student_roll_number();
 

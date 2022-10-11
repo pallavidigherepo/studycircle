@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\V1\SettingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\AuthController;
@@ -27,6 +26,9 @@ use App\Http\Controllers\Api\V1\InquiryFollowupTypeController;
 use App\Http\Controllers\Api\V1\InquirySourceController;
 use App\Http\Controllers\Api\V1\InquiryStatusController;
 use App\Http\Controllers\Api\V1\InquiryController;
+
+use App\Http\Controllers\Api\V1\SettingController;
+use App\Http\Controllers\Api\V1\ClientController;
 
 use App\Models\Board;
 use App\Models\Chapter;
@@ -83,6 +85,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('v1/inquiry_sources', InquirySourceController::class);
     Route::resource('v1/inquiry_followup_types', InquiryFollowupTypeController::class);
     Route::resource('v1/inquiries', InquiryController::class);
+    Route::resource('v1/clients', ClientController::class);
     Route::resource('v1/settings', SettingController::class);
 
     Route::post('v1/exports/index', [ExportController::class, 'index'])->name('exports.index');

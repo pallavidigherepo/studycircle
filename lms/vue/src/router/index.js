@@ -11,6 +11,10 @@ import Roles from '../views/Roles/Index.vue';
 import CreateRole from '../views/Roles/Create.vue';
 import EditRole from '../views/Roles/Edit.vue';
 
+import Parents from '../views/Parents/Index.vue';
+import CreateParent from '../views/Parents/Create.vue';
+import EditParent from '../views/Parents/Edit.vue';
+
 import Users from '../views/Users/Index.vue';
 import CreateUser from '../views/Users/Create.vue';
 import EditUser from '../views/Users/Edit.vue';
@@ -113,6 +117,31 @@ const routes = [{
                         component: EditRole,
                         meta: {
                             parent: 'Roles'
+                        },
+                    }
+                ]
+            },
+            {
+                path: "/parents",
+                name: "Parents",
+                component: Parents,
+                meta: {
+                    parent: 'Parents'
+                },
+                children: [{
+                    path: "/parents/create",
+                    name: "CreateParent",
+                    component: CreateParent,
+                    meta: {
+                        parent: 'Parents'
+                    }
+                },
+                    {
+                        path: "/parents/:id/edit",
+                        name: "EditParent",
+                        component: EditParent,
+                        meta: {
+                            parent: 'Parents'
                         },
                     }
                 ]

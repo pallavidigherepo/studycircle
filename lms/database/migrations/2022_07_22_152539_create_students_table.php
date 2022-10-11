@@ -37,8 +37,12 @@ class CreateStudentsTable extends Migration
             $table->string('blood_group')->nullable();
             $table->string('medical_notes')->nullable();
             $table->string('student_discount')->nullable(true);
+            $table->string('caste')->nullable(true);
+            $table->string('religion')->nullable(true);
+            $table->string('mother_tongue_language')->nullable(true);
+            $table->text('interests')->nullable(true);
 
-            $table->foreign('parent_id')->references('id')->on('parents');
+            $table->foreign('parent_id')->references('id')->on('student_parents');
             $table->foreign('course_id')->references('id')->on('courses');
             $table->foreign('board_id')->references('id')->on('boards');
             $table->foreign('standard_id')->references('id')->on('standards');

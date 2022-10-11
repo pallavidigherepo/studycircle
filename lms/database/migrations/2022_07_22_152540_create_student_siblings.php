@@ -19,7 +19,7 @@ class CreateStudentSiblings extends Migration
             $table->unsignedBigInteger('parent_id');
 
             $table->foreign('student_id')->references('id')->on('students');
-            $table->foreign('parent_id')->references('id')->on('parents');
+            $table->foreign('parent_id')->references('id')->on('student_parents');
             $table->timestamps();
         });
     }

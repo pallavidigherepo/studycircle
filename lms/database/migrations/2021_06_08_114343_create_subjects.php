@@ -21,7 +21,7 @@ class CreateSubjects extends Migration
 
             $table->unsignedBigInteger('board_id')->nullable();
             $table->unsignedBigInteger('standard_id')->nullable();
-            
+
             $table->unsignedBigInteger('language_id');
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->unsignedBigInteger('created_by');

@@ -28,11 +28,11 @@ class StoreStudentRequest extends FormRequest
             'name' => [
                 'required',
             ],
-            'email' => [
+            /*'email' => [
                 'required',
                 'email',
                 Rule::unique('students')->ignore($this->student)
-            ],
+            ],*/
             'aadhaar' => [
                 'required',
                 Rule::unique('students')->ignore($this->student)

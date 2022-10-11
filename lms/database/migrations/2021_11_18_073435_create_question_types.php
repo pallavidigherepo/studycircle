@@ -18,6 +18,7 @@ class CreateQuestionTypes extends Migration
             $table->json('name')->unique();
             $table->boolean('in_paragraph')->default(true);
             $table->boolean('is_active')->default(true);
+
             $table->timestamps();
             $table->softDeletes();
         });

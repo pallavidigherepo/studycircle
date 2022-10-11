@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * This class is GeneratedQuestionPaper model class with all questions and exam management related functions and variables.
  *
- * @package Meritest_LMS_User_Model
+ * @package Meritest_LMS_GeneratedQuestionPaper_Model
  * @author Pallavi Dighe <pallavi@meritest.in>
  * @acces public
  * @version 1.0
