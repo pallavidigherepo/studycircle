@@ -366,10 +366,10 @@
                                                     {{ t("students.Avatar") }}
                                                 </button>
 
-                                                <div v-for="(error, index) of v$.avatar.$errors" :key="index"
+<!--                                                <div v-for="(error, index) of v$.avatar.$errors" :key="index"
                                                      class="text-danger mt-2">
                                                     <div class="error-msg">{{ error.$message }}</div>
-                                                </div>
+                                                </div>-->
                                             </div>
                                         </div>
                                         <!-- End: Avatar-->
@@ -477,331 +477,10 @@
                                             </div>
                                         </div>
                                         <!-- Begin: Address-->
-                                        <!-- Begin: Aadhaar-->
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Aadhaar") }}
-                                                        </div>
-                                                        <div
-                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <input
-                                                    id="form-aadhaar"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="Enter aadhaar number of student"
-                                                    v-model.trim="model.aadhaar"
-                                                    :class="{ 'border-danger': submitted && v$.aadhaar.$errors.length, }"
-                                                />
-                                                <div v-for="(error, index) of v$.aadhaar.$errors" :key="index"
-                                                     class="text-danger mt-2">
-                                                    <div class="error-msg">{{ error.$message }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End: Aadhaar-->
                                     </div>
                                 </div>
                             </div>
                             <!-- END: Basic Information -->
-                            <!-- BEGIN: Mother Information -->
-                            <div class="intro-y box p-5 mt-1">
-                                <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
-                                    <div
-                                        class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                                        <ChevronDownIcon class="w-4 h-4 mr-2"/>
-                                        {{ t("students.Mother Information Of Student") }}
-                                    </div>
-                                    <div class="mt-5">
-                                        <!-- Begin: Mother Name-->
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Mother Name") }}</div>
-                                                        <div
-                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <input
-                                                    id="form-mother-name"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="Enter name of student's mother."
-                                                    v-model.trim="model.mother_name"
-                                                    :class="{ 'border-danger': submitted && v$.mother_name.$errors.length, }"
-                                                />
-                                                <div v-for="(error, index) of v$.mother_name.$errors"
-                                                     :key="index" class="text-danger mt-2">
-                                                    <div class="error-msg">{{ error.$message }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End: Mother Name-->
-                                        <!-- Begin: Mother Email-->
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Mother Email") }}
-                                                        </div>
-                                                        <div
-                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <input
-                                                    id="form-mother-email"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="Enter email address of student's mother"
-                                                    v-model.trim="model.mother_email"
-                                                    :class="{ 'border-danger': submitted && v$.mother_email.$errors.length, }"
-                                                />
-                                                <div v-for="(error, index) of v$.mother_email.$errors" :key="index"
-                                                     class="text-danger mt-2">
-                                                    <div class="error-msg">{{ error.$message }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End: Mother Email-->
-                                        <!-- Begin: Mother Mobile-->
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Mother Mobile") }}
-                                                        </div>
-                                                        <div
-                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <input
-                                                    id="form-mother-mobile"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="Enter mobile number of student's mother."
-                                                    v-model.trim="model.mother_mobile"
-                                                    :class="{ 'border-danger': submitted && v$.mother_mobile.$errors.length, }"
-                                                />
-                                                <div v-for="(error, index) of v$.mother_mobile.$errors" :key="index"
-                                                     class="text-danger mt-2">
-                                                    <div class="error-msg">{{ error.$message }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End: Mother Mobile-->
-                                        <!-- Begin: Mother Qualification-->
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Mother Qualification") }}</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <input
-                                                    id="form-mother-qualification"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="Enter qualification of student's mother."
-                                                    v-model.trim="model.mother_qualification"
-                                                />
-                                            </div>
-                                        </div>
-                                        <!-- End: Mother Qualification-->
-                                        <!-- Begin: Mother Occupation-->
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Mother Occupation") }}</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <input
-                                                    id="form-mother-occupation"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="Enter occupation of student's mother."
-                                                    v-model.trim="model.mother_occupation"
-                                                />
-                                            </div>
-                                        </div>
-                                        <!-- End: Mother Occupation-->
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- END: Mother Information -->
-                            <!-- BEGIN: Father Information -->
-                            <div class="intro-y box p-5 mt-1">
-                                <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
-                                    <div
-                                        class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                                        <ChevronDownIcon class="w-4 h-4 mr-2"/>
-                                        {{ t("students.Father Information Of Student") }}
-                                    </div>
-                                    <div class="mt-5">
-                                        <!-- Begin: Father Name-->
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Father Name") }}</div>
-                                                        <div
-                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <input
-                                                    id="form-father-name"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="Enter name of student"
-                                                    v-model.trim="model.father_name"
-                                                    :class="{ 'border-danger': submitted && v$.father_name.$errors.length, }"
-                                                />
-                                                <div v-for="(error, index) of v$.father_name.$errors"
-                                                     :key="index" class="text-danger mt-2">
-                                                    <div class="error-msg">{{ error.$message }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End: Father Name-->
-                                        <!-- Begin: Father Email-->
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Father Email") }}
-                                                        </div>
-                                                        <div
-                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <input
-                                                    id="form-father-email"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="Enter email address of student's father"
-                                                    v-model.trim="model.father_email"
-                                                    :class="{ 'border-danger': submitted && v$.father_email.$errors.length, }"
-                                                />
-                                                <div v-for="(error, index) of v$.father_email.$errors" :key="index"
-                                                     class="text-danger mt-2">
-                                                    <div class="error-msg">{{ error.$message }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End: Father Email-->
-                                        <!-- Begin: Father Mobile-->
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Father Mobile") }}
-                                                        </div>
-                                                        <div
-                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <input
-                                                    id="form-father-mobile"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="Enter mobile number of student's father."
-                                                    v-model="model.father_mobile"
-                                                    :class="{ 'border-danger': submitted && v$.father_mobile.$errors.length, }"
-                                                />
-                                                <div v-for="(error, index) of v$.father_mobile.$errors" :key="index"
-                                                     class="text-danger mt-2">
-                                                    <div class="error-msg">{{ error.$message }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End: Father Mobile-->
-                                        <!-- Begin: Father Qualification-->
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Father Qualification") }}</div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <input
-                                                    id="form-father-qualification"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="Enter qualification of student's father."
-                                                    v-model.trim="model.father_qualification"
-                                                />
-                                            </div>
-                                        </div>
-                                        <!-- End: Father Qualification-->
-                                        <!-- Begin: Father Occupation-->
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Father Occupation") }}</div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <input
-                                                    id="form-father-occupation"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="Enter occupation of student's father."
-                                                    v-model.trim="model.father_occupation"
-                                                />
-                                            </div>
-                                        </div>
-                                        <!-- End: Father Occupation-->
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- END: Father Information -->
                         </div>
                         <div class="text-right w-full bottom-0 mt-5">
                             <router-link
@@ -854,17 +533,6 @@ const model = ref({
     dob: "",
     permanent_address: "",
     address: "",
-    aadhaar: "",
-    mother_name: "",
-    mother_email: "",
-    mother_mobile: "",
-    mother_qualification: "",
-    mother_occupation: "",
-    father_name: "",
-    father_email: "",
-    father_mobile: "",
-    father_qualification: "",
-    father_occupation: "",
 });
 
 const rules = computed(() => {
@@ -898,9 +566,9 @@ const rules = computed(() => {
         gender: {
             required: helpers.withMessage("Please select gender of student.", required),
         },
-        avatar: {
+        /*avatar: {
             required: helpers.withMessage("Please upload avatar of student.", required),
-        },
+        },*/
         dob: {
             required: helpers.withMessage("Please date of birth of student.", required),
         },
@@ -909,36 +577,6 @@ const rules = computed(() => {
         },
         address: {
             required: helpers.withMessage("Please enter address of student.", required),
-        },
-        aadhaar: {
-            required: helpers.withMessage("Please enter aadhaar number of student.", required),
-            minLength: helpers.withMessage("Please enter valid aadhaar number.", minLength(12)),
-            maxLength: helpers.withMessage("Please enter valid aadhar number", maxLength(12)),
-            numeric: helpers.withMessage("Please enter valid aadhaar number", numeric),
-        },
-        mother_name: {
-            required: helpers.withMessage("Please enter name of student's mother.", required),
-        },
-        mother_email: {
-            required: helpers.withMessage("Please enter email of student's mother.", required),
-            email: helpers.withMessage("Please enter valid email address", email),
-        },
-        mother_mobile: {
-            required: helpers.withMessage("Please enter mobile number of student's mother.", required),
-            minLength: helpers.withMessage("Please enter valid mobile number", minLength(10)),
-            numeric: helpers.withMessage("Please enter valid mobile number", numeric),
-        },
-        father_name: {
-            required: helpers.withMessage("Please enter name of student's father.", required),
-        },
-        father_email: {
-            required: helpers.withMessage("Please enter email of student's father.", required),
-            email: helpers.withMessage("Please enter valid email address", email),
-        },
-        father_mobile: {
-            required: helpers.withMessage("Please enter mobile number of student's father.", required),
-            minLength: helpers.withMessage("Please enter valid mobile number.", minLength(10)),
-            numeric: helpers.withMessage("Please enter valid mobile number.", numeric),
         },
     };
 });
@@ -1003,9 +641,8 @@ const fetch = async() => {
     try {
         let id = route.params.id;
         const result = await axiosClient.get(`/students/${id}`);
-        if (result.status != 200) {
-            const error = new Error('Failed to fetch student information.')
-            throw error;
+        if (result.status !== 200) {
+            throw new Error('Failed to fetch student information.');
         }
         model.value = JSON.parse(JSON.stringify(result.data.info));
     } catch (e) {

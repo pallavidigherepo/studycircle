@@ -73,19 +73,6 @@ class StudentController extends Controller
         if ($request->validated()) {
             $student = Student::create($request->toArray());
 
-            $student->roll_number = generate_student_roll_number();
-
-            // Check if image was given and save on local file system
-            if (isset($request->avatar)) {
-                if ($request->avatar) {
-                    $absolutePath = public_path($request->avatar);
-                    File::delete($absolutePath);
-                }
-                $student->avatar  = save_image($request->avatar, 'students');
-            }
-
-            $student->save();
-
             $response = [
                 'success' => true,
                 'message' => 'Student created successfully.',
@@ -125,19 +112,7 @@ class StudentController extends Controller
     public function update(UpdateStudentRequest $request, Student $student)
     {
         if ($request->validated()) {
-            $studentModel = new Student();
-            $student->update($studentModel->saveFields($request));
-
-            // Check if image was given and save on local file system
-            if (isset($request->avatar)) {
-                if ($student->avatar) {
-                    $absolutePath = public_path($student->avatar);
-                    File::delete($absolutePath);
-                }
-                $student->avatar  = save_image($request->avatar, 'students');;
-            }
-
-            $student->save();
+            $student->update($request->toArray());
 
             $response = [
                 'success' => true,

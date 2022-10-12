@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\URL;
 use function Illuminate\Events\queueable;
 
 /**
@@ -24,6 +27,8 @@ use function Illuminate\Events\queueable;
 class Student extends Model
 {
     use HasFactory;
+
+    const siblings = [];
 
     /**
      * The attributes that are mass assignable.
@@ -49,6 +54,18 @@ class Student extends Model
         'dob',
         'permanent_address',
         'address',
+        'mother_name',
+        'mother_email',
+        'mother_mobile',
+        'mother_qualification',
+        'mother_occupation',
+        'father_name',
+        'father_email',
+        'father_mobile',
+        'father_qualification',
+        'father_occupation',
+        'parent_email',
+        'parent_password',
     ];
 
     /**
@@ -158,6 +175,92 @@ class Student extends Model
         return $this->hasMany(StudentPaper::class);
     }
 
+    /**
+     * The "boot" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($student)
+        {
+            //First we need to check if parent information is already available?
+            //If yes use that selected parent_id
+            $studentParent = StudentParent::firstOrCreate(
+                ['parent_email' => $student['father_email']],
+                [
+                    'parent_email' => $student['father_email'],
+                    'parent_password' => Hash::make(123456789),
+                    'parent_aadhaar_number' => $student['parent_aadhaar_number'],
+                    'mother_name' => $student['mother_name'],
+                    'mother_email' => $student['mother_email'],
+                    'mother_mobile' => $student['mother_mobile'],
+                    'mother_qualification' => $student['mother_qualification'],
+                    'mother_occupation' => $student['mother_occupation'],
+                    'father_name' => $student['father_name'],
+                    'father_email' => $student['father_email'],
+                    'father_mobile' => $student['father_mobile'],
+                    'father_qualification' => $student['father_qualification'],
+                    'father_occupation' => $student['father_occupation'],
+                ]
+            );
+            unset($student['mother_name']);
+            unset($student['mother_mobile']);
+            unset($student['mother_email']);
+            unset($student['mother_qualification']);
+            unset($student['mother_occupation']);
+            unset($student['father_name']);
+            unset($student['father_email']);
+            unset($student['father_mobile']);
+            unset($student['father_qualification']);
+            unset($student['father_occupation']);
+            unset($student['parent_email']);
+            unset($student['parent_password']);
+
+            $student['parent_id'] = $studentParent->id;
+            $student['roll_number'] = generate_student_roll_number();
+            $student['password'] = Hash::make(123456789);
+            // Check if image was given and save on local file system
+            if (isset($student['avatar'])) {
+                $student['avatar']  = save_image($student['avatar'], 'students');
+            }
+        });
+
+        static::created(function ($student)
+        {
+            $newSiblingCreated = StudentSibling::create([
+                'student_id' => $student->id,
+                'sibling_ids' => null,
+                'parent_id' => $student->parent_id,
+            ]);
+
+            // Now we need to check if this parent_id is available in students table to manage siblings.
+            $siblings = StudentSibling::all()->where('parent_id', $student->parent_id);
+            // If there are any older record is already available in student_siblings table, we need to update all the
+            // records with new student_id
+            if (count($siblings) > 1) {
+                // Get ids as plain array of existing students in siblings table
+                $newIds = Arr::pluck($siblings, 'student_id');
+
+                foreach ($siblings as $sibling) {
+                    $sibling->sibling_ids = array_diff($newIds, array($sibling->student_id));
+                    $sibling->save();
+                }
+            }
+        });
+
+        static::updating(function($student)
+        {
+            // Check if image was given and save on local file system
+            if (request('avatar')) {
+                $absolutePath = public_path($student['avatar']);
+-               File::delete($absolutePath);
+
+                $student['avatar']  = save_image($student['avatar'], 'students');
+            }
+        });
+    }
 
     /**
      * @param StudentResource $student
@@ -184,17 +287,7 @@ class Student extends Model
             "dob" => $student->dob,
             "permanent_address" => $student->permanent_address,
             "address" => $student->address,
-            "mother_name" => $student->mother_name,
-            "mother_email" => $student->mother_email,
-            "mother_mobile" => $student->mother_mobile,
-            "mother_qualification" => $student->mother_qualification,
-            "mother_occupation" => $student->mother_occupation,
-            "father_name" => $student->father_name,
-            "father_email" => $student->father_email,
-            "father_mobile" => $student->father_mobile,
-            "father_qualification" => $student->father_qualification,
-            "father_occupation" => $student->father_occupation,
-            "avatar" => $student->avatar,
+            "avatar" => $student->avatar ? URL::to($student->avatar) : null,
         ];
         // Info: Now we have to check and manipulate student paper
         if (!empty($student->student_papers)) {
@@ -244,18 +337,11 @@ class Student extends Model
         return $response;
     }
 
-    public function saveStudent($request)
-    {
-        if ($request) {
-
-        }
-    }
-
     /**
      * @param array $request
      * @return array
      */
-    private function saveFields($request): array
+    private function saveFields(array $request): array
     {
         return [
             'name'=> $request->name,
@@ -275,40 +361,4 @@ class Student extends Model
         ];
     }
 
-    /**
-     * The "booted" method of the model.
-     *
-     * @return void
-     */
-    protected static function booted()
-    {
-        static::creating(queueable(function ($student)
-        {
-            //First we need to check if parent information is already available?
-            //If yes use that selected parent_id
-            $studentParent = StudentParent::firstOrCreate(
-                ['parent_email' => $student['father_email']],
-                [
-                    'parent_email' => $student['father_email'],
-                    'parent_password' => Hash::make(123456789),
-                    'parent_aadhaar_number' => $student['parent_aadhaar_number'],
-                    'mother_name' => $student['mother_name'],
-                    'mother_email' => $student['mother_email'],
-                    'mother_mobile' => $student['mother_mobile'],
-                    'mother_qualification' => $student['mother_qualification'],
-                    'mother_occupation' => $student['mother_occupation'],
-                    'father_name' => $student['father_name'],
-                    'father_email' => $student['father_email'],
-                    'father_mobile' => $student['father_mobile'],
-                    'father_qualification' => $student['father_qualification'],
-                    'father_occupation' => $student['father_occupation'],
-                ]
-            );
-        }));
-
-        static::created(queueable(function ($student)
-        {
-            
-        }));
-    }
 }
