@@ -28,8 +28,6 @@ class Student extends Model
 {
     use HasFactory;
 
-    const siblings = [];
-
     /**
      * The attributes that are mass assignable.
      *
@@ -116,7 +114,15 @@ class Student extends Model
      */
     public function student_parent(): HasOne
     {
-        return $this->hasOne(StudentParent::class, 'parent_id');
+        return $this->hasOne(StudentParent::class, 'id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function student_siblings(): HasOne
+    {
+        return $this->hasOne(StudentSibling::class, 'id');
     }
 
     /**
@@ -259,6 +265,11 @@ class Student extends Model
 
                 $student['avatar']  = save_image($student['avatar'], 'students');
             }
+        });
+
+        static::retrieved(function($data)
+        {
+            $data['info'] = "info";
         });
     }
 

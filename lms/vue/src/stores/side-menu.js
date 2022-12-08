@@ -173,13 +173,13 @@ export const useSideMenuStore = defineStore("sideMenu", {
             {
                 icon: "UsersIcon",
                 pageName: "Students",
-                title: "Users & Students",
+                title: "Users",
                 ignore: false,
                 subMenu: [
                     {
                         icon: "UsersIcon",
                         pageName: "Users",
-                        title: "Users",
+                        title: "Executives",
                         ignore: false,
                         allowedPages: ['Users', 'CreateUser', 'EditUser', 'ShowUser'],
                     },

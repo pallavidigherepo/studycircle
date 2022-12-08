@@ -69,6 +69,9 @@ import InquiryStatuses from '../views/InquiryStatuses/Index.vue';
 import InquirySources from '../views/InquirySources/Index.vue';
 import InquiryFollowupTypes from '../views/InquiryFollowupTypes/Index.vue';
 import Inquiries from '../views/Inquiries/Index.vue';
+import CreateInquiry from '../views/Inquiries/Create.vue';
+import EditInquiry from '../views/Inquiries/Edit.vue';
+import ShowInquiry from '../views/Inquiries/Show.vue';
 
 import Login from "../views/Auth/Login.vue";
 import Profile from "../views/Auth/Profile.vue";
@@ -218,6 +221,31 @@ const routes = [{
                 meta: {
                     parent: 'Inquiries'
                 },
+                children: [{
+                    path: '/inquiries/create',
+                    name: "CreateInquiry",
+                    component: CreateInquiry,
+                    meta: {
+                        parent: 'Inquiries'
+                    }
+                },
+                    {
+                        path: '/inquiries/:id/edit',
+                        name: "EditInquiry",
+                        component: EditInquiry,
+                        meta: {
+                            parent: 'Inquiries'
+                        }
+                    },
+                    {
+                        path: '/inquiries/:id',
+                        name: "ShowInquiry",
+                        component: ShowInquiry,
+                        meta: {
+                            parent: 'Inquiries'
+                        }
+                    },
+                ]
             },
 
             {

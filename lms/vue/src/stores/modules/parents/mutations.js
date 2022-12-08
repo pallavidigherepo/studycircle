@@ -1,28 +1,24 @@
 export default {
-    SET_CLIENTS(state, payload) {
-        state.clients = payload;
+    SET_PARENTS(state, payload) {
+        state.parents = payload;
     },
 
     SET_PAGINATION_LINKS(state, payload) {
         state.pagination = payload;
     },
 
-    CREATE_CLIENT(state, payload)
-    {
-        state.clients.unshift(payload)
-    },
-    EDIT_CLIENT(state, payload) {
-        state.client = payload;
+    EDIT_PARENT(state, payload) {
+        state.parent = payload;
     },
 
-    DELETE_CLIENT(state, id) {
-        let index = state.clients.data.findIndex(item => item.id === id)
-        state.clients.data.splice(index, 1)
+    DELETE_PARENT(state, id) {
+        let index = state.parents.data.findIndex(item => item.id === id)
+        state.parents.data.splice(index, 1)
     },
 
-    UPDATE_CLIENT(state, payload)
+    UPDATE_PARENT(state, payload)
     {
-        let index = state.clients.findIndex(item => item.id === payload.id);
-        state.clients[index] = payload;
+        let index = state.parents.findIndex(item => item.id === payload.id);
+        state.parents[index] = payload;
     },
 };

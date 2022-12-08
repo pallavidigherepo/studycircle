@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\StudentParentResource;
 use App\Models\StudentParent;
 use App\Http\Requests\StoreStudentParentRequest;
 use App\Http\Requests\UpdateStudentParentRequest;
+use Illuminate\Http\Request;
 
 class StudentParentController extends Controller
 {
@@ -14,9 +16,19 @@ class StudentParentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $field = $request->input('sort_field') ?? 'id';
+        $order = $request->input('sort_order') ?? 'desc';
+        $perPage = $request->input('per_page') ?? 10;
+
+        return StudentParentResource::collection(
+            StudentParent::when(request('search'), function ($query) {
+                $query->where('name', 'like', '%'. request('search'). '%');
+            })
+                ->orderBy($field, $order)
+                ->paginate($perPage)
+        );
     }
 
     /**

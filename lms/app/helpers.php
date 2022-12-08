@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Inquiry;
 use App\Models\Student;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
@@ -62,5 +63,21 @@ if (!function_exists('generate_unique_code')) {
         $students = Student::where('created_at', '>' , $startOfYear)->where('created_at', '<', $endOfYear)->orderBy('name', 'asc')->get();
         $count = count($students) + 1;
         return Carbon::now()->toDateString() . '-' . $count;
+    }
+}
+
+/**
+ * Write code on Method
+ *
+ * @return response()
+ */
+if (!function_exists('generate_unique_code_inquiry')) {
+    function generate_unique_code_inquiry() :string
+    {
+        do {
+            $code = random_int(100000, 999999);
+        } while (Inquiry::where("unique_code", $code)->first());
+
+        return $code;
     }
 }

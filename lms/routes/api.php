@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\InquiryFollowupType;
+use App\Models\InquirySource;
+use App\Models\InquiryStatus;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\AuthController;
@@ -28,7 +32,7 @@ use App\Http\Controllers\Api\V1\InquiryStatusController;
 use App\Http\Controllers\Api\V1\InquiryController;
 
 use App\Http\Controllers\Api\V1\SettingController;
-use App\Http\Controllers\Api\V1\ClientController;
+use App\Http\Controllers\Api\V1\StudentParentController;
 
 use App\Models\Board;
 use App\Models\Chapter;
@@ -85,7 +89,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('v1/inquiry_sources', InquirySourceController::class);
     Route::resource('v1/inquiry_followup_types', InquiryFollowupTypeController::class);
     Route::resource('v1/inquiries', InquiryController::class);
-    Route::resource('v1/clients', ClientController::class);
+    Route::resource('v1/parents', StudentParentController::class);
     Route::resource('v1/settings', SettingController::class);
 
     Route::post('v1/exports/index', [ExportController::class, 'index'])->name('exports.index');
@@ -147,6 +151,22 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('v1/type_list_paragraph', function () {
         return QuestionType::all()->where('is_active', true)->where('in_paragraph', true)->pluck('name', 'id');
     })->name('type_list_paragraph');
+
+    Route::get('v1/inquiry_sources', function () {
+        return InquirySource::all()->pluck('name', 'id');
+    })->name('inquiry_sources');
+
+    Route::get('v1/inquiry_followup_types', function () {
+        return InquiryFollowupType::all()->pluck('name', 'id');
+    })->name('inquiry_followup_types');
+
+    Route::get('v1/inquiry_status', function () {
+        return InquiryStatus::all()->pluck('name', 'id');
+    })->name('inquiry_status');
+
+    Route::get('v1/inquiry_assignees', function () {
+        return User::all()->pluck('name', 'id');
+    })->name('inquiry_assignees');
 
     Route::get('v1/questionnaire', function () {
         $templateCount = Template::all()->count();

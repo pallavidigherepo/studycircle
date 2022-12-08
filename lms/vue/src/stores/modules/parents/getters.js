@@ -1,10 +1,10 @@
 export default {
-    clients(state) {
-        return state.clients;
+    parents(state) {
+        return state.parents;
     },
 
-    client(state) {
-        return state.client;
+    parent(state) {
+        return state.parent;
     },
 
     datatable(state) {

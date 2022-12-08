@@ -1,30 +1,26 @@
 export default {
-    SET_COURSES_TYPES(state, payload) {
-        state.coursesTypes = payload;
+    SET_INQUIRIES(state, payload) {
+        state.inquiries = payload;
     },
 
     SET_PAGINATION_LINKS(state, payload) {
         state.pagination = payload;
     },
 
-    CREATE_COURSES_TYPE(state, coursesType) {
-        state.coursesTypes.data.unshift(coursesType.coursesType)
+    CREATE_INQUIRY(state, payload) {
+        state.inquiries.data.unshift(payload.inquiry)
     },
-    EDIT_COURSES_TYPE(state, payload) {
-        state.coursesType = payload;
-    },
-
-    DELETE_COURSES_TYPE(state, id) {
-        let index = state.coursesTypes.data.findIndex(item => item.id === id)
-        state.coursesTypes.data.splice(index, 1)
+    EDIT_INQUIRY(state, payload) {
+        state.inquiry = payload;
     },
 
-    UPDATE_COURSES_TYPE(state, courseType) {
-        let index = state.coursesTypes.data.findIndex(item => item.id === courseType.coursesType.id);
-        state.coursesTypes.data[index] = courseType.coursesType;
+    DELETE_INQUIRY(state, id) {
+        let index = state.inquiries.data.findIndex(item => item.id === id)
+        state.inquiries.data.splice(index, 1)
     },
 
-    LIST_COURSES_TYPE(state, payload) {
-        state.courseTypeList = payload;
-    }
+    UPDATE_INQUIRY(state, payload) {
+        let index = state.inquiries.data.findIndex(item => item.id === payload.inquiry.id);
+        state.inquiries.data[index] = payload.inquiry;
+    },
 };

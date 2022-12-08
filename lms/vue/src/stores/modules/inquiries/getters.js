@@ -1,20 +1,16 @@
 export default {
-    coursesTypes(state) {
-        return state.coursesTypes;
+    inquiries(state) {
+        return state.inquiries;
     },
 
-    coursesType(state) {
-        return state.coursesType;
-    },
-
-    courseTypeList(state) {
-        return state.courseTypeList;
+    inquiry(state) {
+        return state.inquiry;
     },
 
     datatable(state) {
         return state.datatable;
     },
-    
+
     meta(state) {
         return state.pagination;
     }

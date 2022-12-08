@@ -3,7 +3,7 @@
     <template v-if="listing">
       <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
-          {{ t("clients.Clients") }}
+          {{ t("parents.Parents") }}
         </h2>
       </div>
       <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
@@ -14,7 +14,7 @@
           <div class="intro-y box p-5">
             <div class="overflow-x-auto scrollbar-hidden">
               <Datatable
-                module="clients"
+                module="parents"
                 :importExportOptions="options"
                 @editItem="edit"
                 @deleteItem="deleteI"
@@ -43,24 +43,20 @@ const route = useRoute();
 const router = useRouter();
 
 const options = {
-  modelName: "Client",
+  modelName: "Parent",
 };
 const { t } = useI18n();
 const listing = ref(true);
 
-function add() {
-  listing.value = false;
-  router.push({ name: "CreateClient" });
-}
 onMounted(() => {
-  if (route.name === "CreateClient" || route.name === "EditClient") {
+  if (route.name === "EditParent") {
     listing.value = false;
   }
 });
 watch(
   () => route.name,
   (to, from) => {
-    if (to === "Clients") {
+    if (to === "Parents") {
       listing.value = true;
     }
   }
@@ -69,13 +65,13 @@ watch(
 function edit(item) {
   listing.value = false;
   router.push({
-    name: "EditClient",
+    name: "EditParent",
     params: { id: item.id },
   });
 }
 
 function deleteI(item) {
-  store.dispatch("clients/delete", item.id);
+  store.dispatch("parents/delete", item.id);
 }
 </script>
 

@@ -24,6 +24,7 @@ class CreateInquiriesTable extends Migration
             $table->text('inquiry_closing_reason')->nullable();
             $table->string('student_name')->nullable();
             $table->enum('student_gender', ['male', 'female', 'other'])->nullable();
+            $table->date('student_dob')->nullable();
             $table->date('inquiry_date')->nullable();
             $table->unsignedBigInteger('assigned_to')->nullable();
             $table->string('contact_name')->nullable();
@@ -33,6 +34,7 @@ class CreateInquiriesTable extends Migration
             $table->string('enquired_through')->nullable();
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by');
+            $table->text('address')->nullable();
 
             $table->foreign('standard_id')->references('id')->on('standards');
             $table->foreign('batch_id')->references('id')->on('batches');

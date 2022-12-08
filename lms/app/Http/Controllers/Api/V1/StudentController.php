@@ -94,11 +94,13 @@ class StudentController extends Controller
      * @param  Student  $student
      * @return array
      */
-    public function show(Student $student) :array
+    //public function show(Student $student) :array
+    public function show(Student $student)
     {
         $studentModel = new Student();
         // We need manipulated data of student so that he/she cannot do any kind of cheating.
-        return $studentModel->manipulateStudentInfo(new StudentResource(Student::findOrFail($student->id)));
+        //return $studentModel->manipulateStudentInfo(new StudentResource(Student::findOrFail($student->id)));
+        return new StudentResource(Student::findOrFail($student->id));
     }
 
     /**

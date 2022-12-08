@@ -10,8 +10,7 @@ export default {
                 return data;
             })
             .catch(e => {
-                const error = new Error('The provided credentials are not correct.')
-                throw error;
+                throw new Error('The provided credentials are not correct.');
             })
     },
     logout({ commit }) {

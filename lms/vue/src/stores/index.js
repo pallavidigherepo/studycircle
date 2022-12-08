@@ -60,6 +60,10 @@ const store = createStore({
         difficultyList: [],
         typeList: [],
         typeListParagraph: [],
+        inquirySources: [],
+        inquiryFollowupTypes: [],
+        inquiryAssignees: [],
+        inquiryStatus: [],
     },
     getters: {
         languages(state) {
@@ -91,7 +95,19 @@ const store = createStore({
         },
         listTypeParagraph(state) {
             return state.typeListParagraph;
-        }
+        },
+        listInquirySources(state) {
+            return state.inquirySources;
+        },
+        listInquiryFollowupTypes(state) {
+            return state.inquiryFollowupTypes;
+        },
+        listInquiryAssignees(state) {
+            return state.inquiryAssignees;
+        },
+        listInquiryStatus(state) {
+            return state.inquiryStatus;
+        },
     },
     actions: {
         async importMe({ commit }, formData) {
@@ -187,7 +203,39 @@ const store = createStore({
                     commit('SET_TYPE_LIST_PARAGRAPH', data)
                     return data;
                 })
-        }
+        },
+        async listInquirySources({ commit }) {
+            return await axiosClient
+                .get('/inquiry_sources')
+                .then(({ data }) => {
+                    commit('SET_INQUIRY_SOURCES', data)
+                    return data;
+                })
+        },
+        async listInquiryFollowupTypes({ commit }) {
+            return await axiosClient
+                .get('/inquiry_followup_types')
+                .then(({ data }) => {
+                    commit('SET_INQUIRY_FOLLOWUP_TYPES', data)
+                    return data;
+                })
+        },
+        async listInquiryAssignees({ commit }) {
+            return await axiosClient
+                .get('/inquiry_assignees')
+                .then(({ data }) => {
+                    commit('SET_INQUIRY_ASSIGNEES', data)
+                    return data;
+                })
+        },
+        async listInquiryStatus({ commit }) {
+            return await axiosClient
+                .get('/inquiry_status')
+                .then(({ data }) => {
+                    commit('SET_INQUIRY_STATUS', data)
+                    return data;
+                })
+        },
     },
     mutations: {
         SET_LANGUAGES(state, payload) {
@@ -220,7 +268,18 @@ const store = createStore({
         SET_TYPE_LIST_PARAGRAPH(state, payload) {
             state.typeListParagraph = payload;
         },
-
+        SET_INQUIRY_SOURCES(state, payload) {
+            state.inquirySources = payload;
+        },
+        SET_INQUIRY_FOLLOWUP_TYPES(state, payload) {
+            state.inquiryFollowupTypes = payload;
+        },
+        SET_INQUIRY_ASSIGNEES(state, payload) {
+            state.inquiryAssignees = payload;
+        },
+        SET_INQUIRY_STATUS(state, payload) {
+            state.inquiryStatus = payload;
+        }
     },
 });
 

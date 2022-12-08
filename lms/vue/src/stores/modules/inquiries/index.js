@@ -6,9 +6,8 @@ export default {
     namespaced: true,
     state() {
         return {
-            coursesTypes: [],
-            coursesType: [],
-            courseTypeList: [],
+            inquiries: [],
+            inquiry: [],
             pagination: [],
             datatable: {
                 export: true,
@@ -27,14 +26,38 @@ export default {
                         isJson: false,
                     },
                     {
-                        label: "LABEL",
-                        field: "label",
-                        sort: true,
-                        isJson: true,
+                        label: "CODE",
+                        field: "unique_code",
+                        sort: false,
+                        isJson: false,
                     },
                     {
-                        label: "ICON",
-                        field: "icon",
+                        label: "STUDENT NAME",
+                        field: "student_name",
+                        sort: true,
+                        isJson: false,
+                    },
+                    {
+                        label: "STANDARD",
+                        field: "standard",
+                        sort: true,
+                        isJson: false,
+                    },
+                    {
+                        label: "BATCH",
+                        field: "batch",
+                        sort: true,
+                        isJson: false,
+                    },
+                    {
+                        label: "STATUS",
+                        field: "inquiry_status",
+                        sort: true,
+                        isJson: false,
+                    },
+                    {
+                        label: "CONTACT NUMBER",
+                        field: "contact_mobile",
                         sort: false,
                         isJson: false,
                     },

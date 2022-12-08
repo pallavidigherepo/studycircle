@@ -37,6 +37,8 @@ class StudentResource extends JsonResource
             'avatar' => $this->avatar ? URL::to($this->avatar) : null,
             'generated_questions' => $this->generated_question_papers(),
             'student_papers' => $this->student_papers,
+            'student_parent' => $this->student_parent,
+            'student_siblings' => $this->student_siblings,
         ];
     }
 }

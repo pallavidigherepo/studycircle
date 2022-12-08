@@ -7,13 +7,13 @@ export default {
     state() {
         return {
             loading: false,
-            clients: [],
-            client: null,
+            parents: [],
+            parent: null,
             pagination: [],
             datatable: {
-                export: true,
+                export: false,
                 import: false,
-                addNew: true,
+                addNew: false,
                 defaultColumn: "id",
                 defaultOrder: "desc",
                 defaultPage: 1,
@@ -25,24 +25,19 @@ export default {
                         sort: true,
                     },
                     {
-                        label: "NAME",
-                        field: "client_name",
+                        label: "EMAIL",
+                        field: "parent_email",
                         sort: true,
-                    },
+                    },/*
                     {
                         label: "EMAIL",
                         field: "client_email",
                         sort: true,
-                    },
+                    },*/
                     {
                         label: "MOBILE",
-                        field: "client_phone_number",
+                        field: "father_mobile",
                         sort: false,
-                    },
-                    {
-                        label: "SUBDOMAIN",
-                        field: "assigned_subdomain",
-                        sort: true,
                     },
                     {
                         label: "Actions",
@@ -51,7 +46,7 @@ export default {
                         actions: {
                             show: true,
                             edit: true,
-                            delete: true,
+                            delete: false,
                         }
                     }
                 ]
