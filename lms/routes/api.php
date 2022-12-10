@@ -30,6 +30,7 @@ use App\Http\Controllers\Api\V1\InquiryFollowupTypeController;
 use App\Http\Controllers\Api\V1\InquirySourceController;
 use App\Http\Controllers\Api\V1\InquiryStatusController;
 use App\Http\Controllers\Api\V1\InquiryController;
+use App\Http\Controllers\Api\V1\InquiryFollowupController;
 
 use App\Http\Controllers\Api\V1\SettingController;
 use App\Http\Controllers\Api\V1\StudentParentController;
@@ -89,6 +90,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('v1/inquiry_sources', InquirySourceController::class);
     Route::resource('v1/inquiry_followup_types', InquiryFollowupTypeController::class);
     Route::resource('v1/inquiries', InquiryController::class);
+    Route::resource('v1/inquiry_followups', InquiryFollowupController::class);
+
     Route::resource('v1/parents', StudentParentController::class);
     Route::resource('v1/settings', SettingController::class);
 
@@ -152,17 +155,17 @@ Route::middleware('auth:sanctum')->group(function () {
         return QuestionType::all()->where('is_active', true)->where('in_paragraph', true)->pluck('name', 'id');
     })->name('type_list_paragraph');
 
-    Route::get('v1/inquiry_sources', function () {
+    Route::get('v1/inquiry_sources_list', function () {
         return InquirySource::all()->pluck('name', 'id');
-    })->name('inquiry_sources');
+    })->name('inquiry_sources_list');
 
-    Route::get('v1/inquiry_followup_types', function () {
+    Route::get('v1/inquiry_followup_types_list', function () {
         return InquiryFollowupType::all()->pluck('name', 'id');
-    })->name('inquiry_followup_types');
+    })->name('inquiry_followup_types_list');
 
-    Route::get('v1/inquiry_status', function () {
+    Route::get('v1/inquiry_status_list', function () {
         return InquiryStatus::all()->pluck('name', 'id');
-    })->name('inquiry_status');
+    })->name('inquiry_status_list');
 
     Route::get('v1/inquiry_assignees', function () {
         return User::all()->pluck('name', 'id');

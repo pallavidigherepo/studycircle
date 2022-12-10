@@ -17,6 +17,7 @@ import generateQuestionModule from './modules/generate_questions/index';
 import batchModule from './modules/batches/index';
 import studentPaperModule from './modules/student_papers/index.js';
 import inquiryModule from "./modules/inquiries/index.js";
+import inquiryFollowupModule from "./modules/inquiry_followups/index.js";
 import inquiryStatusModule from "./modules/inquiry_statuses/index.js";
 import inquirySourcesModule from "./modules/inquiry_sources/index.js";
 import inquiryFollowUpTypeModule from "./modules/inquiry_followup_types/index.js";
@@ -40,6 +41,7 @@ const store = createStore({
         generated_questions: generateQuestionModule,
         batches: batchModule,
         inquiries: inquiryModule,
+        inquiry_followups: inquiryFollowupModule,
         inquiry_followup_types: inquiryFollowUpTypeModule,
         inquiry_sources: inquirySourcesModule,
         inquiry_statuses: inquiryStatusModule,
@@ -206,7 +208,7 @@ const store = createStore({
         },
         async listInquirySources({ commit }) {
             return await axiosClient
-                .get('/inquiry_sources')
+                .get('/inquiry_sources_list')
                 .then(({ data }) => {
                     commit('SET_INQUIRY_SOURCES', data)
                     return data;
@@ -214,7 +216,7 @@ const store = createStore({
         },
         async listInquiryFollowupTypes({ commit }) {
             return await axiosClient
-                .get('/inquiry_followup_types')
+                .get('/inquiry_followup_types_list')
                 .then(({ data }) => {
                     commit('SET_INQUIRY_FOLLOWUP_TYPES', data)
                     return data;
@@ -230,7 +232,7 @@ const store = createStore({
         },
         async listInquiryStatus({ commit }) {
             return await axiosClient
-                .get('/inquiry_status')
+                .get('/inquiry_status_list')
                 .then(({ data }) => {
                     commit('SET_INQUIRY_STATUS', data)
                     return data;

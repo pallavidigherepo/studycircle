@@ -13,7 +13,7 @@ class UpdateInquiryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,39 @@ class UpdateInquiryRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'standard_id' => [
+                'required',
+            ],
+            'batch_id' => [
+                'required',
+            ],
+            /*'course_id' => [
+                'required',
+            ],
+            'inquiry_status_id' => [
+                'required',
+            ],*/
+            'inquiry_source_id' => [
+                'required',
+            ],
+            'assigned_to' => [
+                'required',
+            ],
+            'student_name' => [
+                'required',
+            ],
+            'student_gender' => [
+                'required',
+            ],
+            'contact_name' => [
+                'required',
+            ],
+            'contact_email' => [
+                'required',
+            ],
+            'contact_mobile' => [
+                'required',
+            ],
         ];
     }
 }

@@ -668,8 +668,8 @@ const fetch = async () => {
         if (result.status !== 200) {
             throw new Error('Failed to fetch student information.')
         }
-        let response = JSON.parse(JSON.stringify(result.data));
-        student.value = response.info;
+        let response = JSON.parse(JSON.stringify(result.data.data));
+        student.value = response;
         papers.value = response.manipulated;
     } catch (e) {
         isErrored.value = true;

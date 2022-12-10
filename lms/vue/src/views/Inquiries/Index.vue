@@ -166,10 +166,12 @@
                             </td>
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">
-                                    <router-link :to="{ name: 'ShowInquiry', params: { id: item.id } }"
-                                                 class="flex items-center text-warning mr-2">
+                                    <a href="javascript:;"
+                                       class="flex items-center text-warning mr-2"
+                                       @click.prevent="showFollowups(item)"
+                                    >
                                         <MessageCircleIcon class="w-4 h-4 mr-1" />{{ t("inquiries.Comment") }}
-                                    </router-link>
+                                    </a>
 
                                     <router-link :to="{ name: 'ShowInquiry', params: { id: item.id } }"
                                                  class="flex items-center text-primary mr-2">
@@ -182,7 +184,7 @@
                                     </router-link>
                                     <a class="flex items-center text-danger"
                                        href="javascript:;"
-                                       @click.prevent="emit('deleteItem', item.id)">
+                                       @click.prevent="deleteI(item)">
                                         <Trash2Icon class="w-4 h-4 mr-1"/>
                                         {{ t("common.Delete") }}
                                     </a>
@@ -331,6 +333,10 @@
             </Modal>
             <!-- END: Modal Content -->
             <Loading v-if="loading" fixed></Loading>
+            <inquiry-followups v-if="isFollowupCalled"
+                               v-model="showFollowupValue"
+                               :inquiryId="inquiryId"
+                               :inquiryStatusId="inquiryStatusId" />
         </template>
         <template v-else>
             <router-view></router-view>
@@ -344,6 +350,7 @@ import {ref, onMounted, computed, watch, reactive} from "vue";
 import {useI18n} from "vue-i18n";
 import {useRoute, useRouter} from "vue-router";
 import store from "@/stores";
+import InquiryFollowups from "@/components/Inquiries/Followups.vue";
 import _ from "lodash";
 
 const route = useRoute();
@@ -354,6 +361,7 @@ const {t} = useI18n();
 const listing = ref(true);
 const search = ref("");
 const loading = ref(false);
+const isFollowupCalled = ref(false);
 onMounted(() => {
     if (
         route.name === "CreateInquiry" ||
@@ -478,6 +486,16 @@ function openModal() {
     headerFooterModalPreview.value = true;
     responseMessage.value = "";
     responseStatus.value = false;
+}
+const showFollowupValue = ref(false);
+const inquiryId = ref("");
+const inquiryStatusId = ref("");
+function showFollowups(item)
+{
+    isFollowupCalled.value = true;
+    showFollowupValue.value = true;
+    inquiryId.value = item.id;
+    inquiryStatusId.value = item.inquiry_status_id;
 }
 </script>
 

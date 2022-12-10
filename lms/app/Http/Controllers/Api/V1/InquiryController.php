@@ -26,8 +26,8 @@ class InquiryController extends Controller
 
         return InquiryResource::collection(
             Inquiry::when($request->input('search'), function ($query) {
-                $query->where('name', 'like', '%' . request('search') . '%');
-                $query->orWhere('guard_name', 'like', '%' . request('search') . '%');
+                $query->where('student_name', 'like', '%' . request('search') . '%');
+                $query->orWhere('contact_name', 'like', '%' . request('search') . '%');
             })->orderBy($field, $order)->paginate($perPage)
         );
     }
@@ -86,7 +86,24 @@ class InquiryController extends Controller
      */
     public function update(UpdateInquiryRequest $request, Inquiry $inquiry)
     {
-        //
+        if ($request->validated()) {
+            $input = $request->toArray();
+            $input['updated_by'] = Auth::user()->id;
+            $inquiry->update($input);
+
+            $response = [
+                'success' => true,
+                'message' => 'Inquiry created successfully.',
+                'inquiry' => $inquiry,
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'Oops, there seems to have some errors.',
+                'errors' => $this->validated()->errors(),
+            ];
+        }
+        return response()->json($response, 200);
     }
 
     /**
@@ -97,6 +114,17 @@ class InquiryController extends Controller
      */
     public function destroy(Inquiry $inquiry)
     {
-        //
+        $response = [
+            'success' => false,
+            'message' => null,
+            'errors' => null,
+        ];
+        if ($inquiry->delete()) {
+            $response = [
+                'success' => true,
+                'message' => 'Inquiry deleted successfully.',
+            ];
+        }
+        return response()->json($response);
     }
 }

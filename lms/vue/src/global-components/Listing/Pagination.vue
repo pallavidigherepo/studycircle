@@ -9,10 +9,10 @@
         "
         >
         <nav class="w-full sm:w-auto sm:mr-auto pagination">
-           
+
             <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
             <ul class="pagination">
-            <li 
+            <li
                 v-for="(link, i) of links"
                 :key="i"
                 class="page-item"
@@ -31,7 +31,7 @@
                     ]"
                     v-html="link.label"
                     >
-                
+
                 </a>
 
                 <a
@@ -49,20 +49,20 @@
                     ]"
                     v-html="link.label"
                     >
-                
+
                 </a>
-                
+
             </li>
             </ul>
         </nav>
         <select class="w-20 form-select mt-3 sm:mt-0">
-            <option v-for="(perPage, index) in perPageOptions" 
-                    :key="index" 
-                    :value="perPage" 
+            <option v-for="(perPage, index) in perPageOptions"
+                    :key="index"
+                    :value="perPage"
                     @click="emits('perpage', perPage)">
                     {{perPage}}
             </option>
-            
+
         </select>
     </div>
 </template>
@@ -74,7 +74,7 @@ const props = defineProps({
         type: Object,
         required: false
     },
-    curretPage: {
+    currentPage: {
         type: Number,
         required: false,
         default: 1

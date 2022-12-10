@@ -644,7 +644,7 @@ const fetch = async() => {
         if (result.status !== 200) {
             throw new Error('Failed to fetch student information.');
         }
-        model.value = JSON.parse(JSON.stringify(result.data.info));
+        model.value = JSON.parse(JSON.stringify(result.data.data));
     } catch (e) {
         isErrored.value = true;
         message.value = e;

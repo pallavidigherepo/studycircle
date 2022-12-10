@@ -2,10 +2,8 @@
 
 </template>
 
-<script>
-export default {
-    name: "Show.vue"
-}
+<script setup>
+
 </script>
 
 <style scoped>
