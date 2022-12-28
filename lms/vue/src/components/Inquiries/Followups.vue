@@ -49,9 +49,14 @@
                                             <tbody>
                                                 <tr v-for="(item,index) in items.data" :key="index">
                                                     <td class="whitespace-nowrap">{{ item.id }}</td>
-                                                    <td class="whitespace-nowrap">{{ item.followup_date }}@{{ item.followup_time}}</td>
-                                                    <td class="whitespace-nowrap">{{ item.inquiry_followup_type_id }}</td>
-                                                    <td class="whitespace-nowrap">{{ item.inquiry_status_id }}</td>
+                                                    <td class="whitespace-nowrap">
+                                                        <span class="font-medium whitespace-nowrap">{{ item.followup_date }}</span>
+                                                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
+                                                            @ {{ item.followup_time }}
+                                                        </div>
+                                                    </td>
+                                                    <td class="whitespace-nowrap">{{ item.followup_type }}</td>
+                                                    <td class="whitespace-nowrap">{{ item.status }}</td>
                                                     <td class="whitespace-nowrap">Comments/Notes</td>
                                                 </tr>
                                             </tbody>

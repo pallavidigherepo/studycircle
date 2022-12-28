@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +27,29 @@ class InquiryFollowup extends Model
         'updated_by',
     ];
 
+    /**
+     * @return BelongsTo
+     */
+    public function inquiry(): BelongsTo
+    {
+        return $this->belongsTo(Inquiry::class, 'inquiry_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(InquiryStatus::class, 'inquiry_status_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function followup_type(): BelongsTo
+    {
+        return $this->belongsTo(InquiryFollowupType::class, 'inquiry_followup_type_id');
+    }
     /**
      * @return HasMany
      */

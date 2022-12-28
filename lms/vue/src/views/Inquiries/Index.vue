@@ -103,121 +103,135 @@
                             <th class="text-center whitespace-nowrap">{{ t("common.ACTIONS") }}</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr
-                            v-for="(item, index) in items.data"
-                            :key="index"
-                            class="intro-x"
-                        >
-                            <td>
-                                <div class="flex">
-                                    {{ index + 1}}
-                                </div>
-                            </td>
-                            <td>
-                                <div class="text-slate-500 whitespace-nowrap">
-                                    {{ item.unique_code }}
-                                </div>
-                            </td>
-                            <td class="whitespace-nowrap">
-                                <span class="font-medium whitespace-nowrap">{{ item.batch }}</span>
-                                <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
-                                    {{ item.standard }}
-                                </div>
-                            </td>
-                            <td class="text-center">{{ item.inquiry_date }}</td>
-                            <td class="text-center">
-                                <a :href="'tel:'+item.contact_mobile">
+
+                        <template v-if="items">
+                            <tbody>
+                                <tr
+                                v-for="(item, index) in items.data"
+                                :key="index"
+                                class="intro-x"
+                            >
+                                <td>
+                                    <div class="flex">
+                                        {{ index + 1}}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="text-slate-500 whitespace-nowrap">
+                                        {{ item.unique_code }}
+                                    </div>
+                                </td>
+                                <td class="whitespace-nowrap">
+                                    <span class="font-medium whitespace-nowrap">{{ item.batch }}</span>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
+                                        {{ item.standard }}
+                                    </div>
+                                </td>
+                                <td class="text-center">{{ item.inquiry_date }}</td>
+                                <td class="text-center">
+                                    <a :href="'tel:'+item.contact_mobile">
+                                        <div
+                                            class="flex items-center justify-center"
+                                        >
+                                            <PhoneIcon class="w-4 h-4 mr-2" />{{ item.contact_mobile }}
+                                        </div>
+                                    </a>
+                                </td>
+                                <td class="w-40">
                                     <div
                                         class="flex items-center justify-center"
-                                        >
-                                        <PhoneIcon class="w-4 h-4 mr-2" />{{ item.contact_mobile }}
-                                    </div>
-                                </a>
-                            </td>
-                            <td class="w-40">
-                                <div
-                                    class="flex items-center justify-center"
-                                >
-                                    <button v-if="item.status == 'Open'" class="btn btn-danger-soft w-32 mr-2 mb-2">
-                                        {{ item.status }}
-                                    </button>
-
-                                    <button v-if="item.status == 'Close'" class="btn btn-success w-32 mr-2 mb-2">
-                                        {{ item.status }}
-                                    </button>
-                                    <button v-if="item.status == 'Waiting for Response'" class="btn btn-pending-soft w-32 mr-2 mb-2">
-                                        {{ item.status }}
-                                    </button>
-                                    <button v-if="item.status == 'Accepted'" class="btn btn-primary w-32 mr-2 mb-2">
-                                        {{ item.status }}
-                                    </button>
-                                    <button v-if="item.status == 'Rejected'" href="" class="btn btn-dark w-32 mr-2 mb-2">
-                                        {{ item.status }}
-                                    </button>
-                                </div>
-                            </td>
-                            <td class="text-center">
-                                <div
-                                    class="flex items-center justify-center"
-                                >
-                                    <UserIcon class="w-4 h-4 mr-1" />{{ item.assigned }}
-                                </div>
-                            </td>
-                            <td class="table-report__action w-56">
-                                <div class="flex justify-center items-center">
-                                    <a href="javascript:;"
-                                       class="flex items-center text-warning mr-2"
-                                       @click.prevent="showFollowups(item)"
                                     >
-                                        <MessageCircleIcon class="w-4 h-4 mr-1" />{{ t("inquiries.Comment") }}
-                                    </a>
+                                        <button v-if="item.status == 'Open'" class="btn btn-danger-soft w-32 mr-2 mb-2">
+                                            {{ item.status }}
+                                        </button>
 
-                                    <router-link :to="{ name: 'ShowInquiry', params: { id: item.id } }"
-                                                 class="flex items-center text-primary mr-2">
-                                        <EyeIcon class="w-4 h-4 mr-1"/>{{ t("common.Show") }}
-                                    </router-link>
-                                    <router-link :to="{ name: 'EditInquiry', params: { id: item.id } }"
-                                                 class="flex items-center text-success mr-2">
-                                        <Edit3Icon class="w-4 h-4 mr-1" />
-                                        {{ t("common.Edit") }}
-                                    </router-link>
-                                    <a class="flex items-center text-danger"
-                                       href="javascript:;"
-                                       @click.prevent="deleteI(item)">
-                                        <Trash2Icon class="w-4 h-4 mr-1"/>
-                                        {{ t("common.Delete") }}
-                                    </a>
-<!--                                    <Dropdown>-->
-<!--                                        <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">-->
-<!--                                            <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />-->
-<!--                                        </DropdownToggle>-->
-<!--                                        <DropdownMenu class="w-40">-->
-<!--                                            <DropdownContent>-->
-<!--                                                <DropdownItem>-->
-<!--                                                    <MessageCircleIcon class="w-4 h-4 mr-2" />{{ t("inquiries.Add Comment") }}-->
-<!--                                                </DropdownItem>-->
-<!--                                                <DropdownItem>-->
-<!--                                                    <router-link :to="{ name: ShowInquiry, params: { id: item.id } }" class="flex">-->
-<!--                                                        <EyeIcon class="w-4 h-4 mr-2"/>{{ t("inquiries.View Details") }}-->
-<!--                                                    </router-link>-->
-<!--                                                </DropdownItem>-->
-<!--                                                <DropdownItem>-->
-<!--                                                    <router-link :to="{ name: EditInquiry, params: { id: item.id } }" class="flex">-->
-<!--                                                        <Edit2Icon class="w-4 h-4 mr-2" />-->
-<!--                                                    {{ t("common.Edit") }}-->
-<!--                                                    </router-link>-->
-<!--                                                </DropdownItem>-->
-<!--                                                <DropdownItem>-->
-<!--                                                    <TrashIcon class="w-4 h-4 mr-2" /> {{ t("common.Delete") }}-->
-<!--                                                </DropdownItem>-->
-<!--                                            </DropdownContent>-->
-<!--                                        </DropdownMenu>-->
-<!--                                    </Dropdown>-->
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
+                                        <button v-if="item.status == 'Close'" class="btn btn-success w-32 mr-2 mb-2">
+                                            {{ item.status }}
+                                        </button>
+                                        <button v-if="item.status == 'Waiting for Response'" class="btn btn-pending-soft w-32 mr-2 mb-2">
+                                            {{ item.status }}
+                                        </button>
+                                        <button v-if="item.status == 'Accepted'" class="btn btn-primary w-32 mr-2 mb-2">
+                                            {{ item.status }}
+                                        </button>
+                                        <button v-if="item.status == 'Rejected'" href="" class="btn btn-dark w-32 mr-2 mb-2">
+                                            {{ item.status }}
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div
+                                        class="flex items-center justify-center"
+                                    >
+                                        <UserIcon class="w-4 h-4 mr-1" />{{ item.assigned }}
+                                    </div>
+                                </td>
+                                <td class="table-report__action w-56">
+                                    <div class="flex justify-center items-center">
+                                        <a href="javascript:;"
+                                           class="flex items-center text-warning mr-2"
+                                           @click.prevent="showFollowups(item)"
+                                        >
+                                            <MessageCircleIcon class="w-4 h-4 mr-1" />{{ t("inquiries.Comment") }}
+                                        </a>
+
+                                        <router-link :to="{ name: 'ShowInquiry', params: { id: item.id } }"
+                                                     class="flex items-center text-primary mr-2">
+                                            <EyeIcon class="w-4 h-4 mr-1"/>{{ t("common.Show") }}
+                                        </router-link>
+                                        <router-link :to="{ name: 'EditInquiry', params: { id: item.id } }"
+                                                     class="flex items-center text-success mr-2">
+                                            <Edit3Icon class="w-4 h-4 mr-1" />
+                                            {{ t("common.Edit") }}
+                                        </router-link>
+                                        <a class="flex items-center text-danger"
+                                           href="javascript:;"
+                                           @click.prevent="deleteI(item)">
+                                            <Trash2Icon class="w-4 h-4 mr-1"/>
+                                            {{ t("common.Delete") }}
+                                        </a>
+                                        <!--                                    <Dropdown>-->
+                                        <!--                                        <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">-->
+                                        <!--                                            <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />-->
+                                        <!--                                        </DropdownToggle>-->
+                                        <!--                                        <DropdownMenu class="w-40">-->
+                                        <!--                                            <DropdownContent>-->
+                                        <!--                                                <DropdownItem>-->
+                                        <!--                                                    <MessageCircleIcon class="w-4 h-4 mr-2" />{{ t("inquiries.Add Comment") }}-->
+                                        <!--                                                </DropdownItem>-->
+                                        <!--                                                <DropdownItem>-->
+                                        <!--                                                    <router-link :to="{ name: ShowInquiry, params: { id: item.id } }" class="flex">-->
+                                        <!--                                                        <EyeIcon class="w-4 h-4 mr-2"/>{{ t("inquiries.View Details") }}-->
+                                        <!--                                                    </router-link>-->
+                                        <!--                                                </DropdownItem>-->
+                                        <!--                                                <DropdownItem>-->
+                                        <!--                                                    <router-link :to="{ name: EditInquiry, params: { id: item.id } }" class="flex">-->
+                                        <!--                                                        <Edit2Icon class="w-4 h-4 mr-2" />-->
+                                        <!--                                                    {{ t("common.Edit") }}-->
+                                        <!--                                                    </router-link>-->
+                                        <!--                                                </DropdownItem>-->
+                                        <!--                                                <DropdownItem>-->
+                                        <!--                                                    <TrashIcon class="w-4 h-4 mr-2" /> {{ t("common.Delete") }}-->
+                                        <!--                                                </DropdownItem>-->
+                                        <!--                                            </DropdownContent>-->
+                                        <!--                                        </DropdownMenu>-->
+                                        <!--                                    </Dropdown>-->
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </template>
+                        <template v-if="items">
+                            <tbody v-if="noRecords && !items.data.length">
+                                <tr class="intro-x bg-secondary">
+                                    <td colspan="8" class="text-center">
+                                        {{ t("common.Sorry, no records found") }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </template>
+
+
                     </table>
                 </div>
                 <!-- END: Data List -->

@@ -19,7 +19,7 @@ class CreateInquiryFollowupsTable extends Migration
             $table->unsignedBigInteger('inquiry_status_id')->nullable();
             $table->unsignedBigInteger('inquiry_followup_type_id')->nullable();
             $table->date('followup_date')->nullable();
-            $table->timestamp('followup_time')->nullable();
+            $table->time('followup_time')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
 

@@ -41,7 +41,7 @@
                                     <div
                                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                         <ChevronDownIcon class="w-4 h-4 mr-2"/>
-                                        {{ t("questions.Select Standard/Class, Batch, Source and etc..") }}
+                                        {{ t("inquiries.Select Standard Class, Batch Source and etc") }}
                                     </div>
                                     <div class="mt-5">
 

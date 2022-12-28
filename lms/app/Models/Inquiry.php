@@ -25,6 +25,7 @@ class Inquiry extends Model
         'inquiry_closing_reason',
         'student_name',
         'student_gender',
+        'student_dob',
         'inquiry_date',
         'assigned_to',
         'contact_name',
