@@ -17,7 +17,7 @@ class CreateStudentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('roll_number')->nullable(true)->unique();
-            $table->string('aadhaar')->unique();
+            $table->string('aadhaar')->nullable()->unique();
             $table->boolean('is_aadhaar_verified')->default(false);
             $table->unsignedBigInteger('parent_id')->nullable(true);
             $table->unsignedBigInteger('board_id')->nullable(true);
@@ -27,7 +27,7 @@ class CreateStudentsTable extends Migration
             $table->unsignedBigInteger('course_id')->nullable(true);
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('mobile');
+            $table->string('mobile')->nullable();
             $table->string('alt_mobile')->nullable(true);
             $table->enum('gender', ['male', 'female', 'other']);
             $table->string('avatar')->nullable(true);

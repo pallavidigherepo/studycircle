@@ -94,12 +94,12 @@
                         <thead>
                         <tr>
                             <th class="whitespace-nowrap">#</th>
-                            <th class="whitespace-nowrap">{{ t("inquiries.CODE") }}</th>
+                            <th class="whitespace-nowrap">{{ t("inquiries.DATE AND CODE") }}</th>
                             <th class="text-center whitespace-nowrap">{{ t("inquiries.BATCH AND STANDARD") }}</th>
-                            <th class="text-center whitespace-nowrap">{{ t("inquiries.DATE") }}</th>
                             <th class="text-center whitespace-nowrap">{{ t("inquiries.MOBILE") }}</th>
                             <th class="text-center whitespace-nowrap">{{ t("inquiries.STATUS") }}</th>
                             <th class="text-center whitespace-nowrap">{{ t("inquiries.ASSIGNED TO") }}</th>
+                            <th class="text-center whitespace-nowrap">{{ t("inquiries.FOLLOW UPS") }}</th>
                             <th class="text-center whitespace-nowrap">{{ t("common.ACTIONS") }}</th>
                         </tr>
                         </thead>
@@ -117,7 +117,8 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="text-slate-500 whitespace-nowrap">
+                                    <span class="font-medium whitespace-nowrap">{{ item.inquiry_date }}</span>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
                                         {{ item.unique_code }}
                                     </div>
                                 </td>
@@ -127,7 +128,6 @@
                                         {{ item.standard }}
                                     </div>
                                 </td>
-                                <td class="text-center">{{ item.inquiry_date }}</td>
                                 <td class="text-center">
                                     <a :href="'tel:'+item.contact_mobile">
                                         <div
@@ -166,15 +166,20 @@
                                         <UserIcon class="w-4 h-4 mr-1" />{{ item.assigned }}
                                     </div>
                                 </td>
-                                <td class="table-report__action w-56">
-                                    <div class="flex justify-center items-center">
+                                <td class="text-center">
+                                    <div
+                                        class="flex items-center justify-center"
+                                    >
                                         <a href="javascript:;"
                                            class="flex items-center text-warning mr-2"
                                            @click.prevent="showFollowups(item)"
                                         >
-                                            <MessageCircleIcon class="w-4 h-4 mr-1" />{{ t("inquiries.Comment") }}
+                                            <MessageCircleIcon class="w-4 h-4 mr-1" />{{ t("inquiries.Follow Ups") }}
                                         </a>
-
+                                    </div>
+                                </td>
+                                <td class="table-report__action w-85">
+                                    <div class="flex justify-center items-center">
                                         <router-link :to="{ name: 'ShowInquiry', params: { id: item.id } }"
                                                      class="flex items-center text-primary mr-2">
                                             <EyeIcon class="w-4 h-4 mr-1"/>{{ t("common.Show") }}
@@ -504,12 +509,111 @@ function openModal() {
 const showFollowupValue = ref(false);
 const inquiryId = ref("");
 const inquiryStatusId = ref("");
+
 function showFollowups(item)
 {
     isFollowupCalled.value = true;
     showFollowupValue.value = true;
     inquiryId.value = item.id;
     inquiryStatusId.value = item.inquiry_status_id;
+}
+const modelName = "Inquiry";
+const downloadFileName = ref('');
+const responseStatus = ref(false);
+const responseMessage = ref('');
+const responseErrors = ref("");
+const options = {
+    modelName: "Question",
+};;
+
+const form = {
+    export_as: ""
+}
+async function exportMe(export_as, isDemo) {
+    const demo = ref(false);
+
+    let todayDate = new Date();
+
+    let name = modelName + "-" + todayDate.getDate() + "-"
+        + (todayDate.getMonth() + 1) + "-"
+        + todayDate.getFullYear() + "-"
+        + todayDate.getHours() + "-"
+        + todayDate.getMinutes() + "-"
+        + todayDate.getSeconds();
+    if (!isDemo) {
+        downloadFileName.value = name + "." + export_as;
+    } else {
+        downloadFileName.value = "Template for " + name + "." + export_as;
+        demo.value = true;
+    }
+    const req = {
+        fileName: downloadFileName.value,
+        modelName: modelName,
+        selectedItem: "",
+        demo: demo.value
+    };
+
+    await store.dispatch('exportMe', req)
+        .then((response) => {
+            if (response.status === 200) {
+                form.export_as = "";
+                var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                var fileLink = document.createElement("a");
+                fileLink.href = fileURL;
+                fileLink.setAttribute("download", downloadFileName.value);
+                //fileLink.setAttribute('target', '_blank');
+                document.body.appendChild(fileLink);
+                fileLink.click();
+            }
+        })
+        .catch();
+}
+const import_file = ref({});
+
+function importMe(e) {
+    responseStatus.value = false;
+    responseMessage.value = '';
+
+    import_file.value = e.target.files[0];
+
+    var allowedExtensions =
+        import.meta.env.VITE_IMPORTS_ALLOWED.split(",");
+
+    if (allowedExtensions.includes(e.target.files[0]["type"])) {
+        proceedAction();
+    } else {
+        responseStatus.value = false;
+        responseMessage.value = "Wrong file type.";
+    }
+    //console.log(import_file.value.size);
+}
+
+function proceedAction() {
+    let formData = new FormData();
+    formData.append("modelName", modelName);
+    formData.append("import_file", import_file.value);
+
+
+    store
+        .dispatch("importMe", formData)
+        .then((res) => {
+            responseStatus.value = res.data.success;
+            responseMessage.value = res.data.message;
+            responseErrors.value = res.data.failures ?? null;
+
+            import_file.value = {};
+            if (res.data.success == true) {
+                setTimeout(() => {
+                    headerFooterModalPreview.value = false;
+                    responseStatus.value = false;
+                    responseMessage.value = "";
+                    fetchList();
+                }, 1000);
+            }
+        })
+        .catch((error) => {
+            //error.response.data;
+        });
 }
 </script>
 

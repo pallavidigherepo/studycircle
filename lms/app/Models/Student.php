@@ -198,17 +198,17 @@ class Student extends Model
                 [
                     'parent_email' => $student['father_email'],
                     'parent_password' => Hash::make(123456789),
-                    'parent_aadhaar_number' => $student['parent_aadhaar_number'],
-                    'mother_name' => $student['mother_name'],
-                    'mother_email' => $student['mother_email'],
-                    'mother_mobile' => $student['mother_mobile'],
-                    'mother_qualification' => $student['mother_qualification'],
-                    'mother_occupation' => $student['mother_occupation'],
-                    'father_name' => $student['father_name'],
-                    'father_email' => $student['father_email'],
-                    'father_mobile' => $student['father_mobile'],
-                    'father_qualification' => $student['father_qualification'],
-                    'father_occupation' => $student['father_occupation'],
+                    'parent_aadhaar_number' => $student['parent_aadhaar_number'] ?? null,
+                    'mother_name' => $student['mother_name'] ?? null,
+                    'mother_email' => $student['mother_email'] ?? null,
+                    'mother_mobile' => $student['mother_mobile'] ?? null,
+                    'mother_qualification' => $student['mother_qualification'] ?? null,
+                    'mother_occupation' => $student['mother_occupation'] ?? null,
+                    'father_name' => $student['father_name'] ?? null,
+                    'father_email' => $student['father_email'] ?? null,
+                    'father_mobile' => $student['father_mobile'] ?? null,
+                    'father_qualification' => $student['father_qualification'] ?? null,
+                    'father_occupation' => $student['father_occupation'] ?? null,
                 ]
             );
             unset($student['mother_name']);

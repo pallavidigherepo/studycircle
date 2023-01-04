@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Auth;
 
 class Inquiry extends Model
 {
@@ -102,5 +103,43 @@ class Inquiry extends Model
     public function followup_type(): BelongsTo
     {
         return $this->belongsTo(InquiryFollowupType::class, 'inquiry_followup_type_id');
+    }
+
+    /**
+     * The "boot" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($inquiry) {
+            // Firstly: Check if inquiry is "Accepted" then we have to save student information in students table
+            // and student_parents table.
+            // With this we also need to add a row in pivot table with inquiry_id and created student_id
+            if ($inquiry->inquiry_status_id === 4) {
+                // Now we need to set then array for students and student_parents table fields.
+                $studentInput = [
+                    'name' => $inquiry->student_name,
+                    'batch_id' => $inquiry->batch_id,
+                    'standard_id' => $inquiry->standard_id,
+                    'board_id' => 1,
+                    'language_id' => 1,
+                    'email' => $inquiry->contact_email,
+                    'gender' => $inquiry->student_gender,
+                    'dob' => $inquiry->student_dob,
+                    'address' => $inquiry->address,
+                    'parent_email' => $inquiry->contact_email,
+                    'father_email' => $inquiry->contact_email,
+                    'father_mobile' => $inquiry->contact_mobile,
+                ];
+                $student = Student::create($studentInput);
+                InquiryStudent::create([
+                    'inquiry_id' => $inquiry->id,
+                    'student_id' => $student->id,
+                ]);
+            }
+        });
     }
 }

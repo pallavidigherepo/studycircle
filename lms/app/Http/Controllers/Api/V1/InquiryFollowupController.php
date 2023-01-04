@@ -23,11 +23,13 @@ class InquiryFollowupController extends Controller
         $field = $request->input('sort_field') ?? 'id';
         $order = $request->input('sort_order') ?? 'desc';
         $perPage = $request->input('per_page') ?? 10;
+        $inquiry = $request->input('inquiry_id') ?? null;
 
         return InquiryFollowupResource::collection(
             InquiryFollowup::when($request->input('search'), function ($query) {
                 $query->where('inquiry_followup_type_id', 'like', '%' . request('search') . '%');
-            })->orderBy($field, $order)->paginate($perPage)
+                $query->where('inquiry_id', '=', request('inquiry_id'));
+            })->where('inquiry_id', $inquiry)->orderBy($field, $order)->paginate($perPage)
         );
     }
 

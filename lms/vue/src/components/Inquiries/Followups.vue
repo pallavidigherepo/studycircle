@@ -184,8 +184,7 @@
                             <!-- END: Follow-ups and comments Info -->
                         </div>
                     </div>
-            </ModalBody
-            >
+            </ModalBody>
         </Modal>
         <!-- END: Super Large Slide Over Content -->
     </div>
@@ -262,13 +261,13 @@ async function submitFollowupForm()
     f$.value.$validate(); // checks all inputs
     if (!f$.value.$error) {
         isLoading.value = true;
+        followUpSubmitted.value = false;
         followupModel.value.inquiry_id = props.inquiryId;
         followupModel.value.inquiry_status_id = props.inquiryStatusId;
         await store
             .dispatch("inquiry_followups/save", followupModel.value)
             .then(() => {
                 isLoading.value = false;
-                followUpSubmitted.value = false;
                 isErrored.value = false;
                 followupModel.value = JSON.parse(JSON.stringify(followupModel));
                 fetch();
@@ -296,10 +295,14 @@ onMounted(() => {
 const followupTypes = computed(() => store.getters.listInquiryFollowupTypes);
 const assignees = computed(() => store.getters.listInquiryAssignees);
 
+const url = ref(
+    "?inquiry_id=" +
+    props.inquiryId
+);
 function fetch() {
     //loading.value = true;
     store
-        .dispatch("inquiry_followups/list")
+        .dispatch("inquiry_followups/list",  {url: url.value})
         .then(() => {
             //loading.value = false;
         })

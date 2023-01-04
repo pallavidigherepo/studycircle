@@ -3,7 +3,7 @@ import axiosClient from "@/axios";
 export default {
     // This action is used to fetch all the courses types present in database
     async list({ commit }, { url = null } = {}) {
-        url = "/inquiry_followups";
+        url = "/inquiry_followups"+url;
         return await axiosClient.get(url)
             .then(({ data }) => {
                 commit('SET_INQUIRY_FOLLOWUPS', data);
