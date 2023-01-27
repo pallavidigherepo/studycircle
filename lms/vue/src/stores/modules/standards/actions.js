@@ -3,10 +3,10 @@ import axiosClient from "@/axios";
 export default {
     // This action is used to fetch all the courses types present in database
     async list({ commit }, { url = null } = {}) {
-        url = "/inquiries" + url;
+        url = "/standards" + url;
         return await axiosClient.get(url)
             .then(({ data }) => {
-                commit('SET_INQUIRIES', data);
+                commit('SET_STANDARDS', data);
                 commit('SET_PAGINATION_LINKS', data.meta.links)
                 return data;
             });
@@ -17,28 +17,29 @@ export default {
 
         if (model.id) {
             response = await axiosClient
-                .put(`/inquiries/${model.id}`, model)
+                .put(`/standards/${model.id}`, model)
                 .then(({ data }) => {
-                    commit('UPDATE_INQUIRY', data);
+                    commit('UPDATE_STANDARD', data);
                     return data;
                 });
         } else {
             response = await axiosClient
-                .post(`/inquiries`, model)
+                .post(`/standards`, model)
                 .then(({ data }) => {
-                    commit('CREATE_INQUIRY', data);
+                    commit('CREATE_STANDARD', data);
                     return data;
                 });
         }
     },
 
-    // This action is used to delete coursesType from serve.
+    // This action is used to delete batch from server.
     async delete({ commit }, id) {
         return await axiosClient
-            .delete(`/inquiries/${id}`)
+            .delete(`/standards/${id}`)
             .then((res) => {
-                commit('DELETE_INQUIRY', id);
+                commit('DELETE_STANDARD', id);
                 return res;
             });
     },
+
 };

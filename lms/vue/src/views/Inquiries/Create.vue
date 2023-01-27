@@ -512,11 +512,11 @@
                                                     <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-slate-100 border text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
                                                         <CalendarIcon class="w-4 h-4" />
                                                     </div>
-                                                    <input v-model="model.dob"
+                                                    <input v-model="model.student_dob"
                                                            type="date"
                                                            class="form-control pl-12" />
                                                 </div>
-                                                <div v-for="(error, index) of v$.dob.$errors" :key="index"
+                                                <div v-for="(error, index) of v$.student_dob.$errors" :key="index"
                                                      class="text-danger mt-2">
                                                     <div class="error-msg">{{ error.$message }}</div>
                                                 </div>
@@ -600,7 +600,7 @@ const model = ref({
     batch_id: "",
     alt_mobile: "",
     student_gender: "",
-    dob: "",
+    student_dob: "",
     address: "",
     inquiry_source_id: "",
     inquiry_followup_type_id: "",
@@ -637,7 +637,7 @@ const rules = computed(() => {
         student_gender: {
             required: helpers.withMessage("Please select gender of student.", required),
         },
-        dob: {
+        student_dob: {
             required: helpers.withMessage("Please date of birth of student.", required),
         },
         address: {

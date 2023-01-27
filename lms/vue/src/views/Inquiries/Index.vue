@@ -354,6 +354,7 @@
             <Loading v-if="loading" fixed></Loading>
             <inquiry-followups v-if="isFollowupCalled"
                                v-model="showFollowupValue"
+                               @close = "closeMe(false)"
                                :inquiryId="inquiryId"
                                :inquiryStatusId="inquiryStatusId" />
         </template>
@@ -614,6 +615,11 @@ function proceedAction() {
         .catch((error) => {
             //error.response.data;
         });
+}
+
+function closeMe()
+{
+    showFollowupValue.value = false;
 }
 </script>
 

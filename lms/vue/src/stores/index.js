@@ -15,6 +15,8 @@ import studentModule from './modules/students/index.js';
 import templateModule from './modules/templates/index';
 import generateQuestionModule from './modules/generate_questions/index';
 import batchModule from './modules/batches/index';
+import boardModule from './modules/boards/index.js';
+import standardModule from './modules/standards/index.js';
 import studentPaperModule from './modules/student_papers/index.js';
 import inquiryModule from "./modules/inquiries/index.js";
 import inquiryFollowupModule from "./modules/inquiry_followups/index.js";
@@ -40,6 +42,8 @@ const store = createStore({
         templates: templateModule,
         generated_questions: generateQuestionModule,
         batches: batchModule,
+        boards: boardModule,
+        standards: standardModule,
         inquiries: inquiryModule,
         inquiry_followups: inquiryFollowupModule,
         inquiry_followup_types: inquiryFollowUpTypeModule,
@@ -47,6 +51,7 @@ const store = createStore({
         inquiry_statuses: inquiryStatusModule,
         parents: parentModule,
         settings: settingModule,
+
         /*languages: languageModule,
          */
     },

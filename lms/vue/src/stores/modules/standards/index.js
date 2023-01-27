@@ -6,9 +6,9 @@ export default {
     namespaced: true,
     state() {
         return {
-            batches: [],
-            batch: [],
-            batchList: [],
+            standards: [],
+            standard: [],
+            standardList: [],
             pagination: [],
             datatable: {
                 export: false,
@@ -30,12 +30,6 @@ export default {
                         label: "NAME",
                         field: "name",
                         sort: true,
-                        isJson: false,
-                    },
-                    {
-                        label: "ACTIVE",
-                        field: "is_active",
-                        sort: false,
                         isJson: false,
                     },
                     {

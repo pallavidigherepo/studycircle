@@ -28,6 +28,7 @@
         "@zhuowenli/vue-feather-icons": "^5.0.2",
         "axios": "^0.20.0-0",
         "chart.js": "^2.9.4",
+        "cors": "^2.8.5",
         "dayjs": "^1.10.4",
         "dropzone": "^5.7.6",
         "feather-icons": "^4.28.0",

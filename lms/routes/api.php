@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\V1\BoardController;
+use App\Http\Controllers\Api\V1\StandardController;
 use App\Models\InquiryFollowupType;
 use App\Models\InquirySource;
 use App\Models\InquiryStatus;
@@ -91,6 +93,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('v1/inquiry_followup_types', InquiryFollowupTypeController::class);
     Route::resource('v1/inquiries', InquiryController::class);
     Route::resource('v1/inquiry_followups', InquiryFollowupController::class);
+    Route::resource('v1/boards', BoardController::class);
+    Route::resource('v1/standards', StandardController::class);
 
     Route::resource('v1/parents', StudentParentController::class);
     Route::resource('v1/settings', SettingController::class);
@@ -136,7 +140,7 @@ Route::middleware('auth:sanctum')->group(function () {
     })->name('board_list');
 
     Route::get('v1/batch_list', function () {
-        return Batch::all()->pluck('name', 'id');
+        return Batch::pluck('name', 'id');
     })->name('batch_list');
 
     Route::get('v1/standard_list', function () {

@@ -57,7 +57,7 @@
                                                     </td>
                                                     <td class="whitespace-nowrap">{{ item.followup_type }}</td>
                                                     <td class="whitespace-nowrap">{{ item.status }}</td>
-                                                    <td class="whitespace-nowrap">Comments/Notes</td>
+                                                    <td class="whitespace-nowrap">{{ item.followup_comments[0].comment ?? 'NA' }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -322,6 +322,7 @@ function cancel() {
     followupModel.value = JSON.parse(JSON.stringify(followupModel));
 }
 // End: Cancel editing
+
 </script>
 
 <style scoped>

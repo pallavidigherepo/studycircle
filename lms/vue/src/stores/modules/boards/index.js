@@ -6,13 +6,13 @@ export default {
     namespaced: true,
     state() {
         return {
-            batches: [],
-            batch: [],
-            batchList: [],
+            boards: [],
+            board: [],
+            boardList: [],
             pagination: [],
             datatable: {
-                export: false,
-                import: false,
+                export: true,
+                import: true,
                 addNew: false,
                 defaultColumn: "id",
                 defaultOrder: "desc",
@@ -30,12 +30,6 @@ export default {
                         label: "NAME",
                         field: "name",
                         sort: true,
-                        isJson: false,
-                    },
-                    {
-                        label: "ACTIVE",
-                        field: "is_active",
-                        sort: false,
                         isJson: false,
                     },
                     {
