@@ -3,15 +3,12 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\InquiryResource;
-use App\Models\Inquiry;
-use App\Http\Requests\StoreInquiryRequest;
-use App\Http\Requests\UpdateInquiryRequest;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\BoardRequest;
+use App\Http\Resources\BoardResource;
+use App\Models\Board;
 use Illuminate\Http\Request;
 
-class InquiryController extends Controller
+class BoardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,10 +21,9 @@ class InquiryController extends Controller
         $order = $request->input('sort_order') ?? 'desc';
         $perPage = $request->input('per_page') ?? 10;
 
-        return InquiryResource::collection(
-            Inquiry::when($request->input('search'), function ($query) {
-                $query->where('student_name', 'like', '%' . request('search') . '%');
-                $query->orWhere('contact_name', 'like', '%' . request('search') . '%');
+        return BoardResource::collection(
+            Board::when($request->input('search'), function ($query) {
+                $query->where('name', 'like', '%' . request('search') . '%');
             })->orderBy($field, $order)->paginate($perPage)
         );
     }
@@ -35,20 +31,20 @@ class InquiryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreInquiryRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreInquiryRequest $request)
+    public function store(BoardRequest $request)
     {
         if ($request->validated()) {
-            $input = $request->toArray();
-
-            $inquiry = Inquiry::create($input);
-
+            $inputs = [
+                'name'=> $request->name,
+            ];
+            $board = Board::create($inputs);
             $response = [
                 'success' => true,
-                'message' => 'Inquiry created successfully.',
-                'inquiry' => $inquiry,
+                'message' => 'Board created successfully.',
+                'board' => $board,
             ];
         } else {
             $response = [
@@ -57,41 +53,37 @@ class InquiryController extends Controller
                 'errors' => $this->validated()->errors(),
             ];
         }
-        return response()->json($response, 200);
+        return response()->json($response);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Inquiry  $inquiry
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Inquiry $inquiry)
+    public function show($id)
     {
-        $inquiryModel = new Inquiry();
-        // We need manipulated data of student so that he/she cannot do any kind of cheating.
-        //return $studentModel->manipulateStudentInfo(new StudentResource(Student::findOrFail($student->id)));
-        return new InquiryResource(Inquiry::findOrFail($inquiry->id));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateInquiryRequest  $request
-     * @param  \App\Models\Inquiry  $inquiry
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateInquiryRequest $request, Inquiry $inquiry)
+    public function update(BoardRequest $request, Board $board)
     {
         if ($request->validated()) {
-            $input = $request->toArray();
+            $board->name = $request->name;
 
-            $inquiry->update($input);
-
+            $board->save();
             $response = [
                 'success' => true,
-                'message' => 'Inquiry created successfully.',
-                'inquiry' => $inquiry,
+                'message' => 'Board updated successfully.',
+                'board' => $board,
             ];
         } else {
             $response = [
@@ -100,26 +92,27 @@ class InquiryController extends Controller
                 'errors' => $this->validated()->errors(),
             ];
         }
-        return response()->json($response, 200);
+        return response()->json($response);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Inquiry  $inquiry
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Inquiry $inquiry)
+    public function destroy(Board $board)
     {
         $response = [
             'success' => false,
             'message' => null,
             'errors' => null,
         ];
-        if ($inquiry->delete()) {
+        if ($board->delete()) {
             $response = [
                 'success' => true,
-                'message' => 'Inquiry deleted successfully.',
+                'message' => 'Board deleted successfully.',
+                'board' => $board,
             ];
         }
         return response()->json($response);
