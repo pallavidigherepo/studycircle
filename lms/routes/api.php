@@ -1,13 +1,13 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\BoardController;
 use App\Http\Controllers\Api\V1\StandardController;
 use App\Models\InquiryFollowupType;
 use App\Models\InquirySource;
 use App\Models\InquiryStatus;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\AuthController;
 //
 use App\Http\Controllers\Api\V1\PermissionController;
@@ -51,14 +51,15 @@ use App\Models\Course;
 use App\Models\GeneratedQuestionPaper;
 use App\Models\Template;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "api" middleware group. Make something great!
 |
 */
 
