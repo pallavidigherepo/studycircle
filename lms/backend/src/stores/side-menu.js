@@ -48,6 +48,45 @@ export const useSideMenuStore = defineStore("sideMenu", {
                 ]
             },
             {
+                icon: "SlidersIcon",
+                pageName: "FeeManagement",
+                title: "Fees",
+                subMenu: [
+                    {
+                        icon: "SettingsIcon",
+                        pageName: "MasterData",
+                        title: "Master Data",
+                        ignore: false,
+                        subMenu: [
+                            {
+                                icon: "ListIcon",
+                                pageName: "FeeTypes",
+                                title: "Fee Types",
+                                ignore: false,
+                            },
+                            /*{
+                                icon: "LayersIcon",
+                                pageName: "Boards",
+                                title: "Boards",
+                                ignore: false,
+                            },
+                            {
+                                icon: "ListIcon",
+                                pageName: "Standards",
+                                title: "Standards",
+                                ignore: false,
+                            },
+                            {
+                                icon: "ListIcon",
+                                pageName: "FeeTypes",
+                                title: "FeeTypes",
+                                ignore: false,
+                            },*/
+                        ]
+                    },
+                ]
+            },
+            {
                 icon: "ActivityIcon",
                 pageName: "SettingManagement",
                 title: "Inquiries",

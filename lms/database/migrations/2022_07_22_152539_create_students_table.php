@@ -41,6 +41,8 @@ class CreateStudentsTable extends Migration
             $table->string('religion')->nullable(true);
             $table->string('mother_tongue_language')->nullable(true);
             $table->text('interests')->nullable(true);
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
 
             $table->foreign('parent_id')->references('id')->on('student_parents');
             $table->foreign('course_id')->references('id')->on('courses');
@@ -48,6 +50,8 @@ class CreateStudentsTable extends Migration
             $table->foreign('standard_id')->references('id')->on('standards');
             $table->foreign('language_id')->references('id')->on('languages');
             $table->foreign('batch_id')->references('id')->on('batches');
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
 
             $table->timestamps();
             $table->softDeletes();

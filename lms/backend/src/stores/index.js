@@ -25,6 +25,7 @@ import inquirySourcesModule from "./modules/inquiry_sources/index.js";
 import inquiryFollowUpTypeModule from "./modules/inquiry_followup_types/index.js";
 import parentModule from "./modules/parents/index.js";
 import settingModule from "./modules/settings/index.js";
+import feeTypeModule from "./modules/fee_types/index.js";
 
 const store = createStore({
     modules: {
@@ -51,7 +52,7 @@ const store = createStore({
         inquiry_statuses: inquiryStatusModule,
         parents: parentModule,
         settings: settingModule,
-
+        fee_types: feeTypeModule,
         /*languages: languageModule,
          */
     },

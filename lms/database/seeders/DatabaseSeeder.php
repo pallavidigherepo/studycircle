@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\FeeType;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
             InquirySourceSeeder::class,
             InquiryStatusSeeder::class,
             InquiryTypeSeeder::class,
+            FeeTypeSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

@@ -7,6 +7,7 @@ use App\Http\Requests\BatchRequest;
 use App\Models\Batch;
 use App\Http\Resources\BatchResource;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class BatchController extends Controller
 {
@@ -15,7 +16,7 @@ class BatchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request):ResourceCollection
     {
         $field = $request->input('sort_field') ?? 'id';
         $order = $request->input('sort_order') ?? 'desc';
@@ -23,9 +24,9 @@ class BatchController extends Controller
 
         return BatchResource::collection(
             Batch::when($request->input('search'), function ($query) {
-                $query->where('label', 'like', '%' . request('search') . '%');
-                $query->orWhere('description', 'like', '%' . request('search') . '%');
-                $query->orWhere('icon', 'like', '%' . request('search') . '%');
+                $query->where('name', 'like', '%' . request('search') . '%');
+                //$query->orWhere('description', 'like', '%' . request('search') . '%');
+                //$query->orWhere('icon', 'like', '%' . request('search') . '%');
             })->orderBy($field, $order)->paginate($perPage)
         );
     }
@@ -34,7 +35,7 @@ class BatchController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(BatchRequest $request)
     {
@@ -103,7 +104,7 @@ class BatchController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  Batch  $batch
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Batch $batch)
     {

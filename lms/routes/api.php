@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\BoardController;
@@ -33,6 +34,7 @@ use App\Http\Controllers\Api\V1\InquirySourceController;
 use App\Http\Controllers\Api\V1\InquiryStatusController;
 use App\Http\Controllers\Api\V1\InquiryController;
 use App\Http\Controllers\Api\V1\InquiryFollowupController;
+use App\Http\Controllers\Api\V1\FeeTypeController;
 
 use App\Http\Controllers\Api\V1\SettingController;
 use App\Http\Controllers\Api\V1\StudentParentController;
@@ -96,6 +98,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('v1/inquiry_followups', InquiryFollowupController::class);
     Route::resource('v1/boards', BoardController::class);
     Route::resource('v1/standards', StandardController::class);
+    Route::resource('v1/fee_types', FeeTypeController::class);
 
     Route::resource('v1/parents', StudentParentController::class);
     Route::resource('v1/settings', SettingController::class);

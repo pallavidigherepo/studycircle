@@ -72,6 +72,7 @@ import Inquiries from '../views/Inquiries/Index.vue';
 import CreateInquiry from '../views/Inquiries/Create.vue';
 import EditInquiry from '../views/Inquiries/Edit.vue';
 import ShowInquiry from '../views/Inquiries/Show.vue';
+import FeeTypes from '../views/FeeTypes/Index.vue';
 
 import Login from "../views/Auth/Login.vue";
 import Profile from "../views/Auth/Profile.vue";
@@ -511,6 +512,11 @@ const routes = [{
                 path: '/batches',
                 name: "Batches",
                 component: Batches,
+            },
+            {
+                path: '/fee_types',
+                name: "FeeTypes",
+                component: FeeTypes,
             }
         ],
     },

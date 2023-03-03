@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Http\Resources\RoleResource;
@@ -20,7 +21,7 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request):ResourceCollection
     {
         $field = $request->input('sort_field') ?? 'id';
         $order = $request->input('sort_order') ?? 'desc';
@@ -75,7 +76,7 @@ class RoleController extends Controller
     {
         // We have to format role and permissions according to discussion.
         // First of all get all the list of permissions
-        
+
         $permissions = Permission::all();
         foreach ($permissions as $permission) {
             $permissionId = $permission->id;
@@ -108,7 +109,7 @@ class RoleController extends Controller
         $response->id = $role->id;
         $response->name = $role->name;
         $response->oldpermissions = $oldPermissions;
-        
+
 
         return response()->json(['response' => $response, 'final' => $final], 200);
     }
