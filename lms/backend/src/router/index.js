@@ -73,6 +73,9 @@ import CreateInquiry from '../views/Inquiries/Create.vue';
 import EditInquiry from '../views/Inquiries/Edit.vue';
 import ShowInquiry from '../views/Inquiries/Show.vue';
 import FeeTypes from '../views/FeeTypes/Index.vue';
+import FeeCategories from '../views/FeeCategories/Index.vue';
+import FeeDiscounts from '../views/FeeDiscounts/Index.vue';
+import FeeStructures from '../views/FeeStructures/Index.vue';
 
 import Login from "../views/Auth/Login.vue";
 import Profile from "../views/Auth/Profile.vue";
@@ -517,6 +520,21 @@ const routes = [{
                 path: '/fee_types',
                 name: "FeeTypes",
                 component: FeeTypes,
+            },
+            {
+                path: '/fee_categories',
+                name: "FeeCategories",
+                component: FeeCategories,
+            },
+            {
+                path: '/fee_discounts',
+                name: "FeeDiscounts",
+                component: FeeDiscounts,
+            },
+            {
+                path: '/fee_structures',
+                name: "FeeStructures",
+                component: FeeStructures,
             }
         ],
     },

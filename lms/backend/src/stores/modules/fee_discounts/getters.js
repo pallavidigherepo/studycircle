@@ -1,9 +1,17 @@
 export default {
-    courseCategories(state) {
-        return state.courseCategories;
+    fee_discounts(state) {
+        return state.fee_discounts;
     },
 
-    courseCategory(state) {
-        return state.courseCategory;
+    fee_discount(state) {
+        return state.fee_discount;
+    },
+
+    datatable(state) {
+        return state.datatable;
+    },
+
+    meta(state) {
+        return state.pagination;
     }
 }

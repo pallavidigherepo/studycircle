@@ -2,7 +2,7 @@
   <div>
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
       <h2 class="text-lg font-medium mr-auto">
-        {{ t("feeTypes.Fee Types") }}
+        {{ t("fee_types.Fee Types") }}
       </h2>
     </div>
     <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
@@ -41,13 +41,13 @@
           <form @submit.prevent="submitForm" class="validate-form">
             <div>
               <label for="course-type-name" class="form-label">{{
-                t("feeTypes.Name")
+                t("fee_types.Name")
               }}</label>
               <input
                 id="course-type-name"
                 type="text"
                 class="form-control w-full"
-                :placeholder="t('feeTypes.Name')"
+                :placeholder="t('fee_types.Name')"
                 v-model.trim="model.name"
                 :class="{ 'border-danger': submitted && v$.name.$error }"
               />

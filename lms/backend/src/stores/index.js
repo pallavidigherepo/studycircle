@@ -26,6 +26,9 @@ import inquiryFollowUpTypeModule from "./modules/inquiry_followup_types/index.js
 import parentModule from "./modules/parents/index.js";
 import settingModule from "./modules/settings/index.js";
 import feeTypeModule from "./modules/fee_types/index.js";
+import feeCategoryModule from "./modules/fee_categories/index.js";
+import feeDiscountModule from "./modules/fee_discounts/index.js";
+import feeStructureModule from "./modules/fee_structures/index.js";
 
 const store = createStore({
     modules: {
@@ -53,6 +56,9 @@ const store = createStore({
         parents: parentModule,
         settings: settingModule,
         fee_types: feeTypeModule,
+        fee_categories: feeCategoryModule,
+        fee_discounts: feeDiscountModule,
+        fee_structures: feeStructureModule,
         /*languages: languageModule,
          */
     },
@@ -115,6 +121,9 @@ const store = createStore({
         },
         listInquiryStatus(state) {
             return state.inquiryStatus;
+        },
+        listFeeCategories(state) {
+            return state.feeCategories;
         },
     },
     actions: {
@@ -244,6 +253,14 @@ const store = createStore({
                     return data;
                 })
         },
+        async listFeeCategories({ commit }) {
+            return await axiosClient
+                .get('/fee_category_list')
+                .then(({ data }) => {
+                    commit('SET_FEE_CATEGORIES_LIST', data)
+                    return data;
+                })
+        },
     },
     mutations: {
         SET_LANGUAGES(state, payload) {
@@ -287,6 +304,9 @@ const store = createStore({
         },
         SET_INQUIRY_STATUS(state, payload) {
             state.inquiryStatus = payload;
+        },
+        SET_FEE_CATEGORIES_LIST(state, payload) {
+            state.feeCategories = payload;
         }
     },
 });

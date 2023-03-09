@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateFeeDiscountRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateFeeDiscountRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,14 @@ class UpdateFeeDiscountRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => [
+                'required',
+                Rule::unique('fee_discounts')->ignore($this->fee_discount)
+            ],
+            'amount' => [
+                'required',
+                'numeric'
+            ],
         ];
     }
 }

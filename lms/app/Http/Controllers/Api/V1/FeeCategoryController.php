@@ -58,7 +58,7 @@ class FeeCategoryController extends Controller
             $response = [
                 'success' => true,
                 'message' => 'Fee category created successfully.',
-                'feeCategory' => $feeCategory,
+                'fee_category' => $feeCategory,
             ];
         } else {
             $response = [
@@ -97,7 +97,7 @@ class FeeCategoryController extends Controller
             $response = [
                 'success' => true,
                 'message' => 'Fee category updated successfully.',
-                'feeCategory' => $feeCategory,
+                'fee_category' => $feeCategory,
             ];
         } else {
             $response = [
@@ -126,7 +126,7 @@ class FeeCategoryController extends Controller
             $response = [
                 'success' => true,
                 'message' => 'Fee category deleted successfully.',
-                'feeCategory' => $feeCategory,
+                'fee_category' => $feeCategory,
             ];
         }
         return response()->json($response);

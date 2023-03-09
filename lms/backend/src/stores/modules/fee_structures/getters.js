@@ -1,9 +1,17 @@
 export default {
-    courseCategories(state) {
-        return state.courseCategories;
+    fee_structures(state) {
+        return state.fee_structures;
     },
 
-    courseCategory(state) {
-        return state.courseCategory;
+    fee_structure(state) {
+        return state.fee_structure;
+    },
+
+    datatable(state) {
+        return state.datatable;
+    },
+
+    meta(state) {
+        return state.pagination;
     }
 }

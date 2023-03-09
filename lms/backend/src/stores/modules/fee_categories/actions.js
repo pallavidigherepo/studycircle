@@ -1,57 +1,45 @@
 import axios from "axios"
+import axiosClient from "@/axios";
 
 export default {
-    // This action is used to fetch all the permissions present in database
-    async fetchCourseCategories(context) {
-        const response = await axios.get('/api/v1/courses') ;
-
-        if (response.status != 200) {
-            const error = new Error('Failed to fetch course categories')
-            throw error;
-        }
-        context.commit('FETCH_COURSE_CATEGORIES', response.data);
-    },
-    
-    async create(context, courseCategory) {
-        const response = await axios.post('/api/v1/courses', courseCategory) ;
-
-        if (response.status != 200) {
-            const error = new Error('Failed to create course category.')
-            throw response.data.message;
-        }
-        context.commit('CREATE_COURSE_CATEGORY', response.data);
+    // This action is used to fetch all the courses types present in database
+    async list({ commit }, { url = null } = {}) {
+        url = "/fee_categories" + url;
+        return await axiosClient.get(url)
+            .then(({ data }) => {
+                commit('SET_FEE_CATEGORIES', data);
+                commit('SET_PAGINATION_LINKS', data.meta.links)
+                return data;
+            });
     },
 
-    // This action is used to fetch only selected permission
-    async editPermission(context, id) {
-        const response = await axios.get(`/api/v1/courses/${id}/edit`);
+    async save({ commit }, model) {
+        let response;
 
-        if (response.status != 200) {
-            const error = new Error('Failed to fetch permission')
-            throw error;
+        if (model.id) {
+            response = await axiosClient
+                .put(`/fee_categories/${model.id}`, model)
+                .then(({ data }) => {
+                    commit('UPDATE_FEE_CATEGORY', data);
+                    return data;
+                });
+        } else {
+            response = await axiosClient
+                .post(`/fee_categories`, model)
+                .then(({ data }) => {
+                    commit('CREATE_FEE_CATEGORY', data);
+                    return data;
+                });
         }
-        context.commit('EDIT_COURSE_CATEGORY', response.data.permission);
     },
 
-    // After permission submits the form, permission information must be updated in database.
-    async updatePermission(context, courseCategory) {
-        const response = await axios.put(`/api/v1/courses/${courseCategory.id}`, courseCategory);
-
-        if (response.status != 200) {
-            const error = new Error('Failed to update course category.')
-            throw error;
-        }
-
-        context.commit('UPDATE_COURSE_CATEGORY', courseCategory);
-    },
-
-    // This action is used to delete permission from serve.
-    async deletePermission(context, id) {
-        const response = await axios.delete(`/api/v1/courses/${id}`);
-        if (response.status != 200) {
-            const error = new Error('Failed to delete course category.')
-            throw error;
-        }
-        context.commit('DELETE_COURSE_CATEGORY', id);
+    // This action is used to delete coursesType from serve.
+    async delete({ commit }, id) {
+        return await axiosClient
+            .delete(`/fee_categories/${id}`)
+            .then((res) => {
+                commit('DELETE_FEE_CATEGORY', id);
+                return res;
+            });
     },
 };

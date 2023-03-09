@@ -1,23 +1,26 @@
 export default {
-    FETCH_COURSE_CATEGORIES(state, payload) {
-        state.courseCategories = payload;
-    },
-    CREATE_COURSE_CATEGORY(state, courseCategory)
-    {
-        state.courseCategories.unshift(courseCategory.courseCategory)
-    },
-    EDIT_COURSE_CATEGORY(state, payload) {
-        state.courseCategory = payload;
+    SET_FEE_STRUCTURES(state, payload) {
+        state.fee_structures = payload;
     },
 
-    DELETE_COURSE_CATEGORY(state, id) {
-        let index = state.courseCategories.findIndex(item => item.id === id)
-        state.courseCategories.splice(index, 1)
+    SET_PAGINATION_LINKS(state, payload) {
+        state.pagination = payload;
     },
 
-    UPDATE_COURSE_CATEGORY(state, courseCategory)
-    {
-        let index = state.courseCategories.findIndex(item => item.id === courseCategory.id);
-        state.courseCategories[index] = courseCategory;
+    CREATE_FEE_STRUCTURE(state, payload) {
+        state.fee_structures.data.unshift(payload.fee_structure)
+    },
+    EDIT_FEE_STRUCTURE(state, payload) {
+        state.fee_structure = payload;
+    },
+
+    DELETE_FEE_STRUCTURE(state, id) {
+        let index = state.fee_structures.data.findIndex(item => item.id === id)
+        state.fee_structures.data.splice(index, 1)
+    },
+
+    UPDATE_FEE_STRUCTURE(state, payload) {
+        let index = state.fee_structures.data.findIndex(item => item.id === payload.fee_structure.id);
+        state.fee_structures.data[index] = payload.fee_structure;
     },
 };

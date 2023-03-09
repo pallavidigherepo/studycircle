@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateFeeStructureRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateFeeStructureRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,18 @@ class UpdateFeeStructureRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'fee_category_id' => [
+                'required',
+            ],
+            'batch_id' => [
+                'required',
+            ],
+            'standard_id' => [
+                'required',
+            ],
+            'amount' => [
+                'required',
+            ],
         ];
     }
 }

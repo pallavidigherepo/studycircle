@@ -57,7 +57,7 @@ class FeeTypeController extends Controller
             $response = [
                 'success' => true,
                 'message' => 'Fee type created successfully.',
-                'feeType' => $feeType,
+                'fee_type' => $feeType,
             ];
         } else {
             $response = [
@@ -97,7 +97,7 @@ class FeeTypeController extends Controller
             $response = [
                 'success' => true,
                 'message' => 'Fee Type updated successfully.',
-                'feeType' => $feeType,
+                'fee_type' => $feeType,
             ];
         } else {
             $response = [
@@ -126,7 +126,7 @@ class FeeTypeController extends Controller
             $response = [
                 'success' => true,
                 'message' => 'Fee type deleted successfully.',
-                'feeType' => $feeType,
+                'fee_type' => $feeType,
             ];
         }
         return response()->json($response);

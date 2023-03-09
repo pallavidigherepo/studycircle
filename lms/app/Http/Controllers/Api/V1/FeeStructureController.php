@@ -56,7 +56,7 @@ class FeeStructureController extends Controller
             $response = [
                 'success' => true,
                 'message' => 'Fee structure created successfully.',
-                'feeStructure' => $feeStructure,
+                'fee_structure' => new FeeStructureResource(FeeStructure::find($feeStructure->id)),
             ];
         } else {
             $response = [
@@ -100,7 +100,7 @@ class FeeStructureController extends Controller
             $response = [
                 'success' => true,
                 'message' => 'Fee structure updated successfully.',
-                'feeStructure' => $feeStructure,
+                'fee_structure' => new FeeStructureResource(FeeStructure::find($feeStructure->id)),
             ];
         } else {
             $response = [
@@ -129,7 +129,7 @@ class FeeStructureController extends Controller
             $response = [
                 'success' => true,
                 'message' => 'Fee structure deleted successfully.',
-                'feeStructure' => $feeStructure,
+                'fee_structure' => $feeStructure,
             ];
         }
         return response()->json($response);

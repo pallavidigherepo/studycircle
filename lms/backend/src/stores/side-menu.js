@@ -64,19 +64,25 @@ export const useSideMenuStore = defineStore("sideMenu", {
                                 title: "Fee Types",
                                 ignore: false,
                             },
-                            /*{
+                            {
+                                icon: "GitMergeIcon",
+                                pageName: "FeeCategories",
+                                title: "Fee Categories",
+                                ignore: false,
+                            },
+                            {
+                                icon: "ScissorsIcon",
+                                pageName: "FeeDiscounts",
+                                title: "Fee Discounts",
+                                ignore: false,
+                            },
+                            {
                                 icon: "LayersIcon",
-                                pageName: "Boards",
-                                title: "Boards",
+                                pageName: "FeeStructures",
+                                title: "Fee Structures",
                                 ignore: false,
                             },
-                            {
-                                icon: "ListIcon",
-                                pageName: "Standards",
-                                title: "Standards",
-                                ignore: false,
-                            },
-                            {
+                            /*{
                                 icon: "ListIcon",
                                 pageName: "FeeTypes",
                                 title: "FeeTypes",

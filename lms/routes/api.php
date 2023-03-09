@@ -1,6 +1,8 @@
 <?php
 
 
+use App\Http\Controllers\Api\V1\FeeStructureController;
+use App\Models\FeeCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\BoardController;
@@ -35,6 +37,8 @@ use App\Http\Controllers\Api\V1\InquiryStatusController;
 use App\Http\Controllers\Api\V1\InquiryController;
 use App\Http\Controllers\Api\V1\InquiryFollowupController;
 use App\Http\Controllers\Api\V1\FeeTypeController;
+use App\Http\Controllers\Api\V1\FeeCategoryController;
+use App\Http\Controllers\Api\V1\FeeDiscountController;
 
 use App\Http\Controllers\Api\V1\SettingController;
 use App\Http\Controllers\Api\V1\StudentParentController;
@@ -99,6 +103,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('v1/boards', BoardController::class);
     Route::resource('v1/standards', StandardController::class);
     Route::resource('v1/fee_types', FeeTypeController::class);
+    Route::resource('v1/fee_categories', FeeCategoryController::class);
+    Route::resource('v1/fee_discounts', FeeDiscountController::class);
+    Route::resource('v1/fee_structures', FeeStructureController::class);
 
     Route::resource('v1/parents', StudentParentController::class);
     Route::resource('v1/settings', SettingController::class);
@@ -178,6 +185,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('v1/inquiry_assignees', function () {
         return User::all()->pluck('name', 'id');
     })->name('inquiry_assignees');
+
+    Route::get('v1/fee_category_list', function () {
+        return FeeCategory::all()->pluck('name', 'id');
+    })->name('fee_category_list');
 
     Route::get('v1/questionnaire', function () {
         $templateCount = Template::all()->count();

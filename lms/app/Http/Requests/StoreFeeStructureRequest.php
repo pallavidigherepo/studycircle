@@ -13,7 +13,7 @@ class StoreFeeStructureRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,18 @@ class StoreFeeStructureRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'fee_category_id' => [
+                'required',
+            ],
+            'batch_id' => [
+                'required',
+            ],
+            'standard_id' => [
+                'required',
+            ],
+            'amount' => [
+                'required',
+            ],
         ];
     }
 }

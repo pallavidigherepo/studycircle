@@ -40,7 +40,7 @@ class CourseController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(CourseRequest $request)
     {
@@ -55,7 +55,7 @@ class CourseController extends Controller
                 'created_by' => Auth::user()->id,
                 'updated_by' => Auth::user()->id,
             ];
-            
+
     	    //$tags = $request->tags_list;
             $course = Course::create($inputs);
             $course->attachTags($tags);
@@ -108,7 +108,7 @@ class CourseController extends Controller
                 'updated_by' => Auth::user()->id,
             ];
             $course->update($inputs);
-            
+
             $tags = $request->tags_list;
             $course->syncTags($tags);
             $course->courses_types()->sync($request->type_ids);
@@ -142,7 +142,7 @@ class CourseController extends Controller
             'message' => null,
             'errors' => null,
         ];
-        
+
         if ($course->delete()) {
             $response = [
                 'success' => true,

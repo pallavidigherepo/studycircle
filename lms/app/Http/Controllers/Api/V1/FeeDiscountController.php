@@ -53,7 +53,7 @@ class FeeDiscountController extends Controller
             $response = [
                 'success' => true,
                 'message' => 'Fee discount created successfully.',
-                'feeDiscount' => $feeDiscount,
+                'fee_discount' => $feeDiscount,
             ];
         } else {
             $response = [
@@ -86,7 +86,7 @@ class FeeDiscountController extends Controller
             $response = [
                 'success' => true,
                 'message' => 'Fee discount updated successfully.',
-                'feeDiscount' => $feeDiscount,
+                'fee_discount' => $feeDiscount,
             ];
         } else {
             $response = [
@@ -112,7 +112,7 @@ class FeeDiscountController extends Controller
             $response = [
                 'success' => true,
                 'message' => 'Fee discount deleted successfully.',
-                'feeDiscount' => $feeDiscount,
+                'fee_discount' => $feeDiscount,
             ];
         }
         return response()->json($response);
