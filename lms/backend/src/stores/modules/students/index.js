@@ -25,14 +25,22 @@ export default {
                         isJson: false,
                     },
                     {
-                        label: "NAME",
-                        field: "name",
-                        sort: true,
+                        label: "AVATAR",
+                        field: "avatar",
+                        sort: false,
+                        isJson: false,
+                        isImage: true,
+                        alt: "name"
+                    },
+                    {
+                        label: "ROLL NO",
+                        field: "roll_number",
+                        sort: false,
                         isJson: false,
                     },
                     {
-                        label: "EMAIL",
-                        field: "email",
+                        label: "NAME",
+                        field: "name",
                         sort: true,
                         isJson: false,
                     },
@@ -43,8 +51,8 @@ export default {
                         isJson: false,
                     },
                     {
-                        label: "BOARD",
-                        field: "board",
+                        label: "FEE TYPE",
+                        field: "student_fee_type",
                         sort: false,
                         isJson: false,
                     },

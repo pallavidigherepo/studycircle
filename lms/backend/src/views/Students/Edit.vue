@@ -41,50 +41,9 @@
                                     <div
                                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                         <ChevronDownIcon class="w-4 h-4 mr-2"/>
-                                        {{ t("questions.Select Board & Standard/Class") }}
+                                        {{ t("questions.Select Standard/Class") }}
                                     </div>
                                     <div class="mt-5">
-
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{
-                                                                t("questions.Choose Board")
-                                                            }}
-                                                        </div>
-                                                        <div
-                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <TomSelect id="form-board"
-                                                           v-model="model.board_id"
-                                                           :class="{ 'border-danger': submitted && v$.board_id.$errors.length, }"
-                                                           :options="{
-                                                                allowEmptyOption: false,
-                                                                create: false,
-                                                                placeholder: 'Select Board',
-                                                                autocomplete: 'off',
-                                                                items: [model.board_id]
-                                                              }"
-                                                           :placeholder="'Select Board'"
-                                                           class="w-full">
-                                                    <option>{{ t('questions.Select Board') }}</option>
-                                                    <option v-for="(board, index) in boards" :key="index" :value="index">
-                                                        {{ board }}
-                                                    </option>
-                                                </TomSelect>
-
-                                                <div v-for="(error, index) of v$.board_id.$errors" :key="index"
-                                                     class="text-danger mt-2">
-                                                    <div class="error-msg">{{ error.$message }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label xl:w-64 xl:!mr-10">
                                                 <div class="text-left">
@@ -122,46 +81,6 @@
                                                     </option>
                                                 </TomSelect>
                                                 <div v-for="(error, index) of v$.standard_id.$errors" :key="index"
-                                                     class="text-danger mt-2">
-                                                    <div class="error-msg">{{ error.$message }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{
-                                                                t("students.Choose Batch")
-                                                            }}
-                                                        </div>
-                                                        <div
-                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <TomSelect id="form-board"
-                                                           v-model="model.batch_id"
-                                                           :class="{ 'border-danger': submitted && v$.batch_id.$errors.length, }"
-                                                           :options="{
-                                                                allowEmptyOption: false,
-                                                                create: false,
-                                                                placeholder: 'Select Batch',
-                                                                autocomplete: 'off',
-                                                                items: [model.batch_id],
-                                                              }"
-                                                           :placeholder="'Select Batch'"
-                                                           class="w-full">
-                                                    <option>{{ t('students.Select Batch') }}</option>
-                                                    <option v-for="(batch, index) in batches" :key="index" :value="index">
-                                                        {{ batch }}
-                                                    </option>
-                                                </TomSelect>
-
-                                                <div v-for="(error, index) of v$.batch_id.$errors" :key="index"
                                                      class="text-danger mt-2">
                                                     <div class="error-msg">{{ error.$message }}</div>
                                                 </div>
@@ -524,9 +443,7 @@ const model = ref({
     name: "",
     email: "",
     mobile: "",
-    board_id: "",
     standard_id: "",
-    batch_id: "",
     alt_mobile: "",
     gender: "",
     avatar: "",
@@ -553,9 +470,6 @@ const rules = computed(() => {
             required: helpers.withMessage("Please enter mobile number.", required),
             minLength: helpers.withMessage("Please enter valid mobile number", minLength(10)),
             numeric: helpers.withMessage("Please enter valid mobile number", numeric),
-        },
-        board_id: {
-            required: helpers.withMessage("Please select board of student.", required),
         },
         standard_id: {
             required: helpers.withMessage("Please select standard or class of student.", required),
@@ -617,15 +531,9 @@ async function submitForm()
 
 onMounted(() => {
     fetch();
-    store.dispatch("listBoard").then().catch();
     store.dispatch("listStandard").then().catch();
-    store.dispatch("listLanguages").then().catch();
-    store.dispatch("listBatch").then().catch();
 });
-const languages = computed(() => store.getters.languages);
-const boards = computed(() => store.getters.listBoards);
 const standards = computed(() => store.getters.listStandards);
-const batches = computed(() => store.getters.listBatches);
 
 const genders = {
     male: 'Male',

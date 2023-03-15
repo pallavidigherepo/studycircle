@@ -17,6 +17,7 @@ class StudentResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'roll_number' => $this->roll_number,
             'name' => $this->name,
             'email' => $this->email,
             'aadhaar' => $this->aadhaar,
@@ -34,11 +35,13 @@ class StudentResource extends JsonResource
             'dob' => $this->dob,
             'permanent_address' => $this->permanent_address,
             'address' => $this->address,
-            'avatar' => $this->avatar ? URL::to($this->avatar) : null,
+            'avatar' => file_exists($this->avatar) ? URL::to($this->avatar) : URL::to("storage/images/no-image.jpg"),
             'generated_questions' => $this->generated_question_papers(),
             'student_papers' => $this->student_papers,
             'student_parent' => $this->student_parent,
             'student_siblings' => $this->student_siblings,
+            'student_fee' => $this->fee,
+            'student_fee_type' => $this->fee->fee_type->name,
         ];
     }
 }

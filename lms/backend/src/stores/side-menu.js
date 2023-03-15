@@ -58,7 +58,7 @@ export const useSideMenuStore = defineStore("sideMenu", {
                         title: "Master Data",
                         ignore: false,
                         subMenu: [
-                            {
+                            /*{
                                 icon: "ListIcon",
                                 pageName: "FeeTypes",
                                 title: "Fee Types",
@@ -75,7 +75,7 @@ export const useSideMenuStore = defineStore("sideMenu", {
                                 pageName: "FeeDiscounts",
                                 title: "Fee Discounts",
                                 ignore: false,
-                            },
+                            },*/
                             {
                                 icon: "LayersIcon",
                                 pageName: "FeeStructures",

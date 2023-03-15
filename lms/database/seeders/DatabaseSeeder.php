@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
             InquiryStatusSeeder::class,
             InquiryTypeSeeder::class,
             FeeTypeSeeder::class,
+            FeeCategorySeeder::class,
+            FeeDiscountSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

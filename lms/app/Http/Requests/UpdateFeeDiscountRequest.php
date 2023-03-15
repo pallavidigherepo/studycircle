@@ -29,7 +29,6 @@ class UpdateFeeDiscountRequest extends FormRequest
             ],
             'amount' => [
                 'required',
-                'numeric'
             ],
         ];
     }

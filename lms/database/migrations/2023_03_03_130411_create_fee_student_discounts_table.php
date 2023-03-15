@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('fee_student_discounts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('student_id')->nullable();
+            $table->unsignedBigInteger('fee_id')->nullable();
             $table->unsignedBigInteger('fee_discount_id')->nullable();
 
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('fee_id')->references('id')->on('fees');
             $table->foreign('fee_discount_id')->references('id')->on('fee_discounts');
             $table->timestamps();
         });

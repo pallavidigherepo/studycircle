@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('fee_discounts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->nullable();
-            $table->integer('amount')->nullable();
+            $table->string('amount')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
+            $table->date('expiry_date')->nullable();
 
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');

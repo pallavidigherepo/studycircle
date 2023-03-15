@@ -38,6 +38,12 @@ export default {
                         isJson: false,
                     },
                     {
+                        label: "EXPIRY DATE",
+                        field: "expiry_date",
+                        sort: true,
+                        isJson: false,
+                    },
+                    {
                         label: "ACTIONS",
                         field: false,
                         sort: false,

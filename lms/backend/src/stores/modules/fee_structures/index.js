@@ -10,8 +10,8 @@ export default {
             fee_structure: [],
             pagination: [],
             datatable: {
-                export: false,
-                import: false,
+                export: true,
+                import: true,
                 addNew: false,
                 defaultColumn: "id",
                 defaultOrder: "desc",

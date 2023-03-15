@@ -45,6 +45,7 @@ class StudentImport implements ToModel, WithHeadingRow, WithValidation
             'dob' => Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['date_of_birth'])),
             'permanent_address' => $row['permanent_address'],
             'address' => $row['address'],
+            'parent_aadhaar_number' => $row['parent_aadhaar_number'],
             'mother_name' => $row['mother_name'],
             'mother_email' => $row['mother_email'],
             'mother_mobile' => $row['mother_mobile'],
@@ -62,6 +63,7 @@ class StudentImport implements ToModel, WithHeadingRow, WithValidation
             'language_id' => $row['language'],
             'course_id' => $row['course'],
             'batch_id' => $row['batch'],
+            'fee_type_id' => $row['fee_type'],
         ];
         $student = Student::create($input);
         $student->roll_number = generate_student_roll_number();
@@ -73,8 +75,8 @@ class StudentImport implements ToModel, WithHeadingRow, WithValidation
     {
         return [
             'name' => 'required',
-            'email' => 'required|unique:students',
-            '*.email' => 'required|unique:students',
+            'aadhaar' => 'required|unique:students',
+            '*.aadhaar' => 'required|unique:students',
             'mobile' => 'required',
             '*.mobile' => 'required',
         ];

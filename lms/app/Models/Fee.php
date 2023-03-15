@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * This class is Fee model class with all fees management related functions and variables.
@@ -35,4 +36,36 @@ class Fee extends Model
         'created_by',
         'updated_by',
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function student(): BelongsTo
+    {
+        return $this->belongsTo(Student::class, 'student_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function standard(): BelongsTo
+    {
+        return $this->belongsTo(Standard::class, 'standard_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function batch(): BelongsTo
+    {
+        return $this->belongsTo(Batch::class, 'batch_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function fee_type(): BelongsTo
+    {
+        return $this->belongsTo(FeeType::class, 'fee_type_id');
+    }
 }

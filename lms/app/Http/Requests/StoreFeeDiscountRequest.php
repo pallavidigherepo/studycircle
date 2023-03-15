@@ -29,7 +29,6 @@ class StoreFeeDiscountRequest extends FormRequest
             ],
             'amount' => [
                 'required',
-                'numeric'
             ],
         ];
     }

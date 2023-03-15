@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * This class is FeeStructure model class with all fees management related functions and variables.
@@ -29,12 +30,11 @@ class FeeStructure extends Model
         'standard_id',
         'batch_id',
         'fee_category_id',
+        'fee_type_id',
         'amount',
         'created_by',
         'updated_by',
     ];
-
-
 
     /**
      * @return BelongsTo
@@ -53,7 +53,7 @@ class FeeStructure extends Model
     }
 
     /**
-     * @return BelongsTo
+     * @return HasMany
      */
     public function fee_category(): BelongsTo
     {

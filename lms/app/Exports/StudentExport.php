@@ -40,8 +40,8 @@ class StudentExport implements
     }
 
     /**
-    * @return \Illuminate\Support\Collection
-    */
+    * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
     public function collection()
     {
         if ($this->isDemo) {
@@ -70,6 +70,7 @@ class StudentExport implements
             $student->dob,
             $student->permanent_address,
             $student->address,
+            $student->parent_aadhaar_number,
             $student->mother_name,
             $student->mother_email,
             $student->mother_mobile,
@@ -93,6 +94,7 @@ class StudentExport implements
                 'Standard',
                 'Course',
                 'Batch',
+                'Fee Type',
                 'Language',
                 'Email',
                 'Aadhaar',
@@ -102,6 +104,7 @@ class StudentExport implements
                 'Date of Birth',
                 'Permanent Address',
                 'Address',
+                'Parent Aadhaar Number',
                 'Mother Name',
                 'Mother Email',
                 'Mother Mobile',
@@ -130,6 +133,7 @@ class StudentExport implements
             'Date of Birth',
             'Permanent Address',
             'Address',
+            'Parent Aadhaar Number',
             'Mother Name',
             'Mother Email',
             'Mother Mobile',

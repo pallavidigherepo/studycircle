@@ -29,6 +29,7 @@ class FeeDiscount extends Model
         'amount',
         'created_by',
         'updated_by',
+        'expiry_date',
     ];
 
 }

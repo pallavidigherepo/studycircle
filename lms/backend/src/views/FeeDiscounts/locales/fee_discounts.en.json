@@ -4,5 +4,7 @@
     "Name": "Name",
     "Amount": "Amount",
     "NAME": "NAME",
-    "AMOUNT": "AMOUNT"
+    "AMOUNT": "AMOUNT",
+    "EXPIRY DATE": "EXPIRY DATE",
+    "Expiry Date": "Expiry Date"
 }

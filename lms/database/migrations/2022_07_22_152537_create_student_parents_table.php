@@ -15,7 +15,7 @@ class CreateStudentParentsTable extends Migration
     {
         Schema::create('student_parents', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('parent_email')->unique();
+            $table->string('parent_email')->nullable(true);
             $table->string('parent_password');
             $table->string('parent_aadhaar_number')->nullable(true);
             $table->boolean('is_parent_aadhaar_verified')->default(false);

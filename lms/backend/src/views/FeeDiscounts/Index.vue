@@ -77,6 +77,26 @@
                                 {{ v$.amount.$errors[0].$message }}
                             </span>
                         </div>
+
+                        <div class="mt-3">
+                            <label for="fee-discount-expiry-date" class="form-label">{{
+                                    t("fee_discounts.Expiry Date")
+                                }}</label>
+                            <input
+                                id="fee-discount-expiry-date"
+                                type="date"
+                                class="form-control w-full"
+                                :placeholder="t('fee_discounts.Expiry Date')"
+                                v-model.trim="model.expiry_date"
+                                :class="{ 'border-danger': submitted && v$.expiry_date.$error }"
+                            />
+                            <span
+                                v-if="submitted && v$.expiry_date.$error"
+                                class="text-danger mt-2"
+                            >
+                                {{ v$.amount.$errors[0].$message }}
+                            </span>
+                        </div>
                         <div class="text-right mt-5">
                             <button
                                 type="button"
@@ -129,6 +149,7 @@ let model = ref({
     id: "",
     name: "",
     amount: "",
+    expiry_date: "",
 });
 
 const rules = computed(() => {
@@ -145,6 +166,12 @@ const rules = computed(() => {
                 required
             ),
         },
+        expiry_date: {
+            required: helpers.withMessage(
+                "Please enter expiry date.",
+                required
+            )
+        }
     };
 });
 

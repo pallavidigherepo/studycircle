@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Api\V1\FeeStructureController;
 use App\Models\FeeCategory;
+use App\Models\FeeType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\BoardController;
@@ -189,6 +190,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('v1/fee_category_list', function () {
         return FeeCategory::all()->pluck('name', 'id');
     })->name('fee_category_list');
+
+    Route::get('v1/fee_type_list', function () {
+        return FeeType::all()->pluck('name', 'id');
+    })->name('fee_type_list');
+
 
     Route::get('v1/questionnaire', function () {
         $templateCount = Template::all()->count();

@@ -78,6 +78,7 @@ const store = createStore({
         inquiryFollowupTypes: [],
         inquiryAssignees: [],
         inquiryStatus: [],
+        feeTypesList: [],
     },
     getters: {
         languages(state) {
@@ -124,6 +125,9 @@ const store = createStore({
         },
         listFeeCategories(state) {
             return state.feeCategories;
+        },
+        listFeeTypes(state) {
+            return state.feeTypesList;
         },
     },
     actions: {
@@ -261,6 +265,14 @@ const store = createStore({
                     return data;
                 })
         },
+        async listFeeTypes({ commit }) {
+            return await axiosClient
+                .get('/fee_type_list')
+                .then(({ data }) => {
+                    commit('SET_FEE_TYPE_LIST', data)
+                    return data;
+                })
+        },
     },
     mutations: {
         SET_LANGUAGES(state, payload) {
@@ -307,6 +319,9 @@ const store = createStore({
         },
         SET_FEE_CATEGORIES_LIST(state, payload) {
             state.feeCategories = payload;
+        },
+        SET_FEE_TYPE_LIST(state, payload) {
+            state.feeTypesList = payload;
         }
     },
 });

@@ -223,7 +223,7 @@ const rules = computed(() => {
                 "Please enter amount.",
                 required
             ),
-        },
+        }
     };
 });
 

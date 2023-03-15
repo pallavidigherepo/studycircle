@@ -14,13 +14,14 @@ class BatchSeeder extends Seeder
      */
     public function run()
     {
-        $types = [
+        $batches = [
+            ['name' => '2023-2024'],
             ['name' => '2022-2023'],
         ];
 
-        foreach ($types as $type) {
+        foreach ($batches as $batch) {
             $input = [
-                'name' => $type['name']
+                'name' => $batch['name']
             ];
             Batch::create($input);
         }

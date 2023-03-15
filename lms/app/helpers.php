@@ -11,9 +11,9 @@ if (!function_exists('generate_student_roll_number')) {
     {
         $startOfYear = Carbon::now()->startOfYear();
         $endOfYear = Carbon::now()->endOfYear();
-        $students = Student::where('created_at', '>' , $startOfYear)->where('created_at', '<', $endOfYear)->orderBy('name', 'asc')->get();
+        $students = Student::select('standard_id')->where('created_at', '>' , $startOfYear)->where('created_at', '<', $endOfYear)->groupBy('standard_id')->orderBy('name', 'asc')->get();
         $count = count($students) + 1;
-        return Carbon::now()->toDateString() . '-' . $count;
+        return Carbon::now()->toDateString() . '-' . $students[0]->standard_id . '-' . $count;
     }
 }
 

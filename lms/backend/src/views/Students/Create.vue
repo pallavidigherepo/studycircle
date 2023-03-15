@@ -41,49 +41,10 @@
                                     <div
                                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                         <ChevronDownIcon class="w-4 h-4 mr-2"/>
-                                        {{ t("questions.Select Board & Standard/Class") }}
+                                        {{ t("questions.Select Standard/Class & Fee Type") }}
                                     </div>
                                     <div class="mt-5">
 
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{
-                                                                t("questions.Choose Board")
-                                                            }}
-                                                        </div>
-                                                        <div
-                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <TomSelect id="form-board"
-                                                           v-model="model.board_id"
-                                                           :class="{ 'border-danger': submitted && v$.board_id.$errors.length, }"
-                                                           :options="{
-                                                                allowEmptyOption: false,
-                                                                create: false,
-                                                                placeholder: 'Select Board',
-                                                                autocomplete: 'off',
-                                                              }"
-                                                           :placeholder="'Select Board'"
-                                                           class="w-full">
-                                                    <option>{{ t('questions.Select Board') }}</option>
-                                                    <option v-for="(board, index) in boards" :key="index" :value="index">
-                                                        {{ board }}
-                                                    </option>
-                                                </TomSelect>
-
-                                                <div v-for="(error, index) of v$.board_id.$errors" :key="index"
-                                                     class="text-danger mt-2">
-                                                    <div class="error-msg">{{ error.$message }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label xl:w-64 xl:!mr-10">
                                                 <div class="text-left">
@@ -130,7 +91,7 @@
                                                 <div class="text-left">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{
-                                                                t("students.Choose Batch")
+                                                                t("students.Choose Fee Type")
                                                             }}
                                                         </div>
                                                         <div
@@ -141,24 +102,24 @@
                                                 </div>
                                             </div>
                                             <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <TomSelect id="form-board"
-                                                           v-model="model.batch_id"
-                                                           :class="{ 'border-danger': submitted && v$.batch_id.$errors.length, }"
+                                                <TomSelect id="form-fee-type"
+                                                           v-model="model.fee_type_id"
+                                                           :class="{ 'border-danger': submitted && v$.fee_type_id.$errors.length, }"
                                                            :options="{
                                                                 allowEmptyOption: false,
                                                                 create: false,
-                                                                placeholder: 'Select Batch',
+                                                                placeholder: 'Select Fee Type',
                                                                 autocomplete: 'off',
                                                               }"
-                                                           :placeholder="'Select Batch'"
+                                                           :placeholder="'Select Fee Type'"
                                                            class="w-full">
-                                                    <option>{{ t('students.Select Batch') }}</option>
-                                                    <option v-for="(batch, index) in batches" :key="index" :value="index">
-                                                        {{ batch }}
+                                                    <option>{{ t('students.Select Fee Type') }}</option>
+                                                    <option v-for="(feeType, index) in feeTypes" :key="index" :value="index">
+                                                        {{ feeType }}
                                                     </option>
                                                 </TomSelect>
 
-                                                <div v-for="(error, index) of v$.batch_id.$errors" :key="index"
+                                                <div v-for="(error, index) of v$.fee_type_id.$errors" :key="index"
                                                      class="text-danger mt-2">
                                                     <div class="error-msg">{{ error.$message }}</div>
                                                 </div>
@@ -476,6 +437,46 @@
                                 </div>
                             </div>
                             <!-- END: Basic Information -->
+                            <!-- BEGIN: Aadhaar Information -->
+                            <div class="intro-y box p-5 mt-1">
+                                <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
+                                    <div
+                                        class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
+                                        <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                                        {{ t("students.Aadhaar Number of Parents") }}
+                                    </div>
+                                    <div class="mt-5">
+                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label xl:w-64 xl:!mr-10">
+                                                <div class="text-left">
+                                                    <div class="flex items-center">
+                                                        <div class="font-medium">{{ t("students.Parent Aadhaar Number") }}</div>
+                                                        <div
+                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                            {{ t("common.Required") }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="w-full mt-3 xl:mt-0 flex-1">
+                                                <input
+                                                    id="form-parent-aadhaar-number"
+                                                    type="text"
+                                                    class="form-control"
+                                                    placeholder="Enter parent's aadhaar number."
+                                                    v-model.trim="model.parent_aadhaar_number"
+                                                    :class="{ 'border-danger': submitted && v$.parent_aadhaar_number.$errors.length, }"
+                                                />
+                                                <div v-for="(error, index) of v$.parent_aadhaar_number.$errors"
+                                                     :key="index" class="text-danger mt-2">
+                                                    <div class="error-msg">{{ error.$message }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END: Aadhaar Information -->
                             <!-- BEGIN: Mother Information -->
                             <div class="intro-y box p-5 mt-1">
                                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
@@ -787,9 +788,8 @@ const model = ref({
     name: "",
     email: "",
     mobile: "",
-    board_id: "",
     standard_id: "",
-    batch_id: "",
+    fee_type_id: "",
     alt_mobile: "",
     gender: "",
     avatar: "",
@@ -797,6 +797,7 @@ const model = ref({
     permanent_address: "",
     address: "",
     aadhaar: "",
+    parent_aadhaar_number: "",
     mother_name: "",
     mother_email: "",
     mother_mobile: "",
@@ -828,14 +829,11 @@ const rules = computed(() => {
             minLength: helpers.withMessage("Please enter valid mobile number", minLength(10)),
             numeric: helpers.withMessage("Please enter valid mobile number", numeric),
         },
-        board_id: {
-            required: helpers.withMessage("Please select board of student.", required),
-        },
         standard_id: {
             required: helpers.withMessage("Please select standard or class of student.", required),
         },
-        batch_id: {
-            required: helpers.withMessage("Please select batch of student.", required),
+        fee_type_id: {
+            required: helpers.withMessage("Please select fee type of student.", required),
         },
         gender: {
             required: helpers.withMessage("Please select gender of student.", required),
@@ -855,7 +853,13 @@ const rules = computed(() => {
         aadhaar: {
             required: helpers.withMessage("Please enter aadhaar number of student.", required),
             minLength: helpers.withMessage("Please enter valid aadhaar number.", minLength(12)),
-            maxLength: helpers.withMessage("Please enter valid aadhar number", maxLength(12)),
+            maxLength: helpers.withMessage("Please enter valid aadhaar number", maxLength(12)),
+            numeric: helpers.withMessage("Please enter valid aadhaar number", numeric),
+        },
+        parent_aadhaar_number: {
+            required: helpers.withMessage("Please enter aadhaar number of parent.", required),
+            minLength: helpers.withMessage("Please enter valid aadhaar number.", minLength(12)),
+            maxLength: helpers.withMessage("Please enter valid aadhaar number", maxLength(12)),
             numeric: helpers.withMessage("Please enter valid aadhaar number", numeric),
         },
         mother_name: {
@@ -918,16 +922,12 @@ async function submitForm()
 }
 
 onMounted(() => {
-    store.dispatch("listCourses").then().catch();
-    store.dispatch("listBoard").then().catch();
     store.dispatch("listStandard").then().catch();
-    store.dispatch("listLanguages").then().catch();
-    store.dispatch("listBatch").then().catch();
+    store.dispatch("listFeeTypes").then().catch();
 });
-const languages = computed(() => store.getters.languages);
-const boards = computed(() => store.getters.listBoards);
 const standards = computed(() => store.getters.listStandards);
-const batches = computed(() => store.getters.listBatches);
+const feeTypes = computed(() => store.getters.listFeeTypes);
+
 const genders = {
     male: 'Male',
     female: "Female",

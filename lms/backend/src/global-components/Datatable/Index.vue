@@ -105,9 +105,9 @@
                                     </template>
 
                                     <span v-if="column.field === sortBy">
-                      <ChevronUpIcon v-if="sortOrder === 'asc'" class="w-4 h-4 text-gray-400"></ChevronUpIcon>
-                      <ChevronDownIcon v-else class="w-4 h-4 text-gray-400"></ChevronDownIcon>
-                    </span>
+                                      <ChevronUpIcon v-if="sortOrder === 'asc'" class="w-4 h-4 text-gray-400"></ChevronUpIcon>
+                                      <ChevronDownIcon v-else class="w-4 h-4 text-gray-400"></ChevronDownIcon>
+                                    </span>
                                 </div>
                             </a>
                         </template>
@@ -124,12 +124,17 @@
 
                 <tbody>
                 <template v-if="items">
-                    <tr v-for="(item, index) in items.data" :key="index" :class="{
-            'bg-secondary': item && item.id === selectedRow,
-          }" class="intro-x">
-                        <td v-for="(column, index) in datatableoptions.columns" :key="index" :class="{
-              'table-report__action w-56 items-center': !column.field,
-            }"
+                    <tr v-for="(item, index) in items.data"
+                        :key="index"
+                        :class="{
+                            'bg-secondary': item && item.id === selectedRow,
+                        }"
+                        class="intro-x">
+                        <td v-for="(column, index) in datatableoptions.columns"
+                            :key="index"
+                            :class="{
+                              'table-report__action w-56 items-center': !column.field,
+                            }"
                             class="whitespace-nowrap">
                             <template v-if="!column.field">
                                 <div class="flex items-center">
@@ -155,6 +160,17 @@
                                 <template v-if="column.isJson">{{
                                         JSON.parse(item[column.field])
                                     }}
+                                </template>
+                                <template v-else-if="column.isImage">
+                                    <div class="flex">
+                                        <div class="w-12 h-12 zoom-in">
+                                            <img
+                                                :alt=item[column.field]
+                                                :src=item[column.field]
+                                                :content="`Uploaded at ${item[column.field]}`"
+                                            />
+                                        </div>
+                                    </div>
                                 </template>
                                 <template v-else>{{ item[column.field] }}</template>
                             </template>

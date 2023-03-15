@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\URL;
@@ -45,6 +46,7 @@ class Student extends Model
         'language_id',
         'batch_id',
         'course_id',
+        'fee_type_id',
         'mobile',
         'alt_mobile',
         'gender',
@@ -52,6 +54,7 @@ class Student extends Model
         'dob',
         'permanent_address',
         'address',
+        'parent_aadhaar_number',
         'mother_name',
         'mother_email',
         'mother_mobile',
@@ -109,6 +112,10 @@ class Student extends Model
         'email',
     ];
 
+    protected static $student_fee_type_id = "";
+
+    protected static $selected_student_id = "";
+
     /**
      * @return HasOne
      */
@@ -158,6 +165,14 @@ class Student extends Model
     }
 
     /**
+     * @return HasOne
+     */
+    public function fee(): HasOne
+    {
+        return $this->hasOne(Fee::class, 'student_id');
+    }
+
+    /**
      * @return BelongsTo
      */
     public function language(): BelongsTo
@@ -191,10 +206,15 @@ class Student extends Model
         parent::boot();
         static::creating(function ($student)
         {
+            static::$student_fee_type_id = $student->fee_type_id;
+            $batch = Batch::where('is_active', 1)->first();
+
+            $student['batch_id'] = $batch->id;
+            $student['board_id'] = 1;
             //First we need to check if parent information is already available?
             //If yes use that selected parent_id
             $studentParent = StudentParent::firstOrCreate(
-                ['parent_email' => $student['father_email']],
+                ['parent_aadhaar_number' => $student['parent_aadhaar_number']],
                 [
                     'parent_email' => $student['father_email'],
                     'parent_password' => Hash::make(123456789),
@@ -211,6 +231,7 @@ class Student extends Model
                     'father_occupation' => $student['father_occupation'] ?? null,
                 ]
             );
+            unset($student['parent_aadhaar_number']);
             unset($student['mother_name']);
             unset($student['mother_mobile']);
             unset($student['mother_email']);
@@ -223,6 +244,7 @@ class Student extends Model
             unset($student['father_occupation']);
             unset($student['parent_email']);
             unset($student['parent_password']);
+            unset($student['fee_type_id']);
 
             $student['parent_id'] = $studentParent->id;
             $student['roll_number'] = generate_student_roll_number();
@@ -254,6 +276,28 @@ class Student extends Model
                     $sibling->save();
                 }
             }
+            // Now: according to the fee type of student we need to calculate the fees of student and make entry
+            // in fees table with all calculated values.
+
+            // For that, we need to find sum of amount of all the fee structures of selected batch, standard and fee type
+            $conditions = [
+                ['standard_id', '=', $student->standard_id],
+                ['batch_id', '=', $student->batch_id],
+                ['fee_type_id', '=', static::$student_fee_type_id],
+            ];
+            $feeStructures = FeeStructure::where($conditions)->sum('amount');
+
+            Fee::create([
+                'student_id' => $student->id,
+                'standard_id' => $student->standard_id,
+                'batch_id' => $student->batch_id,
+                'fee_type_id' => static::$student_fee_type_id,
+                'total_amount' => $feeStructures,
+                'amount_to_pay' => $feeStructures,
+                'balance' => $feeStructures,
+                'created_by' => Auth::user()->id,
+                'updated_by' => Auth::user()->id,
+            ]);
         });
 
         static::updating(function($student)
@@ -267,10 +311,30 @@ class Student extends Model
             }
         });
 
-        static::retrieved(function($data)
+        static::deleting(function ($student) {
+            static::$selected_student_id = $student->id;
+            StudentSibling::where('student_id', $student->id)->delete();
+            // Now we need to check if this parent_id is available in students table to manage siblings.\
+
+            $siblings = StudentSibling::all()->where('parent_id', $student->parent_id);
+            // If there are any older record is already available in student_siblings table, we need to update all the
+            // records with new student_id
+            if (count($siblings) > 1) {
+                // Get ids as plain array of existing students in siblings table
+                $newIds = Arr::pluck($siblings, 'student_id');
+
+                foreach ($siblings as $sibling) {
+                    $sibIds = array_diff($newIds, array($student->id, $sibling->id));
+                    $sibling->sibling_ids = $sibIds;
+                    $sibling->save();
+                }
+            }
+        });
+
+        /*static::retrieved(function($data)
         {
             $data['info'] = "info";
-        });
+        });*/
     }
 
     /**
