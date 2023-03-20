@@ -3,20 +3,31 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\FeeResource;
 use App\Models\Fee;
 use App\Http\Requests\StoreFeeRequest;
 use App\Http\Requests\UpdateFeeRequest;
+use Illuminate\Http\Request;
 
 class FeeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $field = $request->input('sort_field') ?? 'id';
+        $order = $request->input('sort_order') ?? 'desc';
+        $perPage = $request->input('per_page') ?? 10;
+        return FeeResource::collection(
+            Fee::when(request('search'), function ($query) {
+                $query->where('standard_id', 'like', '%'. request('search'). '%');
+            })
+                ->orderBy($field, $order)
+                ->paginate($perPage)
+        );
     }
 
     /**

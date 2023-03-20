@@ -29,6 +29,7 @@ import feeTypeModule from "./modules/fee_types/index.js";
 import feeCategoryModule from "./modules/fee_categories/index.js";
 import feeDiscountModule from "./modules/fee_discounts/index.js";
 import feeStructureModule from "./modules/fee_structures/index.js";
+import feeModule from "./modules/fees/index.js";
 
 const store = createStore({
     modules: {
@@ -59,6 +60,7 @@ const store = createStore({
         fee_categories: feeCategoryModule,
         fee_discounts: feeDiscountModule,
         fee_structures: feeStructureModule,
+        fees: feeModule,
         /*languages: languageModule,
          */
     },

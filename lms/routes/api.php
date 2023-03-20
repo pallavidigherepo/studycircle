@@ -43,6 +43,7 @@ use App\Http\Controllers\Api\V1\FeeDiscountController;
 
 use App\Http\Controllers\Api\V1\SettingController;
 use App\Http\Controllers\Api\V1\StudentParentController;
+use App\Http\Controllers\Api\V1\FeeController;
 
 use App\Models\Board;
 use App\Models\Chapter;
@@ -107,6 +108,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('v1/fee_categories', FeeCategoryController::class);
     Route::resource('v1/fee_discounts', FeeDiscountController::class);
     Route::resource('v1/fee_structures', FeeStructureController::class);
+    Route::resource('v1/fees', FeeController::class);
 
     Route::resource('v1/parents', StudentParentController::class);
     Route::resource('v1/settings', SettingController::class);

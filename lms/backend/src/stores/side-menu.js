@@ -53,6 +53,11 @@ export const useSideMenuStore = defineStore("sideMenu", {
                 title: "Fees",
                 subMenu: [
                     {
+                        icon: "TagIcon",
+                        pageName: "Fees",
+                        title: "Fees",
+                    },
+                    {
                         icon: "SettingsIcon",
                         pageName: "MasterData",
                         title: "Master Data",
