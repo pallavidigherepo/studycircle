@@ -1,0 +1,31 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "devDependencies": {
+        "@vue/compiler-sfc": "^3.1.5",
+        "axios": "^0.21",
+        "laravel-mix": "^6.0.6",
+        "lodash": "^4.17.19",
+        "postcss": "^8.1.14",
+        "vue-loader": "^16.3.3"
+    },
+    "dependencies": {
+        "@splidejs/vue-splide": "^0.5.15",
+        "@vuelidate/core": "^2.0.0-alpha.22",
+        "@vuelidate/validators": "^2.0.0-alpha.19",
+        "cross-env": "^7.0.3",
+        "recaptcha-v3": "^1.10.0",
+        "vue": "^3.1.5",
+        "vue-agile": "^2.0.0",
+        "vue-router": "^4.0.10",
+        "vueperslides": "^3.3.2"
+    }
+}
