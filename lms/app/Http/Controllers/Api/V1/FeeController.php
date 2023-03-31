@@ -22,9 +22,9 @@ class FeeController extends Controller
         $order = $request->input('sort_order') ?? 'desc';
         $perPage = $request->input('per_page') ?? 10;
         return FeeResource::collection(
-            Fee::when(request('search'), function ($query) {
-                $query->where('standard_id', 'like', '%'. request('search'). '%');
-            })
+                Fee::when(request('search'), function ($query) {
+                    $query->where('standard_id', 'like', '%'. request('search'). '%');
+                })
                 ->orderBy($field, $order)
                 ->paginate($perPage)
         );
