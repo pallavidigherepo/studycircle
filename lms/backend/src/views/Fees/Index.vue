@@ -157,6 +157,16 @@
                                     <thead>
                                     <tr>
                                         <th class="uppercase whitespace-nowrap" scope="col"
+                                            :class="{ 'table-report__action w-56': !'id' }">
+                                            <div class="flex items-center justify-between">
+                                                {{ t("fees.ID") }}
+                                                <span v-if="'id' === sortBy">
+                                                  <ChevronUpIcon v-if="sortOrder === 'asc'" class="w-4 h-4 text-gray-400"></ChevronUpIcon>
+                                                  <ChevronDownIcon v-else class="w-4 h-4 text-gray-400"></ChevronDownIcon>
+                                                </span>
+                                            </div>
+                                        </th>
+                                        <th class="uppercase whitespace-nowrap" scope="col"
                                             :class="{ 'table-report__action w-56': !'batch_id' }">
                                             <div class="flex items-center justify-between">
                                                 {{ t("fees.STUDENT") }}
@@ -180,7 +190,7 @@
                                             :class="{ 'table-report__action w-56': !'batch_id' }">
                                             <div class="flex items-center justify-between">
                                                 {{ t("fees.STANDARD") }}
-                                                <span v-if="'standard_id' === sortBy">
+                                                <span v-if="'standard' === sortBy">
                                                   <ChevronUpIcon v-if="sortOrder === 'asc'" class="w-4 h-4 text-gray-400"></ChevronUpIcon>
                                                   <ChevronDownIcon v-else class="w-4 h-4 text-gray-400"></ChevronDownIcon>
                                                 </span>
@@ -242,7 +252,7 @@
                                             class="intro-x">
                                             <td class="whitespace-nowrap">
                                                 <div class="flex items-center">
-                                                    {{ item.student}}
+                                                    {{ item.id}}
                                                 </div>
                                             </td>
                                             <td class="whitespace-nowrap">
@@ -252,42 +262,47 @@
                                             </td>
                                             <td class="whitespace-nowrap">
                                                 <div class="flex items-center">
-                                                    {{ item.student}}
+                                                    {{ item.batch}}
                                                 </div>
                                             </td>
                                             <td class="whitespace-nowrap">
                                                 <div class="flex items-center">
-                                                    {{ item.student}}
+                                                    {{ item.standard}}
                                                 </div>
                                             </td>
                                             <td class="whitespace-nowrap">
                                                 <div class="flex items-center">
-                                                    {{ item.student}}
+                                                    {{ item.fee_type}}
                                                 </div>
                                             </td>
                                             <td class="whitespace-nowrap">
                                                 <div class="flex items-center">
-                                                    {{ item.student}}
+                                                    {{ item.amount_to_pay}}
                                                 </div>
                                             </td>
                                             <td class="whitespace-nowrap">
                                                 <div class="flex items-center">
-                                                    {{ item.student}}
+                                                    {{ item.balance}}
+                                                </div>
+                                            </td>
+                                            <td class="whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    {{ item.status}}
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="flex items-center">
-                                                    <a v-if="column.actions.show" class="flex items-center mr-3" href="javascript:;"
+                                                    <a class="flex items-center mr-3" href="javascript:;"
                                                        @click.prevent="showMe(item)">
                                                         <EyeIcon class="w-4 h-4 mr-1"/>
                                                         {{ t("common.Show") }}
                                                     </a>
-                                                    <a v-if="column.actions.edit" class="flex items-center mr-3" href="javascript:;"
+                                                    <a class="flex items-center mr-3" href="javascript:;"
                                                        @click.prevent="editMe(item)">
                                                         <CheckSquareIcon class="w-4 h-4 mr-1"/>
                                                         {{ t("common.Edit") }}
                                                     </a>
-                                                    <a v-if="column.actions.delete" class="flex items-center text-danger"
+                                                    <a class="flex items-center text-danger"
                                                        href="javascript:;"
                                                        @click.prevent="emit('deleteItem', item)">
                                                         <Trash2Icon class="w-4 h-4 mr-1"/>

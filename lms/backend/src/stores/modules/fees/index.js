@@ -26,8 +26,14 @@ export default {
                         isJson: false,
                     },
                     {
-                        label: "NAME",
+                        label: "STUDENT",
                         field: "name",
+                        sort: true,
+                        isJson: false,
+                    },
+                    {
+                        label: "STANDARD",
+                        field: "standard",
                         sort: true,
                         isJson: false,
                     },
@@ -48,9 +54,9 @@ export default {
                         field: false,
                         sort: false,
                         actions: {
-                            show: false,
+                            show: true,
                             edit: true,
-                            delete: true,
+                            delete: false,
                         }
                     }
                 ]
