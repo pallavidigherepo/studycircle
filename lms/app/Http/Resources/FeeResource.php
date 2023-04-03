@@ -27,7 +27,7 @@ class FeeResource extends JsonResource
             'total_amount' => $this->total_amount,
             'amount_to_pay' => $this->amount_to_pay,
             'balance' => $this->balance,
-            'status' => $this->balance === 0 ? 'Paid': 'Un-paid',
+            'status' => $this->balance === 0 ? 'Paid': 'Un-Paid',
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
         ];

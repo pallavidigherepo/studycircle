@@ -32,4 +32,7 @@ class FeeDiscount extends Model
         'expiry_date',
     ];
 
+    protected function getAvailableDiscountsForStudent() {
+
+    }
 }

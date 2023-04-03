@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 /**
  * This class is Standard model class and related functions and variables.
  *
@@ -25,4 +28,12 @@ class Standard extends Model
     protected $fillable = [
         'name',
     ];
+
+    /**
+     * @return HasMany
+     */
+    public function fee_structures(): HasMany
+    {
+        return $this->hasMany(FeeStructure::class, 'standard_id');
+    }
 }

@@ -34,14 +34,6 @@ class FeeCategorySeeder extends Seeder
                 'name' => 'Tuition Fee',
                 'installation_available' => 1,
             ],
-            [
-                'name' => 'Book Kit Fee',
-                'installation_available' => 0,
-            ],
-            [
-                'name' => 'Uniform Kit Fee',
-                'installation_available' => 0,
-            ],
         ];
 
         foreach ($categories as $category) {

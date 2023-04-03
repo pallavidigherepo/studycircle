@@ -239,7 +239,7 @@
                                         <th class="uppercase whitespace-nowrap" scope="col"
                                             :class="{ 'table-report__action w-56': !'batch_id' }">
                                             <div class="flex items-center justify-between">
-                                                {{ t("fees.ACTION") }}
+                                                {{ t("common.ACTION") }}
                                             </div>
                                         </th>
                                     </tr>
@@ -287,7 +287,13 @@
                                             </td>
                                             <td class="whitespace-nowrap">
                                                 <div class="flex items-center">
-                                                    {{ item.status}}
+                                                    <button v-if="item.status === 'Un-Paid'" class="btn btn-danger-soft">
+                                                        {{ item.status }}
+                                                    </button>
+
+                                                    <button v-if="item.status === 'Paid'" class="btn btn-success-soft">
+                                                        {{ item.status }}
+                                                    </button>
                                                 </div>
                                             </td>
                                             <td>
@@ -298,15 +304,9 @@
                                                         {{ t("common.Show") }}
                                                     </a>
                                                     <a class="flex items-center mr-3" href="javascript:;"
-                                                       @click.prevent="editMe(item)">
+                                                       @click.prevent="payNow(item)">
                                                         <CheckSquareIcon class="w-4 h-4 mr-1"/>
-                                                        {{ t("common.Edit") }}
-                                                    </a>
-                                                    <a class="flex items-center text-danger"
-                                                       href="javascript:;"
-                                                       @click.prevent="emit('deleteItem', item)">
-                                                        <Trash2Icon class="w-4 h-4 mr-1"/>
-                                                        {{ t("common.Delete") }}
+                                                        {{ t("fees.Pay Now") }}
                                                     </a>
                                                 </div>
                                             </td>
@@ -436,6 +436,198 @@
                                 </ModalFooter>
                             </Modal>
                             <!-- END: Modal Content -->
+                            <!-- BEGIN: Modal Content For Paynow -->
+                            <Modal :show="showPayNowPreview"
+                                   size="modal-lg"
+                                   backdrop="static"
+                                   :slideOver="true"
+                                   @hidden="showPayNowPreview = false">
+                                <a
+                                    @click.prevent="showPayNowPreview = false"
+                                    class="absolute top-0 left-0 right-auto mt-4 -ml-12"
+                                    href="javascript:;"
+                                >
+                                    <XIcon class="w-8 h-8 text-slate-400" />
+                                </a>
+                                <ModalHeader>
+                                    <h2 class="font-medium text-base mr-auto">
+                                        {{ t("fees.Pay") }}
+                                    </h2>
+                                </ModalHeader>
+<!--                                <CustomeAlert v-if="responseMessage"
+                                              :errors="responseErrors"
+                                              :message="responseMessage"
+                                              :status="responseStatus"
+                                              class="col-span-12 sm:col-span-6 flex"/>-->
+                                <ModalBody class="grid grid-cols-12 gap-4 gap-y-3 intro-y">
+                                    <!-- BEGIN: Transaction Details -->
+                                        <div class="col-span-12 lg:col-span-12 2xl:col-span-12">
+                                            <div class="p-5 rounded-md box">
+                                                <div
+                                                    class="flex items-center pb-5 mb-5 border-b border-slate-200/60 dark:border-darkmode-400"
+                                                >
+                                                    <div class="text-base font-medium truncate">Payment Details</div>
+<!--                                                    <a href="" class="flex items-center ml-auto text-primary">
+                                                        <Lucide icon="Edit" class="w-4 h-4 mr-2" /> Change Status
+                                                    </a>-->
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <div class="flex font-medium">
+                                                        Student Name:
+                                                    </div>
+                                                    <div class="ml-2">
+                                                        <a href="" class="underline decoration-dotted">
+                                                            {{ payHistory ? payHistory.student : "" }}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="flex items-center mt-3">
+                                                    <div class="flex font-medium">
+                                                        Batch:
+                                                    </div>
+                                                    <div class="ml-2">{{ payHistory ? payHistory.batch : "" }}</div>
+                                                </div>
+                                                <div class="flex items-center mt-3">
+                                                    <div class="flex font-medium">
+                                                        Standard:
+                                                    </div>
+                                                    <div class="ml-2">{{ payHistory ? payHistory.standard : "" }}</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="p-5 rounded-md box">
+                                                <div
+                                                    class="flex items-center pb-5 mb-5 border-b border-slate-200/60 dark:border-darkmode-400"
+                                                >
+                                                    <div class="text-base font-medium truncate">Fee Structure Details</div>
+                                                </div>
+                                                <div class="overflow-auto lg:overflow-visible">
+                                                    <table class="table striped" >
+                                                        <tr>
+                                                            <th class="whitespace-nowrap">Fee Structure Name</th>
+                                                            <th class="text-right whitespace-nowrap">Amount</th>
+                                                            <th class="text-right whitespace-nowrap">Amount To Pay</th>
+                                                        </tr>
+                                                        <tbody>
+                                                        <template v-if="studentFeeStructure">
+                                                            <tr
+                                                                v-for="(feeStructure, key) in studentFeeStructure.data"
+                                                                :key="key"
+                                                            >
+                                                                <td class="whitespace-nowrap">
+                                                                    {{ feeStructure.fee_category }}
+                                                                </td>
+                                                                <td class="text-right">
+                                                                    <button class="btn btn-secondary"> {{ feeStructure.amount }}</button>
+                                                                </td>
+                                                                <td class="text-right">
+                                                                    <button class="btn btn-secondary"> {{ feeStructure.amount }}</button>
+                                                                </td>
+                                                            </tr>
+                                                        </template>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="p-5 rounded-md box">
+                                                <div
+                                                    class="flex items-center pb-5 mb-5 border-b border-slate-200/60 dark:border-darkmode-400"
+                                                >
+                                                    <div class="text-base font-medium truncate">Discounts Available</div>
+                                                </div>
+                                                <div class="overflow-auto lg:overflow-visible">
+                                                    <table class="table striped" >
+                                                        <template v-if="discountsForStudent">
+                                                            <tr
+                                                                v-for="(discount, key) in discountsForStudent"
+                                                                :key="key"
+                                                            >
+                                                                <template v-if="key !== 'total_discounts'">
+                                                                    <td class="text-left">
+                                                                        <button class="btn btn-secondary-soft"> {{ key }}</button>
+                                                                    </td>
+                                                                    <td class="text-left">
+                                                                        <button class="btn btn-secondary-soft"> {{ discount }}</button>
+                                                                    </td>
+                                                                </template>
+
+                                                            </tr>
+                                                        </template>
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="p-5 mt-1 rounded-md box">
+                                                <div
+                                                    class="flex items-center pb-5 mb-5 border-b border-slate-200/60 dark:border-darkmode-400"
+                                                >
+                                                    <div class="text-base font-medium truncate">Amount to Pay</div>
+                                                </div>
+                                                <div class="flex items-center mt-3">
+                                                    Total Amount:
+                                                    <div class="ml-auto">{{ payHistory ? payHistory.total_amount: '' }}</div>
+                                                </div>
+                                                <div class="flex items-center mt-3">
+                                                    Total Discounts:
+                                                    <div class="ml-auto">{{ discountsForStudent? discountsForStudent['total_discounts']: '' }}</div>
+                                                </div>
+                                                <div class="flex items-center mt-3" v-if="payHistory && discountsForStudent">
+                                                    Amount to Pay:
+                                                    <div class="ml-auto">
+                                                        <template v-if="payHistory.total_amount > discountsForStudent['total_discounts']">
+                                                            {{ payHistory.total_amount - discountsForStudent['total_discounts'] }}
+                                                        </template>
+                                                        <template v-else>0</template>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex items-center">
+                                                    Payment Method:
+
+                                                    <div class="ml-auto">
+                                                        <template v-if="transactionModel.payment_method === '2'">
+                                                            <input placeholder="Enter cheque number" type="text" />
+                                                        </template>
+                                                        <template v-if="transactionModel.payment_method === '3'">
+                                                            <input placeholder="Enter transaction number" type="text" />
+                                                        </template>
+                                                    </div>
+                                                    <div class="ml-auto">
+                                                        <select v-model="transactionModel.payment_method">
+                                                            <option value="1" selected>Cash</option>
+                                                            <option value="2">Cheque</option>
+                                                            <option value="3">UPI</option>
+                                                        </select>
+                                                        <br />
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="flex items-center pt-5 mt-5 font-medium border-t border-slate-200/60 dark:border-darkmode-400"
+                                                >
+                                                    Amount:
+                                                    <div class="ml-auto">
+                                                        <input type="number" v-model="transactionModel.amount" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    <!-- END: Transaction Details -->
+                                </ModalBody>
+                                <ModalFooter>
+                                    <button id="import-export-cancel-button"
+                                            class="btn btn-outline-secondary w-20 mr-1"
+                                            type="button"
+                                            @click="showPayNowPreview = false">
+                                        {{ t("common.Cancel") }}
+                                    </button>
+                                    <!-- <button type="button" class="btn btn-primary w-20">
+                                        {{ t("permissions.Import") }}
+                                        </button> -->
+                                </ModalFooter>
+                            </Modal>
+                            <!-- END: Modal Content -->
                             <Loading v-if="loading" fixed></Loading>
 
                         </div>
@@ -458,9 +650,10 @@ import store from "@/stores";
 
 import { useI18n } from "vue-i18n";
 import _ from "lodash";
+import axiosClient from "@/axios";
 
 // To show/hide modal
-
+const showPayNowPreview = ref(false);
 const options = {
     modelName: "FeeDiscount",
 };
@@ -482,6 +675,11 @@ let model = ref({
     standard_id: "",
     fee_type_id: "",
     student_name: "",
+});
+
+let transactionModel = ref({
+    payment_method: '',
+    amount: '',
 });
 
 /*
@@ -690,11 +888,32 @@ function searchMe(event) {
     //console.log(event)
 }
 
+const payHistory = ref();
+const studentFeeStructure = ref();
+const discountsForStudent = ref();
+
+async function payNow(item) {
+    showPayNowPreview.value = true;
+    payHistory.value = JSON.parse(JSON.stringify(item));
+    // First get list of all the fee structures.
+    studentFeeStructure.value = JSON.parse(JSON.stringify(
+        await axiosClient
+        .get('/fee_structure_list/'+item.standard_id +'/'+item.batch_id+'/'+item.fee_type_id)
+        .then(function(data) {
+            return data.data;
+        })
+    ));
+    // Get list of all the discounts available.
+    discountsForStudent.value = JSON.parse(JSON.stringify(
+       await axiosClient
+           .get('/student_discounts/'+item.student_id)
+           .then(function (data) {
+               return data.data;
+           })
+    ));
+}
 // End: Searching
 </script>
 
-<style>
-.active-row {
-    background-color: lightgray;
-}
+<style scoped>
 </style>

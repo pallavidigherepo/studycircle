@@ -2,7 +2,10 @@
 
 
 use App\Http\Controllers\Api\V1\FeeStructureController;
+use App\Http\Resources\FeeStructureResource;
 use App\Models\FeeCategory;
+use App\Models\FeeStructure;
+use App\Models\FeeStudentDiscount;
 use App\Models\FeeType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -196,6 +199,23 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('v1/fee_type_list', function () {
         return FeeType::all()->pluck('name', 'id');
     })->name('fee_type_list');
+
+
+    Route::get('v1/fee_structure_list/{standardId}/{batchId}/{feeTypeId}', function ($standardId, $batchId, $feeTypeId) {
+        return FeeStructureResource::collection(
+
+            FeeStructure::all()
+                ->where('standard_id', $standardId)
+                ->where('batch_id', $batchId)
+                ->where('fee_type_id', $feeTypeId)
+            );
+
+    })->name('fee_structure_list');
+
+    Route::get('v1/student_discounts/{studentId}', function ($studentId) {
+        return FeeStudentDiscount::getAvailableDiscountsForStudent($studentId);
+
+    })->name('student_discounts');
 
 
     Route::get('v1/questionnaire', function () {

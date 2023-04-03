@@ -247,7 +247,7 @@ class Student extends Model
             unset($student['fee_type_id']);
 
             $student['parent_id'] = $studentParent->id;
-            $student['roll_number'] = 'asdasdasdasd';
+            $student['roll_number'] = 'asdasdasdasddw';
             $student['password'] = Hash::make(123456789);
             // Check if image was given and save on local file system
             if (isset($student['avatar'])) {
