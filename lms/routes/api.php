@@ -1,8 +1,9 @@
 <?php
 
 
-use App\Http\Controllers\Api\V1\FeeStructureController;
+
 use App\Http\Resources\FeeStructureResource;
+use App\Models\Fee;
 use App\Models\FeeCategory;
 use App\Models\FeeStructure;
 use App\Models\FeeStudentDiscount;
@@ -47,6 +48,8 @@ use App\Http\Controllers\Api\V1\FeeDiscountController;
 use App\Http\Controllers\Api\V1\SettingController;
 use App\Http\Controllers\Api\V1\StudentParentController;
 use App\Http\Controllers\Api\V1\FeeController;
+use App\Http\Controllers\Api\V1\FeeStructureController;
+use App\Http\Controllers\Api\V1\FeeTransactionController;
 
 use App\Models\Board;
 use App\Models\Chapter;
@@ -112,6 +115,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('v1/fee_discounts', FeeDiscountController::class);
     Route::resource('v1/fee_structures', FeeStructureController::class);
     Route::resource('v1/fees', FeeController::class);
+    Route::resource('v1/fee_transactions', FeeTransactionController::class);
 
     Route::resource('v1/parents', StudentParentController::class);
     Route::resource('v1/settings', SettingController::class);
@@ -216,6 +220,10 @@ Route::middleware('auth:sanctum')->group(function () {
         return FeeStudentDiscount::getAvailableDiscountsForStudent($studentId);
 
     })->name('student_discounts');
+
+    Route::get('v1/check_fee_balance/{feeId}', function ($feeId) {
+        return Fee::findOrFail($feeId);
+    })->name('check_fee_balance');
 
 
     Route::get('v1/questionnaire', function () {

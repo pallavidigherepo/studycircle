@@ -247,7 +247,7 @@ class Student extends Model
             unset($student['fee_type_id']);
 
             $student['parent_id'] = $studentParent->id;
-            $student['roll_number'] = 'asdasdasdasddw';
+            $student['roll_number'] = 'asdasdasdasddwaaf';
             $student['password'] = Hash::make(123456789);
             // Check if image was given and save on local file system
             if (isset($student['avatar'])) {
@@ -329,6 +329,9 @@ class Student extends Model
                     $sibling->save();
                 }
             }
+            // Now remove fees row for that student.
+            $fee = Fee::where('student_id', $student->id)->first();
+            Fee::destroy($fee->id);
         });
 
         /*static::retrieved(function($data)

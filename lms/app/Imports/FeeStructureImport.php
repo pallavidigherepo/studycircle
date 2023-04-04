@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\FeeStructure;
+use App\Models\Standard;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -28,8 +29,12 @@ class FeeStructureImport implements ToModel, WithHeadingRow, WithValidation
     */
     public function model(array $row)
     {
+        //print_r($row['standard']);
+        $standard = Standard::where('name', $row['standard'])->first();
+        //print_r($standard->id);
+        //$row['standard'];
         return new FeeStructure([
-            'standard_id' => $row['standard'],
+            'standard_id' => $standard->id,
             'batch_id' => $row['batch'],
             'fee_type_id' => $row['fee_type'],
             'fee_category_id' => $row['fee_category'],

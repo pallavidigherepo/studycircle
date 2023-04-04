@@ -19,10 +19,6 @@ class FeeCategorySeeder extends Seeder
                 'installation_available' => 1,
             ],
             [
-                'name' => 'Karate/Music',
-                'installation_available' => 1,
-            ],
-            [
                 'name' => 'Sports + any activity (Karate/Music/Dance)',
                 'installation_available' => 1,
             ],

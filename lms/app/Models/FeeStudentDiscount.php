@@ -15,6 +15,8 @@ class FeeStudentDiscount extends Model
         'fee_discount_id'
     ];
 
+
+
     protected function getAvailableDiscountsForStudent($studentId) {
         $discounts = [];
         // First get list of all the discount offers available who are not expired.
@@ -25,14 +27,14 @@ class FeeStudentDiscount extends Model
         $studentDiscount = [];
         foreach ($discounts as $discount) {
             if ($discount->name === "One Time Payment") {
-                $studentDiscount[$discount->name] = $discount->amount;
+                $studentDiscount[$discount->id . ":". $discount->name] = $discount->amount;
             }
             if ($discount->name === "Siblings") {
                 // Check if student have siblings
                 $siblings = StudentSibling::where('student_id', $studentId)->where('sibling_ids', '!=', null)->get();
                 if ($siblings) {
                     // Get sibling discount
-                    $studentDiscount[$discount->name] = $discount->amount;
+                    $studentDiscount[$discount->id . ":". $discount->name] = $discount->amount;
                 }
             }
         }

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('fee_structure_id')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->integer('amount')->nullable();
+            $table->string('payment_method')->nullable();
+            $table->string('uid')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
 

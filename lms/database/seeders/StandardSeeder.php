@@ -15,6 +15,9 @@ class StandardSeeder extends Seeder
     public function run()
     {
         $types = [
+            ['name' => 'Nursery'],
+            ['name' => 'Jr.KG.'],
+            ['name' => 'Sr.KG.'],
             ['name' => '1st'],
             ['name' => '2nd'],
             ['name' => '3rd'],

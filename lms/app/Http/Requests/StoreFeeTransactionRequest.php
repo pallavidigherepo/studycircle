@@ -13,7 +13,7 @@ class StoreFeeTransactionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class StoreFeeTransactionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'fee_id' => [
+                'required',
+            ],
+            'amount' => [
+                'required',
+            ],
+            'payment_method' => [
+                'required',
+            ],
         ];
     }
 }
