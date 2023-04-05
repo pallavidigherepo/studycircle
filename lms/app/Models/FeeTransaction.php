@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * This class is FeeTransaction model class with all fees management related functions and variables.
@@ -37,6 +39,21 @@ class FeeTransaction extends Model
     ];
 
     /**
+     * @return BelongsTo
+     */
+    public function fee(): BelongsTo
+    {
+        return $this->belongsTo(Fee::class, 'fee_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(StudentParent::class, 'parent_id');
+    }
+    /**
      * The "boot" method of the model.
      *
      * @return void
@@ -50,6 +67,8 @@ class FeeTransaction extends Model
             $fee = Fee::findOrFail($transaction->fee_id);
             $student = Student::findOrFail($fee->student_id);
             $transaction->parent_id = $student->parent_id;
+            $transaction->created_by = Auth::user()->id;
+            $transaction->updated_by = Auth::user()->id;
         });
 
         static::saving(function ($transaction) {
@@ -77,7 +96,17 @@ class FeeTransaction extends Model
             }
 
             $fee->balance = $balance;
+            $fee->updated_by = Auth::user()->id;
             $fee->save();
+
+            // Now we have to create receipt
+            FeeReceipt::create([
+                'fee_id' => $transaction->fee_id,
+                'fee_transaction_id' => $transaction->id,
+                'parent_id' => $transaction->parent_id,
+                'created_by' => Auth::user()->id,
+                'updated_by' => Auth::user()->id,
+            ]);
         });
     }
 }
