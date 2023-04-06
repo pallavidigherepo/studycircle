@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\FeeResource;
 use App\Http\Resources\FeeTransactionResource;
+use App\Models\Fee;
 use App\Models\FeeTransaction;
 use App\Http\Requests\StoreFeeTransactionRequest;
 use App\Http\Requests\UpdateFeeTransactionRequest;
@@ -46,7 +48,8 @@ class FeeTransactionController extends Controller
             $response = [
                 'success' => true,
                 'message' => 'Fee transaction done successfully.',
-                'fee_transaction' => $feeTransaction,
+                'fee_transaction' => new FeeTransactionResource(FeeTransaction::FindOrFail($feeTransaction->id)),
+                'fee' => new FeeResource(Fee::FindOrFail($request->fee_id))
             ];
         } else {
             $response = [

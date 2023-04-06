@@ -20,14 +20,15 @@ export default {
             response = await axiosClient
                 .put(`/fee_transactions/${model.id}`, model)
                 .then(({ data }) => {
-                    commit('UPDATE_FEE_TRANSACTION', data);
+                    //commit('UPDATE_FEE_TRANSACTION', data);
                     return data;
                 });
         } else {
-            response = await axiosClient
+            return await axiosClient
                 .post(`/fee_transactions`, model)
                 .then(({ data }) => {
-                    commit('CREATE_FEE_TRANSACTION', data);
+                    //console.log(data)
+                    //commit('CREATE_FEE_TRANSACTION', data);
                     return data;
                 });
         }

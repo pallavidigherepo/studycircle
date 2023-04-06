@@ -480,6 +480,8 @@
                                                             <input placeholder="Enter transaction number" type="text"
                                                                    class="form-control" v-model="transactionModel.uid"/>
                                                         </template>
+
+
                                                     </div>
                                                     <div class="flex ml-2 w-60">
                                                         <TomSelect id="form-payment-method"
@@ -499,6 +501,11 @@
                                                         </TomSelect>
                                                     </div>
                                                 </div>
+
+                                                <div v-for="(error, index) of v$.payment_method.$errors"
+                                                     :key="index" class="text-right text-danger mt-2">
+                                                    <div class="error-msg">{{ error.$message }}</div>
+                                                </div>
                                                 <div
                                                     class="flex items-center pt-5 mt-5 font-medium border-t border-slate-200/60 dark:border-darkmode-400"
                                                 >
@@ -509,8 +516,14 @@
                                                                class="form-control"
                                                                placeholder="Amount paying"
                                                                @blur.prevent="autoFillAmounts"
+                                                               :class="{ 'border-danger': submitted && v$.amount.$errors.length, }"
                                                         />
                                                     </div>
+                                                </div>
+
+                                                <div v-for="(error, index) of v$.amount.$errors"
+                                                     :key="index" class="text-right text-danger mt-2">
+                                                    <div class="error-msg">{{ error.$message }}</div>
                                                 </div>
                                                 <div
                                                     class="flex items-center pt-5 mt-5 font-medium border-t border-slate-200/60 dark:border-darkmode-400"
@@ -720,10 +733,10 @@
                                 <ModalBody class="intro-y box overflow-hidden mt-5">
                                     <div id="div-to-print" v-if="printTransaction">
                                         <div
-                                            class="border-b border-slate-200/60 dark:border-darkmode-400 text-center sm:text-left"
+                                            class="border-slate-200/60 dark:border-darkmode-400 text-center sm:text-left"
                                         >
-                                            <div class="border-b-4 border-t-4">
-                                                <div class="flex flex-col lg:flex-row px-5 pt-10 pb-10">
+                                            <div class="border-b-4 border-t-4 py-2">
+                                                <div class="flex flex-col lg:flex-row">
                                                     <div class="w-20 h-10 zoom-in flex">
                                                         <img
                                                             :alt="'Meritest'"
@@ -732,16 +745,16 @@
                                                     </div>
                                                     <div class="text-primary font-semibold text-3xl lg:text-center mt-10 lg:mt-0 lg:ml-auto text-center">
 
-                                                        <div class="text-base text-slate-500">ERA Kids A Play School</div>
+                                                        <div class="text-base text-slate-500">ERA Sumthana</div>
                                                         <div class="text-lg font-medium text-primary mt-2"> Sumthana</div>
                                                         <div class="mt-1">era@gmail.com</div>
                                                     </div>
                                                     <div class="lg:text-right mt-10 lg:mt-0 lg:ml-auto">
-                                                        Sumthana
+                                                        &nbsp;
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="flex flex-col lg:flex-row px-5 pt-10 pb-10">
+                                            <div class="flex flex-col lg:flex-row pl-0 pr-0 px-5 pt-10 pb-10">
                                                 <div>
                                                     <div class="mt-2">
                                                         Receipt: <span class="font-medium">#{{ printTransaction.id }}</span>
@@ -754,20 +767,16 @@
                                         </div>
                                         <div class="px-5 sm:px-16 py-10 sm:py-20">
                                             <div class="overflow-x-auto">
+                                                <p>Received with thanks from Mast/Miss <strong>{{ payHistory ? payHistory.student : "" }}</strong> Class: <strong>{{ payHistory ? payHistory.standard : "" }}</strong> Session: <strong>{{ payHistory ? payHistory.batch : ""}}</strong> Installment: First/Second/Third The Sum Rupees <strong>{{ printTransaction.amount }}</strong> by Cash/Cheque No. Drawn on ---- Balance Amount <strong>{{ payHistory.balance}}</strong></p>
                                             </div>
-                                            <p>Received with thanks from Mast/Miss <strong>{{ payHistory ? payHistory.student : "" }}</strong> Class: <strong>{{ payHistory ? payHistory.standard : "" }}</strong> Session: {{ payHistory ? payHistory.batch : ""}} Installment: First/Second/Third The Sum Rupees {{ printTransaction.amount }} by Cash/Cheque No. Drawn on ---- Balance Amount ____.</p>
+
                                         </div>
                                         <div class="px-5 sm:px-20 pb-10 sm:pb-20 flex flex-col-reverse sm:flex-row">
-                                            <div class="text-center sm:text-left mt-10 sm:mt-0">
-                                                <div class="text-base text-slate-500">Bank Transfer</div>
-                                                <div class="text-lg text-primary font-medium mt-2">Elon Musk</div>
-                                                <div class="mt-1">Bank Account : 098347234832</div>
-                                                <div class="mt-1">Code : LFT133243</div>
-                                            </div>
+
                                             <div class="text-center sm:text-right sm:ml-auto">
-                                                <div class="text-base text-slate-500">Total Amount</div>
-                                                <div class="text-xl text-primary font-medium mt-2">$20.600.00</div>
-                                                <div class="mt-1">Taxes included</div>
+                                                <div class="text-base text-slate-500">ERA Sumthana</div>
+                                                <div class="text-xl text-primary font-medium mt-2">&nbsp;</div>
+                                                <div class="mt-1">Authorised Signature</div>
                                             </div>
                                         </div>
                                     </div>
@@ -817,6 +826,10 @@ let submitted = ref(false);
 let message = ref("");
 let isErrored = ref(false);
 let selectedItem = ref("");
+
+const payHistory = ref();
+const studentFeeStructure = ref();
+const discountsForStudent = ref();
 
 let model = ref({
     batch_id: "",
@@ -870,18 +883,18 @@ async function submitForm() {
 
             await store
                 .dispatch("fee_transactions/save", transactionModel.value)
-                .then(() => {
+                .then((data) => {
                     showPayNowPreview.value = false;
-                    isErrored.value = false;
-                    message.value = "";
-                    submitted.value = false;
+                    payHistory.value = data.fee;
+                    showTransaction(data.fee_transaction);
+                    transactionModel.value = JSON.parse(JSON.stringify(transactionModel));
+                    fetchList();
                 })
                 .catch((err) => {
                     isErrored.value = true;
                     if (err.response) {
                         message.value = err.response.data.message;
                     }
-
                 });
 
             //loading.value = false;
@@ -1019,10 +1032,6 @@ function searchMe(event) {
 }
 
 // End: Searching
-
-const payHistory = ref();
-const studentFeeStructure = ref();
-const discountsForStudent = ref();
 
 async function payNow(item) {
     showPayNowPreview.value = true;
