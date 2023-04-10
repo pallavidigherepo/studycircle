@@ -31,12 +31,12 @@ export const useSideMenuStore = defineStore("sideMenu", {
                                 title: "Batches",
                                 ignore: false,
                             },
-                            {
+                            /*{
                                 icon: "LayersIcon",
                                 pageName: "Boards",
                                 title: "Boards",
                                 ignore: false,
-                            },
+                            },*/
                             {
                                 icon: "ListIcon",
                                 pageName: "Standards",

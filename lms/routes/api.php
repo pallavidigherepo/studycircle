@@ -3,6 +3,7 @@
 
 
 use App\Http\Resources\FeeStructureResource;
+use App\Models\DocumentType;
 use App\Models\Fee;
 use App\Models\FeeCategory;
 use App\Models\FeeStructure;
@@ -77,7 +78,7 @@ use App\Models\Template;
 |
 */
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware(['auth:sanctum', \App\Http\Middleware\DatabaseSwitcher::class])->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
@@ -203,6 +204,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('v1/fee_type_list', function () {
         return FeeType::all()->pluck('name', 'id');
     })->name('fee_type_list');
+
+    Route::get('v1/document_types_list', function () {
+        return DocumentType::all()->pluck('name', 'id');
+    })->name('document_types_list');
 
 
     Route::get('v1/fee_structure_list/{standardId}/{batchId}/{feeTypeId}', function ($standardId, $batchId, $feeTypeId) {

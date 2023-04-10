@@ -3,7 +3,7 @@ import axiosClient from "@/axios";
 export default {
     // This action is used to fetch all the users present in database
     async list({ commit }, { url = null } = {}) {
-        url = "/clients"+url;
+        url = "/client_projects"+url;
         return await axiosClient.get(url)
             .then(({ data }) => {
                 commit('SET_CLIENTS', data);
@@ -17,14 +17,14 @@ export default {
 
         if (model.id) {
             response = await axiosClient
-                .put(`/clients/${model.id}`, model)
+                .put(`/client_projects/${model.id}`, model)
                 .then(({ data }) => {
                     //commit('UPDATE_USER', model);
                     return true;
                 });
         } else {
             response = await axiosClient
-                .post(`/clients`, model)
+                .post(`/client_projects`, model)
                 .then(({ data }) => {
                     //console.log(data)
                     //commit('CREATE_USER', data.user);
@@ -35,7 +35,7 @@ export default {
 
     // This action is used to delete client from server.
     async delete({commit}, id) {
-        const response = await axiosClient.delete(`/clients/${id}`);
+        const response = await axiosClient.delete(`/client_projects/${id}`);
         if (response.status !== 200) {
             throw new Error('Failed to delete client');
         }

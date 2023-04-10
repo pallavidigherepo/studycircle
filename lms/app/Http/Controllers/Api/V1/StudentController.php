@@ -23,7 +23,7 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index(Request $request)
     {
@@ -65,7 +65,7 @@ class StudentController extends Controller
      *          table with "reverse mapping".
      *
      * @param StoreStudentRequest $request
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
     public function store(StoreStudentRequest $request)
@@ -92,7 +92,7 @@ class StudentController extends Controller
      * Display the specified resource.
      *
      * @param  Student  $student
-     * @return array
+     * @return StudentResource
      */
     //public function show(Student $student) :array
     public function show(Student $student)

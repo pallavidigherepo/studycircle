@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RoleAndPermissionSeeder::class,
+            DocumentTypeSeeder::class,
             LanguageSeeder::class,
             DifficultyLevelSeeder::class,
             QuestTypeSeeder::class,
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
             FeeTypeSeeder::class,
             FeeCategorySeeder::class,
             FeeDiscountSeeder::class,
+            ClientProjectSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

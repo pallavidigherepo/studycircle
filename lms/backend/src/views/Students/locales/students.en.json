@@ -16,6 +16,9 @@
     "Alternate Mobile": "Alternate Mobile",
     "Gender": "Gender",
     "Avatar": "Avatar",
+    "AVATAR": "AVATAR",
+    "ROLL NO": "ROLL NO",
+    "FEE TYPE": "FEE TYPE",
     "Date Of Birth": "Date Of Birth",
     "Permanent Address": "Permanent Address",
     "Address": "Address",
@@ -57,5 +60,15 @@
     "Standard": "Standard",
     "Edit Student": "Edit Student",
     "Select Gender": "Select Gender",
-    "Select Fee Type": "Select Fee Type"
+    "Select Fee Type": "Select Fee Type",
+    "Select Standard Class Fee Type": "Select Standard/Class & Fee Type",
+    "Blood Group": "Blood Group",
+    "Medical Notes": "Medical Notes",
+    "Caste": "Caste",
+    "Religion": "Religion",
+    "Mother Tongue Language": "Mother Tongue Language",
+    "Interests": "Interests",
+    "Aadhaar Number of Parents": "Aadhaar Number of Parents",
+    "Parent Aadhaar Number": "Parent Aadhaar Number",
+    "Enrollment Number": "Enrollment Number"
 }

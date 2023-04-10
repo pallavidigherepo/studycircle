@@ -83,6 +83,7 @@ const store = createStore({
         inquiryAssignees: [],
         inquiryStatus: [],
         feeTypesList: [],
+        documentTypesList: [],
     },
     getters: {
         languages(state) {
@@ -133,6 +134,9 @@ const store = createStore({
         listFeeTypes(state) {
             return state.feeTypesList;
         },
+        listDocumentTypes(state) {
+            return state.documentTypesList;
+        }
     },
     actions: {
         async importMe({ commit }, formData) {
@@ -277,6 +281,14 @@ const store = createStore({
                     return data;
                 })
         },
+        async listDocumentTypes({ commit }) {
+            return await axiosClient
+                .get('/document_types_list')
+                .then(({ data }) => {
+                    commit('SET_DOCUMENT_TYPE_LIST', data)
+                    return data;
+                })
+        }
     },
     mutations: {
         SET_LANGUAGES(state, payload) {
@@ -326,6 +338,9 @@ const store = createStore({
         },
         SET_FEE_TYPE_LIST(state, payload) {
             state.feeTypesList = payload;
+        },
+        SET_DOCUMENT_TYPE_LIST(state, payload) {
+            state.documentTypesList = payload;
         }
     },
 });

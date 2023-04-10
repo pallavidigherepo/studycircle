@@ -28,7 +28,7 @@ class UpdateStudentRequest extends FormRequest
             'name' => [
                 'required',
             ],
-            'email' => [
+            /*'email' => [
                 'required',
                 'email',
                 Rule::unique('students')->ignore($this->student)
@@ -36,7 +36,7 @@ class UpdateStudentRequest extends FormRequest
             'aadhaar' => [
                 'required',
                 Rule::unique('students')->ignore($this->student)
-            ],
+            ],*/
         ];
     }
 }

@@ -17,7 +17,7 @@ class StudentResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'roll_number' => $this->roll_number,
+            'enrollment_number' => $this->enrollment_number,
             'name' => $this->name,
             'email' => $this->email,
             'aadhaar' => $this->aadhaar,
@@ -42,6 +42,13 @@ class StudentResource extends JsonResource
             'student_siblings' => $this->student_siblings,
             'student_fee' => $this->fee,
             'student_fee_type' => $this->fee->fee_type->name,
+            'blood_group' => $this->blood_group,
+            'medical_notes' => $this->medical_notes,
+            'caste' => $this->caste,
+            'religion' => $this->religion,
+            'mother_tongue_language' => $this->mother_tongue_language,
+            'interests' => $this->interests,
+            'student_documents' => $this->student_documents,
         ];
     }
 }

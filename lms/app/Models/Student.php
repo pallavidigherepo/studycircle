@@ -39,7 +39,7 @@ class Student extends Model
         'parent_id',
         'email',
         'password',
-        'roll_number',
+        'enrollment_number',
         'aadhaar',
         'board_id',
         'standard_id',
@@ -67,6 +67,14 @@ class Student extends Model
         'father_occupation',
         'parent_email',
         'parent_password',
+        'document_type_ids',
+        'document_type_storage',
+        'blood_group',
+        'medical_notes',
+        'caste',
+        'religion',
+        'mother_tongue_language',
+        'interests',
     ];
 
     /**
@@ -114,22 +122,26 @@ class Student extends Model
 
     protected static $student_fee_type_id = "";
 
+    protected static $document_type_ids = [];
+
+    protected static $document_storage = [];
+
     protected static $selected_student_id = "";
 
     /**
-     * @return HasOne
+     * @return BelongsTo
      */
-    public function student_parent(): HasOne
+    public function student_parent(): BelongsTo
     {
-        return $this->hasOne(StudentParent::class, 'id');
+        return $this->belongsTo(StudentParent::class, 'parent_id');
     }
 
     /**
      * @return HasMany
      */
-    public function student_siblings(): HasOne
+    public function student_siblings(): HasMany
     {
-        return $this->hasOne(StudentSibling::class, 'id');
+        return $this->hasMany(StudentSibling::class);
     }
 
     /**
@@ -197,6 +209,16 @@ class Student extends Model
     }
 
     /**
+     * @return HasMany
+     */
+    public function student_documents() :HasMany
+    {
+        return $this->hasMany(StudentDocument::class, 'student_id')
+                    ->with('document_type')
+                    ->where('student_id', $this->id);
+    }
+
+    /**
      * The "boot" method of the model.
      *
      * @return void
@@ -207,6 +229,9 @@ class Student extends Model
         static::creating(function ($student)
         {
             static::$student_fee_type_id = $student->fee_type_id;
+            static::$document_type_ids = $student->document_type_ids;
+            static::$document_storage = $student->document_type_storage;
+
             $batch = Batch::where('is_active', 1)->first();
 
             $student['batch_id'] = $batch->id;
@@ -245,9 +270,11 @@ class Student extends Model
             unset($student['parent_email']);
             unset($student['parent_password']);
             unset($student['fee_type_id']);
+            unset($student['document_type_ids']);
+            unset($student['document_type_storage']);
 
             $student['parent_id'] = $studentParent->id;
-            $student['roll_number'] = 'asdasdasdasddwaaf';
+            //$student['roll_number'] = 'asdasdasdasddwaafd';
             $student['password'] = Hash::make(123456789);
             // Check if image was given and save on local file system
             if (isset($student['avatar'])) {
@@ -276,6 +303,20 @@ class Student extends Model
                     $sibling->save();
                 }
             }
+            // Now we have to save all the documents uploaded by student.
+            if (!empty(static::$document_type_ids)) {
+                foreach (static::$document_type_ids as $key => $documentId) {
+
+                    StudentDocument::create([
+                        'student_id' => $student->id,
+                        'document_type_id' => $documentId,
+                        'url' => save_image(static::$document_storage[$documentId], 'student_documents'),
+                        'created_by' => Auth::user()->id,
+                        'updated_by' => Auth::user()->id,
+                    ]);
+                }
+            }
+
             // Now: according to the fee type of student we need to calculate the fees of student and make entry
             // in fees table with all calculated values.
 

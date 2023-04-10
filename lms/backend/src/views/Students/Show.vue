@@ -67,14 +67,15 @@
                             Contact Details
                         </div>
                         <div class="flex flex-col justify-center items-center lg:items-start mt-4">
-                            <div class="truncate sm:whitespace-normal flex items-center">
+                            <div class="truncate sm:whitespace-normal flex items-center" v-if="student && student.student_parent">
                                 <MailIcon class="w-4 h-4 mr-2" />
-                                {{ student.email }}
+                                {{ student.student_parent.parent_email ?? (student.student_parent) }}
                             </div>
                             <div class="truncate sm:whitespace-normal flex items-center mt-3"
-                                 v-if="student && student.mobile">
+                                 v-if="student && student.student_parent">
                                 <PhoneIcon class="w-4 h-4 mr-2" />
-                                {{ student.mobile }}
+                                Father: {{ student.student_parent.father_name + ' :- ' +student.student_parent.father_mobile ?? student.student_parent }}<br />
+                                Mother: {{ student.student_parent.mother_name + ' :- ' +student.student_parent.mother_mobile ?? student.student_parent }}
                             </div>
 
                         </div>
@@ -84,6 +85,12 @@
                 <TabList class="nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center">
                     <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
                         <UserIcon class="w-4 h-4 mr-2" /> {{ t("students.Information") }}
+                    </Tab>
+                    <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
+                        <ServerIcon class="w-4 h-4 mr-2" /> {{ t("students.Documents") }}
+                    </Tab>
+                    <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
+                        <ServerIcon class="w-4 h-4 mr-2" /> {{ t("students.Siblings") }}
                     </Tab>
                     <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
                         <ServerIcon class="w-4 h-4 mr-2" /> {{ t("students.Papers") }}
@@ -113,22 +120,6 @@
                                             {{ t("questions.Select Board & Standard/Class") }}
                                         </div>
                                         <div class="mt-2">
-
-                                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                                <div class="form-label xl:w-64 xl:!mr-10">
-                                                    <div class="text-left">
-                                                        <div class="flex items-center">
-                                                            <div class="font-medium">{{
-                                                                    t("questions.Board")
-                                                                }}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                    {{ student.board }}
-                                                </div>
-                                            </div>
                                             <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                                 <div class="form-label xl:w-64 xl:!mr-10">
                                                     <div class="text-left">
@@ -187,49 +178,6 @@
                                                 </div>
                                             </div>
                                             <!-- End: Name-->
-                                            <!-- Begin: Email-->
-                                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                                <div class="form-label xl:w-64 xl:!mr-10">
-                                                    <div class="text-left">
-                                                        <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("students.Email") }}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                    {{ student.email }}
-                                                </div>
-                                            </div>
-                                            <!-- End: Email-->
-                                            <!-- Begin: Mobile-->
-                                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                                <div class="form-label xl:w-64 xl:!mr-10">
-                                                    <div class="text-left">
-                                                        <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("students.Mobile") }}</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                    {{ student.mobile }}
-                                                </div>
-                                            </div>
-                                            <!-- End: Name-->
-                                            <!-- Begin: Alternate Mobile-->
-                                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                                <div class="form-label xl:w-64 xl:!mr-10">
-                                                    <div class="text-left">
-                                                        <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("students.Alternate Mobile") }}</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                    {{ student.alt_mobile }}
-                                                </div>
-                                            </div>
-                                            <!-- End: Alternate Mobile-->
                                             <!-- Begin: Gender-->
                                             <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                                 <div class="form-label xl:w-64 xl:!mr-10">
@@ -309,7 +257,7 @@
                                 </div>
                                 <!-- END: Basic Information -->
                                 <!-- BEGIN: Mother Information -->
-                                <div class="intro-y box p-5 mt-1">
+                                <div class="intro-y box p-5 mt-1" v-if="student && student.student_parent">
                                     <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                                         <div
                                             class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
@@ -327,7 +275,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                    {{ student.mother_name }}
+                                                    {{ student.student_parent.mother_name }}
                                                 </div>
                                             </div>
                                             <!-- End: Mother Name-->
@@ -341,7 +289,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                    {{ student.mother_email}}
+                                                    {{ student.student_parent.mother_email}}
                                                 </div>
                                             </div>
                                             <!-- End: Mother Email-->
@@ -355,7 +303,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                    {{ student.mother_mobile}}
+                                                    {{ student.student_parent.mother_mobile}}
                                                 </div>
                                             </div>
                                             <!-- End: Mother Mobile-->
@@ -369,7 +317,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                    {{ student.mother_qualification }}
+                                                    {{ student.student_parent.mother_qualification }}
                                                 </div>
                                             </div>
                                             <!-- End: Mother Qualification-->
@@ -383,7 +331,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                    {{ student.mother_occupation }}
+                                                    {{ student.student_parent.mother_occupation }}
                                                 </div>
                                             </div>
                                             <!-- End: Mother Occupation-->
@@ -392,7 +340,7 @@
                                 </div>
                                 <!-- END: Mother Information -->
                                 <!-- BEGIN: Father Information -->
-                                <div class="intro-y box p-5 mt-1">
+                                <div class="intro-y box p-5 mt-1" v-if="student && student.student_parent">
                                     <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                                         <div
                                             class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
@@ -410,7 +358,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                    {{ student.father_name }}
+                                                    {{ student.student_parent.father_name }}
                                                 </div>
                                             </div>
                                             <!-- End: Father Name-->
@@ -424,7 +372,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                    {{ student.father_email }}
+                                                    {{ student.student_parent.father_email }}
                                                 </div>
                                             </div>
                                             <!-- End: Father Email-->
@@ -439,7 +387,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                    {{ student.father_mobile }}
+                                                    {{ student.student_parent.father_mobile }}
                                                 </div>
                                             </div>
                                             <!-- End: Father Mobile-->
@@ -453,7 +401,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                    {{ student.father_qualification }}
+                                                    {{ student.student_parent.father_qualification }}
                                                 </div>
                                             </div>
                                             <!-- End: Father Qualification-->
@@ -467,7 +415,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                    {{ student.father_occupation }}
+                                                    {{ student.student_parent.father_occupation }}
                                                 </div>
                                             </div>
                                             <!-- End: Father Occupation-->
@@ -476,6 +424,122 @@
                                 </div>
                                 <!-- END: Father Information -->
 
+                            </div>
+                        </div>
+                    </div>
+                </TabPanel>
+                <!-- END: Basic Information -->
+                <!-- BEGIN: Basic Information -->
+                <TabPanel>
+                    <div class="grid grid-cols-12 gap-6">
+                        <div class="intro-y box col-span-12 lg:col-span-12">
+                            <div
+                                class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                                <h2 class="font-medium text-base mr-auto">{{ t("students.Documents Uploaded") }}</h2>
+                            </div>
+                            <div class="p-5">
+                                <!-- BEGIN: Board and Standard selection -->
+                                <div class="intro-y box p-5 mt-1">
+                                    <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
+
+                                        <div class="mt-2">
+                                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0" v-if="student && student.student_parent">
+                                                <div class="form-label xl:w-64 xl:!mr-10" v-for="(document, index) in student.student_documents" :key="index">
+                                                    <div class="text-left" >
+                                                        <div class="flex items-center">
+                                                            <div class="font-medium">{{
+                                                                    document.document_type.name
+                                                                }}
+                                                            </div>
+                                                            <div class="font-medium">{{
+                                                                    document.url
+                                                                }}
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="w-full mt-3 xl:mt-0 flex-1">
+                                                    {{ student.standard }}
+                                                </div>
+                                            </div>
+                                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                                <div class="form-label xl:w-64 xl:!mr-10">
+                                                    <div class="text-left">
+                                                        <div class="flex items-center">
+                                                            <div class="font-medium">{{
+                                                                    t("students.Batch")
+                                                                }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="w-full mt-3 xl:mt-0 flex-1">
+                                                    {{ student.batch }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END: Board and Standard selection -->
+                            </div>
+                        </div>
+                    </div>
+                </TabPanel>
+                <!-- END: Basic Information -->
+                <!-- BEGIN: Basic Information -->
+                <TabPanel>
+                    <div class="grid grid-cols-12 gap-6">
+                        <div class="intro-y box col-span-12 lg:col-span-12">
+                            <div
+                                class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                                <h2 class="font-medium text-base mr-auto">{{ t("students.Basic Information") }}</h2>
+                            </div>
+                            <div class="p-5">
+                                <!-- BEGIN: Board and Standard selection -->
+                                <div class="intro-y box p-5 mt-1">
+                                    <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
+                                        <div
+                                            class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
+                                            <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                                            {{ t("questions.Select Board & Standard/Class") }}
+                                        </div>
+                                        <div class="mt-2">
+                                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                                <div class="form-label xl:w-64 xl:!mr-10">
+                                                    <div class="text-left">
+                                                        <div class="flex items-center">
+                                                            <div class="font-medium">{{
+                                                                    t("students.Standard")
+                                                                }}
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="w-full mt-3 xl:mt-0 flex-1">
+                                                    {{ student.standard }}
+                                                </div>
+                                            </div>
+                                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                                <div class="form-label xl:w-64 xl:!mr-10">
+                                                    <div class="text-left">
+                                                        <div class="flex items-center">
+                                                            <div class="font-medium">{{
+                                                                    t("students.Batch")
+                                                                }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="w-full mt-3 xl:mt-0 flex-1">
+                                                    {{ student.batch }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END: Board and Standard selection -->
                             </div>
                         </div>
                     </div>
