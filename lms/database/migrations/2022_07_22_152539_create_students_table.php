@@ -32,6 +32,7 @@ class CreateStudentsTable extends Migration
             $table->string('alt_mobile')->nullable(true);
             $table->enum('gender', ['male', 'female', 'other'])->default('other')->nullable();
             $table->string('avatar')->nullable(true);
+            $table->date('admission_date')->nullable(true);
             $table->date('dob')->nullable(true);
             $table->text('permanent_address')->nullable(true);
             $table->text('address')->nullable(true);

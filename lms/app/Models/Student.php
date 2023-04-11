@@ -40,6 +40,7 @@ class Student extends Model
         'email',
         'password',
         'enrollment_number',
+        'transfer_number',
         'aadhaar',
         'board_id',
         'standard_id',
@@ -51,6 +52,7 @@ class Student extends Model
         'alt_mobile',
         'gender',
         'avatar',
+        'admission_date',
         'dob',
         'permanent_address',
         'address',
@@ -71,6 +73,7 @@ class Student extends Model
         'document_type_storage',
         'blood_group',
         'medical_notes',
+        'category',
         'caste',
         'religion',
         'mother_tongue_language',
@@ -274,12 +277,13 @@ class Student extends Model
             unset($student['document_type_storage']);
 
             $student['parent_id'] = $studentParent->id;
-            //$student['roll_number'] = 'asdasdasdasddwaafd';
             $student['password'] = Hash::make(123456789);
             // Check if image was given and save on local file system
             if (isset($student['avatar'])) {
                 $student['avatar']  = save_image($student['avatar'], 'students');
             }
+            $student['created_by'] = Auth::user()->id;
+            $student['updated_by'] = Auth::user()->id;
         });
 
         static::created(function ($student)

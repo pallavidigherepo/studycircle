@@ -19,7 +19,6 @@ class ImportController extends Controller
         } else {
             $import = new $importClass;
         }
-
         try {
             $importResponse = Excel::import($import, $file);
             //dd($import->errors()); exit();

@@ -169,6 +169,33 @@
                                             <div class="form-label xl:w-64 xl:!mr-10">
                                                 <div class="text-left">
                                                     <div class="flex items-center">
+                                                        <div class="font-medium">{{ t("students.Transfer Number") }}</div>
+                                                        <div
+                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                            {{ t("common.Required") }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="w-full mt-3 xl:mt-0 flex-1">
+                                                <input
+                                                    id="form-name"
+                                                    type="text"
+                                                    class="form-control"
+                                                    placeholder="Enter transfer number student"
+                                                    v-model.trim="model.transfer_number"
+                                                    :class="{ 'border-danger': submitted && v$.transfer_number.$errors.length, }"
+                                                />
+                                                <div v-for="(error, index) of v$.transfer_number.$errors"
+                                                     :key="index" class="text-danger mt-2">
+                                                    <div class="error-msg">{{ error.$message }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label xl:w-64 xl:!mr-10">
+                                                <div class="text-left">
+                                                    <div class="flex items-center">
                                                         <div class="font-medium">{{ t("students.Name") }}</div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
@@ -292,6 +319,35 @@
                                                 </button>
 
                                                 <div v-for="(error, index) of v$.avatar.$errors" :key="index"
+                                                     class="text-danger mt-2">
+                                                    <div class="error-msg">{{ error.$message }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label xl:w-64 xl:!mr-10">
+                                                <div class="text-left">
+                                                    <div class="flex items-center">
+                                                        <div class="font-medium">{{ t("students.Date Of Admission") }}
+                                                        </div>
+                                                        <div
+                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                            {{ t("common.Required") }}
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="w-full mt-3 xl:mt-0 flex-1">
+                                                <div class="relative w-56">
+                                                    <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-slate-100 border text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
+                                                        <CalendarIcon class="w-4 h-4" />
+                                                    </div>
+                                                    <input v-model="model.admission_date"
+                                                           type="date"
+                                                           class="form-control pl-12" />
+                                                </div>
+                                                <div v-for="(error, index) of v$.admission_date.$errors" :key="index"
                                                      class="text-danger mt-2">
                                                     <div class="error-msg">{{ error.$message }}</div>
                                                 </div>
@@ -434,6 +490,37 @@
                                                     :class="{ 'border-danger': submitted && v$.medical_notes.$errors.length, }"
                                                 />
                                                 <div v-for="(error, index) of v$.medical_notes.$errors" :key="index"
+                                                     class="text-danger mt-2">
+                                                    <div class="error-msg">{{ error.$message }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label xl:w-64 xl:!mr-10">
+                                                <div class="text-left">
+                                                    <div class="flex items-center">
+                                                        <div class="font-medium">{{
+                                                                t("students.Category")
+                                                            }}
+                                                        </div>
+                                                        <div
+                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                            {{ t("common.Required") }}
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="w-full mt-3 xl:mt-0 flex-1">
+                                                <input
+                                                    id="form-category"
+                                                    type="text"
+                                                    class="form-control"
+                                                    placeholder="Enter category of student."
+                                                    v-model.trim="model.category"
+                                                    :class="{ 'border-danger': submitted && v$.category.$errors.length, }"
+                                                />
+                                                <div v-for="(error, index) of v$.category.$errors" :key="index"
                                                      class="text-danger mt-2">
                                                     <div class="error-msg">{{ error.$message }}</div>
                                                 </div>
@@ -959,6 +1046,7 @@ const submitted = ref(false);
 
 const model = ref({
     enrollment_number: "",
+    transfer_number: "",
     name: "",
     email: "",
     mobile: "",
@@ -967,12 +1055,14 @@ const model = ref({
     alt_mobile: "",
     gender: "",
     avatar: "",
+    admission_date: "",
     dob: "",
     permanent_address: "",
     address: "",
     aadhaar: "",
     blood_group: "",
     medical_notes: "",
+    category: "",
     caste: "",
     religion: "",
     mother_tongue_language: "",
@@ -995,10 +1085,13 @@ const model = ref({
 const rules = computed(() => {
     return {
         enrollment_number: {
-            required: helpers.withMessage("Please enter name of user.", required),
+            required: helpers.withMessage("Please enter enrollment number of student.", required),
+        },
+        transfer_number: {
+            required: helpers.withMessage("Please enter transfer number of student.", required),
         },
         name: {
-            required: helpers.withMessage("Please enter name of user.", required),
+            required: helpers.withMessage("Please enter name of student.", required),
         },
         /*email: {
             required: helpers.withMessage("Please enter email address.", required),
@@ -1026,6 +1119,9 @@ const rules = computed(() => {
         avatar: {
             required: helpers.withMessage("Please upload avatar of student.", required),
         },
+        admission_date: {
+            required: helpers.withMessage("Please date of birth of student.", required),
+        },
         dob: {
             required: helpers.withMessage("Please date of birth of student.", required),
         },
@@ -1049,6 +1145,9 @@ const rules = computed(() => {
         },
         caste: {
             required: helpers.withMessage("Please enter caste of student.", required),
+        },
+        category: {
+            required: helpers.withMessage("Please enter category of student.", required),
         },
         religion: {
             required: helpers.withMessage("Please enter religion of student.", required),
