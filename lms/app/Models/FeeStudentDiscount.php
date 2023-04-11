@@ -17,7 +17,9 @@ class FeeStudentDiscount extends Model
 
 
 
-    protected function getAvailableDiscountsForStudent($studentId) {
+    protected function getAvailableDiscountsForStudent($studentId)
+    {
+        $fee = Fee::where('student_id', $studentId)->first();
         $discounts = [];
         // First get list of all the discount offers available who are not expired.
         $now = Carbon::now();
@@ -26,6 +28,7 @@ class FeeStudentDiscount extends Model
             ->get();
         $studentDiscount = [];
         foreach ($discounts as $discount) {
+
             if ($discount->name === "One Time Payment") {
                 $studentDiscount[$discount->id . ":". $discount->name] = $discount->amount;
             }
@@ -34,6 +37,11 @@ class FeeStudentDiscount extends Model
                 $siblings = StudentSibling::where('student_id', $studentId)->where('sibling_ids', '!=', null)->get();
                 if ($siblings) {
                     // Get sibling discount
+                    $studentDiscount[$discount->id . ":". $discount->name] = $discount->amount;
+                }
+            }
+            if ($fee->fee_type_id === 5) {
+                if ($discount->name === "Staff Ward") {
                     $studentDiscount[$discount->id . ":". $discount->name] = $discount->amount;
                 }
             }

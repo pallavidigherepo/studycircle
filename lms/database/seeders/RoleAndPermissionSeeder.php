@@ -32,7 +32,7 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'update roles']);
         Permission::create(['name' => 'destroy roles']);
 
-        // User's permissions 
+        // User's permissions
         Permission::create(['name' => 'index users']);
         Permission::create(['name' => 'show users']);
         Permission::create(['name' => 'create users']);
@@ -41,34 +41,34 @@ class RoleAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'editRole users']);
         Permission::create(['name' => 'changePassword users']);
 
-        // Course's permissions 
+        // Course's permissions
         Permission::create(['name' => 'index courses']);
         Permission::create(['name' => 'show courses']);
         Permission::create(['name' => 'create courses']);
         Permission::create(['name' => 'update courses']);
         Permission::create(['name' => 'destroy courses']);
-        
-        // Course types permissions 
+
+        // Course types permissions
         Permission::create(['name' => 'index coursesTypes']);
         Permission::create(['name' => 'show coursesTypes']);
         Permission::create(['name' => 'create coursesTypes']);
         Permission::create(['name' => 'update coursesTypes']);
         Permission::create(['name' => 'destroy coursesTypes']);
-        
-        // Subjects types permissions 
+
+        // Subjects types permissions
         Permission::create(['name' => 'index subjects']);
         Permission::create(['name' => 'show subjects']);
         Permission::create(['name' => 'create subjects']);
         Permission::create(['name' => 'update subjects']);
         Permission::create(['name' => 'destroy subjects']);
-        
-        // Questions types permissions 
+
+        // Questions types permissions
         Permission::create(['name' => 'index questions']);
         Permission::create(['name' => 'show questions']);
         Permission::create(['name' => 'create questions']);
         Permission::create(['name' => 'update questions']);
         Permission::create(['name' => 'destroy questions']);
-        
+
         // Students permission
         Permission::create(['name' => 'index students']);
         Permission::create(['name' => 'show students']);
@@ -90,12 +90,25 @@ class RoleAndPermissionSeeder extends Seeder
         $owner->syncPermissions($permissions);
 
         $ownerInput = [
-            'name'=> 'Institute Owner',
-            'email' => 'owner@gmail.com',
-            'password' => Hash::make(123456789),            
+            'name'=> 'Rushika Ashtankar',
+            'email' => 'rushika_ashtankar@meritest.in',
+            'password' => Hash::make(123456789),
         ];
         $ownerUser = User::create($ownerInput);
-        $profile = new ProfileUser([            
+        $profile = new ProfileUser([
+            'mobile' => 1234567890,
+            'designation' => 'Owner',
+        ]);
+        $ownerUser->profile_user()->save($profile);
+        $ownerUser->assignRole($owner);
+
+        $ownerInput = [
+            'name'=> 'Ravindra Ashtankar',
+            'email' => 'ravindra_ashtankar@meritest.in',
+            'password' => Hash::make(123456789),
+        ];
+        $ownerUser = User::create($ownerInput);
+        $profile = new ProfileUser([
             'mobile' => 1234567890,
             'designation' => 'Owner',
         ]);
@@ -107,8 +120,8 @@ class RoleAndPermissionSeeder extends Seeder
         $superAdmin->syncPermissions($permissions);
 
         $superAdminInput = [
-            'name'=> 'Super Admin',
-            'email' => 'superadmin@gmail.com',
+            'name'=> 'Pallavi Dighe',
+            'email' => 'pallavi@meritest.in',
             'password' => Hash::make(123456789),
         ];
         $superAdminUser = User::create($superAdminInput);
@@ -124,10 +137,24 @@ class RoleAndPermissionSeeder extends Seeder
         $admin->syncPermissions($permissions);
 
         $adminInput = [
-            'name'=> 'Admin',
-            'email' => 'admin@gmail.com',
+            'name'=> 'Kranti Sutrapawar',
+            'email' => 'kranti_sutrapawar@meritest.in',
             'password' => Hash::make(123456789),
-            
+
+        ];
+        $profile = new ProfileUser([
+            'mobile' => 1234567890,
+            'designation' => 'Administrator',
+        ]);
+        $adminUser = User::create($adminInput);
+        $adminUser->profile_user()->save($profile);
+        $adminUser->assignRole($admin);
+
+        $adminInput = [
+            'name'=> 'Tikaram Gurnule',
+            'email' => 'tikaram_gurnule@meritest.in',
+            'password' => Hash::make(123456789),
+
         ];
         $profile = new ProfileUser([
             'mobile' => 1234567890,
@@ -204,13 +231,13 @@ class RoleAndPermissionSeeder extends Seeder
             'email' => 'assistantteacher@gmail.com',
             'password' => Hash::make(123456789),
         ];
-        $profile = new ProfileUser([            
+        $profile = new ProfileUser([
             'mobile' => 1234567890,
             'designation' => 'Assistant Teacher',
         ]);
         $assistantTeacherUser = User::create($assistantTeacherInput);
         $assistantTeacherUser->profile_user()->save($profile);
-        
+
         $assistantTeacherUser->assignRole($assistantTeacher);
     }
 }

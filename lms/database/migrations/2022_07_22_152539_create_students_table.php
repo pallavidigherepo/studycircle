@@ -17,6 +17,7 @@ class CreateStudentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('enrollment_number')->nullable(true)->unique();
+            $table->string('transfer_number')->nullable(true);
             $table->string('aadhaar')->nullable()->unique();
             $table->boolean('is_aadhaar_verified')->default(false);
             $table->unsignedBigInteger('parent_id')->nullable(true);
@@ -36,6 +37,7 @@ class CreateStudentsTable extends Migration
             $table->text('address')->nullable(true);
             $table->string('blood_group')->nullable();
             $table->string('medical_notes')->nullable();
+            $table->string('category')->nullable(true);
             $table->string('caste')->nullable(true);
             $table->string('religion')->nullable(true);
             $table->string('mother_tongue_language')->nullable(true);

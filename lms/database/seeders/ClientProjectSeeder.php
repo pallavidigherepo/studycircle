@@ -14,13 +14,17 @@ class ClientProjectSeeder extends Seeder
     public function run(): void
     {
         ClientProject::create([
-            'client_name' => 'era',
+            'client_name' => 'erasumthana',
+            'site_name' => 'Era Sumthana ERP',
+            'site_url' => 'http://erasumthana.meritest.in',
+            'site_logo_path' => '',
+            'storage_absolute_path' => "/home/u353217617/domains/meritest.in/public_html/erasumthana/public/",
             'connection' => 'mysql',
-            'host' => '127.0.0.1',
+            'host' => 'localhost',
             'port' => '3306',
-            'database' => 'era',
-            'username' => 'root',
-            'password' => ""
+            'database' => 'u353217617_erasumthana',
+            'username' => 'u353217617_erasumthana',
+            'password' => "7iX;|BK2izVG"
         ]);
     }
 }

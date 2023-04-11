@@ -27,6 +27,9 @@ class FeeTypeSeeder extends Seeder
             [
                 'name' => 'Regular',
             ],
+            [
+                'name' => "Teacher Ward",
+            ],
         ];
 
         foreach ($types as $type) {

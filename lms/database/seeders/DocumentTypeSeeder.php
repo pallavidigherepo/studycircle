@@ -44,6 +44,9 @@ class DocumentTypeSeeder extends Seeder
             [
                 'name' => 'Parent Pan Card',
             ],
+            [
+                'name' => 'Parent Aadhar Number',
+            ],
         ];
 
         foreach ($documentTypes as $documentType) {

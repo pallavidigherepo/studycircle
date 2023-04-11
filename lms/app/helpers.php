@@ -45,8 +45,9 @@ if (!function_exists('save_image')) {
 
         $dir = 'storage/images/'.$model.'/';
         $file = Str::random() . '.' . $type;
-        if (Request::server('HTTP_PROJECT')) {
-            $absolutePath = Request::server('HTTP_PROJECT').'/';
+        $request = new Request();
+        if ($request->server('HTTP_PROJECT')) {
+            $absolutePath = $request->server('HTTP_PROJECT').'/';
         } else {
             $absolutePath = public_path($dir);
         }

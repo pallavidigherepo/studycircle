@@ -63,13 +63,13 @@ export const useSideMenuStore = defineStore("sideMenu", {
                         title: "Master Data",
                         ignore: false,
                         subMenu: [
-                            /*{
+                            {
                                 icon: "ListIcon",
                                 pageName: "FeeTypes",
                                 title: "Fee Types",
                                 ignore: false,
                             },
-                            {
+                            /*{
                                 icon: "GitMergeIcon",
                                 pageName: "FeeCategories",
                                 title: "Fee Categories",

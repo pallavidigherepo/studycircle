@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('client_projects', function (Blueprint $table) {
             $table->id();
             $table->string('client_name');
+            $table->string('site_name');
+            $table->string('site_url');
+            $table->string('site_logo_path');
+            $table->string('storage_absolute_path');
             $table->string("connection");
             $table->string("host");
             $table->string("port");

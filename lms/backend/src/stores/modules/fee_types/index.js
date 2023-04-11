@@ -37,8 +37,8 @@ export default {
                         sort: false,
                         actions: {
                             show: false,
-                            edit: true,
-                            delete: true,
+                            edit: false,
+                            delete: false,
                         }
                     }
                 ]

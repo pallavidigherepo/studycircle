@@ -155,7 +155,7 @@
                                                     id="form-name"
                                                     type="text"
                                                     class="form-control"
-                                                    placeholder="Enter name of student"
+                                                    placeholder="Enter enrollment number student"
                                                     v-model.trim="model.enrollment_number"
                                                     :class="{ 'border-danger': submitted && v$.enrollment_number.$errors.length, }"
                                                 />
@@ -1142,6 +1142,9 @@ const genders = {
     other: "Other"
 };
 
+function selectDocument(documentType) {
+
+}
 
 function onImageChoose(ev) {
     const file = ev.target.files[0];
