@@ -21,7 +21,6 @@ class ImportController extends Controller
         }
         try {
             $importResponse = Excel::import($import, $file);
-            //dd($import->errors()); exit();
             $response = [
                 'success' => true,
                 'message' => 'All the '.$modelName.'(s) are successfully imported.',

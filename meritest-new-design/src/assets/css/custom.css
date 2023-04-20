@@ -1,0 +1,19 @@
+.contact-form-wrapper .help-block {
+    line-height: 1.2;
+    font-size: 12px
+}
+.with-errors {
+    color: rgba(200, 34, 1, 0.795);
+}
+.has-errors {
+    border: 1px solid rgba(200, 34, 1, 0.795);
+}
+.portfolio-bg {
+    background-image: url("../img/rocket.png");
+    min-height: 350px;
+    overflow: hidden;
+}
+
+.hidden {
+    display: none;
+}

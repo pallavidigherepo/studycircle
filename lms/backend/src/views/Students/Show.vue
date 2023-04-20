@@ -69,7 +69,7 @@
                         <div class="flex flex-col justify-center items-center lg:items-start mt-4">
                             <div class="truncate sm:whitespace-normal flex items-center" v-if="student && student.student_parent">
                                 <MailIcon class="w-4 h-4 mr-2" />
-                                {{ student.student_parent.parent_email ?? (student.student_parent) }}
+                                {{ (student.student_parent && student.student_parent.parent_email) ? (student.student_parent.parent_email): '-' }}
                             </div>
                             <div class="truncate sm:whitespace-normal flex items-center mt-3"
                                  v-if="student && student.student_parent">
@@ -233,7 +233,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                    {{ student.address }}
+                                                    {{ '-' ?? student.address }}
                                                 </div>
                                             </div>
                                             <!-- Begin: Address-->
@@ -289,7 +289,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                    {{ student.student_parent.mother_email}}
+                                                    {{ '-' ?? student.student_parent.mother_email}}
                                                 </div>
                                             </div>
                                             <!-- End: Mother Email-->
@@ -372,7 +372,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                    {{ student.student_parent.father_email }}
+                                                    {{ '-' ?? student.student_parent.father_email }}
                                                 </div>
                                             </div>
                                             <!-- End: Father Email-->

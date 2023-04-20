@@ -38,7 +38,7 @@ export default {
         response = await axiosClient
             .get(`/students/${id}`)
             .then(({ data }) => {
-                console.log(data)
+                //console.log(data)
                 commit('VIEW_STUDENT', data);
                 return data;
             });
@@ -47,9 +47,8 @@ export default {
     // This action is used to delete permission from serve.
     async delete(context, id) {
         const response = await axiosClient.delete(`/students/${id}`);
-        if (response.status != 200) {
-            const error = new Error('Failed to delete student')
-            throw error;
+        if (response.status !== 200) {
+            throw new Error('Failed to delete student');
         }
         context.commit('DELETE_STUDENT', id);
     },

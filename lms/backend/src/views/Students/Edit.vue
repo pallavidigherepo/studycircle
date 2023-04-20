@@ -292,10 +292,10 @@
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("students.Blood Group") }}
                                                         </div>
-                                                        <div
+<!--                                                        <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
                                                             {{ t("common.Required") }}
-                                                        </div>
+                                                        </div>-->
                                                     </div>
 
                                                 </div>
@@ -307,12 +307,11 @@
                                                     class="form-control"
                                                     placeholder="Enter blood group of student"
                                                     v-model.trim="model.blood_group"
-                                                    :class="{ 'border-danger': submitted && v$.blood_group.$errors.length, }"
                                                 />
-                                                <div v-for="(error, index) of v$.blood_group.$errors" :key="index"
+<!--                                                <div v-for="(error, index) of v$.blood_group.$errors" :key="index"
                                                      class="text-danger mt-2">
                                                     <div class="error-msg">{{ error.$message }}</div>
-                                                </div>
+                                                </div>-->
                                             </div>
                                         </div>
                                         <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
@@ -435,10 +434,10 @@
                                                 <div class="text-left">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("students.Interests") }}</div>
-                                                        <div
+<!--                                                        <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
                                                             {{ t("common.Required") }}
-                                                        </div>
+                                                        </div>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -449,12 +448,11 @@
                                                     class="form-control"
                                                     placeholder="Enter interests of student."
                                                     v-model.trim="model.interests"
-                                                    :class="{ 'border-danger': submitted && v$.interests.$errors.length, }"
                                                 />
-                                                <div v-for="(error, index) of v$.interests.$errors" :key="index"
+<!--                                                <div v-for="(error, index) of v$.interests.$errors" :key="index"
                                                      class="text-danger mt-2">
                                                     <div class="error-msg">{{ error.$message }}</div>
-                                                </div>
+                                                </div>-->
                                             </div>
                                         </div>
                                     </div>
@@ -561,9 +559,9 @@ const rules = computed(() => {
         address: {
             required: helpers.withMessage("Please enter address of student.", required),
         },
-        blood_group: {
+        /*blood_group: {
             required: helpers.withMessage("Please enter blood group of student.", required),
-        },
+        },*/
         medical_notes: {
             required: helpers.withMessage("Please enter medical_notes of student.", required),
         },
@@ -576,9 +574,9 @@ const rules = computed(() => {
         mother_tongue_language: {
             required: helpers.withMessage("Please enter mother tongue language of student.", required),
         },
-        interests: {
+        /*interests: {
             required: helpers.withMessage("Please enter interests of student.", required),
-        },
+        },*/
         /*document_type_ids: {
             required: helpers.withMessage("Please select documents need to upload", required),
         },*/

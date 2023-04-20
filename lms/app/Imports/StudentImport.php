@@ -9,13 +9,27 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Concerns\SkipsFailures;
+use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
+use Maatwebsite\Excel\Validators\Failure;
 use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel\Date;
+use Maatwebsite\Excel\Concerns\SkipsOnError;
+use Maatwebsite\Excel\Concerns\SkipsErrors;
+use Maatwebsite\Excel\Concerns\Importable;
 
-class StudentImport implements ToModel, WithHeadingRow, WithValidation
+
+class StudentImport implements
+    ToModel,
+    WithHeadingRow,
+    WithValidation,
+    SkipsOnError,
+    SkipsOnFailure
 {
+    use Importable, SkipsErrors, SkipsFailures;
+
     public function startRow(): int
     {
         return 2;
@@ -26,6 +40,18 @@ class StudentImport implements ToModel, WithHeadingRow, WithValidation
         return [
             'delimiter' => ';'
         ];
+    }
+
+    /**
+     * @param \Throwable $e
+     */
+    /*public function onError(\Throwable $e)
+    {
+        // Handle the exception how you'd like.
+    }*/
+
+    public function onFailure(Failure ...$failures)
+    {
     }
 
     /**

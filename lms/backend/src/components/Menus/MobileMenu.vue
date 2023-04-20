@@ -3,6 +3,7 @@
   <div class="mobile-menu md:hidden">
     <div class="mobile-menu-bar">
         <router-link :to="{ name: 'Dashboard' }" class="flex mr-auto">
+<!--            <img alt="Meritest Learning Management System" class="w-20" src="@/assets/images/logos/logo-updated.png" />-->
             <img alt="Meritest Learning Management System" class="w-20" src="@/assets/images/logos/logo.png" />
         </router-link>
         <a href="javascript:;" id="mobile-menu-toggler">
