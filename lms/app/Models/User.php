@@ -118,7 +118,7 @@ class User extends Authenticatable
      */
     protected static function booted()
     {
-        static::created(queueable(function ($user)
+        /*static::created(queueable(function ($user)
         {
             //When user is created we also need to insert row in profile user
             $profile = [
@@ -127,6 +127,6 @@ class User extends Authenticatable
                 'designation' => 'Owner',
             ];
             ProfileUser::create($profile);
-        }));
+        }));*/
     }
 }

@@ -11,7 +11,7 @@
               class="w-8 h-8 text-white transform -rotate-90"
               @click="toggleMobileMenu"
             />
-      </a>
+        </a>
     </div>
     <transition @enter="enter" @leave="leave">
       <ul
@@ -21,7 +21,7 @@
         <!-- BEGIN: First Child -->
         <template v-for="(menu, menuKey) in formattedMenu">
           <li
-            v-if="menu == 'devider'"
+            v-if="menu === 'devider'"
             :key="menu + menuKey"
             class="menu__devider my-6"
           ></li>
