@@ -14,18 +14,18 @@
                             <Litepicker
                                 v-model="salesReportFilter"
                                 :options="{
-                  autoApply: false,
-                  singleMode: false,
-                  numberOfColumns: 2,
-                  numberOfMonths: 2,
-                  showWeekNumbers: true,
-                  dropdowns: {
-                    minYear: 1990,
-                    maxYear: null,
-                    months: true,
-                    years: true,
-                  },
-                }"
+                                  autoApply: false,
+                                  singleMode: false,
+                                  numberOfColumns: 2,
+                                  numberOfMonths: 2,
+                                  showWeekNumbers: true,
+                                  dropdowns: {
+                                    minYear: 1990,
+                                    maxYear: null,
+                                    months: true,
+                                    years: true,
+                                  },
+                                }"
                                 class="form-control sm:w-56 box pl-10"
                             />
                         </div>
@@ -437,6 +437,106 @@
         <div class="col-span-12 2xl:col-span-3">
             <div class="2xl:border-l -mb-10 pb-10">
                 <div class="2xl:pl-6 grid grid-cols-12 gap-x-6 2xl:gap-x-0 gap-y-6">
+
+                    <!-- BEGIN: Important Notes -->
+                    <div
+                        class="col-span-12 md:col-span-6 xl:col-span-12 xl:col-start-1 xl:row-start-1 2xl:col-start-auto 2xl:row-start-auto mt-3"
+                    >
+                        <div class="intro-x flex items-center h-10">
+                            <h2 class="text-lg font-medium truncate mr-auto">
+                                Important Notes
+                            </h2>
+                            <button
+                                data-carousel="important-notes"
+                                data-target="prev"
+                                class="tiny-slider-navigator btn px-2 border-slate-300 text-slate-600 dark:text-slate-300 mr-2"
+                                @click="prevImportantNotes"
+                            >
+                                <ChevronLeftIcon class="w-4 h-4" />
+                            </button>
+                            <button
+                                data-carousel="important-notes"
+                                data-target="next"
+                                class="tiny-slider-navigator btn px-2 border-slate-300 text-slate-600 dark:text-slate-300 mr-2"
+                                @click="nextImportantNotes"
+                            >
+                                <ChevronRightIcon class="w-4 h-4" />
+                            </button>
+                        </div>
+                        <div class="mt-5 intro-x">
+                            <div class="box zoom-in">
+                                <TinySlider ref-key="importantNotesRef">
+                                    <div class="p-5">
+                                        <div class="text-base font-medium truncate">
+                                            Lorem Ipsum is simply dummy text
+                                        </div>
+                                        <div class="text-slate-400 mt-1">20 Hours ago</div>
+                                        <div class="text-slate-500 text-justify mt-1">
+                                            Lorem Ipsum is simply dummy text of the printing and
+                                            typesetting industry. Lorem Ipsum has been the industry's
+                                            standard dummy text ever since the 1500s.
+                                        </div>
+                                        <div class="font-medium flex mt-5">
+                                            <button type="button" class="btn btn-secondary py-1 px-2">
+                                                View Notes
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-outline-secondary py-1 px-2 ml-auto ml-auto"
+                                            >
+                                                Dismiss
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="p-5">
+                                        <div class="text-base font-medium truncate">
+                                            Lorem Ipsum is simply dummy text
+                                        </div>
+                                        <div class="text-slate-400 mt-1">20 Hours ago</div>
+                                        <div class="text-slate-500 text-justify mt-1">
+                                            Lorem Ipsum is simply dummy text of the printing and
+                                            typesetting industry. Lorem Ipsum has been the industry's
+                                            standard dummy text ever since the 1500s.
+                                        </div>
+                                        <div class="font-medium flex mt-5">
+                                            <button type="button" class="btn btn-secondary py-1 px-2">
+                                                View Notes
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-outline-secondary py-1 px-2 ml-auto ml-auto"
+                                            >
+                                                Dismiss
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="p-5">
+                                        <div class="text-base font-medium truncate">
+                                            Lorem Ipsum is simply dummy text
+                                        </div>
+                                        <div class="text-slate-400 mt-1">20 Hours ago</div>
+                                        <div class="text-slate-500 text-justify mt-1">
+                                            Lorem Ipsum is simply dummy text of the printing and
+                                            typesetting industry. Lorem Ipsum has been the industry's
+                                            standard dummy text ever since the 1500s.
+                                        </div>
+                                        <div class="font-medium flex mt-5">
+                                            <button type="button" class="btn btn-secondary py-1 px-2">
+                                                View Notes
+                                            </button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-outline-secondary py-1 px-2 ml-auto ml-auto"
+                                            >
+                                                Dismiss
+                                            </button>
+                                        </div>
+                                    </div>
+                                </TinySlider>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END: Important Notes -->
                     <!-- BEGIN: Transactions -->
                     <div
                         class="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 mt-3 2xl:mt-8"
@@ -645,105 +745,6 @@
                         </div>
                     </div>
                     <!-- END: Recent Activities -->
-                    <!-- BEGIN: Important Notes -->
-                    <div
-                        class="col-span-12 md:col-span-6 xl:col-span-12 xl:col-start-1 xl:row-start-1 2xl:col-start-auto 2xl:row-start-auto mt-3"
-                    >
-                        <div class="intro-x flex items-center h-10">
-                            <h2 class="text-lg font-medium truncate mr-auto">
-                                Important Notes
-                            </h2>
-                            <button
-                                data-carousel="important-notes"
-                                data-target="prev"
-                                class="tiny-slider-navigator btn px-2 border-slate-300 text-slate-600 dark:text-slate-300 mr-2"
-                                @click="prevImportantNotes"
-                            >
-                                <ChevronLeftIcon class="w-4 h-4" />
-                            </button>
-                            <button
-                                data-carousel="important-notes"
-                                data-target="next"
-                                class="tiny-slider-navigator btn px-2 border-slate-300 text-slate-600 dark:text-slate-300 mr-2"
-                                @click="nextImportantNotes"
-                            >
-                                <ChevronRightIcon class="w-4 h-4" />
-                            </button>
-                        </div>
-                        <div class="mt-5 intro-x">
-                            <div class="box zoom-in">
-                                <TinySlider ref-key="importantNotesRef">
-                                    <div class="p-5">
-                                        <div class="text-base font-medium truncate">
-                                            Lorem Ipsum is simply dummy text
-                                        </div>
-                                        <div class="text-slate-400 mt-1">20 Hours ago</div>
-                                        <div class="text-slate-500 text-justify mt-1">
-                                            Lorem Ipsum is simply dummy text of the printing and
-                                            typesetting industry. Lorem Ipsum has been the industry's
-                                            standard dummy text ever since the 1500s.
-                                        </div>
-                                        <div class="font-medium flex mt-5">
-                                            <button type="button" class="btn btn-secondary py-1 px-2">
-                                                View Notes
-                                            </button>
-                                            <button
-                                                type="button"
-                                                class="btn btn-outline-secondary py-1 px-2 ml-auto ml-auto"
-                                            >
-                                                Dismiss
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="p-5">
-                                        <div class="text-base font-medium truncate">
-                                            Lorem Ipsum is simply dummy text
-                                        </div>
-                                        <div class="text-slate-400 mt-1">20 Hours ago</div>
-                                        <div class="text-slate-500 text-justify mt-1">
-                                            Lorem Ipsum is simply dummy text of the printing and
-                                            typesetting industry. Lorem Ipsum has been the industry's
-                                            standard dummy text ever since the 1500s.
-                                        </div>
-                                        <div class="font-medium flex mt-5">
-                                            <button type="button" class="btn btn-secondary py-1 px-2">
-                                                View Notes
-                                            </button>
-                                            <button
-                                                type="button"
-                                                class="btn btn-outline-secondary py-1 px-2 ml-auto ml-auto"
-                                            >
-                                                Dismiss
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="p-5">
-                                        <div class="text-base font-medium truncate">
-                                            Lorem Ipsum is simply dummy text
-                                        </div>
-                                        <div class="text-slate-400 mt-1">20 Hours ago</div>
-                                        <div class="text-slate-500 text-justify mt-1">
-                                            Lorem Ipsum is simply dummy text of the printing and
-                                            typesetting industry. Lorem Ipsum has been the industry's
-                                            standard dummy text ever since the 1500s.
-                                        </div>
-                                        <div class="font-medium flex mt-5">
-                                            <button type="button" class="btn btn-secondary py-1 px-2">
-                                                View Notes
-                                            </button>
-                                            <button
-                                                type="button"
-                                                class="btn btn-outline-secondary py-1 px-2 ml-auto ml-auto"
-                                            >
-                                                Dismiss
-                                            </button>
-                                        </div>
-                                    </div>
-                                </TinySlider>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END: Important Notes -->
                     <!-- BEGIN: Schedules -->
                     <div
                         class="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 xl:col-start-1 xl:row-start-2 2xl:col-start-auto 2xl:row-start-auto mt-3"

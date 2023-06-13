@@ -669,6 +669,8 @@ async function submitForm() {
             }
         }
     });
+
+    console.log(sectionValidated.value);
     if (!v$.value.$error && sectionValidated.value) {
         isLoading.value = true;
         await store

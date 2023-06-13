@@ -6,6 +6,14 @@
           {{ t("questions.Questions") }}
         </h2>
       </div>
+        <!-- BEGIN: Notification -->
+        <info :typeClass="'alert-warning'"
+              class="mb-6 mt-5"
+              :message="'questions.Before ADDING questions please make sure that you have added subjects chapters and topics to selected standard'"
+              :goto="'/subjects'"
+              :gotoLabel="'Click here to add subjects, chapters and topics'"
+        />
+        <!-- BEGIN: Notification -->
       <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
         <!-- BEGIN: Datatable Content -->
         <div class="intro-y col-span-12 lg:col-span-12">

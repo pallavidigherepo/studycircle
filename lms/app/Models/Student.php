@@ -239,6 +239,7 @@ class Student extends Model
 
             $student['batch_id'] = $batch->id;
             $student['board_id'] = 1;
+
             //First we need to check if parent information is already available?
             //If yes use that selected parent_id
             $studentParent = StudentParent::firstOrCreate(

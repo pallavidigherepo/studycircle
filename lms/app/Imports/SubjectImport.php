@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Models\Standard;
 use App\Models\Subject;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -38,14 +39,14 @@ class SubjectImport implements ToModel,
     public function model(array $row)
     {
         $tags = explode(',', $row['tags']);
-
+        $standard = Standard::where('name', 'like', '%' . $row['standard'] . '%')->first();
         $inputs = [
             'label' => json_encode($row['label']),
             'description' => json_encode($row['description']),
-            'board_id' => $row['board'],
-            'standard_id' => $row['standard'],
+            'board_id' => 1,
+            'standard_id' => $standard->id,
             'icon' => $row['icon'],
-            'language_id' => $row['language_id'],
+            'language_id' => 1,
             'tags' => $tags,
             'created_by' => Auth::user()->id,
             'updated_by' => Auth::user()->id,
@@ -75,5 +76,6 @@ class SubjectImport implements ToModel,
     public function onError(\Throwable $e)
     {
         // Handle the exception how you'd like.
+        return false;
     }
 }

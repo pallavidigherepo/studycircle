@@ -43,6 +43,13 @@ export const useSideMenuStore = defineStore("sideMenu", {
                                 title: "Standards",
                                 ignore: false,
                             },
+                            {
+                                icon: "BookIcon",
+                                pageName: "Subjects",
+                                title: "Subjects",
+                                ignore: false,
+                                allowedPages: ['Subjects', 'CreateSubject', 'EditSubject', 'ShowSubject', 'ShowChapter'],
+                            },
                         ]
                     },
                 ]
@@ -188,13 +195,6 @@ export const useSideMenuStore = defineStore("sideMenu", {
                                 title: "Courses",
                                 ignore: false,
                             },
-                            {
-                                icon: "BookIcon",
-                                pageName: "Subjects",
-                                title: "Subjects",
-                                ignore: false,
-                                allowedPages: ['Subjects', 'CreateSubject', 'EditSubject', 'ShowSubject', 'ShowChapter'],
-                            },
                         ],
                     },
                 ],
@@ -229,7 +229,7 @@ export const useSideMenuStore = defineStore("sideMenu", {
                     {
                         icon: "UsersIcon",
                         pageName: "Users",
-                        title: "Executives",
+                        title: "Staffs",
                         ignore: false,
                         allowedPages: ['Users', 'CreateUser', 'EditUser', 'ShowUser'],
                     },

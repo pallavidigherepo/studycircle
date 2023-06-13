@@ -9,6 +9,7 @@ use App\Models\FeeCategory;
 use App\Models\FeeStructure;
 use App\Models\FeeStudentDiscount;
 use App\Models\FeeType;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\BoardController;
@@ -238,6 +239,17 @@ Route::middleware(['auth:sanctum', \App\Http\Middleware\DatabaseSwitcher::class]
         $latestQuestionPaper = GeneratedQuestionPaper::latest()->take(5)->get();
         return compact('templateCount', 'generatedQuestionPaperCount', 'latestTemplates', 'latestQuestionPaper');
     })->name('questionnaire');
+
+    Route::get('v1/general_report', function (){
+        // Get Students count
+        $studentCount = Student::all()->count();
+        // Get Teachers count
+        $teacherCount  = User::all()->count();
+        // Get Collected Fee amount
+        $feeCollected = Fee::all()->count();
+        // Get Outstanding fee amount
+        $feeOutstanding = Fee::all()->count();
+    })->name('general_report');
 });
 
 

@@ -54,25 +54,17 @@ class SubjectExport implements
     public function map($subject): array
     {
         if ($this->isDemo) {
-            return [
-                json_decode($subject->label),
-                json_decode($subject->description),
-                $subject->board_id,
-                $subject->standard_id,
-                $subject->icon,
-                $subject->tags,
-                $subject->language_id,
-            ];
+            return array();
         }
         return [
             $subject->id,
             json_decode($subject->label),
             json_decode($subject->description),
-            $subject->board_id,
+            //$subject->board_id,
             $subject->standard_id,
             $subject->icon,
             $subject->tags->pluck('name'),
-            $subject->language_id,
+            //$subject->language_id,
             $subject->created_at,
         ];
     }
@@ -80,24 +72,24 @@ class SubjectExport implements
     public function headings(): array {
         if ($this->isDemo) {
             return [
+                'Standard',
                 'Label',
                 'Description',
-                'Board',
-                'Standard',
+                //'Board',
                 'Icon',
                 'Tags',
-                'Language Id',
+                //'Language Id',
             ];
         }
         return [
             '#',
+            'Standard',
             'Label',
             'Description',
-            'Board',
-            'Standard',
+            //'Board',
             'Icon',
             'Tags',
-            'Language Id',
+            //'Language Id',
             'Created At'
         ];
     }

@@ -15,6 +15,11 @@
         <!-- BEGIN: Notification -->
         <info :typeClass="'alert-warning'"
               class="mb-6 mt-5"
+              :message="'questions.Before ADDING questions please make sure that you have added subjects chapters and topics to selected standard'"/>
+        <!-- BEGIN: Notification -->
+        <!-- BEGIN: Notification -->
+        <info :typeClass="'alert-warning'"
+              class="mb-6 mt-5"
               :message="'questions.You can add question manually or import it in bulk'"/>
         <!-- BEGIN: Notification -->
         <div v-if="isErrored" class="alert alert-danger show flex items-center mb-2" role="alert">
@@ -34,7 +39,7 @@
                         </div>
                         <div class="mt-5">
 
-                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+<!--                            <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label xl:w-64 xl:!mr-10">
                                     <div class="text-left">
                                         <div class="flex items-center">
@@ -71,7 +76,7 @@
                                         <div class="error-msg">{{ error.$message }}</div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                 <div class="form-label xl:w-64 xl:!mr-10">
@@ -82,8 +87,8 @@
                                                 }}
                                             </div>
                                             <div
-                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                class="text-danger ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                {{ t("common.Required") }}*
                                             </div>
                                         </div>
 
@@ -115,93 +120,6 @@
                     </div>
                 </div>
                 <!-- END: Board and Standard selection -->
-                <!-- BEGIN: Language and Difficulty level selection -->
-                <div class="intro-y box p-5 mt-5">
-                    <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
-                        <div
-                            class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                            <ChevronDownIcon class="w-4 h-4 mr-2"/>
-                            {{ t("questions.Select Difficulty level & Language") }}
-                        </div>
-                        <div class="mt-5">
-
-                            <div class="form-inline items-start flex-col xl:flex-row mt-2 pt-5 first:mt-0 first:pt-0">
-                                <div class="form-label xl:w-64 xl:!mr-10">
-                                    <div class="text-left">
-                                        <div class="flex items-center">
-                                            <div class="font-medium">{{
-                                                    t("questions.Choose Difficulty Level")
-                                                }}
-                                            </div>
-                                            <div
-                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="w-full mt-3 xl:mt-0 flex-1">
-                                    <TomSelect id="form-level"
-                                               v-model="model.difficulty_level_id"
-                                               class="w-full" placeholder="Select Difficulty Level"
-                                               :class="{ 'border-danger': submitted && v$.difficulty_level_id.$errors.length,}"
-                                               :options="{
-                                                  allowEmptyOption: false,
-                                                  create: false,
-                                                  placeholder: 'Select Difficulty Level',
-                                                  autocomplete: 'off',
-                                                }">
-                                        <option>{{ t('questions.Select Difficulty Level') }}</option>
-                                        <option v-for="(level, indexd) in difficultyList" :key="indexd" :value="indexd">
-                                            {{ JSON.parse(level) }}
-                                        </option>
-                                    </TomSelect>
-                                    <div v-for="(error, index) of v$.difficulty_level_id.$errors"
-                                         :key="index" class="text-danger mt-2">
-                                        <div class="error-msg">{{ error.$message }}</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-inline items-start flex-col xl:flex-row mt-2 pt-5 first:mt-0 first:pt-0">
-                                <div class="form-label xl:w-64 xl:!mr-10">
-                                    <div class="text-left">
-                                        <div class="flex items-center">
-                                            <div class="font-medium">{{
-                                                    t("questions.Language")
-                                                }}
-                                            </div>
-                                            <div
-                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="w-full mt-3 xl:mt-0 flex-1">
-                                    <TomSelect id="form-language" v-model="model.language_id"
-                                               :class="{
-  'border-danger': submitted && v$.language_id.$errors.length,
-}" :options="{
-                    allowEmptyOption: false,
-                    create: false,
-                    placeholder: 'Select Language',
-                    autocomplete: 'off',
-                  }" class="w-full" placeholder="Select Language">
-                                        <option v-for="(language, indexl) in languages" :key="indexl" :value="indexl">
-                                            {{ language }}
-                                        </option>
-                                    </TomSelect>
-                                    <div v-for="(error, index) of v$.language_id.$errors" :key="index"
-                                         class="text-danger mt-2">
-                                        <div class="error-msg">{{ error.$message }}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END: Language and Difficulty level selection -->
                 <!-- BEGIN: Subject, Chapter and Topic selection -->
                 <div class="intro-y box p-5 mt-5">
                     <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
@@ -221,8 +139,8 @@
                                                 }}
                                             </div>
                                             <div
-                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                class="text-danger ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                {{ t("common.Required") }}*
                                             </div>
                                         </div>
                                     </div>
@@ -259,8 +177,8 @@
                                                 }}
                                             </div>
                                             <div
-                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                class="text-danger ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                {{ t("common.Required") }}*
                                             </div>
                                         </div>
 
@@ -297,30 +215,118 @@
                                                     t("questions.Choose Topic")
                                                 }}
                                             </div>
-                                            <div
+<!--                                            <div
                                                 class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
                                                 {{ t("common.Required") }}
+                                            </div>-->
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="w-full mt-3 xl:mt-0 flex-1">
+                                    <TomSelect id="form-subject"
+                                               v-model="model.topic_id"
+                                               :options="{
+                                                    allowEmptyOption: false,
+                                                    create: false,
+                                                    placeholder: 'Select Topic',
+                                                    autocomplete: 'off',
+                                               }"
+                                               class="w-full"
+                                               placeholder="Select Topic">
+                                        <option>{{ t("questions.Select Topic") }}</option>
+                                        <option v-for="(topic, indextop) in topics" :key="indextop" :value="indextop">
+                                            {{ JSON.parse(topic) }}
+                                        </option>
+                                    </TomSelect>
+<!--                                    <div v-for="(error, index) of v$.topic_id.$errors" :key="index"
+                                         class="text-danger mt-2">
+                                        <div class="error-msg">{{ error.$message }}</div>
+                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: Subject, Chapter and Topic selection -->
+                <!-- BEGIN: Language and Difficulty level selection -->
+                <div class="intro-y box p-5 mt-5">
+                    <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
+                        <div
+                            class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
+                            <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                            {{ t("questions.Select Difficulty level & Language") }}
+                        </div>
+                        <div class="mt-5">
+
+                            <div class="form-inline items-start flex-col xl:flex-row mt-2 pt-5 first:mt-0 first:pt-0">
+                                <div class="form-label xl:w-64 xl:!mr-10">
+                                    <div class="text-left">
+                                        <div class="flex items-center">
+                                            <div class="font-medium">{{
+                                                    t("questions.Choose Difficulty Level")
+                                                }}
+                                            </div>
+                                            <div
+                                                class="text-danger ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                {{ t("common.Required") }}*
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-full mt-3 xl:mt-0 flex-1">
+                                    <TomSelect id="form-level"
+                                               v-model="model.difficulty_level_id"
+                                               class="w-full" placeholder="Select Difficulty Level"
+                                               :class="{ 'border-danger': submitted && v$.difficulty_level_id.$errors.length,}"
+                                               :options="{
+                                                  allowEmptyOption: false,
+                                                  create: false,
+                                                  placeholder: 'Select Difficulty Level',
+                                                  autocomplete: 'off',
+                                                }">
+                                        <option>{{ t('questions.Select Difficulty Level') }}</option>
+                                        <option v-for="(level, indexd) in difficultyList" :key="indexd" :value="indexd">
+                                            {{ JSON.parse(level) }}
+                                        </option>
+                                    </TomSelect>
+                                    <div v-for="(error, index) of v$.difficulty_level_id.$errors"
+                                         :key="index" class="text-danger mt-2">
+                                        <div class="error-msg">{{ error.$message }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-inline items-start flex-col xl:flex-row mt-2 pt-5 first:mt-0 first:pt-0">
+                                <div class="form-label xl:w-64 xl:!mr-10">
+                                    <div class="text-left">
+                                        <div class="flex items-center">
+                                            <div class="font-medium">{{
+                                                    t("questions.Language")
+                                                }}
+                                            </div>
+                                            <div
+                                                class="text-danger ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                {{ t("common.Required") }}*
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
                                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                                    <TomSelect id="form-subject" v-model="model.topic_id" :class="{
-  'border-danger': submitted && v$.topic_id.$errors.length,
-}"
-                                               :options="{
+                                    <TomSelect id="form-language" v-model="model.language_id"
+                                               :class="{
+  'border-danger': submitted && v$.language_id.$errors.length,
+}" :options="{
                     allowEmptyOption: false,
                     create: false,
-                    placeholder: 'Select Topic',
+                    placeholder: 'Select Language',
                     autocomplete: 'off',
-                  }" class="w-full" placeholder="Select Topic">
-                                        <option>{{ t("questions.Select Topic") }}</option>
-                                        <option v-for="(topic, indextop) in topics" :key="indextop" :value="indextop">
-                                            {{ JSON.parse(topic) }}
+                  }" class="w-full" placeholder="Select Language">
+                                        <option v-for="(language, indexl) in languages" :key="indexl" :value="indexl">
+                                            {{ language }}
                                         </option>
                                     </TomSelect>
-                                    <div v-for="(error, index) of v$.topic_id.$errors" :key="index"
+                                    <div v-for="(error, index) of v$.language_id.$errors" :key="index"
                                          class="text-danger mt-2">
                                         <div class="error-msg">{{ error.$message }}</div>
                                     </div>
@@ -329,7 +335,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- END: Subject, Chapter and Topic selection -->
+                <!-- END: Language and Difficulty level selection -->
+
                 <div class="mt-5 mb-5 text-center justify-center">
                     <div class="mt-1 text-center w-full">
                         <div class="form-check form-switch text-center justify-center">
@@ -364,8 +371,8 @@
                                                 }}
                                             </div>
                                             <div
-                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                class="text-danger ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                {{ t("common.Required") }}*
                                             </div>
                                         </div>
 
@@ -500,8 +507,8 @@
                                                 }}
                                             </div>
                                             <div
-                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                class="text-danger ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                {{ t("common.Required") }}*
                                             </div>
                                         </div>
                                     </div>
@@ -528,8 +535,8 @@
                                                 }}
                                             </div>
                                             <div
-                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                class="text-danger ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                {{ t("common.Required") }}*
                                             </div>
                                         </div>
                                     </div>
@@ -570,8 +577,8 @@
                                                 }}
                                             </div>
                                             <div
-                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                class="text-danger ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                {{ t("common.Required") }}*
                                             </div>
                                         </div>
                                     </div>
@@ -612,8 +619,8 @@
                                                 }}
                                             </div>
                                             <div
-                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                class="text-danger ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                {{ t("common.Required") }}*
                                             </div>
                                         </div>
                                     </div>
@@ -641,8 +648,8 @@
                                                 }}
                                             </div>
                                             <div
-                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                class="text-danger ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                {{ t("common.Required") }}*
                                             </div>
                                         </div>
                                     </div>
@@ -671,8 +678,8 @@
                                                 }}
                                             </div>
                                             <div
-                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                class="text-danger ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                {{ t("common.Required") }}*
                                             </div>
                                         </div>
                                     </div>
@@ -714,8 +721,8 @@
                                                 }}
                                             </div>
                                             <div
-                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                class="text-danger ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                {{ t("common.Required") }}*
                                             </div>
                                         </div>
 
@@ -748,13 +755,13 @@
                                 <div class="form-label xl:w-64 xl:!mr-10">
                                     <div class="text-left">
                                         <div class="flex items-center">
-                                            <div v-if="model.type_id != 5" class="font-medium">{{
+                                            <div v-if="model.type_id !== 5" class="font-medium">{{
                                                     t("questions.Answers")
                                                 }}
                                             </div>
 
                                         </div>
-                                        <div v-if="model.type_id != 5"
+                                        <div v-if="model.type_id !== 5"
                                              class="leading-relaxed text-slate-500 text-xs mt-3">
                                             {{
                                                 t("questions.Add answers according to the type of question you have selected")
@@ -765,7 +772,7 @@
                                 <div class="w-full mt-3 xl:mt-0 flex-1">
                                     <div
                                         class="relative pl-5 pr-5 xl:pr-10 py-10 bg-slate-50 dark:bg-transparent dark:border rounded-md">
-                                        <template v-if="model.type_id == 4">
+                                        <template v-if="model.type_id === 4">
                                             <AnswerEditor :answer="{}" :index="1" :type="selectedType"
                                                           @addAnswer="addAnswer"
                                                           @change="answerChange" @deleteAnswer="deleteAnswer"/>
@@ -921,7 +928,7 @@ const addQuestionManually = ref(false);
 // Now we must get editing details for the selected item
 const model = ref({
     id: "",
-    board_id: "",
+    board_id: 1,
     standard_id: "",
     difficulty_level_id: "",
     subject_id: "",
@@ -997,7 +1004,7 @@ function selectedBoard(boardId) {
 }
 
 async function selectedStandard(standardId, boardId) {
-
+    selectedBoardtId.value = "1";
     if (!selectedBoardtId.value || !standardId) {
         return;
     }
@@ -1007,9 +1014,11 @@ async function selectedStandard(standardId, boardId) {
     topics.value = [];
     const result = await axiosClient.get(`/subject_list/${selectedBoardtId.value}/${standardId}`);
     if (result.status !== 200) {
-        throw new Error("Failed to fetch chapter");
+        throw new Error("Failed to fetch subjects");
     } else {
+
         subjects.value = result.data;
+        if (subjects.value.length <= 0) {alert('Please add subjects for this standard first.');}
     }
 }
 
@@ -1038,9 +1047,9 @@ async function selectedChapter(chapterId) {
 
 const rules = computed(() => {
     return {
-        board_id: {
+        /*board_id: {
             required: helpers.withMessage("Please select board.", required),
-        },
+        },*/
         standard_id: {
             required: helpers.withMessage("Please select standard.", required),
         },
@@ -1059,9 +1068,9 @@ const rules = computed(() => {
         chapter_id: {
             required: helpers.withMessage("Please select chapter.", required),
         },
-        topic_id: {
+        /*topic_id: {
             required: helpers.withMessage("Please select topic.", required),
-        },
+        },*/
         language_id: {
             required: helpers.withMessage("Please select language.", required),
         },

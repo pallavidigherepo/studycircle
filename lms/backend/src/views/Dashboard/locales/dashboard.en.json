@@ -3,5 +3,10 @@
     "International Students": "International Students",
     "Play School Students": "Play School Students",
     "International Teachers": "International Teachers",
-    "Play School Teachers": "Play School Teachers"
+    "Play School Teachers": "Play School Teachers",
+    "Students": "Students",
+    "Teachers": "Teachers",
+    "Fee Collected": "Fee Collected",
+    "Fee Outstanding": "Fee Outstanding",
+    "Reload Data": "Reload Data"
 }
