@@ -2,6 +2,7 @@
     "Students": "Students",
     "Student": "Student",
     "STUDENT": "STUDENT",
+    "ENROLL NO": "ENROLL NO",
     "NAME": "NAME",
     "COURSE": "COURSE",
     "STANDARD": "STANDARD",
@@ -70,5 +71,8 @@
     "Interests": "Interests",
     "Aadhaar Number of Parents": "Aadhaar Number of Parents",
     "Parent Aadhaar Number": "Parent Aadhaar Number",
-    "Enrollment Number": "Enrollment Number"
+    "Enrollment Number": "Enrollment Number",
+    "Siblings": "Siblings",
+    "Documents": "Documents",
+    "Papers": "Papers"
 }

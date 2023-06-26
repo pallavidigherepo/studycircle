@@ -250,6 +250,13 @@ Route::middleware(['auth:sanctum', \App\Http\Middleware\DatabaseSwitcher::class]
         // Get Outstanding fee amount
         $feeOutstanding = Fee::all()->count();
     })->name('general_report');
+
+    Route::get('v1/permissions', function () {
+        return [
+            'roles' => auth()->user()->getRoleNames(),
+            'permissions' => auth()->user()->getAllPermissions()->pluck('name'),
+        ];
+    })->name('permissions');
 });
 
 

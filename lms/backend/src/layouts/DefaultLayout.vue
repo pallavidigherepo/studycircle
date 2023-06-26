@@ -7,7 +7,7 @@
     <div class="wrapper">
       <div class="wrapper-box">
         <!-- BEGIN: Side Menu -->
-        <side-menu />
+          <side-menu />
         <!-- END: Side Menu -->
         <!-- BEGIN: Content -->
         <div class="content">
@@ -20,9 +20,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import { helper as $h } from "@/utils/helper";
+import { onMounted } from "vue";
 import TopBar from "@/components/Menus/TopBar.vue";
 import MobileMenu from "@/components/Menus/MobileMenu.vue";
 import SideMenu from "@/components/Menus/SideMenu.vue";

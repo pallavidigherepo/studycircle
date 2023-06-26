@@ -23,6 +23,6 @@ axiosClient.interceptors.response.use(response => {
         router.push({name: 'NotFound'})
     }
     throw error;
-})
+});
 
 export default axiosClient;

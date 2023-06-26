@@ -7,11 +7,13 @@ export const useSideMenuStore = defineStore("sideMenu", {
                 icon: "HomeIcon",
                 pageName: "Dashboard",
                 title: "Dashboard",
+                allowedRoles: ['Super Admin', 'Director', 'Principal', 'Accountant']
             },
             {
                 icon: "AwardIcon",
                 pageName: "SettingManagement",
                 title: "Academics",
+                allowedRoles: ['Super Admin'],
                 subMenu: [
                     /*{
                         icon: "BookmarkIcon",
@@ -58,6 +60,7 @@ export const useSideMenuStore = defineStore("sideMenu", {
                 icon: "SlidersIcon",
                 pageName: "FeeManagement",
                 title: "Fees",
+                allowedRoles: ['Super Admin', 'Director', 'Principal', 'Accountant'],
                 subMenu: [
                     {
                         icon: "TagIcon",
@@ -108,6 +111,7 @@ export const useSideMenuStore = defineStore("sideMenu", {
                 icon: "ActivityIcon",
                 pageName: "SettingManagement",
                 title: "Inquiries",
+                allowedRoles: ['Super Admin', 'Director', 'Principal', 'Accountant'],
                 subMenu: [
                     {
                         icon: "MessageSquareIcon",
@@ -149,6 +153,7 @@ export const useSideMenuStore = defineStore("sideMenu", {
                 icon: "BriefcaseIcon",
                 pageName: "Exams",
                 title: "Exams",
+                allowedRoles: ['Super Admin', 'Director', 'Principal', 'Teacher'],
                 subMenu: [
                     {
                         icon: "BriefcaseIcon",
@@ -205,6 +210,7 @@ export const useSideMenuStore = defineStore("sideMenu", {
                 icon: "KeyIcon",
                 pageName: "AuthManagement",
                 title: "Auth Management",
+                allowedRoles: ['Super Admin'],
                 subMenu: [{
                         icon: "SettingsIcon",
                         pageName: "PermissionIndex",
@@ -225,6 +231,7 @@ export const useSideMenuStore = defineStore("sideMenu", {
                 pageName: "Students",
                 title: "Users",
                 ignore: false,
+                allowedRoles: ['Super Admin', 'Director', 'Principal'],
                 subMenu: [
                     {
                         icon: "UsersIcon",
@@ -232,6 +239,7 @@ export const useSideMenuStore = defineStore("sideMenu", {
                         title: "Staffs",
                         ignore: false,
                         allowedPages: ['Users', 'CreateUser', 'EditUser', 'ShowUser'],
+                        allowedRoles: ['Super Admin', 'Director', 'Principal'],
                     },
                     {
                         icon: "UsersIcon",
@@ -239,6 +247,7 @@ export const useSideMenuStore = defineStore("sideMenu", {
                         title: "Students",
                         ignore: false,
                         allowedPages: ['Students', 'CreateStudent', 'EditStudent', 'ShowStudent'],
+                        allowedRoles: ['Super Admin', 'Director', 'Principal', 'Teacher'],
                     },
                     {
                         icon: "UsersIcon",
@@ -246,6 +255,7 @@ export const useSideMenuStore = defineStore("sideMenu", {
                         title: "Parents",
                         ignore: false,
                         allowedPages: ['Parents', 'EditParent', 'ShowParent'],
+                        allowedRoles: ['Super Admin', 'Director', 'Principal'],
                     },
                 ],
             },
@@ -255,6 +265,7 @@ export const useSideMenuStore = defineStore("sideMenu", {
                 title: "Control Panel",
                 ignore: false,
                 allowedPages: ['SettingIndex'],
+                //allowedRoles: ['Super Admin', 'Director', 'Principal', 'Accountant'],
             },
         ],
     }),

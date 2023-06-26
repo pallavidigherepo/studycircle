@@ -14,10 +14,10 @@
                     <div class="dropdown">
                         <button aria-expanded="false" class="dropdown-toggle btn btn-primary ml-2"
                                 data-tw-toggle="dropdown">
-                                              <span class="flex items-center justify-center">
-                                                {{ t("common.Export/Print") }}&nbsp;
-                                                <DownloadIcon class="w-4 h-4"/>
-                                              </span>
+                              <span class="flex items-center justify-center">
+                                {{ t("common.Export/Print") }}&nbsp;
+                                <DownloadIcon class="w-4 h-4"/>
+                              </span>
                         </button>
                         <div class="dropdown-menu w-40">
                             <ul class="dropdown-content">

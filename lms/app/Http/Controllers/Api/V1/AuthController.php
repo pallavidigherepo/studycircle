@@ -67,6 +67,9 @@ class AuthController extends Controller
             ], 422);
         }
         $user = Auth::user();
+
+        //This line is added to manage roles in .vue files.
+        $user->user_roles = $user->roles->pluck('name');
         $token = $user->createToken('main')->plainTextToken;
 
         return response([

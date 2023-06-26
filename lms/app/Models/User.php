@@ -129,4 +129,5 @@ class User extends Authenticatable
             ProfileUser::create($profile);
         }));*/
     }
+
 }
