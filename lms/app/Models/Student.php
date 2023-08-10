@@ -279,6 +279,8 @@ class Student extends Model
 
             $student['parent_id'] = $studentParent->id;
             $student['password'] = Hash::make(123456789);
+            // We need to generate enrollment number
+
             // Check if image was given and save on local file system
             if (isset($student['avatar'])) {
                 $student['avatar']  = save_image($student['avatar'], 'students');
@@ -310,7 +312,7 @@ class Student extends Model
             }
             // Now we have to save all the documents uploaded by student.
             if (!empty(static::$document_type_ids)) {
-                foreach (static::$document_type_ids as $key => $documentId) {
+                foreach (static::$document_type_ids as $documentId) {
 
                     StudentDocument::create([
                         'student_id' => $student->id,

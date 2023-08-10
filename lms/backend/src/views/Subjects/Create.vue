@@ -38,23 +38,23 @@
               <label for="form-label" class="form-label">{{
                 t("subjects.Board")
               }}</label>
-              <TomSelect id="form-board" 
-                v-model="model.board_id" 
-                :placeholder="'Select Board'" 
+              <TomSelect id="form-board"
+                v-model="model.board_id"
+                :placeholder="'Select Board'"
                 :options="{
                   allowEmptyOption: false,
                   create: false,
                   placeholder: 'Select Board',
                   autocomplete: 'off',
-                }" 
-                class="w-full" 
+                }"
+                class="w-full"
                 :class="{ 'border-danger': submitted && v$.board_id.$errors.length,}">
                 <option>{{ t('questions.Select Board') }}</option>
                 <option v-for="(board, index) in boards" :key="index" :value="index">
                   {{ board }}
                 </option>
               </TomSelect>
-              
+
               <div class="text-danger mt-2" v-for="(error, index) of v$.board_id.$errors" :key="index">
                 <div class="error-msg">{{ error.$message }}</div>
               </div>
@@ -315,8 +315,7 @@ async function submitForm() {
   }
 }
 
-const boards = computed(() => store.getters.listBoards);
-const standards = computed(() => store.getters.listStandards);
+
 
 onMounted(() => {
   store.dispatch("listBoard").then().catch();
@@ -324,7 +323,8 @@ onMounted(() => {
   store.dispatch("listLanguages").then().catch();
 });
 const languages = computed(() => store.getters.languages);
-
+const boards = computed(() => store.getters.listBoards);
+const standards = computed(() => store.getters.listStandards);
 </script>
 
 <style scoped>

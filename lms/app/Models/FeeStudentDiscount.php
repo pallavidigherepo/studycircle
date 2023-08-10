@@ -17,7 +17,7 @@ class FeeStudentDiscount extends Model
 
 
 
-    protected function getAvailableDiscountsForStudent($studentId)
+    protected function getAvailableDiscountsForStudent($studentId): array
     {
         $fee = Fee::where('student_id', $studentId)->first();
         $discounts = [];

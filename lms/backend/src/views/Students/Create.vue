@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+        <div class="intro-y flex flex-col sm:flex-row items-center mt-8" v-if="!new_admission_from">
             <h2 class="text-lg font-medium mr-auto">{{ t("students.Add Student") }}</h2>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                 <router-link
@@ -138,60 +138,6 @@
                                         {{ t("students.Basic Information Of Student") }}
                                     </div>
                                     <div class="mt-5">
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Enrollment Number") }}</div>
-                                                        <div
-                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <input
-                                                    id="form-name"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="Enter enrollment number student"
-                                                    v-model.trim="model.enrollment_number"
-                                                    :class="{ 'border-danger': submitted && v$.enrollment_number.$errors.length, }"
-                                                />
-                                                <div v-for="(error, index) of v$.enrollment_number.$errors"
-                                                     :key="index" class="text-danger mt-2">
-                                                    <div class="error-msg">{{ error.$message }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Transfer Number") }}</div>
-                                                        <div
-                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <input
-                                                    id="form-name"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="Enter transfer number student"
-                                                    v-model.trim="model.transfer_number"
-                                                    :class="{ 'border-danger': submitted && v$.transfer_number.$errors.length, }"
-                                                />
-                                                <div v-for="(error, index) of v$.transfer_number.$errors"
-                                                     :key="index" class="text-danger mt-2">
-                                                    <div class="error-msg">{{ error.$message }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label xl:w-64 xl:!mr-10">
                                                 <div class="text-left">
@@ -1035,6 +981,20 @@ import {email, helpers, minLength, maxLength, numeric, required} from "@vuelidat
 import {useVuelidate} from "@vuelidate/core";
 import store from "@/stores";
 
+const props = defineProps({
+    standard_id: {
+        type: String,
+        default: null,
+    },
+    batch_id: {
+        type: String,
+        default: null,
+    },
+    new_admission_from: {
+        type: String,
+        default: null
+    }
+})
 const route = useRoute();
 const router = useRouter();
 const { t } = useI18n();
@@ -1198,11 +1158,16 @@ const v$ = useVuelidate(rules, model.value);
 
 async function submitForm()
 {
+
     submitted.value = true;
     v$.value.$validate(); // checks all inputs
     if (!v$.value.$error) {
         isLoading.value = true;
+        if (props.new_admission_from) {
 
+        } else {
+
+        }
         await store
             .dispatch("students/save", model.value)
             .then(() => {
@@ -1227,6 +1192,12 @@ async function submitForm()
 }
 
 onMounted(() => {
+    if (props.standard_id) {
+        model.value.standard_id = props.standard_id;
+    }
+    if (props.batch_id) {
+        model.value.batch_id = props.batch_id;
+    }
     store.dispatch("listStandard").then().catch();
     store.dispatch("listFeeTypes").then().catch();
     store.dispatch("listDocumentTypes").then().catch();

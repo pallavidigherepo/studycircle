@@ -41,7 +41,7 @@ class StudentResource extends JsonResource
             'student_parent' => $this->student_parent,
             'student_siblings' => $this->student_siblings,
             'student_fee' => $this->fee,
-            'student_fee_type' => $this->fee->fee_type->name,
+            'student_fee_type' => $this->fee->fee_type->name ?? $this->fee,
             'blood_group' => $this->blood_group,
             'medical_notes' => $this->medical_notes,
             'caste' => $this->caste,

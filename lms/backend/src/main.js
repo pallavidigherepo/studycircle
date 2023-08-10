@@ -11,13 +11,13 @@ import axiosClient from "@/axios";
 
 window.Laravel = {
     csrfToken: "{{ csrf_token() }}",
-    user_permissions: await getAuth()
+    //user_permissions: await getAuth()
 }
 
 async function getAuth()
 {
     return await axiosClient
-                    .get('/permissions')
+                    .get('/check_user_permissions')
                     .then(({data}) => {
                         return data;
                     });

@@ -41,6 +41,18 @@ class StandardController extends Controller
                 'name'=> $request->name,
             ];
             $standard = Standard::create($inputs);
+            $standard->sections()->sync($request->standard_section_ids);
+
+            $standard->standard_section_ids = $request->standard_section_ids;
+
+            $sectionNames = array();
+            if (!empty($standard->sections)) {
+                foreach ($standard->sections as $section) {
+                    $sectionNames[] = $section->name;
+                }
+            }
+
+            $standard->standard_section_names = $sectionNames;
             $response = [
                 'success' => true,
                 'message' => 'Standard created successfully.',
@@ -80,6 +92,18 @@ class StandardController extends Controller
             $standard->name = $request->name;
 
             $standard->save();
+            $standard->sections()->sync($request->standard_section_ids);
+
+            $standard->standard_section_ids = $request->standard_section_ids;
+
+            $sectionNames = array();
+            if (!empty($standard->sections)) {
+                foreach ($standard->sections as $section) {
+                    $sectionNames[] = $section->name;
+                }
+            }
+
+            $standard->standard_section_names = $sectionNames; //$request->standard_section_ids;
             $response = [
                 'success' => true,
                 'message' => 'Standard updated successfully.',

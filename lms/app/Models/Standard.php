@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -35,5 +36,10 @@ class Standard extends Model
     public function fee_structures(): HasMany
     {
         return $this->hasMany(FeeStructure::class, 'standard_id');
+    }
+
+    public function sections(): BelongsToMany
+    {
+        return $this->belongsToMany(Section::class)->withTimestamps();
     }
 }

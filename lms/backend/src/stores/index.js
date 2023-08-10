@@ -84,6 +84,7 @@ const store = createStore({
         inquiryStatus: [],
         feeTypesList: [],
         documentTypesList: [],
+        standardSectionList: [],
     },
     getters: {
         languages(state) {
@@ -136,6 +137,9 @@ const store = createStore({
         },
         listDocumentTypes(state) {
             return state.documentTypesList;
+        },
+        listStandardSections(state) {
+            return state.standardSectionList;
         }
     },
     actions: {
@@ -288,6 +292,14 @@ const store = createStore({
                     commit('SET_DOCUMENT_TYPE_LIST', data)
                     return data;
                 })
+        },
+        async listStandardSections({ commit }) {
+            return await axiosClient
+                .get('/standard_section_list')
+                .then(({ data }) => {
+                    commit('SET_STANDARD_SECTION_LIST', data)
+                    return data;
+                })
         }
     },
     mutations: {
@@ -311,6 +323,9 @@ const store = createStore({
         },
         SET_STANDARD_LIST(state, payload) {
             state.standardList = payload;
+        },
+        SET_STANDARD_SECTION_LIST(state, payload) {
+            state.standardSectionList = payload;
         },
         SET_DIFFICULTY_LEVEL_LIST(state, payload) {
             state.difficultyList = payload;

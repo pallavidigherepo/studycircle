@@ -14,6 +14,22 @@ class StandardResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+
+        $sections = array();
+        $sectionNames = array();
+        if (!empty($this->sections)) {
+            foreach ($this->sections as $section) {
+                $sections[$section->id] = $section->id;
+                $sectionNames[$section->id] = $section->name;
+            }
+        }
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'standard_section_ids' => $sections,
+            'standard_section_names' => $sectionNames,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 }

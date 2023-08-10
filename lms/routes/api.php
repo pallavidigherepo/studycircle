@@ -65,6 +65,7 @@ use App\Models\Topic;
 use App\Models\Batch;
 use App\Models\Course;
 use App\Models\GeneratedQuestionPaper;
+use App\Models\Section;
 use App\Models\Template;
 
 
@@ -210,6 +211,10 @@ Route::middleware(['auth:sanctum', \App\Http\Middleware\DatabaseSwitcher::class]
         return DocumentType::all()->pluck('name', 'id');
     })->name('document_types_list');
 
+    Route::get('v1/standard_section_list', function () {
+        return Section::all()->pluck('name', 'id');
+    })->name('standard_section_list');
+
 
     Route::get('v1/fee_structure_list/{standardId}/{batchId}/{feeTypeId}', function ($standardId, $batchId, $feeTypeId) {
         return FeeStructureResource::collection(
@@ -251,12 +256,12 @@ Route::middleware(['auth:sanctum', \App\Http\Middleware\DatabaseSwitcher::class]
         $feeOutstanding = Fee::all()->count();
     })->name('general_report');
 
-    Route::get('v1/permissions', function () {
+    Route::get('v1/check_user_permissions', function () {
         return [
             'roles' => auth()->user()->getRoleNames(),
             'permissions' => auth()->user()->getAllPermissions()->pluck('name'),
         ];
-    })->name('permissions');
+    })->name('check_user_permissions');
 });
 
 

@@ -1,4 +1,5 @@
 <template>
+
     <div>
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">{{ t("inquiries.Add Inquiry") }}</h2>
@@ -89,6 +90,45 @@
                                                 <div class="text-left">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{
+                                                                t("inquiries.Status")
+                                                            }}
+                                                        </div>
+                                                        <div
+                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                            {{ t("common.Required") }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="w-full mt-3 xl:mt-0 flex-1">
+                                                <TomSelect id="form-status"
+                                                           v-model="model.inquiry_status_id"
+                                                           :class="{ 'border-danger': submitted && v$.inquiry_status_id.$errors.length, }"
+                                                           :options="{
+                                                                allowEmptyOption: false,
+                                                                create: false,
+                                                                placeholder: 'Select Status',
+                                                                autocomplete: 'off',
+                                                              }"
+                                                           :placeholder="'Select Status'"
+                                                           class="w-full">
+                                                    <option>{{ t('inquiries.Select Status') }}</option>
+                                                    <option v-for="(status, index) in statuses" :key="index" :value="index">
+                                                        {{ status }}
+                                                    </option>
+                                                </TomSelect>
+
+                                                <div v-for="(error, index) of v$.inquiry_status_id.$errors" :key="index"
+                                                     class="text-danger mt-2">
+                                                    <div class="error-msg">{{ error.$message }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div v-if="model.inquiry_status_id !== '4'" class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label xl:w-64 xl:!mr-10">
+                                                <div class="text-left">
+                                                    <div class="flex items-center">
+                                                        <div class="font-medium">{{
                                                                 t("questions.Choose Standard")
                                                             }}
                                                         </div>
@@ -125,7 +165,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                        <div v-if="model.inquiry_status_id !== '4'" class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label xl:w-64 xl:!mr-10">
                                                 <div class="text-left">
                                                     <div class="flex items-center">
@@ -164,7 +204,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+
+                                        <div v-if="model.inquiry_status_id !== '4'" class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label xl:w-64 xl:!mr-10">
                                                 <div class="text-left">
                                                     <div class="flex items-center">
@@ -203,7 +244,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                        <div v-if="model.inquiry_status_id !== '4'" class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label xl:w-64 xl:!mr-10">
                                                 <div class="text-left">
                                                     <div class="flex items-center">
@@ -242,51 +283,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{
-                                                                t("inquiries.Status")
-                                                            }}
-                                                        </div>
-                                                        <div
-                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <TomSelect id="form-status"
-                                                           v-model="model.inquiry_status_id"
-                                                           :class="{ 'border-danger': submitted && v$.inquiry_status_id.$errors.length, }"
-                                                           :options="{
-                                                                allowEmptyOption: false,
-                                                                create: false,
-                                                                placeholder: 'Select Status',
-                                                                autocomplete: 'off',
-                                                              }"
-                                                           :placeholder="'Select Status'"
-                                                           class="w-full">
-                                                    <option>{{ t('inquiries.Select Status') }}</option>
-                                                    <option v-for="(status, index) in statuses" :key="index" :value="index">
-                                                        {{ status }}
-                                                    </option>
-                                                </TomSelect>
 
-                                                <div v-for="(error, index) of v$.inquiry_status_id.$errors" :key="index"
-                                                     class="text-danger mt-2">
-                                                    <div class="error-msg">{{ error.$message }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- END: Board and Standard selection -->
                             <!-- BEGIN: Assigned to Information -->
-                            <div class="intro-y box p-5 mt-1">
+                            <div class="intro-y box p-5 mt-1" v-if="model.inquiry_status_id !== '4'">
                                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                                     <div
                                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
@@ -336,7 +339,7 @@
                             </div>
                             <!-- END: Assigned to Information -->
                             <!-- BEGIN: Basic Information -->
-                            <div class="intro-y box p-5 mt-1">
+                            <div class="intro-y box p-5 mt-1" v-if="model.inquiry_status_id !== '4'">
                                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                                     <div
                                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
@@ -554,7 +557,7 @@
                             </div>
                             <!-- END: Basic Information -->
                         </div>
-                        <div class="text-right w-full bottom-0 mt-5">
+                        <div class="text-right w-full bottom-0 mt-5" v-if="model.inquiry_status_id !== '4'">
                             <router-link
                                 to="/inquiries"
                                 class="btn btn-outline-secondary w-20 mr-1"
@@ -571,6 +574,11 @@
         </div>
         <Loading v-if="isLoading" fixed></Loading>
     </div>
+    <template v-if="model.inquiry_status_id === '4'">
+        <CreateStudent :standard_id="model.standard_id"
+                       :batch_id="model.batch_id"
+                       :new_admission_from="'Inquiry'"/>
+    </template>
 </template>
 
 <script setup>
@@ -580,6 +588,8 @@ import {useI18n} from "vue-i18n";
 import {email, helpers, minLength, maxLength, numeric, required} from "@vuelidate/validators";
 import {useVuelidate} from "@vuelidate/core";
 import store from "@/stores";
+
+import CreateStudent from "@/views/Students/Create.vue"
 
 const route = useRoute();
 const router = useRouter();

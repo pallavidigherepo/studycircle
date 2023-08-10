@@ -58,6 +58,34 @@
                                 {{ v$.name.$errors[0].$message }}
                             </span>
                         </div>
+                        <div class="mt-3">
+                            <label for="standard-section" class="form-label">{{
+                                t("standard.Select Sections if Any")
+                            }}</label>
+                            <TomSelect
+                                id="course-type"
+                                v-model="model.standard_section_ids"
+                                placeholder = 'Select Sections if Any'
+                                :options="{
+                                    allowEmptyOption: false,
+                                    maxItems: 3,
+                                    create: false,
+                                    placeholder: 'Select Sections if Any',
+                                    autocomplete: 'off'
+                                }"
+                                class="w-full"
+                                multiple
+                                >
+                                <option
+                                    :value="index"
+                                    v-for="(standardSection, index) in standardSections"
+                                    :key="index"
+                                >
+                                    {{ standardSection }}
+                                </option>
+                            </TomSelect>
+
+                        </div>
                         <div class="text-right mt-5">
                             <button
                                 type="button"
@@ -109,6 +137,7 @@ let selectedItem = ref("");
 const model = ref({
     id: "",
     name: "",
+    standard_section_ids: [],
 });
 
 const rules = computed(() => {
@@ -182,6 +211,12 @@ function deleteI(item) {
     store.dispatch("standards/delete", item.id);
 }
 // END: Delete
+
+onMounted(() => {
+  store.dispatch("listStandardSections").then().catch();
+});
+
+const standardSections = computed(() => store.getters.listStandardSections);
 </script>
 
 <style>

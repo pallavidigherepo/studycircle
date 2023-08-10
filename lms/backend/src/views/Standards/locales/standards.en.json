@@ -6,5 +6,7 @@
     "Icon": "Icon|ICON",
     "LABEL": "LABEL",
     "DESCRIPTION": "DESCRIPTION",
-    "ICON": "ICON"
+    "ICON": "ICON",
+    "Name": "Name",
+    "NAME": "NAME"
 }

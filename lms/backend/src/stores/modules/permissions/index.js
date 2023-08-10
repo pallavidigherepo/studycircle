@@ -15,7 +15,7 @@ export default {
             datatable: {
                 export: false,
                 import: false,
-                addNew: false,
+                addNew: true,
                 defaultColumn: "id",
                 defaultOrder: "desc",
                 defaultPage: 1,
@@ -36,16 +36,16 @@ export default {
                         field: "guard_name",
                         sort: true,
                     },
-                    // {
-                    //     label: "ACTIONS",
-                    //     field: false,
-                    //     sort: false,
-                    //     actions: {
-                    //         show: false,
-                    //         edit: false,
-                    //         delete: true,
-                    //     }
-                    // }
+                    {
+                        label: "ACTIONS",
+                        field: false,
+                        sort: false,
+                        actions: {
+                            show: false,
+                            edit: true,
+                            delete: true,
+                        }
+                    }
                 ]
             }
         }
