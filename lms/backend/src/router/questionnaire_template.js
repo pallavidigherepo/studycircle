@@ -17,7 +17,6 @@ const questionnaireTemplateRoutes = [
         component: QuestionnaireDashboard,
 
     },
-
     {
         path: "/generated_question_papers",
         name: "GeneratedQuestionPapers",

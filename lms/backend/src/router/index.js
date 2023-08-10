@@ -17,7 +17,7 @@ import userRoutes from "./users";
 import inquiryRoutes from "./inquiries";
 import subjectChapterTopicRoutes from "./subject_chapter_topic";
 import questionRoutes from "./questions";
-import questionnaireTemplateRoutes from "./questionair_template";
+import questionnaireTemplateRoutes from "./questionnaire_template";
 import studentRoute from "./students";
 import feeRoutes from "./fees";
 import masterRoutes from "./master";
