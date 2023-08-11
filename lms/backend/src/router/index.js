@@ -6,6 +6,7 @@ import AuthLayout from "../layouts/AuthLayout.vue";
 import Dashboard from "../views/Dashboard/Index.vue";
 
 import Login from "../views/Auth/Login.vue";
+import ForgotPassword from "../views/Auth/ForgotPassword.vue";
 import Profile from "../views/Auth/Profile.vue";
 import ErrorPage from "../views/ErrorPage.vue";
 
@@ -59,11 +60,18 @@ const routes = [{
         name: "Auth",
         component: AuthLayout,
         meta: { isGuest: true },
-        children: [{
-            path: "/login",
-            name: "Login",
-            component: Login,
-        }, ],
+        children: [
+            {
+                path: "/login",
+                name: "Login",
+                component: Login,
+            },
+            {
+                path: '/forgot-password',
+                name: "ForgotPassword",
+                component: ForgotPassword
+            }
+        ],
     },
     {
         path: "/error-page",

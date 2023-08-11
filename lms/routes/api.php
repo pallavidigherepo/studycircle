@@ -67,7 +67,7 @@ use App\Models\Course;
 use App\Models\GeneratedQuestionPaper;
 use App\Models\Section;
 use App\Models\Template;
-
+use Maatwebsite\Excel\Row;
 
 /*
 |--------------------------------------------------------------------------
@@ -266,3 +266,4 @@ Route::middleware(['auth:sanctum', \App\Http\Middleware\DatabaseSwitcher::class]
 
 
 Route::post('v1/login', [AuthController::class, 'login']);
+Route::post('v1/forgot_password', [AuthController::class, 'forgot_password']);

@@ -120,6 +120,7 @@
                     >Remember me</label
                   >
                 </div>
+                <router-link to="/forgot-password">Forgot Password?</router-link>
               </div>
               <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
                 <button
