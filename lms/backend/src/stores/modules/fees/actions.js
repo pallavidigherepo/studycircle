@@ -42,4 +42,8 @@ export default {
                 return res;
             });
     },
+
+    async pay({commit}, item) {
+        console.log(item)
+    }
 };

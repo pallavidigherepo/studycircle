@@ -5,7 +5,8 @@
     <div class="h-full flex items-center">
       <!-- BEGIN: Logo -->
       <router-link :to="{ name: 'Dashboard' }" class="-intro-x hidden md:flex">
-        <img alt="Meritest Learning Management System" class="w-20" src="@/assets/images/logos/logo.png" />
+<!--        <img alt="Meritest Learning Management System" class="w-20" src="@/assets/images/logos/logo-updated.png" />-->
+          <img alt="Meritest Learning Management System" class="w-20" src="@/assets/images/logos/logo.png" />
       </router-link>
       <!-- END: Logo -->
       <!-- BEGIN: Breadcrumb -->

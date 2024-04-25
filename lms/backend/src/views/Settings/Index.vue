@@ -1,11 +1,10 @@
 <template>
-
+    This is settings page
 </template>
 
-<script>
-export default {
-    name: "Index.vue"
-}
+<script setup>
+
+
 </script>
 
 <style scoped>

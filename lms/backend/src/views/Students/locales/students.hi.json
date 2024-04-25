@@ -16,6 +16,9 @@
     "Alternate Mobile": "वैकल्पिक मोबाइल",
     "Gender": "लिंग",
     "Avatar": "अवतार",
+    "AVATAR": "अवतार",
+    "ROLL NO": "रोल नंबर",
+    "FEE TYPE": "शुल्क प्रकार",
     "Date Of Birth": "जन्म की तारीख",
     "Permanent Address": "स्थायी पता",
     "Address": "पता",
@@ -56,5 +59,15 @@
     "Standard": "मानक",
     "Edit Student": "छात्र संपादित करें",
     "Select Gender": "ललिंग चुनें",
-    "Select Fee Type": "शुल्क प्रकार का चयन करें"
+    "Select Fee Type": "शुल्क प्रकार का चयन करें",
+    "Select Standard Class Fee Type": "मानक/श्रेणी और शुल्क प्रकार का चयन करें",
+    "Blood Group": "ब्लड ग्रुप",
+    "Medical Notes": "मेडिकल नोट्स",
+    "Caste": "जाति",
+    "Religion": "धर्म",
+    "Mother Tongue Language": "मातृभाषा",
+    "Interests": "रूचियाँ",
+    "Aadhaar Number of Parents": "माता-पिता की आधार संख्या",
+    "Parent Aadhaar Number": "माता-पिता आधार संख्या",
+    "Enrollment Number": "नामांकन संख्या"
 }

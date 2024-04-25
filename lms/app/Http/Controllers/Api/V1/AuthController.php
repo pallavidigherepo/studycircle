@@ -67,6 +67,9 @@ class AuthController extends Controller
             ], 422);
         }
         $user = Auth::user();
+
+        //This line is added to manage roles in .vue files.
+        $user->user_roles = $user->roles->pluck('name');
         $token = $user->createToken('main')->plainTextToken;
 
         return response([
@@ -87,4 +90,16 @@ class AuthController extends Controller
         ]);
     }
 
+    public function forgot_password(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+
+        return $status === Password::RESET_LINK_SENT
+                    ? back()->with(['status' => __($status)])
+                    : back()->withErrors(['email' => __($status)]);
+    }
 }

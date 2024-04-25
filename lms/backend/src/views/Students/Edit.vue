@@ -128,95 +128,6 @@
                                             </div>
                                         </div>
                                         <!-- End: Name-->
-                                        <!-- Begin: Email-->
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Email") }}
-                                                        </div>
-                                                        <div
-                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <input
-                                                    id="form-email"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="Enter email address of student"
-                                                    v-model.trim="model.email"
-                                                    :class="{ 'border-danger': submitted && v$.email.$errors.length, }"
-                                                />
-                                                <div v-for="(error, index) of v$.email.$errors" :key="index"
-                                                     class="text-danger mt-2">
-                                                    <div class="error-msg">{{ error.$message }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End: Email-->
-                                        <!-- Begin: Mobile-->
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Mobile") }}
-                                                        </div>
-                                                        <div
-                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <input
-                                                    id="form-mobile"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="Enter mobile number of student."
-                                                    v-model.trim="model.mobile"
-                                                    :class="{ 'border-danger': submitted && v$.mobile.$errors.length, }"
-                                                />
-                                                <div v-for="(error, index) of v$.mobile.$errors" :key="index"
-                                                     class="text-danger mt-2">
-                                                    <div class="error-msg">{{ error.$message }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End: Name-->
-                                        <!-- Begin: Alternate Mobile-->
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
-                                                    <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Alternate Mobile") }}</div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <input
-                                                    id="form-alt-mobile"
-                                                    type="text"
-                                                    class="form-control"
-                                                    placeholder="Enter alternate mobile number of student."
-                                                    v-model.trim="model.alt_mobile"
-                                                    :class="{ 'border-danger': submitted && v$.alt_mobile.$errors.length, }"
-                                                />
-                                                <div v-for="(error, index) of v$.alt_mobile.$errors" :key="index"
-                                                     class="text-danger mt-2">
-                                                    <div class="error-msg">{{ error.$message }}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End: Alternate Mobile-->
-                                        <!-- Begin: Gender-->
                                         <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label xl:w-64 xl:!mr-10">
                                                 <div class="text-left">
@@ -254,7 +165,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- End: Gender-->
                                         <!-- Begin: Avatar-->
                                         <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label xl:w-64 xl:!mr-10">
@@ -285,14 +195,13 @@
                                                     {{ t("students.Avatar") }}
                                                 </button>
 
-<!--                                                <div v-for="(error, index) of v$.avatar.$errors" :key="index"
-                                                     class="text-danger mt-2">
-                                                    <div class="error-msg">{{ error.$message }}</div>
-                                                </div>-->
+                                                <!--                                                <div v-for="(error, index) of v$.avatar.$errors" :key="index"
+                                                                                                     class="text-danger mt-2">
+                                                                                                    <div class="error-msg">{{ error.$message }}</div>
+                                                                                                </div>-->
                                             </div>
                                         </div>
                                         <!-- End: Avatar-->
-                                        <!-- Begin: DOB-->
                                         <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label xl:w-64 xl:!mr-10">
                                                 <div class="text-left">
@@ -312,23 +221,9 @@
                                                     <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-slate-100 border text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
                                                         <CalendarIcon class="w-4 h-4" />
                                                     </div>
-<!--                                                    <Litepicker v-model="model.dob"
-                                                                :options="{
-                                                                    autoApply: true,
-                                                                    showWeekNumbers: true,
-                                                                    format: 'YYYY-MM-DD',
-                                                                    dropdowns: {
-                                                                      minYear: 2000,
-                                                                      maxYear: null,
-                                                                      months: true,
-                                                                      years: true,
-                                                                    },
-                                                                  }"
-                                                                @change="changeMe"
-                                                                class="form-control pl-12" />-->
-                                                    <input type="date"
-                                                           v-model="model.dob"
-                                                            class="form-control pl-12" />
+                                                    <input v-model="model.dob"
+                                                           type="date"
+                                                           class="form-control pl-12" />
                                                 </div>
                                                 <div v-for="(error, index) of v$.dob.$errors" :key="index"
                                                      class="text-danger mt-2">
@@ -336,8 +231,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- End: DOB-->
-                                        <!-- Begin: Permanent Address-->
                                         <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label xl:w-64 xl:!mr-10">
                                                 <div class="text-left">
@@ -366,8 +259,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- End: Permanent Address-->
-                                        <!-- Begin: Address-->
                                         <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label xl:w-64 xl:!mr-10">
                                                 <div class="text-left">
@@ -395,7 +286,175 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Begin: Address-->
+                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label xl:w-64 xl:!mr-10">
+                                                <div class="text-left">
+                                                    <div class="flex items-center">
+                                                        <div class="font-medium">{{ t("students.Blood Group") }}
+                                                        </div>
+<!--                                                        <div
+                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                            {{ t("common.Required") }}
+                                                        </div>-->
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="w-full mt-3 xl:mt-0 flex-1">
+                                                <input
+                                                    id="form-email"
+                                                    type="text"
+                                                    class="form-control"
+                                                    placeholder="Enter blood group of student"
+                                                    v-model.trim="model.blood_group"
+                                                />
+<!--                                                <div v-for="(error, index) of v$.blood_group.$errors" :key="index"
+                                                     class="text-danger mt-2">
+                                                    <div class="error-msg">{{ error.$message }}</div>
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label xl:w-64 xl:!mr-10">
+                                                <div class="text-left">
+                                                    <div class="flex items-center">
+                                                        <div class="font-medium">{{ t("students.Medical Notes") }}
+                                                        </div>
+                                                        <div
+                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                            {{ t("common.Required") }}
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="w-full mt-3 xl:mt-0 flex-1">
+                                                <input
+                                                    id="form-medical_notes"
+                                                    type="text"
+                                                    class="form-control"
+                                                    placeholder="Enter medical notes of student, if any."
+                                                    v-model.trim="model.medical_notes"
+                                                    :class="{ 'border-danger': submitted && v$.medical_notes.$errors.length, }"
+                                                />
+                                                <div v-for="(error, index) of v$.medical_notes.$errors" :key="index"
+                                                     class="text-danger mt-2">
+                                                    <div class="error-msg">{{ error.$message }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label xl:w-64 xl:!mr-10">
+                                                <div class="text-left">
+                                                    <div class="flex items-center">
+                                                        <div class="font-medium">{{
+                                                                t("students.Caste")
+                                                            }}
+                                                        </div>
+                                                        <div
+                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                            {{ t("common.Required") }}
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="w-full mt-3 xl:mt-0 flex-1">
+                                                <input
+                                                    id="form-caste"
+                                                    type="text"
+                                                    class="form-control"
+                                                    placeholder="Enter caste of student."
+                                                    v-model.trim="model.caste"
+                                                    :class="{ 'border-danger': submitted && v$.caste.$errors.length, }"
+                                                />
+                                                <div v-for="(error, index) of v$.caste.$errors" :key="index"
+                                                     class="text-danger mt-2">
+                                                    <div class="error-msg">{{ error.$message }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label xl:w-64 xl:!mr-10">
+                                                <div class="text-left">
+
+                                                    <div class="flex items-center">
+                                                        <div class="font-medium">{{ t("students.Religion") }}</div>
+                                                        <div
+                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                            {{ t("common.Required") }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="w-full mt-3 xl:mt-0 flex-1">
+                                                <input
+                                                    id="form-religion"
+                                                    type="text"
+                                                    class="form-control"
+                                                    placeholder="Enter religion of student."
+                                                    v-model.trim="model.religion"
+                                                    :class="{ 'border-danger': submitted && v$.religion.$errors.length, }"
+                                                />
+                                                <div v-for="(error, index) of v$.religion.$errors" :key="index"
+                                                     class="text-danger mt-2">
+                                                    <div class="error-msg">{{ error.$message }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label xl:w-64 xl:!mr-10">
+                                                <div class="text-left">
+                                                    <div class="flex items-center">
+                                                        <div class="font-medium">{{ t("students.Mother Tongue Language") }}</div>
+                                                        <div
+                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                            {{ t("common.Required") }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="w-full mt-3 xl:mt-0 flex-1">
+                                                <input
+                                                    id="form-mother_tongue_language"
+                                                    type="text"
+                                                    class="form-control"
+                                                    placeholder="Enter mother tongue language of student."
+                                                    v-model.trim="model.mother_tongue_language"
+                                                    :class="{ 'border-danger': submitted && v$.mother_tongue_language.$errors.length, }"
+                                                />
+                                                <div v-for="(error, index) of v$.mother_tongue_language.$errors" :key="index"
+                                                     class="text-danger mt-2">
+                                                    <div class="error-msg">{{ error.$message }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label xl:w-64 xl:!mr-10">
+                                                <div class="text-left">
+                                                    <div class="flex items-center">
+                                                        <div class="font-medium">{{ t("students.Interests") }}</div>
+<!--                                                        <div
+                                                            class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                                                            {{ t("common.Required") }}
+                                                        </div>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="w-full mt-3 xl:mt-0 flex-1">
+                                                <input
+                                                    id="form-interests"
+                                                    type="text"
+                                                    class="form-control"
+                                                    placeholder="Enter interests of student."
+                                                    v-model.trim="model.interests"
+                                                />
+<!--                                                <div v-for="(error, index) of v$.interests.$errors" :key="index"
+                                                     class="text-danger mt-2">
+                                                    <div class="error-msg">{{ error.$message }}</div>
+                                                </div>-->
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -450,6 +509,14 @@ const model = ref({
     dob: "",
     permanent_address: "",
     address: "",
+    blood_group: "",
+    medical_notes: "",
+    caste: "",
+    religion: "",
+    mother_tongue_language: "",
+    interests: "",
+    document_type_ids: [],
+    document_type_storage: [],
 });
 
 const rules = computed(() => {
@@ -457,7 +524,7 @@ const rules = computed(() => {
         name: {
             required: helpers.withMessage("Please enter name of user.", required),
         },
-        email: {
+        /*email: {
             required: helpers.withMessage("Please enter email address.", required),
             email: helpers.withMessage("Please enter valid email address", email),
         },
@@ -470,13 +537,13 @@ const rules = computed(() => {
             required: helpers.withMessage("Please enter mobile number.", required),
             minLength: helpers.withMessage("Please enter valid mobile number", minLength(10)),
             numeric: helpers.withMessage("Please enter valid mobile number", numeric),
-        },
+        },*/
         standard_id: {
             required: helpers.withMessage("Please select standard or class of student.", required),
         },
-        batch_id: {
+        /*batch_id: {
             required: helpers.withMessage("Please select batch of student.", required),
-        },
+        },*/
         gender: {
             required: helpers.withMessage("Please select gender of student.", required),
         },
@@ -492,6 +559,27 @@ const rules = computed(() => {
         address: {
             required: helpers.withMessage("Please enter address of student.", required),
         },
+        /*blood_group: {
+            required: helpers.withMessage("Please enter blood group of student.", required),
+        },*/
+        medical_notes: {
+            required: helpers.withMessage("Please enter medical_notes of student.", required),
+        },
+        caste: {
+            required: helpers.withMessage("Please enter caste of student.", required),
+        },
+        religion: {
+            required: helpers.withMessage("Please enter religion of student.", required),
+        },
+        mother_tongue_language: {
+            required: helpers.withMessage("Please enter mother tongue language of student.", required),
+        },
+        /*interests: {
+            required: helpers.withMessage("Please enter interests of student.", required),
+        },*/
+        /*document_type_ids: {
+            required: helpers.withMessage("Please select documents need to upload", required),
+        },*/
     };
 });
 

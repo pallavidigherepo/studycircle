@@ -20,6 +20,11 @@
         </router-link>
       </div>
     </div>
+    <!-- BEGIN: Notification -->
+    <info :typeClass="'alert-warning'"
+        class="mb-6 mt-5"
+        :message="'questions.You can add question manually or import it in bulk'"/>
+    <!-- BEGIN: Notification -->
     <div class="alert alert-danger show flex items-center mb-2" role="alert" v-if="isErrored">
       <AlertOctagonIcon class="w-6 h-6 mr-2" />
       {{ message }}

@@ -2,19 +2,16 @@
   <!-- BEGIN: Mobile Menu -->
   <div class="mobile-menu md:hidden">
     <div class="mobile-menu-bar">
-      <a href="" class="flex mr-auto">
-        <img
-          alt="Icewall Tailwind HTML Admin Template"
-          class="w-6"
-          src="@/assets/images/logo.svg"
-        />
-      </a>
-      <a href="javascript:;" id="mobile-menu-toggler">
-        <BarChart2Icon
-          class="w-8 h-8 text-white transform -rotate-90"
-          @click="toggleMobileMenu"
-        />
-      </a>
+        <router-link :to="{ name: 'Dashboard' }" class="flex mr-auto">
+<!--            <img alt="Meritest Learning Management System" class="w-20" src="@/assets/images/logos/logo-updated.png" />-->
+            <img alt="Meritest Learning Management System" class="w-20" src="@/assets/images/logos/logo.png" />
+        </router-link>
+        <a href="javascript:;" id="mobile-menu-toggler">
+            <BarChart2Icon
+              class="w-8 h-8 text-white transform -rotate-90"
+              @click="toggleMobileMenu"
+            />
+        </a>
     </div>
     <transition @enter="enter" @leave="leave">
       <ul
@@ -24,7 +21,7 @@
         <!-- BEGIN: First Child -->
         <template v-for="(menu, menuKey) in formattedMenu">
           <li
-            v-if="menu == 'devider'"
+            v-if="menu === 'devider'"
             :key="menu + menuKey"
             class="menu__devider my-6"
           ></li>

@@ -15,7 +15,7 @@ export default {
                 import: false,
                 addNew: false,
                 defaultColumn: "id",
-                defaultOrder: "desc",
+                defaultOrder: "asc",
                 defaultPage: 1,
                 defaultSearch: "",
                 defaultPerPage: 10,
@@ -30,6 +30,12 @@ export default {
                         label: "NAME",
                         field: "name",
                         sort: true,
+                        isJson: false,
+                    },
+                    {
+                        label: "SECTION",
+                        field: "standard_section_names",
+                        sort: false,
                         isJson: false,
                     },
                     {

@@ -3,7 +3,7 @@
     <div>
         <template v-if="listing">
             <h2 class="intro-y text-lg font-medium mt-10">{{ t("inquiries.Inquiries") }}</h2>
-            <div class="grid grid-cols-12 gap-6 mt-5">
+            <div class="box intro-y grid grid-cols-12 gap-6 mt-5 p-5">
                 <div
                     class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2"
                 >
@@ -14,10 +14,10 @@
                     <div class="dropdown">
                         <button aria-expanded="false" class="dropdown-toggle btn btn-primary ml-2"
                                 data-tw-toggle="dropdown">
-                                              <span class="flex items-center justify-center">
-                                                {{ t("common.Export/Print") }}&nbsp;
-                                                <DownloadIcon class="w-4 h-4"/>
-                                              </span>
+                              <span class="flex items-center justify-center">
+                                {{ t("common.Export/Print") }}&nbsp;
+                                <DownloadIcon class="w-4 h-4"/>
+                              </span>
                         </button>
                         <div class="dropdown-menu w-40">
                             <ul class="dropdown-content">

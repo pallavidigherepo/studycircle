@@ -24,3 +24,7 @@ import "@left4code/tw-starter/dist/js/tab";
 import "./show-code";
 import "./copy-code";
 import "./zoom";
+
+/**
+ * Code here after is only for directive
+ */

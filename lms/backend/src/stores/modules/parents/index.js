@@ -25,8 +25,8 @@ export default {
                         sort: true,
                     },
                     {
-                        label: "EMAIL",
-                        field: "parent_email",
+                        label: "NAME",
+                        field: "father_name",
                         sort: true,
                     },/*
                     {

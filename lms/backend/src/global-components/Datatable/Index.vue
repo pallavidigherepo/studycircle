@@ -16,7 +16,7 @@
                 <button aria-expanded="false" class="dropdown-toggle btn btn-primary ml-2" data-tw-toggle="dropdown">
                   <span class="flex items-center justify-center">
                     {{ t("common.Export/Print") }}&nbsp;
-                    <DownloadIcon class="w-4 h-4"/>
+                    <UploadIcon class="w-4 h-4"/>
                   </span>
                 </button>
                 <div class="dropdown-menu w-40">
@@ -56,7 +56,7 @@
                 <button aria-expanded="false" class="dropdown-toggle btn btn-primary ml-2" data-tw-toggle="dropdown">
           <span class="flex items-center justify-center">
             {{ t("common.Import") }}&nbsp;
-            <UploadIcon class="w-4 h-4"/>
+            <DownloadIcon class="w-4 h-4"/>
           </span>
                 </button>
                 <div class="dropdown-menu w-40">

@@ -33,8 +33,8 @@ export default {
                         alt: "name"
                     },
                     {
-                        label: "ROLL NO",
-                        field: "roll_number",
+                        label: "ENROLL NO",
+                        field: "enrollment_number",
                         sort: false,
                         isJson: false,
                     },
