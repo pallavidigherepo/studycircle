@@ -11,7 +11,7 @@ use App\Models\Permission;
 use App\Models\ProfileUser;
 use App\Models\User;
 // use App\Models\Role;
-use App\Services\Users\UserService;
+use App\Services\User\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
@@ -25,7 +25,7 @@ class UserController extends Controller
 {
 
     public function __construct(protected UserService $userService) {
-        $this->authorizeResource(User::class, 'user');
+        // $this->authorizeResource(User::class, 'user');
     }
     /**
      * Display a listing of the resource.
@@ -100,17 +100,14 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
         if ($request->validated()) {
-            // $inputs = [
-            //     'name'=> $request->name,
-            //     'email' => $request->email,
-            // ];
+            
             $user->name = $request->name;
             $user->email = $request->email;
 
             $profile = ProfileUser::where('user_id', '=', $user->id)->first();
 
-            $user->save($inputs);
-            $user->assignRole($request->designation);
+            $user->save();
+            // $user->assignRole($request->designation);
 
             $profile->update([
                 'mobile' => $request->mobile,

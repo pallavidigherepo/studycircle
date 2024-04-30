@@ -1,5 +1,5 @@
 <?php
-namespace App\Services\Users;
+namespace App\Services\User;
 
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\StoreUserRequest;

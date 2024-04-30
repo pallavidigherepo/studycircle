@@ -48,6 +48,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function profile_user(): HasOne
+    {
+        return $this->hasOne(ProfileUser::class);
+    }
+    
     public function courses()
     {
         return $this->belongsToMany(Course::class);
