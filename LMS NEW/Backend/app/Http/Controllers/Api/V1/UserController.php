@@ -4,25 +4,35 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\Permission;
 use App\Models\ProfileUser;
 use App\Models\User;
+// use App\Models\Role;
+use App\Services\Users\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Psy\Util\Json;
 use Spatie\Permission\Models\Role;
 use function PHPUnit\Framework\returnArgument;
+use Maatwebsite\Excel\Concerns\ToArray;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class UserController extends Controller
 {
+
+    public function __construct(protected UserService $userService) {
+        $this->authorizeResource(User::class, 'user');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(Request $request): ResourceCollection
     {
         $field = $request->input('sort_field') ?? 'id';
         $order = $request->input('sort_order') ?? 'desc';
@@ -46,19 +56,8 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         if ($request->validated()) {
-            $inputs = [
-                'name'=> $request->name,
-                'email' => $request->email,
-                'password' => Hash::make(123456789)
-            ];
-            $user = User::create($inputs);
-            $profile = new ProfileUser([
-                'mobile' => $request->mobile,
-                'designation' => $request->designation,
-            ]);
-            $user->profile_user()->save($profile);
+            $user = $this->userService->create($request);
 
-            $user->assignRole($request->designation);
             $response = [
                 'success' => true,
                 'message' => 'User created successfully.',
@@ -75,17 +74,9 @@ class UserController extends Controller
     }
 
 
-    public function edit(User $user) {
-
-        $response = [
-            'user' => new UserResource(User::findOrFail($user->id)),
-            //'userRoles' => $user->getAllRoles()->pluck('id'),
-            //'userPermissions' => $user->getAllPermissions()->pluck('id'),
-            //'allRoles' => Role::query()->select(['name','id'])->get(),
-            //'allPermissions' => Permission::query()->select(['name','id'])->get(),
-        ];
-
-        return response()->json($response, 200);
+    public function edit(User $user) 
+    {
+        return response()->json(UserResource::make(User::findOrFail($user->id)), 200);
     }
 
     /**
@@ -96,7 +87,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(User::findOrFail($id));
     }
 
     /**
@@ -109,10 +100,10 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
         if ($request->validated()) {
-            $inputs = [
-                'name'=> $request->name,
-                'email' => $request->email,
-            ];
+            // $inputs = [
+            //     'name'=> $request->name,
+            //     'email' => $request->email,
+            // ];
             $user->name = $request->name;
             $user->email = $request->email;
 
@@ -138,6 +129,7 @@ class UserController extends Controller
             ];
         }
         return response()->json($response, 200);
+        
     }
 
     /**
