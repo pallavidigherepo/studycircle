@@ -6,10 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BoardRequest;
 use App\Http\Resources\BoardResource;
 use App\Models\Board;
+use App\Services\Board\BoardService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 
 class BoardController extends Controller
 {
+    public function __construct(protected BoardService $boardService)
+    {
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,15 +23,7 @@ class BoardController extends Controller
      */
     public function index(Request $request)
     {
-        $field = $request->input('sort_field') ?? 'id';
-        $order = $request->input('sort_order') ?? 'desc';
-        $perPage = $request->input('per_page') ?? 10;
-
-        return BoardResource::collection(
-            Board::when($request->input('search'), function ($query) {
-                $query->where('name', 'like', '%' . request('search') . '%');
-            })->orderBy($field, $order)->paginate($perPage)
-        );
+        return $this->boardService->all($request);
     }
 
     /**
@@ -36,24 +34,16 @@ class BoardController extends Controller
      */
     public function store(BoardRequest $request)
     {
-        if ($request->validated()) {
-            $inputs = [
-                'name'=> $request->name,
-            ];
-            $board = Board::create($inputs);
-            $response = [
-                'success' => true,
-                'message' => 'Board created successfully.',
-                'board' => $board,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        if (!$request->validated()) {
+            return false;
         }
-        return response()->json($response);
+       
+        $board = $this->boardService->create($request);
+
+        if (!$board) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
+        }
+        return response()->json(['message' => 'Created Successfully', 'data' => $board], 201);
     }
 
     /**
@@ -64,7 +54,7 @@ class BoardController extends Controller
      */
     public function show($id)
     {
-        //
+        return BoardResource::make(Board::findOrFail($id));
     }
 
     /**
@@ -76,23 +66,12 @@ class BoardController extends Controller
      */
     public function update(BoardRequest $request, Board $board)
     {
-        if ($request->validated()) {
-            $board->name = $request->name;
-
-            $board->save();
-            $response = [
-                'success' => true,
-                'message' => 'Board updated successfully.',
-                'board' => $board,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+       
+        $board = $this->boardService->update($request, $board);
+        if (!$board) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information Updated Successfully', 'data' => $board], 201);
     }
 
     /**
@@ -103,18 +82,9 @@ class BoardController extends Controller
      */
     public function destroy(Board $board)
     {
-        $response = [
-            'success' => false,
-            'message' => null,
-            'errors' => null,
-        ];
-        if ($board->delete()) {
-            $response = [
-                'success' => true,
-                'message' => 'Board deleted successfully.',
-                'board' => $board,
-            ];
+        if (!$this->boardService->delete($board)) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information deleted Successfully'], 201);
     }
 }

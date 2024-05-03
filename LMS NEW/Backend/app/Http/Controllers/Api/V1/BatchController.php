@@ -7,28 +7,24 @@ use App\Http\Requests\BatchRequest;
 use App\Models\Batch;
 use App\Http\Resources\BatchResource;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Services\Batch\BatchService;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class BatchController extends Controller
 {
+
+    public function __construct(protected BatchService $batchService)
+    {
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request):ResourceCollection
+    public function index(Request $request)
     {
-        $field = $request->input('sort_field') ?? 'id';
-        $order = $request->input('sort_order') ?? 'desc';
-        $perPage = $request->input('per_page') ?? 10;
-
-        return BatchResource::collection(
-            Batch::when($request->input('search'), function ($query) {
-                $query->where('name', 'like', '%' . request('search') . '%');
-                //$query->orWhere('description', 'like', '%' . request('search') . '%');
-                //$query->orWhere('icon', 'like', '%' . request('search') . '%');
-            })->orderBy($field, $order)->paginate($perPage)
-        );
+        return $this->batchService->all($request);
     }
 
     /**
@@ -37,27 +33,18 @@ class BatchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(BatchRequest $request)
+    public function create(BatchRequest $request)
     {
-        if ($request->validated()) {
-            $inputs = [
-                'name'=> $request->name,
-                'is_active'=> $request->is_active ?: !$request->is_active,
-            ];
-            $batch = Batch::create($inputs);
-            $response = [
-                'success' => true,
-                'message' => 'Batch created successfully.',
-                'batch' => $batch,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        if (!$request->validated()) {
+            return false;
         }
-        return response()->json($response);
+       
+        $batch = $this->batchService->create($request);
+
+        if (!$batch) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
+        }
+        return response()->json(['message' => 'Created Successfully', 'data' => $batch], 201);
     }
 
     /**
@@ -68,7 +55,7 @@ class BatchController extends Controller
      */
     public function show($id)
     {
-        //
+        return BatchResource::make(Batch::findOrFail($id));
     }
 
     /**
@@ -80,24 +67,12 @@ class BatchController extends Controller
      */
     public function update(BatchRequest $request, Batch $batch)
     {
-        if ($request->validated()) {
-            $batch->name = $request->name;
-            $batch->is_active = $request->is_active ?: !$request->is_active;
-
-            $batch->save();
-            $response = [
-                'success' => true,
-                'message' => 'Batch updated successfully.',
-                'batch' => $batch,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        
+        $batch = $this->batchService->update($request, $batch);
+        if (!$batch) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information Updated Successfully', 'data' => $batch], 201);
     }
 
     /**
@@ -108,18 +83,9 @@ class BatchController extends Controller
      */
     public function destroy(Batch $batch)
     {
-        $response = [
-            'success' => false,
-            'message' => null,
-            'errors' => null,
-        ];
-        if ($batch->delete()) {
-            $response = [
-                'success' => true,
-                'message' => 'Batch deleted successfully.',
-                'batch' => $batch,
-            ];
+        if (!$this->batchService->delete($batch)) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information deleted Successfully'], 201);
     }
 }
