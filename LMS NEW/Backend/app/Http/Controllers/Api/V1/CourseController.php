@@ -9,11 +9,15 @@ use App\Models\Language;
 use App\Models\CoursesType;
 use App\Http\Requests\CourseRequest;
 use App\Http\Resources\CourseResource;
+use App\Services\Course\CourseService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class CourseController extends Controller
 {
+    public function __construct(protected CourseService $courseService)
+    {
+    }
     /**
      * Display a listing of the resource.
      *
@@ -21,18 +25,7 @@ class CourseController extends Controller
      */
     public function index(Request $request)
     {
-        //Get all courses list
-        $field = $request->input('sort_field') ?? 'id';
-        $order = $request->input('sort_order') ?? 'desc';
-        $perPage = $request->input('per_page') ?? 10;
-
-        $coursesTypes = CourseResource::collection(
-            Course::when($request->input('search'), function ($query) {
-                $query->where('name', 'like', '%'. request('search'). '%');
-                $query->orWhere('course_code', 'like', '%'. request('search'). '%');
-            })->orderBy($field, $order)->paginate($perPage)
-        );
-        return $coursesTypes;
+        return $this->courseService->all($request);
     }
 
 
@@ -44,38 +37,16 @@ class CourseController extends Controller
      */
     public function store(CourseRequest $request)
     {
-        $tags = $request->tags_list;
-        //$request->tags = $request->tags_list;
-        if ($request->validated()) {
-            $inputs = [
-                'name'=> $request->name,
-                'course_code' => $request->course_code,
-                'type_id' => $request->type_ids,
-                'language_id' => $request->language_id,
-                'created_by' => Auth::user()->id,
-                'updated_by' => Auth::user()->id,
-            ];
-
-    	    //$tags = $request->tags_list;
-            $course = Course::create($inputs);
-            $course->attachTags($tags);
-            $course->courses_types()->sync($request->type_ids);
-            $course->tags_list = $tags;
-            $course->type_ids = $request->type_ids;
-            //$recentCourse = CourseResource::collection(Course::findOrFail($course->id));
-            $response = [
-                'success' => true,
-                'message' => 'Course created successfully.',
-                'course' => $course,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        if (!$request->validated()) {
+            return false;
         }
-        return response()->json($response, 200);
+       
+        $course = $this->courseService->create($request);
+
+        if (!$course) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
+        }
+        return response()->json(['message' => 'Created Successfully', 'data' => $course], 201);
     }
 
     /**
@@ -86,7 +57,7 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        //
+        return CourseResource::make(Course::findOrFail($id));
     }
 
     /**
@@ -98,35 +69,11 @@ class CourseController extends Controller
      */
     public function update(CourseRequest $request, Course $course)
     {
-        $inputs = $request->all();
-        if ($request->validated()) {
-            $inputs = [
-                'name'=> $request->name,
-                'course_code' => $request->course_code,
-                'type_id' => $request->type_ids,
-                'language_id' => $request->language_id,
-                'updated_by' => Auth::user()->id,
-            ];
-            $course->update($inputs);
-
-            $tags = $request->tags_list;
-            $course->syncTags($tags);
-            $course->courses_types()->sync($request->type_ids);
-            $course->tags_list = $tags;
-            $course->type_ids = $request->type_ids;
-            $response = [
-                'success' => true,
-                'message' => 'Course updated successfully.',
-                'course' => $course,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        $course = $this->courseService->update($request, $course);
+        if (!$course) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information Updated Successfully', 'data' => $course], 201);
     }
 
     /**
@@ -137,18 +84,9 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        $response = [
-            'success' => false,
-            'message' => null,
-            'errors' => null,
-        ];
-
-        if ($course->delete()) {
-            $response = [
-                'success' => true,
-                'message' => 'Subject deleted successfully.',
-            ];
+        if (!$this->courseService->delete($course)) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information deleted Successfully'], 201);
     }
 }

@@ -11,6 +11,10 @@ use App\Repositories\Interfaces\BoardRepositoryInterface;
 use App\Repositories\BoardRepository;
 use App\Repositories\Interfaces\InquiryRepositoryInterface;
 use App\Repositories\InquiryRepository;
+use App\Repositories\Interfaces\ChapterRepositoryInterface;
+use App\Repositories\ChapterRepository;
+use App\Repositories\Interfaces\CourseRepositoryInterface;
+use App\Repositories\CourseRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(BatchRepositoryInterface::class, BatchRepository::class);
         $this->app->bind(BoardRepositoryInterface::class, BoardRepository::class);
         $this->app->bind(InquiryRepositoryInterface::class, InquiryRepository::class);
+        $this->app->bind(ChapterRepositoryInterface::class, ChapterRepository::class);
+        $this->app->bind(CourseRepositoryInterface::class, CourseRepository::class);
     }
 
     /**
