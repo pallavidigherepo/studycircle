@@ -7,6 +7,7 @@ use App\Http\Resources\FeeTypeResource;
 use App\Models\FeeType;
 use App\Http\Requests\StoreFeeTypeRequest;
 use App\Http\Requests\UpdateFeeTypeRequest;
+use App\Services\FeeType\FeeTypeService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,9 @@ use Illuminate\Support\Facades\Auth;
  */
 class FeeTypeController extends Controller
 {
+    public function __construct(protected FeeTypeService $feeTypeService)
+    {
+    }
     /**
      * Display a listing of the resource.
      *
@@ -31,16 +35,7 @@ class FeeTypeController extends Controller
      */
     public function index(Request $request):ResourceCollection
     {
-        $field = $request->input('sort_field') ?? 'id';
-        $order = $request->input('sort_order') ?? 'desc';
-        $perPage = $request->input('per_page') ?? 10;
-        return FeeTypeResource::collection(
-            FeeType::when(request('search'), function ($query) {
-                $query->where('name', 'like', '%'. request('search'). '%');
-            })
-            ->orderBy($field, $order)
-            ->paginate($perPage)
-        );
+        return $this->feeTypeService->all($request);
     }
 
     /**
@@ -51,22 +46,16 @@ class FeeTypeController extends Controller
      */
     public function store(StoreFeeTypeRequest $request)
     {
-        if ($request->validated()) {
-            $feeType = FeeType::create($request->toArray());
-
-            $response = [
-                'success' => true,
-                'message' => 'Fee type created successfully.',
-                'fee_type' => $feeType,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        if (!$request->validated()) {
+            return false;
         }
-        return response()->json($response, 200);
+       
+        $feeType = $this->feeTypeService->create($request);
+
+        if (!$feeType) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
+        }
+        return response()->json(['message' => 'Created Successfully', 'data' => $feeType], 201);
     }
 
     /**
@@ -77,7 +66,7 @@ class FeeTypeController extends Controller
      */
     public function show(FeeType $feeType)
     {
-        return new FeeTypeResource(FeeType::FindOrFail($feeType->id));
+        return FeeTypeResource::make(FeeType::findOrFail($id));
     }
 
     /**
@@ -89,24 +78,11 @@ class FeeTypeController extends Controller
      */
     public function update(UpdateFeeTypeRequest $request, FeeType $feeType)
     {
-        if ($request->validated()) {
-            $feeType->name = $request->name;
-            $feeType->updated_by = Auth::user()->id;
-
-            $feeType->save();
-            $response = [
-                'success' => true,
-                'message' => 'Fee Type updated successfully.',
-                'fee_type' => $feeType,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        $feeType = $this->feeTypeService->update($request, $feeType);
+        if (!$feeType) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information Updated Successfully', 'data' => $feeType], 201);
     }
 
     /**
@@ -117,18 +93,9 @@ class FeeTypeController extends Controller
      */
     public function destroy(FeeType $feeType)
     {
-        $response = [
-            'success' => false,
-            'message' => null,
-            'errors' => null,
-        ];
-        if ($feeType->delete()) {
-            $response = [
-                'success' => true,
-                'message' => 'Fee type deleted successfully.',
-                'fee_type' => $feeType,
-            ];
+        if (!$this->feeTypeService->delete($feeType)) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information deleted Successfully'], 201);
     }
 }

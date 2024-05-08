@@ -7,6 +7,7 @@ use App\Http\Resources\FeeCategoryResource;
 use App\Models\FeeCategory;
 use App\Http\Requests\StoreFeeCategoryRequest;
 use App\Http\Requests\UpdateFeeCategoryRequest;
+use App\Services\FeeCategory\FeeCategoryService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
@@ -24,6 +25,9 @@ use Illuminate\Http\Response;
  */
 class FeeCategoryController extends Controller
 {
+    public function __construct(protected FeeCategoryService $feeCategoryService)
+    {
+    }
     /**
      * Display a listing of the resource.
      *
@@ -32,16 +36,7 @@ class FeeCategoryController extends Controller
      */
     public function index(Request $request):ResourceCollection
     {
-        $field = $request->input('sort_field') ?? 'id';
-        $order = $request->input('sort_order') ?? 'desc';
-        $perPage = $request->input('per_page') ?? 10;
-        return FeeCategoryResource::collection(
-            FeeCategory::when(request('search'), function ($query) {
-                $query->where('name', 'like', '%'. request('search'). '%');
-            })
-            ->orderBy($field, $order)
-            ->paginate($perPage)
-        );
+        return $this->feeCategoryService->all($request);
     }
 
     /**
@@ -52,21 +47,16 @@ class FeeCategoryController extends Controller
      */
     public function store(StoreFeeCategoryRequest $request):JsonResponse
     {
-        if ($request->validated()) {
-            $feeCategory = FeeCategory::create($request->toArray());
-
-            $response = [
-                'success' => true,
-                'message' => 'Fee category created successfully.',
-                'fee_category' => $feeCategory,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        if (!$request->validated()) {
+            return false;
         }
+       
+        $feeCategory = $this->feeCategoryService->create($request);
+
+        if (!$feeCategory) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
+        }
+        return response()->json(['message' => 'Created Successfully', 'data' => $feeCategory], 201);
         return response()->json($response, 200);
     }
 
@@ -76,9 +66,9 @@ class FeeCategoryController extends Controller
      * @param  \App\Models\FeeCategory  $feeCategory
      * @return FeeCategoryResource
      */
-    public function show(FeeCategory $feeCategory)
+    public function show($id)
     {
-        return new FeeCategoryResource(FeeCategory::FindOrFail($feeCategory->id));
+        return FeeCategoryResource::make(FeeCategory::findOrFail($id));
     }
 
     /**
@@ -90,23 +80,11 @@ class FeeCategoryController extends Controller
      */
     public function update(UpdateFeeCategoryRequest $request, FeeCategory $feeCategory)
     {
-        if ($request->validated()) {
-            $feeCategory->name = $request->name;
-
-            $feeCategory->save();
-            $response = [
-                'success' => true,
-                'message' => 'Fee category updated successfully.',
-                'fee_category' => $feeCategory,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        $feeCategory = $this->feeCategoryService->update($request, $feeCategory);
+        if (!$feeCategory) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information Updated Successfully', 'data' => $feeCategory], 201);
     }
 
     /**
@@ -117,18 +95,9 @@ class FeeCategoryController extends Controller
      */
     public function destroy(FeeCategory $feeCategory)
     {
-        $response = [
-            'success' => false,
-            'message' => null,
-            'errors' => null,
-        ];
-        if ($feeCategory->delete()) {
-            $response = [
-                'success' => true,
-                'message' => 'Fee category deleted successfully.',
-                'fee_category' => $feeCategory,
-            ];
+        if (!$this->feeCategoryService->delete($feeCategory)) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information deleted Successfully'], 201);
     }
 }
