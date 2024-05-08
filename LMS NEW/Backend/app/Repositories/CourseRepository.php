@@ -5,6 +5,8 @@ use App\Models\Course;
 use App\Http\Resources\CourseResource;
 use App\Repositories\Interfaces\CourseRepositoryInterface;
 use App\Http\Requests\CourseRequest;
+use Illuminate\Support\Facades\Auth;
+
 
 class CourseRepository implements CourseRepositoryInterface
 {
@@ -78,7 +80,9 @@ class CourseRepository implements CourseRepositoryInterface
             $course->update($inputs);
 
             $tags = $request->tags_list;
-            $course->syncTags($tags);
+            if ($tags !== null) {
+                $course->syncTags($tags);
+            }
             $course->courses_types()->sync($request->type_ids);
             $course->tags_list = $tags;
             $course->type_ids = $request->type_ids;
