@@ -15,6 +15,8 @@ use App\Repositories\Interfaces\ChapterRepositoryInterface;
 use App\Repositories\ChapterRepository;
 use App\Repositories\Interfaces\CourseRepositoryInterface;
 use App\Repositories\CourseRepository;
+use App\Repositories\Interfaces\CourseTypeRepositoryInterface;
+use App\Repositories\CourseTypeRepository;
 use App\Repositories\Interfaces\FeeRepositoryInterface;
 use App\Repositories\FeeRepository;
 use App\Repositories\Interfaces\FeeTypeRepositoryInterface;
@@ -37,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(InquiryRepositoryInterface::class, InquiryRepository::class);
         $this->app->bind(ChapterRepositoryInterface::class, ChapterRepository::class);
         $this->app->bind(CourseRepositoryInterface::class, CourseRepository::class);
+        $this->app->bind(CourseTypeRepositoryInterface::class, CourseTypeRepository::class);
         $this->app->bind(FeeRepositoryInterface::class, FeeRepository::class);
         $this->app->bind(FeeTypeRepositoryInterface::class, FeeTypeRepository::class);
         $this->app->bind(FeeStructureRepositoryInterface::class, FeeStructureRepository::class);

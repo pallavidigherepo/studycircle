@@ -5,11 +5,15 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CoursesType;
+use App\Services\CourseType\CourseTypeService;
 use App\Http\Requests\CoursesTypeRequest;
 use App\Http\Resources\CoursesTypeResource;
 
 class CoursesTypeController extends Controller
 {
+    public function __construct(protected CourseTypeService $courseTypeService)
+    {
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,18 +21,7 @@ class CoursesTypeController extends Controller
      */
     public function index(Request $request)
     {
-        $field = $request->input('sort_field') ?? 'id';
-        $order = $request->input('sort_order') ?? 'desc';
-        $perPage = $request->input('per_page') ?? 10;
-
-        $coursesTypes = CoursesTypeResource::collection(
-            CoursesType::when($request->input('search'), function ($query) {
-                $query->where('label', 'like', '%' . request('search') . '%');
-                $query->orWhere('description', 'like', '%' . request('search') . '%');
-                $query->orWhere('icon', 'like', '%' . request('search') . '%');
-            })->orderBy($field, $order)->paginate($perPage)
-        );
-        return $coursesTypes;
+        return $this->courseTypeService->all($request);
     }
 
     /**
@@ -39,26 +32,16 @@ class CoursesTypeController extends Controller
      */
     public function store(CoursesTypeRequest $request)
     {
-        if ($request->validated()) {
-            $inputs = [
-                'label'=> json_encode($request->label),
-                'description' => json_encode($request->description),
-                'icon'=> $request->icon,
-            ];
-            $coursesType = CoursesType::create($inputs);
-            $response = [
-                'success' => true,
-                'message' => 'Courses type created successfully.',
-                'coursesType' => $coursesType,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        if (!$request->validated()) {
+            return false;
         }
-        return response()->json($response);
+       
+        $coursesType = $this->courseTypeService->create($request);
+
+        if (!$coursesType) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
+        }
+        return response()->json(['message' => 'Created Successfully', 'data' => $coursesType], 201);
     }
 
     /**
@@ -70,26 +53,11 @@ class CoursesTypeController extends Controller
      */
     public function update(CoursesTypeRequest $request, CoursesType $coursesType)
     {
-        if ($request->validated()) {
-
-            $coursesType->label = json_encode($request->label);
-            $coursesType->description = json_encode($request->description);
-            $coursesType->icon = $request->icon;
-
-            $coursesType->save();
-            $response = [
-                'success' => true,
-                'message' => 'Courses type updated successfully.',
-                'coursesType' => $coursesType,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        $coursesType = $this->courseTypeService->update($request, $coursesType);
+        if (!$coursesType) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information Updated Successfully', 'data' => $coursesType], 201);
     }
 
     /**
@@ -100,25 +68,15 @@ class CoursesTypeController extends Controller
      */
     public function destroy(CoursesType $coursesType)
     {
-        $response = [
-            'success' => false,
-            'message' => null,
-            'errors' => null,
-        ];
-        if ($coursesType->delete()) {
-            $response = [
-                'success' => true,
-                'message' => 'courses type deleted successfully.',
-                'coursesType' => $coursesType,
-            ];
+        if (!$this->courseTypeService->delete($coursesType)) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information deleted Successfully'], 201);
     }
 
 
     public function list()
     {
-        $coursesType = CoursesType::orderBy('label', 'asc')->get();
-        return response()->json($coursesType);
+        return CoursesType::orderBy('label', 'asc')->get();
     }
 }
