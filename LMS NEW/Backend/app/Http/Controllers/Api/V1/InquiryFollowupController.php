@@ -7,12 +7,16 @@ use App\Http\Resources\InquiryFollowupResource;
 use App\Models\InquiryFollowup;
 use App\Http\Requests\StoreInquiryFollowupRequest;
 use App\Http\Requests\UpdateInquiryFollowupRequest;
+use App\Services\InquiryFollowup\InquiryFollowupService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class InquiryFollowupController extends Controller
 {
+    public function __construct(protected InquiryFollowupService $inquiryFollowupService)
+    {
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,17 +24,7 @@ class InquiryFollowupController extends Controller
      */
     public function index(Request $request)
     {
-        $field = $request->input('sort_field') ?? 'id';
-        $order = $request->input('sort_order') ?? 'desc';
-        $perPage = $request->input('per_page') ?? 10;
-        $inquiry = $request->input('inquiry_id') ?? null;
-
-        return InquiryFollowupResource::collection(
-            InquiryFollowup::when($request->input('search'), function ($query) {
-                $query->where('inquiry_followup_type_id', 'like', '%' . request('search') . '%');
-                $query->where('inquiry_id', '=', request('inquiry_id'));
-            })->where('inquiry_id', $inquiry)->orderBy($field, $order)->paginate($perPage)
-        );
+        return $this->inquiryFollowupService->all($request);
     }
 
     /**
@@ -41,25 +35,16 @@ class InquiryFollowupController extends Controller
      */
     public function store(StoreInquiryFollowupRequest $request)
     {
-        if ($request->validated()) {
-            $input = $request->toArray();
-            $input['created_by'] = Auth::user()->id;
-            $input['updated_by'] = Auth::user()->id;
-            $inquiryFollowup = InquiryFollowup::create($input);
-
-            $response = [
-                'success' => true,
-                'message' => 'Inquiry follow up created successfully.',
-                'inquiryFollowup' => $inquiryFollowup,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $request->validated(),
-            ];
+        if (!$request->validated()) {
+            return false;
         }
-        return response()->json($response, 200);
+       
+        $inquiryFollowup = $this->inquiryFollowupService->create($request);
+
+        if (!$inquiryFollowup) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
+        }
+        return response()->json(['message' => 'Created Successfully', 'data' => $inquiryFollowup], 201);
     }
 
     /**
@@ -82,24 +67,11 @@ class InquiryFollowupController extends Controller
      */
     public function update(UpdateInquiryFollowupRequest $request, InquiryFollowup $inquiryFollowup)
     {
-        if ($request->validated()) {
-            $input = $request->toArray();
-            $input['updated_by'] = Auth::user()->id;
-            $inquiryFollowup->update($input);
-
-            $response = [
-                'success' => true,
-                'message' => 'Inquiry followup updated successfully.',
-                'inquiry' => $inquiryFollowup,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $request->validated()->errors(),
-            ];
+        $inquiryFollowup = $this->inquiryFollowupService->update($request, $inquiryFollowup);
+        if (!$inquiryFollowup) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response, 200);
+        return response()->json(['message' => 'Information Updated Successfully', 'data' => $inquiryFollowup], 201);
     }
 
     /**

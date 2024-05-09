@@ -12,6 +12,9 @@ use Illuminate\Http\Response;
 
 class InquiryFollowupTypeController extends Controller
 {
+    public function __construct(protected InquiryFollowupTypeService $inquiryFollowupTypeService)
+    {
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,15 +23,7 @@ class InquiryFollowupTypeController extends Controller
      */
     public function index(Request $request)
     {
-        $field = $request->input('sort_field') ?? 'id';
-        $order = $request->input('sort_order') ?? 'desc';
-        $perPage = $request->input('per_page') ?? 10;
-
-        return InquiryFollowupTypeResource::collection(
-            InquiryFollowupType::when($request->input('search'), function ($query) {
-                $query->where('name', 'like', '%' . request('search') . '%');
-            })->orderBy($field, $order)->paginate($perPage)
-        );
+        return $this->inquiryFollowupTypeService->all($request);
     }
 
     /**
@@ -39,24 +34,16 @@ class InquiryFollowupTypeController extends Controller
      */
     public function store(StoreInquiryFollowupTypeRequest $request)
     {
-        if ($request->validated()) {
-            $inputs = [
-                'name'=> $request->name,
-            ];
-            $inquiryFollowupType = InquiryFollowupType::create($inputs);
-            $response = [
-                'success' => true,
-                'message' => 'Inquiry Follow-up Type created successfully.',
-                'inquiry_followup_type' => $inquiryFollowupType,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        if (!$request->validated()) {
+            return false;
         }
-        return response()->json($response);
+       
+        $inquiryFollowupType = $this->inquiryFollowupTypeService->create($request);
+
+        if (!$inquiryFollowupType) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
+        }
+        return response()->json(['message' => 'Created Successfully', 'data' => $inquiryFollowupType], 201);
     }
 
     /**
@@ -79,23 +66,11 @@ class InquiryFollowupTypeController extends Controller
      */
     public function update(UpdateInquiryFollowupTypeRequest $request, InquiryFollowupType $inquiryFollowupType)
     {
-        if ($request->validated()) {
-            $inquiryFollowupType->name = $request->name;
-
-            $inquiryFollowupType->save();
-            $response = [
-                'success' => true,
-                'message' => 'Inquiry Follow-up Type updated successfully.',
-                'inquiry_followup_type' => $inquiryFollowupType,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        $inquiryFollowupType = $this->inquiryFollowupTypeService->update($request, $inquiryFollowupType);
+        if (!$inquiryFollowupType) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information Updated Successfully', 'data' => $inquiryFollowupType], 201);
     }
 
     /**
@@ -106,18 +81,9 @@ class InquiryFollowupTypeController extends Controller
      */
     public function destroy(InquiryFollowupType $inquiryFollowupType)
     {
-        $response = [
-            'success' => false,
-            'message' => null,
-            'errors' => null,
-        ];
-        if ($inquiryFollowupType->delete()) {
-            $response = [
-                'success' => true,
-                'message' => 'Inquiry Follow-up Type deleted successfully.',
-                'inquiry_followup_type' => $inquiryFollowupType,
-            ];
+        if (!$this->inquiryFollowupService->delete($inquiryFollowupType)) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information deleted Successfully'], 201);
     }
 }

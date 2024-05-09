@@ -7,10 +7,14 @@ use App\Http\Resources\InquiryStatusResource;
 use App\Models\InquiryStatus;
 use App\Http\Requests\StoreInquiryStatusRequest;
 use App\Http\Requests\UpdateInquiryStatusRequest;
+use App\Services\InquiryStatus\InquiryStatusService;
 use Illuminate\Http\Request;
 
 class InquiryStatusController extends Controller
 {
+    public function __construct(protected InquiryStatusService $inquiryStatusService)
+    {
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,15 +22,7 @@ class InquiryStatusController extends Controller
      */
     public function index(Request $request)
     {
-        $field = $request->input('sort_field') ?? 'id';
-        $order = $request->input('sort_order') ?? 'desc';
-        $perPage = $request->input('per_page') ?? 10;
-
-        return InquiryStatusResource::collection(
-            InquiryStatus::when($request->input('search'), function ($query) {
-                $query->where('name', 'like', '%' . request('search') . '%');
-            })->orderBy($field, $order)->paginate($perPage)
-        );
+        return $this->inquiryStatusService->all($request);
     }
 
     /**
@@ -37,24 +33,16 @@ class InquiryStatusController extends Controller
      */
     public function store(StoreInquiryStatusRequest $request)
     {
-        if ($request->validated()) {
-            $inputs = [
-                'name'=> $request->name,
-            ];
-            $inquiryStatus = InquiryStatus::create($inputs);
-            $response = [
-                'success' => true,
-                'message' => 'Inquiry Status created successfully.',
-                'inquiry_status' => $inquiryStatus,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        if (!$request->validated()) {
+            return false;
         }
-        return response()->json($response);
+       
+        $inquiryStatus = $this->inquiryStatusService->create($request);
+
+        if (!$inquiryStatus) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
+        }
+        return response()->json(['message' => 'Created Successfully', 'data' => $inquiryStatus], 201);
     }
 
     /**
@@ -65,7 +53,7 @@ class InquiryStatusController extends Controller
      */
     public function show(InquiryStatus $inquiryStatus)
     {
-        //
+        return InquiryStatusResource::make(InquiryStatus::findOrFail($id));
     }
 
     /**
@@ -77,23 +65,11 @@ class InquiryStatusController extends Controller
      */
     public function update(UpdateInquiryStatusRequest $request, InquiryStatus $inquiryStatus)
     {
-        if ($request->validated()) {
-            $inquiryStatus->name = $request->name;
-
-            $inquiryStatus->save();
-            $response = [
-                'success' => true,
-                'message' => 'Inquiry Follow-up Type updated successfully.',
-                'inquiry_status' => $inquiryStatus,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        $inquiryStatus = $this->inquiryStatusService->update($request, $inquiryStatus);
+        if (!$inquiryStatus) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information Updated Successfully', 'data' => $inquiryStatus], 201);
     }
 
     /**
@@ -104,18 +80,9 @@ class InquiryStatusController extends Controller
      */
     public function destroy(InquiryStatus $inquiryStatus)
     {
-        $response = [
-            'success' => false,
-            'message' => null,
-            'errors' => null,
-        ];
-        if ($inquiryStatus->delete()) {
-            $response = [
-                'success' => true,
-                'message' => 'Batch deleted successfully.',
-                'inquiry_status' => $inquiryStatus,
-            ];
+        if (!$this->inquiryStatusService->delete($inquiryStatus)) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information deleted Successfully'], 201);
     }
 }
