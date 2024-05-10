@@ -7,6 +7,7 @@ use App\Http\Resources\FeeDiscountResource;
 use App\Models\FeeDiscount;
 use App\Http\Requests\StoreFeeDiscountRequest;
 use App\Http\Requests\UpdateFeeDiscountRequest;
+use App\Services\FeeDiscount\FeeDiscountService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
@@ -22,6 +23,9 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
  */
 class FeeDiscountController extends Controller
 {
+    public function __construct(protected FeeDiscountService $feeDiscountService)
+    {
+    }
     /**
      * Display a listing of the resource.
      *
@@ -30,16 +34,7 @@ class FeeDiscountController extends Controller
      */
     public function index(Request $request):ResourceCollection
     {
-        $field = $request->input('sort_field') ?? 'id';
-        $order = $request->input('sort_order') ?? 'desc';
-        $perPage = $request->input('per_page') ?? 10;
-        return FeeDiscountResource::collection(
-            FeeDiscount::when(request('search'), function ($query) {
-                $query->where('name', 'like', '%'. request('search'). '%');
-            })
-            ->orderBy($field, $order)
-            ->paginate($perPage)
-        );
+        return $this->feeDiscountService->all($request);
     }
 
     /**
@@ -47,30 +42,25 @@ class FeeDiscountController extends Controller
      */
     public function store(StoreFeeDiscountRequest $request)
     {
-        if ($request->validated()) {
-            $feeDiscount = FeeDiscount::create($request->toArray());
-
-            $response = [
-                'success' => true,
-                'message' => 'Fee discount created successfully.',
-                'fee_discount' => $feeDiscount,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        if (!$request->validated()) {
+            return false;
         }
+       
+        $feeDiscount = $this->feeDiscountService->create($request);
+
+        if (!$feeDiscount) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
+        }
+        return response()->json(['message' => 'Created Successfully', 'data' => $feeDiscount], 201);
         return response()->json($response, 200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(FeeDiscount $feeDiscount)
+    public function show($id)
     {
-        return new FeeDiscountResource(FeeDiscount::FindOrFail($feeDiscount->id));
+        return FeeDiscountResource::make(FeeDiscount::findOrFail($id));
     }
 
     /**
@@ -78,24 +68,11 @@ class FeeDiscountController extends Controller
      */
     public function update(UpdateFeeDiscountRequest $request, FeeDiscount $feeDiscount)
     {
-        if ($request->validated()) {
-            $feeDiscount->name = $request->name;
-            $feeDiscount->amount = $request->amount;
-
-            $feeDiscount->save();
-            $response = [
-                'success' => true,
-                'message' => 'Fee discount updated successfully.',
-                'fee_discount' => $feeDiscount,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        $feeDiscount = $this->feeDiscountService->update($request, $feeDiscount);
+        if (!$feeDiscount) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information Updated Successfully', 'data' => $feeDiscount], 201);
     }
 
     /**
@@ -103,18 +80,9 @@ class FeeDiscountController extends Controller
      */
     public function destroy(FeeDiscount $feeDiscount)
     {
-        $response = [
-            'success' => false,
-            'message' => null,
-            'errors' => null,
-        ];
-        if ($feeDiscount->delete()) {
-            $response = [
-                'success' => true,
-                'message' => 'Fee discount deleted successfully.',
-                'fee_discount' => $feeDiscount,
-            ];
+        if (!$this->feeDiscountService->delete($feeDiscount)) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information deleted Successfully'], 201);
     }
 }

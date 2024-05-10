@@ -9,12 +9,16 @@ use App\Models\Fee;
 use App\Models\FeeTransaction;
 use App\Http\Requests\StoreFeeTransactionRequest;
 use App\Http\Requests\UpdateFeeTransactionRequest;
+use App\Services\FeeTransaction\FeeTransactionService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class FeeTransactionController extends Controller
 {
+    public function __construct(protected FeeTransactionService $feeTransactionService)
+    {
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,16 +26,7 @@ class FeeTransactionController extends Controller
      */
     public function index(Request $request)
     {
-        $field = $request->input('sort_field') ?? 'id';
-        $order = $request->input('sort_order') ?? 'desc';
-        $perPage = $request->input('per_page') ?? 10;
-        $feeId = $request->input('fee_id') ?? null;
-
-        return FeeTransactionResource::collection(
-            FeeTransaction::when($request->input('search'), function ($query) {
-                //$query->where('fee_id', '=', request('fee_id'));
-            })->where('fee_id', $feeId)->orderBy($field, $order)->paginate($perPage)
-        );
+        return $this->feeTransactionService->all($request);
     }
 
     /**
@@ -42,23 +37,16 @@ class FeeTransactionController extends Controller
      */
     public function store(StoreFeeTransactionRequest $request): JsonResponse
     {
-        if ($request->validated()) {
-            $feeTransaction = FeeTransaction::create($request->toArray());
-
-            $response = [
-                'success' => true,
-                'message' => 'Fee transaction done successfully.',
-                'fee_transaction' => new FeeTransactionResource(FeeTransaction::FindOrFail($feeTransaction->id)),
-                'fee' => new FeeResource(Fee::FindOrFail($request->fee_id))
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        if (!$request->validated()) {
+            return false;
         }
-        return response()->json($response, 200);
+       
+        $feeTransaction = $this->feeTransactionService->create($request);
+
+        if (!$feeTransaction) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
+        }
+        return response()->json(['message' => 'Created Successfully', 'data' => $feeTransaction], 201);
     }
 
     /**

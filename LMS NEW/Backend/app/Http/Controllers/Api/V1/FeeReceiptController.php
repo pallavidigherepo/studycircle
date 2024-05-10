@@ -6,9 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\FeeReceipt;
 use App\Http\Requests\StoreFeeReceiptRequest;
 use App\Http\Requests\UpdateFeeReceiptRequest;
+use App\Services\FeeRecipt\FeeReciptService;
 
 class FeeReceiptController extends Controller
 {
+    public function __construct(protected FeeReciptService $feeReciptService)
+    {
+    }
     /**
      * Display a listing of the resource.
      *

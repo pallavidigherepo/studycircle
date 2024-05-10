@@ -6,10 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StandardRequest;
 use App\Http\Resources\StandardResource;
 use App\Models\Standard;
+use App\Services\Standard\StandardService;
 use Illuminate\Http\Request;
 
 class StandardController extends Controller
 {
+    public function __construct(protected StandardService $standardService)
+    {
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,15 +21,7 @@ class StandardController extends Controller
      */
     public function index(Request $request)
     {
-        $field = $request->input('sort_field') ?? 'id';
-        $order = $request->input('sort_order') ?? 'desc';
-        $perPage = $request->input('per_page') ?? 10;
-
-        return StandardResource::collection(
-            Standard::when($request->input('search'), function ($query) {
-                $query->where('name', 'like', '%' . request('search') . '%');
-            })->orderBy($field, $order)->paginate($perPage)
-        );
+        return $this->standardService->all($request);
     }
 
     /**
@@ -36,36 +32,16 @@ class StandardController extends Controller
      */
     public function store(StandardRequest $request)
     {
-        if ($request->validated()) {
-            $inputs = [
-                'name'=> $request->name,
-            ];
-            $standard = Standard::create($inputs);
-            $standard->sections()->sync($request->standard_section_ids);
-
-            $standard->standard_section_ids = $request->standard_section_ids;
-
-            $sectionNames = array();
-            if (!empty($standard->sections)) {
-                foreach ($standard->sections as $section) {
-                    $sectionNames[] = $section->name;
-                }
-            }
-
-            $standard->standard_section_names = $sectionNames;
-            $response = [
-                'success' => true,
-                'message' => 'Standard created successfully.',
-                'standard' => $standard,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        if (!$request->validated()) {
+            return false;
         }
-        return response()->json($response);
+       
+        $standard = $this->standardService->create($request);
+
+        if (!$standard) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
+        }
+        return response()->json(['message' => 'Created Successfully', 'data' => $standard], 201);
     }
 
     /**
@@ -76,7 +52,7 @@ class StandardController extends Controller
      */
     public function show($id)
     {
-        //
+        return StandardResource::make(Standard::findOrFail($id));
     }
 
     /**
@@ -88,35 +64,11 @@ class StandardController extends Controller
      */
     public function update(StandardRequest $request, Standard $standard)
     {
-        if ($request->validated()) {
-            $standard->name = $request->name;
-
-            $standard->save();
-            $standard->sections()->sync($request->standard_section_ids);
-
-            $standard->standard_section_ids = $request->standard_section_ids;
-
-            $sectionNames = array();
-            if (!empty($standard->sections)) {
-                foreach ($standard->sections as $section) {
-                    $sectionNames[] = $section->name;
-                }
-            }
-
-            $standard->standard_section_names = $sectionNames; //$request->standard_section_ids;
-            $response = [
-                'success' => true,
-                'message' => 'Standard updated successfully.',
-                'standard' => $standard,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        $standard = $this->standardService->update($request, $standard);
+        if (!$standard) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information Updated Successfully', 'data' => $standard], 201);
     }
 
     /**
@@ -127,18 +79,9 @@ class StandardController extends Controller
      */
     public function destroy(Standard $standard)
     {
-        $response = [
-            'success' => false,
-            'message' => null,
-            'errors' => null,
-        ];
-        if ($standard->delete()) {
-            $response = [
-                'success' => true,
-                'message' => 'Standard deleted successfully.',
-                'standard' => $standard,
-            ];
+        if (!$this->standardService->delete($standard)) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information deleted Successfully'], 201);
     }
 }

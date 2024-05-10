@@ -6,9 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\FeeStudentDiscount;
 use App\Http\Requests\StoreFeeStudentDiscountRequest;
 use App\Http\Requests\UpdateFeeStudentDiscountRequest;
+use App\Services\FeeStudentDiscount\FeeStudentDiscountService;
 
 class FeeStudentDiscountController extends Controller
 {
+    public function __construct(protected FeeStudentDiscountService $feeStudentDiscountService)
+    {
+    }
     /**
      * Display a listing of the resource.
      */

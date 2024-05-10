@@ -6,9 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\FeeBalance;
 use App\Http\Requests\StoreFeeBalanceRequest;
 use App\Http\Requests\UpdateFeeBalanceRequest;
+use App\Services\FeeBalance\FeeBalanceService;
 
 class FeeBalanceController extends Controller
 {
+    public function __construct(protected FeeBalanceService $feeBalanceService)
+    {
+    }
     /**
      * Display a listing of the resource.
      *
