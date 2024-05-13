@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateStudentRequest;
 use App\Http\Resources\StudentResource;
 use App\Models\Student;
 use App\Models\StudentPaper;
+use App\Services\Student\StudentService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
@@ -20,6 +21,9 @@ use Illuminate\Support\Str;
  */
 class StudentController extends Controller
 {
+    public function __construct(protected StudentService $studentService)
+    {
+    }
     /**
      * Display a listing of the resource.
      *
@@ -27,31 +31,7 @@ class StudentController extends Controller
      */
     public function index(Request $request)
     {
-        $field = $request->input('sort_field') ?? 'id';
-        $order = $request->input('sort_order') ?? 'desc';
-        $perPage = $request->input('per_page') ?? 10;
-        $batch = $request->input('batch_id') ?? null;
-        $course = $request->input('course_id') ?? null;
-        if (!$batch && !$course) {
-            return StudentResource::collection(
-                Student::when(request('search'), function ($query) {
-                    $query->where('name', 'like', '%'. request('search'). '%');
-                })
-
-                    ->orderBy($field, $order)
-                    ->paginate($perPage)
-            );
-        } else {
-            return StudentResource::collection(
-                Student::when(request('search'), function ($query) {
-                    $query->where('name', 'like', '%'. request('search'). '%');
-                })
-                    ->where('batch_id', $batch)
-                    ->where('course_id', $course)
-                    ->orderBy($field, $order)
-                    ->paginate($perPage)
-            );
-        }
+        return $this->studentService->all($request);
     }
 
     /**
@@ -70,22 +50,16 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
-        if ($request->validated()) {
-            $student = Student::create($request->toArray());
-
-            $response = [
-                'success' => true,
-                'message' => 'Student created successfully.',
-                'student' => $student,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        if (!$request->validated()) {
+            return false;
         }
-        return response()->json($response, 200);
+       
+        $student = $this->studentService->create($request);
+
+        if (!$student) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
+        }
+        return response()->json(['message' => 'Created Successfully', 'data' => $student], 201);
     }
 
     /**
@@ -97,10 +71,7 @@ class StudentController extends Controller
     //public function show(Student $student) :array
     public function show(Student $student)
     {
-        $studentModel = new Student();
-        // We need manipulated data of student so that he/she cannot do any kind of cheating.
-        //return $studentModel->manipulateStudentInfo(new StudentResource(Student::findOrFail($student->id)));
-        return new StudentResource(Student::findOrFail($student->id));
+        return StudentResource::make(Student::findOrFail($id));
     }
 
     /**
@@ -113,22 +84,11 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request, Student $student)
     {
-        if ($request->validated()) {
-            $student->update($request->toArray());
-
-            $response = [
-                'success' => true,
-                'message' => 'Student created successfully.',
-                'student' => $student,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        $student = $this->studentService->update($request, $student);
+        if (!$student) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response, 200);
+        return response()->json(['message' => 'Information Updated Successfully', 'data' => $student], 201);
     }
 
     /**
@@ -139,21 +99,9 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        $response = [
-            'success' => false,
-            'message' => null,
-            'errors' => null,
-        ];
-        if ($student->avatar) {
-            $absolutePath = public_path($student->avatar);
-            File::delete($absolutePath);
+        if (!$this->studentService->delete($student)) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        if ($student->delete()) {
-            $response = [
-                'success' => true,
-                'message' => 'Student deleted successfully.',
-            ];
-        }
-        return response()->json($response);
+        return response()->json(['message' => 'Information deleted Successfully'], 201);
     }
 }

@@ -11,10 +11,14 @@ use App\Models\Chapter;
 use App\Models\Language;
 use App\Models\Subject;
 use App\Models\Topic;
+use App\Services\Topic\TopicService;
 use Illuminate\Support\Facades\Auth;
 
 class TopicController extends Controller
 {
+    public function __construct(protected TopicService $topicService)
+    {
+    }
     /**
      * Display a listing of the resource.
      *
@@ -23,21 +27,7 @@ class TopicController extends Controller
     public function index(Request $request)
     {
         //Get all list
-        $field = $request->input('sort_field') ?? 'id';
-        $order = $request->input('sort_order') ?? 'desc';
-        $perPage = $request->input('per_page') ?? 10;
-
-        $topics = TopicResource::collection(
-            Topic::when(request('search'), function ($query) {
-                $query->where('parent_id', request('item'));
-                $query->where('label', 'like', '%' . request('search') . '%');
-                $query->orWhere('icon', 'like', '%' . request('search') . '%');
-            })
-                ->where('parent_id', $request->input('item'))
-                ->orderBy($field, $order)
-                ->paginate($perPage)
-        );
-        return $topics;
+        return $this->topicService->all($request);
     }
 
     /**
@@ -82,19 +72,10 @@ class TopicController extends Controller
      */
     public function destroy(Topic $topic)
     {
-        $response = [
-            'success' => false,
-            'message' => null,
-            'errors' => null,
-        ];
-        
-        if ($topic->delete()) {
-            $response = [
-                'success' => true,
-                'message' => 'Topic deleted successfully.',
-            ];
+        if (!$this->topicService->delete($topic)) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information deleted Successfully'], 201);
     }
 
     public function list() {
@@ -102,5 +83,6 @@ class TopicController extends Controller
         //$chapters =  $this->belongsTo(Subject::class)->with('chapter');
         $chapters = Topic::with('chapters')->get()->pluck('id', 'label');
         dd($chapters);
+       
     }
 }

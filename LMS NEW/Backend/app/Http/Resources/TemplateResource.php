@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use phpDocumentor\Reflection\Types\Boolean;
 
-class TemplateResourse extends JsonResource
+class TemplateResource extends JsonResource
 {
 
 

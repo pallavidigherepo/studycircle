@@ -47,6 +47,16 @@ use App\Repositories\Interfaces\GeneratedQuestionPaperRepositoryInterface;
 use App\Repositories\GeneratedQuestionPaperRepository;
 use App\Repositories\Interfaces\StandardRepositoryInterface;
 use App\Repositories\StandardRepository;
+use App\Repositories\Interfaces\StudentRepositoryInterface;
+use App\Repositories\StudentRepository;
+use App\Repositories\Interfaces\StudentPaperRepositoryInterface;
+use App\Repositories\StudentPaperRepository;
+use App\Repositories\Interfaces\SubjectRepositoryInterface;
+use App\Repositories\SubjectRepository;
+use App\Repositories\Interfaces\TemplateRepositoryInterface;
+use App\Repositories\TemplateRepository;
+use App\Repositories\Interfaces\TopicRepositoryInterface;
+use App\Repositories\TopicRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -77,6 +87,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(FeeStudentDiscountRepositoryInterface::class, FeeStudentDiscountRepository::class);
         $this->app->bind(GeneratedQuestionPaperRepositoryInterface::class, GeneratedQuestionPaperRepository::class);
         $this->app->bind(StandardRepositoryInterface::class, StandardRepository::class);
+        $this->app->bind(StudentRepositoryInterface::class, StudentRepository::class);
+        $this->app->bind(StudentPaperRepositoryInterface::class, StudentPaperRepository::class);
+        $this->app->bind(SubjectRepositoryInterface::class, SubjectRepository::class);
+        $this->app->bind(TemplateRepositoryInterface::class, TemplateRepository::class);
+        $this->app->bind(TopicRepositoryInterface::class, TopicRepository::class);
     }
 
     /**

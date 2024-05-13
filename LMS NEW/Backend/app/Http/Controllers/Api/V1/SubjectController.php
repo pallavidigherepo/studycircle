@@ -6,12 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SubjectRequest;
 use App\Http\Resources\SubjectResource;
 use App\Models\Course;
+use App\Services\Subject\SubjectService;
 use Illuminate\Http\Request;
 use App\Models\Subject;
 use Illuminate\Support\Facades\Auth;
 
 class SubjectController extends Controller
 {
+    public function __construct(protected SubjectService $subjectService)
+    {
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,22 +23,7 @@ class SubjectController extends Controller
      */
     public function index(Request $request)
     {
-        $field = $request->input('sort_field') ?? 'id';
-        $order = $request->input('sort_order') ?? 'desc';
-        $perPage = $request->input('per_page') ?? 10;
-
-        $subjects = SubjectResource::collection(
-            Subject::when(request('search'), function ($query) {
-                $query->where('parent_id', null);
-                $query->where('label', 'like', '%' . request('search') . '%');
-                $query->orWhere('icon', 'like', '%' . request('search') . '%');
-            })
-                ->where('parent_id', null)
-                //->with('tags', 'courses_subjects')
-                ->orderBy($field, $order)
-                ->paginate($perPage)
-        );
-        return $subjects;
+        return $this->subjectService->all($request);
     }
 
     /**
@@ -45,40 +34,16 @@ class SubjectController extends Controller
      */
     public function store(SubjectRequest $request)
     {
-        $tags = $request->tags_list;
-        if ($request->validated()) {
-            $inputs = [
-                'label' => json_encode($request->label),
-                'description' => json_encode($request->description),
-                'board_id' => $request->board_id,
-                'standard_id' => $request->standard_id,
-                'icon' => $request->icon,
-                'language_id' => $request->language_id,
-                'created_by' => Auth::user()->id,
-                'updated_by' => Auth::user()->id,
-                'parent_id' => NULL
-            ];
-
-            $subject = Subject::create($inputs);
-
-            $subject->detachTags($tags);
-            $subject->attachTags($tags);
-            $subject->courses_subjects()->sync($request->course_ids);
-            $subject->tags = $request->tags_list;
-
-            $response = [
-                'success' => true,
-                'message' => 'Subject is created successfully.',
-                'subject' => $subject,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        if (!$request->validated()) {
+            return false;
         }
-        return response()->json($response);
+       
+        $subject = $this->subjectService->create($request);
+
+        if (!$subject) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
+        }
+        return response()->json(['message' => 'Created Successfully', 'data' => $subject], 201);
     }
 
     /**
@@ -113,38 +78,11 @@ class SubjectController extends Controller
      */
     public function update(SubjectRequest $request, Subject $subject)
     {
-        if ($request->validated()) {
-            $inputs = [
-                'label' => json_encode($request->label),
-                'description' => json_encode($request->description),
-                'board_id' => $request->board_id,
-                'standard_id' => $request->standard_id,
-                'icon' => $request->icon,
-                'language_id' => $request->language_id,
-                'updated_by' => Auth::user()->id,
-                'parent_id' => NULL
-            ];
-
-            $subject->update($inputs);
-
-            $subject->detachTags($request->tags_list);
-            $subject->attachTags($request->tags_list);
-            $subject->courses_subjects()->sync($request->course_ids);
-            $subject->tags = $request->tags_list;
-
-            $response = [
-                'success' => true,
-                'message' => 'Subject is updated successfully.',
-                'subject' => $subject,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        $subject = $this->subjectService->update($request, $subject);
+        if (!$subject) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information Updated Successfully', 'data' => $subject], 201);
     }
 
     /**
@@ -155,18 +93,9 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        $response = [
-            'success' => false,
-            'message' => null,
-            'errors' => null,
-        ];
-
-        if ($subject->delete()) {
-            $response = [
-                'success' => true,
-                'message' => 'Subject deleted successfully.',
-            ];
+        if (!$this->subjectService->delete($subject)) {
+            return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json($response);
+        return response()->json(['message' => 'Information deleted Successfully'], 201);
     }
 }

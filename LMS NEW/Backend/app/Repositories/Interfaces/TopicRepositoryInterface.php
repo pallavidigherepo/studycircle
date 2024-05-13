@@ -1,18 +1,18 @@
 <?php
 namespace App\Repositories\Interfaces;
 
-Interface SubjectRepositoryInterface {
+Interface TopicRepositoryInterface {
 
     public function all($request);
 
     public function create($data);
 
-    public function edit($data);
-
     public function show($data);
 
-    public function update($data, $subject);
+    public function update($data, $topic);
 
-    public function delete($subject);
+    public function delete($topic);
+
+    public function list();
 
 }
