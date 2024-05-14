@@ -7,6 +7,7 @@ use App\Http\Resources\ProfileUserResource;
 use App\Http\Resources\UserResource;
 use App\Models\ProfileUser;
 use App\Models\User;
+use App\Services\Profile\ProfileService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -29,6 +30,10 @@ use Illuminate\Support\Facades\URL;
  */
 class ProfileController extends Controller
 {
+    public function __construct(protected ProfileService $profileService)
+    {
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -94,60 +99,13 @@ class ProfileController extends Controller
      */
     public function update(Request $request, ProfileUser $profile): JsonResponse
     {
-        $inputs = $response = [];
-        // First of all we need to check which form is submitted.
-        // Change Password for Account information form.
-        $user = Auth::user();
+        $user = $this->profileService->update($request, auth()->user());
 
-        if ($request->isChangePassword) {
-            $eloquent = User::findOrFail($user->id);
-            $inputs = [
-                'password' => Hash::make($request->password),
-            ];
-        } else {
-            // Else: User profile information will be updated.
-            $inputs = [
-                'alt_email' => $request->alt_email,
-                'mobile' => $request->mobile,
-                'alt_mobile' => $request->alt_mobile,
-                'address' => $request->address,
-                'alt_address' => $request->alt_address,
-                'gender' => $request->gender,
-                'qualification' => $request->qualification,
-                'designation' => $request->designation,
-            ];
-            // Check if image was given and save on local file system
-
-            if (isset($request->avatar)) {
-                if ($profile->avatar) {
-                    $absolutePath = public_path($profile->avatar);
-                    File::delete($absolutePath);
-                }
-                $relativePath  = $this->saveImage($request->avatar);
-                $inputs['avatar'] = $relativePath;
-            }
-            $eloquent = $profile;
-            $profile->update($inputs);
+        if (!$user) {
+            return response()->json(['message' => 'There are a few errors in the form. Please check again.'], 403);
         }
-        if (!empty($inputs)) {
-            if ($eloquent->update($inputs)) {
-                $response = [
-                    'success' => true,
-                    'message' => 'Account information is saved successfully.',
-                    'errors' => [],
-                    'profile' => $profile,
-                ];
-            } else {
-                $response = [
-                    'success' => false,
-                    'message' => 'Oops, there seems to have some errors.',
-                    'errors' => $this->validated()->errors(),
-                    'profile' => $profile,
-                ];
-            }
 
-        }
-        return response()->json($response, 200);
+        return response()->json(['message' => 'ProfileUser updated Successfully', 'data' => $user], 200);
     }
 
     /**

@@ -6,9 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use App\Http\Requests\StoreSettingRequest;
 use App\Http\Requests\UpdateSettingRequest;
+use App\Services\Setting\SettingService;
 
 class SettingController extends Controller
 {
+    public function __construct(protected SettingService $settingService)
+    {
+    }
     /**
      * Display a listing of the resource.
      *

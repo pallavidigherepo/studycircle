@@ -57,6 +57,14 @@ use App\Repositories\Interfaces\TemplateRepositoryInterface;
 use App\Repositories\TemplateRepository;
 use App\Repositories\Interfaces\TopicRepositoryInterface;
 use App\Repositories\TopicRepository;
+use App\Repositories\Interfaces\SettingRepositoryInterface;
+use App\Repositories\SettingRepository;
+use App\Repositories\Interfaces\RoleRepositoryInterface;
+use App\Repositories\RoleRepository;
+use App\Repositories\Interfaces\ProfileRepositoryInterface;
+use App\Repositories\ProfileRepository;
+use App\Repositories\Interfaces\QuestionRepositoryInterface;
+use App\Repositories\QuestionRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -92,6 +100,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(SubjectRepositoryInterface::class, SubjectRepository::class);
         $this->app->bind(TemplateRepositoryInterface::class, TemplateRepository::class);
         $this->app->bind(TopicRepositoryInterface::class, TopicRepository::class);
+        $this->app->bind(SettingRepositoryInterface::class, SettingRepository::class);
+        $this->app->bind(RoleRepositoryInterface::class, RoleRepository::class);
+        $this->app->bind(ProfileRepositoryInterface::class, ProfileRepository::class);
+        $this->app->bind(QuestionRepositoryInterface::class, QuestionRepository::class);
     }
 
     /**

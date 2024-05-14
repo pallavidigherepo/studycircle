@@ -9,6 +9,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Http\Resources\RoleResource;
 use App\Http\Requests\RoleRequest;
+use App\Services\Role\RoleService;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,9 @@ use DB;
 
 class RoleController extends Controller
 {
+    public function __construct(protected RoleService $roleService) {
+        // $this->authorizeResource(Role::class, 'role');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -23,16 +27,7 @@ class RoleController extends Controller
      */
     public function index(Request $request):ResourceCollection
     {
-        $field = $request->input('sort_field') ?? 'id';
-        $order = $request->input('sort_order') ?? 'desc';
-        $perPage = $request->input('per_page') ?? 10;
-
-        $roles = RoleResource::collection(
-            Role::when(request('search'), function ($query) {
-                $query->where('name', 'like', '%' . request('search') . '%');
-            })->orderBy($field, $order)->paginate($perPage)
-        );
-        return $roles;
+        return $this->roleService->all($request);
     }
 
     /**
@@ -43,27 +38,12 @@ class RoleController extends Controller
      */
     public function store(RoleRequest $request)
     {
-        if ($request->validated()) {
-            $inputs = [
-                'name'=> $request->name,
-                //'permissions' => $request->permissions,
-                'guard_name' => 'web',
-            ];
-            $role = Role::create($inputs);
-            $role->syncPermissions($request->permissions);
-            $response = [
-                'success' => true,
-                'message' => 'Permission created successfully.',
-                'role' => $role,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        $role = $this->roleService->create($request);
+
+        if (!$role) {
+            return response()->json(['message' => 'There are a few errors. Please check again.'], 403);
         }
-        return response()->json($response, 200);
+        return response()->json(['message' => 'Save Successfully', 'data' => $role], 201);
     }
 
     /**
@@ -77,39 +57,7 @@ class RoleController extends Controller
         // We have to format role and permissions according to discussion.
         // First of all get all the list of permissions
 
-        $permissions = Permission::all();
-        foreach ($permissions as $permission) {
-            $permissionId = $permission->id;
-            $explodedPermission = array_reverse(explode(' ', $permission->name));
-
-            $moduleName = $explodedPermission[0];
-
-            if (count($explodedPermission) > 2) {
-                $j = 0;
-                for ($i = 1; $i < count($explodedPermission); $i++ ) {
-                    $remaining[$j++] = $explodedPermission[$i];
-                }
-                $actionName = implode(' ', array_reverse($remaining));
-            } else {
-                $actionName = $explodedPermission[1];
-            }
-            $key = 'All';
-            if (isset($remaining) && count($remaining) > 0) {
-                $key = 'Own';
-            }
-            $final[$moduleName][$key][$permissionId] = $actionName;
-        }
-        $response = $role;
-        $oldPermissions = [];
-        $rolePermissions = $role->permissions;
-        $i = 0;
-        foreach ($rolePermissions as $permission) {
-            $oldPermissions[$i++] = $permission->id;
-        }
-        $response->id = $role->id;
-        $response->name = $role->name;
-        $response->oldpermissions = $oldPermissions;
-
+        list($response, $final) = $this->roleService->edit($role);
 
         return response()->json(['response' => $response, 'final' => $final], 200);
     }
@@ -123,28 +71,12 @@ class RoleController extends Controller
      */
     public function update(RoleRequest $request, Role $role)
     {
-        if ($request->validated()) {
-            $inputs = [
-                'name'=> $request->name,
-                'permissions' => $request->permissions,
-            ];
-            $role->name = $request->name;
-            $role->save($inputs);
-            $role->syncPermissions($inputs['permissions']);
+        $role = $this->roleService->update($request, $role);
 
-            $response = [
-                'success' => true,
-                'message' => 'Role updated successfully.',
-                'role' => $role,
-            ];
-        } else {
-            $response = [
-                'success' => false,
-                'message' => 'Oops, there seems to have some errors.',
-                'errors' => $this->validated()->errors(),
-            ];
+        if (!$role) {
+            return response()->json(['message' => 'There are a few errors. Please check again.'], 403);
         }
-        return response()->json($response, 200);
+        return response()->json(['message' => 'Save Successfully', 'data' => $role], 201);
     }
 
     /**
