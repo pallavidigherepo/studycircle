@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import "@/assets/css/themes/tinker/side-nav.css";
 import { useRoute, useRouter } from "vue-router";
-import logoUrl from "@/assets/images/logo.svg";
+import logoUrl from "@/assets/images/logo.png";
 import Tippy from "@/components/Base/Tippy";
 import Lucide from "@/components/Base/Lucide";
 import TopBar from "@/components/Themes/Tinker/TopBar";
@@ -75,7 +75,7 @@ onMounted(() => {
         >
           <img
             alt="Tinker Tailwind HTML Admin Template"
-            class="w-6"
+            class="w-10"
             :src="logoUrl"
           />
           <span class="hidden ml-3 text-lg text-white xl:block"> Tinker </span>

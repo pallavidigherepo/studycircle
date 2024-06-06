@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Layout from "@/themes";
-
+console.log(import.meta.env.BASE_URL)
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -356,6 +356,23 @@ const router = createRouter({
       component: () => import("../pages/ErrorPage.vue"),
     },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    return savedPosition || { left: 0, top: 0 };
+},
 });
+
+// router.beforeEach((to, from, next) => {
+//   let token = sessionStorage.getItem("TOKEN");
+//   // OLD: Removed, because state was not removing its token if user deleted session storage manually.
+//   //let token = store.state.auth.user.token;
+
+//   if (to.meta.requiresAuth && !token) {
+//       next({ name: "Login" });
+//   } else if (token && to.meta.isGuest) {
+//       next({ name: "Dashboard" })
+//   } else {
+//       next();
+//   }
+// })
 
 export default router;
