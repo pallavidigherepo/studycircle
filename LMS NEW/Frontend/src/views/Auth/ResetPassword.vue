@@ -8,21 +8,19 @@ import LoadingIcon from "@/components/Base/LoadingIcon";
 import { ref, reactive, computed } from "vue";
 
 import { useVuelidate } from "@vuelidate/core";
-import { required, email, helpers } from "@vuelidate/validators";
+import { required, email, helpers, sameAs } from "@vuelidate/validators";
 import store from "@/stores/index.js";
 import { useRouter, useRoute } from "vue-router";
 
 const submitted = ref(false);
 const router = useRouter();
 
-// interface LoginPayload {
-//   email: string;
-//   password: string;
-// }
-
+const route = useRoute();
 const model = reactive({
   email: "",
   password: "",
+  password_confirmation: "",
+  token: route.query.token
   
 });
 
@@ -35,45 +33,47 @@ const rules = computed(() => {
     password: {
       required: helpers.withMessage("Please enter password.", required),
     },
+    password_confirmation: {
+        required: helpers.withMessage("Please enter confirm password same as password.", required),
+        sameAsPassword: helpers.withMessage('Passwords do not match.', sameAs(model.password))
+    },
   };
 });
 
 const v$ = useVuelidate(rules, model);
-const route = useRoute();
 const errorMsg = ref("");
 const loading = ref(false);
 
-function submit() {
-  submitted.value = true;
-  
-  v$.value.$validate();
-  if (v$.value.$error) {
-    return false;
-  }
-  try {
-    let response = store
-      .dispatch("auth/login", model)
-      .then((data) => {
-        submitted.value = false;
-        loading.value = false;
-        errorMsg.value = "";
-        if (data.error) {
-          errorMsg.value = data.message;
-        } else {
-          router.push({
-            name: "dashboard-overview-1",
-          });
-        }
-      })
-      .catch((err) => {
-        errorMsg.value = "The provided credentials are not correct.";
-      });
-  } catch (e) {
-    //console.log(e);
-  }
-
-  return;
+async function resetPassword(){
+    submitted.value = true;
+    v$.value.$validate();
+    if (v$.value.$error) {
+        return false;
+    }
+    try {
+        store.dispatch('auth/reset_password', model)
+            .then((response) => {
+                if (response.success) {
+                    loading.value = false;
+                    submitted.value = false;
+                    router.push('/login');
+                } else {
+                    loading.value = false;
+                    submitted.value = false;
+                    errorMsg.value = JSON.stringify(response.errors);
+                }
+                return response.success;
+            })
+            .catch(() => {
+                loading.value = false;
+                submitted.value = false;
+                errorMsg.value = "Provided email address does not exists.";
+            });
+    } catch (e) {
+        console.log(e);
+    }
 }
+
 </script>
 
 <template>
@@ -131,7 +131,7 @@ function submit() {
               A few more clicks to sign in to your account. Manage all your
               e-commerce accounts in one place
             </div>
-            <form @submit.prevent="submit()">
+            <form @submit.prevent="resetPassword">
             <div class="mt-8 intro-x">
               <FormInput
                 type="email"
@@ -168,8 +168,26 @@ function submit() {
                 >
                   <div class="error-msg">{{ error.$message }}</div>
                 </div>
+
+                <FormInput
+                type="password"
+                class="block px-4 py-3 mt-4 intro-x login__input min-w-full xl:min-w-[350px]"
+                placeholder="password confirmation"
+                v-model="model.password_confirmation"
+                :class="{
+                    'border-danger': submitted && v$.password_confirmation.$errors.length,
+                  }"
+                />
+                <div
+                  v-if="v$.password_confirmation"
+                  class="text-danger mt-2"
+                  v-for="(error, index) of v$.password_confirmation.$errors"
+                  :key="index"
+                >
+                  <div class="error-msg">{{ error.$message }}</div>
+                </div>
             </div>
-            <div
+            <!-- <div
               class="flex mt-4 text-xs intro-x text-slate-600 dark:text-slate-500 sm:text-sm"
             >
               <div class="flex items-center mr-auto">
@@ -183,14 +201,14 @@ function submit() {
                 </label>
               </div>
               <a href="/forgot_password">Forgot Password?</a>
-            </div>
+            </div> -->
             <div class="mt-5 text-center intro-x xl:mt-8 xl:text-left">
               <Button
                 variant="primary"
                 class="w-full px-4 py-3 align-top xl:w-32 xl:mr-3"
                 type="submit"
               >
-                Login
+                Submit
                 <LoadingIcon
                     icon="spinning-circles"
                     color="white"
@@ -198,13 +216,13 @@ function submit() {
                     v-if="submitted"
                   />
               </Button>
-              <!-- <Button
+              <Button
                 variant="outline-secondary"
                 class="w-full px-4 py-3 mt-3 align-top xl:w-32 xl:mt-0"
-                @click="router.push('/register')"
+                @click="router.push('/login')"
               >
-                Register
-              </Button> -->
+                Login
+              </Button>
             </div>
         </form>
             <div

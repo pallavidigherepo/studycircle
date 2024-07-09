@@ -4,6 +4,7 @@ import logoUrl from "@/assets/images/logo.svg";
 import illustrationUrl from "@/assets/images/illustration.svg";
 import { FormInput, FormCheck } from "@/components/Base/Form";
 import Button from "@/components/Base/Button";
+import LoadingIcon from "@/components/Base/LoadingIcon";
 </script>
 
 <template>

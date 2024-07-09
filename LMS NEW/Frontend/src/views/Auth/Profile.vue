@@ -5,6 +5,7 @@ import Button from "@/components/Base/Button";
 import { FormSwitch } from "@/components/Base/Form";
 import Progress from "@/components/Base/Progress";
 import Lucide from "@/components/Base/Lucide";
+import LoadingIcon from "@/components/Base/LoadingIcon";
 // import StackedBarChart1 from "@/components/StackedBarChart1";
 // import SimpleLineChart from "@/components/SimpleLineChart";
 // import SimpleLineChart1 from "@/components/SimpleLineChart1";

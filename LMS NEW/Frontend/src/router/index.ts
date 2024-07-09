@@ -2,9 +2,10 @@ import { createRouter, createWebHistory } from "vue-router";
 import Layout from "@/themes";
 import Login from "@/views/Auth/Login.vue";
 import ForgotPassword from "@/views/Auth/ForgotPassword.vue";
-import Register from "@/views/Auth/Register.vue";
+// import Register from "@/views/Auth/Register.vue";
 import Profile from "@/views/Auth/Profile.vue";
 import DashboardOverview1 from "@/pages/DashboardOverview1.vue";
+import ResetPassword from "@/views/Auth/ResetPassword.vue";
 console.log(import.meta.env.BASE_URL)
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -298,11 +299,11 @@ const router = createRouter({
           name: "icon",
           component: () => import("../pages/Icon.vue"),
         },
-    //     {
-    //       path: "loading-icon",
-    //       name: "loading-icon",
-    //       component: () => import("../pages/LoadingIcon.vue"),
-    //     },
+        {
+          path: "loading-icon",
+          name: "loading-icon",
+          component: () => import("../pages/LoadingIcon.vue"),
+        },
     //     {
     //       path: "regular-form",
     //       name: "regular-form",
@@ -356,15 +357,20 @@ const router = createRouter({
       component: Login
     },
     {
-      path: "/forgotpassword",
+      path: "/forgot_password",
       name: "ForgotPassword",
       component: ForgotPassword
     },
     {
-      path: "/register",
-      name: "Register",
-      component: Register,
+      path: "/reset_password",
+      name: "ResetPassword",
+      component: ResetPassword
     },
+    // {
+    //   path: "/register",
+    //   name: "Register",
+    //   component: Register,
+    // },
    
     {
       path: "/error-page",

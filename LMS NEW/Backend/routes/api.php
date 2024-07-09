@@ -1,7 +1,15 @@
 <?php
 
 
-
+use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\FeeStructureResource;
 use App\Models\DocumentType;
 use App\Models\Fee;
@@ -10,8 +18,6 @@ use App\Models\FeeStructure;
 use App\Models\FeeStudentDiscount;
 use App\Models\FeeType;
 use App\Models\Student;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\BoardController;
 use App\Http\Controllers\Api\V1\StandardController;
 use App\Models\InquiryFollowupType;
@@ -268,8 +274,11 @@ Route::group(['middleware' => ['jwt.auth', \App\Http\Middleware\DatabaseSwitcher
             'permissions' => auth()->user()->getAllPermissions()->pluck('name'),
         ];
     })->name('check_user_permissions');
+   
 });
 
 
 Route::post('v1/login', [AuthController::class, 'login']);
 Route::post('v1/forgot_password', [AuthController::class, 'forgot_password']);
+Route::post('v1/reset_password', [AuthController::class, 'reset_password'])->name('password.reset');
+

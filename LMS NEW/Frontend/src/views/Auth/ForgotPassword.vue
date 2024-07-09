@@ -4,12 +4,17 @@ import logoUrl from "@/assets/images/logo.svg";
 import illustrationUrl from "@/assets/images/illustration.svg";
 import { FormInput, FormCheck } from "@/components/Base/Form";
 import Button from "@/components/Base/Button";
+import LoadingIcon from "@/components/Base/LoadingIcon";
 import { reactive, ref, computed } from "vue";
 
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, helpers } from '@vuelidate/validators'
 import store from "@/stores/index.js";
 import { useRouter, useRoute } from "vue-router";
+
+interface ForgotPasswordPayload {
+    email: string,
+}
 
 const model = reactive({
     email: '',
@@ -29,7 +34,7 @@ const errorMsg = ref();
 const submitted = ref(false);
 const loading = ref(false);
 const msg = ref('');
-function submit()
+function submit(payload: ForgotPasswordPayload)
 {
     submitted.value = true;
     v$.value.$validate();
@@ -39,7 +44,7 @@ function submit()
     loading.value = true;
     
     try {
-        store.dispatch('auth/forgot_password', model)
+        store.dispatch('auth/forgot_password', payload)
             .then((response) => {
               if (response.success) {
                 loading.value = false;
@@ -123,13 +128,21 @@ function submit()
               A few more clicks to sign in to your account. Manage all your
               e-commerce accounts in one place
             </div>
-            <form @submit.prevent="submit()">
+            <form @submit.prevent="submit(model)">
             <div class="mt-8 intro-x">
               <FormInput
                 type="text"
                 class="block px-4 py-3 intro-x login__input min-w-full xl:min-w-[350px]"
                 placeholder="Email"
+                v-model="model.email"
+                :class="{
+                    'border-danger': submitted && v$.email.$errors.length,
+                }"
               />
+              <div class="text-danger mt-2" v-for="(error, index) of v$.email.$errors"
+                    :key="index">
+                    <div class="error-msg">{{ error.$message }}</div>
+                </div>
             </div>
             <div class="mt-5 text-center intro-x xl:mt-8 xl:text-left">
               <Button
@@ -138,6 +151,12 @@ function submit()
                 type="submit"
               >
                 Submit
+                <LoadingIcon
+                    icon="spinning-circles"
+                    color="white"
+                    class="w-4 h-4 ml-2"
+                    v-if="submitted"
+                  />
               </Button>
               <Button
                 variant="outline-secondary"
