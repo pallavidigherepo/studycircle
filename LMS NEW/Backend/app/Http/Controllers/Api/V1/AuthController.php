@@ -1,9 +1,4 @@
 <?php
-/**
- * User: Pallavi Dighe
- * Date: 04/02/2022
- * Time: 01:09 AM
- */
 
 namespace App\Http\Controllers\Api\V1;
 
@@ -11,13 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Testing\Fluent\Concerns\Has;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 /**
  * Class AuthController
  *
- * @author  Pallavi <pals.ver@gmail.com>
  * @package App\Http\Controllers
  */
 class AuthController extends Controller
@@ -34,13 +30,13 @@ class AuthController extends Controller
             ]
         ]);
 
-        /** @var User $user */
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password'])
+            'password' => Hash::make($data['password'])
         ]);
-        $token = $user->createToken('main')->plainTextToken;
+
+        $token = JWTAuth::fromUser($user);
 
         return response([
             'user' => $user,
@@ -51,48 +47,40 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            //'email' => 'required|email|string|exists:users,email', // This will give error message of email specifice
             'email' => 'required|email|string',
-            'password' => [
-                'required',
-            ],
-            'remember' => 'boolean'
+            'password' => 'required|string',
         ]);
-        $remember = $credentials['remember'] ?? false;
-        unset($credentials['remember']);
 
-        if (!Auth::attempt($credentials, $remember)) {
-            return response([
-                'message' => 'The provided credentials are not correct.'
-            ], 422);
+        try {
+            if (!$token = JWTAuth::attempt($credentials)) {
+                return response()->json(['message' => 'The provided credentials are not correct.'], 422);
+            }
+        } catch (JWTException $e) {
+            return response()->json(['message' => 'Could not create token.'], 500);
         }
+
         $user = Auth::user();
 
-        //This line is added to manage roles in .vue files.
         if ($user->roles) {
             $user->user_roles = $user->roles->pluck('name');
         } else {
             $user->user_roles = [];
         }
-        // $user->user_roles = $user->roles->pluck('name');
-        $token = $user->createToken('main')->plainTextToken;
 
-        return response([
+        return response()->json([
             'user' => $user,
             'token' => $token,
         ]);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        /** @var User $user */
-        $user = Auth::user();
-        // Revoke the token that was used to authenticate the current request...
-        $user->currentAccessToken()->delete();
-
-        return response([
-            'success' => true
-        ]);
+        try {
+            JWTAuth::invalidate(JWTAuth::getToken());
+            return response()->json(['success' => true]);
+        } catch (JWTException $e) {
+            return response()->json(['message' => 'Failed to logout, please try again.'], 500);
+        }
     }
 
     public function forgot_password(Request $request)
@@ -104,7 +92,7 @@ class AuthController extends Controller
         );
 
         return $status === Password::RESET_LINK_SENT
-                    ? back()->with(['status' => __($status)])
-                    : back()->withErrors(['email' => __($status)]);
+            ? response()->json(['status' => __($status)])
+            : response()->json(['email' => __($status)], 400);
     }
 }

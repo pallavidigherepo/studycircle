@@ -7,6 +7,13 @@ import { Menu, Popover } from "@/components/Base/Headless";
 import fakerData from "@/utils/faker";
 import _ from "lodash";
 import { TransitionRoot } from "@headlessui/vue";
+import store from "@/stores/index.js";
+
+import axiosClient from "@/axios";
+
+import { useRoute, useRouter } from "vue-router";
+const route = useRoute();
+const router = useRouter();
 
 const searchDropdown = ref(false);
 const showSearchDropdown = () => {
@@ -15,6 +22,15 @@ const showSearchDropdown = () => {
 const hideSearchDropdown = () => {
   searchDropdown.value = false;
 };
+
+async function logout() {
+  await store.dispatch('auth/logout').then(() => {
+    router.push('/login')
+  }).catch(() => {
+
+  });;
+
+}
 </script>
 
 <template>
@@ -200,7 +216,7 @@ const hideSearchDropdown = () => {
         <Menu.Item class="hover:bg-white/5">
           <Lucide icon="User" class="w-4 h-4 mr-2" /> Profile
         </Menu.Item>
-        <Menu.Item class="hover:bg-white/5">
+        <!-- <Menu.Item class="hover:bg-white/5">
           <Lucide icon="Edit" class="w-4 h-4 mr-2" /> Add Account
         </Menu.Item>
         <Menu.Item class="hover:bg-white/5">
@@ -210,9 +226,11 @@ const hideSearchDropdown = () => {
           <Lucide icon="HelpCircle" class="w-4 h-4 mr-2" /> Help
         </Menu.Item>
         <Menu.Divider class="bg-white/[0.08]" />
+        <a href="#" @click="logout">
         <Menu.Item class="hover:bg-white/5">
           <Lucide icon="ToggleRight" class="w-4 h-4 mr-2" /> Logout
-        </Menu.Item>
+        </Menu.Item> -->
+      <!-- </a> -->
       </Menu.Items>
     </Menu>
   </div>

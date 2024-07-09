@@ -80,10 +80,16 @@ use Maatwebsite\Excel\Row;
 |
 */
 
-Route::middleware(['auth:sanctum', \App\Http\Middleware\DatabaseSwitcher::class])->group(function () {
+// Route::middleware(['auth:sanctum', \App\Http\Middleware\DatabaseSwitcher::class])->group(function () {
+//     Route::get('/user', function (Request $request) {
+//         return $request->user();
+//     });
+
+Route::group(['middleware' => ['jwt.auth', \App\Http\Middleware\DatabaseSwitcher::class]], function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+    
     Route::post('v1/logout', [AuthController::class, 'logout']);
 
     //
