@@ -12,9 +12,9 @@ import { required, email, helpers } from '@vuelidate/validators'
 import store from "@/stores/index.js";
 import { useRouter, useRoute } from "vue-router";
 
-interface ForgotPasswordPayload {
-    email: string,
-}
+// interface ForgotPasswordPayload {
+//     email: string,
+// }
 
 const model = reactive({
     email: '',
@@ -30,11 +30,11 @@ const rules = computed(() => {
 
 const v$ = useVuelidate(rules, model);
 
-const errorMsg = ref();
+const errorMsg = ref('');
 const submitted = ref(false);
 const loading = ref(false);
 const msg = ref('');
-function submit(payload: ForgotPasswordPayload)
+function submit()
 {
     submitted.value = true;
     v$.value.$validate();
@@ -44,7 +44,7 @@ function submit(payload: ForgotPasswordPayload)
     loading.value = true;
     
     try {
-        store.dispatch('auth/forgot_password', payload)
+        store.dispatch('auth/forgot_password', model)
             .then((response) => {
               if (response.success) {
                 loading.value = false;
@@ -124,11 +124,23 @@ function submit(payload: ForgotPasswordPayload)
             >
               Forgot Password
             </h2>
-            <div class="mt-2 text-center intro-x text-slate-400 xl:hidden">
+            <!-- <div class="mt-2 text-center intro-x text-slate-400 xl:hidden">
               A few more clicks to sign in to your account. Manage all your
               e-commerce accounts in one place
+            </div> -->
+            <div
+              class="text-danger mt-2"
+              v-if="errorMsg"
+            >
+              {{ errorMsg }}
             </div>
-            <form @submit.prevent="submit(model)">
+            <div
+              class="text-warning mt-2"
+              v-if="msg"
+            >
+              {{ msg }}
+            </div>
+            <form @submit.prevent="submit">
             <div class="mt-8 intro-x">
               <FormInput
                 type="text"
@@ -144,6 +156,7 @@ function submit(payload: ForgotPasswordPayload)
                     <div class="error-msg">{{ error.$message }}</div>
                 </div>
             </div>
+            <template v-if="loading"><div class="mt-5 text-warning">Please wait while we are sending reset password link on your email address</div></template>
             <div class="mt-5 text-center intro-x xl:mt-8 xl:text-left">
               <Button
                 variant="primary"

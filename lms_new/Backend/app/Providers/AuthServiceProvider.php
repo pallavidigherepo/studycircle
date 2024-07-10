@@ -34,7 +34,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         ResetPassword::createUrlUsing(function (User $user, string $token) {
             
-            return env('BACKEND_URL', env('APP_URL')).'/reset_password?token='.$token;
+            return env('FRONTEND_URL', env('APP_URL')).'/reset_password?token='.$token;
 
         });
     }

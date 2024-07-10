@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 // use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Str;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 

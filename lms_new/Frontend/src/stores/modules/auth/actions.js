@@ -24,23 +24,25 @@ export default {
     },
 
     forgot_password({ commit }, user) {
-        return axiosClient.post('/forgot_password', user)
-            .then(({ data }) => {
-                return data;
-            })
-            .catch(e => {
-                throw new Error('Provided email address does not exists.');
-            })
-    },
-    reset_password({ commit }, payload) {
-        return axiosClient.post('/reset_password', payload)
-            .then(({ data }) => {
-                return data;
-            })
-            .catch(e => {
-                throw new Error('Provided email address does not exists.');
-            })
-    },
+        return axiosClient
+          .post("/forgot_password", user)
+          .then(({ data }) => {
+            return data;
+          })
+          .catch((e) => {
+            throw new Error("Provided email address does not exists.");
+          });
+      },
+      reset_password({ commit }, payload) {
+        return axiosClient
+          .post("/reset_password", payload)
+          .then(({ data }) => {
+            return data;
+          })
+          .catch((e) => {
+            throw new Error("Provided email address does not exists.");
+          });
+      },
     logout({ commit }) {
         return axiosClient.post('/logout')
             .then(response => {

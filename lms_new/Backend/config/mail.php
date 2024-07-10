@@ -51,6 +51,12 @@ return [
         'ses' => [
             'transport' => 'ses',
         ],
+        'mailgun' => [
+            'transport' => 'mailgun',
+            // 'client' => [
+            //     'timeout' => 5,
+            // ],
+        ],
 
         'postmark' => [
             'transport' => 'postmark',
