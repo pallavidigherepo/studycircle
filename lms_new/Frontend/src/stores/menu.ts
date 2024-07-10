@@ -1,9 +1,12 @@
 import { type Icon } from "@/components/Base/Lucide/Lucide.vue";
 import { type Themes } from "@/stores/theme";
 import { defineStore } from "pinia";
-import sideMenu from "@/main/side-menu";
+import sideMenu from "@/menus/owner";
 import simpleMenu from "@/main/simple-menu";
 import topMenu from "@/main/top-menu";
+
+
+const userRole = "owner";
 
 export interface Menu {
   icon: Icon;
