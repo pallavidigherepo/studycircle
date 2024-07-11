@@ -201,7 +201,7 @@ async function logout() {
         class="block w-8 h-8 overflow-hidden rounded-full shadow-lg image-fit zoom-in intro-x"
       >
         <img
-          alt="Midone Tailwind HTML Admin Template"
+          alt="Meritest: Learning Management System"
           :src="fakerData[9].photos[0]"
         />
       </Menu.Button>
@@ -225,12 +225,14 @@ async function logout() {
         <Menu.Item class="hover:bg-white/5">
           <Lucide icon="HelpCircle" class="w-4 h-4 mr-2" /> Help
         </Menu.Item>
+        
+         -->
         <Menu.Divider class="bg-white/[0.08]" />
         <a href="#" @click="logout">
         <Menu.Item class="hover:bg-white/5">
           <Lucide icon="ToggleRight" class="w-4 h-4 mr-2" /> Logout
-        </Menu.Item> -->
-      <!-- </a> -->
+        </Menu.Item>
+        </a>
       </Menu.Items>
     </Menu>
   </div>

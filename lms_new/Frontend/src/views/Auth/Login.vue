@@ -61,7 +61,7 @@ function submit() {
           errorMsg.value = data.message;
         } else {
           router.push({
-            name: "dashboard-overview-1",
+            name: "dashboard",
           });
         }
       })

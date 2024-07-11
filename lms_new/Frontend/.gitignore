@@ -28,3 +28,5 @@ coverage
 *.sw?
 *.vscode\settings.json
 *.tsbuildinfo
+*.env*
+package-lock.json

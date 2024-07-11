@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Layout from "@/themes";
 
-import DashboardOverview1 from "@/pages/DashboardOverview1.vue";
+import Dashboard from "@/views/Dashboard/Index.vue";
 
 
 import authRoutes from "./auth";
@@ -13,8 +13,8 @@ const routes = [
     children: [
       {
         path: "/",
-        name: "dashboard-overview-1",
-        component: DashboardOverview1,
+        name: "dashboard",
+        component: Dashboard,
         meta: { 
           requiresAuth: true,
           requiresVerification: true, 
@@ -369,8 +369,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   let token = localStorage.getItem("TOKEN");
-  let user = JSON.parse(localStorage.getItem("USER"));
-  // OLD: Removed, because state was not removing its token if user deleted session storage manually.
+  let user = JSON.parse(localStorage.getItem("USER") ?? "{}");
 
   if (to.meta.requiresAuth && (token === 'undefined' || !token)) {
     next({ name: "Login" });

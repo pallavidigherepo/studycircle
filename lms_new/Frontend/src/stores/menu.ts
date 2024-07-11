@@ -1,7 +1,7 @@
 import { type Icon } from "@/components/Base/Lucide/Lucide.vue";
 import { type Themes } from "@/stores/theme";
 import { defineStore } from "pinia";
-import sideMenu from "@/menus/owner";
+import sideMenu from "@/menus/index";
 import simpleMenu from "@/main/simple-menu";
 import topMenu from "@/main/top-menu";
 

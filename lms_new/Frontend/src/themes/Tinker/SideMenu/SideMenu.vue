@@ -70,7 +70,7 @@ onMounted(() => {
         class="side-nav hidden md:block md:w-[100px] xl:w-[250px] px-5 pb-16 overflow-x-hidden z-10"
       >
         <RouterLink
-          :to="{ name: 'dashboard-overview-1' }"
+          :to="{ name: 'dashboard' }"
           class="flex items-center pt-4 pl-5 mt-3 intro-x"
         >
           <img
@@ -78,7 +78,7 @@ onMounted(() => {
             class="w-10"
             :src="logoUrl"
           />
-          <span class="hidden ml-3 text-lg text-white xl:block"> Tinker </span>
+          <span class="hidden ml-3 text-lg text-white xl:block"> MeriTest </span>
         </RouterLink>
         <div class="my-6 side-nav__divider"></div>
         <ul>

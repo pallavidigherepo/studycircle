@@ -347,7 +347,7 @@ class RoleAndPermissionSeeder extends Seeder
         // Assign permissions
         $director->syncPermissions($directorPermissions);
 
-        $principal = Role::create(['name' => 'Principal']);
+        $principal = Role::create(['name' => 'Principle']);
         // all admins have all permissions
         // Assign permissions
         $principal->syncPermissions($directorPermissions);
