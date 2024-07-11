@@ -38,6 +38,10 @@ async function logout() {
   });;
 
 }
+function resetPassword() {
+  router.push('/reset_password');
+}
+
 </script>
 
 <template>
@@ -72,9 +76,11 @@ async function logout() {
         <Menu.Item class="hover:bg-white/5">
           <Lucide icon="User" class="w-4 h-4 mr-2" /> Profile
         </Menu.Item>
-        <Menu.Item class="hover:bg-white/5">
+        
+        <Menu.Item class="hover:bg-white/5"  @click="resetPassword">
           <Lucide icon="Lock" class="w-4 h-4 mr-2" /> Reset Password
         </Menu.Item>
+        
         <Menu.Divider class="bg-white/[0.08]" />
         <a href="#" @click="logout">
         <Menu.Item class="hover:bg-white/5">
