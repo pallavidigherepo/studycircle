@@ -1,6 +1,6 @@
 import Login from "@/views/Auth/Login.vue";
 import ForgotPassword from "@/views/Auth/ForgotPassword.vue";
-import Profile from "@/views/Auth/Profile.vue";
+// import Profile from "@/views/Auth/Profile.vue";
 import ResetPassword from "@/views/Auth/ResetPassword.vue";
 
 const auth = [
@@ -19,11 +19,7 @@ const auth = [
         name: "ResetPassword",
         component: ResetPassword
     },
-    {
-      path: "/profile",
-      name: "Profile",
-      component: Profile
-    },
+   
 ]
 
 export default auth;

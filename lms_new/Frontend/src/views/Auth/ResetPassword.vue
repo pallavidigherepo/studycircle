@@ -187,21 +187,6 @@ async function resetPassword(){
                   <div class="error-msg">{{ error.$message }}</div>
                 </div>
             </div>
-            <!-- <div
-              class="flex mt-4 text-xs intro-x text-slate-600 dark:text-slate-500 sm:text-sm"
-            >
-              <div class="flex items-center mr-auto">
-                <FormCheck.Input
-                  id="remember-me"
-                  type="checkbox"
-                  class="mr-2 border"
-                />
-                <label class="cursor-pointer select-none" htmlFor="remember-me">
-                  Remember me
-                </label>
-              </div>
-              <a href="/forgot_password">Forgot Password?</a>
-            </div> -->
             <div class="mt-5 text-center intro-x xl:mt-8 xl:text-left">
               <Button
                 variant="primary"

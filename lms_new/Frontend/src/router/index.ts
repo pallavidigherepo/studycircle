@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Layout from "@/themes";
 
 import Dashboard from "@/views/Dashboard/Index.vue";
+import Profile from "@/views/Auth/Profile.vue";
 
 
 import authRoutes from "./auth";
@@ -17,8 +18,13 @@ const routes = [
         component: Dashboard,
         meta: { 
           requiresAuth: true,
-          requiresVerification: true, 
+          // requiresVerification: true, 
         },
+      },
+      {
+        path: "/profile",
+        name: "Profile",
+        component: Profile
       },
   //     {
   //       path: "dashboard-overview-2",
@@ -358,6 +364,7 @@ const routes = [
     name: "error-page",
     component: () => import("../pages/ErrorPage.vue"),
   },
+  
 ];
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

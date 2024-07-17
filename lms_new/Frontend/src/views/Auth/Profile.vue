@@ -12,10 +12,51 @@ import LoadingIcon from "@/components/Base/LoadingIcon";
 // import SimpleLineChart2 from "@/components/SimpleLineChart2";
 import { Menu, Tab } from "@/components/Base/Headless";
 import { Tab as HeadlessTab } from "@headlessui/vue";
+import { onBeforeMount, ref, computed, onMounted, } from "vue";
+import store from "@/stores";
+import axiosClient from "@/axios";
+import { useRoute, useRouter } from "vue-router";
+const route = useRoute();
+const router = useRouter();
+
+const user = ref({
+  name: "",
+  email: "",
+  role: "",
+  designation: "",
+  mobile: "",
+  avatar: "",
+  
+});
+
+
+const response = ref();
+const loading = ref(false);
+
+const fetchUser = async () => {
+  try {
+    const { data } = await axiosClient.get(`/profile`);
+    user.value = { ...data.user, role: data.role };
+    response.value = data;
+    console.log("Fetched user data:", data);
+    console.log("User object:", user.value);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+
+const userInfo = computed(() => {
+  const userItem = localStorage.getItem("USER");
+  return userItem ? JSON.parse(userItem) : null;
+});
+
+onBeforeMount(() => fetchUser());
 </script>
 
 <template>
-    <div>
+<div>
   <div class="flex items-center mt-8 intro-y">
     <h2 class="mr-auto text-lg font-medium">Profile Layout</h2>
   </div>
@@ -32,9 +73,9 @@ import { Tab as HeadlessTab } from "@headlessui/vue";
             class="relative flex-none w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 image-fit"
           >
             <img
-              alt="Midone Tailwind HTML Admin Template"
+              :alt="user.name"
               class="rounded-full"
-              :src="fakerData[0].photos[0]"
+              :src="user.avatar "
             />
             <div
               class="absolute bottom-0 right-0 flex items-center justify-center p-2 mb-1 mr-1 rounded-full bg-primary"
@@ -46,9 +87,10 @@ import { Tab as HeadlessTab } from "@headlessui/vue";
             <div
               class="w-24 text-lg font-medium truncate sm:w-40 sm:whitespace-normal"
             >
-              {{ fakerData[0].users[0].name }}
+              <!-- {{ fakerData[0].users[0].name }} -->
+              {{ user.name }}
             </div>
-            <div class="text-slate-500">{{ fakerData[0].jobs[0] }}</div>
+            <div class="text-slate-500">{{ userInfo.roles[0].name }}</div>
           </div>
         </div>
         <div
@@ -62,16 +104,16 @@ import { Tab as HeadlessTab } from "@headlessui/vue";
           >
             <div class="flex items-center truncate sm:whitespace-normal">
               <Lucide icon="Mail" class="w-4 h-4 mr-2" />
-              {{ fakerData[0].users[0].email }}
+              {{ user.email }}
             </div>
             <div class="flex items-center mt-3 truncate sm:whitespace-normal">
-              <Lucide icon="Instagram" class="w-4 h-4 mr-2" /> Instagram
-              {{ fakerData[0].users[0].name }}
+              <Lucide icon="PhoneCall" class="w-4 h-4 mr-2" />
+              {{ user.mobile }}
             </div>
-            <div class="flex items-center mt-3 truncate sm:whitespace-normal">
+            <!-- <div class="flex items-center mt-3 truncate sm:whitespace-normal">
               <Lucide icon="Twitter" class="w-4 h-4 mr-2" /> Twitter
               {{ fakerData[0].users[0].name }}
-            </div>
+            </div> -->
           </div>
         </div>
         <!-- <div
@@ -108,11 +150,11 @@ import { Tab as HeadlessTab } from "@headlessui/vue";
         </Tab> -->
         <Tab :fullWidth="false">
           <Tab.Button class="py-4 cursor-pointer">
-            Account & Profile
+            Profile
           </Tab.Button>
         </Tab>
         <Tab :fullWidth="false">
-          <Tab.Button class="py-4 cursor-pointer"> Activities </Tab.Button>
+          <Tab.Button class="py-4 cursor-pointer"> Account </Tab.Button>
         </Tab>
         <Tab :fullWidth="false">
           <Tab.Button class="py-4 cursor-pointer">Tasks</Tab.Button>
