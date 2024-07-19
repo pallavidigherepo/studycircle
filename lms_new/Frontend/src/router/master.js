@@ -1,21 +1,21 @@
-import PermissionIndex from '../views/Permissions/Index.vue';
-import CoursesTypes from '../views/CoursesTypes/Index.vue';
-import Courses from '../views/Courses/Index.vue';
+import PermissionIndex from '@/views/Permissions/Index.vue';
+import CoursesTypes from '@/views/CoursesTypes/Index.vue';
+import Courses from '@/views/Courses/Index.vue';
 
-import SettingIndex from '../views/Settings/Index.vue';
-import Batches from '../views/Batches/Index.vue';
-import Standards from '../views/Standards/Index.vue';
-import Boards from '../views/Boards/Index.vue';
+import SettingIndex from '@/views/Settings/Index.vue';
+import Batches from '@/views/Batches/Index.vue';
+import Standards from '@/views/Standards/Index.vue';
+import Boards from '@/views/Boards/Index.vue';
 
 const masterRoutes = [
     {
         path: "/permissions",
-        name: "PermissionIndex",
+        name: "permissions",
         component: PermissionIndex,
     },
     {
         path: '/boards',
-        name: "Boards",
+        name: "boards",
         component: Boards,
         meta: {
             parent: 'Boards'
@@ -23,7 +23,7 @@ const masterRoutes = [
     },
     {
         path: '/standards',
-        name: "Standards",
+        name: "standards",
         component: Standards,
         meta: {
             parent: 'Standards'
@@ -31,7 +31,7 @@ const masterRoutes = [
     },
     {
         path: '/courses_types',
-        name: "CourseTypes",
+        name: "course-types",
         component: CoursesTypes,
         meta: {
             parent: 'CourseTypes'
@@ -39,7 +39,7 @@ const masterRoutes = [
     },
     {
         path: '/courses',
-        name: "Courses",
+        name: "courses",
         component: Courses,
         meta: {
             parent: 'Courses'
@@ -47,12 +47,12 @@ const masterRoutes = [
     },
     {
         path: '/settings',
-        name: "SettingIndex",
+        name: "setting-index",
         component: SettingIndex,
     },
     {
         path: '/batches',
-        name: "Batches",
+        name: "batches",
         component: Batches,
     },
 ];
