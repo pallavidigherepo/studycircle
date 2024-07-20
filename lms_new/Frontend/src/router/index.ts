@@ -22,6 +22,9 @@ const routes = [
           // requiresVerification: true, 
         },
       },
+      
+      ...authRoutes,
+      ...masterRoutes,
       {
         path: "/profile",
         name: "Profile",
@@ -30,21 +33,19 @@ const routes = [
       {
         path: "icon",
         name: "icon",
-        component: () => import("../pages/Icon.vue"),
+        component: () => import("@/pages/Icon.vue"),
       },
       {
         path: "loading-icon",
         name: "loading-icon",
-        component: () => import("../pages/LoadingIcon.vue"),
+        component: () => import("@/pages/LoadingIcon.vue"),
       },
     ],
   },
-  ...authRoutes,
-  ...masterRoutes,
   {
     path: "/error-page",
     name: "error-page",
-    component: () => import("../pages/ErrorPage.vue"),
+    component: () => import("@/pages/ErrorPage.vue"),
   },
   
 ];
