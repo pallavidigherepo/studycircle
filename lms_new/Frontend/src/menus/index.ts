@@ -158,12 +158,12 @@ if (userRole == 'super-admin') {
           subMenu: [
             {
               icon: "SettingsIcon",
-              pageName: "Roles",
+              pageName: "roles",
               title: "Roles",
             },
             {
               icon: "KeyIcon",
-              pageName: "permission-index",
+              pageName: "permissions",
               title: "Permissions",
             },
           ],
