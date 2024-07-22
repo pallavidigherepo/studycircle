@@ -12,18 +12,13 @@ const masterRoutes = [
         path: "/permissions",
         name: "permissions",
         component: PermissionIndex,
-        meta: { 
-            requiresAuth: true,
-            // requiresVerification: true, 
-        },
     },
     {
         path: '/boards',
         name: "boards",
         component: Boards,
         meta: {
-            parent: 'Boards',
-            requiresAuth: true,
+            parent: 'Boards'
         },
     },
     {
@@ -31,8 +26,7 @@ const masterRoutes = [
         name: "standards",
         component: Standards,
         meta: {
-            parent: 'Standards',
-            requiresAuth: true,
+            parent: 'Standards'
         },
     },
     {
@@ -40,8 +34,7 @@ const masterRoutes = [
         name: "course-types",
         component: CoursesTypes,
         meta: {
-            parent: 'CourseTypes',
-            requiresAuth: true,
+            parent: 'CourseTypes'
         },
     },
     {
@@ -49,26 +42,18 @@ const masterRoutes = [
         name: "courses",
         component: Courses,
         meta: {
-            parent: 'Courses',
-            requiresAuth: true,
+            parent: 'Courses'
         },
     },
     {
         path: '/settings',
         name: "setting-index",
         component: SettingIndex,
-        meta: {
-            parent: 'setting-index',
-            requiresAuth: true,
-        },
     },
     {
         path: '/batches',
         name: "batches",
         component: Batches,
-        meta: {
-            requiresAuth: true,
-        },
     },
 ];
 
