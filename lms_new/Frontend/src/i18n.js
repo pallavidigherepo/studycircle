@@ -1,5 +1,5 @@
 import { createI18n } from 'vue-i18n'
-import { messages } from "vite-i18n-resources"
+import { messages } from "vite-plugin-i18n-resources"
 
 const lang = document.documentElement.lang;
 
