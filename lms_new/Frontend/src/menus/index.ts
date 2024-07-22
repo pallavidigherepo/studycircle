@@ -1,16 +1,13 @@
 import { type Menu } from "@/stores/menu";
-import _ from 'lodash';
-import { computed } from "vue";
+
 /**
  * NOTE: We have made changes according to the role of logged in user. 
  * 
- * We have maintained if-else according to the name of role. 
- * Like: For Owner user role, super-admin will be in corresponding if.
+ * We will include files according to the name of role. 
+ * Like: For Owner user role, owner.ts will be imported and so on.
  */
-let user = JSON.parse(localStorage.getItem("USER") ?? "{}");
 
-const userRole = _.kebabCase(user.roles[0].name);
-
+const userRole = "owner";
 let menu: Array<Menu | "divider"> = [
     {
       icon: "Sidebar",
@@ -19,202 +16,466 @@ let menu: Array<Menu | "divider"> = [
     },
   ];
 
-if (userRole == 'super-admin') {
+if (userRole == 'owner') {
     menu = [
         {
           icon: "Home",
           pageName: "dashboard",
           title: "Dashboard",
         },
-        "divider",
-        {
-          icon: "Video",
-          pageName: "meetings",
-          title: "Meeting",
-        },
-        {
-          icon: "List",
-          pageName: "leave-request",
-          title: "Leave Request",
-        },
-        {
-          icon: "Calendar",
-          pageName: "events",
-          title: "Events",
-        },
-        {
-          icon: "Volume2",
-          pageName: "notice-board",
-          title: "Notice Board",
-        },
-        {
-          icon: "Calendar",
-          pageName: "calendar",
-          title: "Holidays",
-        },
-        {
-          icon: "Flag",
-          pageName: "reports",
-          title: "Report",
-        },
-        {
-          icon: "MessagesSquare",
-          pageName: "calendar",
-          title: "Feedbacks",
-        },
-        "divider",
         {
           icon: "GraduationCap",
-          pageName: "academics",
+          pageName: "ecommerce",
           title: "Academics",
           subMenu: [
             {
-              icon: "BoxIcon",
-              pageName: "course-types",
-              title: "Course Types",
+              icon: "Activity",
+              pageName: "categories",
+              title: "Categories",
             },
             {
-              icon: "BriefcaseIcon",
-              pageName: "courses",
-              title: "Courses",
+              icon: "Activity",
+              pageName: "add-product",
+              title: "Add Product",
             },
             {
-              icon: "ListIcon",
-              pageName: "batches",
-              title: "Batches",
-              
-            },
-            {
-              icon: "ListIcon",
-              pageName: "standards",
-              title: "Standards",
-            },
-            {
-              icon: "BookIcon",
-              pageName: "subjects",
-              title: "Subjects",
-            },
-            {
-              icon: "Banknote",
-              pageName: "fee-management",
-              title: "Fee",
+              icon: "Activity",
+              pageName: "products",
+              title: "Products",
               subMenu: [
                 {
-                  icon: "ListIcon",
-                  pageName: "fee-types",
-                  title: "Fee Types",
+                  icon: "Zap",
+                  pageName: "product-list",
+                  title: "Product List",
                 },
                 {
-                  icon: "LayersIcon",
-                  pageName: "fee-structures",
-                  title: "Fee Structure",
+                  icon: "Zap",
+                  pageName: "product-grid",
+                  title: "Product Grid",
                 },
               ],
             },
             {
-              icon: "ActivityIcon",
-              pageName: "SettingManagement",
-              title: "Inquiry",
+              icon: "Activity",
+              pageName: "transactions",
+              title: "Transactions",
               subMenu: [
                 {
-                  icon: "LayersIcon",
-                  pageName: "inquiry-followup-types",
-                  title: "Inquiry Sources",
+                  icon: "Zap",
+                  pageName: "transaction-list",
+                  title: "Transaction List",
                 },
                 {
-                  icon: "LayersIcon",
-                  pageName: "inquiry-statuses",
-                  title: "Inquiry Status",
-                },
-                {
-                  icon: "LayersIcon",
+                  icon: "Zap",
                   pageName: "transaction-detail",
-                  title: "Inquiry Follow-up Types",
+                  title: "Transaction Detail",
                 },
               ],
+            },
+            {
+              icon: "Activity",
+              pageName: "sellers",
+              title: "Sellers",
+              subMenu: [
+                {
+                  icon: "Zap",
+                  pageName: "seller-list",
+                  title: "Seller List",
+                },
+                {
+                  icon: "Zap",
+                  pageName: "seller-detail",
+                  title: "Seller Detail",
+                },
+              ],
+            },
+            {
+              icon: "Activity",
+              pageName: "reviews",
+              title: "Reviews",
             },
           ],
-        },
-        {
-          icon: "SettingsIcon",
-          pageName: "SettingIndex",
-          title: "Control Panel",
-        },
-        {
-          icon: "BadgeIndianRupee",
-          pageName: "inbox",
-          title: "Fees",
         },
         {
           icon: "Inbox",
           pageName: "inbox",
-          title: "Inquiries",
-        },
-        
-        {
-          icon: "KeyIcon",
-          pageName: "auth-management",
-          title: "Auth Management",
-          subMenu: [
-            {
-              icon: "SettingsIcon",
-              pageName: "Roles",
-              title: "Roles",
-            },
-            {
-              icon: "KeyIcon",
-              pageName: "permission-index",
-              title: "Permissions",
-            },
-          ],
-        },        
-        "divider",
-        {
-          icon: "UsersRoundIcon",
-          pageName: "staffs",
-          title: "Executives",
+          title: "Inbox",
         },
         {
-          icon: "UsersIcon",
-          pageName: "students",
-          title: "Students",
+          icon: "HardDrive",
+          pageName: "file-manager",
+          title: "File Manager",
         },
         {
-          icon: "UsersIcon",
-          pageName: "parents",
-          title: "Parents",
+          icon: "CreditCard",
+          pageName: "point-of-sale",
+          title: "Point of Sale",
         },
-        "divider",
         {
           icon: "MessageSquare",
           pageName: "chat",
-          title: "Exams",
-          subMenu: [
-          {
-            icon: "BriefcaseIcon",
-            pageName: "Questionnaire",
-            title: "Questionnaire",
-            subMenu: [
-                {
-                    icon: "DatabaseIcon",
-                    pageName: "Questions",
-                    title: "Questions",
-                },
-                {
-                    icon: "ListIcon",
-                    pageName: "Templates",
-                    title: "Question Paper Formats",
-                },
-                {
-                    icon: "ArchiveIcon",
-                    pageName: "GeneratedQuestionPapers",
-                    title: "Generated Question Papers",
-                },
-            ]
-          },
-        ],
+          title: "Chat",
         },
-        "divider",        
+        {
+          icon: "FileText",
+          pageName: "post",
+          title: "Post",
+        },
+        {
+          icon: "Calendar",
+          pageName: "calendar",
+          title: "Calendar",
+        },
+        "divider",
+        {
+          icon: "Edit",
+          pageName: "crud",
+          title: "Crud",
+          subMenu: [
+            {
+              icon: "Activity",
+              pageName: "crud-data-list",
+              title: "Data List",
+            },
+            {
+              icon: "Activity",
+              pageName: "crud-form",
+              title: "Form",
+            },
+          ],
+        },
+        {
+          icon: "Users",
+          pageName: "users",
+          title: "Users",
+          subMenu: [
+            {
+              icon: "Activity",
+              pageName: "users-layout-1",
+              title: "Layout 1",
+            },
+            {
+              icon: "Activity",
+              pageName: "users-layout-2",
+              title: "Layout 2",
+            },
+            {
+              icon: "Activity",
+              pageName: "users-layout-3",
+              title: "Layout 3",
+            },
+          ],
+        },
+        {
+          icon: "Trello",
+          pageName: "profile",
+          title: "Profile",
+          subMenu: [
+            {
+              icon: "Activity",
+              pageName: "profile-overview-1",
+              title: "Overview 1",
+            },
+            {
+              icon: "Activity",
+              pageName: "profile-overview-2",
+              title: "Overview 2",
+            },
+            {
+              icon: "Activity",
+              pageName: "profile-overview-3",
+              title: "Overview 3",
+            },
+          ],
+        },
+        {
+          icon: "Layout",
+          pageName: "layout",
+          title: "Pages",
+          subMenu: [
+            {
+              icon: "Activity",
+              pageName: "wizards",
+              title: "Wizards",
+              subMenu: [
+                {
+                  icon: "Zap",
+                  pageName: "wizard-layout-1",
+                  title: "Layout 1",
+                },
+                {
+                  icon: "Zap",
+                  pageName: "wizard-layout-2",
+                  title: "Layout 2",
+                },
+                {
+                  icon: "Zap",
+                  pageName: "wizard-layout-3",
+                  title: "Layout 3",
+                },
+              ],
+            },
+            {
+              icon: "Activity",
+              pageName: "blog",
+              title: "Blog",
+              subMenu: [
+                {
+                  icon: "Zap",
+                  pageName: "blog-layout-1",
+                  title: "Layout 1",
+                },
+                {
+                  icon: "Zap",
+                  pageName: "blog-layout-2",
+                  title: "Layout 2",
+                },
+                {
+                  icon: "Zap",
+                  pageName: "blog-layout-3",
+                  title: "Layout 3",
+                },
+              ],
+            },
+            {
+              icon: "Activity",
+              pageName: "pricing",
+              title: "Pricing",
+              subMenu: [
+                {
+                  icon: "Zap",
+                  pageName: "pricing-layout-1",
+                  title: "Layout 1",
+                },
+                {
+                  icon: "Zap",
+                  pageName: "pricing-layout-2",
+                  title: "Layout 2",
+                },
+              ],
+            },
+            {
+              icon: "Activity",
+              pageName: "invoice",
+              title: "Invoice",
+              subMenu: [
+                {
+                  icon: "Zap",
+                  pageName: "invoice-layout-1",
+                  title: "Layout 1",
+                },
+                {
+                  icon: "Zap",
+                  pageName: "invoice-layout-2",
+                  title: "Layout 2",
+                },
+              ],
+            },
+            {
+              icon: "Activity",
+              pageName: "faq",
+              title: "FAQ",
+              subMenu: [
+                {
+                  icon: "Zap",
+                  pageName: "faq-layout-1",
+                  title: "Layout 1",
+                },
+                {
+                  icon: "Zap",
+                  pageName: "faq-layout-2",
+                  title: "Layout 2",
+                },
+                {
+                  icon: "Zap",
+                  pageName: "faq-layout-3",
+                  title: "Layout 3",
+                },
+              ],
+            },
+            {
+              icon: "Activity",
+              pageName: "login",
+              title: "Login",
+            },
+            {
+              icon: "Activity",
+              pageName: "register",
+              title: "Register",
+            },
+            {
+              icon: "Activity",
+              pageName: "error-page",
+              title: "Error Page",
+            },
+            {
+              icon: "Activity",
+              pageName: "update-profile",
+              title: "Update profile",
+            },
+            {
+              icon: "Activity",
+              pageName: "change-password",
+              title: "Change Password",
+            },
+          ],
+        },
+        "divider",
+        {
+          icon: "Inbox",
+          pageName: "components",
+          title: "Components",
+          subMenu: [
+            {
+              icon: "Activity",
+              pageName: "table",
+              title: "Table",
+              subMenu: [
+                {
+                  icon: "Zap",
+                  pageName: "regular-table",
+                  title: "Regular Table",
+                },
+                {
+                  icon: "Zap",
+                  pageName: "tabulator",
+                  title: "Tabulator",
+                },
+              ],
+            },
+            {
+              icon: "Activity",
+              pageName: "overlay",
+              title: "Overlay",
+              subMenu: [
+                {
+                  icon: "Zap",
+                  pageName: "modal",
+                  title: "Modal",
+                },
+                {
+                  icon: "Zap",
+                  pageName: "slide-over",
+                  title: "Slide Over",
+                },
+                {
+                  icon: "Zap",
+                  pageName: "notification",
+                  title: "Notification",
+                },
+              ],
+            },
+            {
+              icon: "Zap",
+              pageName: "tab",
+              title: "Tab",
+            },
+            {
+              icon: "Zap",
+              pageName: "accordion",
+              title: "Accordion",
+            },
+            {
+              icon: "Zap",
+              pageName: "button",
+              title: "Button",
+            },
+            {
+              icon: "Zap",
+              pageName: "alert",
+              title: "Alert",
+            },
+            {
+              icon: "Zap",
+              pageName: "progress-bar",
+              title: "Progress Bar",
+            },
+            {
+              icon: "Zap",
+              pageName: "tooltip",
+              title: "Tooltip",
+            },
+            {
+              icon: "Zap",
+              pageName: "dropdown",
+              title: "Dropdown",
+            },
+            {
+              icon: "Zap",
+              pageName: "typography",
+              title: "Typography",
+            },
+            {
+              icon: "Zap",
+              pageName: "icon",
+              title: "Icon",
+            },
+            {
+              icon: "Zap",
+              pageName: "loading-icon",
+              title: "Loading ",
+            },
+          ],
+        },
+        {
+          icon: "Sidebar",
+          pageName: "forms",
+          title: "Forms",
+          subMenu: [
+            {
+              icon: "Activity",
+              pageName: "regular-form",
+              title: "Regular Form",
+            },
+            {
+              icon: "Activity",
+              pageName: "datepicker",
+              title: "Datepicker",
+            },
+            {
+              icon: "Activity",
+              pageName: "tom-select",
+              title: "Tom Select",
+            },
+            {
+              icon: "Activity",
+              pageName: "file-upload",
+              title: "File Upload",
+            },
+            {
+              icon: "Activity",
+              pageName: "wysiwyg-editor",
+              title: "Wysiwyg Editor",
+            },
+            {
+              icon: "Activity",
+              pageName: "validation",
+              title: "Validation",
+            },
+          ],
+        },
+        {
+          icon: "HardDrive",
+          pageName: "widgets",
+          title: "Widgets",
+          subMenu: [
+            {
+              icon: "Activity",
+              pageName: "chart",
+              title: "Chart",
+            },
+            {
+              icon: "Activity",
+              pageName: "slider",
+              title: "Slider",
+            },
+            {
+              icon: "Activity",
+              pageName: "image-zoom",
+              title: "Image Zoom",
+            },
+          ],
+        },
       ];
 } else if (userRole == 'director') {
 
