@@ -33,7 +33,7 @@ class BatchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function create(BatchRequest $request)
+    public function store(BatchRequest $request)
     {
         if (!$request->validated()) {
             return false;

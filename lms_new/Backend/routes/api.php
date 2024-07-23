@@ -25,6 +25,7 @@ use App\Models\InquirySource;
 use App\Models\InquiryStatus;
 use App\Models\User;
 use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\DashboardController;
 //
 use App\Http\Controllers\Api\V1\PermissionController;
 use App\Http\Controllers\Api\V1\RoleController;
@@ -99,6 +100,7 @@ Route::group(['middleware' => ['jwt.auth', \App\Http\Middleware\DatabaseSwitcher
     Route::post('v1/logout', [AuthController::class, 'logout']);
 
     //
+    Route::get('v1/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('v1/permissions/modules', [PermissionController::class, 'modules'])->name('permissions.modules');
     Route::resource('v1/permissions', PermissionController::class);
     Route::resource('v1/roles', RoleController::class);
