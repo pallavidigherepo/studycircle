@@ -1,6 +1,6 @@
 import { type Menu } from "@/stores/menu";
 import _ from 'lodash';
-import { computed } from "vue";
+import { computed, ref } from "vue";
 /**
  * NOTE: We have made changes according to the role of logged in user. 
  * 
@@ -9,7 +9,11 @@ import { computed } from "vue";
  */
 let user = JSON.parse(localStorage.getItem("USER") ?? "{}");
 
-const userRole = _.kebabCase(user.roles[0].name);
+const userRole = ref('');
+if (user.roles) {
+  userRole.value = _.kebabCase(user.roles[0].name);
+}
+
 
 let menu: Array<Menu | "divider"> = [
     {
@@ -19,7 +23,7 @@ let menu: Array<Menu | "divider"> = [
     },
   ];
 
-if (userRole == 'super-admin') {
+if (userRole.value == 'super-admin') {
     menu = [
         {
           icon: "Home",
@@ -216,24 +220,26 @@ if (userRole == 'super-admin') {
         },
         "divider",        
       ];
-} else if (userRole == 'director') {
+} else if (userRole.value == 'director') {
 
-} else if (userRole == 'principle') {
+} else if (userRole.value == 'principle') {
 
-} else if (userRole == 'teacher') {
+} else if (userRole.value == 'teacher') {
 
-} else if (userRole == 'clerk') {
+} else if (userRole.value == 'clerk') {
 
-} else if (userRole == 'admin') {
+} else if (userRole.value == 'admin') {
 
-} else if (userRole == 'accountant') {
+} else if (userRole.value == 'accountant') {
 
-} else if (userRole == 'peon') {
+} else if (userRole.value == 'peon') {
 
-} else if (userRole == 'student') {
+} else if (userRole.value == 'student') {
 
-} else if (userRole == 'parent') {
+} else if (userRole.value == 'parent') {
 
+} else {
+  menu = [];
 }
 
 export default menu;
