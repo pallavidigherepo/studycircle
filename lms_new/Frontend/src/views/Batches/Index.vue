@@ -8,6 +8,8 @@ import store from "@/stores";
 
 import { useI18n } from "vue-i18n";
 
+import DataTable from "@/components/DataTable/Index.vue";
+
 // To show/hide modal
 
 const options = {
@@ -124,7 +126,7 @@ function deleteI(item) {
 
                 <div class="intro-y box p-5">
                     <div class="overflow-x-auto scrollbar-hidden">
-                        <Datatable
+                        <DataTable
                             module="batches"
                             :importExportOptions="options"
                             @editItem="edit"
