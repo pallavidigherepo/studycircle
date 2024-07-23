@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import _ from "lodash";
-import { ref, provide } from "vue";
+import { ref, provide, onMounted } from "vue";
 import fakerData from "@/utils/faker";
 import Button from "@/components/Base/Button";
 import Pagination from "@/components/Base/Pagination";
@@ -19,6 +19,38 @@ import SimpleLineChart1 from "@/components/SimpleLineChart1";
 import LeafletMap from "@/components/LeafletMap";
 import { Menu } from "@/components/Base/Headless";
 import Table from "@/components/Base/Table";
+import axiosClient from "@/axios";
+
+import GeneralReport from "@/components/Dashboard/GeneralReport.vue";
+const message = ref();
+const isErrored = ref();
+const loading = ref(false);
+const response = ref();
+
+onMounted(() => {
+  fetch();
+});
+
+async function fetch() {
+  loading.value = true;
+  try {
+    const result = await axiosClient.get(`/dashboard`);
+
+    if (result.status != 200) {
+      const error = new Error("Failed to fetch dashboard information.");
+      throw error;
+    }
+
+    loading.value = false;
+    response.value = JSON.parse(JSON.stringify(result.data));
+    //    setEvents(response.value);
+  } catch (e) {
+    isErrored.value = true;
+    message.value = e;
+  } finally {
+    loading.value = false;
+  }
+}
 
 const salesReportFilter = ref<string>("");
 const importantNotesRef = ref<TinySliderElement>();
@@ -36,6 +68,7 @@ const nextImportantNotes = () => {
 </script>
 
 <template>
+<template v-if="response">
   <div class="grid grid-cols-12 gap-6">
     <div class="col-span-12 2xl:col-span-9">
       <div class="grid grid-cols-12 gap-6">
@@ -47,132 +80,11 @@ const nextImportantNotes = () => {
               <Lucide icon="RefreshCcw" class="w-4 h-4 mr-3" /> Reload Data
             </a>
           </div>
-          <div class="grid grid-cols-12 gap-6 mt-5">
-            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-              <div
-                :class="[
-                  'relative zoom-in',
-                  'before:box before:absolute before:inset-x-3 before:mt-3 before:h-full before:bg-slate-50 before:content-[\'\']',
-                ]"
-              >
-                <div class="p-5 box">
-                  <div class="flex">
-                    <Lucide
-                      icon="ShoppingCart"
-                      class="w-[28px] h-[28px] text-primary"
-                    />
-                    <div class="ml-auto">
-                      <Tippy
-                        as="div"
-                        class="cursor-pointer bg-success py-[3px] flex rounded-full text-white text-xs pl-2 pr-1 items-center font-medium"
-                        content="33% Higher than last month"
-                      >
-                        33%
-                        <Lucide icon="ChevronUp" class="w-4 h-4 ml-0.5" />
-                      </Tippy>
-                    </div>
-                  </div>
-                  <div class="mt-6 text-3xl font-medium leading-8">4.710</div>
-                  <div class="mt-1 text-base text-slate-500">Item Sales</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-              <div
-                :class="[
-                  'relative zoom-in',
-                  'before:box before:absolute before:inset-x-3 before:mt-3 before:h-full before:bg-slate-50 before:content-[\'\']',
-                ]"
-              >
-                <div class="p-5 box">
-                  <div class="flex">
-                    <Lucide
-                      icon="CreditCard"
-                      class="w-[28px] h-[28px] text-pending"
-                    />
-                    <div class="ml-auto">
-                      <Tippy
-                        as="div"
-                        class="cursor-pointer bg-danger py-[3px] flex rounded-full text-white text-xs pl-2 pr-1 items-center font-medium"
-                        content="2% Lower than last month"
-                      >
-                        2%
-                        <Lucide icon="ChevronDown" class="w-4 h-4 ml-0.5" />
-                      </Tippy>
-                    </div>
-                  </div>
-                  <div class="mt-6 text-3xl font-medium leading-8">3.721</div>
-                  <div class="mt-1 text-base text-slate-500">New Orders</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-              <div
-                :class="[
-                  'relative zoom-in',
-                  'before:box before:absolute before:inset-x-3 before:mt-3 before:h-full before:bg-slate-50 before:content-[\'\']',
-                ]"
-              >
-                <div class="p-5 box">
-                  <div class="flex">
-                    <Lucide
-                      icon="Monitor"
-                      class="w-[28px] h-[28px] text-warning"
-                    />
-                    <div class="ml-auto">
-                      <Tippy
-                        as="div"
-                        class="cursor-pointer bg-success py-[3px] flex rounded-full text-white text-xs pl-2 pr-1 items-center font-medium"
-                        content="12% Higher than last month"
-                      >
-                        12%
-                        <Lucide icon="ChevronUp" class="w-4 h-4 ml-0.5" />
-                      </Tippy>
-                    </div>
-                  </div>
-                  <div class="mt-6 text-3xl font-medium leading-8">2.149</div>
-                  <div class="mt-1 text-base text-slate-500">
-                    Total Products
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-              <div
-                :class="[
-                  'relative zoom-in',
-                  'before:box before:absolute before:inset-x-3 before:mt-3 before:h-full before:bg-slate-50 before:content-[\'\']',
-                ]"
-              >
-                <div class="p-5 box">
-                  <div class="flex">
-                    <Lucide
-                      icon="User"
-                      class="w-[28px] h-[28px] text-success"
-                    />
-                    <div class="ml-auto">
-                      <Tippy
-                        as="div"
-                        class="cursor-pointer bg-success py-[3px] flex rounded-full text-white text-xs pl-2 pr-1 items-center font-medium"
-                        content="22% Higher than last month"
-                      >
-                        22%
-                        <Lucide icon="ChevronUp" class="w-4 h-4 ml-0.5" />
-                      </Tippy>
-                    </div>
-                  </div>
-                  <div class="mt-6 text-3xl font-medium leading-8">152.040</div>
-                  <div class="mt-1 text-base text-slate-500">
-                    Unique Visitor
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <GeneralReport :response="response" ></GeneralReport>
         </div>
         <!-- END: General Report -->
         <!-- BEGIN: Sales Report -->
-        <div class="col-span-12 mt-8 lg:col-span-6">
+        <!-- <div class="col-span-12 mt-8 lg:col-span-6">
           <div class="items-center block h-10 intro-y sm:flex">
             <h2 class="mr-5 text-lg font-medium truncate">Sales Report</h2>
             <div class="relative mt-3 sm:ml-auto sm:mt-0 text-slate-500">
@@ -248,10 +160,10 @@ const nextImportantNotes = () => {
               <ReportLineChart :height="275" class="mt-6 -mb-6" />
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- END: Sales Report -->
         <!-- BEGIN: Weekly Top Seller -->
-        <div class="col-span-12 mt-8 sm:col-span-6 lg:col-span-3">
+        <!-- <div class="col-span-12 mt-8 sm:col-span-6 lg:col-span-3">
           <div class="flex items-center h-10 intro-y">
             <h2 class="mr-5 text-lg font-medium truncate">Weekly Top Seller</h2>
             <a href="" class="ml-auto truncate text-primary"> Show More </a>
@@ -278,10 +190,10 @@ const nextImportantNotes = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- END: Weekly Top Seller -->
         <!-- BEGIN: Sales Report -->
-        <div class="col-span-12 mt-8 sm:col-span-6 lg:col-span-3">
+        <!-- <div class="col-span-12 mt-8 sm:col-span-6 lg:col-span-3">
           <div class="flex items-center h-10 intro-y">
             <h2 class="mr-5 text-lg font-medium truncate">Sales Report</h2>
             <a href="" class="ml-auto truncate text-primary"> Show More </a>
@@ -308,10 +220,10 @@ const nextImportantNotes = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- END: Sales Report -->
         <!-- BEGIN: Official Store -->
-        <div class="col-span-12 mt-6 xl:col-span-8">
+        <!-- <div class="col-span-12 mt-6 xl:col-span-8">
           <div class="items-center block h-10 intro-y sm:flex">
             <h2 class="mr-5 text-lg font-medium truncate">Official Store</h2>
             <div class="relative mt-3 sm:ml-auto sm:mt-0 text-slate-500">
@@ -333,10 +245,10 @@ const nextImportantNotes = () => {
             </div>
             <LeafletMap class="h-[310px] mt-5 rounded-md bg-slate-200" />
           </div>
-        </div>
+        </div> -->
         <!-- END: Official Store -->
         <!-- BEGIN: Weekly Best Sellers -->
-        <div class="col-span-12 mt-6 xl:col-span-4">
+        <!-- <div class="col-span-12 mt-6 xl:col-span-4">
           <div class="flex items-center h-10 intro-y">
             <h2 class="mr-5 text-lg font-medium truncate">
               Weekly Best Sellers
@@ -377,10 +289,10 @@ const nextImportantNotes = () => {
               View More
             </a>
           </div>
-        </div>
+        </div> -->
         <!-- END: Weekly Best Sellers -->
         <!-- BEGIN: General Report -->
-        <div class="grid grid-cols-12 col-span-12 gap-6 mt-8">
+        <!-- <div class="grid grid-cols-12 col-span-12 gap-6 mt-8">
           <div class="col-span-12 sm:col-span-6 2xl:col-span-3 intro-y">
             <div class="p-5 box zoom-in">
               <div class="flex items-center">
@@ -449,10 +361,10 @@ const nextImportantNotes = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- END: General Report -->
         <!-- BEGIN: Weekly Top Products -->
-        <div class="col-span-12 mt-6">
+        <!-- <div class="col-span-12 mt-6">
           <div class="items-center block h-10 intro-y sm:flex">
             <h2 class="mr-5 text-lg font-medium truncate">
               Weekly Top Products
@@ -613,14 +525,14 @@ const nextImportantNotes = () => {
               <option>50</option>
             </FormSelect>
           </div>
-        </div>
+        </div> -->
         <!-- END: Weekly Top Products -->
       </div>
     </div>
-    <div class="col-span-12 2xl:col-span-3">
+    <!-- <div class="col-span-12 2xl:col-span-3">
       <div class="pb-10 -mb-10 2xl:border-l">
         <div class="grid grid-cols-12 2xl:pl-6 gap-x-6 2xl:gap-x-0 gap-y-6">
-          <!-- BEGIN: Transactions -->
+          
           <div
             class="col-span-12 mt-3 md:col-span-6 xl:col-span-4 2xl:col-span-12 2xl:mt-8"
           >
@@ -666,8 +578,7 @@ const nextImportantNotes = () => {
               </a>
             </div>
           </div>
-          <!-- END: Transactions -->
-          <!-- BEGIN: Recent Activities -->
+          
           <div
             class="col-span-12 mt-3 md:col-span-6 xl:col-span-4 2xl:col-span-12"
           >
@@ -826,8 +737,7 @@ const nextImportantNotes = () => {
               </div>
             </div>
           </div>
-          <!-- END: Recent Activities -->
-          <!-- BEGIN: Important Notes -->
+          
           <div
             class="col-span-12 mt-3 md:col-span-6 xl:col-span-12 xl:col-start-1 xl:row-start-1 2xl:col-start-auto 2xl:row-start-auto"
           >
@@ -940,8 +850,7 @@ const nextImportantNotes = () => {
               </div>
             </div>
           </div>
-          <!-- END: Important Notes -->
-          <!-- BEGIN: Schedules -->
+          
           <div
             class="col-span-12 mt-3 md:col-span-6 xl:col-span-4 2xl:col-span-12 xl:col-start-1 xl:row-start-2 2xl:col-start-auto 2xl:row-start-auto"
           >
@@ -1051,9 +960,11 @@ const nextImportantNotes = () => {
               </div>
             </div>
           </div>
-          <!-- END: Schedules -->
+         
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
+</template>
+
 </template>
