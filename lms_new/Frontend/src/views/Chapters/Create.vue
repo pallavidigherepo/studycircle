@@ -227,7 +227,7 @@ import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 import { useI18n } from "vue-i18n";
 import axiosClient from "@/axios";
-import Editor from "@tinymce/tinymce-vue";
+// import Editor from "@tinymce/tinymce-vue";
 
 const submitted = ref(false);
 

@@ -13,7 +13,7 @@
 
           <div class="intro-y box p-5">
             <div class="overflow-x-auto scrollbar-hidden">
-              <Datatable
+              <DataTable
                 module="subjects"
                 :importExportOptions="options"
                 @showItem="show"
@@ -38,6 +38,7 @@
 import { ref, onMounted, computed, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRoute, useRouter } from "vue-router";
+import DataTable from "@/components/DataTable/Index.vue";
 import store from "@/stores";
 
 const route = useRoute();

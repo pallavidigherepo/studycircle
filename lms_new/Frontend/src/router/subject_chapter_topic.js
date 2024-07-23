@@ -19,7 +19,8 @@ const subjectChapterTopicRoutes = [
         name: "Subjects",
         component: Subjects,
         meta: {
-            parent: 'Subjects'
+            parent: 'Subjects',
+            requiresAuth: true,
         },
         children: [{
                 path: '/subjects/create',

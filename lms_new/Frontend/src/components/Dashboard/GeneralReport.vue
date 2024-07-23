@@ -22,6 +22,7 @@ const props = defineProps({
         <div class="col-span-12" >
             <div class="grid grid-cols-12 gap-6 mt-5">
             <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+              <router-link to="/users">
               <div
                 :class="[
                   'relative zoom-in',
@@ -51,8 +52,10 @@ const props = defineProps({
                   <div class="mt-1 text-base text-slate-500">No.of Users</div>
                 </div>
               </div>
+            </router-link>
             </div>
             <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+              <router-link to="/students">
               <div
                 :class="[
                   'relative zoom-in',
@@ -82,8 +85,10 @@ const props = defineProps({
                   <div class="mt-1 text-base text-slate-500">No.of Students</div>
                 </div>
               </div>
+            </router-link>
             </div>
             <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+              <router-link to="/courses">
               <div
                 :class="[
                   'relative zoom-in',
@@ -115,8 +120,10 @@ const props = defineProps({
                   </div>
                 </div>
               </div>
+            </router-link>
             </div>
             <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+            <router-link to="/subjects">
               <div
                 :class="[
                   'relative zoom-in',
@@ -148,6 +155,7 @@ const props = defineProps({
                   </div>
                 </div>
               </div>
+              </router-link>
             </div>
             </div>
         </div>

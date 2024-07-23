@@ -95,7 +95,7 @@ if (userRole.value == 'super-admin') {
             },
             {
               icon: "BookIcon",
-              pageName: "subjects",
+              pageName: "Subjects",
               title: "Subjects",
             },
             {

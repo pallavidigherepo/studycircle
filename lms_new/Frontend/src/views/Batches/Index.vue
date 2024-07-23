@@ -7,6 +7,7 @@ import { required, helpers } from "@vuelidate/validators";
 import store from "@/stores";
 
 import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 
 import DataTable from "@/components/DataTable/Index.vue";
 
@@ -16,7 +17,7 @@ const options = {
     modelName: "Batch",
 };
 
-const { t } = useI18n();
+
 
 // End of info
 

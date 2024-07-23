@@ -7,6 +7,7 @@ import Profile from "@/views/Auth/Profile.vue";
 
 import authRoutes from "./auth";
 import masterRoutes from "./master";
+import subjectChapterTopicRoutes from "./subject_chapter_topic";
 
 const routes = [
   {
@@ -22,8 +23,9 @@ const routes = [
           // requiresVerification: true, 
         },
       },      
-      ...authRoutes,
+      
       ...masterRoutes,
+      ...subjectChapterTopicRoutes,
       {
         path: "/profile",
         name: "Profile",
@@ -45,6 +47,7 @@ const routes = [
       },
     ],
   },
+  ...authRoutes,
   {
     path: "/error-page",
     name: "error-page",
