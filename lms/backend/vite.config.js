@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     vue(),
     i18nResources({
-      path: path.resolve(__dirname, "src/views"),
+      path: path.resolve(__dirname, "./src/views"),
     }),
   ],
   resolve: {
