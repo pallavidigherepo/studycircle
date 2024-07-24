@@ -15,7 +15,7 @@
 import store from "@/stores";
 import {ref, computed, onMounted} from "vue";
 import {useRoute, useRouter} from "vue-router";
-import Preview from "@/components/GeneratedQuestionPaper/Preview.vue";
+// import Preview from "@/components/GeneratedQuestionPaper/Preview.vue";
 
 import {useI18n} from "vue-i18n";
 

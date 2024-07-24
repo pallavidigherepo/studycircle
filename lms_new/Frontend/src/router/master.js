@@ -6,6 +6,7 @@ import SettingIndex from '@/views/Settings/Index.vue';
 import Batches from '@/views/Batches/Index.vue';
 import Standards from '@/views/Standards/Index.vue';
 import Boards from '@/views/Boards/Index.vue';
+import Attendance from '@/views/Attendance/Index.vue';
 
 const masterRoutes = [
     {
@@ -70,6 +71,15 @@ const masterRoutes = [
         path: '/batches',
         name: "batches",
         component: Batches,
+        meta: { 
+            requiresAuth: true,
+            // requiresVerification: true, 
+          },
+    },
+    {
+        path: '/attendance',
+        name: "attendance",
+        component: Attendance,
         meta: { 
             requiresAuth: true,
             // requiresVerification: true, 

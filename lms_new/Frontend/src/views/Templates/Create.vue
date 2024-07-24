@@ -519,8 +519,8 @@ import {useVuelidate} from "@vuelidate/core";
 import {helpers, minLength, minValue, numeric, required, requiredIf} from "@vuelidate/validators";
 import {useI18n} from "vue-i18n";
 import axiosClient from "@/axios";
-import Editor from "@tinymce/tinymce-vue";
-import SectionEditor from "@/components/Editor/Section.vue";
+// import Editor from "@tinymce/tinymce-vue";
+// import SectionEditor from "@/components/Editor/Section.vue";
 
 const route = useRoute();
 const router = useRouter();

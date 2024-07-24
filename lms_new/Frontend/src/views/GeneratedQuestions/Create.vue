@@ -573,7 +573,7 @@ import store from '@/stores';
 import axiosClient from "@/axios";
 import {useVuelidate} from "@vuelidate/core";
 import {helpers, minLength, minValue, numeric, required, requiredIf} from "@vuelidate/validators";
-import Preview from "@/components/GeneratedQuestionPaper/Preview.vue";
+// import Preview from "@/components/GeneratedQuestionPaper/Preview.vue";
 
 const route = useRoute();
 const router = useRouter();

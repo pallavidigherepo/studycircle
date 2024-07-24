@@ -99,18 +99,23 @@ if (userRole.value == 'super-admin') {
               title: "Subjects",
             },
             {
+              icon: "BoxIcon",
+              pageName: "attendance",
+              title: "Attendance",
+            },
+            {
               icon: "Banknote",
               pageName: "fee-management",
               title: "Fee",
               subMenu: [
                 {
                   icon: "ListIcon",
-                  pageName: "fee-types",
+                  pageName: "FeeTypes",
                   title: "Fee Types",
                 },
                 {
                   icon: "LayersIcon",
-                  pageName: "fee-structures",
+                  pageName: "FeeStructures",
                   title: "Fee Structure",
                 },
               ],
@@ -122,17 +127,17 @@ if (userRole.value == 'super-admin') {
               subMenu: [
                 {
                   icon: "LayersIcon",
-                  pageName: "inquiry-followup-types",
+                  pageName: "InquirySources",
                   title: "Inquiry Sources",
                 },
                 {
                   icon: "LayersIcon",
-                  pageName: "inquiry-statuses",
+                  pageName: "InquiryStatuses",
                   title: "Inquiry Status",
                 },
                 {
                   icon: "LayersIcon",
-                  pageName: "transaction-detail",
+                  pageName: "InquiryFollowupTypes",
                   title: "Inquiry Follow-up Types",
                 },
               ],
@@ -180,12 +185,12 @@ if (userRole.value == 'super-admin') {
         },
         {
           icon: "UsersIcon",
-          pageName: "students",
+          pageName: "Students",
           title: "Students",
         },
         {
           icon: "UsersIcon",
-          pageName: "parents",
+          pageName: "Parents",
           title: "Parents",
         },
         "divider",

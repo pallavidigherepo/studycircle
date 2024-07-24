@@ -236,7 +236,7 @@ import {useRoute, useRouter} from "vue-router";
 import {useI18n} from "vue-i18n";
 import store from "@/stores";
 import axiosClient from "@/axios";
-import InquiryFollowups from "@/components/Inquiries/Followups.vue";
+// import InquiryFollowups from "@/components/Inquiries/Followups.vue";
 
 const route = useRoute();
 const router = useRouter();

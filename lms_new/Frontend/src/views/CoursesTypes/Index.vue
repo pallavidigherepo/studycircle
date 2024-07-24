@@ -12,7 +12,7 @@
 
         <div class="intro-y box p-5">
           <div class="overflow-x-auto scrollbar-hidden">
-            <Datatable
+            <DataTable
               module="coursesTypes"
               :importExportOptions="options"
               @editItem="edit"
@@ -111,11 +111,12 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
 
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
+import DataTable from "@/components/DataTable/Index.vue";
 
 import store from "@/stores";
 

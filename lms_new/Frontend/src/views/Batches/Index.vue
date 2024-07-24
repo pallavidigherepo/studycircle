@@ -11,6 +11,7 @@ const { t } = useI18n();
 
 import DataTable from "@/components/DataTable/Index.vue";
 
+
 // To show/hide modal
 
 const options = {
@@ -134,7 +135,9 @@ function deleteI(item) {
                             @deleteItem="deleteI"
                         />
                     </div>
+                    
                 </div>
+                
                 <!-- END: HTML Table Data -->
             </div>
             <!-- END: Post Content -->

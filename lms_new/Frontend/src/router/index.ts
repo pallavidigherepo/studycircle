@@ -8,6 +8,12 @@ import Profile from "@/views/Auth/Profile.vue";
 import authRoutes from "./auth";
 import masterRoutes from "./master";
 import subjectChapterTopicRoutes from "./subject_chapter_topic";
+import studentRoute from "./students";
+import parentRoutes from "./parents";
+import questionRoutes from "./questions";
+import questionnaireTemplateRoutes from "./questionnaire_template";
+import inquiryRoutes from "./inquiries";
+import feeRoutes from "./fees";
 
 const routes = [
   {
@@ -26,6 +32,13 @@ const routes = [
       
       ...masterRoutes,
       ...subjectChapterTopicRoutes,
+      ...studentRoute,
+      ...parentRoutes,
+      ...questionRoutes,
+      ...questionnaireTemplateRoutes,
+      ...inquiryRoutes,
+      ...feeRoutes,
+      
       {
         path: "/profile",
         name: "Profile",

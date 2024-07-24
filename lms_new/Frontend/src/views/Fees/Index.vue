@@ -805,7 +805,7 @@ import store from "@/stores";
 import {useI18n} from "vue-i18n";
 import _ from "lodash";
 import axiosClient from "@/axios";
-import {AccordionGroup} from "@/global-components/accordion";
+// import {AccordionGroup} from "@/global-components/accordion";
 
 // To show/hide modal
 const showPayNowPreview = ref(false);

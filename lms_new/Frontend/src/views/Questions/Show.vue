@@ -401,7 +401,7 @@ import { ref, computed, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import { useI18n } from "vue-i18n";
-import {Tab} from "../../global-components/tab";
+// import {Tab} from "../../global-components/tab";
 
 const route = useRoute();
 const router = useRouter();

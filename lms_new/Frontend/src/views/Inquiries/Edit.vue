@@ -521,7 +521,7 @@ import {email, helpers, minLength, maxLength, numeric, required} from "@vuelidat
 import {useVuelidate} from "@vuelidate/core";
 import store from "@/stores";
 import axiosClient from "@/axios";
-import InquiryFollowups from "@/components/Inquiries/Followups.vue";
+// import InquiryFollowups from "@/components/Inquiries/Followups.vue";
 
 const route = useRoute();
 const router = useRouter();

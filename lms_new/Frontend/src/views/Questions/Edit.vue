@@ -645,9 +645,9 @@ import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 import { useI18n } from "vue-i18n";
 import axiosClient from "@/axios";
-import Editor from "@tinymce/tinymce-vue";
-import AnswerEditor from "@/components/Editor/Answer.vue";
-import QuestionEditor from "@/components/Editor/Question.vue";
+// import Editor from "@tinymce/tinymce-vue";
+// import AnswerEditor from "@/components/Editor/Answer.vue";
+// import QuestionEditor from "@/components/Editor/Question.vue";
 
 const route = useRoute();
 const router = useRouter();

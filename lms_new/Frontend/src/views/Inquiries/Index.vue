@@ -370,7 +370,7 @@ import {ref, onMounted, computed, watch, reactive} from "vue";
 import {useI18n} from "vue-i18n";
 import {useRoute, useRouter} from "vue-router";
 import store from "@/stores";
-import InquiryFollowups from "@/components/Inquiries/Followups.vue";
+// import InquiryFollowups from "@/components/Inquiries/Followups.vue";
 import _ from "lodash";
 
 const route = useRoute();

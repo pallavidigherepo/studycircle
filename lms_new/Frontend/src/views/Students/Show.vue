@@ -678,7 +678,7 @@ import { ref, onMounted} from "vue";
 import { useI18n } from "vue-i18n";
 import axiosClient from "@/axios";
 import {useRoute, useRouter} from "vue-router";
-import {Tab} from "../../global-components/tab";
+// import {Tab} from "../../global-components/tab";
 
 const { t } = useI18n();
 

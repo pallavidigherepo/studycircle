@@ -108,5 +108,14 @@ const perPageOptions = [10, 20, 30, 40, 50];
 </script>
 
 <style>
+.pagination {
+    display: inline-flex;
+    align-items: center;
+}
 
+.pagination .page-item {
+    list-style: none;
+    display: inline;
+    margin: 0;
+}
 </style>
