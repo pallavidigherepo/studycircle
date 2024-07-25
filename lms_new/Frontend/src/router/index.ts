@@ -14,6 +14,8 @@ import questionRoutes from "./questions";
 import questionnaireTemplateRoutes from "./questionnaire_template";
 import inquiryRoutes from "./inquiries";
 import feeRoutes from "./fees";
+import userRoutes from "./users";
+import roleRoutes from "./role";
 
 const routes = [
   {
@@ -38,6 +40,8 @@ const routes = [
       ...questionnaireTemplateRoutes,
       ...inquiryRoutes,
       ...feeRoutes,
+      ...userRoutes,
+      ...roleRoutes,
       
       {
         path: "/profile",

@@ -43,7 +43,7 @@
               <label for="course-type-label" class="form-label">{{
                 t("coursesTypes.Label")
               }}</label>
-              <input
+              <FormInput
                 id="course-type-label"
                 type="text"
                 class="form-control w-full"
@@ -62,7 +62,7 @@
               <label for="course-type-description" class="form-label">{{
                 t("coursesTypes.Description")
               }}</label>
-              <input
+              <FormInput
                 id="course-type-description"
                 type="text"
                 class="form-control w-full"
@@ -83,7 +83,7 @@
               <label for="courses-types-icon" class="form-label">{{
                 t("coursesTypes.Icon")
               }}</label>
-              <input
+              <FormInput
                 id="courses-types-icon"
                 type="text"
                 class="form-control w-full"
@@ -94,12 +94,13 @@
             <div class="text-right mt-5">
               <Button
                 type="button"
+                variant="secondary"
                 class="btn btn-outline-secondary w-24 mr-1"
                 @click.prevent="cancel"
               >
                 {{ t("common.Cancel") }}
               </Button>
-              <Button type="submit" class="btn btn-primary w-24">
+              <Button variant="primary" type="submit" class="btn btn-primary w-24">
                 {{ t("common.Save") }}
               </Button>
             </div>
@@ -118,6 +119,7 @@ import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 import DataTable from "@/components/DataTable/Index.vue";
 import Button from "@/components/Base/Button";
+import { FormInput, FormCheck } from "@/components/Base/Form";
 
 import store from "@/stores";
 
@@ -169,7 +171,7 @@ const v$ = useVuelidate(rules, model);
 
 async function submitForm(event) {
   submitted.value = true;
-  v$.value.$validate(); // checks all inputs
+  v$.value.$validate(); // checks all FormInputs
 
   if (!v$.value.$error) {
     //loading.value = true;

@@ -1,51 +1,52 @@
-import actions from './actions.js';
-import getters from './getters';
-import mutations from './mutations';
+import getters from "./getters.js"
+import actions from "./actions.js"
+import mutations from "./mutations.js"
+
 export default {
     namespaced: true,
     state() {
         return {
-            questions: [],
-            question: null,
-            languages: [],
+            fees: [],
+            fee: [],
             pagination: [],
             datatable: {
                 export: false,
                 import: false,
-                addNew: true,
+                addNew: false,
                 defaultColumn: "id",
                 defaultOrder: "desc",
                 defaultPage: 1,
                 defaultSearch: "",
                 defaultPerPage: 10,
-                columns: [{
+                columns: [
+                    {
                         label: "ID",
                         field: "id",
                         sort: true,
                         isJson: false,
                     },
                     {
-                        label: "QUESTION",
-                        field: "question",
+                        label: "STUDENT",
+                        field: "name",
                         sort: true,
-                        isJson: false,
-                    },
-                    {
-                        label: "TYPE",
-                        field: "type",
-                        sort: false,
                         isJson: false,
                     },
                     {
                         label: "STANDARD",
                         field: "standard",
-                        sort: false,
+                        sort: true,
                         isJson: false,
                     },
                     {
-                        label: "BOARD",
-                        field: "board",
-                        sort: false,
+                        label: "AMOUNT",
+                        field: "amount",
+                        sort: true,
+                        isJson: false,
+                    },
+                    {
+                        label: "EXPIRY DATE",
+                        field: "expiry_date",
+                        sort: true,
                         isJson: false,
                     },
                     {
@@ -55,7 +56,7 @@ export default {
                         actions: {
                             show: true,
                             edit: true,
-                            delete: true,
+                            delete: false,
                         }
                     }
                 ]
@@ -63,6 +64,6 @@ export default {
         }
     },
     actions,
+    mutations,
     getters,
-    mutations
 };

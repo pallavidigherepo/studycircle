@@ -14,7 +14,11 @@ import fee_structuresModule from "./modules/fee_structures/index.js";
 import inquiry_followup_typesModule from "./modules/inquiry_followup_types/index.js";
 import inquiry_sourcesModule from "./modules/inquiry_sources/index.js";
 import inquiry_statusesModule from "./modules/inquiry_statuses/index.js";
-
+import usersModule from "./modules/users/index.js";
+import feesModule from "./modules/fees/index.js";
+import inquiriesModule from "./modules/inquiries/index.js";
+import rolesModule from "./modules/roles/index.js";
+import permissionsModule from "./modules/permissions/index.js";
 
 export default {
   auth: authModule,
@@ -33,5 +37,10 @@ export default {
   inquiry_followup_types: inquiry_followup_typesModule,
   inquiry_sources: inquiry_sourcesModule,
   inquiry_statuses: inquiry_statusesModule,
+  users: usersModule,
+  fees: feesModule,
+  inquiries: inquiriesModule,
+  roles: rolesModule,
+  permissions: permissionsModule,
   
 };

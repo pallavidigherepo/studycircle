@@ -11,7 +11,7 @@ import Attendance from '@/views/Attendance/Index.vue';
 const masterRoutes = [
     {
         path: "/permissions",
-        name: "permissions",
+        name: "Permissions",
         component: PermissionIndex,
         meta: { 
             requiresAuth: true,
@@ -20,7 +20,7 @@ const masterRoutes = [
     },
     {
         path: '/boards',
-        name: "boards",
+        name: "Boards",
         component: Boards,
         meta: {
             parent: 'Boards',
@@ -30,7 +30,7 @@ const masterRoutes = [
     },
     {
         path: '/standards',
-        name: "standards",
+        name: "Standards",
         component: Standards,
         meta: {
             parent: 'Standards',
@@ -40,7 +40,7 @@ const masterRoutes = [
     },
     {
         path: '/courses_types',
-        name: "course-types",
+        name: "Course-Types",
         component: CoursesTypes,
         meta: {
             parent: 'CourseTypes',
@@ -50,7 +50,7 @@ const masterRoutes = [
     },
     {
         path: '/courses',
-        name: "courses",
+        name: "Courses",
         component: Courses,
         meta: {
             parent: 'Courses',
@@ -60,7 +60,7 @@ const masterRoutes = [
     },
     {
         path: '/settings',
-        name: "setting-index",
+        name: "Settings",
         component: SettingIndex,
         meta: { 
             requiresAuth: true,
@@ -69,7 +69,7 @@ const masterRoutes = [
     },
     {
         path: '/batches',
-        name: "batches",
+        name: "Batches",
         component: Batches,
         meta: { 
             requiresAuth: true,
@@ -78,7 +78,7 @@ const masterRoutes = [
     },
     {
         path: '/attendance',
-        name: "attendance",
+        name: "Attendance",
         component: Attendance,
         meta: { 
             requiresAuth: true,

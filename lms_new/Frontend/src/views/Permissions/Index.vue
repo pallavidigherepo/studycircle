@@ -12,7 +12,7 @@
 
         <div class="intro-y box p-5">
           <div class="overflow-x-auto scrollbar-hidden">
-            <Datatable
+            <DataTable
               module="permissions"
               :importExportOptions="options"
               @editItem="edit"
@@ -42,7 +42,7 @@
               <label for="crud-form-1" class="form-label">{{
                 t("permissions.Permission Name")
               }}</label>
-              <input
+              <FormInput
                 id="crud-form-1"
                 type="text"
                 class="form-control w-full"
@@ -55,16 +55,17 @@
               </span>
             </div>
             <div class="text-right mt-5">
-              <button
-                type="button"
-                class="btn btn-outline-secondary w-24 mr-1"
-                @click.prevent="cancel"
+              <Button
+                  type="button"
+                  variant="secondary"
+                  class="btn btn-outline-secondary w-24 mr-1"
+                  @click.prevent="cancel"
               >
-                {{ t("common.Cancel") }}
-              </button>
-              <button type="submit" class="btn btn-primary w-24">
-                {{ t("common.Save") }}
-              </button>
+                  {{ t("common.Cancel") }}
+              </Button>
+              <Button variant="primary" type="submit" class="btn btn-primary w-24">
+                  {{ t("common.Save") }}
+              </Button>
             </div>
           </form>
         </div>
@@ -74,11 +75,14 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
 
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
+import DataTable from "@/components/DataTable/Index.vue";
+import Button from "@/components/Base/Button";
+import { FormInput, FormCheck } from "@/components/Base/Form";
 
 import store from "@/stores";
 

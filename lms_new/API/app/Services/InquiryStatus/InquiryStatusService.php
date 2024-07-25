@@ -4,7 +4,7 @@ namespace App\Services\InquiryStatus;
 use App\Http\Requests\StoreInquiryStatusRequest;
 use App\Http\Requests\UpdateInquiryStatusRequest;
 use App\Models\InquiryStatus;
-use App\Repositories\Interfaces\InquiryRepositoryInterface;
+use App\Repositories\Interfaces\InquiryStatusRepositoryInterface;
 use Illuminate\Http\Request;
 
 class InquiryStatusService

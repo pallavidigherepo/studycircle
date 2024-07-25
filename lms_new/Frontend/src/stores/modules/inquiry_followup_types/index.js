@@ -10,8 +10,8 @@ export default {
             inquiry_followup_type: [],
             pagination: [],
             datatable: {
-                export: true,
-                import: true,
+                export: false,
+                import: false,
                 addNew: false,
                 defaultColumn: "id",
                 defaultOrder: "desc",

@@ -874,7 +874,9 @@
                                                 :typeParagraph="typeListParagraph"
                                                 @addQuestion="addQuestion"
                                                 @change="questionChange"
-                                                @deleteQuestion="deleteQuestion"/>
+                                                @deleteQuestion="deleteQuestion"
+                                                
+                                            />
 
                                         </div>
                                     </div>
@@ -901,7 +903,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import store from "@/stores";
 import {computed, onMounted, ref} from "vue";
 import {useRoute, useRouter} from "vue-router";

@@ -1,50 +1,63 @@
-import actions from './actions.js';
-import getters from './getters';
-import mutations from './mutations';
+import getters from "./getters.js"
+import actions from "./actions.js"
+import mutations from "./mutations.js"
+
 export default {
     namespaced: true,
     state() {
         return {
-            questions: [],
-            question: null,
-            languages: [],
+            inquiries: [],
+            inquiry: [],
             pagination: [],
             datatable: {
                 export: false,
                 import: false,
-                addNew: true,
+                addNew: false,
                 defaultColumn: "id",
                 defaultOrder: "desc",
                 defaultPage: 1,
                 defaultSearch: "",
                 defaultPerPage: 10,
-                columns: [{
+                columns: [
+                    {
                         label: "ID",
                         field: "id",
                         sort: true,
                         isJson: false,
                     },
                     {
-                        label: "QUESTION",
-                        field: "question",
-                        sort: true,
+                        label: "CODE",
+                        field: "unique_code",
+                        sort: false,
                         isJson: false,
                     },
                     {
-                        label: "TYPE",
-                        field: "type",
-                        sort: false,
+                        label: "STUDENT NAME",
+                        field: "student_name",
+                        sort: true,
                         isJson: false,
                     },
                     {
                         label: "STANDARD",
                         field: "standard",
-                        sort: false,
+                        sort: true,
                         isJson: false,
                     },
                     {
-                        label: "BOARD",
-                        field: "board",
+                        label: "BATCH",
+                        field: "batch",
+                        sort: true,
+                        isJson: false,
+                    },
+                    {
+                        label: "STATUS",
+                        field: "inquiry_status",
+                        sort: true,
+                        isJson: false,
+                    },
+                    {
+                        label: "CONTACT NUMBER",
+                        field: "contact_mobile",
                         sort: false,
                         isJson: false,
                     },
@@ -53,7 +66,7 @@ export default {
                         field: false,
                         sort: false,
                         actions: {
-                            show: true,
+                            show: false,
                             edit: true,
                             delete: true,
                         }
@@ -63,6 +76,6 @@ export default {
         }
     },
     actions,
+    mutations,
     getters,
-    mutations
 };

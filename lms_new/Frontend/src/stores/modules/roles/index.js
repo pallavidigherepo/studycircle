@@ -1,20 +1,21 @@
-import actions from './actions.js';
-import getters from './getters';
-import mutations from './mutations';
+import getters from "./getters.js"
+import actions from "./actions.js"
+import mutations from "./mutations.js"
+
 export default {
     namespaced: true,
     state() {
         return {
-            questions: [],
-            question: null,
-            languages: [],
+            loading: false,
+            roles: [],
+            role: null,
             pagination: [],
             datatable: {
                 export: false,
                 import: false,
                 addNew: true,
                 defaultColumn: "id",
-                defaultOrder: "desc",
+                defaultOrder: "asc",
                 defaultPage: 1,
                 defaultSearch: "",
                 defaultPerPage: 10,
@@ -22,38 +23,23 @@ export default {
                         label: "ID",
                         field: "id",
                         sort: true,
-                        isJson: false,
                     },
                     {
-                        label: "QUESTION",
-                        field: "question",
+                        label: "NAME",
+                        field: "name",
                         sort: true,
-                        isJson: false,
                     },
                     {
-                        label: "TYPE",
-                        field: "type",
+                        label: "PERMISSIONS",
+                        field: "role_out_of_permission",
                         sort: false,
-                        isJson: false,
                     },
                     {
-                        label: "STANDARD",
-                        field: "standard",
-                        sort: false,
-                        isJson: false,
-                    },
-                    {
-                        label: "BOARD",
-                        field: "board",
-                        sort: false,
-                        isJson: false,
-                    },
-                    {
-                        label: "ACTIONS",
+                        label: "ACTION",
                         field: false,
                         sort: false,
                         actions: {
-                            show: true,
+                            show: false,
                             edit: true,
                             delete: true,
                         }
@@ -63,6 +49,6 @@ export default {
         }
     },
     actions,
+    mutations,
     getters,
-    mutations
 };

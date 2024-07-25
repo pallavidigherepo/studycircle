@@ -7,6 +7,7 @@ use App\Http\Resources\InquiryFollowupTypeResource;
 use App\Models\InquiryFollowupType;
 use App\Http\Requests\StoreInquiryFollowupTypeRequest;
 use App\Http\Requests\UpdateInquiryFollowupTypeRequest;
+use App\Services\InquiryFollowupType\InquiryFollowupTypeService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

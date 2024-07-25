@@ -74,23 +74,23 @@ if (userRole.value == 'super-admin') {
           subMenu: [
             {
               icon: "BoxIcon",
-              pageName: "course-types",
+              pageName: "Course-Types",
               title: "Course Types",
             },
             {
               icon: "BriefcaseIcon",
-              pageName: "courses",
+              pageName: "Courses",
               title: "Courses",
             },
             {
               icon: "ListIcon",
-              pageName: "batches",
+              pageName: "Batches",
               title: "Batches",
               
             },
             {
               icon: "ListIcon",
-              pageName: "standards",
+              pageName: "Standards",
               title: "Standards",
             },
             {
@@ -100,7 +100,7 @@ if (userRole.value == 'super-admin') {
             },
             {
               icon: "BoxIcon",
-              pageName: "attendance",
+              pageName: "Attendance",
               title: "Attendance",
             },
             {
@@ -146,17 +146,17 @@ if (userRole.value == 'super-admin') {
         },
         {
           icon: "SettingsIcon",
-          pageName: "SettingIndex",
+          pageName: "Settings",
           title: "Control Panel",
         },
         {
           icon: "BadgeIndianRupee",
-          pageName: "inbox",
+          pageName: "Fees",
           title: "Fees",
         },
         {
           icon: "Inbox",
-          pageName: "inbox",
+          pageName: "Inquiries",
           title: "Inquiries",
         },
         
@@ -167,12 +167,12 @@ if (userRole.value == 'super-admin') {
           subMenu: [
             {
               icon: "SettingsIcon",
-              pageName: "roles",
+              pageName: "Roles",
               title: "Roles",
             },
             {
               icon: "KeyIcon",
-              pageName: "permissions",
+              pageName: "Permissions",
               title: "Permissions",
             },
           ],
@@ -180,7 +180,7 @@ if (userRole.value == 'super-admin') {
         "divider",
         {
           icon: "UsersRoundIcon",
-          pageName: "staffs",
+          pageName: "Users",
           title: "Executives",
         },
         {

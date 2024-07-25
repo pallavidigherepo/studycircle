@@ -2,12 +2,12 @@
 namespace App\Repositories;
 
 use App\Models\InquirySource;
-use App\Http\Resources\InquiryScourceResource;
-use App\Repositories\Interfaces\InquiryScourceRepositoryInterface;
+use App\Http\Resources\InquirySourceResource;
+use App\Repositories\Interfaces\InquirySourceRepositoryInterface;
 use App\Http\Requests\StoreInquirySourceRequest;
 use App\Http\Requests\UpdateInquirySourceRequest;
 
-class InquiryScourceRepository implements InquiryScourceRepositoryInterface
+class InquirySourceRepository implements InquirySourceRepositoryInterface
 {
     public function all($request)
     {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-if="listing">
+    <template v-if="DataTable">
       <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
           {{ t("users.Users") }}
@@ -13,7 +13,7 @@
 
           <div class="intro-y box p-5">
             <div class="overflow-x-auto scrollbar-hidden">
-              <Datatable
+              <DataTable
                 module="users"
                 :importExportOptions="options"
                 @editItem="edit"
@@ -33,10 +33,11 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, computed, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRoute, useRouter } from "vue-router";
+import DataTable from "@/components/DataTable/Index.vue";
 import store from "@/stores";
 
 const route = useRoute();

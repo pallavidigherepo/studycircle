@@ -1,13 +1,16 @@
-import actions from './actions.js';
-import getters from './getters';
-import mutations from './mutations';
+import getters from "./getters.js"
+import actions from "./actions.js"
+import mutations from "./mutations.js"
+
 export default {
     namespaced: true,
     state() {
         return {
-            questions: [],
-            question: null,
-            languages: [],
+            loading: false,
+            permissions: [],
+            permission: null,
+            permission_count: 0,
+            module_wise_permissions: [],
             pagination: [],
             datatable: {
                 export: false,
@@ -22,38 +25,23 @@ export default {
                         label: "ID",
                         field: "id",
                         sort: true,
-                        isJson: false,
                     },
                     {
-                        label: "QUESTION",
-                        field: "question",
+                        label: "NAME",
+                        field: "name",
                         sort: true,
-                        isJson: false,
                     },
                     {
-                        label: "TYPE",
-                        field: "type",
-                        sort: false,
-                        isJson: false,
-                    },
-                    {
-                        label: "STANDARD",
-                        field: "standard",
-                        sort: false,
-                        isJson: false,
-                    },
-                    {
-                        label: "BOARD",
-                        field: "board",
-                        sort: false,
-                        isJson: false,
+                        label: "GUARD NAME",
+                        field: "guard_name",
+                        sort: true,
                     },
                     {
                         label: "ACTIONS",
                         field: false,
                         sort: false,
                         actions: {
-                            show: true,
+                            show: false,
                             edit: true,
                             delete: true,
                         }
@@ -63,6 +51,6 @@ export default {
         }
     },
     actions,
+    mutations,
     getters,
-    mutations
 };

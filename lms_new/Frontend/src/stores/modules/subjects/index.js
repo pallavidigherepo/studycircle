@@ -11,8 +11,8 @@ export default {
             courses: [],
             pagination: [],
             datatable: {
-                export: true,
-                import: true,
+                export: false,
+                import: false,
                 addNew: true,
                 defaultColumn: "id",
                 defaultOrder: "desc",

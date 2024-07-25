@@ -28,6 +28,16 @@ const userInfo = computed(() => {
   return userItem ? JSON.parse(userItem) : null;
 });
 
+// const user = ref({});
+// const settings = ref();
+// const fetchUser = async () => {
+//   const { data } = await axiosClient.get('/profile');
+//   user.value = { ...data.user, role: data.role };
+
+//   //
+//   settings.value = window.Laravel.settings;
+// }
+
 //const userInfo = computed(() => JSON.parse(localStorage.getItem("USER")));
 
 async function logout() {
@@ -55,8 +65,8 @@ function resetPassword() {
   >
     <!-- BEGIN: Breadcrumb -->
     <Breadcrumb class="hidden mr-auto -intro-x sm:flex">
-      <Breadcrumb.Link to="/">Application</Breadcrumb.Link>
-      <Breadcrumb.Link to="/" :active="true"> Dashboard </Breadcrumb.Link>
+      <Breadcrumb.Link to="/">Dashboard</Breadcrumb.Link>
+      <Breadcrumb.Link v-if="route.name !== 'dashboard'" :active="true">{{ route.name }}</Breadcrumb.Link>
     </Breadcrumb>
     <!-- END: Breadcrumb -->
     <!-- BEGIN: Account Menu -->

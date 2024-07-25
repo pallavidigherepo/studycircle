@@ -16,6 +16,7 @@ const questionRoutes = [
                 name: "CreateQuestion",
                 component: CreateQuestion,
                 meta: {
+                    requiresAuth: true,
                     parent: 'Questions'
                 }
             },

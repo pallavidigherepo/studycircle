@@ -10,9 +10,9 @@ export default {
             languages: [],
             pagination: [],
             datatable: {
-                export: true,
-                import: true,
-                addNew: true,
+                export: false,
+                import: false,
+                addNew: false,
                 defaultColumn: "id",
                 defaultOrder: "desc",
                 defaultPage: 1,
