@@ -20,9 +20,6 @@ import DataTable from "@/components/DataTable/Index.vue";
 const options = {
     modelName: "Batch",
 };
-
-
-
 // End of info
 
 // Variables and actions related to Add/Edit.

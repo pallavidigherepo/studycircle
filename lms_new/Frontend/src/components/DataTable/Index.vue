@@ -489,8 +489,6 @@ function searchMe(event) {
                   </Table.Tr>
                   </Table.Tbody>
               </template>
-
-
           </Table>
       </div>
       <!-- END: Data List -->
@@ -503,7 +501,7 @@ function searchMe(event) {
           @perpage="perPageValue"/>
       <!-- END: Pagination -->
       <!-- BEGIN: Modal Content -->
-      <Modal :show="headerFooterModalPreview"
+      <Dialog :open="headerFooterModalPreview"
              size="modal-lg"
              @hidden="headerFooterModalPreview = false">
           <ModalHeader>
@@ -600,7 +598,7 @@ function searchMe(event) {
                   {{ t("permissions.Import") }}
                   </Button>
           </ModalFooter>
-      </Modal>
+      </Dialog>
       <!-- END: Modal Content -->
       <Loading v-if="loading" fixed></Loading>
 

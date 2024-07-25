@@ -1,4 +1,40 @@
+<script setup lang="ts">
+import { computed } from "vue";
+
+import Pagination from "@/components/Base/Pagination";
+import { FormInput, FormSelect } from "@/components/Base/Form";
+
+const props = defineProps({
+    links: {
+        type: Object,
+        required: false
+    },
+    currentPage: {
+        type: Number,
+        required: false,
+        default: 1
+    }
+});
+const emits = defineEmits(["paginate", "perpage", "changePage"]);
+
+const perPageOptions = [10, 20, 30, 40, 50];
+</script>
+
+<style>
+.pagination {
+    display: inline-flex;
+    align-items: center;
+}
+
+.pagination .page-item {
+    list-style: none;
+    display: inline;
+    margin: 0;
+}
+</style>
+
 <template>
+    
     <div
         class="
             intro-y
@@ -8,7 +44,7 @@
             items-center
         "
         >
-        <nav class="w-full sm:w-auto sm:mr-auto pagination">
+        <Pagination class="w-full sm:w-auto sm:mr-auto pagination">
 
             <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
             <ul class="pagination">
@@ -17,7 +53,7 @@
                 :key="i"
                 class="page-item"
             >
-                <a
+                <Pagination.Link
                     v-if="!link.url"
                     href="javascript:;"
                     aria-current="page"
@@ -32,9 +68,9 @@
                     v-html="link.label"
                     >
 
-                </a>
+                </Pagination.Link>
 
-                <a
+                <Pagination.Link
                     v-else
                     href="#"
                     @click.prevent="emits('paginate', link.label)"
@@ -50,12 +86,12 @@
                     v-html="link.label"
                     >
 
-                </a>
+                </Pagination.Link>
 
             </li>
             </ul>
-        </nav>
-        <select class="w-20 form-select mt-3 sm:mt-0">
+        </Pagination>
+        <FormSelect class="w-20 mt-3 !box sm:mt-0">
             <option v-for="(perPage, index) in perPageOptions"
                     :key="index"
                     :value="perPage"
@@ -63,59 +99,7 @@
                     {{perPage}}
             </option>
 
-        </select>
+        </FormSelect>
     </div>
 </template>
 
-<script setup>
-import { computed } from "vue";
-const props = defineProps({
-    links: {
-        type: Object,
-        required: false
-    },
-    currentPage: {
-        type: Number,
-        required: false,
-        default: 1
-    }
-});
-const emits = defineEmits(["paginate", "perpage", "changePage"]);
-
-const perPageOptions = [10, 20, 30, 40, 50];
-
-//console.log(links)
-// const pagesNumber = computed(() => {
-//     console.log(props.links);
-//     if (!props.links.meta) {
-//       return []
-//     }
-//     let from = props.links.meta.current_page - 4
-//     if (from < 1) {
-//       from = 1
-//     }
-//     let to = from + (4 * 2)
-//     if (to >= props.links.meta.last_page) {
-//       to = props.links.meta.last_page
-//     }
-//     let pagesArray = []
-//     for (let page = from; page <= to; page++) {
-//       pagesArray.push(page)
-//     }
-//     return pagesArray
-// });
-
-</script>
-
-<style>
-.pagination {
-    display: inline-flex;
-    align-items: center;
-}
-
-.pagination .page-item {
-    list-style: none;
-    display: inline;
-    margin: 0;
-}
-</style>
