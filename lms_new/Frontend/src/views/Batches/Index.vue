@@ -10,6 +10,7 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 import DataTable from "@/components/DataTable/Index.vue";
+import Button from "@/components/Base/Button";
 
 
 // To show/hide modal
@@ -187,16 +188,16 @@ function deleteI(item) {
                             />
                         </div>
                         <div class="text-right mt-5">
-                            <button
+                            <Button
                                 type="button"
                                 class="btn btn-outline-secondary w-24 mr-1"
                                 @click.prevent="cancel"
                             >
                                 {{ t("common.Cancel") }}
-                            </button>
-                            <button type="submit" class="btn btn-primary w-24">
+                            </Button>
+                            <Button type="submit" class="btn btn-primary w-24">
                                 {{ t("common.Save") }}
-                            </button>
+                            </Button>
                         </div>
                     </form>
                 </div>

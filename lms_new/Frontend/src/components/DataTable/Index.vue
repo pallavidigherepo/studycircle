@@ -8,17 +8,17 @@
       items-center
       mt-2
     ">
-          <button v-if="datatableoptions.addNew" class="btn btn-primary shadow-md mr-2"
+          <Button v-if="datatableoptions.addNew" variant="primary"  class="shadow-md mr-2"
                   @click.prevent="emit('addModel', true)">
               {{ t("common.Add New") }}
-          </button>
+          </Button>
           <div v-if="datatableoptions.export" class="dropdown">
-              <button aria-expanded="false" class="dropdown-toggle btn btn-primary ml-2" data-tw-toggle="dropdown">
+              <Button aria-expanded="false" variant="primary" class="dropdown-toggle  ml-2" data-tw-toggle="dropdown">
                 <span class="flex items-center justify-center">
                   {{ t("common.Export/Print") }}&nbsp;
                   <UploadIcon class="w-4 h-4"/>
                 </span>
-              </button>
+              </Button>
               <div class="dropdown-menu w-40">
                   <ul class="dropdown-content">
                       <!-- <li>
@@ -53,12 +53,12 @@
               </div>
           </div>
           <div v-if="datatableoptions.import" class="dropdown">
-              <button aria-expanded="false" class="dropdown-toggle btn btn-primary ml-2" data-tw-toggle="dropdown">
+              <Button aria-expanded="false" variant="primary" class="dropdown-toggle ml-2" data-tw-toggle="dropdown">
         <span class="flex items-center justify-center">
           {{ t("common.Import") }}&nbsp;
           <DownloadIcon class="w-4 h-4"/>
         </span>
-              </button>
+              </Button>
               <div class="dropdown-menu w-40">
                   <ul class="dropdown-content">
                       <li>
@@ -202,7 +202,7 @@
           @perpage="perPageValue"/>
       <!-- END: Pagination -->
       <!-- BEGIN: Modal Content -->
-      <!-- <Modal :show="headerFooterModalPreview"
+      <Modal :show="headerFooterModalPreview"
              size="modal-lg"
              @hidden="headerFooterModalPreview = false">
           <ModalHeader>
@@ -219,10 +219,10 @@
               <div class="col-span-12 sm:col-span-12 text-center">
                   <slot name="info"></slot>
                   <div class="upload-btn-wrapper">
-                      <button class="upload-btn">{{
+                      <Button class="upload-btn">{{
                               t("common.Upload file")
                           }}
-                      </button>
+                      </Button>
                       <input id="modal-form-1" name="myfile" type="file" @change="importMe($event)"/>
                   </div>
                   <div class="col-span-12">
@@ -257,10 +257,10 @@
                                           </div>
                                       </div>
                                       <div class="text-base text-slate-500 mt-1">
-                                          <button class="btn btn-primary h-20"
+                                          <Button class="btn btn-primary h-20"
                                                   @click.prevent="exportMe('xlsx', true)">
                                               {{ t('common.Download Template for EXCEL') }}
-                                          </button>
+                                          </Button>
                                       </div>
                                   </div>
                               </div>
@@ -275,10 +275,10 @@
                                           </div>
                                       </div>
                                       <div class="text-base text-slate-500 mt-1">
-                                          <button class="btn btn-primary h-20"
+                                          <Button class="btn btn-primary h-20"
                                                   @click.prevent="exportMe('csv', true)">
                                               {{ t('common.Download Template for CSV') }}
-                                          </button>
+                                          </Button>
                                       </div>
                                   </div>
                               </div>
@@ -289,29 +289,30 @@
               </div>
           </ModalBody>
           <ModalFooter>
-              <button id="import-export-cancel-button"
+              <Button id="import-export-cancel-Button"
                       class="btn btn-outline-secondary w-20 mr-1"
-                      type="button"
+                      type="Button"
                       @click="headerFooterModalPreview = false">
                   {{ t("common.Cancel") }}
-              </button>
-              <button type="button" class="btn btn-primary w-20">
+              </Button>
+              <Button type="Button" class="btn btn-primary w-20">
                   {{ t("permissions.Import") }}
-                  </button>
+                  </Button>
           </ModalFooter>
-      </Modal> -->
+      </Modal>
       <!-- END: Modal Content -->
       <Loading v-if="loading" fixed></Loading>
 
   </div>
 </template>
 
-<script setup>
-import {ref, onMounted, computed, watch, reactive} from "vue";
+<script setup lang="ts">
+import {ref, onMounted, computed, watch, reactive, defineProps} from "vue";
 import store from "@/stores";
 import {useI18n} from "vue-i18n";
 import Pagination from "@/components/DataTable/Pagination.vue";
-//import useImportExport from "@/hooks/import_export.js";
+import Button from "@/components/Base/Button";
+import useImportExport from "@/hooks/import_export.js";
 import _ from "lodash";
 
 const props = defineProps({
@@ -584,10 +585,10 @@ function searchMe(event) {
   position: relative;
   overflow: hidden;
   display: inline-block;
-}
+} 
 
 .upload-btn {
-  border: 2px solid gray;
+  border: 2px solid rgb(51, 11, 228);
   color: gray;
   background-color: white;
   padding: 8px 20px;
@@ -596,7 +597,7 @@ function searchMe(event) {
   font-weight: bold;
 }
 
-.upload-btn-wrapper input[type=file] {
+ .upload-btn-wrapper input[type=file] {
   font-size: 100px;
   position: absolute;
   left: 0;

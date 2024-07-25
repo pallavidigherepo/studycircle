@@ -92,16 +92,16 @@
               />
             </div>
             <div class="text-right mt-5">
-              <button
+              <Button
                 type="button"
                 class="btn btn-outline-secondary w-24 mr-1"
                 @click.prevent="cancel"
               >
                 {{ t("common.Cancel") }}
-              </button>
-              <button type="submit" class="btn btn-primary w-24">
+              </Button>
+              <Button type="submit" class="btn btn-primary w-24">
                 {{ t("common.Save") }}
-              </button>
+              </Button>
             </div>
           </form>
         </div>
@@ -117,6 +117,7 @@ import { ref, onMounted, computed } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 import DataTable from "@/components/DataTable/Index.vue";
+import Button from "@/components/Base/Button";
 
 import store from "@/stores";
 
