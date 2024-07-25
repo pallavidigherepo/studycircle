@@ -9,8 +9,10 @@ import store from "@/stores";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
-import DataTable from "@/components/DataTable/Index.vue";
 import Button from "@/components/Base/Button";
+import { FormInput, FormCheck } from "@/components/Base/Form";
+
+import DataTable from "@/components/DataTable/Index.vue";
 
 
 // To show/hide modal
@@ -162,7 +164,7 @@ function deleteI(item) {
                             <label for="batch-name" class="form-label">{{
                                     t("batches.Name")
                                 }}</label>
-                            <input
+                            <FormInput
                                 id="batch-name"
                                 type="text"
                                 class="form-control w-full"
@@ -178,24 +180,27 @@ function deleteI(item) {
                             </span>
                         </div>
                         <div class="mt-3">
-                            <label for="batches-is-active" class="form-label">{{
-                                    t("batches.Active")
-                                }}</label>
-                            <input id="batches-is-active"
+                            <FormCheck >
+                                <FormCheck.Input id="batches-is-active"
                                    v-model="model.is_active"
-                                   class="form-check-input ml-5"
-                                   type="checkbox"
-                            />
+                                   class="form-check-input"
+                                   type="checkbox" />
+                                <FormCheck.Label htmlFor="batches-is-active">
+                                    batches.Active
+                                </FormCheck.Label>
+                            </FormCheck>
+
                         </div>
                         <div class="text-right mt-5">
                             <Button
                                 type="button"
+                                variant="secondary"
                                 class="btn btn-outline-secondary w-24 mr-1"
                                 @click.prevent="cancel"
                             >
                                 {{ t("common.Cancel") }}
                             </Button>
-                            <Button type="submit" class="btn btn-primary w-24">
+                            <Button variant="primary"  type="submit" class="btn btn-primary w-24">
                                 {{ t("common.Save") }}
                             </Button>
                         </div>
