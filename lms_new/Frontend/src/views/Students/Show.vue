@@ -1,3 +1,91 @@
+<script setup lang="ts">
+import { ref, onMounted} from "vue";
+import { useI18n } from "vue-i18n";
+import axiosClient from "@/axios";
+import {useRoute, useRouter} from "vue-router";
+import TomSelect from "@/components/Base/TomSelect";
+import { FormInput, FormSelect, FormCheck, FormTextarea } from "@/components/Base/Form";
+import Lucide from "@/components/Base/Lucide";
+import Button from "@/components/Base/Button";
+// import {Tab} from "../../global-components/tab";
+
+const { t } = useI18n();
+
+const route = useRoute();
+const router = useRouter();
+const isLoading = ref(false);
+
+let takeTestConfirmationModal = ref(false);
+const warningMessage = ref("");
+const selectedPaper = ref();
+const isErrored = ref();
+const message = ref();
+
+const student = ref({
+    id: route.params.id,
+    name: "",
+    email: "",
+    mobile: "",
+    board: "",
+    standard: "",
+    batch: "",
+    alt_mobile: "",
+    gender: "",
+    avatar: "",
+    dob: "",
+    permanent_address: "",
+    address: "",
+    aadhaar: "",
+    mother_name: "",
+    mother_email: "",
+    mother_mobile: "",
+    mother_qualification: "",
+    mother_occupation: "",
+    father_name: "",
+    father_email: "",
+    father_mobile: "",
+    father_qualification: "",
+    father_occupation: "",
+});
+const papers = ref();
+
+onMounted(() => {
+    fetch();
+});
+
+const fetch = async () => {
+    isLoading.value = true;
+    try {
+        let id = route.params.id;
+        const result = await axiosClient.get(`/students/${id}`);
+        if (result.status !== 200) {
+            throw new Error('Failed to fetch student information.')
+        }
+        let response = JSON.parse(JSON.stringify(result.data.data));
+        student.value = response;
+        papers.value = response.manipulated;
+    } catch (e) {
+        isErrored.value = true;
+        message.value = e;
+    } finally {
+        isLoading.value = false;
+    }
+}
+function cancel()
+{
+
+}
+
+function startTest() {
+    takeTestConfirmationModal.value = true;
+    selectedPaper.value;
+}
+
+function showResult() {
+
+}
+</script>
+
 <template>
     <div>
         <div class="intro-y flex items-center mt-8">
@@ -18,22 +106,19 @@
                 {{ t("students.Edit Student") }}
             </router-link>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-                <router-link
-                    to="/students"
+                <Button
+                    variant="primary"
                     class="
-                        btn
-                        box
-                        text-gray-700
-                        dark:text-gray-300
-                        mr-2
-                        flex
-                        items-center
-                        ml-auto
-                        sm:ml-0
-                      "
-                ><ArrowLeftCircleIcon class="w-4 h-4 mr-2" />
-                    {{ t("common.Back") }}
-                </router-link>
+                            box
+                            mr-2
+                            flex
+                            items-center
+                            ml-auto
+                            sm:ml-0
+                        "
+                     @click="router.push('/students')"
+                ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />{{ t("common.Back") }}
+                </Button>
             </div>
         </div>
         <TabGroup>
@@ -673,86 +758,4 @@
 
 </template>
 
-<script setup>
-import { ref, onMounted} from "vue";
-import { useI18n } from "vue-i18n";
-import axiosClient from "@/axios";
-import {useRoute, useRouter} from "vue-router";
-// import {Tab} from "../../global-components/tab";
 
-const { t } = useI18n();
-
-const route = useRoute();
-const router = useRouter();
-const isLoading = ref(false);
-
-let takeTestConfirmationModal = ref(false);
-const warningMessage = ref("");
-const selectedPaper = ref();
-const isErrored = ref();
-const message = ref();
-
-const student = ref({
-    id: route.params.id,
-    name: "",
-    email: "",
-    mobile: "",
-    board: "",
-    standard: "",
-    batch: "",
-    alt_mobile: "",
-    gender: "",
-    avatar: "",
-    dob: "",
-    permanent_address: "",
-    address: "",
-    aadhaar: "",
-    mother_name: "",
-    mother_email: "",
-    mother_mobile: "",
-    mother_qualification: "",
-    mother_occupation: "",
-    father_name: "",
-    father_email: "",
-    father_mobile: "",
-    father_qualification: "",
-    father_occupation: "",
-});
-const papers = ref();
-
-onMounted(() => {
-    fetch();
-});
-
-const fetch = async () => {
-    isLoading.value = true;
-    try {
-        let id = route.params.id;
-        const result = await axiosClient.get(`/students/${id}`);
-        if (result.status !== 200) {
-            throw new Error('Failed to fetch student information.')
-        }
-        let response = JSON.parse(JSON.stringify(result.data.data));
-        student.value = response;
-        papers.value = response.manipulated;
-    } catch (e) {
-        isErrored.value = true;
-        message.value = e;
-    } finally {
-        isLoading.value = false;
-    }
-}
-function cancel()
-{
-
-}
-
-function startTest() {
-    takeTestConfirmationModal.value = true;
-    selectedPaper.value;
-}
-
-function showResult() {
-
-}
-</script>

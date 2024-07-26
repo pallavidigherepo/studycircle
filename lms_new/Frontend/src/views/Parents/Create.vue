@@ -1,258 +1,11 @@
-<template>
-    <div>
-        <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-            <h2 class="text-lg font-medium mr-auto">{{ t("clients.Add Client") }}</h2>
-            <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-                <router-link
-                    to="/clients"
-                    class="
-            btn
-            box
-            text-gray-700
-            dark:text-gray-300
-            mr-2
-            flex
-            items-center
-            ml-auto
-            sm:ml-0
-          "
-                >
-                    <ArrowLeftCircleIcon class="w-4 h-4 mr-2"/>
-                    {{ t("common.Back") }}
-                </router-link>
-            </div>
-        </div>
-        <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
-            <div class="intro-y box col-span-12 lg:col-span-12">
-                <div class="p-5">
-                    <div
-                        class="alert alert-danger show flex items-center mb-2"
-                        role="alert"
-                        v-if="isErrored"
-                    >
-                        <AlertOctagonIcon class="w-6 h-6 mr-2"/>
-                        {{ message }}
-                    </div>
-                    <form @submit.prevent="submitForm" class="validate-form">
-                        <div>
-                            <label for="form-name" class="form-label">{{
-                                    t("clients.Name")
-                                }}</label>
-                            <input
-                                id="form-name"
-                                type="text"
-                                class="form-control"
-                                placeholder="Enter name of client"
-                                v-model.trim="model.client_name"
-                                :class="{
-                  'border-danger': submitted && v$.client_name.$errors.length,
-                }"
-                            />
-                            <div
-                                class="text-danger mt-2"
-                                v-for="(error, index) of v$.client_name.$errors"
-                                :key="index"
-                            >
-                                <div class="error-msg">{{ error.$message }}</div>
-                            </div>
-                        </div>
-                        <div class="mt-3">
-                            <label for="form-email" class="form-label">{{
-                                    t("clients.Email")
-                                }}</label>
-
-                            <input
-                                id="form-email"
-                                type="text"
-                                class="form-control"
-                                placeholder="Enter email"
-                                v-model.trim="model.client_email"
-                                :class="{
-                  'border-danger': submitted && v$.client_email.$errors.length,
-                }"
-                            />
-                            <div
-                                class="text-danger mt-2"
-                                v-for="(error, index) of v$.client_email.$errors"
-                                :key="index"
-                            >
-                                <div class="error-msg">{{ error.$message }}</div>
-                            </div>
-                        </div>
-                        <div class="mt-3">
-                            <label for="form-mobile-number" class="form-label">{{
-                                    t("clients.Mobile Number")
-                                }}</label>
-
-                            <input
-                                id="form-mobile-number"
-                                type="text"
-                                class="form-control"
-                                placeholder="Enter mobile number"
-                                v-model.trim="model.client_phone_number"
-                                :class="{
-                  'border-danger': submitted && v$.client_phone_number.$errors.length,
-                }"
-                            />
-                            <div
-                                class="text-danger mt-2"
-                                v-for="(error, index) of v$.client_phone_number.$errors"
-                                :key="index"
-                            >
-                                <div class="error-msg">{{ error.$message }}</div>
-                            </div>
-                        </div>
-                        <div class="mt-3">
-                            <label for="form-alt-mobile-number" class="form-label">{{
-                                    t("clients.Alternate Mobile Number")
-                                }}</label>
-
-                            <input
-                                id="form-alt-mobile-number"
-                                type="text"
-                                class="form-control"
-                                placeholder="Enter alternate mobile number"
-                                v-model.trim="model.client_alternate_phone_number"
-                                :class="{
-                  'border-danger': submitted && v$.client_alternate_phone_number.$errors.length,
-                }"
-                            />
-                            <div
-                                class="text-danger mt-2"
-                                v-for="(error, index) of v$.client_alternate_phone_number.$errors"
-                                :key="index"
-                            >
-                                <div class="error-msg">{{ error.$message }}</div>
-                            </div>
-                        </div>
-                        <div class="mt-3">
-                            <label for="form-address" class="form-label">{{
-                                    t("clients.Address")
-                                }}</label>
-
-                            <input
-                                id="form-address"
-                                type="text"
-                                class="form-control"
-                                placeholder="Enter address"
-                                v-model.trim="model.address"
-                                :class="{
-                  'border-danger': submitted && v$.address.$errors.length,
-                }"
-                            />
-                            <div
-                                class="text-danger mt-2"
-                                v-for="(error, index) of v$.address.$errors"
-                                :key="index"
-                            >
-                                <div class="error-msg">{{ error.$message }}</div>
-                            </div>
-                        </div>
-
-                        <div class="mt-3">
-                            <label for="form-website_url" class="form-label">{{
-                                    t("clients.Website Url")
-                                }}</label>
-
-                            <input
-                                id="form-website_url"
-                                type="text"
-                                class="form-control"
-                                placeholder="Enter website url"
-                                v-model.trim="model.website_url"
-                            />
-                        </div>
-                        <div class="mt-3">
-                            <label for="form-website_slogan" class="form-label">{{
-                                    t("clients.Website Slogan")
-                                }}</label>
-
-                            <input
-                                id="form-website_slogan"
-                                type="text"
-                                class="form-control"
-                                placeholder="Enter website slogan"
-                                v-model.trim="model.website_slogan"
-                            />
-                        </div>
-                        <div class="mt-3">
-                            <label for="form-sub-domain" class="form-label">{{
-                                    t("clients.Sub domain")
-                                }}</label>
-
-                            <input
-                                id="form-sub-domain"
-                                type="text"
-                                class="form-control"
-                                placeholder="Enter address"
-                                v-model.trim="model.assigned_subdomain"
-                                :class="{
-                  'border-danger': submitted && v$.assigned_subdomain.$errors.length,
-                }"
-                            />
-                            <div
-                                class="text-danger mt-2"
-                                v-for="(error, index) of v$.assigned_subdomain.$errors"
-                                :key="index"
-                            >
-                                <div class="error-msg">{{ error.$message }}</div>
-                            </div>
-                        </div>
-                        <div class="mt-3">
-                            <label class="form-label"> {{ t("clients.Avatar") }} </label>
-                            <div class="mt-1 flex items-center">
-                                <img
-                                    v-if="model.avatar"
-                                    :src="model.avatar"
-                                    :alt="model.client_name"
-                                    class="w-64 h-48 object-cover"
-                                />
-                                <img v-else :alt="model.client_name" class="rounded-full"
-                                     :src="`https://eu.ui-avatars.com/api/?size=50&name=` + model.client_name"/>
-
-                                <button
-                                    type="button"
-                                    class="relative overflow-hidden ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                >
-                                    <input
-                                        type="file"
-                                        @change="onImageChoose"
-                                        accept="image/png, image/jpeg, image/jpg"
-                                        class="absolute left-0 top-0 right-0 bottom-0 opacity-0 cursor-pointer rounded-full"
-                                    />
-                                    {{ t("clients.Upload Avatar") }}
-                                </button>
-
-                            </div>
-                        </div>
-                        <!-- BEGIN: Slide Over Footer -->
-
-                        <div class="text-right w-full bottom-0 mt-5">
-                            <router-link
-                                to="/clients"
-                                class="btn btn-outline-secondary w-20 mr-1"
-                            >
-                                {{ t("common.Cancel") }}
-                            </router-link>
-                            <button type="submit" class="btn btn-primary w-20">
-                                {{ t("common.Save") }}
-                            </button>
-                        </div>
-                        <!-- END: Slide Over Footer -->
-                    </form>
-                </div>
-                <!-- BEGIN: Post Content -->
-            </div>
-            <!-- END: Post Content -->
-        </div>
-        <Loading v-if="isLoading" fixed></Loading>
-    </div>
-</template>
-
-<script setup>
+<script setup lang="ts">
 import store from "@/stores";
 import {ref, reactive, computed, onMounted} from "vue";
 import {useRoute, useRouter} from "vue-router";
+import TomSelect from "@/components/Base/TomSelect";
+import { FormInput, FormSelect } from "@/components/Base/Form";
+import Lucide from "@/components/Base/Lucide";
+import Button from "@/components/Base/Button";
 
 import {useVuelidate} from "@vuelidate/core";
 import {required, helpers, email, minLength, numeric} from "@vuelidate/validators";
@@ -349,6 +102,255 @@ function onImageChoose(ev) {
     reader.readAsDataURL(file);
 }
 </script>
+
+<template>
+    <div>
+        <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+            <h2 class="text-lg font-medium mr-auto">{{ t("clients.Add Client") }}</h2>
+            <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
+                <Button
+                variant="primary"
+                    class="
+                            box
+                            mr-2
+                            flex
+                            items-center
+                            ml-auto
+                            sm:ml-0
+                        "
+                     @click="router.push('/clients')"
+                ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />{{ t("common.Back") }}
+                </Button>
+            </div>
+        </div>
+        <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
+            <div class="intro-y box col-span-12 lg:col-span-12">
+                <div class="p-5">
+                    <div
+                        class="alert alert-danger show flex items-center mb-2"
+                        role="alert"
+                        v-if="isErrored"
+                    >
+                        <AlertOctagonIcon class="w-6 h-6 mr-2"/>
+                        {{ message }}
+                    </div>
+                    <form @submit.prevent="submitForm" class="validate-form">
+                        <div>
+                            <label for="form-name" class="form-label">{{
+                                    t("clients.Name")
+                                }}</label>
+                            <FormInput
+                                id="form-name"
+                                type="text"
+                                class="form-control"
+                                placeholder="Enter name of client"
+                                v-model.trim="model.client_name"
+                                :class="{
+                  'border-danger': submitted && v$.client_name.$errors.length,
+                }"
+                            />
+                            <div
+                                class="text-danger mt-2"
+                                v-for="(error, index) of v$.client_name.$errors"
+                                :key="index"
+                            >
+                                <div class="error-msg">{{ error.$message }}</div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <label for="form-email" class="form-label">{{
+                                    t("clients.Email")
+                                }}</label>
+
+                            <FormInput
+                                id="form-email"
+                                type="text"
+                                class="form-control"
+                                placeholder="Enter email"
+                                v-model.trim="model.client_email"
+                                :class="{
+                  'border-danger': submitted && v$.client_email.$errors.length,
+                }"
+                            />
+                            <div
+                                class="text-danger mt-2"
+                                v-for="(error, index) of v$.client_email.$errors"
+                                :key="index"
+                            >
+                                <div class="error-msg">{{ error.$message }}</div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <label for="form-mobile-number" class="form-label">{{
+                                    t("clients.Mobile Number")
+                                }}</label>
+
+                            <FormInput
+                                id="form-mobile-number"
+                                type="text"
+                                class="form-control"
+                                placeholder="Enter mobile number"
+                                v-model.trim="model.client_phone_number"
+                                :class="{
+                  'border-danger': submitted && v$.client_phone_number.$errors.length,
+                }"
+                            />
+                            <div
+                                class="text-danger mt-2"
+                                v-for="(error, index) of v$.client_phone_number.$errors"
+                                :key="index"
+                            >
+                                <div class="error-msg">{{ error.$message }}</div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <label for="form-alt-mobile-number" class="form-label">{{
+                                    t("clients.Alternate Mobile Number")
+                                }}</label>
+
+                            <FormInput
+                                id="form-alt-mobile-number"
+                                type="text"
+                                class="form-control"
+                                placeholder="Enter alternate mobile number"
+                                v-model.trim="model.client_alternate_phone_number"
+                                :class="{
+                  'border-danger': submitted && v$.client_alternate_phone_number.$errors.length,
+                }"
+                            />
+                            <div
+                                class="text-danger mt-2"
+                                v-for="(error, index) of v$.client_alternate_phone_number.$errors"
+                                :key="index"
+                            >
+                                <div class="error-msg">{{ error.$message }}</div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <label for="form-address" class="form-label">{{
+                                    t("clients.Address")
+                                }}</label>
+
+                            <FormInput
+                                id="form-address"
+                                type="text"
+                                class="form-control"
+                                placeholder="Enter address"
+                                v-model.trim="model.address"
+                                :class="{
+                  'border-danger': submitted && v$.address.$errors.length,
+                }"
+                            />
+                            <div
+                                class="text-danger mt-2"
+                                v-for="(error, index) of v$.address.$errors"
+                                :key="index"
+                            >
+                                <div class="error-msg">{{ error.$message }}</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <label for="form-website_url" class="form-label">{{
+                                    t("clients.Website Url")
+                                }}</label>
+
+                            <FormInput
+                                id="form-website_url"
+                                type="text"
+                                class="form-control"
+                                placeholder="Enter website url"
+                                v-model.trim="model.website_url"
+                            />
+                        </div>
+                        <div class="mt-3">
+                            <label for="form-website_slogan" class="form-label">{{
+                                    t("clients.Website Slogan")
+                                }}</label>
+
+                            <FormInput
+                                id="form-website_slogan"
+                                type="text"
+                                class="form-control"
+                                placeholder="Enter website slogan"
+                                v-model.trim="model.website_slogan"
+                            />
+                        </div>
+                        <div class="mt-3">
+                            <label for="form-sub-domain" class="form-label">{{
+                                    t("clients.Sub domain")
+                                }}</label>
+
+                            <FormInput
+                                id="form-sub-domain"
+                                type="text"
+                                class="form-control"
+                                placeholder="Enter address"
+                                v-model.trim="model.assigned_subdomain"
+                                :class="{
+                  'border-danger': submitted && v$.assigned_subdomain.$errors.length,
+                }"
+                            />
+                            <div
+                                class="text-danger mt-2"
+                                v-for="(error, index) of v$.assigned_subdomain.$errors"
+                                :key="index"
+                            >
+                                <div class="error-msg">{{ error.$message }}</div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <label class="form-label"> {{ t("clients.Avatar") }} </label>
+                            <div class="mt-1 flex items-center">
+                                <img
+                                    v-if="model.avatar"
+                                    :src="model.avatar"
+                                    :alt="model.client_name"
+                                    class="w-64 h-48 object-cover"
+                                />
+                                <img v-else :alt="model.client_name" class="rounded-full"
+                                     :src="`https://eu.ui-avatars.com/api/?size=50&name=` + model.client_name"/>
+
+                                <Button
+                                    type="button"
+                                    class="relative overflow-hidden ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                >
+                                    <FormInput
+                                        type="file"
+                                        @change="onImageChoose"
+                                        accept="image/png, image/jpeg, image/jpg"
+                                        class="absolute left-0 top-0 right-0 bottom-0 opacity-0 cursor-pointer rounded-full"
+                                    />
+                                    {{ t("clients.Upload Avatar") }}
+                                </Button>
+
+                            </div>
+                        </div>
+                        <!-- BEGIN: Slide Over Footer -->
+
+                        <div class="text-right w-full bottom-0 mt-5">
+                            <Button
+                                    variant="secondary"
+                                        class="btn btn-outline-secondary w-20 mr-1"
+                                        @click="router.push('/clients')"
+                                        
+                                    >
+                                {{ t("common.Cancel") }}
+                            </Button>
+                            <Button variant="primary" class="btn btn-primary w-20" type="submit">
+                                                {{ t("common.Save") }}
+                            </Button>
+                        </div>
+                        <!-- END: Slide Over Footer -->
+                    </form>
+                </div>
+                <!-- BEGIN: Post Content -->
+            </div>
+            <!-- END: Post Content -->
+        </div>
+        <Loading v-if="isLoading" fixed></Loading>
+    </div>
+</template>
 
 <style scoped>
 </style>

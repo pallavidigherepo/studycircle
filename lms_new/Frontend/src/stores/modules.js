@@ -19,6 +19,7 @@ import feesModule from "./modules/fees/index.js";
 import inquiriesModule from "./modules/inquiries/index.js";
 import rolesModule from "./modules/roles/index.js";
 import permissionsModule from "./modules/permissions/index.js";
+import chaptersModule from "./modules/chapters/index.js";
 
 export default {
   auth: authModule,
@@ -42,5 +43,6 @@ export default {
   inquiries: inquiriesModule,
   roles: rolesModule,
   permissions: permissionsModule,
+  chapters: chaptersModule,
   
 };

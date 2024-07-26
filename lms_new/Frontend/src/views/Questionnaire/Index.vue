@@ -1,3 +1,30 @@
+<script setup>
+import {ref, provide, onMounted} from "vue";
+import {useI18n} from "vue-i18n";
+import axiosClient from "@/axios";
+
+const {t} = useI18n();
+const templateCount = ref(0);
+const generatedPaperCount = ref(0);
+const latestTemplates = ref([]);
+const latestQuestionPaper = ref([]);
+onMounted(() => {
+    fetch();
+});
+
+async function fetch() {
+    const result = await axiosClient.get(`/questionnaire`);
+    templateCount.value = result.data.templateCount;
+    generatedPaperCount.value = result.data.generatedQuestionPaperCount;
+    latestTemplates.value = result.data.latestTemplates;
+    latestQuestionPaper.value = result.data.latestQuestionPaper;
+    if (result.status != 200) {
+        const error = new Error('Failed to fetch question')
+        throw error;
+    }
+}
+</script>
+
 <template>
     <div class="grid grid-cols-12 gap-6">
         <div class="col-span-12 2xl:col-span-9">
@@ -116,30 +143,3 @@
         </div>
     </div>
 </template>
-
-<script setup>
-import {ref, provide, onMounted} from "vue";
-import {useI18n} from "vue-i18n";
-import axiosClient from "@/axios";
-
-const {t} = useI18n();
-const templateCount = ref(0);
-const generatedPaperCount = ref(0);
-const latestTemplates = ref([]);
-const latestQuestionPaper = ref([]);
-onMounted(() => {
-    fetch();
-});
-
-async function fetch() {
-    const result = await axiosClient.get(`/questionnaire`);
-    templateCount.value = result.data.templateCount;
-    generatedPaperCount.value = result.data.generatedQuestionPaperCount;
-    latestTemplates.value = result.data.latestTemplates;
-    latestQuestionPaper.value = result.data.latestQuestionPaper;
-    if (result.status != 200) {
-        const error = new Error('Failed to fetch question')
-        throw error;
-    }
-}
-</script>

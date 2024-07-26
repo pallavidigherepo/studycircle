@@ -1,3 +1,324 @@
+<script setup lang="ts">
+import store from "@/stores";
+import { ref, reactive, computed, onMounted, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import TomSelect from "@/components/Base/TomSelect";
+import { FormInput, FormSelect, FormCheck } from "@/components/Base/Form";
+import Lucide from "@/components/Base/Lucide";
+import Button from "@/components/Base/Button";
+import { ClassicEditor } from "@/components/Base/Ckeditor";
+
+import { useVuelidate } from "@vuelidate/core";
+import { required, helpers } from "@vuelidate/validators";
+import { useI18n } from "vue-i18n";
+import axiosClient from "@/axios";
+// import Editor from "@tinymce/tinymce-vue";
+// import AnswerEditor from "@/components/Editor/Answer.vue";
+// import QuestionEditor from "@/components/Editor/Question.vue";
+
+const route = useRoute();
+const router = useRouter();
+const { t } = useI18n();
+
+const submitted = ref(false);
+const isErrored = ref(false);
+const message = ref("");
+const isLoading = ref(false);
+
+// Now we must get editing details for the selected item
+const model = ref({
+  id: route.params.id,
+  type_id: "",
+  board_id: "",
+  standard_id: "",
+  difficulty_level_id: "",
+  subject_id: "",
+  chapter_id: "",
+  topic_id: "",
+  language_id: 1,
+  question: "",
+  description: null,
+  note: null,
+  marks: 0,
+  negative_marks: 0,
+  answers: [],
+  questions: []
+});
+// Watch to current survey data change and when this happens we update local model
+
+watch(
+  () => store.state.questions.question,
+  (newVal, oldVal) => {
+    model.value = {
+      ...JSON.parse(JSON.stringify(newVal)),
+      status: !!newVal.status,
+    };
+  }
+);
+
+const fetch = async() => {
+    isLoading.value = true;
+    try {
+        let id = route.params.id;
+        const result = await axiosClient.get(`/questions/${id}`);
+        if (result.status != 200) {
+            const error = new Error('Failed to fetch question')
+            throw error;
+        }
+        model.value = JSON.parse(JSON.stringify(result.data));
+        model.value.answers = result.data.answers;
+        selectedType.value = result.data.type_id;
+        selectedBoard(model.value.board_id);
+        // Once all the data is populated, we have to get list of all the chapters of selected subject
+        // selectedStandard(model.value.standard_id, model.value.board_id);
+        // Once all the data is populated, we have to get list of all the chapters of selected subject
+        selectedSubject(model.value.subject_id);
+        // Now, get list of all the topics of selected chapter
+        selectedChapter(model.value.chapter_id);
+        //console.log(model.value);
+    } catch (e) {
+        isErrored.value = true;
+        message.value = e;
+    } finally {
+        isLoading.value = false;
+    }
+};
+
+const selectedBoardtId = ref("");
+const selectedStandardtId = ref("");
+const selectedSubjectId = ref("");
+const selectedChapterId = ref("");
+const selectedTopicId = ref("");
+const selectedType = ref("");
+const subjects = ref("");
+const chapters = ref([]);
+const topics = ref([]);
+const showAnswerButton = ref(true);
+
+onMounted(() => {
+  fetch();
+  store.dispatch("listBoard").then().catch();
+  store.dispatch("listStandard").then().catch();
+  store.dispatch("listDifficultyLevel").then().catch();
+  store.dispatch("listType").then().catch();
+  store.dispatch("listLanguages").then().catch();
+  store.dispatch("listTypeParagraph").then().catch();
+});
+const languages = computed(() => store.getters.languages);
+const boards = computed(() => store.getters.listBoards);
+const standards = computed(() => store.getters.listStandards);
+const difficultyList = computed(() => store.getters.listDifficultyLevel);
+const typeList = computed(() => store.getters.listType);
+const typeListParagraph = computed(() => store.getters.listTypeParagraph);
+
+function selectedBoard(boardId) {
+    selectedBoardtId.value = boardId;
+
+    selectedStandard(model.value.standard_id, boardId);
+}
+
+async function selectedStandard(standardId, boardId) {
+    if (!selectedBoardtId.value || !standardId) {
+        return;
+    }
+    selectedStandardtId.value = standardId;
+    subjects.value = [];
+    chapters.value = [];
+    topics.value = [];
+    const result = await axiosClient.get(`/subject_list/${selectedBoardtId.value}/${standardId}`);
+    if (result.status !== 200) {
+        throw new Error("Failed to fetch chapter");
+    } else {
+        subjects.value = result.data;
+    }
+}
+
+async function selectedSubject(subjectId) {
+  selectedSubjectId.value = subjectId;
+  chapters.value = [];
+  topics.value = [];
+  const result = await axiosClient.get(`/chapter_list/${subjectId}`);
+  if (result.status != 200) {
+    const error = new Error("Failed to fetch chapter");
+    throw error;
+  } else {
+    chapters.value = result.data;
+  }
+}
+
+async function selectedChapter(chapterId) {
+  selectedChapterId.value = chapterId;
+  const result = await axiosClient.get(`/topic_list/${chapterId}`);
+  if (result.status != 200) {
+    const error = new Error("Failed to fetch topic");
+    throw error;
+  } else {
+    topics.value = result.data;
+  }
+}
+
+const rules = computed(() => {
+  return {
+    board_id: {
+      required: helpers.withMessage("Please select board.", required),
+    },
+    standard_id: {
+      required: helpers.withMessage("Please select standard.", required),
+    },
+    difficulty_level_id: {
+      required: helpers.withMessage(
+        "Please select difficulty level.",
+        required
+      ),
+    },
+    type_id: {
+      required: helpers.withMessage("Please select question type.", required),
+    },
+    subject_id: {
+      required: helpers.withMessage("Please select subject.", required),
+    },
+    chapter_id: {
+      required: helpers.withMessage("Please select chapter.", required),
+    },
+    topic_id: {
+      required: helpers.withMessage("Please select topic.", required),
+    },
+    language_id: {
+      required: helpers.withMessage("Please select language.", required),
+    },
+    question: {
+      required: helpers.withMessage("Please enter question.", required),
+    },
+    description: {
+      required: helpers.withMessage("Please enter description.", required),
+    },
+    note: {
+      required: helpers.withMessage("Please enter note or explaination.", required),
+    },
+    marks: {
+      required: helpers.withMessage("Please enter note or explaination.", required),
+    },
+    negative_marks: {
+      required: helpers.withMessage("Please enter note or explaination.", required),
+    },
+    /*questions: {
+      $each: helpers.forEach({
+        question: {
+          required
+        }
+      })
+    },
+    */
+    answers: {
+      $each: helpers.forEach({
+        answer: {
+          required: helpers.withMessage('Please enter answer.', required),
+        }
+      })
+    }
+  };
+});
+
+const v$ = useVuelidate(rules, model);
+
+async function submitForm() {
+  //
+  submitted.value = true;
+  v$.value.$validate(); // checks all inputs
+  if (!v$.value.$error) {
+    isLoading.value = true;
+    await store
+      .dispatch("questions/save", model.value)
+      .then(() => {
+        isLoading.value = false;
+        submitted.value = false;
+        router.push({ name: "Questions" });
+      })
+      .catch((err) => {
+        isLoading.value = false;
+        isErrored.value = true;
+        if (err.response) {
+          message.value = err.response.data.message;
+        }
+
+      });
+  } else {
+    // if ANY fail validation
+    return;
+  }
+}
+
+function addQuestion(index) {
+  const newQuestion = {
+    id: makeid(3),
+    type_id: "",
+    question: "",
+    description: "",
+    note: "",
+    marks: "",
+    negative_marks: "",
+    answers: [],
+  };
+  model.value.questions.splice(index, 0, newQuestion);
+}
+function deleteQuestion(question) {
+  model.value.questions = model.value.questions.filter((q) => q !== question);
+}
+function questionChange(question) {
+  model.value.questions = model.value.questions.map((q) => {
+    if (q.id === question.id) {
+      return JSON.parse(JSON.stringify(question));
+    }
+    return q;
+  });
+}
+
+function addAnswer(index) {
+  if (selectedType.value == 5) {
+    //return ;
+  } else {
+    const newAnswer = {
+      id: makeid(3),
+      answer: null,
+      is_correct: false,
+    };
+    model.value.answers.splice(index, 0, newAnswer);
+  }
+
+}
+
+function deleteAnswer(answer) {
+  model.value.answers = model.value.answers.filter((q) => q !== answer);
+}
+function changeType(type) {
+  selectedType.value = type;
+  if (type == 5) {
+    //  showAnswerButton.value = false;
+  } else {
+    showAnswerButton.value = true;
+  }
+}
+
+function answerChange(answer) {
+  model.value.answers = model.value.answers.map((q) => {
+    if (q.id === answer.id) {
+      return JSON.parse(JSON.stringify(answer));
+    }
+    return q;
+  });
+}
+
+function makeid(length) {
+  var result = '';
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+</script>
+
 <template>
   <div>
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
@@ -5,19 +326,19 @@
         {{ t("questions.Edit Question") }}
       </h2>
       <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-        <router-link to="/questions" class="
-            btn
-            box
-            text-gray-700
-            dark:text-gray-300
-            mr-2
-            flex
-            items-center
-            ml-auto
-            sm:ml-0
-          ">
-          <ArrowLeftCircleIcon class="w-4 h-4 mr-2" />{{ t("common.Back") }}
-        </router-link>
+        <Button
+            variant="primary"
+            class="
+                    box
+                    mr-2
+                    flex
+                    items-center
+                    ml-auto
+                    sm:ml-0
+                "
+              @click="router.push('/questions')"
+        ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />{{ t("common.Back") }}
+        </Button>
       </div>
     </div>
     <!-- BEGIN: Notification -->
@@ -332,7 +653,7 @@
                   </div>
                 </div>
                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                  <input id="form-question" type="text" class="form-control" placeholder="Enter question."
+                  <FormInput id="form-question" type="text" class="form-control" placeholder="Enter question."
                     v-model.trim="model.question" :class="{
                       'border-danger': submitted && v$.question.$errors.length,
                     }" />
@@ -357,7 +678,8 @@
                   </div>
                 </div>
                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                  <editor id="form-description" v-model="model.description" :class="{
+                  <ClassicEditor v-model="editorData" />
+                  <!-- <editor id="form-description" v-model="model.description" :class="{
                     'border-danger': submitted && v$.description.$errors.length,
                   }" initialValue="<p>Initial editor content</p>"
                     apiKey="n10p1o42akootxkapivj4ecxefdo4zlaqd0ek0aa47ld9js7" :init="{
@@ -375,7 +697,7 @@
                                                                         bullist numlist outdent indent | insert | help | \
                                                                         tiny_mce_wiris_formulaEditor | tiny_mce_wiris_formulaEditorChemistry',
                     }">
-                  </editor>
+                  </editor> -->
                   <div class="text-danger mt-2" v-for="(error, index) of v$.description.$errors" :key="index">
                     <div class="error-msg">{{ error.$message }}</div>
                   </div>
@@ -396,7 +718,8 @@
                   </div>
                 </div>
                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                  <editor id="form-note" v-model="model.note" :class="{
+                  <ClassicEditor v-model="editorData" />
+                  <!-- <editor id="form-note" v-model="model.note" :class="{
                     'border-danger': submitted && v$.note.$errors.length,
                   }" initialValue="<p>Initial editor content</p>"
                     apiKey="n10p1o42akootxkapivj4ecxefdo4zlaqd0ek0aa47ld9js7" :init="{
@@ -414,7 +737,7 @@
                                                                       bullist numlist outdent indent | insert | help | \
                                                                       tiny_mce_wiris_formulaEditor | tiny_mce_wiris_formulaEditorChemistry',
                     }">
-                  </editor>
+                  </editor> -->
                   <div class="text-danger mt-2" v-for="(error, index) of v$.note.$errors" :key="index">
                     <div class="error-msg">{{ error.$message }}</div>
                   </div>
@@ -435,7 +758,7 @@
                   </div>
                 </div>
                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                  <input id="form-marks" type="text" class="form-control" placeholder="Marks"
+                  <FormInput id="form-marks" type="text" class="form-control" placeholder="Marks"
                     v-model.trim="model.marks" :class="{
                       'border-danger': submitted && v$.marks.$errors.length,
                     }" />
@@ -460,7 +783,7 @@
                   </div>
                 </div>
                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                  <input id="form-negative-marks" type="text" class="form-control" placeholder="Negative marks."
+                  <FormInput id="form-negative-marks" type="text" class="form-control" placeholder="Negative marks."
                     v-model.trim="model.negative_marks" :class="{
                       'border-danger': submitted && v$.negative_marks.$errors.length,
                     }" />
@@ -543,10 +866,10 @@
                         {{ t("questions.You do not have any questions added yet") }}
                       </div>
                       <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
-                        <button class="btn btn-outline-primary border-dashed w-full" type="button"
+                        <Button class="btn btn-outline-primary border-dashed w-full" type="button"
                           @click="addQuestion()">
                           <PlusIcon class="w-4 h-4 mr-2" /> {{ t("questions.Add Question") }}
-                        </button>
+                        </Button>
                       </div>
                       <div v-for="(question, index) in model.questions" :key="question.id">
                         <QuestionEditor :question="question" :questionIndex="index" :type="selectedType"
@@ -559,10 +882,10 @@
                         {{ t("questions.You do not have any answers added yet") }}
                       </div>
                       <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
-                        <button class="btn btn-outline-primary border-dashed w-full" type="button"
+                        <Button class="btn btn-outline-primary border-dashed w-full" type="button"
                           v-if="showAnswerButton == true" @click="addAnswer()">
                           <PlusIcon class="w-4 h-4 mr-2" /> {{ t("questions.Add Answer") }}
-                        </button>
+                        </Button>
                       </div>
 
                       <div class="mt-5">
@@ -583,9 +906,9 @@
                     class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                     <ChevronDownIcon class="w-4 h-4 mr-2" /> {{ t("questions.Questions of paragraph") }}
                     <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
-                      <button class="btn btn-outline-primary border-dashed w-full" type="button" @click="addQuestion()">
+                      <Button class="btn btn-outline-primary border-dashed w-full" type="button" @click="addQuestion()">
                         <PlusIcon class="w-4 h-4 mr-2" /> {{ t("questions.Add Question") }}
-                      </button>
+                      </Button>
                     </div>
                   </div>
 
@@ -621,337 +944,23 @@
         </div>
         <!-- END: Product Variant (Details) -->
         <div class="flex justify-end flex-col md:flex-row gap-2 mt-5">
-          <router-link to="/questions"
-            class="btn py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 w-full md:w-52">
+          <Button
+                variant="secondary"
+                class="btn btn-outline-secondary w-20 mr-1"
+                @click="router.push('/questions')"
+                
+            >
             {{ t("common.Cancel") }}
-          </router-link>
-
-          <button type="submit" class="btn py-3 btn-primary w-full md:w-52">
-            {{ t("common.Save") }}
-          </button>
+            </Button>
+            <Button variant="primary" class="btn btn-primary w-20" type="submit">
+                                {{ t("common.Save") }}
+            </Button>
         </div>
       </div>
     </form>
     <Loading v-if="isLoading" fixed></Loading>
   </div>
 </template>
-
-<script setup>
-import store from "@/stores";
-import { ref, reactive, computed, onMounted, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
-
-import { useVuelidate } from "@vuelidate/core";
-import { required, helpers } from "@vuelidate/validators";
-import { useI18n } from "vue-i18n";
-import axiosClient from "@/axios";
-// import Editor from "@tinymce/tinymce-vue";
-// import AnswerEditor from "@/components/Editor/Answer.vue";
-// import QuestionEditor from "@/components/Editor/Question.vue";
-
-const route = useRoute();
-const router = useRouter();
-const { t } = useI18n();
-
-const submitted = ref(false);
-const isErrored = ref(false);
-const message = ref("");
-const isLoading = ref(false);
-
-// Now we must get editing details for the selected item
-const model = ref({
-  id: route.params.id,
-  type_id: "",
-  board_id: "",
-  standard_id: "",
-  difficulty_level_id: "",
-  subject_id: "",
-  chapter_id: "",
-  topic_id: "",
-  language_id: 1,
-  question: "",
-  description: null,
-  note: null,
-  marks: 0,
-  negative_marks: 0,
-  answers: [],
-  questions: []
-});
-// Watch to current survey data change and when this happens we update local model
-
-watch(
-  () => store.state.questions.question,
-  (newVal, oldVal) => {
-    model.value = {
-      ...JSON.parse(JSON.stringify(newVal)),
-      status: !!newVal.status,
-    };
-  }
-);
-
-const fetch = async() => {
-    isLoading.value = true;
-    try {
-        let id = route.params.id;
-        const result = await axiosClient.get(`/questions/${id}`);
-        if (result.status != 200) {
-            const error = new Error('Failed to fetch question')
-            throw error;
-        }
-        model.value = JSON.parse(JSON.stringify(result.data));
-        model.value.answers = result.data.answers;
-        selectedType.value = result.data.type_id;
-        selectedBoard(model.value.board_id);
-        // Once all the data is populated, we have to get list of all the chapters of selected subject
-        // selectedStandard(model.value.standard_id, model.value.board_id);
-        // Once all the data is populated, we have to get list of all the chapters of selected subject
-        selectedSubject(model.value.subject_id);
-        // Now, get list of all the topics of selected chapter
-        selectedChapter(model.value.chapter_id);
-        //console.log(model.value);
-    } catch (e) {
-        isErrored.value = true;
-        message.value = e;
-    } finally {
-        isLoading.value = false;
-    }
-};
-
-const selectedBoardtId = ref("");
-const selectedStandardtId = ref("");
-const selectedSubjectId = ref("");
-const selectedChapterId = ref("");
-const selectedTopicId = ref("");
-const selectedType = ref("");
-const subjects = ref("");
-const chapters = ref([]);
-const topics = ref([]);
-const showAnswerButton = ref(true);
-
-onMounted(() => {
-  fetch();
-  store.dispatch("listBoard").then().catch();
-  store.dispatch("listStandard").then().catch();
-  store.dispatch("listDifficultyLevel").then().catch();
-  store.dispatch("listType").then().catch();
-  store.dispatch("listLanguages").then().catch();
-  store.dispatch("listTypeParagraph").then().catch();
-});
-const languages = computed(() => store.getters.languages);
-const boards = computed(() => store.getters.listBoards);
-const standards = computed(() => store.getters.listStandards);
-const difficultyList = computed(() => store.getters.listDifficultyLevel);
-const typeList = computed(() => store.getters.listType);
-const typeListParagraph = computed(() => store.getters.listTypeParagraph);
-
-function selectedBoard(boardId) {
-    selectedBoardtId.value = boardId;
-
-    selectedStandard(model.value.standard_id, boardId);
-}
-
-async function selectedStandard(standardId, boardId) {
-    if (!selectedBoardtId.value || !standardId) {
-        return;
-    }
-    selectedStandardtId.value = standardId;
-    subjects.value = [];
-    chapters.value = [];
-    topics.value = [];
-    const result = await axiosClient.get(`/subject_list/${selectedBoardtId.value}/${standardId}`);
-    if (result.status !== 200) {
-        throw new Error("Failed to fetch chapter");
-    } else {
-        subjects.value = result.data;
-    }
-}
-
-async function selectedSubject(subjectId) {
-  selectedSubjectId.value = subjectId;
-  chapters.value = [];
-  topics.value = [];
-  const result = await axiosClient.get(`/chapter_list/${subjectId}`);
-  if (result.status != 200) {
-    const error = new Error("Failed to fetch chapter");
-    throw error;
-  } else {
-    chapters.value = result.data;
-  }
-}
-
-async function selectedChapter(chapterId) {
-  selectedChapterId.value = chapterId;
-  const result = await axiosClient.get(`/topic_list/${chapterId}`);
-  if (result.status != 200) {
-    const error = new Error("Failed to fetch topic");
-    throw error;
-  } else {
-    topics.value = result.data;
-  }
-}
-
-const rules = computed(() => {
-  return {
-    board_id: {
-      required: helpers.withMessage("Please select board.", required),
-    },
-    standard_id: {
-      required: helpers.withMessage("Please select standard.", required),
-    },
-    difficulty_level_id: {
-      required: helpers.withMessage(
-        "Please select difficulty level.",
-        required
-      ),
-    },
-    type_id: {
-      required: helpers.withMessage("Please select question type.", required),
-    },
-    subject_id: {
-      required: helpers.withMessage("Please select subject.", required),
-    },
-    chapter_id: {
-      required: helpers.withMessage("Please select chapter.", required),
-    },
-    topic_id: {
-      required: helpers.withMessage("Please select topic.", required),
-    },
-    language_id: {
-      required: helpers.withMessage("Please select language.", required),
-    },
-    question: {
-      required: helpers.withMessage("Please enter question.", required),
-    },
-    description: {
-      required: helpers.withMessage("Please enter description.", required),
-    },
-    note: {
-      required: helpers.withMessage("Please enter note or explaination.", required),
-    },
-    marks: {
-      required: helpers.withMessage("Please enter note or explaination.", required),
-    },
-    negative_marks: {
-      required: helpers.withMessage("Please enter note or explaination.", required),
-    },
-    /*questions: {
-      $each: helpers.forEach({
-        question: {
-          required
-        }
-      })
-    },
-    */
-    answers: {
-      $each: helpers.forEach({
-        answer: {
-          required: helpers.withMessage('Please enter answer.', required),
-        }
-      })
-    }
-  };
-});
-
-const v$ = useVuelidate(rules, model);
-
-async function submitForm() {
-  //
-  submitted.value = true;
-  v$.value.$validate(); // checks all inputs
-  if (!v$.value.$error) {
-    isLoading.value = true;
-    await store
-      .dispatch("questions/save", model.value)
-      .then(() => {
-        isLoading.value = false;
-        submitted.value = false;
-        router.push({ name: "Questions" });
-      })
-      .catch((err) => {
-        isLoading.value = false;
-        isErrored.value = true;
-        if (err.response) {
-          message.value = err.response.data.message;
-        }
-
-      });
-  } else {
-    // if ANY fail validation
-    return;
-  }
-}
-
-function addQuestion(index) {
-  const newQuestion = {
-    id: makeid(3),
-    type_id: "",
-    question: "",
-    description: "",
-    note: "",
-    marks: "",
-    negative_marks: "",
-    answers: [],
-  };
-  model.value.questions.splice(index, 0, newQuestion);
-}
-function deleteQuestion(question) {
-  model.value.questions = model.value.questions.filter((q) => q !== question);
-}
-function questionChange(question) {
-  model.value.questions = model.value.questions.map((q) => {
-    if (q.id === question.id) {
-      return JSON.parse(JSON.stringify(question));
-    }
-    return q;
-  });
-}
-
-function addAnswer(index) {
-  if (selectedType.value == 5) {
-    //return ;
-  } else {
-    const newAnswer = {
-      id: makeid(3),
-      answer: null,
-      is_correct: false,
-    };
-    model.value.answers.splice(index, 0, newAnswer);
-  }
-
-}
-
-function deleteAnswer(answer) {
-  model.value.answers = model.value.answers.filter((q) => q !== answer);
-}
-function changeType(type) {
-  selectedType.value = type;
-  if (type == 5) {
-    //  showAnswerButton.value = false;
-  } else {
-    showAnswerButton.value = true;
-  }
-}
-
-function answerChange(answer) {
-  model.value.answers = model.value.answers.map((q) => {
-    if (q.id === answer.id) {
-      return JSON.parse(JSON.stringify(answer));
-    }
-    return q;
-  });
-}
-
-function makeid(length) {
-  var result = '';
-  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  var charactersLength = characters.length;
-  for (var i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
-</script>
-
 <style scoped>
 
 </style>

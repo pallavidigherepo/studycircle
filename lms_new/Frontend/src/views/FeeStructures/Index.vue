@@ -1,168 +1,3 @@
-<template>
-    <div>
-        <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-            <h2 class="text-lg font-medium mr-auto">
-                {{ t("fee_structures.Fee Structures") }}
-            </h2>
-        </div>
-        <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
-            <!-- BEGIN: Post Content -->
-            <div class="intro-y col-span-12 lg:col-span-8">
-                <!-- BEGIN: HTML Table Data -->
-
-                <div class="intro-y box p-5">
-                    <div class="overflow-x-auto scrollbar-hidden">
-                        <DataTable
-                            module="fee_structures"
-                            :importExportOptions="options"
-                            @editItem="edit"
-                            @deleteItem="deleteI"
-                        />
-                    </div>
-                </div>
-                <!-- END: HTML Table Data -->
-            </div>
-            <!-- END: Post Content -->
-            <!-- BEGIN: Add/Edit fee structure -->
-            <div class="col-span-12 lg:col-span-4">
-                <div class="intro-y box p-5">
-                    <h2 class="text-lg font-medium mr-auto pt-5 pb-5">
-                        {{ t("common." + actionText) }}
-                    </h2>
-                    <div
-                        class="alert alert-danger show flex items-center mb-2"
-                        role="alert"
-                        v-if="isErrored"
-                    >
-                        <AlertOctagonIcon class="w-6 h-6 mr-2" />
-                        {{ message }}
-                    </div>
-
-                    <form @submit.prevent="submitForm" class="validate-form">
-                        <div>
-                            <label for="fee-category" class="form-label">{{
-                                    t("fee_structures.Fee Category")
-                                }}</label>
-                            <TomSelect id="fee-category"
-                                       v-model="model.fee_category_id"
-                                       :class="{ 'border-danger': submitted && v$.fee_category_id.$errors.length, }"
-                                       :options="{
-                                        allowEmptyOption: false,
-                                        create: false,
-                                        placeholder: 'Select Fee Category',
-                                        autocomplete: 'off',
-                                        items: [model.fee_category_id]
-                                      }"
-                                       :placeholder="'Select Fee Category'"
-                                       class="w-full">
-                                <option>{{ t('fee_structures.Select Fee Category') }}</option>
-                                <option v-for="(feeCategory, index) in feeCategories" :key="index" :value="index">
-                                    {{ feeCategory }}
-                                </option>
-                            </TomSelect>
-                            <span
-                                v-if="submitted && v$.fee_category_id.$error"
-                                class="text-danger mt-2"
-                            >
-                                {{ v$.fee_category_id.$errors[0].$message }}
-                            </span>
-                        </div>
-                        <div>
-                            <label for="fee-batch" class="form-label">{{
-                                    t("fee_structures.Batch")
-                                }}</label>
-                            <TomSelect id="fee-batch"
-                                   v-model="model.batch_id"
-                                   :class="{ 'border-danger': submitted && v$.batch_id.$errors.length, }"
-                                   :options="{
-                                        allowEmptyOption: false,
-                                        create: false,
-                                        placeholder: 'Select Batch',
-                                        autocomplete: 'off',
-                                        items: [model.batch_id]
-                                      }"
-                                   :placeholder="'Select Batch'"
-                                   class="w-full">
-                                <option>{{ t('fee_structures.Select Batch') }}</option>
-                                <option v-for="(batch, index) in batches" :key="index" :value="index">
-                                    {{ batch }}
-                                </option>
-                            </TomSelect>
-                            <span
-                                v-if="submitted && v$.batch_id.$error"
-                                class="text-danger mt-2"
-                            >
-                                {{ v$.batch_id.$errors[0].$message }}
-                            </span>
-                        </div>
-                        <div>
-                            <label for="fee-standard" class="form-label">{{
-                                    t("fee_structures.Standard")
-                                }}</label>
-                            <TomSelect id="fee-standard"
-                                       v-model="model.standard_id"
-                                       :class="{ 'border-danger': submitted && v$.standard_id.$errors.length, }"
-                                       :options="{
-                                        allowEmptyOption: false,
-                                        create: false,
-                                        placeholder: 'Select Standard',
-                                        autocomplete: 'off',
-                                        items: [model.standard_id]
-                                      }"
-                                       :placeholder="'Select Standard'"
-                                       class="w-full">
-                                <option>{{ t('fee_structures.Select Standard') }}</option>
-                                <option v-for="(standard, index) in standards" :key="index" :value="index">
-                                    {{ standard }}
-                                </option>
-                            </TomSelect>
-                            <span
-                                v-if="submitted && v$.standard_id.$error"
-                                class="text-danger mt-2"
-                            >
-                                {{ v$.standard_id.$errors[0].$message }}
-                            </span>
-                        </div>
-                        <div class="mt-3">
-                            <label for="fee-structures-amount" class="form-label">{{
-                                    t("fee_structures.Amount")
-                                }}</label>
-                            <FormInput
-                                id="fee-discount-amount"
-                                type="text"
-                                class="form-control w-full"
-                                :placeholder="t('fee_structures.Amount')"
-                                v-model.trim="model.amount"
-                                :class="{ 'border-danger': submitted && v$.amount.$error }"
-                            />
-                            <span
-                                v-if="submitted && v$.amount.$error"
-                                class="text-danger mt-2"
-                            >
-                                {{ v$.amount.$errors[0].$message }}
-                            </span>
-                        </div>
-                        <div class="text-right mt-5">
-                            <Button
-                                type="button"
-                                variant="secondary"
-                                class="btn btn-outline-secondary w-24 mr-1"
-                                @click.prevent="cancel"
-                            >
-                                {{ t("common.Cancel") }}
-                            </Button>
-                            <Button variant="primary" type="submit" class="btn btn-primary w-24">
-                                {{ t("common.Save") }}
-                            </Button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!-- END: Add/Edit fee_discounts -->
-        </div>
-    </div>
-</template>
-
 <script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
 
@@ -315,6 +150,170 @@ function random(string) {
     return s;
 }
 </script>
+<template>
+    <div>
+        <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+            <h2 class="text-lg font-medium mr-auto">
+                {{ t("fee_structures.Fee Structures") }}
+            </h2>
+        </div>
+        <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
+            <!-- BEGIN: Post Content -->
+            <div class="intro-y col-span-12 lg:col-span-8">
+                <!-- BEGIN: HTML Table Data -->
+
+                <div class="intro-y p-5">
+                    <div class="overflow-x-auto scrollbar-hidden">
+                        <DataTable
+                            module="fee_structures"
+                            :importExportOptions="options"
+                            @editItem="edit"
+                            @deleteItem="deleteI"
+                        />
+                    </div>
+                </div>
+                <!-- END: HTML Table Data -->
+            </div>
+            <!-- END: Post Content -->
+            <!-- BEGIN: Add/Edit fee structure -->
+            <div class="col-span-12 lg:col-span-4">
+                <div class="intro-y box p-5">
+                    <h2 class="text-lg font-medium mr-auto pt-5 pb-5">
+                        {{ t("common." + actionText) }}
+                    </h2>
+                    <div
+                        class="alert alert-danger show flex items-center mb-2"
+                        role="alert"
+                        v-if="isErrored"
+                    >
+                        <AlertOctagonIcon class="w-6 h-6 mr-2" />
+                        {{ message }}
+                    </div>
+
+                    <form @submit.prevent="submitForm" class="validate-form">
+                        <div>
+                            <label for="fee-category" class="form-label">{{
+                                    t("fee_structures.Fee Category")
+                                }}</label>
+                            <TomSelect id="fee-category"
+                                       v-model="model.fee_category_id"
+                                       :class="{ 'border-danger': submitted && v$.fee_category_id.$errors.length, }"
+                                       :options="{
+                                        allowEmptyOption: false,
+                                        create: false,
+                                        placeholder: 'Select Fee Category',
+                                        autocomplete: 'off',
+                                        items: [model.fee_category_id]
+                                      }"
+                                       :placeholder="'Select Fee Category'"
+                                       class="w-full">
+                                <option>{{ t('fee_structures.Select Fee Category') }}</option>
+                                <option v-for="(feeCategory, index) in feeCategories" :key="index" :value="index">
+                                    {{ feeCategory }}
+                                </option>
+                            </TomSelect>
+                            <span
+                                v-if="submitted && v$.fee_category_id.$error"
+                                class="text-danger mt-2"
+                            >
+                                {{ v$.fee_category_id.$errors[0].$message }}
+                            </span>
+                        </div>
+                        <div>
+                            <label for="fee-batch" class="form-label">{{
+                                    t("fee_structures.Batch")
+                                }}</label>
+                            <TomSelect id="fee-batch"
+                                   v-model="model.batch_id"
+                                   :class="{ 'border-danger': submitted && v$.batch_id.$errors.length, }"
+                                   :options="{
+                                        allowEmptyOption: false,
+                                        create: false,
+                                        placeholder: 'Select Batch',
+                                        autocomplete: 'off',
+                                        items: [model.batch_id]
+                                      }"
+                                   :placeholder="'Select Batch'"
+                                   class="w-full">
+                                <option>{{ t('fee_structures.Select Batch') }}</option>
+                                <option v-for="(batch, index) in batches" :key="index" :value="index">
+                                    {{ batch }}
+                                </option>
+                            </TomSelect>
+                            <span
+                                v-if="submitted && v$.batch_id.$error"
+                                class="text-danger mt-2"
+                            >
+                                {{ v$.batch_id.$errors[0].$message }}
+                            </span>
+                        </div>
+                        <div>
+                            <label for="fee-standard" class="form-label">{{
+                                    t("fee_structures.Standard")
+                                }}</label>
+                            <TomSelect id="fee-standard"
+                                       v-model="model.standard_id"
+                                       :class="{ 'border-danger': submitted && v$.standard_id.$errors.length, }"
+                                       :options="{
+                                        allowEmptyOption: false,
+                                        create: false,
+                                        placeholder: 'Select Standard',
+                                        autocomplete: 'off',
+                                        items: [model.standard_id]
+                                      }"
+                                       :placeholder="'Select Standard'"
+                                       class="w-full">
+                                <option>{{ t('fee_structures.Select Standard') }}</option>
+                                <option v-for="(standard, index) in standards" :key="index" :value="index">
+                                    {{ standard }}
+                                </option>
+                            </TomSelect>
+                            <span
+                                v-if="submitted && v$.standard_id.$error"
+                                class="text-danger mt-2"
+                            >
+                                {{ v$.standard_id.$errors[0].$message }}
+                            </span>
+                        </div>
+                        <div class="mt-3">
+                            <label for="fee-structures-amount" class="form-label">{{
+                                    t("fee_structures.Amount")
+                                }}</label>
+                            <FormInput
+                                id="fee-discount-amount"
+                                type="text"
+                                class="form-control w-full"
+                                :placeholder="t('fee_structures.Amount')"
+                                v-model.trim="model.amount"
+                                :class="{ 'border-danger': submitted && v$.amount.$error }"
+                            />
+                            <span
+                                v-if="submitted && v$.amount.$error"
+                                class="text-danger mt-2"
+                            >
+                                {{ v$.amount.$errors[0].$message }}
+                            </span>
+                        </div>
+                        <div class="text-right mt-5">
+                            <Button
+                                type="button"
+                                variant="secondary"
+                                class="btn btn-outline-secondary w-24 mr-1"
+                                @click.prevent="cancel"
+                            >
+                                {{ t("common.Cancel") }}
+                            </Button>
+                            <Button variant="primary" type="submit" class="btn btn-primary w-24">
+                                {{ t("common.Save") }}
+                            </Button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- END: Add/Edit fee_discounts -->
+        </div>
+    </div>
+</template>
 
 <style>
 .active-row {

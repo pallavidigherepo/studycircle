@@ -1,4 +1,181 @@
+<script setup lang="ts">
+import { ref, computed, onMounted } from "vue";
+import {useRoute, useRouter} from "vue-router";
+import {useI18n} from "vue-i18n";
+import TomSelect from "@/components/Base/TomSelect";
+import { FormInput, FormSelect, FormTextarea } from "@/components/Base/Form";
+import Lucide from "@/components/Base/Lucide";
+import Button from "@/components/Base/Button";
+import {email, helpers, minLength, maxLength, numeric, required} from "@vuelidate/validators";
+import {useVuelidate} from "@vuelidate/core";
+import store from "@/stores";
+import axiosClient from "@/axios";
+// import InquiryFollowups from "@/components/Inquiries/Followups.vue";
+
+const route = useRoute();
+const router = useRouter();
+const { t } = useI18n();
+
+const isLoading = ref(false);
+const isErrored = ref(false);
+const message = ref("");
+const submitted = ref(false);
+const isFollowupCalled = ref(false);
+const showFollowupValue = ref(false);
+
+const model = ref({
+    id: route.params.id,
+    student_name: "",
+    contact_name: "",
+    contact_email: "",
+    contact_mobile: "",
+    board_id: 1,
+    standard_id: "",
+    batch_id: "",
+    alt_mobile: "",
+    student_gender: "",
+    student_dob: "",
+    address: "",
+    inquiry_source_id: "",
+    inquiry_followup_type_id: "",
+    assigned_to: "",
+    inquiry_status_id: "",
+});
+
+
+const rules = computed(() => {
+    return {
+        student_name: {
+            required: helpers.withMessage("Please enter name of user.", required),
+        },
+        contact_name: {
+            required: helpers.withMessage("Please enter name of user.", required),
+        },
+        contact_email: {
+            required: helpers.withMessage("Please enter email address.", required),
+            email: helpers.withMessage("Please enter valid email address", email),
+        },
+        contact_mobile: {
+            required: helpers.withMessage("Please enter mobile number.", required),
+            minLength: helpers.withMessage("Please enter valid mobile number", minLength(10)),
+            numeric: helpers.withMessage("Please enter valid mobile number", numeric),
+        },
+        /*board_id: {
+            required: helpers.withMessage("Please select board of student.", required),
+        },*/
+        standard_id: {
+            required: helpers.withMessage("Please select standard or class of student.", required),
+        },
+        batch_id: {
+            required: helpers.withMessage("Please select batch of student.", required),
+        },
+        student_gender: {
+            required: helpers.withMessage("Please select gender of student.", required),
+        },
+        student_dob: {
+            required: helpers.withMessage("Please date of birth of student.", required),
+        },
+        address: {
+            required: helpers.withMessage("Please enter permanent address of student.", required),
+        },
+        inquiry_source_id: {
+            required: helpers.withMessage("Please select source of inquiry.", required),
+        },/*
+        inquiry_followup_type_id: {
+            required: helpers.withMessage("Please select follow up type.", required),
+        },*/
+        assigned_to: {
+            required: helpers.withMessage("Please select executive to assign this inquiry.", required),
+        },
+        inquiry_status_id: {
+            required: helpers.withMessage("Please select status of inquiry.", required),
+        }
+    };
+});
+
+const v$ = useVuelidate(rules, model);
+
+async function submitForm()
+{
+    submitted.value = true;
+    v$.value.$validate(); // checks all inputs
+    if (!v$.value.$error) {
+        isLoading.value = true;
+        await store
+            .dispatch("inquiries/save", model.value)
+            .then(() => {
+                isLoading.value = false;
+                submitted.value = false;
+                isErrored.value = false;
+                router.push({name: "Inquiries"});
+            })
+            .catch((err) => {
+                isLoading.value = false;
+                submitted.value = false;
+                isErrored.value = true;
+                if (err.response && err.response.data) {
+                    message.value = err.response.data.message;
+                }
+
+            });
+    } else {
+        // if ANY fail validation
+        return;
+    }
+}
+onMounted(() => {
+    fetch();
+    store.dispatch("listCourses").then().catch();
+    store.dispatch("listBoard").then().catch();
+    store.dispatch("listStandard").then().catch();
+    store.dispatch("listLanguages").then().catch();
+    store.dispatch("listBatch").then().catch();
+    store.dispatch("listInquirySources").then().catch();
+    store.dispatch("listInquiryFollowupTypes").then().catch();
+    store.dispatch("listInquiryAssignees").then().catch();
+    store.dispatch("listInquiryStatus").then().catch();
+});
+
+const fetch = async() => {
+    isLoading.value = true;
+    try {
+        let id = route.params.id;
+        const result = await axiosClient.get(`/inquiries/${id}`);
+        if (result.status !== 200) {
+            throw new Error('Failed to fetch student information.');
+        }
+        model.value = JSON.parse(JSON.stringify(result.data.data));
+    } catch (e) {
+        isErrored.value = true;
+        message.value = e;
+    } finally {
+        isLoading.value = false;
+    }
+};
+const languages = computed(() => store.getters.languages);
+const boards = computed(() => store.getters.listBoards);
+const standards = computed(() => store.getters.listStandards);
+const batches = computed(() => store.getters.listBatches);
+const sources = computed(() => store.getters.listInquirySources);
+const followupTypes = computed(() => store.getters.listInquiryFollowupTypes);
+const assignees = computed(() => store.getters.listInquiryAssignees);
+const statuses = computed(() => store.getters.listInquiryStatus);
+
+const genders = {
+    male: 'Male',
+    female: "Female",
+    other: "Better Not Say"
+};
+
+function followup(value) {
+    isFollowupCalled.value = value;
+    showFollowupValue.value = value;
+}
+
+</script>
+
 <template>
+    <div>
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">{{ t("inquiries.Edit Inquiry") }}</h2>
         <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
@@ -15,22 +192,19 @@
                       "
                @click.prevent="followup(true)"
             >{{ t("inquiries.Follow Ups")}}</a>
-            <router-link
-                to="/inquiries"
-                class="
-                        btn
-                        box
-                        text-gray-700
-                        dark:text-gray-300
-                        mr-2
-                        flex
-                        items-center
-                        ml-auto
-                        sm:ml-0
-                      "
-            ><ArrowLeftCircleIcon class="w-4 h-4 mr-2" />
-                {{ t("common.Back") }}
-            </router-link>
+            <Button
+                variant="primary"
+                    class="
+                            box
+                            mr-2
+                            flex
+                            items-center
+                            ml-auto
+                            sm:ml-0
+                        "
+                     @click="router.push('/inquiries')"
+                ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />{{ t("common.Back") }}
+        </Button>
         </div>
     </div>
     <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
@@ -294,7 +468,7 @@
                                         </div>
                                     </div>
                                     <div class="w-full mt-3 xl:mt-0 flex-1">
-                                        <input
+                                        <FormInput
                                             id="form-name"
                                             type="text"
                                             class="form-control"
@@ -321,7 +495,7 @@
                                         </div>
                                     </div>
                                     <div class="w-full mt-3 xl:mt-0 flex-1">
-                                        <input
+                                        <FormInput
                                             id="form-name"
                                             type="text"
                                             class="form-control"
@@ -350,7 +524,7 @@
                                         </div>
                                     </div>
                                     <div class="w-full mt-3 xl:mt-0 flex-1">
-                                        <input
+                                        <FormInput
                                             id="form-contact_email"
                                             type="text"
                                             class="form-control"
@@ -379,7 +553,7 @@
                                         </div>
                                     </div>
                                     <div class="w-full mt-3 xl:mt-0 flex-1">
-                                        <input
+                                        <FormInput
                                             id="form-contact_mobile"
                                             type="text"
                                             class="form-control"
@@ -449,7 +623,7 @@
                                             <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-slate-100 border text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
                                                 <CalendarIcon class="w-4 h-4" />
                                             </div>
-                                            <input v-model="model.student_dob"
+                                            <FormInput v-model="model.student_dob"
                                                    type="date"
                                                    class="form-control pl-12" />
                                         </div>
@@ -473,13 +647,13 @@
                                         </div>
                                     </div>
                                     <div class="w-full mt-3 xl:mt-0 flex-1">
-                                                <textarea
+                                                <FormTextarea
                                                     id="form-address"
                                                     class="form-control"
                                                     placeholder="Enter address of student"
                                                     v-model.trim="model.address"
                                                     :class="{ 'border-danger': submitted && v$.address.$errors.length, }"
-                                                ></textarea>
+                                                ></FormTextarea>
                                         <div v-for="(error, index) of v$.address.$errors" :key="index"
                                              class="text-danger mt-2">
                                             <div class="error-msg">{{ error.$message }}</div>
@@ -492,15 +666,17 @@
                     <!-- END: Basic Information -->
                 </div>
                 <div class="text-right w-full bottom-0 mt-5">
-                    <router-link
-                        to="/inquiries"
+                    <Button
+                    variant="secondary"
                         class="btn btn-outline-secondary w-20 mr-1"
-                    >
-                        {{ t("users.Cancel") }}
-                    </router-link>
-                    <button type="submit" class="btn btn-primary w-20">
-                        {{ t("users.Save") }}
-                    </button>
+                        @click="router.push('/inquiries')"
+                        
+                            >
+                        {{ t("common.Cancel") }}
+                    </Button>
+                    <Button variant="primary" class="btn btn-primary w-20" type="submit">
+                                        {{ t("common.Save") }}
+                    </Button>
                 </div>
             </form>
         </div>
@@ -511,176 +687,7 @@
                            :inquiryId="model.id"
                            :inquiryStatusId="model.inquiry_status_id" />
     </div>
+    </div>
 </template>
 
-<script setup>
-import { ref, computed, onMounted } from "vue";
-import {useRoute, useRouter} from "vue-router";
-import {useI18n} from "vue-i18n";
-import {email, helpers, minLength, maxLength, numeric, required} from "@vuelidate/validators";
-import {useVuelidate} from "@vuelidate/core";
-import store from "@/stores";
-import axiosClient from "@/axios";
-// import InquiryFollowups from "@/components/Inquiries/Followups.vue";
 
-const route = useRoute();
-const router = useRouter();
-const { t } = useI18n();
-
-const isLoading = ref(false);
-const isErrored = ref(false);
-const message = ref("");
-const submitted = ref(false);
-const isFollowupCalled = ref(false);
-const showFollowupValue = ref(false);
-
-const model = ref({
-    id: route.params.id,
-    student_name: "",
-    contact_name: "",
-    contact_email: "",
-    contact_mobile: "",
-    board_id: 1,
-    standard_id: "",
-    batch_id: "",
-    alt_mobile: "",
-    student_gender: "",
-    student_dob: "",
-    address: "",
-    inquiry_source_id: "",
-    inquiry_followup_type_id: "",
-    assigned_to: "",
-    inquiry_status_id: "",
-});
-
-
-const rules = computed(() => {
-    return {
-        student_name: {
-            required: helpers.withMessage("Please enter name of user.", required),
-        },
-        contact_name: {
-            required: helpers.withMessage("Please enter name of user.", required),
-        },
-        contact_email: {
-            required: helpers.withMessage("Please enter email address.", required),
-            email: helpers.withMessage("Please enter valid email address", email),
-        },
-        contact_mobile: {
-            required: helpers.withMessage("Please enter mobile number.", required),
-            minLength: helpers.withMessage("Please enter valid mobile number", minLength(10)),
-            numeric: helpers.withMessage("Please enter valid mobile number", numeric),
-        },
-        /*board_id: {
-            required: helpers.withMessage("Please select board of student.", required),
-        },*/
-        standard_id: {
-            required: helpers.withMessage("Please select standard or class of student.", required),
-        },
-        batch_id: {
-            required: helpers.withMessage("Please select batch of student.", required),
-        },
-        student_gender: {
-            required: helpers.withMessage("Please select gender of student.", required),
-        },
-        student_dob: {
-            required: helpers.withMessage("Please date of birth of student.", required),
-        },
-        address: {
-            required: helpers.withMessage("Please enter permanent address of student.", required),
-        },
-        inquiry_source_id: {
-            required: helpers.withMessage("Please select source of inquiry.", required),
-        },/*
-        inquiry_followup_type_id: {
-            required: helpers.withMessage("Please select follow up type.", required),
-        },*/
-        assigned_to: {
-            required: helpers.withMessage("Please select executive to assign this inquiry.", required),
-        },
-        inquiry_status_id: {
-            required: helpers.withMessage("Please select status of inquiry.", required),
-        }
-    };
-});
-
-const v$ = useVuelidate(rules, model);
-
-async function submitForm()
-{
-    submitted.value = true;
-    v$.value.$validate(); // checks all inputs
-    if (!v$.value.$error) {
-        isLoading.value = true;
-        await store
-            .dispatch("inquiries/save", model.value)
-            .then(() => {
-                isLoading.value = false;
-                submitted.value = false;
-                isErrored.value = false;
-                router.push({name: "Inquiries"});
-            })
-            .catch((err) => {
-                isLoading.value = false;
-                submitted.value = false;
-                isErrored.value = true;
-                if (err.response && err.response.data) {
-                    message.value = err.response.data.message;
-                }
-
-            });
-    } else {
-        // if ANY fail validation
-        return;
-    }
-}
-onMounted(() => {
-    fetch();
-    store.dispatch("listCourses").then().catch();
-    store.dispatch("listBoard").then().catch();
-    store.dispatch("listStandard").then().catch();
-    store.dispatch("listLanguages").then().catch();
-    store.dispatch("listBatch").then().catch();
-    store.dispatch("listInquirySources").then().catch();
-    store.dispatch("listInquiryFollowupTypes").then().catch();
-    store.dispatch("listInquiryAssignees").then().catch();
-    store.dispatch("listInquiryStatus").then().catch();
-});
-
-const fetch = async() => {
-    isLoading.value = true;
-    try {
-        let id = route.params.id;
-        const result = await axiosClient.get(`/inquiries/${id}`);
-        if (result.status !== 200) {
-            throw new Error('Failed to fetch student information.');
-        }
-        model.value = JSON.parse(JSON.stringify(result.data.data));
-    } catch (e) {
-        isErrored.value = true;
-        message.value = e;
-    } finally {
-        isLoading.value = false;
-    }
-};
-const languages = computed(() => store.getters.languages);
-const boards = computed(() => store.getters.listBoards);
-const standards = computed(() => store.getters.listStandards);
-const batches = computed(() => store.getters.listBatches);
-const sources = computed(() => store.getters.listInquirySources);
-const followupTypes = computed(() => store.getters.listInquiryFollowupTypes);
-const assignees = computed(() => store.getters.listInquiryAssignees);
-const statuses = computed(() => store.getters.listInquiryStatus);
-
-const genders = {
-    male: 'Male',
-    female: "Female",
-    other: "Better Not Say"
-};
-
-function followup(value) {
-    isFollowupCalled.value = value;
-    showFollowupValue.value = value;
-}
-
-</script>

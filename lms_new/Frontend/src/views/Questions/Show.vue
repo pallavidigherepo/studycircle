@@ -1,3 +1,48 @@
+<script setup lang="ts">
+import store from "@/stores";
+import { ref, computed, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import TomSelect from "@/components/Base/TomSelect";
+import { FormInput, FormSelect, FormCheck } from "@/components/Base/Form";
+import Lucide from "@/components/Base/Lucide";
+import Button from "@/components/Base/Button";
+
+import { useI18n } from "vue-i18n";
+// import {Tab} from "../../global-components/tab";
+
+const route = useRoute();
+const router = useRouter();
+const { t } = useI18n();
+
+const message = ref("");
+const isLoading = ref(false);
+
+const fetch = async() => {
+    isLoading.value = true;
+    try {
+        let id = route.params.id;
+        await store
+                .dispatch("questions/show", id)
+                .then(() => {
+                    isLoading.value = false;
+                })
+                .catch((err) => {
+                    isLoading.value = false;
+                });
+    } catch (e) {
+        message.value = e;
+    } finally {
+        isLoading.value = false;
+    }
+};
+
+onMounted(() => {
+  fetch();
+});
+
+const question = computed(() => store.getters['questions/question']);
+</script>
+
 <template>
   <div>
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
@@ -19,19 +64,19 @@
               <EditIcon class="w-4 h-4 mr-2"/>
               {{ t("questions.Edit Question") }}
           </router-link>
-        <router-link to="/questions" class="
-            btn
-            box
-            text-gray-700
-            dark:text-gray-300
-            mr-2
-            flex
-            items-center
-            ml-auto
-            sm:ml-0
-          ">
-          <ArrowLeftCircleIcon class="w-4 h-4 mr-2" />{{ t("common.Back") }}
-        </router-link>
+          <Button
+            variant="primary"
+            class="
+                    box
+                    mr-2
+                    flex
+                    items-center
+                    ml-auto
+                    sm:ml-0
+                "
+              @click="router.push('/questions')"
+        ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />{{ t("common.Back") }}
+        </Button>
       </div>
     </div>
 
@@ -394,48 +439,6 @@
     <Loading v-if="isLoading" fixed></Loading>
   </div>
 </template>
-
-<script setup>
-import store from "@/stores";
-import { ref, computed, onMounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
-
-import { useI18n } from "vue-i18n";
-// import {Tab} from "../../global-components/tab";
-
-const route = useRoute();
-const router = useRouter();
-const { t } = useI18n();
-
-const message = ref("");
-const isLoading = ref(false);
-
-const fetch = async() => {
-    isLoading.value = true;
-    try {
-        let id = route.params.id;
-        await store
-                .dispatch("questions/show", id)
-                .then(() => {
-                    isLoading.value = false;
-                })
-                .catch((err) => {
-                    isLoading.value = false;
-                });
-    } catch (e) {
-        message.value = e;
-    } finally {
-        isLoading.value = false;
-    }
-};
-
-onMounted(() => {
-  fetch();
-});
-
-const question = computed(() => store.getters['questions/question']);
-</script>
-
 <style scoped>
 
 </style>

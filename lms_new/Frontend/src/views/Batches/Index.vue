@@ -126,7 +126,7 @@ function deleteI(item) {
             <div class="intro-y col-span-12 lg:col-span-8">
                 <!-- BEGIN: HTML Table Data -->
 
-                <div class="intro-y box p-5">
+                <div class="intro-y p-5">
                     <div class="overflow-x-auto scrollbar-hidden">
                         <DataTable
                             module="batches"

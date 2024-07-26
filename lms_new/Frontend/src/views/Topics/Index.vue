@@ -1,39 +1,3 @@
-<template>
-  <!-- BEGIN: Chapters list -->
-    <div class="grid grid-cols-12 gap-12">
-      <div class="intro-y box col-span-12 lg:col-span-12">
-        <div
-          class="
-            flex
-            items-center
-            px-5
-            py-5
-            sm:py-3
-            border-b border-slate-200/60
-            dark:border-darkmode-400
-          "
-        >
-          <h2 class="font-medium text-base mr-auto">
-            {{ t("chapters.List of all the Topics of Chapter") }} {{ chapterName}}
-          </h2>
-        </div>
-          <div class="p-5">
-            <Datatable
-              module="topics"
-              :importExportOptions="options"
-              @showItem="show"
-              @editItem="edit"
-              @deleteItem="deleteI"
-              @addModel="add"
-              :showData="route.params.id"
-            />
-          </div>
-      </div>
-    </div>
-
-  <!-- END: Chapters list -->
-</template>
-
 <script setup>
 import { onMounted, ref, toRefs } from "vue";
 import { useI18n } from "vue-i18n";
@@ -93,5 +57,40 @@ function deleteI(item) {
 }
 </script>
 
+<template>
+  <!-- BEGIN: Chapters list -->
+    <div class="grid grid-cols-12 gap-12">
+      <div class="intro-y box col-span-12 lg:col-span-12">
+        <div
+          class="
+            flex
+            items-center
+            px-5
+            py-5
+            sm:py-3
+            border-b border-slate-200/60
+            dark:border-darkmode-400
+          "
+        >
+          <h2 class="font-medium text-base mr-auto">
+            {{ t("chapters.List of all the Topics of Chapter") }} {{ chapterName}}
+          </h2>
+        </div>
+          <div class="p-5">
+            <Datatable
+              module="topics"
+              :importExportOptions="options"
+              @showItem="show"
+              @editItem="edit"
+              @deleteItem="deleteI"
+              @addModel="add"
+              :showData="route.params.id"
+            />
+          </div>
+      </div>
+    </div>
+
+  <!-- END: Chapters list -->
+</template>
 <style>
 </style>

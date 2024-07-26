@@ -1,18 +1,19 @@
-import getters from "./getters.js"
-import actions from "./actions.js"
-import mutations from "./mutations.js"
-
+import actions from './actions.js';
+import getters from './getters';
+import mutations from './mutations';
 export default {
     namespaced: true,
     state() {
         return {
-            inquiries: [],
-            inquiry: [],
+            chapters: [],
+            chapter: null,
+            languages: [],
+            subjects: [],
             pagination: [],
             datatable: {
                 export: false,
                 import: false,
-                addNew: true,
+                addNew: false,
                 defaultColumn: "id",
                 defaultOrder: "desc",
                 defaultPage: 1,
@@ -26,38 +27,20 @@ export default {
                         isJson: false,
                     },
                     {
-                        label: "CODE",
-                        field: "unique_code",
-                        sort: false,
-                        isJson: false,
-                    },
-                    {
-                        label: "STUDENT NAME",
-                        field: "student_name",
+                        label: "SUBJECT",
+                        field: "subject",
                         sort: true,
                         isJson: false,
                     },
                     {
-                        label: "STANDARD",
-                        field: "standard",
+                        label: "LABEL",
+                        field: "label",
                         sort: true,
                         isJson: false,
                     },
                     {
-                        label: "BATCH",
-                        field: "batch",
-                        sort: true,
-                        isJson: false,
-                    },
-                    {
-                        label: "STATUS",
-                        field: "inquiry_status",
-                        sort: true,
-                        isJson: false,
-                    },
-                    {
-                        label: "CONTACT NUMBER",
-                        field: "contact_mobile",
+                        label: "ICON",
+                        field: "icon",
                         sort: false,
                         isJson: false,
                     },
@@ -66,8 +49,8 @@ export default {
                         field: false,
                         sort: false,
                         actions: {
-                            show: false,
-                            edit: true,
+                            show: true,
+                            edit: false,
                             delete: true,
                         }
                     }
@@ -76,6 +59,6 @@ export default {
         }
     },
     actions,
-    mutations,
     getters,
+    mutations
 };

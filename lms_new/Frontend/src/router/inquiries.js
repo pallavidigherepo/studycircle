@@ -36,7 +36,8 @@ const inquiryRoutes = [
         name: "Inquiries",
         component: Inquiries,
         meta: {
-            parent: 'Inquiries'
+            parent: 'Inquiries',
+            requiresAuth: true,
         },
         children: [{
             path: '/inquiries/create',

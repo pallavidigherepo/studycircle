@@ -13,7 +13,7 @@
 
           <div class="intro-y box p-5">
             <div class="overflow-x-auto scrollbar-hidden">
-              <Datatable
+              <DataTable
                 module="chapters"
                 :importExportOptions="options"
                 @showItem="show"
@@ -35,11 +35,12 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, computed, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRoute, useRouter } from "vue-router";
 import store from "@/stores";
+import DataTable from "@/components/DataTable/Index.vue";
 
 const route = useRoute();
 const router = useRouter();

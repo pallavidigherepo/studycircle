@@ -8,7 +8,9 @@ const roleRoutes = [
         name: "Roles",
         component: Roles,
         meta: {
-            parent: 'Roles'
+            parent: 'Roles',
+            requiresAuth: true,
+            
         },
         children: [{
                 path: "/roles/create",

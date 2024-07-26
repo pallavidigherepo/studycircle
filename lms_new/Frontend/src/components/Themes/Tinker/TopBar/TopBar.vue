@@ -5,6 +5,7 @@ import Breadcrumb from "@/components/Base/Breadcrumb";
 import { FormInput } from "@/components/Base/Form";
 import { Menu, Popover } from "@/components/Base/Headless";
 import fakerData from "@/utils/faker";
+import logoURL from "@/assets/images/logos/logo.png";
 import _ from "lodash";
 import { TransitionRoot } from "@headlessui/vue";
 import store from "@/stores/index.js";
@@ -28,17 +29,6 @@ const userInfo = computed(() => {
   return userItem ? JSON.parse(userItem) : null;
 });
 
-// const user = ref({});
-// const settings = ref();
-// const fetchUser = async () => {
-//   const { data } = await axiosClient.get('/profile');
-//   user.value = { ...data.user, role: data.role };
-
-//   //
-//   settings.value = window.Laravel.settings;
-// }
-
-//const userInfo = computed(() => JSON.parse(localStorage.getItem("USER")));
 
 async function logout() {
   await store.dispatch('auth/logout').then(() => {
@@ -76,7 +66,7 @@ function resetPassword() {
       >
         <img
           alt="Meritest: Learning Management System"
-          :src="fakerData[9].photos[0]"
+          :src="logoURL"
         />
       </Menu.Button>
       <Menu.Items class="w-56 mt-px text-white bg-primary">

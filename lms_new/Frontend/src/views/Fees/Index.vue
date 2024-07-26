@@ -1,38 +1,3 @@
-<template>
-    <div>
-      <template v-if="DataTable">
-        <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-          <h2 class="text-lg font-medium mr-auto">
-            {{ t("fees.Fees") }}
-          </h2>
-        </div>
-        <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
-          <!-- BEGIN: Datatable Content -->
-          <div class="intro-y col-span-12 lg:col-span-12">
-            <!-- BEGIN: HTML Table Data -->
-  
-            <div class="intro-y box p-5">
-              <div class="overflow-x-auto scrollbar-hidden">
-                <DataTable
-                  module="fees"
-                  :importExportOptions="options"
-                  @editItem="edit"
-                  @deleteItem="deleteI"
-                  @addModel="add"
-                />
-              </div>
-            </div>
-            <!-- END: HTML Table Data -->
-          </div>
-          <!-- END: Datatable Content -->
-        </div>
-      </template>
-      <template v-else>
-        <router-view></router-view>
-      </template>
-    </div>
-  </template>
-
 <script setup lang="ts">
 import {ref, onMounted, computed, reactive, watch} from "vue";
 
@@ -377,6 +342,41 @@ function showTransaction(transaction)
 }
 </script>
 
+<template>
+    <div>
+      <template v-if="DataTable">
+        <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+          <h2 class="text-lg font-medium mr-auto">
+            {{ t("fees.Fees") }}
+          </h2>
+        </div>
+        <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
+          <!-- BEGIN: Datatable Content -->
+          <div class="intro-y col-span-12 lg:col-span-12">
+            <!-- BEGIN: HTML Table Data -->
+  
+            <div class="intro-y p-5">
+              <div class="overflow-x-auto scrollbar-hidden">
+                <DataTable
+                  module="fees"
+                  :importExportOptions="options"
+                  @editItem="edit"
+                  @deleteItem="deleteI"
+                  @addModel="add"
+                />
+              </div>
+            </div>
+            <!-- END: HTML Table Data -->
+          </div>
+          <!-- END: Datatable Content -->
+        </div>
+      </template>
+      <template v-else>
+        <router-view></router-view>
+      </template>
+    </div>
+  </template>
+  
 <style scoped>
 /*.accordion .accordion-item:first-of-type {
     display: none;
