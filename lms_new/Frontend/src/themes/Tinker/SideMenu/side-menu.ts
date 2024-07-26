@@ -26,7 +26,8 @@ const findActiveMenu = (subMenu: Menu[], route: Route): boolean => {
       ((route.forceActiveMenu !== undefined &&
         item.pageName === route.forceActiveMenu) ||
         (route.forceActiveMenu === undefined &&
-          item.pageName === route.name)) &&
+          item.pageName === route.name)  ||
+          (item.pageName === route.meta.parent)) &&
       !item.ignore
     ) {
       match = true;
@@ -53,7 +54,8 @@ const nestedMenu = (menu: Array<Menu | "divider">, route: Route) => {
           menuItem.pageName === route.forceActiveMenu) ||
           (route.forceActiveMenu === undefined &&
             menuItem.pageName === route.name) ||
-          (menuItem.subMenu && findActiveMenu(menuItem.subMenu, route))) &&
+          (menuItem.subMenu && findActiveMenu(menuItem.subMenu, route)) || 
+          (item.pageName === route.meta.parent)) &&
         !menuItem.ignore;
 
       if (menuItem.subMenu) {

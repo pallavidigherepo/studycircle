@@ -1,3 +1,105 @@
+<script setup lang="ts">
+import store from "@/stores";
+import { ref, reactive, computed, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
+
+
+import TomSelect from "@/components/Base/TomSelect";
+import { FormInput, FormSelect } from "@/components/Base/Form";
+import Lucide from "@/components/Base/Lucide";
+
+import { useVuelidate } from "@vuelidate/core";
+import { required, helpers } from "@vuelidate/validators";
+import { useI18n } from "vue-i18n";
+import axiosClient from "@/axios";
+
+// import Editor from "@tinymce/tinymce-vue";
+
+const submitted = ref(false);
+
+const isErrored = ref(false);
+const message = ref("");
+const isLoading = ref(false);
+
+const route = useRoute();
+const router = useRouter();
+// Now we must get editing details for the selected item
+const { t } = useI18n();
+const model = reactive({
+  id: "",
+  board_id: "",
+  standard_id: "",
+  label: "",
+  description: null,
+  icon: "",
+  tags_list: [],
+  language_id: 1,
+});
+
+const rules = computed(() => {
+  return {
+    board_id: {
+      required: helpers.withMessage("Please select board.", required),
+    },
+    standard_id: {
+      required: helpers.withMessage("Please select standard.", required),
+    },
+    label: {
+      required: helpers.withMessage("Please enter label.", required),
+    },
+    description: {
+      required: helpers.withMessage("Please enter description.", required),
+    },
+    icon: {
+      required: helpers.withMessage("Please enter icon.", required),
+    },
+    language_id: {
+      required: helpers.withMessage("Please select language.", required),
+    },
+  };
+});
+
+const v$ = useVuelidate(rules, model);
+
+async function submitForm() {
+  submitted.value = true;
+  v$.value.$validate(); // checks all inputs
+
+  if (!v$.value.$error) {
+    isLoading.value = true;
+    await store
+      .dispatch("subjects/create", model)
+      .then(() => {
+        isLoading.value = false;
+        submitted.value = false;
+        router.push({ name: "Subjects" });
+      })
+      .catch((err) => {
+        isLoading.value = false;
+        isErrored.value = true;
+        message.value = err.response.data.message;
+      });
+  } else {
+    // if ANY fail validation
+    return;
+  }
+}
+
+
+
+onMounted(() => {
+  store.dispatch("listBoard").then().catch();
+  store.dispatch("listStandard").then().catch();
+  store.dispatch("listLanguages").then().catch();
+});
+const languages = computed(() => store.getters.languages);
+const boards = computed(() => store.getters.listBoards);
+const standards = computed(() => store.getters.listStandards);
+</script>
+
+<style scoped>
+</style>
+
 <template>
   <div>
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
@@ -18,7 +120,7 @@
             ml-auto
             sm:ml-0
           "
-          ><ArrowLeftCircleIcon class="w-4 h-4 mr-2" />{{ t("common.Back") }}
+          ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />{{ t("common.Back") }}
         </router-link>
       </div>
     </div>
@@ -84,7 +186,7 @@
               <label for="form-label" class="form-label">{{
                 t("subjects.Label")
               }}</label>
-              <input
+              <FormInput
                 id="form-label"
                 type="text"
                 class="form-control"
@@ -176,7 +278,7 @@
               <label for="subject-icon" class="form-label">{{
                 t("subjects.Icon")
               }}</label>
-              <input
+              <FormInput
                 type="text"
                 id="subject-icon"
                 v-model="model.icon"
@@ -234,98 +336,3 @@
   </div>
 </template>
 
-<script setup>
-import store from "@/stores";
-import { ref, reactive, computed, onMounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
-
-import { useVuelidate } from "@vuelidate/core";
-import { required, helpers } from "@vuelidate/validators";
-import { useI18n } from "vue-i18n";
-import axiosClient from "@/axios";
-// import Editor from "@tinymce/tinymce-vue";
-
-const submitted = ref(false);
-
-const isErrored = ref(false);
-const message = ref("");
-const isLoading = ref(false);
-
-const route = useRoute();
-const router = useRouter();
-// Now we must get editing details for the selected item
-const { t } = useI18n();
-const model = reactive({
-  id: "",
-  board_id: "",
-  standard_id: "",
-  label: "",
-  description: null,
-  icon: "",
-  tags_list: [],
-  language_id: 1,
-});
-
-const rules = computed(() => {
-  return {
-    board_id: {
-      required: helpers.withMessage("Please select board.", required),
-    },
-    standard_id: {
-      required: helpers.withMessage("Please select standard.", required),
-    },
-    label: {
-      required: helpers.withMessage("Please enter label.", required),
-    },
-    description: {
-      required: helpers.withMessage("Please enter description.", required),
-    },
-    icon: {
-      required: helpers.withMessage("Please enter icon.", required),
-    },
-    language_id: {
-      required: helpers.withMessage("Please select language.", required),
-    },
-  };
-});
-
-const v$ = useVuelidate(rules, model);
-
-async function submitForm() {
-  submitted.value = true;
-  v$.value.$validate(); // checks all inputs
-
-  if (!v$.value.$error) {
-    isLoading.value = true;
-    await store
-      .dispatch("subjects/create", model)
-      .then(() => {
-        isLoading.value = false;
-        submitted.value = false;
-        router.push({ name: "Subjects" });
-      })
-      .catch((err) => {
-        isLoading.value = false;
-        isErrored.value = true;
-        message.value = err.response.data.message;
-      });
-  } else {
-    // if ANY fail validation
-    return;
-  }
-}
-
-
-
-onMounted(() => {
-  store.dispatch("listBoard").then().catch();
-  store.dispatch("listStandard").then().catch();
-  store.dispatch("listLanguages").then().catch();
-});
-const languages = computed(() => store.getters.languages);
-const boards = computed(() => store.getters.listBoards);
-const standards = computed(() => store.getters.listStandards);
-</script>
-
-<style scoped>
-</style>

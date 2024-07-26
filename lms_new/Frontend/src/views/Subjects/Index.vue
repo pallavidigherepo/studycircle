@@ -1,39 +1,3 @@
-<template>
-  <div>
-    <template v-if="listing">
-      <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-        <h2 class="text-lg font-medium mr-auto">
-          {{ t("subjects.Subjects") }}
-        </h2>
-      </div>
-      <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
-        <!-- BEGIN: Dtatatable Content -->
-        <div class="intro-y col-span-12 lg:col-span-12">
-          <!-- BEGIN: HTML Table Data -->
-
-          <div class="intro-y box p-5">
-            <div class="overflow-x-auto scrollbar-hidden">
-              <DataTable
-                module="subjects"
-                :importExportOptions="options"
-                @showItem="show"
-                @editItem="edit"
-                @deleteItem="deleteI"
-                @addModel="add"
-              />
-            </div>
-          </div>
-          <!-- END: HTML Table Data -->
-        </div>
-        <!-- END: Dtatatable Content -->
-      </div>
-    </template>
-    <template v-else>
-      <router-view></router-view>
-    </template>
-  </div>
-</template>
-
 <script setup>
 import { ref, onMounted, computed, watch } from "vue";
 import { useI18n } from "vue-i18n";
@@ -98,3 +62,39 @@ function deleteI(subject) {
 
 <style scoped>
 </style>
+<template>
+  <div>
+    <template v-if="listing">
+      <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+        <h2 class="text-lg font-medium mr-auto">
+          {{ t("subjects.Subjects") }}
+        </h2>
+      </div>
+      <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
+        <!-- BEGIN: Dtatatable Content -->
+        <div class="intro-y col-span-12 lg:col-span-12">
+          <!-- BEGIN: HTML Table Data -->
+
+          <div class="intro-y p-5">
+            <div class="overflow-x-auto scrollbar-hidden">
+              <DataTable
+                module="subjects"
+                :importExportOptions="options"
+                @showItem="show"
+                @editItem="edit"
+                @deleteItem="deleteI"
+                @addModel="add"
+              />
+            </div>
+          </div>
+          <!-- END: HTML Table Data -->
+        </div>
+        <!-- END: Dtatatable Content -->
+      </div>
+    </template>
+    <template v-else>
+      <router-view></router-view>
+    </template>
+  </div>
+</template>
+
