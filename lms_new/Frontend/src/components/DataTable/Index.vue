@@ -9,6 +9,7 @@ import { FormInput, FormSelect } from "@/components/Base/Form";
 import Lucide from "@/components/Base/Lucide";
 import Tippy from "@/components/Base/Tippy";
 import { Dialog, Menu } from "@/components/Base/Headless";
+import Loading from "@/components/Loading/Index.vue";
 
 import Pagination from "@/components/DataTable/Pagination.vue";
 import useImportExport from "@/hooks/import_export.js";

@@ -91,6 +91,7 @@ function deleteI(subject) {
         </div>
         <!-- END: Dtatatable Content -->
       </div>
+    
     </template>
     <template v-else>
       <router-view></router-view>
