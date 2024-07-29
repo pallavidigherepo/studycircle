@@ -307,15 +307,15 @@ function searchMe(event) {
 </style>
 
 <template>
-  <div class="grid grid-cols-12 gap-6 mt-5">
+  <div class="grid grid-cols-12 gap-6" :class="{'mt-5': datatableoptions.addNew}">
       <div class="
       intro-y
       col-span-12
       flex flex-wrap
       sm:flex-nowrap
       items-center
-      mt-2
-    ">
+    " 
+    :class="{'mt-2': datatableoptions.addNew}">
           <Button v-if="datatableoptions.addNew" variant="primary"  class="shadow-md mr-2"
                   @click.prevent="emit('addModel', true)">
               {{ t("common.Add New") }}

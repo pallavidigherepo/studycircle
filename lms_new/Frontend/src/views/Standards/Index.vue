@@ -127,7 +127,7 @@ const standardSections = computed(() => store.getters.listStandardSections);
             <div class="intro-y col-span-12 lg:col-span-8">
                 <!-- BEGIN: HTML Table Data -->
 
-                <div class="intro-y box p-5">
+                <div class="intro-y">
                     <div class="overflow-x-auto scrollbar-hidden">
                         <DataTable
                             module="standards"
