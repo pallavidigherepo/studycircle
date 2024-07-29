@@ -3,8 +3,14 @@ import {ref, onMounted, computed, watch, reactive} from "vue";
 import {useI18n} from "vue-i18n";
 import {useRoute, useRouter} from "vue-router";
 import store from "@/stores";
-import DataTable from "@/components/DataTable/Index.vue";
-// import InquiryFollowups from "@/components/Inquiries/Followups.vue";
+import { Dialog, Menu } from "@/components/Base/Headless";
+import Button from "@/components/Base/Button";
+import Lucide from "@/components/Base/Lucide";
+import TomSelect from "@/components/Base/TomSelect";
+import { FormInput, FormSelect, FormCheck, FormTextarea } from "@/components/Base/Form";
+import Pagination from "@/components/DataTable/Pagination.vue";
+import Table from "@/components/Base/Table";
+import InquiryFollowups from "@/components/Inquiries/Followups.vue";
 import _ from "lodash";
 
 const route = useRoute();
@@ -25,13 +31,13 @@ onMounted(() => {
         listing.value = false;
     } else {
         listing.value = true;
-        // fetchList();
+        fetchList();
     }
 });
 function fetchList() {
     loading.value = true;
     store
-        .dispatch("inquiries/list")
+        .dispatch("inquiries/list", {url: url.value})
         .then(() => {
             loading.value = false;
         })
@@ -115,7 +121,7 @@ watch(
     (to, from) => {
         if (to === "Inquiries") {
             listing.value = true;
-            // fetchList();
+            fetchList();
         } else {
             listing.value = false;
         }
@@ -257,41 +263,374 @@ function closeMe()
 }
 </script>
 
+<!--suppress ALL -->
 <template>
     <div>
-      <template v-if="listing">
-        <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-          <h2 class="text-lg font-medium mr-auto">
-            {{ t("inquiries.Inquiry") }}
-          </h2>
-        </div>
-        <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
-          <!-- BEGIN: Datatable Content -->
-          <div class="intro-y col-span-12 lg:col-span-12">
-            <!-- BEGIN: HTML Table Data -->
-  
-            <div class="intro-y p-5">
-              <div class="overflow-x-auto scrollbar-hidden">
-                <DataTable
-                  module="inquiries"
-                  :importExportOptions="options"
-                  @editItem="edit"
-                  @deleteItem="deleteI"
-                  @addModel="add"
-                />
-              </div>
-            </div>
-            <!-- END: HTML Table Data -->
-          </div>
-          <!-- END: Datatable Content -->
-        </div>
-      </template>
-      <template v-else>
-        <router-view></router-view>
-      </template>
-    </div>
-</template>
+        <template v-if="listing">
+            <h2 class="intro-y text-lg font-medium mt-10">{{ t("inquiries.Inquiries") }}</h2>
+            <div class="box overflow-x-auto intro-y grid grid-cols-12 gap-6 mt-5 p-5" >
+                <div
+                    class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2"
+                >
+                    <Button  variant="primary" class="btn btn-primary shadow-md mr-2"
+                                 @click.prevent="add"
+                                 @click="router.push('/inquiries/create')">
+                        {{ t("common.Add New") }}
+                    </Button>
+                    <div v-if="datatableoptions.export" class="dropdown">
+                        <Button aria-expanded="false" class="dropdown-toggle btn btn-primary ml-2"
+                                data-tw-toggle="dropdown">
+                              <span class="flex items-center justify-center">
+                                {{ t("common.Export/Print") }}&nbsp;
+                                <DownloadIcon class="w-4 h-4"/>
+                              </span>
+                        </Button>
+                        <div class="dropdown-menu w-40">
+                            <ul class="dropdown-content">
+                                <!-- <li>
+                                    <a href="javascript:;" class="dropdown-item">
+                                        <PrinterIcon class="w-4 h-4 mr-2" />
+                                        {{ t("permissions.Print") }}
+                                    </a>
+                                    </li> -->
+                                <li>
+                                    <a class="dropdown-item" href="javascript:;"
+                                       @click.prevent="exportMe('xlsx')">
+                                        <FileTextIcon class="w-4 h-4 mr-2"/>
+                                        {{ t("common.Export to Excel") }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="javascript:;"
+                                       @click.prevent="exportMe('csv')">
+                                        <FileTextIcon class="w-4 h-4 mr-2"/>
+                                        {{ t("common.Export to CSV") }}
+                                    </a>
+                                </li>
+                                <!-- <li>
+                                    <a
+                                        href="javascript:;"
+                                        class="dropdown-item"
+                                        @click.prevent="exportMe('pdf')"
+                                    >
+                                        <FileTextIcon class="w-4 h-4 mr-2" />
+                                        {{ t("permissions.Export to PDF") }}
+                                    </a>
+                                    </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div v-if="datatableoptions.import" class="dropdown">
+                        <Button aria-expanded="false" class="dropdown-toggle btn btn-primary ml-2"
+                                data-tw-toggle="dropdown">
+                                      <span class="flex items-center justify-center">
+                                        {{ t("common.Import") }}&nbsp;
+                                        <UploadIcon class="w-4 h-4"/>
+                                      </span>
+                        </Button>
+                        <div class="dropdown-menu w-40">
+                            <ul class="dropdown-content">
+                                <li>
+                                    <a class="dropdown-item" href="#" @click.prevent="openModal">
+                                        <FileTextIcon class="w-4 h-4 mr-2"/>
+                                        {{ t("common.CSV/Excel") }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hidden md:block mx-auto text-slate-500">
+                        <!-- {{ t(module+".Showing") }} {{ permissions.from }}
+                            {{ t(module+".to") }} {{ permissions.to }}
+                            {{ t(module+".of") }} {{ permissions.total }}
+                            {{ t(module+".entries") }} -->
+                    </div>
+                    <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+                        <div class="w-56 relative text-slate-500">
+                            <FormInput v-model="search" :placeholder="t('common.Search') + '...'"
+                                   class="form-control w-56 pr-10 w-full"
+                                   type="text" @keyup="searchMe($event)"/>
+                            <SearchIcon class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"/>
+                        </div>
+                    </div>
+                </div>
+                <!-- BEGIN: Data List -->
+                <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+                    <Table class="table table-report -mt-2">
+                        <Table.Thead>
+                        <Table.Tr>
+                            <Table.Th class="whitespace-nowrap">#</Table.Th>
+                            <Table.Th class="whitespace-nowrap">{{ t("inquiries.DATE AND CODE") }}</Table.Th>
+                            <Table.Th class="text-center whitespace-nowrap">{{ t("inquiries.BATCH AND STANDARD") }}</Table.Th>
+                            <Table.Th class="text-center whitespace-nowrap">{{ t("inquiries.MOBILE") }}</Table.Th>
+                            <Table.Th class="text-center whitespace-nowrap">{{ t("inquiries.STATUS") }}</Table.Th>
+                            <Table.Th class="text-center whitespace-nowrap">{{ t("inquiries.ASSIGNED TO") }}</Table.Th>
+                            <Table.Th class="text-center whitespace-nowrap">{{ t("inquiries.FOLLOW UPS") }}</Table.Th>
+                            <Table.Th class="text-center whitespace-nowrap">{{ t("common.ACTIONS") }}</Table.Th>
+                        </Table.Tr>
+                        </Table.Thead>
 
+                        <template v-if="items">
+                            <Table.Tbody>
+                                <Table.Tr
+                                v-for="(item, index) in items.data"
+                                :key="index"
+                                class="intro-x"
+                            >
+                                <Table.Td>
+                                    <div class="flex">
+                                        {{ index + 1}}
+                                    </div>
+                                </Table.Td>
+                                <Table.Td>
+                                    <span class="font-medium whitespace-nowrap">{{ item.inquiry_date }}</span>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
+                                        {{ item.unique_code }}
+                                    </div>
+                                </Table.Td>
+                                <Table.Td class="whitespace-nowrap">
+                                    <span class="font-medium whitespace-nowrap">{{ item.batch }}</span>
+                                    <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
+                                        {{ item.standard }}
+                                    </div>
+                                </Table.Td>
+                                <Table.Td class="text-center">
+                                    <a :href="'tel:'+item.contact_mobile">
+                                        <div
+                                            class="flex items-center justify-center"
+                                        >
+                                            <PhoneIcon class="w-4 h-4 mr-2" />{{ item.contact_mobile }}
+                                        </div>
+                                    </a>
+                                </Table.Td>
+                                <Table.Td class="w-40">
+                                    <div
+                                        class="flex items-center justify-center"
+                                    >
+                                        <Button v-if="item.status == 'Open'" class="btn btn-danger-soft w-32 mr-2 mb-2">
+                                            {{ item.status }}
+                                        </Button>
+
+                                        <Button v-if="item.status == 'Close'" class="btn btn-success w-32 mr-2 mb-2">
+                                            {{ item.status }}
+                                        </Button>
+                                        <Button v-if="item.status == 'Waiting for Response'" class="btn btn-pending-soft w-32 mr-2 mb-2">
+                                            {{ item.status }}
+                                        </Button>
+                                        <Button v-if="item.status == 'Accepted'" class="btn btn-primary w-32 mr-2 mb-2">
+                                            {{ item.status }}
+                                        </Button>
+                                        <Button v-if="item.status == 'Rejected'" href="" class="btn btn-dark w-32 mr-2 mb-2">
+                                            {{ item.status }}
+                                        </Button>
+                                    </div>
+                                </Table.Td>
+                                <Table.Td class="text-center">
+                                    <div
+                                        class="flex items-center justify-center"
+                                    >
+                                        <UserIcon class="w-4 h-4 mr-1" />{{ item.assigned }}
+                                    </div>
+                                </Table.Td>
+                                <Table.Td class="text-center">
+                                    <div
+                                        class="flex items-center justify-center"
+                                    >
+                                        <a href="javascript:;"
+                                           class="flex items-center text-warning mr-2"
+                                           @click.prevent="showFollowups(item)"
+                                        >
+                                            <MessageCircleIcon class="w-4 h-4 mr-1" />{{ t("inquiries.Follow Ups") }}
+                                        </a>
+                                    </div>
+                                </Table.Td>
+                                <Table.Td class="table-report__action w-85">
+                                    <div class="flex justify-center items-center">
+                                        <router-link :to="{ name: 'ShowInquiry', params: { id: item.id } }"
+                                                     class="flex items-center text-primary mr-2">
+                                            <EyeIcon class="w-4 h-4 mr-1"/>{{ t("common.Show") }}
+                                        </router-link>
+                                        <router-link :to="{ name: 'EditInquiry', params: { id: item.id } }"
+                                                     class="flex items-center text-success mr-2">
+                                            <Edit3Icon class="w-4 h-4 mr-1" />
+                                            {{ t("common.Edit") }}
+                                        </router-link>
+                                        <a class="flex items-center text-danger"
+                                           href="javascript:;"
+                                           @click.prevent="deleteI(item)">
+                                            <Trash2Icon class="w-4 h-4 mr-1"/>
+                                            {{ t("common.Delete") }}
+                                        </a>
+                                        <!--                                    <Dropdown>-->
+                                        <!--                                        <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">-->
+                                        <!--                                            <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />-->
+                                        <!--                                        </DropdownToggle>-->
+                                        <!--                                        <DropdownMenu class="w-40">-->
+                                        <!--                                            <DropdownContent>-->
+                                        <!--                                                <DropdownItem>-->
+                                        <!--                                                    <MessageCircleIcon class="w-4 h-4 mr-2" />{{ t("inquiries.Add Comment") }}-->
+                                        <!--                                                </DropdownItem>-->
+                                        <!--                                                <DropdownItem>-->
+                                        <!--                                                    <router-link :to="{ name: ShowInquiry, params: { id: item.id } }" class="flex">-->
+                                        <!--                                                        <EyeIcon class="w-4 h-4 mr-2"/>{{ t("inquiries.View Details") }}-->
+                                        <!--                                                    </router-link>-->
+                                        <!--                                                </DropdownItem>-->
+                                        <!--                                                <DropdownItem>-->
+                                        <!--                                                    <router-link :to="{ name: EditInquiry, params: { id: item.id } }" class="flex">-->
+                                        <!--                                                        <Edit2Icon class="w-4 h-4 mr-2" />-->
+                                        <!--                                                    {{ t("common.Edit") }}-->
+                                        <!--                                                    </router-link>-->
+                                        <!--                                                </DropdownItem>-->
+                                        <!--                                                <DropdownItem>-->
+                                        <!--                                                    <TrashIcon class="w-4 h-4 mr-2" /> {{ t("common.Delete") }}-->
+                                        <!--                                                </DropdownItem>-->
+                                        <!--                                            </DropdownContent>-->
+                                        <!--                                        </DropdownMenu>-->
+                                        <!--                                    </Dropdown>-->
+                                    </div>
+                                </Table.Td>
+                            </Table.Tr>
+                            </Table.Tbody>
+                        </template>
+                        <template v-if="items">
+                            <Table.Tbody v-if="noRecords && !items.data.length">
+                                <Table.Tr class="intro-x bg-secondary">
+                                    <Table.Td colspan="8" class="text-center">
+                                        {{ t("common.Sorry, no records found") }}
+                                    </Table.Td>
+                                </Table.Tr>
+                            </Table.Tbody>
+                        </template>
+
+
+                    </Table>
+                </div>
+                <!-- END: Data List -->
+
+                <!-- BEGIN: Pagination -->
+
+                <Pagination
+                    :currentPage="currentPage"
+                    :links="links"
+                    @paginate="getForPage"
+                    @perpage="perPageValue"/>
+                <!-- END: Pagination -->
+            </div>
+
+            <!-- BEGIN: Modal Content -->
+            <Dialog :show="headerFooterModalPreview"
+                   size="modal-lg"
+                   @hidden="headerFooterModalPreview = false">
+                <ModalHeader>
+                    <h2 class="font-medium text-base mr-auto">
+                        {{ t("common.Import as CSV/Excel") }}
+                    </h2>
+                </ModalHeader>
+                <CustomeAlert v-if="responseMessage"
+                              :errors="responseErrors"
+                              :message="responseMessage"
+                              :status="responseStatus"
+                              class="col-span-12 sm:col-span-6 flex"/>
+                <ModalBody class="grid grid-cols-12 gap-4 gap-y-3">
+                    <div class="col-span-12 sm:col-span-12 text-center">
+                        <slot name="info"></slot>
+                        <div class="upload-btn-wrapper">
+                            <Button class="upload-btn">{{
+                                    t("common.Upload file")
+                                }}
+                            </Button>
+                            <FormInput id="modal-form-1" name="myfile" type="file" @change="importMe($event)"/>
+                        </div>
+                        <div class="col-span-12">
+                            <div
+                                class="alert alert-outline-warning alert-dismissible bg-warning/20 dark:bg-darkmode-400 dark:border-darkmode-400 mt-5 show"
+                                role="alert" style="display: block;">
+
+                                <div class="flex items-center"><span><svg class="lucide w-6 h-6 mr-3" fill="none"
+                                                                          height="24"
+                                                                          stroke="currentColor" stroke-linecap="round"
+                                                                          stroke-linejoin="round" stroke-width="2"
+                                                                          viewBox="0 0 24 24"
+                                                                          width="24"
+                                                                          xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z">
+                    </path>
+                    <line x1="12" x2="12" y1="9" y2="13"></line>
+                    <line x1="12" x2="12.01" y1="17" y2="17"></line>
+                  </svg></span><span class="text-slate-800 dark:text-slate-500">Supports CSV and Excel files.</span>
+
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-6 gap-6 mt-5">
+                                <div class="col-span-6 sm:col-span-6 xl:col-span-3 intro-y">
+                                    <div class="report-box zoom-in">
+                                        <div class="box p-4">
+                                            <div class="flex text-center justify-center">
+
+                                                <div class="">
+                                                    <DownloadCloudIcon class="w-10 h-10 ml-0.5"/>
+                                                </div>
+                                            </div>
+                                            <div class="text-base text-slate-500 mt-1">
+                                                <Button class="btn btn-primary h-20"
+                                                        @click.prevent="exportMe('xlsx', true)">
+                                                    {{ t('common.Download Template for EXCEL') }}
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-span-6 sm:col-span-6 xl:col-span-3 intro-y">
+                                    <div class="report-box zoom-in">
+                                        <div class="box p-5">
+                                            <div class="flex text-center justify-center">
+
+                                                <div class="">
+                                                    <DownloadCloudIcon class="w-10 h-10 ml-0.5"/>
+                                                </div>
+                                            </div>
+                                            <div class="text-base text-slate-500 mt-1">
+                                                <Button class="btn btn-primary h-20"
+                                                        @click.prevent="exportMe('csv', true)">
+                                                    {{ t('common.Download Template for CSV') }}
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </ModalBody>
+                <ModalFooter>
+                    <Button id="import-export-cancel-button"
+                            class="btn btn-outline-secondary w-20 mr-1"
+                            type="button"
+                            @click="headerFooterModalPreview = false">
+                        {{ t("common.Cancel") }}
+                    </Button>
+                    <!-- <button type="button" class="btn btn-primary w-20">
+                        {{ t("permissions.Import") }}
+                        </button> -->
+                </ModalFooter>
+            </Dialog>
+            <!-- END: Modal Content -->
+            <Loading v-if="loading" fixed></Loading>
+            <inquiry-followups v-if="isFollowupCalled"
+                               v-model="showFollowupValue"
+                               @close = "closeMe(false)"
+                               :inquiryId="inquiryId"
+                               :inquiryStatusId="inquiryStatusId" />
+        </template>
+        <template v-else>
+            <router-view></router-view>
+        </template>
+
+    </div>
+
+</template>
 <style scoped>
 
 </style>

@@ -7,6 +7,7 @@ import { FormInput, FormSelect, FormCheck } from "@/components/Base/Form";
 import Lucide from "@/components/Base/Lucide";
 import Button from "@/components/Base/Button";
 import { ClassicEditor } from "@/components/Base/Ckeditor";
+import Alert from "@/components/Base/Alert";
 
 import {useVuelidate} from "@vuelidate/core";
 import {helpers, minLength, minValue, numeric, required, requiredIf} from "@vuelidate/validators";
@@ -521,6 +522,10 @@ function makeid(length) {
             </div>
         </div>
         <!-- BEGIN: Notification -->
+        <Alert variant="warning" class="flex items-center mb-6 mt-5">
+            <Lucide icon="AlertCircle" class="w-6 h-6 mr-2" />
+            <span>{{ t("questions.You can add question manually OR import it in bulk.") }}</span>
+        </Alert>
         <info :typeClass="'alert-warning'"
               class="mb-6 mt-5"
               :message="'questions.Before ADDING questions please make sure that you have added subjects chapters and topics to selected standard'"/>

@@ -1,615 +1,617 @@
 <script setup lang="ts">
-import _ from "lodash";
-import fakerData from "@/utils/faker";
-import Button from "@/components/Base/Button";
-import { FormSwitch } from "@/components/Base/Form";
-import Progress from "@/components/Base/Progress";
-import Lucide from "@/components/Base/Lucide";
-import LoadingIcon from "@/components/Base/LoadingIcon";
-// import StackedBarChart1 from "@/components/StackedBarChart1";
-// import SimpleLineChart from "@/components/SimpleLineChart";
-// import SimpleLineChart1 from "@/components/SimpleLineChart1";
-// import SimpleLineChart2 from "@/components/SimpleLineChart2";
-import { Menu, Tab } from "@/components/Base/Headless";
+import { ref, computed, onMounted, reactive } from "vue";
 import { Tab as HeadlessTab } from "@headlessui/vue";
-import { onBeforeMount, ref, computed, onMounted, } from "vue";
+import Table from "@/components/Base/Table";
+import { Menu, Tab } from "@/components/Base/Headless";
+import Button from "@/components/Base/Button";
+import Lucide from "@/components/Base/Lucide";
+import TomSelect from "@/components/Base/TomSelect";
+import { FormInput, FormSelect, FormCheck, FormTextarea } from "@/components/Base/Form";
+
+import { useVuelidate } from "@vuelidate/core";
+import { required, helpers, sameAs, minLength, email, numeric } from "@vuelidate/validators";
+
 import store from "@/stores";
-import axiosClient from "@/axios";
 import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
 const router = useRouter();
 
-const user = ref({
-  name: "",
-  email: "",
-  role: "",
-  designation: "",
-  mobile: "",
-  avatar: "",
-  
-});
+import { useI18n } from "vue-i18n";
+import axiosClient from "@/axios";
+const { t } = useI18n();
 
+// const user = computed(() => JSON.parse(sessionStorage.getItem("USER")));
 
-const response = ref();
-const loading = ref(false);
+const profile = ref();
+const courses = ref();
+const subjects = ref();
+const questions = ref();
 
-const fetchUser = async () => {
-  try {
-    const { data } = await axiosClient.get(`/profile`);
-    user.value = { ...data.user, role: data.role };
-    response.value = data;
-    console.log("Fetched user data:", data);
-    console.log("User object:", user.value);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-
-
-const userInfo = computed(() => {
+const user = computed(() => {
   const userItem = localStorage.getItem("USER");
   return userItem ? JSON.parse(userItem) : null;
 });
 
-onBeforeMount(() => fetchUser());
+const modelAccount = ref({
+  id: '',
+  alt_email: '',
+  mobile: '',
+  alt_mobile: '',
+  address: '',
+  alt_address: '',
+  gender: '',
+  qualification: '',
+  avatar: '',
+  designation: '',
+});
+
+const modelPassword = reactive({
+  id: '',
+  password: '',
+  confirm_password: '',
+  isChangePassword: true,
+});
+
+const submitted = ref(false);
+const rules = computed(() => {
+  return {
+      password: {
+          required: helpers.withMessage("Please enter password.", required),
+          minLength: helpers.withMessage("Enter password of minimum length 9.", minLength(9)),
+      },
+      confirm_password: {
+          required: helpers.withMessage("Please enter confirm password.", required),
+          sameAs: helpers.withMessage("Password and confirm password does not match.", sameAs(modelPassword.password))
+      },
+  };
+});
+
+
+const vP$ = useVuelidate(rules, modelPassword);
+
+const accountRules = computed(() => {
+  return {
+      /*avatar: {
+          file_size_validation
+      },*/
+      alt_email: {
+          //required: helpers.withMessage("Please enter email address.", required),
+          email: helpers.withMessage("Enter valid email address.", email),
+      },
+      mobile: {
+          required: helpers.withMessage("Please enter mobile number.", required),
+          numeric: helpers.withMessage("Enter valid mobile number.", numeric),
+          minLength: helpers.withMessage("Enter valid mobile number with minimum length of 10 digits.", minLength(10)),
+      },
+      alt_mobile: {
+          //required: helpers.withMessage("Please enter mobile number.", required),
+          numeric: helpers.withMessage("Enter valid mobile number.", numeric),
+          minLength: helpers.withMessage("Enter valid mobile number with minimum length of 10 digits.", minLength(10)),
+      },
+      address: {
+          //required: helpers.withMessage("Please enter your address.", required),
+      },
+      alt_address: {
+          //required: helpers.withMessage("Please enter alternate address.", required),
+      },
+      gender: {
+          //required: helpers.withMessage("Please select your gender.", required),
+      },
+      qualification: {
+          //required: helpers.withMessage("Please enter your qualification.", required),
+      },
+      designation: {
+          //required: helpers.withMessage("Please enter your designation.", required),
+      },
+  };
+});
+const file_size_validation = (value) =>  {
+
+  if (!value) {
+      return true;
+  }
+  return true;
+  //let file = value;
+  //console.log(value)
+  //return (file.size < 2097152);
+}
+
+const v$ = useVuelidate(accountRules, modelAccount);
+
+const isLoading = ref(false);
+
+async function submitPasswordForm() {
+  submitted.value = true;
+  vP$.value.$validate(); // checks all inputs
+
+  if (!vP$.value.$error) {
+
+      isLoading.value = true;
+      await store
+          .dispatch("auth/save", modelPassword)
+          .then(() => {
+              isLoading.value = false;
+              submitted.value = false;
+              //router.push({ name: "Chapters" });
+          })
+          .catch((err) => {
+              isLoading.value = false;
+              isErrored.value = true;
+              //if (err.response) {
+              message.value = err.response.data.message;
+              //}
+
+          });
+  } else {
+      // if ANY fail validation
+      return;
+  }
+}
+
+
+
+async function submitAccount() {
+  submitted.value = true;
+  v$.value.$validate(); // checks all inputs
+
+  if (!v$.value.$error) {
+
+      isLoading.value = true;
+      await store
+          .dispatch("auth/save", modelAccount.value)
+          .then(() => {
+              isLoading.value = false;
+              submitted.value = false;
+              fetch();
+              //router.push({ name: "Chapters" });
+          })
+          .catch((err) => {
+              isLoading.value = false;
+              isErrored.value = true;
+              //if (err.response) {
+              message.value = err.response.data.message;
+              //}
+
+          });
+  } else {
+      // if ANY fail validation
+      return;
+  }
+}
+
+onMounted(() => {
+  fetch();
+  //store.dispatch("auth/profile");
+});
+
+const fetch = async () => {
+  const result = await axiosClient.get('/profile');
+  
+  if (result.status !== 200) {
+      throw new Error('Failed to fetch profile information.')
+  }
+  modelAccount.value = JSON.parse(JSON.stringify(result.data));
+  modelPassword.id = JSON.parse(JSON.stringify(result.data.id));
+  // user.value = JSON.parse(JSON.stringify(result.data));
+  profile.value = result.data;
+  courses.value = result.data.user.courses;
+  subjects.value = result.data.user.subjects;
+  questions.value = result.data.user.questions;
+}
+function onImageChoose(ev) {
+  const file = ev.target.files[0];
+  const reader = new FileReader();
+  reader.onload = () => {
+      // The field to send on backend and apply validations
+      modelAccount.value.avatar = reader.result;
+      ev.target.value = "";
+  };
+  reader.readAsDataURL(file);
+}
+
+function cancel()
+{
+
+}
 </script>
 
+
 <template>
-<div>
-  <div class="flex items-center mt-8 intro-y">
-    <h2 class="mr-auto text-lg font-medium">Profile Layout</h2>
-  </div>
-  <Tab.Group>
-    <!-- BEGIN: Profile Info -->
-    <div class="px-5 pt-5 mt-5 intro-y box">
-      <div
-        class="flex flex-col pb-5 -mx-5 border-b lg:flex-row border-slate-200/60 dark:border-darkmode-400"
-      >
-        <div
-          class="flex items-center justify-center flex-1 px-5 lg:justify-start"
-        >
-          <div
-            class="relative flex-none w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 image-fit"
-          >
-            <img
-              :alt="user.name"
-              class="rounded-full"
-              :src="user.avatar "
-            />
-            <div
-              class="absolute bottom-0 right-0 flex items-center justify-center p-2 mb-1 mr-1 rounded-full bg-primary"
-            >
-              <Lucide icon="Camera" class="w-4 h-4 text-white" />
-            </div>
-          </div>
-          <div class="ml-5">
-            <div
-              class="w-24 text-lg font-medium truncate sm:w-40 sm:whitespace-normal"
-            >
-              <!-- {{ fakerData[0].users[0].name }} -->
-              {{ user.name }}
-            </div>
-            <div class="text-slate-500">{{ userInfo.roles[0].name }}</div>
-          </div>
-        </div>
-        <div
-          class="flex-1 px-5 pt-5 mt-6 border-t border-l border-r lg:mt-0 border-slate-200/60 dark:border-darkmode-400 lg:border-t-0 lg:pt-0"
-        >
-          <div class="font-medium text-center lg:text-left lg:mt-3">
-            Contact Details
-          </div>
-          <div
-            class="flex flex-col items-center justify-center mt-4 lg:items-start"
-          >
-            <div class="flex items-center truncate sm:whitespace-normal">
-              <Lucide icon="Mail" class="w-4 h-4 mr-2" />
-              {{ user.email }}
-            </div>
-            <div class="flex items-center mt-3 truncate sm:whitespace-normal">
-              <Lucide icon="PhoneCall" class="w-4 h-4 mr-2" />
-              {{ user.mobile }}
-            </div>
-            <!-- <div class="flex items-center mt-3 truncate sm:whitespace-normal">
-              <Lucide icon="Twitter" class="w-4 h-4 mr-2" /> Twitter
-              {{ fakerData[0].users[0].name }}
-            </div> -->
-          </div>
-        </div>
-        <!-- <div
-          class="flex-1 px-5 pt-5 mt-6 border-t lg:mt-0 lg:border-0 border-slate-200/60 dark:border-darkmode-400 lg:pt-0"
-        >
-          <div class="font-medium text-center lg:text-left lg:mt-5">
-            Sales Growth
-          </div>
-          <div class="flex items-center justify-center mt-2 lg:justify-start">
-            <div class="flex w-20 mr-2">
-              USP:
-              <span class="ml-3 font-medium text-success">+23%</span>
-            </div>
-            <div class="w-3/4">
-              <SimpleLineChart1 :height="55" class="-mr-5" />
-            </div>
-          </div>
-          <div class="flex items-center justify-center lg:justify-start">
-            <div class="flex w-20 mr-2">
-              STP: <span class="ml-3 font-medium text-danger">-2%</span>
-            </div>
-            <div class="w-3/4">
-              <SimpleLineChart2 :height="55" class="-mr-5" />
-            </div>
-          </div>
-        </div> -->
+  <div>
+      <div class="intro-y flex items-center mt-8">
+          <h2 class="text-lg font-medium mr-auto">My Profile</h2>
       </div>
-      <Tab.List
-        variant="link-tabs"
-        class="flex-col justify-center text-center sm:flex-row lg:justify-start"
-      >
-        <!-- <Tab :fullWidth="false">
-          <Tab.Button class="py-4 cursor-pointer">Dashboard</Tab.Button>
-        </Tab> -->
-        <Tab :fullWidth="false">
-          <Tab.Button class="py-4 cursor-pointer">
-            Profile
-          </Tab.Button>
-        </Tab>
-        <Tab :fullWidth="false">
-          <Tab.Button class="py-4 cursor-pointer"> Account </Tab.Button>
-        </Tab>
-        <Tab :fullWidth="false">
-          <Tab.Button class="py-4 cursor-pointer">Tasks</Tab.Button>
-        </Tab>
-      </Tab.List>
-    </div>
-    <!-- END: Profile Info -->
-    <Tab.Panels class="mt-5 intro-y">
-      <Tab.Panel>
-        <div class="grid grid-cols-12 gap-6">
-          <!-- BEGIN: Top Categories -->
-          <!-- <div class="col-span-12 intro-y box lg:col-span-6">
-            <div
-              class="flex items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400"
-            >
-              <h2 class="mr-auto text-base font-medium">Top Categories</h2>
-              <Menu class="ml-auto">
-                <Menu.Button tag="a" class="block w-5 h-5" href="#">
-                  <Lucide
-                    icon="MoreHorizontal"
-                    class="w-5 h-5 text-slate-500"
-                  />
-                </Menu.Button>
-                <Menu.Items class="w-40">
-                  <Menu.Item>
-                    <Lucide icon="Plus" class="w-4 h-4 mr-2" /> Add Category
-                  </Menu.Item>
-                  <Menu.Item>
-                    <Lucide icon="Settings" class="w-4 h-4 mr-2" />
-                    Settings
-                  </Menu.Item>
-                </Menu.Items>
-              </Menu>
-            </div>
-            <div class="p-5">
-              <div class="flex flex-col sm:flex-row">
-                <div class="mr-auto">
-                  <a href="" class="font-medium"> Wordpress Template </a>
-                  <div class="mt-1 text-slate-500">HTML, PHP, Mysql</div>
-                </div>
-                <div class="flex">
-                  <div class="w-32 mt-5 mr-auto -ml-2 sm:ml-0 sm:mr-5">
-                    <SimpleLineChart :height="30" />
+      <Tab.Group>
+          <!-- BEGIN: Profile Info -->
+          <div class="intro-y box px-5 pt-5 mt-5">
+              <div class="flex flex-col lg:flex-row border-b border-slate-200/60 dark:border-darkmode-400 pb-5 -mx-5">
+                  <div class="flex flex-1 px-5 items-center justify-center lg:justify-start">
+                      <div class="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 image-fit relative">
+
+
+                          <img
+                              v-if="profile && profile.avatar"
+                              :alt="user.name"
+                              class="rounded-full"
+                              :src="modelAccount.avatar" />
+                          <img
+                              v-else
+                              :alt="user.name"
+                              class="rounded-full"
+                              :src="`https://eu.ui-avatars.com/api/?size=225&name=` + user.name"
+                              />
+                      </div>
+                      <div class="ml-5">
+                          <div class="w-24 sm:w-40 truncate sm:whitespace-normal font-medium text-lg">
+                              {{ user.name }}
+                          </div>
+                          <div class="text-slate-500">{{ modelAccount.designation }}</div>
+                      </div>
                   </div>
-                  <div class="text-center">
-                    <div class="font-medium">6.5k</div>
-                    <div class="bg-success/20 text-success rounded px-2 mt-1.5">
-                      +150
-                    </div>
+                  <div
+                      class="mt-6 lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 border-t lg:border-t-0 pt-5 lg:pt-0">
+                      <div class="font-medium text-center lg:text-left lg:mt-3">
+                          Contact Details
+                      </div>
+                      <div class="flex flex-col justify-center items-center lg:items-start mt-4">
+                          <div class="truncate sm:whitespace-normal flex items-center">
+                            <Lucide icon="MailIcon" class="w-4 h-4 mr-2" />
+                              {{ user.email }}
+                          </div>
+                          <div class="truncate sm:whitespace-normal flex items-center mt-3"
+                               v-if="profile && profile.mobile">
+                               <Lucide icon="PhoneIcon" class="w-4 h-4 mr-2" />
+                              {{ profile.mobile }}
+                          </div>
+
+                      </div>
                   </div>
-                </div>
+
               </div>
-              <div class="flex flex-col mt-5 sm:flex-row">
-                <div class="mr-auto">
-                  <a href="" class="font-medium"> Bootstrap HTML Template </a>
-                  <div class="mt-1 text-slate-500">HTML, PHP, Mysql</div>
-                </div>
-                <div class="flex">
-                  <div class="w-32 mt-5 mr-auto -ml-2 sm:ml-0 sm:mr-5">
-                    <SimpleLineChart :height="30" />
-                  </div>
-                  <div class="text-center">
-                    <div class="font-medium">2.5k</div>
-                    <div class="bg-pending/10 text-pending rounded px-2 mt-1.5">
-                      +150
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="flex flex-col mt-5 sm:flex-row">
-                <div class="mr-auto">
-                  <a href="" class="font-medium"> Tailwind HTML Template </a>
-                  <div class="mt-1 text-slate-500">HTML, PHP, Mysql</div>
-                </div>
-                <div class="flex">
-                  <div class="w-32 mt-5 mr-auto -ml-2 sm:ml-0 sm:mr-5">
-                    <SimpleLineChart :height="30" />
-                  </div>
-                  <div class="text-center">
-                    <div class="font-medium">3.4k</div>
-                    <div class="bg-primary/10 text-primary rounded px-2 mt-1.5">
-                      +150
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> -->
-          <!-- END: Top Categories -->
-          <!-- BEGIN: Work In Progress -->
-          <!-- <Tab.Group class="col-span-12 intro-y box lg:col-span-6">
-            <div
-              class="flex items-center px-5 py-5 border-b sm:py-0 border-slate-200/60 dark:border-darkmode-400"
-            >
-              <h2 class="mr-auto text-base font-medium">Work In Progress</h2>
-              <Menu class="ml-auto sm:hidden">
-                <Menu.Button tag="a" class="block w-5 h-5" href="#">
-                  <Lucide
-                    icon="MoreHorizontal"
-                    class="w-5 h-5 text-slate-500"
-                  />
-                </Menu.Button>
-                <Menu.Items class="w-40">
-                  <Menu.Item class="w-full" :as="HeadlessTab"> New </Menu.Item>
-                  <Menu.Item class="w-full" :as="HeadlessTab">
-                    Last Week
-                  </Menu.Item>
-                </Menu.Items>
-              </Menu>
-              <Tab.List
-                variant="link-tabs"
-                class="hidden w-auto ml-auto sm:flex"
-              >
-                <Tab :fullWidth="false">
-                  <Tab.Button class="py-5 cursor-pointer"> New </Tab.Button>
-                </Tab>
-                <Tab :fullWidth="false">
-                  <Tab.Button class="py-5 cursor-pointer">
-                    Last Week
-                  </Tab.Button>
-                </Tab>
+              <Tab.List class="nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center">
+                  <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
+                      <Lucide icon="UserIcon" class="w-4 h-4 mr-2" /> {{ t("auth.Profile") }}
+                  </Tab>
+                  <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
+                    <Lucide icon="ShieldIcon" class="w-4 h-4 mr-2" />
+                       {{ t("auth.Account") }}
+                  </Tab>
+                  <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
+                    <Lucide icon="LockIcon" class="w-4 h-4 mr-2" />
+                      {{ t("auth.Reset Password") }}
+                  </Tab>
               </Tab.List>
-            </div>
-            <div class="p-5">
-              <Tab.Panels>
-                <Tab.Panel>
-                  <div>
-                    <div class="flex">
-                      <div class="mr-auto">Pending Tasks</div>
-                      <div>20%</div>
-                    </div>
-                    <Progress class="h-1 mt-2">
-                      <Progress.Bar
-                        class="w-1/2 bg-primary"
-                        role="progressbar"
-                        :aria-valuenow="0"
-                        :aria-valuemin="0"
-                        :aria-valuemax="100"
-                      ></Progress.Bar>
-                    </Progress>
-                  </div>
-                  <div class="mt-5">
-                    <div class="flex">
-                      <div class="mr-auto">Completed Tasks</div>
-                      <div>2 / 20</div>
-                    </div>
-                    <Progress class="h-1 mt-2">
-                      <Progress.Bar
-                        class="w-1/4 bg-primary"
-                        role="progressbar"
-                        :aria-valuenow="0"
-                        :aria-valuemin="0"
-                        :aria-valuemax="100"
-                      ></Progress.Bar>
-                    </Progress>
-                  </div>
-                  <div class="mt-5">
-                    <div class="flex">
-                      <div class="mr-auto">Tasks In Progress</div>
-                      <div>42</div>
-                    </div>
-                    <Progress class="h-1 mt-2">
-                      <Progress.Bar
-                        class="w-3/4 bg-primary"
-                        role="progressbar"
-                        :aria-valuenow="0"
-                        :aria-valuemin="0"
-                        :aria-valuemax="100"
-                      ></Progress.Bar>
-                    </Progress>
-                  </div>
-                  <Button
-                    as="a"
-                    variant="secondary"
-                    href=""
-                    class="block w-40 mx-auto mt-5"
-                  >
-                    View More Details
-                  </Button>
-                </Tab.Panel>
-              </Tab.Panels>
-            </div>
-          </Tab.Group> -->
-          <!-- END: Work In Progress -->
-          <!-- BEGIN: Daily Sales -->
-          <!-- <div class="col-span-12 intro-y box lg:col-span-6">
-            <div
-              class="flex items-center px-5 py-5 border-b sm:py-3 border-slate-200/60 dark:border-darkmode-400"
-            >
-              <h2 class="mr-auto text-base font-medium">Daily Sales</h2>
-              <Menu class="ml-auto sm:hidden">
-                <Menu.Button tag="a" class="block w-5 h-5" href="#">
-                  <Lucide
-                    icon="MoreHorizontal"
-                    class="w-5 h-5 text-slate-500"
-                  />
-                </Menu.Button>
-                <Menu.Items class="w-40">
-                  <Menu.Item>
-                    <Lucide icon="File" class="w-4 h-4 mr-2" /> Download Excel
-                  </Menu.Item>
-                </Menu.Items>
-              </Menu>
-              <Button variant="outline-secondary" class="hidden sm:flex">
-                <Lucide icon="File" class="w-4 h-4 mr-2" /> Download Excel
-              </Button>
-            </div>
-            <div class="p-5">
-              <div class="relative flex items-center">
-                <div class="flex-none w-12 h-12 image-fit">
-                  <img
-                    alt="Midone Tailwind HTML Admin Template"
-                    class="rounded-full"
-                    :src="fakerData[0].photos[0]"
-                  />
-                </div>
-                <div class="ml-4 mr-auto">
-                  <a href="" class="font-medium">
-                    {{ fakerData[0].users[0].name }}
-                  </a>
-                  <div class="mr-5 text-slate-500 sm:mr-5">
-                    Bootstrap 4 HTML Admin Template
-                  </div>
-                </div>
-                <div class="font-medium text-slate-600 dark:text-slate-500">
-                  +$19
-                </div>
-              </div>
-              <div class="relative flex items-center mt-5">
-                <div class="flex-none w-12 h-12 image-fit">
-                  <img
-                    alt="Midone Tailwind HTML Admin Template"
-                    class="rounded-full"
-                    :src="fakerData[1].photos[0]"
-                  />
-                </div>
-                <div class="ml-4 mr-auto">
-                  <a href="" class="font-medium">
-                    {{ fakerData[1].users[0].name }}
-                  </a>
-                  <div class="mr-5 text-slate-500 sm:mr-5">
-                    Tailwind HTML Admin Template
-                  </div>
-                </div>
-                <div class="font-medium text-slate-600 dark:text-slate-500">
-                  +$25
-                </div>
-              </div>
-              <div class="relative flex items-center mt-5">
-                <div class="flex-none w-12 h-12 image-fit">
-                  <img
-                    alt="Midone Tailwind HTML Admin Template"
-                    class="rounded-full"
-                    :src="fakerData[2].photos[0]"
-                  />
-                </div>
-                <div class="ml-4 mr-auto">
-                  <a href="" class="font-medium">
-                    {{ fakerData[2].users[0].name }}
-                  </a>
-                  <div class="mr-5 text-slate-500 sm:mr-5">
-                    Vuejs HTML Admin Template
-                  </div>
-                </div>
-                <div class="font-medium text-slate-600 dark:text-slate-500">
-                  +$21
-                </div>
-              </div>
-            </div>
-          </div> -->
-          <!-- END: Daily Sales -->
-          <!-- BEGIN: Latest Tasks -->
-          <!-- <Tab.Group class="col-span-12 intro-y box lg:col-span-6">
-            <div
-              class="flex items-center px-5 py-5 border-b sm:py-0 border-slate-200/60 dark:border-darkmode-400"
-            >
-              <h2 class="mr-auto text-base font-medium">Latest Tasks</h2>
-              <Menu class="ml-auto sm:hidden">
-                <Menu.Button tag="a" class="block w-5 h-5" href="#">
-                  <Lucide
-                    icon="MoreHorizontal"
-                    class="w-5 h-5 text-slate-500"
-                  />
-                </Menu.Button>
-                <Menu.Items class="w-40">
-                  <Menu.Item class="w-full" :as="HeadlessTab"> New </Menu.Item>
-                  <Menu.Item class="w-full" :as="HeadlessTab">
-                    Last Week
-                  </Menu.Item>
-                </Menu.Items>
-              </Menu>
-              <Tab.List
-                variant="link-tabs"
-                class="hidden w-auto ml-auto sm:flex"
-              >
-                <Tab :fullWidth="false">
-                  <Tab.Button class="py-5 cursor-pointer"> New </Tab.Button>
-                </Tab>
-                <Tab :fullWidth="false">
-                  <Tab.Button class="py-5 cursor-pointer">
-                    Last Week
-                  </Tab.Button>
-                </Tab>
-              </Tab.List>
-            </div>
-            <div class="p-5">
-              <Tab.Panels>
-                <Tab.Panel>
-                  <div class="flex items-center">
-                    <div
-                      class="pl-4 border-l-2 border-primary dark:border-primary"
-                    >
-                      <a href="" class="font-medium"> Create New Campaign </a>
-                      <div class="text-slate-500">10:00 AM</div>
-                    </div>
-                    <FormSwitch class="ml-auto">
-                      <FormSwitch.Input type="checkbox" />
-                    </FormSwitch>
-                  </div>
-                  <div class="flex items-center mt-5">
-                    <div
-                      class="pl-4 border-l-2 border-primary dark:border-primary"
-                    >
-                      <a href="" class="font-medium"> Meeting With Client </a>
-                      <div class="text-slate-500">02:00 PM</div>
-                    </div>
-                    <FormSwitch class="ml-auto">
-                      <FormSwitch.Input type="checkbox" />
-                    </FormSwitch>
-                  </div>
-                  <div class="flex items-center mt-5">
-                    <div
-                      class="pl-4 border-l-2 border-primary dark:border-primary"
-                    >
-                      <a href="" class="font-medium"> Create New Repository </a>
-                      <div class="text-slate-500">04:00 PM</div>
-                    </div>
-                    <FormSwitch class="ml-auto">
-                      <FormSwitch.Input type="checkbox" />
-                    </FormSwitch>
-                  </div>
-                </Tab.Panel>
-              </Tab.Panels>
-            </div>
-          </Tab.Group> -->
-          <!-- END: Latest Tasks -->
-          <!-- BEGIN: General Statistic -->
-          <!-- <div class="col-span-12 intro-y box">
-            <div
-              class="flex items-center px-5 py-5 border-b sm:py-3 border-slate-200/60 dark:border-darkmode-400"
-            >
-              <h2 class="mr-auto text-base font-medium">General Statistics</h2>
-              <Menu class="ml-auto sm:hidden">
-                <Menu.Button class="block w-5 h-5" href="#">
-                  <Lucide
-                    icon="MoreHorizontal"
-                    class="w-5 h-5 text-slate-500"
-                  />
-                </Menu.Button>
-                <Menu.Items class="w-40">
-                  <Menu.Item>
-                    <Lucide icon="File" class="w-4 h-4 mr-2" /> Download XML
-                  </Menu.Item>
-                </Menu.Items>
-              </Menu>
-              <Button variant="outline-secondary" class="hidden sm:flex">
-                <Lucide icon="File" class="w-4 h-4 mr-2" /> Download XML
-              </Button>
-            </div>
-            <div class="grid grid-cols-1 gap-6 p-5 2xl:grid-cols-7">
-              <div class="2xl:col-span-2">
-                <div class="grid grid-cols-2 gap-6">
-                  <div
-                    class="col-span-2 p-5 sm:col-span-1 2xl:col-span-2 box dark:bg-darkmode-500"
-                  >
-                    <div class="font-medium">Net Worth</div>
-                    <div class="flex items-center mt-1 sm:mt-0">
-                      <div class="flex w-20 mr-4">
-                        USP:
-                        <span class="ml-3 font-medium text-success">
-                          +23%
-                        </span>
+          </div>
+          <!-- END: Profile Info -->
+          <Tab.Panels class="mt-5">
+              <Tab.Panel>
+                  <div class="grid grid-cols-12 gap-6">
+                      <!-- BEGIN: Latest Uploads -->
+                      <div class="intro-y box col-span-12 lg:col-span-12">
+                          <div
+                              class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                              <h2 class="font-medium text-base mr-auto">{{ t("auth.Latest Courses") }}</h2>
+
+                          </div>
+                          <div class="p-5">
+                              <div class="overflow-x-auto">
+                                  <Table class="table table-striped">
+                                      <Table.Thead>
+                                          <Table.Tr>
+                                              <Table.Th class="whitespace-nowrap">#</Table.Th>
+                                              <Table.Th class="whitespace-nowrap">{{ t("courses.Name") }}</Table.Th>
+                                              <Table.Th class="whitespace-nowrap">{{ t("courses.Code") }}</Table.Th>
+                                          </Table.Tr>
+                                      </Table.Thead>
+                                      <Table.Tbody>
+                                          <Table.Tr v-for="(course, index) in courses" :key="course.id">
+                                              <Table.Td>{{ index + 1 }}</Table.Td>
+                                              <Table.Td>{{ course.name }}</Table.Td>
+                                              <Table.Td>{{ course.course_code }}</Table.Td>
+                                          </Table.Tr>
+                                      </Table.Tbody>
+                                  </Table>
+                              </div>
+
+                          </div>
                       </div>
-                      <div class="w-5/6 overflow-auto">
-                        <SimpleLineChart :height="51" />
+                      <!-- END: Latest Uploads -->
+
+                      <!-- BEGIN: Subject -->
+                      <div class="intro-y box col-span-12">
+                          <div
+                              class="flex items-center px-5 py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                              <h2 class="font-medium text-base mr-auto">{{ t("subjects.Subjects")}}</h2>
+
+                          </div>
+                          <div id="subjects" class="py-5">
+                              <div class="overflow-x-auto">
+                                  <Table class="table table-striped">
+                                      <Table.Thead>
+                                          <Table.Tr>
+                                              <Table.Th class="whitespace-nowrap">#</Table.Th>
+                                              <Table.Th class="whitespace-nowrap">{{ t("subjects.Label") }}</Table.Th>
+                                              <Table.Th class="whitespace-nowrap">{{ t("subjects.Icon") }}</Table.Th>
+                                          </Table.Tr>
+                                      </Table.Thead>
+                                      <Table.Tbody>
+                                          <Table.Tr v-for="(subject, index) in subjects" :key="subject.id">
+                                              <Table.Td>{{ index + 1 }}</Table.Td>
+                                              <Table.Td>{{ JSON.parse(subject.label) }}</Table.Td>
+                                              <Table.Td>{{ subject.icon }}</Table.Td>
+                                          </Table.Tr>
+
+                                      </Table.Tbody>
+                                  </Table>
+                              </div>
+                          </div>
                       </div>
-                    </div>
+                      <!-- END: Subjects -->
+                      <!-- BEGIN: New Authors -->
+                      <div class="intro-y box col-span-12">
+                          <div
+                              class="flex items-center px-5 py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                              <h2 class="font-medium text-base mr-auto">{{ t("questions.Questions") }}</h2>
+
+                          </div>
+
+                          <div id="subjects" class="py-5">
+                              <div class="overflow-x-auto">
+                                  <Table class="table table-striped">
+                                      <Table.Thead>
+                                          <Table.Tr>
+                                              <Table.Th class="whitespace-nowrap">#</Table.Th>
+                                              <Table.Th class="whitespace-nowrap">{{ t("questions.Question") }}</Table.Th>
+                                              <Table.Th class="whitespace-nowrap">{{ t("questions.Board") }}</Table.Th>
+                                          </Table.Tr>
+                                      </Table.Thead>
+                                      <Table.Tbody>
+                                          <Table.Tr v-for="(question, index) in questions" :key="question.id">
+                                              <Table.Td>{{ index + 1 }}</Table.Td>
+                                              <Table.Td>{{ question.question }}</Table.Td>
+                                              <Table.Td>{{ question.board_id }}</Table.Td>
+                                          </Table.Tr>
+
+                                      </Table.Tbody>
+                                  </Table>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- END: New Authors -->
                   </div>
-                  <div
-                    class="col-span-2 p-5 sm:col-span-1 2xl:col-span-2 box dark:bg-darkmode-500"
-                  >
-                    <div class="font-medium">Sales</div>
-                    <div class="flex items-center mt-1 sm:mt-0">
-                      <div class="flex w-20 mr-4">
-                        USP:
-                        <span class="ml-3 font-medium text-danger"> -5% </span>
+              </Tab.Panel>
+              <Tab.Panel>
+                  <div class="grid grid-cols-12 gap-6">
+                      <!-- BEGIN: Latest Uploads -->
+                      <div class="intro-y box col-span-12 lg:col-span-12">
+                          <div
+                              class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                              <h2 class="font-medium text-base mr-auto">{{ t("auth.Account Information") }}</h2>
+
+                          </div>
+                          <form @submit.prevent="submitAccount">
+                              <div class="p-5">
+                                  <div>
+                                      <label class="block text-sm font-medium text-gray-700"> {{ t("auth.Avatar") }} </label>
+                                      <div class="mt-1 flex items-center">
+                                          <img
+                                              v-if="modelAccount.avatar"
+                                              :src="modelAccount.avatar"
+                                              :alt="user.name"
+                                              class="w-64 h-48 object-cover"
+                                          />
+                                          <img  v-else :alt="user.name" class="rounded-full"
+                                               :src="`https://eu.ui-avatars.com/api/?size=50&name=` + user.name" />
+
+                                          <Button
+                                              type="button"
+                                              class="relative overflow-hidden ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                          >
+                                              <FormInput
+                                                  type="file"
+                                                  @change="onImageChoose"
+                                                  accept="image/png, image/jpeg, image/jpg"
+                                                  class="absolute left-0 top-0 right-0 bottom-0 opacity-0 cursor-pointer rounded-full"
+                                              />
+                                              {{ t("auth.Change Avatar") }}
+                                          </Button>
+
+                                      </div>
+                                  </div>
+                                  <div class="mt-3">
+                                      <label for="alt-email" class="form-label">{{ t("auth.Alternate Email")
+                                      }}</label>
+                                      <FormInput id="alt-email" type="email" class="form-control"
+                                          placeholder="Enter Alternate Email" v-model.trim="modelAccount.alt_email"
+                                          :class="{
+                                              'border-danger': submitted && v$.alt_email.$errors.length,
+                                          }" />
+                                      <div class="text-danger mt-2" v-for="(error, index) of v$.alt_email.$errors"
+                                          :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+                                  <div class="mt-3">
+                                      <label for="mobile" class="form-label">{{ t("auth.Mobile Number") }}</label>
+                                      <FormInput id="mobile" type="text" class="form-control"
+                                          placeholder="Enter Mobile Number" v-model.trim="modelAccount.mobile" :class="{
+                                              'border-danger': submitted && v$.mobile.$errors.length,
+                                          }" />
+                                      <div class="text-danger mt-2" v-for="(error, index) of v$.mobile.$errors"
+                                          :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+                                  <div class="mt-3">
+                                      <label for="alt-mobile" class="form-label">{{ t("auth.Alternate Mobile Number")}}</label>
+                                      <FormInput id="alt-mobile" type="text" class="form-control"
+                                          placeholder="Enter Alternate Mobile No"
+                                          v-model.trim="modelAccount.alt_mobile" :class="{
+                                              'border-danger': submitted && v$.alt_mobile.$errors.length,
+                                          }" />
+                                      <div class="text-danger mt-2" v-for="(error, index) of v$.alt_mobile.$errors"
+                                          :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+
+                                  <div class="mt-3">
+                                      <label for="address" class="form-label">{{ t("auth.Address") }}</label>
+                                      <FormTextarea id="address" class="form-control" placeholder="Enter Address"
+                                          v-model.trim="modelAccount.address" :class="{
+                                              'border-danger': submitted && v$.address.$errors.length,
+                                          }"></FormTextarea>
+
+                                      <div class="text-danger mt-2" v-for="(error, index) of v$.address.$errors"
+                                          :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+                                  <div class="mt-3">
+                                      <label for="alt-address" class="form-label">{{ t("auth.Alternate Address")}}</label>
+                                      <FormTextarea id="alt-address" class="form-control"
+                                          placeholder="Enter Alternate Address"
+                                          v-model.trim="modelAccount.alt_address" :class="{
+                                              'border-danger': submitted && v$.alt_address.$errors.length,
+                                          }"></FormTextarea>
+
+                                      <div class="text-danger mt-2" v-for="(error, index) of v$.alt_address.$errors"
+                                          :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+                                  <div class="mt-3">
+                                      <label for="gender" class="form-label">{{ t("auth.Gender") }}</label>
+                                      <TomSelect id="gender" v-model="modelAccount.gender" placeholder="Select Gender"
+                                          :options="{
+                                              allowEmptyOption: false,
+                                              create: false,
+                                              placeholder: 'Select Gender',
+                                              autocomplete: 'off',
+                                              items: modelAccount.gender,
+                                          }" class="w-full" :class="{
+  'border-danger': submitted && v$.gender.$errors.length,
+}">
+                                          <option value="">{{ t('common.Select Gender') }}</option>
+                                          <option value="male">{{ t('common.Male') }}</option>
+                                          <option value="female">{{ t('common.Female') }}</option>
+                                          <option value="other">{{ t('common.Other') }}</option>
+                                      </TomSelect>
+
+                                      <div class="text-danger mt-2" v-for="(error, index) of v$.gender.$errors"
+                                          :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+                                  <div class="mt-3">
+                                      <label for="qualification" class="form-label">{{
+                                              t("auth.Qualification")
+                                      }}</label>
+                                      <FormInput id="qualification" type="text" v-model="modelAccount.qualification"
+                                          placeholder="Enter your qualification" class="form-control w-full" :class="{
+                                              'border-danger': submitted && v$.qualification.$errors.length,
+                                          }" />
+
+                                      <div class="text-danger mt-2" v-for="(error, index) of v$.qualification.$errors"
+                                          :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+                                  <div class="mt-3">
+                                      <label for="designation" class="form-label">{{ t("auth.Designation") }}</label>
+                                      <FormInput id="designation" type="text" v-model="modelAccount.designation"
+                                          placeholder="Enter your designation" class="form-control w-full" :class="{
+                                              'border-danger': submitted && v$.designation.$errors.length,
+                                          }" />
+
+                                      <div class="text-danger mt-2" v-for="(error, index) of v$.designation.$errors"
+                                          :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+                                  <div class="text-right mt-5 p-5">
+                                      <!-- <button type="button" class="btn btn-outline-secondary w-24 mr-1"
+                                          @click.prevent="cancel">
+                                          {{ t("common.Cancel") }}
+                                      </button>
+                                      <button type="submit" class="btn btn-primary w-24">
+                                          {{ t("common.Save") }}
+                                      </button> -->
+                                      <Button
+                                          variant="secondary"
+                                          class="btn btn-outline-secondary w-20 mr-1"
+                                          @click.prevent="cancel">
+                                      {{ t("common.Cancel") }}
+                                      </Button>
+                                      <Button variant="primary" class="btn btn-primary w-20" type="submit">
+                                                          {{ t("common.Save") }}
+                                      </Button>
+                                  </div>
+                              </div>
+                          </form>
                       </div>
-                      <div class="w-5/6 overflow-auto">
-                        <SimpleLineChart :height="51" />
-                      </div>
-                    </div>
+                      <!-- END: Latest Uploads -->
+
                   </div>
-                  <div
-                    class="col-span-2 p-5 sm:col-span-1 2xl:col-span-2 box dark:bg-darkmode-500"
-                  >
-                    <div class="font-medium">Profit</div>
-                    <div class="flex items-center mt-1 sm:mt-0">
-                      <div class="flex w-20 mr-4">
-                        USP:
-                        <span class="ml-3 font-medium text-danger"> -10% </span>
+              </Tab.Panel>
+              <Tab.Panel>
+                  <div class="grid grid-cols-12 gap-6">
+
+                      <!-- BEGIN: Latest Uploads -->
+                      <div class="intro-y box col-span-12 lg:col-span-12">
+                          <div
+                              class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                              <h2 class="font-medium text-base mr-auto">{{ t("auth.Change Password") }}</h2>
+
+                          </div>
+                          <form @submit.prevent="submitPasswordForm">
+                              <div class="p-5">
+                                  <div>
+                                      <label for="password" class="form-label">{{ t("auth.Password") }}</label>
+                                      <FormInput id="password" type="password" class="form-control"
+                                          placeholder="Enter Password" v-model.trim="modelPassword.password" :class="{
+                                              'border-danger': submitted && vP$.password.$errors.length,
+                                          }" />
+                                      <div class="text-danger mt-2" v-for="(error, index) of vP$.password.$errors"
+                                          :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+                                  <div class="mt-3">
+                                      <label for="confirm-password" class="form-label">
+                                          {{ t("auth.Confirm Password")}}
+                                      </label>
+                                      <FormInput id="confirm-password" type="password" class="form-control"
+                                          placeholder="Confirm Password" v-model.trim="modelPassword.confirm_password"
+                                          :class="{
+                                              'border-danger': submitted && vP$.confirm_password.$errors.length,
+                                          }" />
+                                      <div class="text-danger mt-2"
+                                          v-for="(error, index) of vP$.confirm_password.$errors" :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="text-right mt-5 p-5">
+                                <Button
+                                    variant="secondary"
+                                    class="btn btn-outline-secondary w-20 mr-1"
+                                    @click.prevent="cancel">
+                                {{ t("common.Cancel") }}
+                                </Button>
+                                <Button variant="primary" class="btn btn-primary w-20" type="submit">
+                                                    {{ t("common.Save") }}
+                                </Button>
+                              </div>
+                          </form>
                       </div>
-                      <div class="w-5/6 overflow-auto">
-                        <SimpleLineChart :height="51" />
-                      </div>
-                    </div>
+                      <!-- END: Latest Uploads -->
+
                   </div>
-                  <div
-                    class="col-span-2 p-5 sm:col-span-1 2xl:col-span-2 box dark:bg-darkmode-500"
-                  >
-                    <div class="font-medium">Products</div>
-                    <div class="flex items-center mt-1 sm:mt-0">
-                      <div class="flex w-20 mr-4">
-                        USP:
-                        <span class="ml-3 font-medium text-success">
-                          +55%
-                        </span>
-                      </div>
-                      <div class="w-5/6 overflow-auto">
-                        <SimpleLineChart :height="51" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="w-full 2xl:col-span-5">
-                <div class="flex justify-center mt-8">
-                  <div class="flex items-center mr-5">
-                    <div class="w-2 h-2 mr-3 rounded-full bg-primary"></div>
-                    <span>Product Profit</span>
-                  </div>
-                  <div class="flex items-center">
-                    <div class="w-2 h-2 mr-3 rounded-full bg-slate-300"></div>
-                    <span>Author Sales</span>
-                  </div>
-                </div>
-                <div class="mt-8">
-                  <StackedBarChart1 :height="420" />
-                </div>
-              </div>
-            </div>
-          </div> -->
-          <!-- END: General Statistic -->
-        </div>
-      </Tab.Panel>
-    </Tab.Panels>
-  </Tab.Group>
-</div>
+              </Tab.Panel>
+          </Tab.Panels>
+      </Tab.Group>
+  </div>
+
 </template>

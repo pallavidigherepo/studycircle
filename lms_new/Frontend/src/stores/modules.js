@@ -8,7 +8,7 @@ import studentsModule from "./modules/students/index.js";
 import parentsModule from "./modules/parents/index.js";
 import questionsModule from "./modules/questions/index.js";
 import templatesModule from "./modules/templates/index.js";
-import generate_questionsModule from "./modules/generate_questions/index.js";
+import generateQuestionModule from './modules/generate_questions/index.js';
 import fee_typesModule from "./modules/fee_types/index.js";
 import fee_structuresModule from "./modules/fee_structures/index.js";
 import inquiry_followup_typesModule from "./modules/inquiry_followup_types/index.js";
@@ -32,7 +32,7 @@ export default {
   parents: parentsModule,
   questions: questionsModule,
   templates: templatesModule,
-  generate_questions: generate_questionsModule,
+  generated_questions: generateQuestionModule,
   fee_types: fee_typesModule,
   fee_structures: fee_structuresModule,
   inquiry_followup_types: inquiry_followup_typesModule,

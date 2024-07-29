@@ -37,11 +37,12 @@ const fetch = async () => {
         //const result = await store.dispatch('roles/edit', id);
 
         const result = await axiosClient.get(`/users/${id}/edit`);
+        console.log(result.data);
         if (result.status != 200) {
             const error = new Error('Failed to fetch roles')
             throw error;
         }
-        user.value = JSON.parse(JSON.stringify(result.data.user));
+        user.value = JSON.parse(JSON.stringify(result.data));
     } catch (e) {
         isErrored.value = true;
         message.value = e;
@@ -49,7 +50,7 @@ const fetch = async () => {
         isLoading.value = false;
     }
 };
-fetch();
+// fetch();
 
 const rules = computed(() => {
     return {
@@ -101,6 +102,7 @@ async function submitForm() {
 }
 
 onMounted(() => {
+    fetch();
     store.dispatch("users/role_list");
 });
 
@@ -138,7 +140,7 @@ const roles = computed(() => store.getters["users/roleList"]);
                         <AlertOctagonIcon class="w-6 h-6 mr-2"/>
                         {{ message }}
                     </div>
-                    <form @submit.prevent="submitForm" class="validate-form">
+                    <form @submit.prevent="submitForm()" class="validate-form">
                         <div>
                             <label for="form-name" class="form-label">{{
                                     t("users.Name")

@@ -55,8 +55,8 @@ function resetPassword() {
   >
     <!-- BEGIN: Breadcrumb -->
     <Breadcrumb class="hidden mr-auto -intro-x sm:flex">
-      <Breadcrumb.Link to="/">Dashboard</Breadcrumb.Link>
-      <Breadcrumb.Link v-if="route.name !== 'dashboard'" :active="true">{{ route.name }}</Breadcrumb.Link>
+      <Breadcrumb.Link to="/">Application</Breadcrumb.Link>
+      <Breadcrumb.Link v-if="route.name !== 'Dashboard'" :active="true">{{ route.name }}</Breadcrumb.Link>
     </Breadcrumb>
     <!-- END: Breadcrumb -->
     <!-- BEGIN: Account Menu -->
@@ -66,7 +66,7 @@ function resetPassword() {
       >
         <img
           alt="Meritest: Learning Management System"
-          :src="logoURL"
+          :src="`https://eu.ui-avatars.com/api/?size=225&name=` + userInfo.name"
         />
       </Menu.Button>
       <Menu.Items class="w-56 mt-px text-white bg-primary">
@@ -81,9 +81,9 @@ function resetPassword() {
           <Lucide icon="User" class="w-4 h-4 mr-2" /> Profile
         </Menu.Item>
         
-        <Menu.Item class="hover:bg-white/5"  @click="resetPassword">
+        <!-- <Menu.Item class="hover:bg-white/5"  @click="resetPassword">
           <Lucide icon="Lock" class="w-4 h-4 mr-2" /> Reset Password
-        </Menu.Item>
+        </Menu.Item> -->
         
         <Menu.Divider class="bg-white/[0.08]" />
         <a href="#" @click="logout">

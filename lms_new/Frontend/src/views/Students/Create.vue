@@ -9,6 +9,7 @@ import Button from "@/components/Base/Button";
 import {email, helpers, minLength, maxLength, numeric, required} from "@vuelidate/validators";
 import {useVuelidate} from "@vuelidate/core";
 import store from "@/stores";
+import axiosClient from "@/axios";
 
 const props = defineProps({
     standard_id: {
@@ -300,7 +301,7 @@ function uploadDoc(ev, documentId) {
                         <AlertOctagonIcon class="w-6 h-6 mr-2" />
                         {{ message }}
                     </div>
-                    <form @submit.prevent="submitForm" class="validate-form" enctype="multipart/form-data">
+                    <form @submit.prevent="submitForm()" class="validate-form" enctype="multipart/form-data">
                         <div class="intro-y col-span-11 2xl:col-span-9">
                             <!-- BEGIN: Board and Standard selection -->
                             <div class="intro-y box p-5 mt-1">

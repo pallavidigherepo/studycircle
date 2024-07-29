@@ -7,6 +7,7 @@ import { FormInput, FormSelect, FormCheck, FormTextarea } from "@/components/Bas
 import Lucide from "@/components/Base/Lucide";
 import Button from "@/components/Base/Button";
 import SectionEditor from "@/components/Editor/Section.vue";
+import Alert from "@/components/Base/Alert";
 
 import {useVuelidate} from "@vuelidate/core";
 import {helpers, minLength, minValue, numeric, required, requiredIf} from "@vuelidate/validators";
@@ -252,6 +253,10 @@ function makeid(length) {
             </div>
         </div>
         <!-- BEGIN: Notification -->
+        <Alert variant="warning" class="flex items-center mb-6 mt-5">
+            <Lucide icon="AlertCircle" class="w-6 h-6 mr-2" />
+            <span>{{ t("templates.Template created here will be used for any subject") }}</span>
+        </Alert>
         <!-- <Alert
             class="intro-y col-span-11 alert-warning alert-dismissible mb-6 mt-5"
             v-slot="{ dismiss }"

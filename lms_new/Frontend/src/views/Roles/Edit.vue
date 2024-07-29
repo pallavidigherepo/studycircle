@@ -30,6 +30,7 @@ const role = reactive({
 });
 
 onMounted(() => {
+    fetch();
     store.dispatch('permissions/modules');
 });
 
@@ -54,7 +55,7 @@ const fetch = async() => {
         isLoading.value = false;
     }
 };
-fetch();
+
 const rules = computed(() => {
     return {
         name: {
