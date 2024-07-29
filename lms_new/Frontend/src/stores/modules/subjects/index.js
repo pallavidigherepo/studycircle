@@ -18,7 +18,7 @@ export default {
                 defaultOrder: "desc",
                 defaultPage: 1,
                 defaultSearch: "",
-                defaultPerPage: 10,
+                defaultPerPage: 20,
                 columns: [{
                         label: "ID",
                         field: "id",

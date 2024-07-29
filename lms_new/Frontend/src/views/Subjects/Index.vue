@@ -71,11 +71,11 @@ function deleteI(subject) {
         </h2>
       </div>
       <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
-        <!-- BEGIN: Dtatatable Content -->
+        <!-- BEGIN: DataTable Content -->
         <div class="intro-y col-span-12 lg:col-span-12">
           <!-- BEGIN: HTML Table Data -->
 
-          <div class="intro-y p-5">
+          <div class="intro-y">
             <div class="overflow-x-auto scrollbar-hidden">
               <DataTable
                 module="subjects"
@@ -89,7 +89,7 @@ function deleteI(subject) {
           </div>
           <!-- END: HTML Table Data -->
         </div>
-        <!-- END: Dtatatable Content -->
+        <!-- END: DataTable Content -->
       </div>
     
     </template>
