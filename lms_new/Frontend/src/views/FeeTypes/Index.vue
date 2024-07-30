@@ -66,7 +66,7 @@ async function submitForm(event) {
         submitted.value = false;
         event.target.reset();
       })
-      .catch((err) => {
+      .catch((err: any) => {
         isErrored.value = true;
         if (err.response) {
           message.value = err.response.data.message;

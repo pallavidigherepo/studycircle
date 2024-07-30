@@ -55,8 +55,8 @@ export default {
                         sort: false,
                         actions: {
                             show: false,
-                            edit: false,
-                            delete: false,
+                            edit: true,
+                            delete: true,
                         }
                     }
                 ]

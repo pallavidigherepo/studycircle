@@ -82,7 +82,7 @@ class InquiryFollowupTypeController extends Controller
      */
     public function destroy(InquiryFollowupType $inquiryFollowupType)
     {
-        if (!$this->inquiryFollowupService->delete($inquiryFollowupType)) {
+        if (!$this->inquiryFollowupTypeService->delete($inquiryFollowupType)) {
             return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
         return response()->json(['message' => 'Information deleted Successfully'], 201);

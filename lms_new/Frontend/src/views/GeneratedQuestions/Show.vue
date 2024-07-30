@@ -1,21 +1,8 @@
-<template>
-    <div>
-        <Preview v-if="generatedQuestion"
-                 :data="generatedQuestion"
-                 :userInfo="userInfo"
-                 :template="generatedQuestion.template_info"
-                 :isOnline="isOnline"
-                 :preview="false"
-                 @back="back" />
-        <Loading v-if="isLoading" fixed></Loading>
-    </div>
-</template>
-
-<script setup>
+<script setup lang="ts">
 import store from "@/stores";
 import {ref, computed, onMounted} from "vue";
 import {useRoute, useRouter} from "vue-router";
-// import Preview from "@/components/GeneratedQuestionPaper/Preview.vue";
+import Preview from "@/components/GeneratedQuestionPaper/Preview.vue";
 
 import {useI18n} from "vue-i18n";
 
@@ -58,6 +45,18 @@ function back() {
 }
 </script>
 
+<template>
+    <div>
+        <Preview v-if="generatedQuestion"
+                 :data="generatedQuestion"
+                 :userInfo="userInfo"
+                 :template="generatedQuestion.template_info"
+                 :isOnline="isOnline"
+                 :preview="false"
+                 @back="back" />
+        <Loading v-if="isLoading" fixed></Loading>
+    </div>
+</template>
 <style scoped>
 
 </style>

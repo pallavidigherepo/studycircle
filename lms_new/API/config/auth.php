@@ -101,7 +101,7 @@ return [
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
-            'url' => env('FRONTEND_URL', 'http://localhost:7153') . '/reset-password',
+            'url' => env('FRONTEND_URL', 'http://localhost:5173') . '/reset-password',
         ],
     ],
 

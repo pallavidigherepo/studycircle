@@ -48,9 +48,9 @@ const rules = computed(() => {
     label: {
       required: helpers.withMessage("Please enter label.", required),
     },
-    description: {
-      required: helpers.withMessage("Please enter description.", required),
-    },
+    // description: {
+    //   required: helpers.withMessage("Please enter description.", required),
+    // },
     icon: {
       required: helpers.withMessage("Please enter icon.", required),
     },
@@ -75,10 +75,12 @@ async function submitForm() {
         submitted.value = false;
         router.push({ name: "Subjects" });
       })
-      .catch((err) => {
+      .catch((err: any) => {
         isLoading.value = false;
         isErrored.value = true;
-        message.value = err.response.data.message;
+        if (err.response) {
+            message.value = err.response.data.message;
+        }
       });
   } else {
     // if ANY fail validation
@@ -134,7 +136,7 @@ const standards = computed(() => store.getters.listStandards);
             <AlertOctagonIcon class="w-6 h-6 mr-2" />
             {{ message }}
           </div>
-          <form @submit.prevent="submitForm" class="validate-form">
+          <form @submit.prevent="submitForm()" class="validate-form">
             <div>
               <label for="form-label" class="form-label">{{
                 t("subjects.Board")
@@ -213,13 +215,13 @@ const standards = computed(() => store.getters.listStandards);
               </div>
 
               <!-- END: Inbox Content -->
-              <div
+              <!-- <div
                 class="text-danger mt-2"
                 v-for="(error, index) of v$.description.$errors"
                 :key="index"
               >
                 <div class="error-msg">{{ error.$message }}</div>
-              </div>
+              </div> -->
             </div>
             <div class="mt-3">
               <label for="form-language" class="form-label">{{

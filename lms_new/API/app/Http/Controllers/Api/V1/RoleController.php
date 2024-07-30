@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\ResourceCollection;
+// use Illuminate\Http\Resources\Json\ResourceCollection;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Http\Resources\RoleResource;
@@ -25,7 +25,7 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request):ResourceCollection
+    public function index(Request $request)
     {
         return $this->roleService->all($request);
     }
@@ -54,9 +54,6 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        // We have to format role and permissions according to discussion.
-        // First of all get all the list of permissions
-
         list($response, $final) = $this->roleService->edit($role);
 
         return response()->json(['response' => $response, 'final' => $final], 200);

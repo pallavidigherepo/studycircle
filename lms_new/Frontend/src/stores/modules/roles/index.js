@@ -28,16 +28,19 @@ export default {
                         label: "NAME",
                         field: "name",
                         sort: true,
+                        type: "text",
                     },
                     {
                         label: "PERMISSIONS",
                         field: "role_out_of_permission",
                         sort: false,
+                        type: "text",
                     },
                     {
                         label: "ACTION",
                         field: false,
                         sort: false,
+                        type: "actions",
                         actions: {
                             show: false,
                             edit: true,

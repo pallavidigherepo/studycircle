@@ -280,7 +280,7 @@ function makeid(length) {
                     <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                         <div
                             class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                            <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                            <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>
                             {{ t("questions.Select Board & Standard/Class") }}
                         </div>
                         <div class="mt-5">
@@ -375,7 +375,7 @@ function makeid(length) {
                         <div
                             class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5"
                             >
-                            <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                            <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>
                             {{ t("templates.Detail information of template") }}
                         </div>
 
@@ -557,7 +557,7 @@ function makeid(length) {
                                         <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                                             <div
                                                 class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                                                <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                                                <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>
                                                 {{ t("templates.Sections") }}
                                                 <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
                                                     <Button class="btn btn-outline-primary border-dashed w-full" type="button"

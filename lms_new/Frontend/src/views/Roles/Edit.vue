@@ -30,7 +30,6 @@ const role = reactive({
 });
 
 onMounted(() => {
-    fetch();
     store.dispatch('permissions/modules');
 });
 
@@ -55,7 +54,7 @@ const fetch = async() => {
         isLoading.value = false;
     }
 };
-
+fetch();
 const rules = computed(() => {
     return {
         name: {
@@ -82,7 +81,7 @@ async function submitForm() {
                 submitted.value = false;
                 router.push({ name: "Roles" });
             })
-            .catch((err) => {
+            .catch((err: any) => {
                 isLoading.value = false;
                 isErrored.value = true;
                 if (err.response) {
@@ -119,7 +118,7 @@ const listPermissions = computed(() => {
                         <AlertOctagonIcon class="w-6 h-6 mr-2" />
                         {{ message }}
                     </div>
-                    <form @submit.prevent = "submitForm" class="validate-form">
+                    <form @submit.prevent = "submitForm()" class="validate-form">
                         <div>
                             <label for="form-name" class="form-label">{{ t("roles.Name") }}</label>
                             <FormInput id="form-name"

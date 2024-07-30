@@ -7,7 +7,7 @@ Interface RoleRepositoryInterface {
 
     public function create($data);
 
-    public function edit($role);
+    public function getInfo($role);
 
     public function update($data, $role);
 

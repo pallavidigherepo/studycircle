@@ -1,3 +1,126 @@
+<script setup lang="ts">
+import { ref, onMounted, computed } from "vue";
+
+import { useVuelidate } from "@vuelidate/core";
+import { required, helpers } from "@vuelidate/validators";
+import DataTable from "@/components/DataTable/Index.vue";
+import Button from "@/components/Base/Button";
+import { FormInput, FormCheck } from "@/components/Base/Form";
+
+import store from "@/stores";
+
+import { useI18n } from "vue-i18n";
+
+// To show/hide modal
+
+const options = {
+  modelName: "CoursesType",
+};
+
+const { t } = useI18n();
+
+// End of info
+
+// Variables and actions related to Add/Edit.
+let isEdit = ref(false);
+let actionText = ref("Add");
+let submitted = ref(false);
+let message = ref("");
+let isErrored = ref(false);
+let selectedItem = ref("");
+
+let model = ref({
+  id: "",
+  label: "",
+  description: "",
+  icon: "",
+});
+
+const rules = computed(() => {
+  return {
+    label: {
+      required: helpers.withMessage(
+        "Please enter label of course type.",
+        required
+      ),
+    },
+    description: {
+      required: helpers.withMessage(
+        "Please enter description of course type.",
+        required
+      ),
+    },
+  };
+});
+
+const v$ = useVuelidate(rules, model);
+
+async function submitForm(event) {
+  submitted.value = true;
+  v$.value.$validate(); // checks all FormInputs
+
+  if (!v$.value.$error) {
+    //loading.value = true;
+
+    await store
+      .dispatch("coursesTypes/save", model.value)
+      .then(() => {
+        // After dispatch we have to reset the model value
+        if (!isEdit.value) {
+          model.value = JSON.parse(JSON.stringify(model));
+        }
+        isErrored.value = false;
+        message.value = "";
+        submitted.value = false;
+        event.target.reset();
+      })
+      .catch((err: any) => {
+        isErrored.value = true;
+        if (err.response) {
+          message.value = err.response.data.message;
+        }
+        
+      });
+
+    //loading.value = false;
+  } else {
+    // if ANY fail validation
+
+    return;
+  }
+}
+// Begin: Edit item
+function edit(item: object) {
+  actionText.value = "Edit";
+  isEdit.value = true;
+  selectedItem.value = item.id;
+  model.value = JSON.parse(JSON.stringify(item));
+  model.value.label = JSON.parse(item.label)
+  model.value.description = JSON.parse(item.description)
+}
+// End: Edit item
+
+// Begin: Cancel editting
+function cancel() {
+  actionText.value = "Add";
+  isEdit.value = false;
+  selectedItem.value = "";
+  model.value = JSON.parse(JSON.stringify(model));
+  //var element = document.querySelector(".bg-secondary");
+  //element.classList.remove("bg-secondary");
+  //document.querySelector(".bg-secondary").removeClass("bg-secondary");
+  //console.log(dom("div.bg-secondary").removeClass("bg-secondary"));
+  //console.log(document.getElementsByClassName('bg-secondary'));
+}
+// End: Cancel editting
+
+// BEGIN: Delete
+function deleteI(item: object) {
+  store.dispatch("coursesTypes/delete", item.id);
+}
+// END: Delete
+</script>
+
 <template>
   <div>
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
@@ -112,128 +235,6 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted, computed } from "vue";
-
-import { useVuelidate } from "@vuelidate/core";
-import { required, helpers } from "@vuelidate/validators";
-import DataTable from "@/components/DataTable/Index.vue";
-import Button from "@/components/Base/Button";
-import { FormInput, FormCheck } from "@/components/Base/Form";
-
-import store from "@/stores";
-
-import { useI18n } from "vue-i18n";
-
-// To show/hide modal
-
-const options = {
-  modelName: "CoursesType",
-};
-
-const { t } = useI18n();
-
-// End of info
-
-// Variables and actions related to Add/Edit.
-let isEdit = ref(false);
-let actionText = ref("Add");
-let submitted = ref(false);
-let message = ref("");
-let isErrored = ref(false);
-let selectedItem = ref("");
-
-let model = ref({
-  id: "",
-  label: "",
-  description: "",
-  icon: "",
-});
-
-const rules = computed(() => {
-  return {
-    label: {
-      required: helpers.withMessage(
-        "Please enter label of course type.",
-        required
-      ),
-    },
-    description: {
-      required: helpers.withMessage(
-        "Please enter description of course type.",
-        required
-      ),
-    },
-  };
-});
-
-const v$ = useVuelidate(rules, model);
-
-async function submitForm(event) {
-  submitted.value = true;
-  v$.value.$validate(); // checks all FormInputs
-
-  if (!v$.value.$error) {
-    //loading.value = true;
-
-    await store
-      .dispatch("coursesTypes/save", model.value)
-      .then(() => {
-        // After dispatch we have to reset the model value
-        if (!isEdit.value) {
-          model.value = JSON.parse(JSON.stringify(model));
-        }
-        isErrored.value = false;
-        message.value = "";
-        submitted.value = false;
-        event.target.reset();
-      })
-      .catch((err) => {
-        isErrored.value = true;
-        if (err.response) {
-          message.value = err.response.data.message;
-        }
-        
-      });
-
-    //loading.value = false;
-  } else {
-    // if ANY fail validation
-
-    return;
-  }
-}
-// Begin: Edit item
-function edit(item) {
-  actionText.value = "Edit";
-  isEdit.value = true;
-  selectedItem.value = item.id;
-  model.value = JSON.parse(JSON.stringify(item));
-  model.value.label = JSON.parse(item.label)
-  model.value.description = JSON.parse(item.description)
-}
-// End: Edit item
-
-// Begin: Cancel editting
-function cancel() {
-  actionText.value = "Add";
-  isEdit.value = false;
-  selectedItem.value = "";
-  model.value = JSON.parse(JSON.stringify(model));
-  //var element = document.querySelector(".bg-secondary");
-  //element.classList.remove("bg-secondary");
-  //document.querySelector(".bg-secondary").removeClass("bg-secondary");
-  //console.log(dom("div.bg-secondary").removeClass("bg-secondary"));
-  //console.log(document.getElementsByClassName('bg-secondary'));
-}
-// End: Cancel editting
-
-// BEGIN: Delete
-function deleteI(item) {
-  store.dispatch("coursesTypes/delete", item.id);
-}
-// END: Delete
-</script>
 
 <style>
 .active-row {

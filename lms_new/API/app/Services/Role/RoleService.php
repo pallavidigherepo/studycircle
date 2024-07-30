@@ -16,7 +16,7 @@ class RoleService
     }
 
 
-    public function create(StoreRoleRequest $request): mixed
+    public function create(RoleRequest $request): mixed
     {
         if (!$request->validated()) {
             return false;
@@ -30,16 +30,24 @@ class RoleService
         if (!$role) {
             return false;
         }
-        return $this->roleRepository->edit($role);
+        return $this->roleRepository->getInfo($role);
     }
 
-    public function update(UpdateRoleRequest $request, $role)
+    public function update(RoleRequest $request, $role)
     {
         if (!$request->validated()) {
             return false;
         }
 
         return $this->roleRepository->update($request, $role);
+    }
+
+    public function show(Role $role): mixed
+    {
+        if (!$role) {
+            return false;
+        }
+        return $this->roleRepository->getInfo($role);
     }
 
     public function delete(Role $role): mixed

@@ -547,7 +547,7 @@ function makeid(length) {
                     <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                         <div
                             class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                            <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                            <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>
                             {{ t("questions.Select Board & Standard/Class") }}
                         </div>
                         <div class="mt-5">
@@ -638,7 +638,7 @@ function makeid(length) {
                     <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                         <div
                             class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                            <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                            <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>
                             {{ t("questions.Select Subject, Chapter and Topic") }}
                         </div>
                         <div class="mt-5">
@@ -767,7 +767,7 @@ function makeid(length) {
                     <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                         <div
                             class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                            <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                            <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>
                             {{ t("questions.Select Difficulty level & Language") }}
                         </div>
                         <div class="mt-5">
@@ -870,7 +870,7 @@ function makeid(length) {
                         <div
                             class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5"
                         >
-                            <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                        <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>
                             {{ t("questions.Import questions in bulk") }}
 
                         </div>
@@ -964,11 +964,11 @@ function makeid(length) {
                                                 <div class="flex text-center justify-center">
 
                                                     <div class="">
-                                                        <DownloadCloudIcon class="w-10 h-10 ml-0.5"/>
+                                                        <Lucide icon="DownloadCloudIcon" class="w-10 h-10 ml-0.5" />
                                                     </div>
                                                 </div>
                                                 <div class="text-base text-slate-500 mt-1">
-                                                    <Button class="btn btn-primary h-20"
+                                                    <Button variant="primary" class="btn btn-primary h-20"
                                                             @click.prevent="exportMe('xlsx', true)">
                                                         {{ t('common.Download Template for EXCEL') }}
                                                     </Button>
@@ -978,11 +978,11 @@ function makeid(length) {
                                                 <div class="flex text-center justify-center">
 
                                                     <div class="">
-                                                        <DownloadCloudIcon class="w-10 h-10 ml-0.5"/>
+                                                        <Lucide icon="DownloadCloudIcon" class="w-10 h-10 ml-0.5" />
                                                     </div>
                                                 </div>
                                                 <div class="text-base text-slate-500 mt-1">
-                                                    <Button class="btn btn-primary h-20"
+                                                    <Button variant="primary" class="btn btn-primary h-20"
                                                             @click.prevent="exportMe('csv', true)">
                                                         {{ t('common.Download Template for CSV') }}
                                                     </Button>

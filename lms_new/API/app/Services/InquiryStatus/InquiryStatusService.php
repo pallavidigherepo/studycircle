@@ -24,21 +24,21 @@ class InquiryStatusService
         return $this->inquiryStatusRepository->create($request);
     }
 
-    public function show(Inquiry $inquiryStatus): mixed
+    public function show(InquiryStatus $inquiryStatus): mixed
     {
         if (!$inquiryStatus) {
             return false;
         }
-        return $this->inquiryRepository->show($inquiryStatus);
+        return $this->inquiryStatusRepository->show($inquiryStatus);
     }
 
     public function update(Request $request, $inquiryStatus)
     {
-        return $this->inquiryRepository->update($request, $inquiryStatus);
+        return $this->inquiryStatusRepository->update($request, $inquiryStatus);
     }
 
 
-    public function delete(Inquiry $inquiryStatus)
+    public function delete(InquiryStatus $inquiryStatus)
     {
         return $this->inquiryStatusRepository->delete($inquiryStatus);
     }

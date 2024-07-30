@@ -44,7 +44,7 @@ class InquiryFollowupService
 
     public function delete(InquiryFollowup $inquiryFollowup)
     {
-        // return $this->inquiryRepository->delete($inquiry);
+        return $this->inquiryFollowupRepository->delete($inquiryFollowup);
     }
 
 }

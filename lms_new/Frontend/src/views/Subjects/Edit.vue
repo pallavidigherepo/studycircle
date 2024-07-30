@@ -19,6 +19,7 @@ const submitted = ref(false);
 const isErrored = ref(false);
 const message = ref("");
 const isLoading = ref(false);
+const response = ref();
 
 const route = useRoute();
 const router = useRouter();
@@ -93,10 +94,12 @@ async function submitForm() {
                 submitted.value = false;
                 router.push({name: "Subjects"});
             })
-            .catch((err) => {
+            .catch((err: any) => {
                 isLoading.value = false;
                 isErrored.value = true;
-                message.value = err.response.data.message;
+                if (err.response) {
+                        message.value = err.response.data.message;
+                    }
             });
     } else {
         // if ANY fail validation

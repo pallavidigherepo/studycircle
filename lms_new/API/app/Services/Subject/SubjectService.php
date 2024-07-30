@@ -27,7 +27,7 @@ class SubjectService
     {
         return $this->subjectRepository->update($request, $subject);
     }
-    public function update(Request $request, $Subject)
+    public function update(Request $request, $subject)
     {
         return $this->subjectRepository->update($request, $subject);
     }

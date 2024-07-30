@@ -77,7 +77,7 @@ class SubjectRepository implements SubjectRepositoryInterface
         return new SubjectResource(Subject::findOrFail($subject->id));
     }
 
-    public function update($request, $Subject)
+    public function update($request, $subject)
     {
         if ($request->validated()) {
             $inputs = [

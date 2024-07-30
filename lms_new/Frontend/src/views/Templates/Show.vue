@@ -71,7 +71,7 @@ const template = computed(() => store.getters['templates/template']);
                                 ml-auto
                                 sm:ml-0
                                 ">
-                    <ServerIcon class="w-4 h-4 mr-2"/>
+                    <Lucide icon="ServerIcon" class="w-4 h-4 mr-2"/>
                     {{ t("templates.Generate Question Paper") }}
                 </router-link>
                 <router-link v-if="template"
@@ -85,7 +85,7 @@ const template = computed(() => store.getters['templates/template']);
                                     ml-auto
                                     sm:ml-0
                                   ">
-                    <EditIcon class="w-4 h-4 mr-2"/>
+                    <Lucide icon="EditIcon" class="w-4 h-4 mr-2"/>
                     {{ t("templates.Edit Template") }}
                 </router-link>
                 <Button
@@ -111,7 +111,7 @@ const template = computed(() => store.getters['templates/template']);
                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                     <div
                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                        <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                        <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>
                         {{ t("templates.Selected Board & Standard/Class") }}
                     </div>
                     <div class="mt-5">
@@ -157,7 +157,7 @@ const template = computed(() => store.getters['templates/template']);
                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                     <div
                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                        <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                        <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>
                         {{ t("templates.Information") }}
                     </div>
                     <div class="mt-5">
@@ -245,7 +245,7 @@ const template = computed(() => store.getters['templates/template']);
                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                     <div
                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                        <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                        <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>
                         {{ t("templates.Sections") }}
                     </div>
                     <div class="mt-5 overflow-x-auto">
