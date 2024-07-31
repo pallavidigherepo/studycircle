@@ -201,7 +201,7 @@ function onImageChoose(ev) {
                                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                                     <div
                                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                                        <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                                        <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2 " />
                                         {{ t("inquiries.Select Standard Class, Batch Source and etc") }}
                                     </div>
                                     <div class="mt-5">
@@ -245,9 +245,9 @@ function onImageChoose(ev) {
                                                 </div>
                                             </div>
                                         </div>-->
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{
                                                                 t("inquiries.Status")
@@ -284,9 +284,9 @@ function onImageChoose(ev) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div v-if="model.inquiry_status_id !== '4'" class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div v-if="model.inquiry_status_id !== '4'" class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{
                                                                 t("questions.Choose Standard")
@@ -325,9 +325,9 @@ function onImageChoose(ev) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div v-if="model.inquiry_status_id !== '4'" class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div v-if="model.inquiry_status_id !== '4'" class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{
                                                                 t("inquiries.Choose Batch")
@@ -365,9 +365,9 @@ function onImageChoose(ev) {
                                             </div>
                                         </div>
 
-                                        <div v-if="model.inquiry_status_id !== '4'" class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div v-if="model.inquiry_status_id !== '4'" class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{
                                                                 t("inquiries.Inquiry Source")
@@ -404,9 +404,9 @@ function onImageChoose(ev) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div v-if="model.inquiry_status_id !== '4'" class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div v-if="model.inquiry_status_id !== '4'" class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{
                                                                 t("inquiries.Follow Up Type")
@@ -453,13 +453,13 @@ function onImageChoose(ev) {
                                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                                     <div
                                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                                        <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                                        <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2 " />
                                         {{ t("inquiries.Assigned to") }}
                                     </div>
                                     <div class="mt-5">
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("inquiries.Assigned to") }}</div>
                                                         <div
@@ -503,13 +503,13 @@ function onImageChoose(ev) {
                                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                                     <div
                                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                                        <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                                        <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2 " />
                                         {{ t("inquiries.Basic Information Of Student") }}
                                     </div>
                                     <div class="mt-5">
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("inquiries.Student Name") }}</div>
                                                         <div
@@ -534,9 +534,9 @@ function onImageChoose(ev) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("inquiries.Contact Name") }}</div>
                                                         <div
@@ -561,9 +561,9 @@ function onImageChoose(ev) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("inquiries.Contact Email") }}
                                                         </div>
@@ -590,9 +590,9 @@ function onImageChoose(ev) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("inquiries.Contact Mobile") }}
                                                         </div>
@@ -619,9 +619,9 @@ function onImageChoose(ev) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("inquiries.Gender") }}</div>
                                                         <div
@@ -656,9 +656,9 @@ function onImageChoose(ev) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("inquiries.Date Of Birth") }}
                                                         </div>
@@ -685,9 +685,9 @@ function onImageChoose(ev) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("inquiries.Address") }}</div>
                                                         <div

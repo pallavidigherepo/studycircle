@@ -3,7 +3,7 @@ import store from "@/stores";
 import {computed, onMounted, ref, watch} from "vue";
 import {useRoute, useRouter} from "vue-router";
 import TomSelect from "@/components/Base/TomSelect";
-import { FormInput, FormSelect, FormCheck, FormTextarea } from "@/components/Base/Form";
+import { FormInput, FormSelect, FormCheck, FormTextarea, FormSwitch } from "@/components/Base/Form";
 import Lucide from "@/components/Base/Lucide";
 import Button from "@/components/Base/Button";
 import SectionEditor from "@/components/Editor/Section.vue";
@@ -299,9 +299,9 @@ function makeid(length) {
                         </div>
                         <div class="mt-5">
 
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                                <div class="form-label xl:w-64 xl:!mr-10">
-                                    <div class="text-left">
+                            <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                    <div class="text-left flex-grow">
                                         <div class="flex items-center">
                                             <div class="font-medium">{{
                                                     t("questions.Choose Board")
@@ -338,9 +338,9 @@ function makeid(length) {
                                 </div>
                             </div>
 
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                                <div class="form-label xl:w-64 xl:!mr-10">
-                                    <div class="text-left">
+                            <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                    <div class="text-left flex-grow">
                                         <div class="flex items-center">
                                             <div class="font-medium">{{
                                                     t("questions.Choose Standard")
@@ -393,9 +393,9 @@ function makeid(length) {
 
                         <div class="mt-5">
 
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                                <div class="form-label xl:w-64 xl:!mr-10">
-                                    <div class="text-left">
+                            <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                    <div class="text-left flex-grow">
                                         <div class="flex items-center">
                                             <div class="font-medium">{{
                                                     t("templates.Name")
@@ -421,9 +421,9 @@ function makeid(length) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                                <div class="form-label xl:w-64 xl:!mr-10">
-                                    <div class="text-left">
+                            <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                    <div class="text-left flex-grow">
                                         <div class="flex items-center">
                                             <div class="font-medium">{{
                                                     t("templates.Duration")
@@ -449,9 +449,9 @@ function makeid(length) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                                <div class="form-label xl:w-64 xl:!mr-10">
-                                    <div class="text-left">
+                            <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                    <div class="text-left flex-grow">
                                         <div class="flex items-center">
                                             <div class="font-medium">{{
                                                     t("templates.Total Marks")
@@ -478,9 +478,9 @@ function makeid(length) {
                                 </div>
                             </div>
 
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                                <div class="form-label xl:w-64 xl:!mr-10">
-                                    <div class="text-left">
+                            <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                    <div class="text-left flex-grow">
                                         <div class="flex items-center">
                                             <div class="font-medium">{{
                                                     t("templates.Is Active")
@@ -495,7 +495,7 @@ function makeid(length) {
                                 </div>
                                 <div class="w-full mt-3 xl:mt-0 flex-1">
                                     <div class="form-check form-switch">
-                                        <FormCheck.Input id="form-is-active"
+                                        <FormSwitch.Input id="form-is-active"
                                                v-model.trim="model.is_active"
                                                class="form-check-input"
                                                type="checkbox"
@@ -506,9 +506,9 @@ function makeid(length) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                                <div class="form-label xl:w-64 xl:!mr-10">
-                                    <div class="text-left">
+                            <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                    <div class="text-left flex-grow">
                                         <div class="flex items-center">
                                             <div class="font-medium">{{
                                                     t("templates.Has Section")
@@ -523,7 +523,7 @@ function makeid(length) {
                                 </div>
                                 <div class="w-full mt-3 xl:mt-0 flex-1">
                                     <div class="form-check form-switch">
-                                        <FormCheck.Input id="form-has-section"
+                                        <FormSwitch.Input id="form-has-section"
                                                v-model.trim="model.has_section"
                                                class="form-check-input"
                                                type="checkbox"
@@ -542,7 +542,7 @@ function makeid(length) {
                                                 <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>
                                                 {{ t("templates.Sections") }}
                                                 <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
-                                                    <Button class="btn btn-outline-primary border-dashed w-full" type="button"
+                                                    <Button variant="outline-primary" class="btn btn-outline-primary border-dashed w-full" type="button"
                                                             @click="addSection()">
                                                             <Lucide icon="PlusIcon" class="w-4 h-4 mr-2" />
                                                         {{ t("templates.Add Section") }}
@@ -583,9 +583,9 @@ function makeid(length) {
 
                             </div>
                             <div v-if="!model.has_section"
-                                 class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                                <div class="form-label xl:w-64 xl:!mr-10">
-                                    <div class="text-left">
+                                 class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                    <div class="text-left flex-grow">
                                         <div class="flex items-center">
                                             <div class="font-medium">{{
                                                     t("templates.Question Type")
@@ -623,9 +623,9 @@ function makeid(length) {
                                 </div>
                             </div>
                             <div v-if="!model.has_section"
-                                 class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                                <div class="form-label xl:w-64 xl:!mr-10">
-                                    <div class="text-left">
+                                 class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                    <div class="text-left flex-grow">
                                         <div class="flex items-center">
                                             <div class="font-medium">{{
                                                     t("templates.Total Questions")
@@ -654,9 +654,9 @@ function makeid(length) {
                                 </div>
                             </div>
                             <div v-if="!model.has_section"
-                                 class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                                <div class="form-label xl:w-64 xl:!mr-10">
-                                    <div class="text-left">
+                                 class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                    <div class="text-left flex-grow">
                                         <div class="flex items-center">
                                             <div class="font-medium">{{
                                                     t("templates.Compulsory Questions")
@@ -685,9 +685,9 @@ function makeid(length) {
                                 </div>
                             </div>
                             <div v-if="!model.has_section"
-                                 class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                                <div class="form-label xl:w-64 xl:!mr-10">
-                                    <div class="text-left">
+                                 class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                    <div class="text-left flex-grow">
                                         <div class="flex items-center">
                                             <div class="font-medium">{{
                                                     t("templates.Marks per Question")

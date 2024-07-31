@@ -6,6 +6,7 @@ import TomSelect from "@/components/Base/TomSelect";
 import { FormInput, FormSelect, FormCheck } from "@/components/Base/Form";
 import Lucide from "@/components/Base/Lucide";
 import Button from "@/components/Base/Button";
+import Table from "@/components/Base/Table";
 
 import { useI18n } from "vue-i18n";
 // import {Tab} from "../../global-components/tab";
@@ -91,9 +92,9 @@ const question = computed(() => store.getters['questions/question']);
             </div>
             <div class="mt-5">
 
-              <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                <div class="form-label xl:w-64 xl:!mr-10">
-                  <div class="text-left">
+              <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                    <div class="text-left flex-grow">
                     <div class="flex items-center">
                       <div class="font-medium">{{
                           t("questions.Board")
@@ -106,9 +107,9 @@ const question = computed(() => store.getters['questions/question']);
                   {{ question ? question.board.name: null }}
                 </div>
               </div>
-              <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                <div class="form-label xl:w-64 xl:!mr-10">
-                  <div class="text-left">
+              <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                    <div class="text-left flex-grow">
                     <div class="flex items-center">
                       <div class="font-medium">{{
                           t("questions.Standard")
@@ -134,9 +135,9 @@ const question = computed(() => store.getters['questions/question']);
             </div>
             <div class="mt-5">
 
-              <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                <div class="form-label xl:w-64 xl:!mr-10">
-                  <div class="text-left">
+              <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                    <div class="text-left flex-grow">
                     <div class="flex items-center">
                       <div class="font-medium">{{
                           t("questions.Difficulty Level")
@@ -149,9 +150,9 @@ const question = computed(() => store.getters['questions/question']);
                   {{ question ? JSON.parse(question.difficulty_level.name): null }}
                 </div>
               </div>
-              <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                <div class="form-label xl:w-64 xl:!mr-10">
-                  <div class="text-left">
+              <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                    <div class="text-left flex-grow">
                     <div class="flex items-center">
                       <div class="font-medium">{{
                           t("questions.Language")
@@ -178,9 +179,9 @@ const question = computed(() => store.getters['questions/question']);
             </div>
             <div class="mt-5">
 
-              <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                <div class="form-label xl:w-64 xl:!mr-10">
-                  <div class="text-left">
+              <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                    <div class="text-left flex-grow">
                     <div class="flex items-center">
                       <div class="font-medium">{{
                           t("questions.Choose Subject")
@@ -193,9 +194,9 @@ const question = computed(() => store.getters['questions/question']);
                   {{ question ? JSON.parse(question.subject.label): null }}
                 </div>
               </div>
-              <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                <div class="form-label xl:w-64 xl:!mr-10">
-                  <div class="text-left">
+              <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                    <div class="text-left flex-grow">
                     <div class="flex items-center">
                       <div class="font-medium">{{
                           t("questions.Choose Chapter")
@@ -209,9 +210,9 @@ const question = computed(() => store.getters['questions/question']);
                   {{ question ? JSON.parse(question.chapter.label): null }}
                 </div>
               </div>
-              <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                <div class="form-label xl:w-64 xl:!mr-10">
-                  <div class="text-left">
+              <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                    <div class="text-left flex-grow">
                     <div class="flex items-center">
                       <div class="font-medium">{{
                           t("questions.Choose Topic")
@@ -237,9 +238,9 @@ const question = computed(() => store.getters['questions/question']);
             </div>
             <div class="mt-5">
 
-              <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                <div class="form-label xl:w-64 xl:!mr-10">
-                  <div class="text-left">
+              <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                    <div class="text-left flex-grow">
                     <div class="flex items-center">
                       <div class="font-medium">{{
                           t("questions.Question")
@@ -252,9 +253,9 @@ const question = computed(() => store.getters['questions/question']);
                   {{ question ? question.question: null }}
                 </div>
               </div>
-              <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                <div class="form-label xl:w-64 xl:!mr-10">
-                  <div class="text-left">
+              <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                    <div class="text-left flex-grow">
                     <div class="flex items-center">
                       <div class="font-medium">{{
                           t("questions.Description")
@@ -266,9 +267,9 @@ const question = computed(() => store.getters['questions/question']);
                   {{ question ? question.description: null }}
                 </div>
               </div>
-              <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                <div class="form-label xl:w-64 xl:!mr-10">
-                  <div class="text-left">
+              <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                    <div class="text-left flex-grow">
                     <div class="flex items-center">
                       <div class="font-medium">{{
                           t("questions.Note/Explaination")
@@ -280,9 +281,9 @@ const question = computed(() => store.getters['questions/question']);
                   {{ question ? question.note: null }}
                 </div>
               </div>
-              <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                <div class="form-label xl:w-64 xl:!mr-10">
-                  <div class="text-left">
+              <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                    <div class="text-left flex-grow">
                     <div class="flex items-center">
                       <div class="font-medium">{{
                           t("questions.Marks")
@@ -294,9 +295,9 @@ const question = computed(() => store.getters['questions/question']);
                   {{ question ? question.marks: null }}
                 </div>
               </div>
-              <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                <div class="form-label xl:w-64 xl:!mr-10">
-                  <div class="text-left">
+              <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                    <div class="text-left flex-grow">
                     <div class="flex items-center">
                       <div class="font-medium">{{
                           t("questions.Negative Marks")
@@ -321,9 +322,9 @@ const question = computed(() => store.getters['questions/question']);
             </div>
             <div class="mt-5">
 
-              <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                <div class="form-label xl:w-64 xl:!mr-10">
-                  <div class="text-left">
+              <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                    <div class="text-left flex-grow">
                     <div class="flex items-center">
                       <div class="font-medium">{{
                           t("questions.Choose Question Type")
@@ -336,10 +337,10 @@ const question = computed(() => store.getters['questions/question']);
                   {{ question ? JSON.parse(question.question_type.name): null }}
                 </div>
               </div>
-              <div class="form-inline items-start flex-col xl:flex-row mt-2 pt-2 first:mt-0 first:pt-0"
+              <div class="form-inline  flex items-start flex-col xl:flex-row mt-2 pt-2 first:mt-0 first:pt-0"
                 v-if="question && (question.answers.length > 0)">
-                <div class="form-label xl:w-64 xl:!mr-10">
-                  <div class="text-left">
+                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                  <div class="text-left flex-grow">
                     <div class="flex items-center">
                       <div class="font-medium">{{ t("questions.Answers") }}</div>
 
@@ -392,10 +393,10 @@ const question = computed(() => store.getters['questions/question']);
                       {{ t("questions.You do not have any questions added yet") }}
                     </div>
                     <template v-else>
-                      <div class="form-inline items-start flex-col xl:flex-row mt-2 pt-2 first:mt-0 first:pt-0"
+                      <div class="form-inline flex items-start flex-col xl:flex-row mt-2 pt-2 first:mt-0 first:pt-0"
                         v-for="(questionArr, index) in question.questions" :key="questionArr.id">
-                        <div class="form-label xl:w-64 xl:!mr-10">
-                          <div class="text-left">
+                        <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                          <div class="text-left flex-grow">
                             <div class="flex items-center">
                               <div class="font-medium">{{ t("questions.Question") }} {{ index + 1 }}.</div>
                             </div>
@@ -407,22 +408,22 @@ const question = computed(() => store.getters['questions/question']);
 
                         Question List ddg dfgd
                       </div>
-                      <table>
-                        <thead>
-                          <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
+                      <Table>
+                        <Table.Thead>
+                          <Table.Tr>
+                            <Table.Th></Table.Th>
+                            <Table.Th></Table.Th>
+                            <Table.Th></Table.Th>
+                          </Table.Tr>
+                        </Table.Thead>
+                        <Table.Tbody>
+                          <Table.Tr>
+                            <Table.Td>
 
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                            </Table.Td>
+                          </Table.Tr>
+                        </Table.Tbody>
+                      </Table>
                     </template>
 
                   </div>

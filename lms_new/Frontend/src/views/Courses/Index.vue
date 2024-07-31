@@ -1,3 +1,160 @@
+<script setup lang="ts">
+import { ref, onMounted, computed } from "vue";
+
+import { useVuelidate } from "@vuelidate/core";
+import { required, helpers } from "@vuelidate/validators";
+import DataTable from "@/components/DataTable/Index.vue";
+import TomSelect from "@/components/Base/TomSelect";
+import Button from "@/components/Base/Button";
+import { FormInput, FormCheck } from "@/components/Base/Form";
+
+import store from "@/stores";
+
+import { useI18n } from "vue-i18n";
+
+// To show/hide modal
+
+const options = {
+  modelName: "Course",
+};
+
+const { t } = useI18n();
+
+// End of info
+
+// Variables and actions related to Add/Edit.
+let isEdit = ref(false);
+let actionText = ref("Add");
+let submitted = ref(false);
+let message = ref("");
+let isErrored = ref(false);
+let selectedItem = ref("");
+
+let model = ref({
+  id: "",
+  type_ids: [],
+  name: "",
+  course_code: "",
+  tags_list: [],
+  language_id: 1,
+});
+
+const rules = computed(() => {
+  return {
+    name: {
+      required: helpers.withMessage(
+        "Please enter name of course.",
+        required
+      ),
+    },
+    type_ids: {
+      required: helpers.withMessage(
+        "Please select at least one course type.",
+        required
+      ),
+    },
+    language_id: {
+      required: helpers.withMessage(
+        "Please select at least one language.",
+        required
+      ),
+    },
+    course_code: {
+      required: helpers.withMessage(
+        "Please enter course code.",
+        required
+      ),
+    },
+  };
+});
+
+const v$ = useVuelidate(rules, model);
+
+async function submitForm(event) {
+  submitted.value = true;
+  v$.value.$validate(); // checks all inputs
+//console.log(v$.value)
+  if (!v$.value.$error) {
+    //loading.value = true;
+
+    await store
+      .dispatch("courses/save", model.value)
+      .then(() => {
+        // After dispatch we have to reset the model value
+        if (!isEdit.value) {
+          model.value = JSON.parse(JSON.stringify(model));
+        }
+        isErrored.value = false;
+        message.value = "";
+        submitted.value = false;
+        event.target.reset();
+      })
+      .catch((err) => {
+        isErrored.value = true;
+        if (err.response) {
+          message.value = err.response.data.message;
+        }
+      });
+
+    //loading.value = false;
+  } else {
+    // if ANY fail validation
+
+    return;
+  }
+}
+// Begin: Edit item
+function edit(item) {
+  //submitted.value = false;
+  actionText.value = "Edit";
+  isEdit.value = true;
+  selectedItem.value = item.id;
+  model.value = JSON.parse(JSON.stringify(item));
+
+}
+// End: Edit item
+
+// Begin: Cancel editting
+function cancel(item) {
+  submitted.value = false;
+  actionText.value = "Add";
+  isEdit.value = false;
+  selectedItem.value = "";
+  model.value = JSON.parse(JSON.stringify(item));
+  //var element = document.querySelector(".bg-secondary");
+  //element.classList.remove("bg-secondary");
+  //document.querySelector(".bg-secondary").removeClass("bg-secondary");
+  //console.log(dom("div.bg-secondary").removeClass("bg-secondary"));
+  //console.log(document.getElementsByClassName('bg-secondary'));
+}
+// End: Cancel editting
+
+// BEGIN: Delete
+function deleteI(item) {
+  store.dispatch("courses/delete", item.id);
+}
+// END: Delete
+
+onMounted(() => {
+  store.dispatch("listLanguages").then().catch();
+  store.dispatch("listCourseTypes").then().catch();
+});
+const languages = computed(() => store.getters.languages);
+const courseTypes = computed(() => store.getters.courseTypeList);
+
+function random(string) {
+    var s = '';
+    var randomchar = function() {
+        var n = Math.floor(Math.random() * 62);
+        if (n < 10) return n; //1-10
+        if (n < 36) return String.fromCharCode(n + 55); //A-Z
+        return String.fromCharCode(n + 61); //a-z
+    }
+    while (s.length < string) s += randomchar();
+    return s;
+}
+</script>
+
 <template>
   <div>
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
@@ -168,164 +325,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref, onMounted, computed } from "vue";
-
-import { useVuelidate } from "@vuelidate/core";
-import { required, helpers } from "@vuelidate/validators";
-import DataTable from "@/components/DataTable/Index.vue";
-import TomSelect from "@/components/Base/TomSelect";
-import Button from "@/components/Base/Button";
-import { FormInput, FormCheck } from "@/components/Base/Form";
-
-import store from "@/stores";
-
-import { useI18n } from "vue-i18n";
-
-// To show/hide modal
-
-const options = {
-  modelName: "Course",
-};
-
-const { t } = useI18n();
-
-// End of info
-
-// Variables and actions related to Add/Edit.
-let isEdit = ref(false);
-let actionText = ref("Add");
-let submitted = ref(false);
-let message = ref("");
-let isErrored = ref(false);
-let selectedItem = ref("");
-
-let model = ref({
-  id: "",
-  type_ids: [],
-  name: "",
-  course_code: "",
-  tags_list: [],
-  language_id: 1,
-});
-
-const rules = computed(() => {
-  return {
-    name: {
-      required: helpers.withMessage(
-        "Please enter name of course.",
-        required
-      ),
-    },
-    type_ids: {
-      required: helpers.withMessage(
-        "Please select at least one course type.",
-        required
-      ),
-    },
-    language_id: {
-      required: helpers.withMessage(
-        "Please select at least one language.",
-        required
-      ),
-    },
-    course_code: {
-      required: helpers.withMessage(
-        "Please enter course code.",
-        required
-      ),
-    },
-  };
-});
-
-const v$ = useVuelidate(rules, model);
-
-async function submitForm(event) {
-  submitted.value = true;
-  v$.value.$validate(); // checks all inputs
-//console.log(v$.value)
-  if (!v$.value.$error) {
-    //loading.value = true;
-
-    await store
-      .dispatch("courses/save", model.value)
-      .then(() => {
-        // After dispatch we have to reset the model value
-        if (!isEdit.value) {
-          model.value = JSON.parse(JSON.stringify(model));
-        }
-        isErrored.value = false;
-        message.value = "";
-        submitted.value = false;
-        event.target.reset();
-      })
-      .catch((err) => {
-        isErrored.value = true;
-        if (err.response) {
-          message.value = err.response.data.message;
-        }
-      });
-
-    //loading.value = false;
-  } else {
-    // if ANY fail validation
-
-    return;
-  }
-}
-// Begin: Edit item
-function edit(item) {
-  //submitted.value = false;
-  actionText.value = "Edit";
-  isEdit.value = true;
-  selectedItem.value = item.id;
-  model.value = JSON.parse(JSON.stringify(item));
-
-}
-// End: Edit item
-
-// Begin: Cancel editting
-function cancel() {
-  submitted.value = false;
-  actionText.value = "Add";
-  isEdit.value = false;
-  selectedItem.value = "";
-  model.value = JSON.parse(JSON.stringify(model));
-  //var element = document.querySelector(".bg-secondary");
-  //element.classList.remove("bg-secondary");
-  //document.querySelector(".bg-secondary").removeClass("bg-secondary");
-  //console.log(dom("div.bg-secondary").removeClass("bg-secondary"));
-  //console.log(document.getElementsByClassName('bg-secondary'));
-}
-// End: Cancel editting
-
-// BEGIN: Delete
-function deleteI(item) {
-  store.dispatch("courses/delete", item.id);
-}
-// END: Delete
-
-onMounted(() => {
-  store.dispatch("listLanguages").then().catch();
-  store.dispatch("listCourseTypes").then().catch();
-});
-const languages = computed(() => store.getters.languages);
-const courseTypes = computed(() => store.getters.courseTypeList);
-
-function random(string) {
-    var s = '';
-    var randomchar = function() {
-        var n = Math.floor(Math.random() * 62);
-        if (n < 10) return n; //1-10
-        if (n < 36) return String.fromCharCode(n + 55); //A-Z
-        return String.fromCharCode(n + 61); //a-z
-    }
-    while (s.length < string) s += randomchar();
-    return s;
-}
-</script>
-
 <style>
 .active-row {
   background-color: lightgray;

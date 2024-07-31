@@ -232,9 +232,9 @@ function changeMe(value) {
                                         {{ t("questions.Select Standard/Class") }}
                                     </div>
                                     <div class="mt-5">
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{
                                                                 t("questions.Choose Standard")
@@ -288,9 +288,9 @@ function changeMe(value) {
                                     </div>
                                     <div class="mt-5">
                                         <!-- Begin: Name-->
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex- grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("students.Name") }}</div>
                                                         <div
@@ -316,9 +316,9 @@ function changeMe(value) {
                                             </div>
                                         </div>
                                         <!-- End: Name-->
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("students.Gender") }}</div>
                                                         <div
@@ -354,9 +354,9 @@ function changeMe(value) {
                                             </div>
                                         </div>
                                         <!-- Begin: Avatar-->
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("students.Avatar") }}</div>
                                                     </div>
@@ -390,9 +390,9 @@ function changeMe(value) {
                                             </div>
                                         </div>
                                         <!-- End: Avatar-->
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("students.Date Of Birth") }}
                                                         </div>
@@ -419,9 +419,9 @@ function changeMe(value) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("students.Permanent Address") }}
                                                         </div>
@@ -447,9 +447,9 @@ function changeMe(value) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("students.Address") }}</div>
                                                         <div
@@ -474,9 +474,9 @@ function changeMe(value) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("students.Blood Group") }}
                                                         </div>
@@ -502,9 +502,9 @@ function changeMe(value) {
                                                 </div>-->
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("students.Medical Notes") }}
                                                         </div>
@@ -531,9 +531,9 @@ function changeMe(value) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{
                                                                 t("students.Caste")
@@ -562,9 +562,9 @@ function changeMe(value) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
 
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("students.Religion") }}</div>
@@ -590,9 +590,9 @@ function changeMe(value) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("students.Mother Tongue Language") }}</div>
                                                         <div
@@ -617,9 +617,9 @@ function changeMe(value) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                        <div class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{ t("students.Interests") }}</div>
 <!--                                                        <div

@@ -114,9 +114,9 @@ function followup(value) {
                                 {{ t("inquiries.Select Standard Class, Batch Source and etc") }}
                             </div>
                             <div class="mt-5">
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{
                                                         t("questions.Choose Standard")
@@ -130,9 +130,9 @@ function followup(value) {
                                         {{ model.standard}}
                                     </div>
                                 </div>
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{
                                                         t("inquiries.Choose Batch")
@@ -145,9 +145,9 @@ function followup(value) {
                                         {{ model.batch }}
                                     </div>
                                 </div>
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{
                                                         t("inquiries.Inquiry Source")
@@ -160,9 +160,9 @@ function followup(value) {
                                         {{ model.source }}
                                     </div>
                                 </div>
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{ t("inquiries.Status") }}</div>
                                             </div>
@@ -183,9 +183,9 @@ function followup(value) {
                                 {{ t("inquiries.Assigned to") }}
                             </div>
                             <div class="mt-5">
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{ t("inquiries.Assigned to") }}</div>
                                             </div>
@@ -209,9 +209,9 @@ function followup(value) {
                                 {{ t("inquiries.Basic Information Of Student") }}
                             </div>
                             <div class="mt-5">
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{ t("inquiries.Student Name") }}</div>
                                             </div>
@@ -219,9 +219,9 @@ function followup(value) {
                                     </div>
                                     <div class="w-full mt-3 xl:mt-0 flex-1">{{ model.student_name }}</div>
                                 </div>
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{ t("inquiries.Contact Name") }}</div>
                                             </div>
@@ -229,9 +229,9 @@ function followup(value) {
                                     </div>
                                     <div class="w-full mt-3 xl:mt-0 flex-1">{{ model.contact_name }}</div>
                                 </div>
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{ t("inquiries.Contact Email") }}</div>
                                             </div>
@@ -239,9 +239,9 @@ function followup(value) {
                                     </div>
                                     <div class="w-full mt-3 xl:mt-0 flex-1">{{ model.contact_email }}</div>
                                 </div>
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{ t("inquiries.Contact Mobile") }}</div>
                                             </div>
@@ -249,9 +249,9 @@ function followup(value) {
                                     </div>
                                     <div class="w-full mt-3 xl:mt-0 flex-1">{{ model.contact_mobile }}</div>
                                 </div>
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{ t("inquiries.Gender") }}</div>
                                             </div>
@@ -259,9 +259,9 @@ function followup(value) {
                                     </div>
                                     <div class="w-full mt-3 xl:mt-0 flex-1">{{ model.student_gender }}</div>
                                 </div>
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{ t("inquiries.Date Of Birth") }}</div>
                                             </div>
@@ -273,9 +273,9 @@ function followup(value) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{ t("inquiries.Address") }}</div>
                                             </div>

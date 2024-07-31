@@ -90,7 +90,7 @@ async function submitForm(event) {
   }
 }
 // Begin: Edit item
-function edit(item: object) {
+function edit(item) {
   actionText.value = "Edit";
   isEdit.value = true;
   selectedItem.value = item.id;
@@ -115,7 +115,7 @@ function cancel() {
 // End: Cancel editting
 
 // BEGIN: Delete
-function deleteI(item: object) {
+function deleteI(item) {
   store.dispatch("coursesTypes/delete", item.id);
 }
 // END: Delete

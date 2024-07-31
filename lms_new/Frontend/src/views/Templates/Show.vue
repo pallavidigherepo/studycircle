@@ -4,6 +4,7 @@ import {ref, computed, onMounted} from "vue";
 import {useRoute, useRouter} from "vue-router";
 import Button from "@/components/Base/Button";
 import Lucide from "@/components/Base/Lucide";
+import Table from "@/components/Base/Table";
 
 import {useI18n} from "vue-i18n";
 
@@ -116,9 +117,9 @@ const template = computed(() => store.getters['templates/template']);
                     </div>
                     <div class="mt-5">
 
-                        <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                            <div class="form-label xl:w-64 xl:!mr-10">
-                                <div class="text-left">
+                        <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                <div class="text-left flex-grow">
                                     <div class="flex items-center">
                                         <div class="font-medium">{{
                                                 t("templates.Board")
@@ -132,9 +133,9 @@ const template = computed(() => store.getters['templates/template']);
                                 {{ template ? template.board : null }}
                             </div>
                         </div>
-                        <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                            <div class="form-label xl:w-64 xl:!mr-10">
-                                <div class="text-left">
+                        <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                <div class="text-left flex-grow">
                                     <div class="flex items-center">
                                         <div class="font-medium">{{
                                                 t("templates.Standard")
@@ -162,9 +163,9 @@ const template = computed(() => store.getters['templates/template']);
                     </div>
                     <div class="mt-5">
 
-                        <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                            <div class="form-label xl:w-64 xl:!mr-10">
-                                <div class="text-left">
+                        <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                <div class="text-left flex-grow">
                                     <div class="flex items-center">
                                         <div class="font-medium">{{
                                                 t("common.Name")
@@ -178,9 +179,9 @@ const template = computed(() => store.getters['templates/template']);
                                 {{ template ? template.name : null }}
                             </div>
                         </div>
-                        <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                            <div class="form-label xl:w-64 xl:!mr-10">
-                                <div class="text-left">
+                        <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                <div class="text-left flex-grow">
                                     <div class="flex items-center">
                                         <div class="font-medium">{{
                                                 t("templates.Total Marks")
@@ -195,9 +196,9 @@ const template = computed(() => store.getters['templates/template']);
                                 {{ template ? template.total_marks : null }}
                             </div>
                         </div>
-                        <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                            <div class="form-label xl:w-64 xl:!mr-10">
-                                <div class="text-left">
+                        <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                <div class="text-left flex-grow">
                                     <div class="flex items-center">
                                         <div class="font-medium">{{
                                                 t("templates.Duration")
@@ -212,9 +213,9 @@ const template = computed(() => store.getters['templates/template']);
                                 {{ template ? template.duration : null }} minutes
                             </div>
                         </div>
-                        <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                            <div class="form-label xl:w-64 xl:!mr-10">
-                                <div class="text-left">
+                        <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                <div class="text-left flex-grow">
                                     <div class="flex items-center">
                                         <div class="font-medium">{{ t("templates.Is Active") }}</div>
                                     </div>
@@ -224,9 +225,9 @@ const template = computed(() => store.getters['templates/template']);
                                 {{ template ? template.is_active : null }}
                             </div>
                         </div>
-                        <div class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                            <div class="form-label xl:w-64 xl:!mr-10">
-                                <div class="text-left">
+                        <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                <div class="text-left flex-grow">
                                     <div class="flex items-center">
                                         <div class="font-medium">{{ t("templates.Has Section") }}</div>
                                     </div>
@@ -249,28 +250,28 @@ const template = computed(() => store.getters['templates/template']);
                         {{ t("templates.Sections") }}
                     </div>
                     <div class="mt-5 overflow-x-auto">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th class="whitespace-nowrap">#</th>
-                                    <th class="whitespace-nowrap">{{ t("templates.Name") }}</th>
-                                    <th class="whitespace-nowrap">{{ t("templates.Total Questions") }}</th>
-                                    <th class="whitespace-nowrap">{{ t("templates.Compulsory Questions") }}</th>
-                                    <th class="whitespace-nowrap">{{ t("templates.Total Marks") }}</th>
-                                    <th class="whitespace-nowrap">{{ t("templates.Marks per Question") }}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="(section, index) in template.sections" :key="index">
-                                    <td>{{ index + 1 }}</td>
-                                    <td>{{ section.name }}</td>
-                                    <td>{{ section.total_questions }}</td>
-                                    <td>{{ section.compulsory_questions }}</td>
-                                    <td>{{ section.total_marks }}</td>
-                                    <td>{{ section.marks_per_question }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <Table class="table table-striped">
+                            <Table.Thead>
+                                <Table.Tr>
+                                    <Table.Th class="whitespace-nowrap">#</Table.Th>
+                                    <Table.Th class="whitespace-nowrap">{{ t("templates.Name") }}</Table.Th>
+                                    <Table.Th class="whitespace-nowrap">{{ t("templates.Total Questions") }}</Table.Th>
+                                    <Table.Th class="whitespace-nowrap">{{ t("templates.Compulsory Questions") }}</Table.Th>
+                                    <Table.Th class="whitespace-nowrap">{{ t("templates.Total Marks") }}</Table.Th>
+                                    <Table.Th class="whitespace-nowrap">{{ t("templates.Marks per Question") }}</Table.Th>
+                                </Table.Tr>
+                            </Table.Thead>
+                            <Table.Tbody>
+                                <Table.Tr v-for="(section, index) in template.sections" :key="index">
+                                    <Table.Td>{{ index + 1 }}</Table.Td>
+                                    <Table.Td>{{ section.name }}</Table.Td>
+                                    <Table.Td>{{ section.total_questions }}</Table.Td>
+                                    <Table.Td>{{ section.compulsory_questions }}</Table.Td>
+                                    <Table.Td>{{ section.total_marks }}</Table.Td>
+                                    <Table.Td>{{ section.marks_per_question }}</Table.Td>
+                                </Table.Tr>
+                            </Table.Tbody>
+                        </Table>
                     </div>
                 </div>
             </div>

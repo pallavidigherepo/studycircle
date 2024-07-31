@@ -10,7 +10,7 @@ import {email, helpers, minLength, maxLength, numeric, required} from "@vuelidat
 import {useVuelidate} from "@vuelidate/core";
 import store from "@/stores";
 import axiosClient from "@/axios";
-// import InquiryFollowups from "@/components/Inquiries/Followups.vue";
+import InquiryFollowups from "@/components/Inquiries/Followups.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -225,13 +225,13 @@ function followup(value) {
                         <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                             <div
                                 class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                                <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                                <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2" />
                                 {{ t("inquiries.Select Standard Class, Batch Source and etc") }}
                             </div>
                             <div class="mt-5">
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{
                                                         t("questions.Choose Standard")
@@ -271,9 +271,9 @@ function followup(value) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{
                                                         t("inquiries.Choose Batch")
@@ -311,9 +311,9 @@ function followup(value) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{
                                                         t("inquiries.Inquiry Source")
@@ -351,9 +351,9 @@ function followup(value) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{
                                                         t("inquiries.Status")
@@ -400,13 +400,13 @@ function followup(value) {
                         <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                             <div
                                 class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                                <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                                <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2" />
                                 {{ t("inquiries.Assigned to") }}
                             </div>
                             <div class="mt-5">
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{ t("inquiries.Assigned to") }}</div>
                                                 <div
@@ -451,13 +451,13 @@ function followup(value) {
                         <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                             <div
                                 class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                                <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                                <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2" />
                                 {{ t("inquiries.Basic Information Of Student") }}
                             </div>
                             <div class="mt-5">
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{ t("inquiries.Student Name") }}</div>
                                                 <div
@@ -482,9 +482,9 @@ function followup(value) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{ t("inquiries.Contact Name") }}</div>
                                                 <div
@@ -509,9 +509,9 @@ function followup(value) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{ t("inquiries.Contact Email") }}
                                                 </div>
@@ -538,9 +538,9 @@ function followup(value) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{ t("inquiries.Contact Mobile") }}
                                                 </div>
@@ -567,9 +567,9 @@ function followup(value) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{ t("inquiries.Gender") }}</div>
                                                 <div
@@ -604,9 +604,9 @@ function followup(value) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{ t("inquiries.Date Of Birth") }}
                                                 </div>
@@ -621,7 +621,7 @@ function followup(value) {
                                     <div class="w-full mt-3 xl:mt-0 flex-1">
                                         <div class="relative w-56">
                                             <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-slate-100 border text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
-                                                <CalendarIcon class="w-4 h-4" />
+                                                <Lucide icon="CalendarIcon" class="w-4 h-4 " />
                                             </div>
                                             <FormInput v-model="model.student_dob"
                                                    type="date"
@@ -633,9 +633,9 @@ function followup(value) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-inline items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
-                                    <div class="form-label xl:w-40 xl:!mr-10">
-                                        <div class="text-left">
+                                <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                        <div class="text-left flex-grow">
                                             <div class="flex items-center">
                                                 <div class="font-medium">{{ t("inquiries.Address") }}</div>
                                                 <div

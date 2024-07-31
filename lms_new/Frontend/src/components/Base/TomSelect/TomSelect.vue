@@ -32,7 +32,10 @@ export interface TomSelectEmit {
 
 export type ProvideTomSelect = (el: TomSelectElement) => void;
 
-const props = withDefaults(defineProps<TomSelectProps>(), {});
+const props = withDefaults(defineProps<TomSelectProps>(), {
+  modelValue: [], // Default value for modelValue
+  options: {} // Default value for options
+});
 
 const emit = defineEmits<TomSelectEmit>();
 
