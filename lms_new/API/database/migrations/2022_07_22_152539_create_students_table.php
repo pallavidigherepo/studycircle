@@ -26,10 +26,10 @@ class CreateStudentsTable extends Migration
             $table->unsignedBigInteger('language_id')->nullable(true);
             $table->unsignedBigInteger('batch_id')->nullable(true);
             $table->unsignedBigInteger('course_id')->nullable(true);
-            $table->string('email')->nullable(true);
+            // $table->string('email')->nullable(true);
             $table->string('password')->nullable(true);
-            $table->string('mobile')->nullable(true);
-            $table->string('alt_mobile')->nullable(true);
+            // $table->string('mobile')->nullable(true);
+            // $table->string('alt_mobile')->nullable(true);
             $table->enum('gender', ['male', 'female', 'other'])->default('other')->nullable();
             $table->string('avatar')->nullable(true);
             $table->date('admission_date')->nullable(true);

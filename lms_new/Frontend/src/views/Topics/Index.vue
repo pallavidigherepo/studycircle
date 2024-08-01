@@ -1,9 +1,10 @@
-<script setup>
+<script setup lang="ts">
 import { onMounted, ref, toRefs } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRoute, useRouter } from "vue-router";
 import axiosClient from "@/axios";
 import store from "@/stores";
+import DataTable from "@/components/DataTable/Index.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -77,7 +78,7 @@ function deleteI(item) {
           </h2>
         </div>
           <div class="p-5">
-            <Datatable
+            <DataTable
               module="topics"
               :importExportOptions="options"
               @showItem="show"

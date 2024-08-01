@@ -41,7 +41,7 @@ const fetch = async () => {
             const error = new Error('Failed to fetch roles')
             throw error;
         }
-        user.value = JSON.parse(JSON.stringify(result.data.user));
+        user.value = JSON.parse(JSON.stringify(result.data));
     } catch (e) {
         isErrored.value = true;
         message.value = e;
@@ -49,7 +49,7 @@ const fetch = async () => {
         isLoading.value = false;
     }
 };
-fetch();
+
 
 const rules = computed(() => {
     return {
@@ -101,6 +101,7 @@ async function submitForm() {
 }
 
 onMounted(() => {
+    fetch();
     store.dispatch("users/role_list");
 });
 

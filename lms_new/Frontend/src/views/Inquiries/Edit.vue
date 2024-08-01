@@ -179,8 +179,8 @@ function followup(value) {
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">{{ t("inquiries.Edit Inquiry") }}</h2>
         <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-            <a href="javascript:;"
-
+            <Button href="javascript:;"
+            variant="primary"
                class="
                         btn
                         btn-primary
@@ -191,7 +191,7 @@ function followup(value) {
                         sm:ml-0
                       "
                @click.prevent="followup(true)"
-            >{{ t("inquiries.Follow Ups")}}</a>
+            >{{ t("inquiries.Follow Ups")}}</Button>
             <Button
                 variant="primary"
                     class="

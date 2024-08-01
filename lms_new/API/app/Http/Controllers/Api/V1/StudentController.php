@@ -71,7 +71,7 @@ class StudentController extends Controller
     //public function show(Student $student) :array
     public function show(Student $student)
     {
-        return StudentResource::make(Student::findOrFail($id));
+        return StudentResource::make(Student::findOrFail($student->id));
     }
 
     /**

@@ -20,6 +20,8 @@ import inquiriesModule from "./modules/inquiries/index.js";
 import rolesModule from "./modules/roles/index.js";
 import permissionsModule from "./modules/permissions/index.js";
 import chaptersModule from "./modules/chapters/index.js";
+import topicsModule from "./modules/topics/index.js";
+import inquiryFollowupModule from "./modules/inquiry_followups/index.js";
 
 export default {
   auth: authModule,
@@ -44,5 +46,7 @@ export default {
   roles: rolesModule,
   permissions: permissionsModule,
   chapters: chaptersModule,
+  topics: topicsModule,
+  inquiry_followups: inquiryFollowupModule,
   
 };

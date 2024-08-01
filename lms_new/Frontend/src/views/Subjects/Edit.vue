@@ -54,7 +54,7 @@ const fetch = async () => {
         isLoading.value = false;
     }
 };
-fetch();
+
 
 const rules = computed(() => {
     return {
@@ -108,6 +108,7 @@ async function submitForm() {
 }
 
 onMounted(() => {
+    fetch();
     store.dispatch("listBoard").then().catch();
     store.dispatch("listStandard").then().catch();
     store.dispatch("listLanguages").then().catch();
@@ -152,7 +153,7 @@ const standards = computed(() => store.getters.listStandards);
                         <AlertOctagonIcon class="w-6 h-6 mr-2"/>
                         {{ message }}
                     </div>
-                    <form class="validate-form" @submit.prevent="submitForm">
+                    <form class="validate-form" @submit.prevent="submitForm()">
                         <div>
                             <label class="form-label" for="form-label">{{
                                     t("subjects.Board")
@@ -167,7 +168,7 @@ const standards = computed(() => store.getters.listStandards);
                                           autocomplete: 'off',
                                           items: [model.board_id]
                                         }"
-                                       :placeholder="'Select Board'"
+                                       placeholder="'Select Board'"
                                        class="w-full">
                                 <option>{{ t('questions.Select Board') }}</option>
                                 <option v-for="(board, index) in boards" :key="index" :value="index">
@@ -235,13 +236,13 @@ const standards = computed(() => store.getters.listStandards);
                             </div>
 
                             <!-- END: Inbox Content -->
-                            <div
+                            <!-- <div
                                 v-for="(error, index) of v$.description.$errors"
                                 :key="index"
                                 class="text-danger mt-2"
                             >
                                 <div class="error-msg">{{ error.$message }}</div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="mt-3">
                             <label class="form-label" for="form-language">{{

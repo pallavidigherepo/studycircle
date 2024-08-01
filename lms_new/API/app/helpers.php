@@ -60,6 +60,8 @@ if (!function_exists('save_image')) {
 
         return $relativePath;
     }
+ 
+
 }
 
 if (!function_exists('save_documents')) {

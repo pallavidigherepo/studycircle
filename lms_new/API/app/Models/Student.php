@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\URL;
 use function Illuminate\Events\queueable;
 
+
 /**
  * This class is Student model class with all student management related functions and variables.
  *
@@ -37,7 +38,7 @@ class Student extends Model
     protected $fillable = [
         'name',
         'parent_id',
-        'email',
+        // 'email',
         'password',
         'enrollment_number',
         'transfer_number',
@@ -48,10 +49,10 @@ class Student extends Model
         'batch_id',
         'course_id',
         'fee_type_id',
-        'mobile',
-        'alt_mobile',
+        // 'mobile',
+        // 'alt_mobile',
         'gender',
-        'avatar',
+        // 'avatar',
         'admission_date',
         'dob',
         'permanent_address',
@@ -282,7 +283,7 @@ class Student extends Model
             // We need to generate enrollment number
 
             // Check if image was given and save on local file system
-            if (isset($student['avatar'])) {
+            if (!empty($student['avatar'])) {
                 $student['avatar']  = save_image($student['avatar'], 'students');
             }
             $student['created_by'] = Auth::user()->id;
