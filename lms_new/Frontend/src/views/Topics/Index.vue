@@ -58,8 +58,8 @@ function deleteI(item) {
 }
 </script>
 
-<template>
-  <!-- BEGIN: Chapters list -->
+<!-- <template>
+  
     <div class="grid grid-cols-12 gap-12">
       <div class="intro-y box col-span-12 lg:col-span-12">
         <div
@@ -90,8 +90,42 @@ function deleteI(item) {
           </div>
       </div>
     </div>
+</template> -->
+<template>
+  <div>
+    <template v-if="chapterListing">
+      <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+        <h2 class="text-lg font-medium mr-auto">
+          {{ t("chapters.List of all the Topics of Chapter") }} {{ chapterName }}
+        </h2>
+      </div>
+      <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
+        <!-- BEGIN: Dtatatable Content -->
+        <div class="intro-y col-span-12 lg:col-span-12">
+          <!-- BEGIN: HTML Table Data -->
 
-  <!-- END: Chapters list -->
+          <div class="intro-y box p-5">
+            <div class="overflow-x-auto scrollbar-hidden">
+              <DataTable
+                module="topics"
+                :importExportOptions="options"
+                @showItem="show"
+                @editItem="edit"
+                @deleteItem="deleteI"
+                @addModel="add"
+                :showData="route.params.id"
+              />
+            </div>
+          </div>
+          <!-- END: HTML Table Data -->
+        </div>
+        <!-- END: Dtatatable Content -->
+      </div>
+    </template>
+    <template v-else>
+      <router-view></router-view>
+    </template>
+  </div>
 </template>
 <style>
 </style>

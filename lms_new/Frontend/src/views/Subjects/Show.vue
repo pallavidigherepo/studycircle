@@ -165,8 +165,8 @@ onMounted(() => {
           </div>
         </div>
         
-      </div>
-      <ListChapters :subjectName="model.label"></ListChapters>
+    </div>
+    <ListChapters :subjectName="model.label"></ListChapters>
   </div>
   
 </template>
