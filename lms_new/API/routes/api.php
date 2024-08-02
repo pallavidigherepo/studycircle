@@ -148,6 +148,10 @@ Route::group(['middleware' => ['jwt.auth', \App\Http\Middleware\DatabaseSwitcher
         return Course::all()->pluck('name', 'id');
     })->name('courses_list');
 
+    // Route::get('v1/subject_list', function () {
+    //     return Subject::all()->pluck('label', 'id');
+    // })->name('subject_list');
+
     Route::get('v1/course_type_list', function () {
         return CoursesType::all()->pluck('label', 'id');
     })->name('course_type_list');

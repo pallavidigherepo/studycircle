@@ -13,7 +13,7 @@ import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 import { useI18n } from "vue-i18n";
 import axiosClient from "@/axios";
-// import Editor from "@tinymce/tinymce-vue";
+import Editor from "@tinymce/tinymce-vue";
 
 const submitted = ref(false);
 
@@ -27,7 +27,7 @@ const router = useRouter();
 const { t } = useI18n();
 const model = reactive({
   id: "",
-  parent_id: "",
+  subject_id: "",
   label: "",
   description: null,
   icon: "",
@@ -37,8 +37,11 @@ const model = reactive({
 
 const rules = computed(() => {
   return {
-    parent_id: {
-      required: helpers.withMessage("Please select at least one subject.", required),
+    // parent_id: {
+    //   required: helpers.withMessage("Please select at least one subject.", required),
+    // },
+    subject_id: {
+            required: helpers.withMessage("Please select subject.", required),
     },
     label: {
       required: helpers.withMessage("Please enter label.", required),
@@ -73,9 +76,9 @@ async function submitForm() {
       .catch((err) => {
         isLoading.value = false;
         isErrored.value = true;
-        //if (err.response) {
+        if (err.response) {
             message.value = err.response.data.message;
-        //}
+        }
         
       });
   } else {
@@ -89,7 +92,6 @@ onMounted(() => {
 });
 const languages = computed(() => store.getters.languages);
 const subjects = computed(() => store.getters.listSubjects);
-
 
 function random(string) {
     var s = '';
@@ -137,7 +139,7 @@ function random(string) {
             <AlertOctagonIcon class="w-6 h-6 mr-2" />
             {{ message }}
           </div>
-          <form @submit.prevent="submitForm" class="validate-form">
+          <form @submit.prevent="submitForm()" class="validate-form">
             <div>
               <label for="form-subject-id" class="form-label">{{
                 t("chapters.Choose Subject")
@@ -145,7 +147,7 @@ function random(string) {
               
               <TomSelect
                 id="form-subject-id"
-                v-model="model.parent_id"
+                v-model="model.subject_id"
                 placeholder="Select Subject"
                 :options="{
                   allowEmptyOption: false,
@@ -155,7 +157,7 @@ function random(string) {
                 }"
                 class="w-full"
                 :class="{
-                  'border-danger': submitted && v$.parent_id.$errors.length,
+                  'border-danger': submitted && v$.subject_id.$errors.length,
                 }"
               >
                 <option value="">{{ t('chapters.Select Subject') }}</option>
@@ -196,8 +198,8 @@ function random(string) {
               }}</label>
 
               <div class="mt-3 py-2">
-                <ClassicEditor v-model="editorData" />
-                <!-- <editor
+                <!-- <ClassicEditor v-model="editorData" /> -->
+                <editor
                   id="form-description"
                   v-model="model.description"
                   :class="{
@@ -221,17 +223,17 @@ function random(string) {
                                 tiny_mce_wiris_formulaEditor | tiny_mce_wiris_formulaEditorChemistry',
                   }"
                 >
-                </editor> -->
+                </editor>
               </div>
 
               <!-- END: Inbox Content -->
-              <!-- <div
+              <div
                 class="text-danger mt-2"
                 v-for="(error, index) of v$.description.$errors"
                 :key="index"
               >
                 <div class="error-msg">{{ error.$message }}</div>
-              </div> -->
+              </div>
             </div>
             <div class="mt-3">
               <label for="form-language" class="form-label">{{

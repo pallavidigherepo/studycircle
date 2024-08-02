@@ -6,13 +6,13 @@ import TomSelect from "@/components/Base/TomSelect";
 import { FormInput, FormSelect } from "@/components/Base/Form";
 import Lucide from "@/components/Base/Lucide";
 import Button from "@/components/Base/Button";
-import { ClassicEditor } from "@/components/Base/Ckeditor";
+// import { ClassicEditor } from "@/components/Base/Ckeditor";
 
 import {useVuelidate} from "@vuelidate/core";
 import {required, helpers} from "@vuelidate/validators";
 import {useI18n} from "vue-i18n";
 import axiosClient from "@/axios";
-// import Editor from "@tinymce/tinymce-vue";
+import Editor from "@tinymce/tinymce-vue";
 
 const submitted = ref(false);
 
@@ -67,9 +67,9 @@ const rules = computed(() => {
         label: {
             required: helpers.withMessage("Please enter label.", required),
         },
-        description: {
-            required: helpers.withMessage("Please enter description.", required),
-        },
+       description: {
+           required: helpers.withMessage("Please enter description.", required),
+       },
         icon: {
             required: helpers.withMessage("Please enter icon.", required),
         },
@@ -231,7 +231,32 @@ const standards = computed(() => store.getters.listStandards);
                                 }}</label>
 
                             <div class="mt-3 py-2">
-                                <ClassicEditor v-model="editorData" />
+                               
+                            <editor
+                                    id="form-description"
+                                    v-model="model.description"
+                                    :class="{
+                                        'border-danger': submitted && v$.description.$errors.length,
+                                    }"
+                                    initialValue="<p>Initial editor content</p>"
+                                    apiKey="n10p1o42akootxkapivj4ecxefdo4zlaqd0ek0aa47ld9js7"
+                                    :init="{
+                                        height: 200,
+                                        menubar: true,
+                                        plugins: [
+                                        'advlist autolink lists link image charmap',
+                                        'searchreplace visualblocks code fullscreen',
+                                        'print preview anchor insertdatetime media',
+                                        'paste code help wordcount table',
+                                        ],
+                                        toolbar:
+                                        'undo redo | formatselect | bold italic | \
+                                                    alignleft aligncenter alignright | \
+                                                    bullist numlist outdent indent | insert | help | \
+                                                    tiny_mce_wiris_formulaEditor | tiny_mce_wiris_formulaEditorChemistry',
+                                    }"
+                                    >
+                            </editor>
                                 
                             </div>
 

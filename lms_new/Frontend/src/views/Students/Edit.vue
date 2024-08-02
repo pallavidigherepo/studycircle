@@ -228,7 +228,7 @@ function changeMe(value) {
                                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                                     <div
                                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                                        <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                                        <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2" />
                                         {{ t("questions.Select Standard/Class") }}
                                     </div>
                                     <div class="mt-5">
@@ -283,7 +283,7 @@ function changeMe(value) {
                                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                                     <div
                                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                                        <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                                        <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2" />
                                         {{ t("students.Basic Information Of Student") }}
                                     </div>
                                     <div class="mt-5">

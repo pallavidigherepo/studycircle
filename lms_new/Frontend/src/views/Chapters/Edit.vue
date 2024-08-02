@@ -13,7 +13,7 @@ import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 import { useI18n } from "vue-i18n";
 import axiosClient from "@/axios";
-// import Editor from "@tinymce/tinymce-vue";
+import Editor from "@tinymce/tinymce-vue";
 
 const submitted = ref(false);
 
@@ -218,8 +218,8 @@ function random(string) {
               }}</label>
 
               <div class="mt-3 py-2">
-                <ClassicEditor v-model="editorData" />
-                <!-- <editor
+                <!-- <ClassicEditor v-model="editorData" /> -->
+                <editor
                   id="form-description"
                   v-model="model.description"
                   :class="{
@@ -243,7 +243,7 @@ function random(string) {
                                 tiny_mce_wiris_formulaEditor | tiny_mce_wiris_formulaEditorChemistry',
                   }"
                 >
-                </editor> -->
+                </editor>
               </div>
 
               <!-- END: Inbox Content -->

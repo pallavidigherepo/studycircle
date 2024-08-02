@@ -4,7 +4,8 @@ namespace App\Repositories;
 use App\Models\Inquiry;
 use App\Http\Resources\InquiryResource;
 use App\Repositories\Interfaces\InquiryRepositoryInterface;
-use App\Http\Requests\InquiryRequest;
+use App\Http\Requests\StoreInquiryRequest;
+use App\Http\Requests\UpdateInquiryRequest;
 
 class InquiryRepository implements InquiryRepositoryInterface
 {
@@ -58,7 +59,7 @@ class InquiryRepository implements InquiryRepositoryInterface
         if ($request->validated()) {
             $input = $request->toArray();
 
-            $inquiry = Inquiry::update($input);
+            $inquiry->update($input);
 
             $response = [
                 'success' => true,

@@ -1,8 +1,7 @@
 <?php
 namespace App\Services\Template;
 
-use App\Http\Requests\StoreTemplateRequest;
-use App\Http\Requests\UpdateTemplateRequest;
+use App\Http\Requests\TemplateRequest;
 use App\Models\Template;
 use App\Repositories\Interfaces\TemplateRepositoryInterface;
 use Illuminate\Http\Request;
@@ -18,7 +17,7 @@ class TemplateService
     }
 
 
-    public function create(StoreTemplateRequest $request)
+    public function create(TemplateRequest $request)
     {
 
         return $this->templateRepository->create($request);

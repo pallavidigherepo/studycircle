@@ -13,7 +13,7 @@ import {useVuelidate} from "@vuelidate/core";
 import {helpers, minLength, minValue, numeric, required, requiredIf} from "@vuelidate/validators";
 import {useI18n} from "vue-i18n";
 import axiosClient from "@/axios";
-// import Editor from "@tinymce/tinymce-vue";
+import Editor from "@tinymce/tinymce-vue";
 import AnswerEditor from "@/components/Editor/Answer.vue";
 import QuestionEditor from "@/components/Editor/Question.vue";
 
@@ -1055,27 +1055,27 @@ function makeid(length) {
                                     </div>
                                 </div>
                                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                                    <ClassicEditor v-model="editorData" />
-                                    <!-- <editor id="form-description" v-model="model.description" :class="{
-                    'border-danger': submitted && v$.description.$errors.length,
-                  }" :init="{
-                      height: 200,
-                      menubar: true,
-                      plugins: [
-                        'advlist autolink lists link image charmap',
-                        'searchreplace visualblocks code fullscreen',
-                        'print preview anchor insertdatetime media',
-                        'paste code help wordcount table',
-                      ],
-                      toolbar:
-                        'undo redo | formatselect | bold italic | \
-                                                                        alignleft aligncenter alignright | \
-                                                                        bullist numlist outdent indent | insert | help | \
-                                                                        tiny_mce_wiris_formulaEditor | tiny_mce_wiris_formulaEditorChemistry',
-                    }"
+                                    <!-- <ClassicEditor v-model="editorData" /> -->
+                                    <editor id="form-description" v-model="model.description" :class="{
+                                                    'border-danger': submitted && v$.description.$errors.length,
+                                                }" :init="{
+                                                    height: 200,
+                                                    menubar: true,
+                                                    plugins: [
+                                                        'advlist autolink lists link image charmap',
+                                                        'searchreplace visualblocks code fullscreen',
+                                                        'print preview anchor insertdatetime media',
+                                                        'paste code help wordcount table',
+                                                    ],
+                                                    toolbar:
+                                                        'undo redo | formatselect | bold italic | \
+                                                                                                        alignleft aligncenter alignright | \
+                                                                                                        bullist numlist outdent indent | insert | help | \
+                                                                                                        tiny_mce_wiris_formulaEditor | tiny_mce_wiris_formulaEditorChemistry',
+                                                    }"
                                             apiKey="n10p1o42akootxkapivj4ecxefdo4zlaqd0ek0aa47ld9js7"
                                             initialValue="<p>Initial editor content</p>">
-                                    </editor> -->
+                                    </editor>
                                     <div v-for="(error, index) of v$.description.$errors" :key="index"
                                          class="text-danger mt-2">
                                         <div class="error-msg">{{ error.$message }}</div>
@@ -1098,27 +1098,27 @@ function makeid(length) {
                                     </div>
                                 </div>
                                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                                    <ClassicEditor v-model="editorData" />
-                                    <!-- <editor id="form-note" v-model="model.note" :class="{
-                    'border-danger': submitted && v$.note.$errors.length,
-                  }" :init="{
-                      height: 200,
-                      menubar: true,
-                      plugins: [
-                        'advlist autolink lists link image charmap',
-                        'searchreplace visualblocks code fullscreen',
-                        'print preview anchor insertdatetime media',
-                        'paste code help wordcount table',
-                      ],
-                      toolbar:
-                        'undo redo | formatselect | bold italic | \
-                                                                      alignleft aligncenter alignright | \
-                                                                      bullist numlist outdent indent | insert | help | \
-                                                                      tiny_mce_wiris_formulaEditor | tiny_mce_wiris_formulaEditorChemistry',
-                    }"
+                                    <!-- <ClassicEditor v-model="editorData" /> -->
+                                    <editor id="form-note" v-model="model.note" :class="{
+                                                'border-danger': submitted && v$.note.$errors.length,
+                                            }" :init="{
+                                                height: 200,
+                                                menubar: true,
+                                                plugins: [
+                                                    'advlist autolink lists link image charmap',
+                                                    'searchreplace visualblocks code fullscreen',
+                                                    'print preview anchor insertdatetime media',
+                                                    'paste code help wordcount table',
+                                                ],
+                                                toolbar:
+                                                    'undo redo | formatselect | bold italic | \
+                                                                                                alignleft aligncenter alignright | \
+                                                                                                bullist numlist outdent indent | insert | help | \
+                                                                                                tiny_mce_wiris_formulaEditor | tiny_mce_wiris_formulaEditorChemistry',
+                                                }"
                                             apiKey="n10p1o42akootxkapivj4ecxefdo4zlaqd0ek0aa47ld9js7"
                                             initialValue="<p>Initial editor content</p>">
-                                    </editor> -->
+                                    </editor>
                                     <div v-for="(error, index) of v$.note.$errors" :key="index"
                                          class="text-danger mt-2">
                                         <div class="error-msg">{{ error.$message }}</div>

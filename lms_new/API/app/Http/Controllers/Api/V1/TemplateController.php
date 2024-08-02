@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TemplateRequest;
-use App\Http\Resources\TemplateResourse;
+use App\Http\Resources\TemplateResource;
 use App\Models\QuestionType;
 use App\Models\Template;
 use App\Services\Template\TemplateService;
@@ -45,7 +45,7 @@ class TemplateController extends Controller
         if (!$template) {
             return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }
-        return response()->json(['message' => 'Created Successfully', 'data' => $student], 201);
+        return response()->json(['message' => 'Created Successfully', 'data' => $template], 201);
     }
 
     /**
@@ -56,7 +56,7 @@ class TemplateController extends Controller
      */
     public function show(Template $template)
     {
-        return TemplateResource::make(Template::findOrFail($id));
+        return TemplateResource::make(Template::findOrFail($template->id));
     }
 
     /**

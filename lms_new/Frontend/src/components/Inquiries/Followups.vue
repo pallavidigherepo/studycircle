@@ -6,12 +6,13 @@ import { helpers, required} from "@vuelidate/validators";
 import {useVuelidate} from "@vuelidate/core";
 import store from "@/stores";
 import axiosClient from "@/axios";
-import { Dialog, Menu } from "@/components/Base/Headless";
+import { Dialog, Menu, slideOver  } from "@/components/Base/Headless";
 import Button from "@/components/Base/Button";
 import Lucide from "@/components/Base/Lucide";
 import TomSelect from "@/components/Base/TomSelect";
 import { FormInput, FormSelect, FormCheck, FormTextarea } from "@/components/Base/Form";
 import Pagination from "@/components/DataTable/Pagination.vue";
+import Table from "@/components/Base/Table";
 
 const props = defineProps({
     modelValue: {
@@ -86,7 +87,7 @@ async function submitFollowupForm()
                 followupModel.value = JSON.parse(JSON.stringify(followupModel));
                 fetch();
                 //emits('update:modelValue', false);
-                //router.push({name: "Inquiries"});
+                router.push({name: "Inquiries"});
             })
             .catch((err) => {
                 isLoading.value = false;
@@ -154,7 +155,8 @@ function cancel() {
                 class="absolute top-0 left-0 right-auto mt-4 -ml-12"
                 href="javascript:;"
             >
-                <XIcon class="w-8 h-8 text-slate-400" />
+            
+                <Lucide icon="XIcon" class="w-8 h-8 text-slate-400" />
             </a>
             <ModalHeader class="p-5">
                 <h2 class="font-medium text-base mr-auto">
@@ -256,7 +258,7 @@ function cancel() {
                                                     </label>
                                                     <div class="relative w-56">
                                                         <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-slate-100 border text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
-                                                            <CalendarIcon class="w-4 h-4" />
+                                                            <Lucide icon="CalendarIcon" class="w-4 h-4" />
                                                         </div>
                                                         <FormInput v-model="followupModel.followup_date"
                                                                for="form-followup-date"
@@ -275,7 +277,7 @@ function cancel() {
                                                     </label>
                                                     <div class="relative w-56">
                                                         <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-slate-100 border text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
-                                                            <CalendarIcon class="w-4 h-4" />
+                                                            <Lucide icon="CalendarIcon" class="w-4 h-4" />
                                                         </div>
                                                         <FormInput for="form-followup-time"
                                                                v-model="followupModel.followup_time"

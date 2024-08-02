@@ -282,7 +282,7 @@ function closeMe()
                                 data-tw-toggle="dropdown">
                               <span class="flex items-center justify-center">
                                 {{ t("common.Export/Print") }}&nbsp;
-                                <DownloadIcon class="w-4 h-4"/>
+                                <Lucide icon="DownloadIcon" class="w-4 h-4"/>
                               </span>
                         </Button>
                         <div class="dropdown-menu w-40">
@@ -296,14 +296,14 @@ function closeMe()
                                 <li>
                                     <a class="dropdown-item" href="javascript:;"
                                        @click.prevent="exportMe('xlsx')">
-                                        <FileTextIcon class="w-4 h-4 mr-2"/>
+                                       <Lucide icon="FileTextIcon" class="w-4 h-4"/>
                                         {{ t("common.Export to Excel") }}
                                     </a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="javascript:;"
                                        @click.prevent="exportMe('csv')">
-                                        <FileTextIcon class="w-4 h-4 mr-2"/>
+                                       <Lucide icon="FileTextIcon" class="w-4 h-4"/>
                                         {{ t("common.Export to CSV") }}
                                     </a>
                                 </li>
@@ -313,7 +313,7 @@ function closeMe()
                                         class="dropdown-item"
                                         @click.prevent="exportMe('pdf')"
                                     >
-                                        <FileTextIcon class="w-4 h-4 mr-2" />
+                                        <Lucide icon="FileTextIcon" class="w-4 h-4"/>
                                         {{ t("permissions.Export to PDF") }}
                                     </a>
                                     </li> -->
@@ -325,14 +325,14 @@ function closeMe()
                                 data-tw-toggle="dropdown">
                                       <span class="flex items-center justify-center">
                                         {{ t("common.Import") }}&nbsp;
-                                        <UploadIcon class="w-4 h-4"/>
+                                        <Lucide icon="UploadIcon" class="w-4 h-4"/>
                                       </span>
                         </Button>
                         <div class="dropdown-menu w-40">
                             <ul class="dropdown-content">
                                 <li>
                                     <a class="dropdown-item" href="#" @click.prevent="openModal">
-                                        <FileTextIcon class="w-4 h-4 mr-2"/>
+                                        <Lucide icon="FileTextIcon" class="w-4 h-4 mr-2"/>
                                         {{ t("common.CSV/Excel") }}
                                     </a>
                                 </li>
@@ -350,7 +350,7 @@ function closeMe()
                             <FormInput v-model="search" :placeholder="t('common.Search') + '...'"
                                    class="form-control w-56 pr-10 w-full"
                                    type="text" @keyup="searchMe($event)"/>
-                            <SearchIcon class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"/>
+                            <Lucide icon="SearchIcon" class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"/>
                         </div>
                     </div>
                 </div>
@@ -399,7 +399,7 @@ function closeMe()
                                         <div
                                             class="flex items-center justify-center"
                                         >
-                                            <PhoneIcon class="w-4 h-4 mr-2" />{{ item.contact_mobile }}
+                                            <Lucide icon="PhoneIcon" class="w-4 h-4 mr-2" />{{ item.contact_mobile }}
                                         </div>
                                     </a>
                                 </Table.Td>
@@ -429,7 +429,7 @@ function closeMe()
                                     <div
                                         class="flex items-center justify-center"
                                     >
-                                        <UserIcon class="w-4 h-4 mr-1" />{{ item.assigned }}
+                                        <Lucide icon="UserIcon" class="w-4 h-4 mr-1" />{{ item.assigned }}
                                     </div>
                                 </Table.Td>
                                 <Table.Td class="text-center">
@@ -440,7 +440,7 @@ function closeMe()
                                            class="flex items-center text-warning mr-2"
                                            @click.prevent="showFollowups(item)"
                                         >
-                                            <MessageCircleIcon class="w-4 h-4 mr-1" />{{ t("inquiries.Follow Ups") }}
+                                            <Lucide icon="MessageCircleIcon"  class="w-4 h-4 mr-1" />{{ t("inquiries.Follow Ups") }}
                                         </a>
                                     </div>
                                 </Table.Td>
@@ -448,17 +448,17 @@ function closeMe()
                                     <div class="flex justify-center items-center">
                                         <router-link :to="{ name: 'ShowInquiry', params: { id: item.id } }"
                                                      class="flex items-center text-primary mr-2">
-                                            <EyeIcon class="w-4 h-4 mr-1"/>{{ t("common.Show") }}
+                                            <Lucide icon="EyeIcon" class="w-4 h-4 mr-1"/>{{ t("common.Show") }}
                                         </router-link>
                                         <router-link :to="{ name: 'EditInquiry', params: { id: item.id } }"
                                                      class="flex items-center text-success mr-2">
-                                            <Edit3Icon class="w-4 h-4 mr-1" />
+                                            <Lucide icon="Edit3Icon"  class="w-4 h-4 mr-1" />
                                             {{ t("common.Edit") }}
                                         </router-link>
                                         <a class="flex items-center text-danger"
                                            href="javascript:;"
                                            @click.prevent="deleteI(item)">
-                                            <Trash2Icon class="w-4 h-4 mr-1"/>
+                                            <Lucide icon="Trash2Icon" Trash2Icon class="w-4 h-4 mr-1"/>
                                             {{ t("common.Delete") }}
                                         </a>
                                         <!--                                    <Dropdown>-->
@@ -569,7 +569,7 @@ function closeMe()
                                             <div class="flex text-center justify-center">
 
                                                 <div class="">
-                                                    <DownloadCloudIcon class="w-10 h-10 ml-0.5"/>
+                                                    <Lucide icon="DownloadCloudIcon"  class="w-10 h-10 ml-0.5"/>
                                                 </div>
                                             </div>
                                             <div class="text-base text-slate-500 mt-1">
@@ -587,7 +587,7 @@ function closeMe()
                                             <div class="flex text-center justify-center">
 
                                                 <div class="">
-                                                    <DownloadCloudIcon class="w-10 h-10 ml-0.5"/>
+                                                    <Lucide icon="DownloadCloudIcon"  class="w-10 h-10 ml-0.5"/>
                                                 </div>
                                             </div>
                                             <div class="text-base text-slate-500 mt-1">

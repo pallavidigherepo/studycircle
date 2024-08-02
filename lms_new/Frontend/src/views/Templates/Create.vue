@@ -14,7 +14,6 @@ import {helpers, minLength, minValue, numeric, required, requiredIf} from "@vuel
 import {useI18n} from "vue-i18n";
 import axiosClient from "@/axios";
 // import Editor from "@tinymce/tinymce-vue";
-// import SectionEditor from "@/components/Editor/Section.vue";
 
 const route = useRoute();
 const router = useRouter();

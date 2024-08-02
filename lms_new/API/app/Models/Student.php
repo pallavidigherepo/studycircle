@@ -361,27 +361,34 @@ class Student extends Model
         });
 
         static::deleting(function ($student) {
-            static::$selected_student_id = $student->id;
-            StudentSibling::where('student_id', $student->id)->delete();
-            // Now we need to check if this parent_id is available in students table to manage siblings.\
-
-            $siblings = StudentSibling::all()->where('parent_id', $student->parent_id);
-            // If there are any older record is already available in student_siblings table, we need to update all the
-            // records with new student_id
-            if (count($siblings) > 1) {
-                // Get ids as plain array of existing students in siblings table
-                $newIds = Arr::pluck($siblings, 'student_id');
-
-                foreach ($siblings as $sibling) {
-                    $sibIds = array_diff($newIds, array($student->id, $sibling->id));
-                    $sibling->sibling_ids = $sibIds;
-                    $sibling->save();
+            if ($student) {
+                static::$selected_student_id = $student->id;
+        
+                // Delete the student's siblings
+                StudentSibling::where('student_id', $student->id)->delete();
+        
+                // Check if there are other students with the same parent_id
+                $siblings = StudentSibling::where('parent_id', $student->parent_id)->get();
+        
+                if ($siblings->count() > 1) {
+                    // Get ids as a plain array of existing students in siblings table
+                    $newIds = $siblings->pluck('student_id')->all();
+        
+                    foreach ($siblings as $sibling) {
+                        $sibIds = array_diff($newIds, [$student->id, $sibling->id]);
+                        $sibling->sibling_ids = $sibIds;
+                        $sibling->save();
+                    }
+                }
+        
+                // Now remove the fee row for that student if it exists
+                $fee = Fee::where('student_id', $student->id)->first();
+                if ($fee) {
+                    Fee::destroy($fee->id);
                 }
             }
-            // Now remove fees row for that student.
-            $fee = Fee::where('student_id', $student->id)->first();
-            Fee::destroy($fee->id);
         });
+        
 
         /*static::retrieved(function($data)
         {

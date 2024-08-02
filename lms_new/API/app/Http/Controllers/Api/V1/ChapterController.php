@@ -56,7 +56,7 @@ class ChapterController extends Controller
      */
     public function edit(Chapter $chapter)
     {
-        return ChapterResource::make(Chapter::findOrFail($id));
+        return ChapterResource::make(Chapter::findOrFail($chapter->id));
     }
 
     /**
@@ -67,7 +67,7 @@ class ChapterController extends Controller
      */
     public function show(Chapter $chapter)
     {
-        return ChapterResource::make(Chapter::findOrFail($id));
+        return ChapterResource::make(Chapter::findOrFail($chapter->id));
     }
 
     /**

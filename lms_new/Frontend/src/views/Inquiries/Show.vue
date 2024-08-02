@@ -8,7 +8,7 @@ import Lucide from "@/components/Base/Lucide";
 import Button from "@/components/Base/Button";
 import store from "@/stores";
 import axiosClient from "@/axios";
-// import InquiryFollowups from "@/components/Inquiries/Followups.vue";
+import InquiryFollowups from "@/components/Inquiries/Followups.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -73,8 +73,9 @@ function followup(value) {
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">{{ t("inquiries.Inquiry Details") }}</h2>
         <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-            <a href="javascript:;"
-               class="
+            <Button href="javascript:;"
+                variant="primary"
+                class="
                         btn
                         btn-primary
                         mr-2
@@ -84,7 +85,7 @@ function followup(value) {
                         sm:ml-0
                       "
                @click.prevent="followup(true)"
-            >{{ t("inquiries.Follow Ups")}}</a>
+            >{{ t("inquiries.Follow Ups")}}</Button>
             <Button
                 variant="primary"
                     class="
@@ -110,7 +111,7 @@ function followup(value) {
                         <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                             <div
                                 class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                                <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                                <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2" />
                                 {{ t("inquiries.Select Standard Class, Batch Source and etc") }}
                             </div>
                             <div class="mt-5">
@@ -179,7 +180,7 @@ function followup(value) {
                         <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                             <div
                                 class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                                <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                                <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2" />
                                 {{ t("inquiries.Assigned to") }}
                             </div>
                             <div class="mt-5">
@@ -205,7 +206,7 @@ function followup(value) {
                         <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                             <div
                                 class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                                <ChevronDownIcon class="w-4 h-4 mr-2"/>
+                                <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2" />
                                 {{ t("inquiries.Basic Information Of Student") }}
                             </div>
                             <div class="mt-5">

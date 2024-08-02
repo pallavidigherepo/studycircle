@@ -6,6 +6,7 @@ use App\Http\Resources\TemplateResource;
 use App\Repositories\Interfaces\TemplateRepositoryInterface;
 use App\Http\Requests\StoreTemplateRequest;
 use App\Http\Requests\UpdateTemplateRequest;
+use Illuminate\Support\Facades\Auth;
 
 class TemplateRepository implements TemplateRepositoryInterface
 {

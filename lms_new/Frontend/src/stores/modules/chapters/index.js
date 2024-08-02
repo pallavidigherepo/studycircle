@@ -13,7 +13,7 @@ export default {
             datatable: {
                 export: true,
                 import: true,
-                addNew: false,
+                addNew: true,
                 defaultColumn: "id",
                 defaultOrder: "desc",
                 defaultPage: 1,
