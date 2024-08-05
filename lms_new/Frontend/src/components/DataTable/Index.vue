@@ -320,14 +320,15 @@ function searchMe(event) {
                   @click.prevent="emit('addModel', true)">
               {{ t("common.Add New") }}
           </Button>
+          <Menu>
           <div v-if="datatableoptions.export" class="dropdown">
-              <Button aria-expanded="false" variant="primary" class="dropdown-toggle  ml-2" data-tw-toggle="dropdown">
+              <Menu.Button aria-expanded="false" :as="Button" variant="primary" class="dropdown-toggle  ml-2" data-tw-toggle="dropdown">
                 <span class="flex items-center justify-center">
                   {{ t("common.Export/Print") }}&nbsp;
                   <Lucide icon="Upload" class="w-4 h-4"/>
                 </span>
-              </Button>
-              <div class="dropdown-menu w-40">
+              </Menu.Button>
+              <Menu.Items class="dropdown-menu w-40">
                   <ul class="dropdown-content">
                       <li>
                           <a class="dropdown-item" href="javascript:;" @click.prevent="exportMe('xlsx')">
@@ -352,26 +353,29 @@ function searchMe(event) {
                           </a>
                           </li> -->
                   </ul>
-              </div>
+              </Menu.Items>
           </div>
+        </Menu>
+        <Menu>
           <div v-if="datatableoptions.import" class="dropdown">
-              <Button aria-expanded="false" variant="primary" class="dropdown-toggle ml-2" data-tw-toggle="dropdown">
+              <Menu.Button aria-expanded="false" :as="Button" variant="primary" class="dropdown-toggle ml-2" data-tw-toggle="dropdown">
                     <span class="flex items-center justify-center">
                     {{ t("common.Import") }}&nbsp;
-                    <DownloadIcon class="w-4 h-4"/>
+                    <Lucide icon="DownloadIcon" class="w-4 h-4"/>
                     </span>
-              </Button>
-              <div class="dropdown-menu w-40">
+              </Menu.Button>
+              <Menu.Items class="dropdown-menu w-40">
                   <ul class="dropdown-content">
                       <li>
                           <a class="dropdown-item" href="#" @click.prevent="openModal">
-                              <FileTextIcon class="w-4 h-4 mr-2"/>
+                            <Lucide icon="FileTextIcon" class="w-4 h-4"/>
                               {{ t("common.CSV/Excel") }}
                           </a>
                       </li>
                   </ul>
-              </div>
+              </Menu.Items>
           </div>
+        </Menu>
           <div class="hidden md:block mx-auto text-slate-500">
               <!-- {{ t(module+".Showing") }} {{ permissions.from }}
                   {{ t(module+".to") }} {{ permissions.to }}
@@ -382,7 +386,7 @@ function searchMe(event) {
               <div class="relative w-56 text-slate-500">
                   <FormInput v-model="search" :placeholder="t('common.Search') + '...'" class="w-56 pr-10 !box"
                          type="text" @keyup="searchMe($event)"/>
-                  <SearchIcon class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"/>
+                  <Lucide icon="SearchIcon" class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"/>
               </div>
           </div>
       </div>
@@ -503,31 +507,32 @@ function searchMe(event) {
       <!-- END: Pagination -->
       <!-- BEGIN: Modal Content -->
       <Dialog :open="headerFooterModalPreview"
-             size="modal-lg"
+             size="lg"
              @hidden="headerFooterModalPreview = false">
-          <ModalHeader>
-              <h2 class="font-medium text-base mr-auto">
-                  {{ t("common.Import as CSV/Excel") }}
-              </h2>
-          </ModalHeader>
+          
           <CustomeAlert v-if="responseMessage"
                         :errors="responseErrors"
                         :message="responseMessage"
                         :status="responseStatus"
                         class="col-span-12 sm:col-span-6 flex"/>
-          <ModalBody class="grid grid-cols-12 gap-4 gap-y-3">
-              <div class="col-span-12 sm:col-span-12 text-center">
+          <Dialog.Panel class="grid grid-cols-12 gap-4 gap-y-3">
+            <Dialog.Title>
+              <h2 class="font-medium text-base mr-auto">
+                  {{ t("common.Import as CSV/Excel") }}
+              </h2>
+            </Dialog.Title>
+              <div class="col-span-12 sm:col-span-14 text-center">
                   <slot name="info"></slot>
                   <div class="upload-btn-wrapper">
                       <Button class="upload-btn">{{
                               t("common.Upload file")
                           }}
                       </Button>
-                      <input id="modal-form-1" name="myfile" type="file" @change="importMe($event)"/>
+                      <FormInput id="modal-form-1" name="myfile" type="file" @change="importMe($event)"/>
                   </div>
                   <div class="col-span-12">
                       <div
-                          class="alert alert-outline-warning alert-dismissible bg-warning/20 dark:bg-darkmode-400 dark:border-darkmode-400 mt-5 show"
+                          class="alert alert-outline-warning alert-dismissible bg-warning/20 dark:bg-darkmode-400 dark:border-darkmode-400 mt-5 mr-5 show"
                           role="alert" style="display: block;">
 
                           <div class="flex items-center"><span><svg class="lucide w-6 h-6 mr-3" fill="none"
@@ -553,11 +558,11 @@ function searchMe(event) {
                                       <div class="flex text-center justify-center">
 
                                           <div class="">
-                                              <DownloadCloudIcon class="w-10 h-10 ml-0.5"/>
+                                            <Lucide icon="DownloadCloudIcon" class="w-4 h-4"/>
                                           </div>
                                       </div>
                                       <div class="text-base text-slate-500 mt-1">
-                                          <Button class="btn btn-primary h-20"
+                                          <Button variant="primary" class="btn btn-primary h-20"
                                                   @click.prevent="exportMe('xlsx', true)">
                                               {{ t('common.Download Template for EXCEL') }}
                                           </Button>
@@ -567,15 +572,15 @@ function searchMe(event) {
                           </div>
                           <div class="col-span-6 sm:col-span-6 xl:col-span-3 intro-y">
                               <div class="report-box zoom-in">
-                                  <div class="box p-5">
+                                  <div class="box p-4">
                                       <div class="flex text-center justify-center">
 
                                           <div class="">
-                                              <DownloadCloudIcon class="w-10 h-10 ml-0.5"/>
+                                            <Lucide icon="DownloadCloudIcon" class="w-4 h-4"/>
                                           </div>
                                       </div>
                                       <div class="text-base text-slate-500 mt-1">
-                                          <Button class="btn btn-primary h-20"
+                                          <Button variant="primary" class="btn btn-primary h-20"
                                                   @click.prevent="exportMe('csv', true)">
                                               {{ t('common.Download Template for CSV') }}
                                           </Button>
@@ -587,18 +592,21 @@ function searchMe(event) {
 
                   </div>
               </div>
-          </ModalBody>
-          <ModalFooter>
+            
+       
+          <Dialog.Footer class="flex justify-start space-x-2">
               <Button id="import-export-cancel-Button"
-                      class="btn btn-outline-secondary w-20 mr-1"
-                      type="Button"
+                        variant="outline-secondary"
+                      class="w-20 mr-1"
+                      type="button"
                       @click="headerFooterModalPreview = false">
                   {{ t("common.Cancel") }}
               </Button>
-              <Button type="Button" class="btn btn-primary w-20">
+              <Button type="button" variant="primary" class="w-20">
                   {{ t("permissions.Import") }}
-                  </Button>
-          </ModalFooter>
+             </Button>
+          </Dialog.Footer>
+        </Dialog.Panel>
       </Dialog>
       <!-- END: Modal Content -->
       <Loading v-if="loading" fixed></Loading>

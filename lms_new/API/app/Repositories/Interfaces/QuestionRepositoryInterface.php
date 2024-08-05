@@ -13,7 +13,7 @@ Interface QuestionRepositoryInterface {
 
     public function delete($question);
 
-    public function __importQuestionInBulk();
+    public function __importQuestionInBulk($data);
 
     public function __createAndUpdateQuestion();
 

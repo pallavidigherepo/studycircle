@@ -1,85 +1,9 @@
-<template>
-    <div>
-        <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-            <h2 class="text-lg font-medium mr-auto">
-                {{ t("fee_categories.Fee Categories") }}
-            </h2>
-        </div>
-        <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
-            <!-- BEGIN: Post Content -->
-            <div class="intro-y col-span-12 lg:col-span-8">
-                <!-- BEGIN: HTML Table Data -->
-
-                <div class="intro-y box p-5">
-                    <div class="overflow-x-auto scrollbar-hidden">
-                        <Datatable
-                            module="fee_categories"
-                            :importExportOptions="options"
-                            @editItem="edit"
-                            @deleteItem="deleteI"
-                        />
-                    </div>
-                </div>
-                <!-- END: HTML Table Data -->
-            </div>
-            <!-- END: Post Content -->
-            <!-- BEGIN: Add/Edit permission -->
-            <div class="col-span-12 lg:col-span-4">
-                <div class="intro-y box p-5">
-                    <h2 class="text-lg font-medium mr-auto pt-5 pb-5">
-                        {{ t("common." + actionText) }}
-                    </h2>
-                    <div
-                        class="alert alert-danger show flex items-center mb-2"
-                        role="alert"
-                        v-if="isErrored"
-                    >
-                        <AlertOctagonIcon class="w-6 h-6 mr-2" />
-                        {{ message }}
-                    </div>
-
-                    <form @submit.prevent="submitForm" class="validate-form">
-                        <div>
-                            <label for="fee-category-name" class="form-label">{{
-                                    t("fee_categories.Name")
-                                }}</label>
-                            <input
-                                id="fee-category-name"
-                                type="text"
-                                class="form-control w-full"
-                                :placeholder="t('fee_categories.Name')"
-                                v-model.trim="model.name"
-                                :class="{ 'border-danger': submitted && v$.name.$error }"
-                            />
-                            <span
-                                v-if="submitted && v$.name.$error"
-                                class="text-danger mt-2"
-                            >
-                                {{ v$.name.$errors[0].$message }}
-                            </span>
-                        </div>
-                        <div class="text-right mt-5">
-                            <button
-                                type="button"
-                                class="btn btn-outline-secondary w-24 mr-1"
-                                @click.prevent="cancel"
-                            >
-                                {{ t("common.Cancel") }}
-                            </button>
-                            <button type="submit" class="btn btn-primary w-24">
-                                {{ t("common.Save") }}
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!-- END: Add/Edit permission -->
-        </div>
-    </div>
-</template>
-
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
+import DataTable from "@/components/DataTable/Index.vue";
+import TomSelect from "@/components/Base/TomSelect";
+import Button from "@/components/Base/Button";
+import { FormInput, FormCheck } from "@/components/Base/Form";
 
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
@@ -183,6 +107,86 @@ function deleteI(item) {
 }
 // END: Delete
 </script>
+
+<template>
+    <div>
+        <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+            <h2 class="text-lg font-medium mr-auto">
+                {{ t("fee_categories.Fee Categories") }}
+            </h2>
+        </div>
+        <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
+            <!-- BEGIN: Post Content -->
+            <div class="intro-y col-span-12 lg:col-span-8">
+                <!-- BEGIN: HTML Table Data -->
+
+                <div class="intro-y box p-5">
+                    <div class="overflow-x-auto scrollbar-hidden">
+                        <DataTable
+                            module="fee_categories"
+                            :importExportOptions="options"
+                            @editItem="edit"
+                            @deleteItem="deleteI"
+                        />
+                    </div>
+                </div>
+                <!-- END: HTML Table Data -->
+            </div>
+            <!-- END: Post Content -->
+            <!-- BEGIN: Add/Edit permission -->
+            <div class="col-span-12 lg:col-span-4">
+                <div class="intro-y box p-5">
+                    <h2 class="text-lg font-medium mr-auto pt-5 pb-5">
+                        {{ t("common." + actionText) }}
+                    </h2>
+                    <div
+                        class="alert alert-danger show flex items-center mb-2"
+                        role="alert"
+                        v-if="isErrored"
+                    >
+                        <AlertOctagonIcon class="w-6 h-6 mr-2" />
+                        {{ message }}
+                    </div>
+
+                    <form @submit.prevent="submitForm" class="validate-form">
+                        <div>
+                            <label for="fee-category-name" class="form-label">{{
+                                    t("fee_categories.Name")
+                                }}</label>
+                            <FormInput
+                                id="fee-category-name"
+                                type="text"
+                                class="form-control w-full"
+                                :placeholder="t('fee_categories.Name')"
+                                v-model.trim="model.name"
+                                :class="{ 'border-danger': submitted && v$.name.$error }"
+                            />
+                            <span
+                                v-if="submitted && v$.name.$error"
+                                class="text-danger mt-2"
+                            >
+                                {{ v$.name.$errors[0].$message }}
+                            </span>
+                        </div>
+                        <div class="text-right mt-5">
+                            <Button
+                                type="button"
+                                class="btn btn-outline-secondary w-24 mr-1"
+                                @click.prevent="cancel"
+                            >
+                                {{ t("common.Cancel") }}
+                            </Button>
+                            <Button variant="primary" type="submit" class="btn btn-primary w-24">
+                                {{ t("common.Save") }}
+                            </Button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- END: Add/Edit permission -->
+        </div>
+    </div>
+</template>
 
 <style>
 .active-row {

@@ -6,11 +6,11 @@ export default {
     namespaced: true,
     state() {
         return {
-            fees: [],
-            fee: [],
+            fee_categories: [],
+            fee_category: [],
             pagination: [],
             datatable: {
-                export: true,
+                export: false,
                 import: false,
                 addNew: false,
                 defaultColumn: "id",
@@ -26,26 +26,8 @@ export default {
                         isJson: false,
                     },
                     {
-                        label: "STUDENT",
+                        label: "NAME",
                         field: "name",
-                        sort: true,
-                        isJson: false,
-                    },
-                    {
-                        label: "STANDARD",
-                        field: "standard",
-                        sort: true,
-                        isJson: false,
-                    },
-                    {
-                        label: "AMOUNT",
-                        field: "amount",
-                        sort: true,
-                        isJson: false,
-                    },
-                    {
-                        label: "EXPIRY DATE",
-                        field: "expiry_date",
                         sort: true,
                         isJson: false,
                     },
@@ -54,9 +36,9 @@ export default {
                         field: false,
                         sort: false,
                         actions: {
-                            show: true,
+                            show: false,
                             edit: true,
-                            delete: false,
+                            delete: true,
                         }
                     }
                 ]

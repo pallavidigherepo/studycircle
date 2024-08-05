@@ -6,7 +6,7 @@ import { helpers, required} from "@vuelidate/validators";
 import {useVuelidate} from "@vuelidate/core";
 import store from "@/stores";
 import axiosClient from "@/axios";
-import { Dialog, Menu, slideOver  } from "@/components/Base/Headless";
+import { Dialog, Menu, Slideover } from "@/components/Base/Headless";
 import Button from "@/components/Base/Button";
 import Lucide from "@/components/Base/Lucide";
 import TomSelect from "@/components/Base/TomSelect";
@@ -143,28 +143,29 @@ function cancel() {
 <template>
     <div>
         <!-- BEGIN: Super Large Slide Over Content -->
-        <Dialog
-            size="modal-xl"
+        <Slideover
+            size="xl"
             backdrop="static"
             :slideOver="true"
-            :show="modelValue"
+            :open="modelValue"
             @hidden="modelValue = false"
         >
-            <a
+            
+            
+            <Slideover.Panel>
+                <a
                 @click.prevent="emits('update:modelValue', false)"
                 class="absolute top-0 left-0 right-auto mt-4 -ml-12"
                 href="javascript:;"
-            >
-            
-                <Lucide icon="XIcon" class="w-8 h-8 text-slate-400" />
-            </a>
-            <ModalHeader class="p-5">
-                <h2 class="font-medium text-base mr-auto">
-                    {{ t("inquiries.Follow ups") }}
-                </h2>
-            </ModalHeader>
-            <ModalBody
-            >
+                >
+                
+                    <Lucide icon="XIcon" class="w-8 h-8 text-slate-400" />
+                </a>
+                <Slideover.Title class="p-5">
+                    <h2 class="font-medium text-base mr-auto">
+                        {{ t("inquiries.Follow ups") }}
+                    </h2>
+                </Slideover.Title>
                     <div class="
                         intro-y
                         col-span-12
@@ -208,6 +209,7 @@ function cancel() {
                                 </div>
                                 <!-- END: Followup List Content -->
                                 <!-- BEGIN: Add/Edit permission -->
+                        
                                 <div class="lg:col-span-4 flex">
                                     <div class="intro-y box p-5">
                                         <h2 class="text-lg font-medium mr-auto pt-5 pb-5">
@@ -277,7 +279,7 @@ function cancel() {
                                                     </label>
                                                     <div class="relative w-56">
                                                         <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-slate-100 border text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
-                                                            <Lucide icon="CalendarIcon" class="w-4 h-4" />
+                                                            <Lucide icon="ClockIcon" class="w-4 h-4" />
                                                         </div>
                                                         <FormInput for="form-followup-time"
                                                                v-model="followupModel.followup_time"
@@ -323,13 +325,14 @@ function cancel() {
                                         </form>
                                     </div>
                                 </div>
+                                
                                 <!-- END: Add Followup -->
                             </div>
                             <!-- END: Follow-ups and comments Info -->
                         </div>
                     </div>
-            </ModalBody>
-        </Dialog>
+            </Slideover.Panel>
+        </Slideover>
         <!-- END: Super Large Slide Over Content -->
     </div>
 </template>

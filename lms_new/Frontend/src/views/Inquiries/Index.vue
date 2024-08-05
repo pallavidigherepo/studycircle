@@ -277,15 +277,16 @@ function closeMe()
                                  @click="router.push('/inquiries/create')">
                         {{ t("common.Add New") }}
                     </Button>
+                    <Menu>
                     <div v-if="datatableoptions.export" class="dropdown">
-                        <Button aria-expanded="false" class="dropdown-toggle btn btn-primary ml-2"
+                        <Menu.Button aria-expanded="false" :as="Button" variant="primary" class="dropdown-toggle btn btn-primary ml-2"
                                 data-tw-toggle="dropdown">
                               <span class="flex items-center justify-center">
                                 {{ t("common.Export/Print") }}&nbsp;
                                 <Lucide icon="DownloadIcon" class="w-4 h-4"/>
                               </span>
-                        </Button>
-                        <div class="dropdown-menu w-40">
+                        </Menu.Button>
+                        <Menu.Items class="dropdown-menu w-40">
                             <ul class="dropdown-content">
                                 <!-- <li>
                                     <a href="javascript:;" class="dropdown-item">
@@ -318,17 +319,19 @@ function closeMe()
                                     </a>
                                     </li> -->
                             </ul>
-                        </div>
+                        </Menu.Items>
                     </div>
+                </Menu>
+                <Menu>
                     <div v-if="datatableoptions.import" class="dropdown">
-                        <Button aria-expanded="false" class="dropdown-toggle btn btn-primary ml-2"
+                        <Menu.Button aria-expanded="false" :as="Button" variant="primary" class="dropdown-toggle btn btn-primary ml-2"
                                 data-tw-toggle="dropdown">
                                       <span class="flex items-center justify-center">
                                         {{ t("common.Import") }}&nbsp;
                                         <Lucide icon="UploadIcon" class="w-4 h-4"/>
                                       </span>
-                        </Button>
-                        <div class="dropdown-menu w-40">
+                        </Menu.Button>
+                        <Menu.Items class="dropdown-menu w-40">
                             <ul class="dropdown-content">
                                 <li>
                                     <a class="dropdown-item" href="#" @click.prevent="openModal">
@@ -337,8 +340,9 @@ function closeMe()
                                     </a>
                                 </li>
                             </ul>
-                        </div>
+                        </Menu.Items>
                     </div>
+                </Menu>
                     <div class="hidden md:block mx-auto text-slate-500">
                         <!-- {{ t(module+".Showing") }} {{ permissions.from }}
                             {{ t(module+".to") }} {{ permissions.to }}
@@ -518,104 +522,108 @@ function closeMe()
             </div>
 
             <!-- BEGIN: Modal Content -->
-            <Dialog :show="headerFooterModalPreview"
-                   size="modal-lg"
-                   @hidden="headerFooterModalPreview = false">
-                <ModalHeader>
-                    <h2 class="font-medium text-base mr-auto">
-                        {{ t("common.Import as CSV/Excel") }}
-                    </h2>
-                </ModalHeader>
-                <CustomeAlert v-if="responseMessage"
-                              :errors="responseErrors"
-                              :message="responseMessage"
-                              :status="responseStatus"
-                              class="col-span-12 sm:col-span-6 flex"/>
-                <ModalBody class="grid grid-cols-12 gap-4 gap-y-3">
-                    <div class="col-span-12 sm:col-span-12 text-center">
-                        <slot name="info"></slot>
-                        <div class="upload-btn-wrapper">
-                            <Button class="upload-btn">{{
-                                    t("common.Upload file")
-                                }}
-                            </Button>
-                            <FormInput id="modal-form-1" name="myfile" type="file" @change="importMe($event)"/>
-                        </div>
-                        <div class="col-span-12">
-                            <div
-                                class="alert alert-outline-warning alert-dismissible bg-warning/20 dark:bg-darkmode-400 dark:border-darkmode-400 mt-5 show"
-                                role="alert" style="display: block;">
+            <Dialog :open="headerFooterModalPreview"
+             size="lg"
+             @hidden="headerFooterModalPreview = false">
+          
+          <CustomeAlert v-if="responseMessage"
+                        :errors="responseErrors"
+                        :message="responseMessage"
+                        :status="responseStatus"
+                        class="col-span-12 sm:col-span-6 flex"/>
+          <Dialog.Panel class="grid grid-cols-12 gap-4 gap-y-3">
+            <Dialog.Title>
+              <h2 class="font-medium text-base mr-auto">
+                  {{ t("common.Import as CSV/Excel") }}
+              </h2>
+            </Dialog.Title>
+              <div class="col-span-12 sm:col-span-14 text-center">
+                  <slot name="info"></slot>
+                  <div class="upload-btn-wrapper">
+                      <Button class="upload-btn">{{
+                              t("common.Upload file")
+                          }}
+                      </Button>
+                      <FormInput id="modal-form-1" name="myfile" type="file" @change="importMe($event)"/>
+                  </div>
+                  <div class="col-span-12">
+                      <div
+                          class="alert alert-outline-warning alert-dismissible bg-warning/20 dark:bg-darkmode-400 dark:border-darkmode-400 mt-5 mr-5 show"
+                          role="alert" style="display: block;">
 
-                                <div class="flex items-center"><span><svg class="lucide w-6 h-6 mr-3" fill="none"
-                                                                          height="24"
-                                                                          stroke="currentColor" stroke-linecap="round"
-                                                                          stroke-linejoin="round" stroke-width="2"
-                                                                          viewBox="0 0 24 24"
-                                                                          width="24"
-                                                                          xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z">
-                    </path>
-                    <line x1="12" x2="12" y1="9" y2="13"></line>
-                    <line x1="12" x2="12.01" y1="17" y2="17"></line>
-                  </svg></span><span class="text-slate-800 dark:text-slate-500">Supports CSV and Excel files.</span>
+                          <div class="flex items-center"><span><svg class="lucide w-6 h-6 mr-3" fill="none"
+                                                                    height="24"
+                                                                    stroke="currentColor" stroke-linecap="round"
+                                                                    stroke-linejoin="round" stroke-width="2"
+                                                                    viewBox="0 0 24 24"
+                                                                    width="24"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z">
+                  </path>
+                  <line x1="12" x2="12" y1="9" y2="13"></line>
+                  <line x1="12" x2="12.01" y1="17" y2="17"></line>
+                </svg></span><span class="text-slate-800 dark:text-slate-500">Supports CSV and Excel files.</span>
 
-                                </div>
-                            </div>
+                          </div>
+                      </div>
 
-                            <div class="grid grid-cols-6 gap-6 mt-5">
-                                <div class="col-span-6 sm:col-span-6 xl:col-span-3 intro-y">
-                                    <div class="report-box zoom-in">
-                                        <div class="box p-4">
-                                            <div class="flex text-center justify-center">
+                      <div class="grid grid-cols-6 gap-6 mt-5">
+                          <div class="col-span-6 sm:col-span-6 xl:col-span-3 intro-y">
+                              <div class="report-box zoom-in">
+                                  <div class="box p-4">
+                                      <div class="flex text-center justify-center">
 
-                                                <div class="">
-                                                    <Lucide icon="DownloadCloudIcon"  class="w-10 h-10 ml-0.5"/>
-                                                </div>
-                                            </div>
-                                            <div class="text-base text-slate-500 mt-1">
-                                                <Button class="btn btn-primary h-20"
-                                                        @click.prevent="exportMe('xlsx', true)">
-                                                    {{ t('common.Download Template for EXCEL') }}
-                                                </Button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-span-6 sm:col-span-6 xl:col-span-3 intro-y">
-                                    <div class="report-box zoom-in">
-                                        <div class="box p-5">
-                                            <div class="flex text-center justify-center">
+                                          <div class="">
+                                            <Lucide icon="DownloadCloudIcon" class="w-4 h-4"/>
+                                          </div>
+                                      </div>
+                                      <div class="text-base text-slate-500 mt-1">
+                                          <Button variant="primary" class="btn btn-primary h-20"
+                                                  @click.prevent="exportMe('xlsx', true)">
+                                              {{ t('common.Download Template for EXCEL') }}
+                                          </Button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-span-6 sm:col-span-6 xl:col-span-3 intro-y">
+                              <div class="report-box zoom-in">
+                                  <div class="box p-4">
+                                      <div class="flex text-center justify-center">
 
-                                                <div class="">
-                                                    <Lucide icon="DownloadCloudIcon"  class="w-10 h-10 ml-0.5"/>
-                                                </div>
-                                            </div>
-                                            <div class="text-base text-slate-500 mt-1">
-                                                <Button class="btn btn-primary h-20"
-                                                        @click.prevent="exportMe('csv', true)">
-                                                    {{ t('common.Download Template for CSV') }}
-                                                </Button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                          <div class="">
+                                            <Lucide icon="DownloadCloudIcon" class="w-4 h-4"/>
+                                          </div>
+                                      </div>
+                                      <div class="text-base text-slate-500 mt-1">
+                                          <Button variant="primary" class="btn btn-primary h-20"
+                                                  @click.prevent="exportMe('csv', true)">
+                                              {{ t('common.Download Template for CSV') }}
+                                          </Button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
 
-                        </div>
-                    </div>
-                </ModalBody>
-                <ModalFooter>
-                    <Button id="import-export-cancel-button"
-                            class="btn btn-outline-secondary w-20 mr-1"
-                            type="button"
-                            @click="headerFooterModalPreview = false">
-                        {{ t("common.Cancel") }}
-                    </Button>
-                    <!-- <button type="button" class="btn btn-primary w-20">
-                        {{ t("permissions.Import") }}
-                        </button> -->
-                </ModalFooter>
-            </Dialog>
+                  </div>
+              </div>
+            
+       
+          <Dialog.Footer class="flex justify-start space-x-2">
+              <Button id="import-export-cancel-Button"
+                        variant="outline-secondary"
+                      class="w-20 mr-1"
+                      type="button"
+                      @click="headerFooterModalPreview = false">
+                  {{ t("common.Cancel") }}
+              </Button>
+              <!-- <Button type="button" variant="primary" class="w-20">
+                  {{ t("permissions.Import") }}
+             </Button> -->
+          </Dialog.Footer>
+        </Dialog.Panel>
+      </Dialog>
             <!-- END: Modal Content -->
             <Loading v-if="loading" fixed></Loading>
             <inquiry-followups v-if="isFollowupCalled"
@@ -632,5 +640,27 @@ function closeMe()
 
 </template>
 <style scoped>
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+} 
 
+.upload-btn {
+  border: 2px solid rgb(51, 11, 228);
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+ .upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
 </style>

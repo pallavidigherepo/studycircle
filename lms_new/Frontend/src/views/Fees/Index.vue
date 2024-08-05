@@ -369,33 +369,34 @@ function showTransaction(transaction)
                                     sm:flex-nowrap
                                     items-center
                                     mt-2">
+                            <Menu>
                                 <div v-if="datatableoptions.export" class="dropdown">
-                                    <Button aria-expanded="false" class="dropdown-toggle btn btn-primary ml-2"
+                                    <Menu.Button aria-expanded="false" :as="Button" variant="primary" class="dropdown-toggle btn btn-primary ml-2"
                                             data-tw-toggle="dropdown">
                                       <span class="flex items-center justify-center">
                                         {{ t("common.Export/Print") }}&nbsp;
-                                        <DownloadIcon class="w-4 h-4"/>
+                                        <Lucide icon="DownloadIcon" class="w-4 h-4 mr-2"/>
                                       </span>
-                                    </Button>
-                                    <div class="dropdown-menu w-40">
+                                    </Menu.Button>
+                                    <Menu.Items class="dropdown-menu w-40">
                                         <ul class="dropdown-content">
                                             <!-- <li>
                                                 <a href="javascript:;" class="dropdown-item">
-                                                    <PrinterIcon class="w-4 h-4 mr-2" />
+                                                    <Lucide icon="FileText" class="w-4 h-4 mr-2"/>
                                                     {{ t("permissions.Print") }}
                                                 </a>
                                                 </li> -->
                                             <li>
                                                 <a class="dropdown-item" href="javascript:;"
                                                    @click.prevent="exportMe('xlsx')">
-                                                    <FileTextIcon class="w-4 h-4 mr-2"/>
+                                                   <Lucide icon="FileText" class="w-4 h-4 mr-2"/>
                                                     {{ t("common.Export to Excel") }}
                                                 </a>
                                             </li>
                                             <li>
                                                 <a class="dropdown-item" href="javascript:;"
                                                    @click.prevent="exportMe('csv')">
-                                                    <FileTextIcon class="w-4 h-4 mr-2"/>
+                                                   <Lucide icon="FileText" class="w-4 h-4 mr-2"/>
                                                     {{ t("common.Export to CSV") }}
                                                 </a>
                                             </li>
@@ -410,28 +411,32 @@ function showTransaction(transaction)
                                                 </a>
                                                 </li> -->
                                         </ul>
-                                    </div>
+                                    </Menu.Items>
                                 </div>
+                            </Menu>
+                            <Menu>
                                 <div v-if="datatableoptions.import" class="dropdown">
-                                    <Button aria-expanded="false" class="dropdown-toggle btn btn-primary ml-2"
+                                    <Menu.Button aria-expanded="false" class="dropdown-toggle btn btn-primary ml-2"
                                             data-tw-toggle="dropdown">
                                       <span class="flex items-center justify-center">
                                         {{ t("common.Import") }}&nbsp;
-                                        <UploadIcon class="w-4 h-4"/>
+                                        <Lucide icon="UploadIcon" class="w-4 h-4"/>
                                       </span>
-                                    </Button>
-                                    <div class="dropdown-menu w-40">
+                                    </Menu.Button>
+                                    <Menu.Items class="dropdown-menu w-40">
                                         <ul class="dropdown-content">
                                             <li>
                                                 <a class="dropdown-item" href="#" @click.prevent="openModal">
-                                                    <FileTextIcon class="w-4 h-4 mr-2"/>
+                                                    <Lucide icon="FileText" class="w-4 h-4 mr-2"/>
                                                     {{ t("common.CSV/Excel") }}
                                                 </a>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </Menu.Items>
                                 </div>
+                            </Menu>
                             </div>
+                            
                             <div class="
                                     intro-y
                                     col-span-12
@@ -441,7 +446,8 @@ function showTransaction(transaction)
                                     mt-2
                                   ">
                                 <h2>
-                                    <FilterIcon></FilterIcon>
+                                    <Lucide icon="FilterIcon" class="w-6 h-6 mr-2"/>
+                                        <!-- <FilterIcon></FilterIcon> -->
                                 </h2>
                                 <div class="md:block mx-auto text-slate-500">
                                     <div class="grid grid-cols-12 gap-6">
@@ -729,17 +735,17 @@ function showTransaction(transaction)
                                 >
                                     <XIcon class="w-8 h-8 text-slate-400"/>
                                 </a>
-                                <ModalHeader>
+                                <Dialog.Title>
                                     <h2 class="font-medium text-base mr-auto">
                                         {{ t("fees.Pay") }}
                                     </h2>
-                                </ModalHeader>
+                                </Dialog.Title>
                                 <!--                                <CustomeAlert v-if="responseMessage"
                                                                               :errors="responseErrors"
                                                                               :message="responseMessage"
                                                                               :status="responseStatus"
                                                                               class="col-span-12 sm:col-span-6 flex"/>-->
-                                <ModalBody class="grid grid-cols-12 gap-4 gap-y-3 intro-y">
+                                <Dialog.Panel class="grid grid-cols-12 gap-4 gap-y-3 intro-y">
                                     <!-- BEGIN: Transaction Details -->
                                     <div class="col-span-12 lg:col-span-12 2xl:col-span-12">
                                         <div class="p-5 rounded-md box">
@@ -977,8 +983,8 @@ function showTransaction(transaction)
                                                                                 </AccordionGroup>-->
                                     </div>
                                     <!-- END: Transaction Details -->
-                                </ModalBody>
-                                <ModalFooter>
+                                
+                                <Dialog.Footer>
                                     <Button id="import-export-cancel-button"
                                             class="btn btn-outline-secondary w-20 mr-1"
                                             type="button"
@@ -988,19 +994,20 @@ function showTransaction(transaction)
                                     <!-- <button type="button" class="btn btn-primary w-20">
                                         {{ t("permissions.Import") }}
                                         </button> -->
-                                </ModalFooter>
+                                </Dialog.Footer>
+                            </Dialog.Panel>
                             </Dialog>
                             <!-- END: Modal Content -->
                             <!-- BEGIN: Modal Content For Transaction -->
                             <Dialog :show="showTransactionHistory"
-                                   size="modal-xl"
+                                   size="xl"
                                    @hidden="showTransactionHistory = false">
-                                <ModalHeader>
+                                <Dialog.Title>
                                     <h2 class="font-medium text-base mr-auto">
                                         {{ t("fees.Transaction List") }}
                                     </h2>
-                                </ModalHeader>
-                                <ModalBody class="grid grid-cols-12 gap-4 gap-y-3 intro-y">
+                                </Dialog.Title>
+                                <Dialog.Panel class="grid grid-cols-12 gap-4 gap-y-3 intro-y">
                                     <template v-if="studentFeeTransactions">
                                         <div class="col-span-12 lg:col-span-12 2xl:col-span-12">
                                             <div class="p-5 rounded-md box">
@@ -1070,17 +1077,17 @@ function showTransaction(transaction)
                                             <!-- END: Transaction Details -->
                                         </div>
                                     </template>
-                                </ModalBody>
+                                </Dialog.Panel>
                             </Dialog>
                             <Dialog :show="showInvoiceModal"
                                    size="modal-xl"
                                    @hidden="showInvoiceModal = false">
-                                <ModalHeader>
+                                <Dialog.Title>
                                     <h2 class="font-medium text-base mr-auto">
                                         {{ t("fees.Invoice") }}
                                     </h2>
-                                </ModalHeader>
-                                <ModalBody class="intro-y box overflow-hidden mt-5">
+                                </Dialog.Title>
+                                <Dialog.Panel class="intro-y box overflow-hidden mt-5">
                                     <div id="div-to-print" v-if="printTransaction">
                                         <div
                                             class="border-slate-200/60 dark:border-darkmode-400 text-center sm:text-left"
@@ -1130,7 +1137,7 @@ function showTransaction(transaction)
                                             </div>
                                         </div>
                                     </div>
-                                </ModalBody>
+                                </Dialog.Panel>
                             </Dialog>
                             <!-- END: Modal Content -->
                             <Loading v-if="loading" fixed></Loading>

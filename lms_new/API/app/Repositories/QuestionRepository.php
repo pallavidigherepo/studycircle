@@ -7,6 +7,7 @@ use App\Repositories\Interfaces\QuestionRepositoryInterface;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Http\Requests\UpdateQuestionRequest;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class QuestionRepository implements QuestionRepositoryInterface
 {
@@ -184,7 +185,7 @@ class QuestionRepository implements QuestionRepositoryInterface
         return response()->json($response);
     }
 
-    public function __importQuestionInBulk()
+    public function __importQuestionInBulk($request)
     {
         try {
             $file = $request->file('import')->store('import');

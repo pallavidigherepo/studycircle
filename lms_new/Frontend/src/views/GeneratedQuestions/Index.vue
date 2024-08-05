@@ -309,7 +309,7 @@ function deleteI(item) {
         :show="deleteConfirmationModal"
         @hidden="deleteConfirmationModal = false"
     >
-        <ModalBody class="p-0">
+        <Dialog.Panel class="p-0">
             <div class="p-5 text-center">
                 <XCircleIcon class="w-16 h-16 text-danger mx-auto mt-3" />
                 <div class="text-3xl mt-5">Are you sure?</div>
@@ -319,16 +319,17 @@ function deleteI(item) {
                 </div>
             </div>
             <div class="px-5 pb-8 text-center">
-                <button
+                <Button
+                    variant="outline-secondary"
                     type="button"
                     @click="deleteConfirmationModal = false"
                     class="btn btn-outline-secondary w-24 mr-1"
                 >
                     Cancel
-                </button>
-                <button type="button" class="btn btn-danger w-24">Delete</button>
+                </Button>
+                <Button variant="danger" type="button" class="btn btn-danger w-24">Delete</Button>
             </div>
-        </ModalBody>
+        </Dialog.Panel>
     </Dialog>
     <!-- END: Delete Confirmation Modal -->
 </div>

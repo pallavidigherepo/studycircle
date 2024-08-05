@@ -113,7 +113,7 @@ class SubjectRepository implements SubjectRepositoryInterface
         return response()->json($response);
     }
 
-    public function delete($Subject)
+    public function delete($subject)
     {
         $response = [
             'success' => false,
