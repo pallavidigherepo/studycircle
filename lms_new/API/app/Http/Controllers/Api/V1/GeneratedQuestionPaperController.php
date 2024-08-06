@@ -52,7 +52,7 @@ class GeneratedQuestionPaperController extends Controller
      * @param  GeneratedQuestionPaper  $generatedQuestionPaper
      * @return \Illuminate\Http\Response
      */
-    public function show(int $generatedQuestionPaper)
+    public function show(int $id)
     {
         return GeneratedQuestionPaperResource::make(GeneratedQuestionPaper::findOrFail($id));
     }

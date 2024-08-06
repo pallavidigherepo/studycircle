@@ -1300,7 +1300,7 @@ function makeid(length) {
                                                 <Button class="btn btn-outline-primary border-dashed w-full"
                                                         type="button"
                                                         @click="addQuestion()">
-                                                    <PlusIcon class="w-4 h-4 mr-2"/>
+                                                        <Lucide icon="PlusIcon" class="w-4 h-4 mr-2" />
                                                     {{ t("questions.Add Question") }}
                                                 </Button>
                                             </div>
@@ -1325,7 +1325,7 @@ function makeid(length) {
                                                 <Button v-if="showAnswerButton == true"
                                                         class="btn btn-outline-primary border-dashed w-full"
                                                         type="button" @click="addAnswer()">
-                                                    <PlusIcon class="w-4 h-4 mr-2"/>
+                                                        <Lucide icon="PlusIcon" class="w-4 h-4 mr-2" />
                                                     {{ t("questions.Add Answer") }}
                                                 </Button>
                                             </div>
@@ -1353,7 +1353,7 @@ function makeid(length) {
                                         <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
                                             <Button class="btn btn-outline-primary border-dashed w-full" type="button"
                                                     @click="addQuestion()">
-                                                <PlusIcon class="w-4 h-4 mr-2"/>
+                                                    <Lucide icon="PlusIcon" class="w-4 h-4 mr-2" />
                                                 {{ t("questions.Add Question") }}
                                             </Button>
                                         </div>

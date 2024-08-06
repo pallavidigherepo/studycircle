@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, defineProps, computed } from "vue";
 import TomSelect from "@/components/Base/TomSelect";
 import { FormInput, FormSelect, FormCheck, FormTextarea } from "@/components/Base/Form";
 import Lucide from "@/components/Base/Lucide";
@@ -7,6 +7,7 @@ import Button from "@/components/Base/Button";
 import { Dialog, Menu } from "@/components/Base/Headless";
 import Table from "@/components/Base/Table";
 import ListQuestion from "@/components/GeneratedQuestionPaper/ListQuestion.vue";
+import Alert from "@/components/Base/Alert";
 
 import {useI18n} from "vue-i18n";
 import {useRoute, useRouter} from "vue-router";
@@ -51,44 +52,48 @@ function assignToStudent(item) {
                 {{ t("templates.Preview Generated Question Paper") }}
             </h2>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-                <Button class="btn mr-2 btn-warning-soft"
+                <Button variant="soft-pending" class="btn mr-2 btn-warning-soft"
                         v-if="!isCreate"
                         @click.prevent="assignToStudent(data)"
                         >
                         <Lucide icon="UsersIcon" class="w-4 h-4 mr-2" />
                     {{ t("generated_questions.Assign") }}
                 </Button>
-                <Button class="btn mr-2"
+                <Button variant="soft-primary" class="btn mr-2"
                         v-if="!isCreate"
                         @click.prevent="printGeneratedQuestion(false)"
                         :class="!showPreviewForTeacher ? 'btn-primary' : 'btn-primary-soft'">
                         <Lucide icon="PrinterIcon" class="w-4 h-4 mr-2" />
                     {{ t("generated_questions.Preview and Print for Student") }}
                 </Button>
-                <Button class="btn mr-2 btn-primary"
+                <Button variant="primary" class="btn mr-2 btn-primary"
                         v-if="!isCreate"
                         @click.prevent="printGeneratedQuestion(true)"
                         :class="showPreviewForTeacher ? 'btn-primary' : 'btn-primary-soft'">
                         <Lucide icon="PrinterIcon" class="w-4 h-4 mr-2" />
                     {{ t("generated_questions.Preview and Print for Teacher") }}
                 </Button>
-                <a href="javascript:;"
+                <Button 
                    @click.prevent="emits('back', preview)"
                    class="btn box text-gray-700 dark:text-gray-300 mr-2 flex items-center ml-auto sm:ml-0">
                    <Lucide icon="ArrowLeftCircleIcon" class="w-4 h-4 mr-2" />
                     {{ t("common.Back") }}
-                </a>
+                </Button>
             </div>
         </div>
-        <info :typeClass="'alert-primary'"
-              :message="'templates.Text message which is highlighted in blue is Solution OR Explanation of question'"/>
+        <Alert variant="primary" class="flex items-center mb-2 mt-2">
+                <Lucide icon="AlertCircle" class="w-6 h-6 mr-2" />
+                Text message which is highlighted in blue is Solution OR Explanation of question
+        </Alert>
+        <!-- <info :typeClass="'alert-primary'"
+              :message="'templates.Text message which is highlighted in blue is Solution OR Explanation of question'"/> -->
         <div class="intro-y box overflow-hidden mt-5" id="section-to-print">
             <div
                 class="border-b border-slate-200/60 dark:border-darkmode-400 text-center sm:text-left"
             >
                 <div class="flex flex-col lg:flex-row sm:px-1 pt-1 pb-1 sm:pb-10 border-b">
                     <div class="h-full p-5 items-center ">
-                        <div class="font-semibold text-2xl">{{ userInfo.name }}</div>
+                        <div class="font-semibold text-2xl">{{ data.name }}</div>
                     </div>
                     <div class=" mt-10 lg:mt-0 lg:ml-auto text-center">
                         <div class="text-lg font-medium mt-2">{{ data.name }}</div>

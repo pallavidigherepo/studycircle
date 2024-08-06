@@ -63,9 +63,10 @@ const template = computed(() => store.getters['templates/template']);
                 </router-link>-->
                 <router-link v-if="template"
                              :to="{name: 'PaperGenerator', params: {id: template.id}}"
-                             class="
+                             class="text-white
+                                box
                                 btn
-                                btn-primary
+                                bg-primary
                                 mr-2
                                 flex
                                 items-center
@@ -77,9 +78,10 @@ const template = computed(() => store.getters['templates/template']);
                 </router-link>
                 <router-link v-if="template"
                              :to="{name: 'EditTemplate', params:{id:template.id}}"
-                             class="
+                             class="text-white
+                                    box
                                     btn
-                                    btn-success
+                                    bg-success
                                     mr-2
                                     flex
                                     items-center

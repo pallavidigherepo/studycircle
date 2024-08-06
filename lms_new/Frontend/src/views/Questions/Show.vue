@@ -53,16 +53,16 @@ const question = computed(() => store.getters['questions/question']);
       <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
           <router-link v-if="question"
                        :to="{ name: 'EditQuestion', params: { id:question.id } }"
-                       class="
+                       class="box
                             btn
-                            btn-success
+                            bg-success
                             mr-2
                             flex
                             items-center
                             ml-auto
                             sm:ml-0
                           ">
-              <EditIcon class="w-4 h-4 mr-2"/>
+              <Lucide icon="EditIcon" class="w-4 h-4 mr-2"/>
               {{ t("questions.Edit Question") }}
           </router-link>
           <Button
@@ -104,7 +104,7 @@ const question = computed(() => store.getters['questions/question']);
                   </div>
                 </div>
                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                  {{ question ? question.board.name: null }}
+                  {{ question ? question.board : null }}
                 </div>
               </div>
               <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
@@ -119,7 +119,7 @@ const question = computed(() => store.getters['questions/question']);
                   </div>
                 </div>
                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                  {{ question? question.standard.name: null }}
+                  {{ question ? question.standard : null }}
                 </div>
               </div>
             </div>
@@ -147,7 +147,7 @@ const question = computed(() => store.getters['questions/question']);
                   </div>
                 </div>
                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                  {{ question ? JSON.parse(question.difficulty_level.name): null }}
+                  {{ question ? question.difficulty_level_id: null }}
                 </div>
               </div>
               <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
@@ -191,7 +191,7 @@ const question = computed(() => store.getters['questions/question']);
                   </div>
                 </div>
                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                  {{ question ? JSON.parse(question.subject.label): null }}
+                  {{ question ? (question.subject): null }}
                 </div>
               </div>
               <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
@@ -207,7 +207,7 @@ const question = computed(() => store.getters['questions/question']);
                   </div>
                 </div>
                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                  {{ question ? JSON.parse(question.chapter.label): null }}
+                  {{ question ? (question.chapter): null }}
                 </div>
               </div>
               <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
@@ -222,7 +222,7 @@ const question = computed(() => store.getters['questions/question']);
                   </div>
                 </div>
                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                  {{ question ? JSON.parse(question.topic.label): null }}
+                  {{ question ? (question.topic): null }}
                 </div>
               </div>
             </div>
@@ -334,7 +334,7 @@ const question = computed(() => store.getters['questions/question']);
                   </div>
                 </div>
                 <div class="w-full mt-3 xl:mt-0 flex-1">
-                  {{ question ? JSON.parse(question.question_type.name): null }}
+                  {{ question ? (question.type): null }}
                 </div>
               </div>
               <div class="form-inline  flex items-start flex-col xl:flex-row mt-2 pt-2 first:mt-0 first:pt-0"

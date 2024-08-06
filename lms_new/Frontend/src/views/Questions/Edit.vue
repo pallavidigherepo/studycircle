@@ -13,8 +13,8 @@ import { required, helpers } from "@vuelidate/validators";
 import { useI18n } from "vue-i18n";
 import axiosClient from "@/axios";
 import Editor from "@tinymce/tinymce-vue";
-// import AnswerEditor from "@/components/Editor/Answer.vue";
-// import QuestionEditor from "@/components/Editor/Question.vue";
+import AnswerEditor from "@/components/Editor/Answer.vue";
+import QuestionEditor from "@/components/Editor/Question.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -65,8 +65,8 @@ const fetch = async() => {
             const error = new Error('Failed to fetch question')
             throw error;
         }
-        model.value = JSON.parse(JSON.stringify(result.data));
-        model.value.answers = result.data.answers;
+        model.value = JSON.parse(JSON.stringify(result.data.data));
+        model.answers = result.data.answers;
         selectedType.value = result.data.type_id;
         selectedBoard(model.value.board_id);
         // Once all the data is populated, we have to get list of all the chapters of selected subject
@@ -868,7 +868,7 @@ function makeid(length) {
                       <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
                         <Button variant="outline-primary" class="btn btn-outline-primary border-dashed w-full" type="button"
                           @click="addQuestion()">
-                          <PlusIcon class="w-4 h-4 mr-2" /> {{ t("questions.Add Question") }}
+                          <Lucide icon="PlusIcon" class="w-4 h-4 mr-2" /> {{ t("questions.Add Question") }}
                         </Button>
                       </div>
                       <div v-for="(question, index) in model.questions" :key="question.id">
@@ -884,7 +884,7 @@ function makeid(length) {
                       <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
                         <Button variant="outline-primary" class="btn btn-outline-primary border-dashed w-full" type="button"
                           v-if="showAnswerButton == true" @click="addAnswer()">
-                          <PlusIcon class="w-4 h-4 mr-2" /> {{ t("questions.Add Answer") }}
+                          <Lucide icon="PlusIcon" class="w-4 h-4 mr-2" /> {{ t("questions.Add Answer") }}
                         </Button>
                       </div>
 

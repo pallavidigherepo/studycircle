@@ -39,7 +39,7 @@ export default {
             .get(`/questions/${id}`)
             .then(({ data }) => {
                 console.log(data)
-                commit('VIEW_QUESTION', data);
+                commit('VIEW_QUESTION', data.data);
                 return data;
             });
     },

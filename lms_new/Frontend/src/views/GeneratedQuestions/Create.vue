@@ -13,7 +13,7 @@ import Lucide from "@/components/Base/Lucide";
 import Button from "@/components/Base/Button";
 import { Dialog, Menu } from "@/components/Base/Headless";
 import Table from "@/components/Base/Table";
-// import Preview from "@/components/GeneratedQuestionPaper/Preview.vue";
+import Preview from "@/components/GeneratedQuestionPaper/Preview.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -566,11 +566,11 @@ function back() {
                                                                     <div class="form-label xl:!mr-10">
                                                                         {{ t("generated_questions.Fetch questions") }}
                                                                     </div>
-                                                                    <Button class="btn btn-primary"
+                                                                    <Button variant="primary" class="btn btn-primary"
                                                                             @click.prevent="fetchQuestions(section, index)">
                                                                         {{ t("generated_questions.Fetch Questions Automatically") }}
                                                                     </Button>
-                                                                    <Button class="btn btn-primary ml-5"
+                                                                    <Button variant="primary" class="btn btn-primary ml-5"
                                                                             @click.prevent="fetchQuestions(section, index)">
                                                                         {{ t("generated_questions.Fetch Questions Manually") }}
                                                                     </Button>
@@ -678,7 +678,7 @@ function back() {
                                                                type="checkbox"
                                                         />
                                                         <span class="ml-2">Manual</span>
-                                                        <Button class="btn btn-primary ml-5"
+                                                        <Button variant="primary" class="btn btn-primary ml-5"
                                                                 @click.prevent="fetchQuestions()">
                                                             {{ t("templates.Fetch Questions") }}
                                                         </Button>
@@ -757,24 +757,25 @@ function back() {
 
                 </div>
                 <div class="flex justify-end flex-col md:flex-row gap-2 mt-5">
-                    <router-link
+                    <Button
+                        variant="secondary"
                         class="btn py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 w-full md:w-52"
-                        to="/templates">
+                        @click="router.push('/templates')">
                         {{ t("common.Cancel") }}
-                    </router-link>
+                    </Button>
 
-                    <button class="btn py-3 btn-primary w-full md:w-52" type="submit" @click="isOnline = true">
+                    <Button variant="primary" class="btn py-3 btn-primary w-full md:w-52" type="submit" @click="isOnline = true">
                         {{ t("generated_questions.Preview Generated Paper In Online Mode") }}
-                    </button>
+                    </Button>
 
-                    <button class="btn py-3 btn-primary w-full md:w-52" type="submit" @click="isOnline = false">
+                    <Button variant="primary" class="btn py-3 btn-primary w-full md:w-52" type="submit" @click="isOnline = false">
                         {{ t("generated_questions.Preview Generated Paper In Offline Mode") }}
-                    </button>
+                    </Button>
                 </div>
             </form>
             <!-- BEGIN: Modal Content -->
             <Dialog :show="warningModalPreview" @hidden="warningModalPreview = false">
-                <ModalBody class="p-0">
+                <Dialog.Panel class="p-0">
                     <div class="p-5 text-center">
                         <XCircleIcon class="w-16 h-16 text-warning mx-auto mt-3"/>
                         <div class="text-3xl mt-5">Oops...</div>
@@ -783,11 +784,11 @@ function back() {
                         </div>
                     </div>
                     <div class="px-5 pb-8 text-center">
-                        <button type="button" @click="warningModalPreview = false" class="btn w-24 btn-primary">
+                        <Button type="button" @click="warningModalPreview = false" class="btn w-24 btn-primary">
                             Ok
-                        </button>
+                        </Button>
                     </div>
-                </ModalBody>
+                </Dialog.Panel>
             </Dialog>
             <!-- END: Modal Content -->
         </template>
@@ -801,15 +802,24 @@ function back() {
                      @back="back" />
 
             <div class="flex justify-end flex-col md:flex-row gap-2 mt-5">
-                <router-link
-                    class="btn py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 w-full md:w-52"
-                    to="/templates">
+                <Button
+                    variant="secondary"
+                    class="
+                            box
+                            mr-2
+                            flex
+                            items-center
+                            ml-auto
+                            sm:ml-0
+                        "
+                    @click="router.push('/templates')"
+                >
                     {{ t("common.Cancel") }}
-                </router-link>
+                </Button>
 
-                <button class="btn py-3 btn-primary w-full md:w-52" type="button" @click="submitForm(false)">
+                <Button variant="primary" class="btn py-3 btn-primary w-full md:w-52" type="button" @click="submitForm(false)">
                     {{ t("templates.Generate Paper") }}
-                </button>
+                </Button>
             </div>
         </template>
         <Loading v-if="isLoading" fixed></Loading>

@@ -188,6 +188,14 @@ class QuestionRepository implements QuestionRepositoryInterface
     public function __importQuestionInBulk($request)
     {
         try {
+            // if (!$request->hasFile('import')) {
+            //     return [
+            //         'success' => false,
+            //         'message' => 'No file uploaded.',
+            //         'failures' => null,
+            //     ];
+            // }
+    
             $file = $request->file('import')->store('import');
             $importClass = "App\\Imports\\QuestionImport";
             $import = new $importClass($request);

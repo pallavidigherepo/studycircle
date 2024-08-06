@@ -1,7 +1,7 @@
 <?php
 namespace App\Services\GeneratedQuestionPaper;
 
-use App\Http\Requests\StoreGeneratedQuestionPaperRequest;
+use App\Http\Requests\GeneratedQuestionPaperRequest;
 use App\Models\GeneratedQuestionPaper;
 use App\Repositories\Interfaces\GeneratedQuestionPaperRepositoryInterface;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class GeneratedQuestionPaperService
     }
 
 
-    public function create(StoreGeneratedQuestionPaperRequest $request)
+    public function create(GeneratedQuestionPaperRequest $request)
     {
 
         return $this->generatedQuestionPaperRepository->create($request);
