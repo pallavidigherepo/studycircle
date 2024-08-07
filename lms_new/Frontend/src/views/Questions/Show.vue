@@ -367,11 +367,11 @@ const question = computed(() => store.getters['questions/question']);
                       </div>
 
                       <div class="mt-5">
-                        <table class="table">
-                            <tr v-for="answer in question.answers" :key="answer.id">
-                                <td class="whitespace-nowrap">{{answer.answer}}<span class="ml-5 btn btn-success" v-if="answer.is_correct">Correct</span></td>
-                            </tr>
-                        </table>
+                        <Table class="table">
+                            <Table.Tr v-for="answer in question.answers" :key="answer.id">
+                                <Table.Td class="whitespace-nowrap">{{answer.answer}}<span class="ml-5 btn bg-success" v-if="answer.is_correct">Correct</span></Table.Td>
+                            </Table.Tr>
+                        </Table>
                         <div v-for="answer in question.answers" :key="answer.id">
                           <div class="flex"></div>
                         </div>
