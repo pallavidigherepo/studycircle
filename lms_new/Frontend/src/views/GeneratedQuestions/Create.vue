@@ -8,7 +8,7 @@ import axiosClient from "@/axios";
 import {useVuelidate} from "@vuelidate/core";
 import {helpers, minLength, minValue, numeric, required, requiredIf} from "@vuelidate/validators";
 import TomSelect from "@/components/Base/TomSelect";
-import { FormInput, FormSelect, FormCheck, FormTextarea } from "@/components/Base/Form";
+import { FormInput, FormSelect, FormCheck, FormTextarea, FormSwitch } from "@/components/Base/Form";
 import Lucide from "@/components/Base/Lucide";
 import Button from "@/components/Base/Button";
 import { Dialog, Menu } from "@/components/Base/Headless";
@@ -35,6 +35,7 @@ const preview = ref(false);
 const successModalPreview = ref(false);
 let warningModalPreview = ref(false);
 const isOnline = ref(false);
+const loading = ref(false);
 
 const warningMessage = ref("");
 const model = ref({
@@ -162,6 +163,29 @@ async function fetchQuestions(section, index) {
         }
     }
 }
+
+// const fetchQuestionsAutomatically = async (section, index) => {
+//     try {
+//         loading.value = true;
+//         const response = await axiosClient.get('/questions', {
+//             params: {
+//                 sectionId: section.id,
+//                 index: index,
+//             },
+//         });
+
+//         // Update the questions in your model
+//         // Replace `model.generated_questions` with the actual model you are using
+//         model.generated_questions.sections[index].questions = response.data.questions;
+
+//         // Handle successful fetch if needed
+//     } catch (error) {
+//         warningMessage.value = 'An error occurred while fetching questions.';
+//         warningModalPreview.value = true;
+//     } finally {
+//         loading.value = false;
+//     }
+// };
 
 const rules = computed(() => {
     return {
@@ -363,9 +387,9 @@ function back() {
                                     </div>
                                     <div class="mt-5">
                                         <div
-                                            class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                            class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{
                                                                 t("templates.Paper Name")
@@ -392,9 +416,9 @@ function back() {
                                             </div>
                                         </div>
                                         <div v-if="template && !template.has_section"
-                                             class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                                class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{
                                                                 t("questions.Choose Difficulty Level")
@@ -431,9 +455,9 @@ function back() {
                                             </div>
                                         </div>
                                         <div
-                                            class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                            class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{
                                                                 t("templates.Subject")
@@ -469,9 +493,9 @@ function back() {
                                             </div>
                                         </div>
                                         <div
-                                            class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                            class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{
                                                                 t("templates.Chapter")
@@ -501,9 +525,9 @@ function back() {
                                             </div>
                                         </div>
                                         <div
-                                            class="form-inline items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
-                                            <div class="form-label xl:w-64 xl:!mr-10">
-                                                <div class="text-left">
+                                            class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                                            <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                                                <div class="text-left flex-grow">
                                                     <div class="flex items-center">
                                                         <div class="font-medium">{{
                                                                 t("templates.Topic")
@@ -554,7 +578,7 @@ function back() {
                                                         <div>
                                                             <div class="mt-3 font-medium">{{ section.name }}</div>
                                                             <div class="mt-3">{{ section.description }}</div>
-                                                            <div class="mt-3">
+                                                            <div class="flex mt-3">
                                                                 <div class="form-label xl:!mr-10">
                                                                     {{ t("templates.Question Type") }}
                                                                 </div>
@@ -562,7 +586,7 @@ function back() {
                                                             </div>
                                                             <div class="mt-3">
 
-                                                                <div class="form-check form-switch">
+                                                                <div class="form-check flex form-switch">
                                                                     <div class="form-label xl:!mr-10">
                                                                         {{ t("generated_questions.Fetch questions") }}
                                                                     </div>
@@ -571,7 +595,7 @@ function back() {
                                                                         {{ t("generated_questions.Fetch Questions Automatically") }}
                                                                     </Button>
                                                                     <Button variant="primary" class="btn btn-primary ml-5"
-                                                                            @click.prevent="fetchQuestions(section, index)">
+                                                                            @click.prevent="fetchQuestions()">
                                                                         {{ t("generated_questions.Fetch Questions Manually") }}
                                                                     </Button>
                                                                 </div>
@@ -639,7 +663,7 @@ function back() {
                                                                                 <a class="text-danger items-center"
                                                                                    href="javascript:;"
                                                                                    @click.prevent="removeQuestion(question, index, qidx)">
-                                                                                    <Trash2Icon class="w-4 h-4 mr-1"/>
+                                                                                    <Lucide icon="Trash2Icon" class="w-4 h-4 mr-1"/>
                                                                                 </a>
                                                                             </div>
                                                                         </Table.Td>
@@ -668,12 +692,12 @@ function back() {
 
                                             <div class="flex items-center">
                                                 <div class="mt-3">
-                                                    <div class="form-check form-switch">
+                                                    <div class="form-check flex form-switch">
                                                         <div class="form-label xl:!mr-10">
                                                             {{ t("templates.Section questions") }}
                                                         </div>
                                                         <span class="mr-2">Auto</span>
-                                                        <FormCheck.Input id="form-is-active"
+                                                        <FormSwitch.Input id="form-is-active"
                                                                class="form-check-input"
                                                                type="checkbox"
                                                         />
@@ -729,7 +753,7 @@ function back() {
                                                                     <a class="text-danger items-center"
                                                                        href="javascript:;"
                                                                        @click.prevent="removeQuestion(question)">
-                                                                        <Trash2Icon class="w-4 h-4 mr-1"/>
+                                                                       <Lucide icon="Trash2Icon" class="w-4 h-4 mr-1"/>
                                                                     </a>
                                                                 </div>
                                                             </Table.Td>
@@ -774,15 +798,24 @@ function back() {
                 </div>
             </form>
             <!-- BEGIN: Modal Content -->
-            <Dialog :show="warningModalPreview" @hidden="warningModalPreview = false">
+            <Dialog :open="warningModalPreview" @hidden="warningModalPreview = false">
                 <Dialog.Panel class="p-0">
                     <div class="p-5 text-center">
-                        <XCircleIcon class="w-16 h-16 text-warning mx-auto mt-3"/>
-                        <div class="text-3xl mt-5">Oops...</div>
+                        <!-- <Lucide icon="XCircleIcon" class="w-16 h-16 text-warning mx-auto mt-3"/> -->
+                        <!-- <div class="text-3xl mt-5">Oops...</div>
                         <div class="text-slate-500 mt-2">
                             {{ warningMessage }}
+                        </div> -->
+                        <!-- <div v-if="loading" class="text-3xl mt-5">Fetching questions...</div>
+                    
+                    <div v-if="loading && fetchedQuestions.length > 0" class="text-slate-500 mt-2">
+                        <div v-for="(question, idx) in fetchedQuestions" :key="idx">
+                            <div>Question: {{ question.question_name }}</div>
+                            <div>Marks: {{ question.marks }}</div>
+                            <div>Negative Marks: {{ question.negative_marks }}</div>
                         </div>
-                    </div>
+                    </div> -->
+                </div>
                     <div class="px-5 pb-8 text-center">
                         <Button type="button" @click="warningModalPreview = false" class="btn w-24 btn-primary">
                             Ok
