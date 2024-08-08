@@ -6,7 +6,7 @@ import TomSelect from "@/components/Base/TomSelect";
 import { FormInput, FormSelect, FormCheck, FormSwitch } from "@/components/Base/Form";
 import Lucide from "@/components/Base/Lucide";
 import Button from "@/components/Base/Button";
-import { ClassicEditor } from "@/components/Base/Ckeditor";
+// import { ClassicEditor } from "@/components/Base/Ckeditor";
 
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
@@ -248,7 +248,7 @@ async function submitForm() {
   }
 }
 
-function addQuestion(index) {
+function addQuestion(index: number) {
   const newQuestion = {
     id: makeid(3),
     type_id: "",
@@ -261,10 +261,10 @@ function addQuestion(index) {
   };
   model.value.questions.splice(index, 0, newQuestion);
 }
-function deleteQuestion(question) {
+function deleteQuestion(question: any) {
   model.value.questions = model.value.questions.filter((q) => q !== question);
 }
-function questionChange(question) {
+function questionChange(question: { id: any; }) {
   model.value.questions = model.value.questions.map((q) => {
     if (q.id === question.id) {
       return JSON.parse(JSON.stringify(question));
@@ -273,7 +273,7 @@ function questionChange(question) {
   });
 }
 
-function addAnswer(index) {
+function addAnswer(index: number) {
   if (selectedType.value == 5) {
     //return ;
   } else {
@@ -287,10 +287,10 @@ function addAnswer(index) {
 
 }
 
-function deleteAnswer(answer) {
+function deleteAnswer(answer: any) {
   model.value.answers = model.value.answers.filter((q) => q !== answer);
 }
-function changeType(type) {
+function changeType(type: string|number) {
   selectedType.value = type;
   if (type == 5) {
     //  showAnswerButton.value = false;
@@ -299,7 +299,7 @@ function changeType(type) {
   }
 }
 
-function answerChange(answer) {
+function answerChange(answer: { id: any; }) {
   model.value.answers = model.value.answers.map((q) => {
     if (q.id === answer.id) {
       return JSON.parse(JSON.stringify(answer));
@@ -308,7 +308,7 @@ function answerChange(answer) {
   });
 }
 
-function makeid(length) {
+function makeid(length: number) {
   var result = '';
   var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   var charactersLength = characters.length;

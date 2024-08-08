@@ -369,7 +369,7 @@ const question = computed(() => store.getters['questions/question']);
                       <div class="mt-5">
                         <Table class="table">
                             <Table.Tr v-for="answer in question.answers" :key="answer.id">
-                                <Table.Td class="whitespace-nowrap">{{answer.answer}}<span class="ml-5 btn bg-success" v-if="answer.is_correct">Correct</span></Table.Td>
+                                <Table.Td class="whitespace-nowrap">{{answer.answer}}<Button variant="success" class="ml-5 btn bg-success" v-if="answer.is_correct">Correct</Button></Table.Td>
                             </Table.Tr>
                         </Table>
                         <div v-for="answer in question.answers" :key="answer.id">

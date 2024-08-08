@@ -164,27 +164,48 @@ async function fetchQuestions(section, index) {
     }
 }
 
-// const fetchQuestionsAutomatically = async (section, index) => {
-//     try {
-//         loading.value = true;
-//         const response = await axiosClient.get('/questions', {
-//             params: {
-//                 sectionId: section.id,
-//                 index: index,
-//             },
-//         });
-
-//         // Update the questions in your model
-//         // Replace `model.generated_questions` with the actual model you are using
-//         model.generated_questions.sections[index].questions = response.data.questions;
-
-//         // Handle successful fetch if needed
-//     } catch (error) {
-//         warningMessage.value = 'An error occurred while fetching questions.';
+// async function fetchQuestionsManually(section: any, index: any) {
+//     if (!model.value.subject_id) {
 //         warningModalPreview.value = true;
-//     } finally {
-//         loading.value = false;
+//         warningMessage.value = "Make sure you have selected your subject";
+//         return;
 //     }
+
+//     let typeId = "";
+//     let limit = "";
+
+//     if (!section && !index) {
+//         typeId = template.value.type_id;
+//         limit = template.value.total_questions;
+//     } else {
+//         typeId = section.type_id;
+//         limit = section.total_questions;
+//     }
+
+//     let url = "paper_generation=" + true
+//         + "&board_id=" + boardId.value
+//         + "&standard_id=" + standardId.value
+//         + "&subject_id=" + model.value.subject_id
+//         + "&chapter_id=" + model.value.chapter_id
+//         + "&topic_id=" + model.value.topic_id
+//         + "&difficulty_level_id=" + model.value.difficulty_level_id
+//         + "&type_id=" + typeId
+//         + "&limit=" + limit;
+
+//     const result = await axiosClient.get("/questions?" + url);
+
+//     if (result.status !== 200) {
+//         throw new Error("Failed to fetch questions");
+//     } else {
+//         if (!section && !index) {
+//             delete model.value.generated_questions.sections;
+//             model.value.generated_questions = result.data.data;
+//         } else {
+//             model.value.generated_questions.sections[index] = section;
+//             model.value.generated_questions.sections[index].questions = result.data.data;
+//         }
+//     }
+    
 // };
 
 const rules = computed(() => {
@@ -210,7 +231,7 @@ const rules = computed(() => {
 });
 const v$ = useVuelidate(rules, model);
 
-async function submitForm(pre) {
+async function submitForm(pre: any) {
 
     submitted.value = true;
     v$.value.$validate(); // checks all inputs
@@ -236,7 +257,7 @@ async function submitForm(pre) {
                     preview.value = false;
                     router.push({name: "GeneratedQuestionPapers"});
                 })
-                .catch((err) => {
+                .catch((err: { response: { data: { message: string; }; }; }) => {
                     isLoading.value = false;
                     submitted.value = false;
                     isErrored.value = true;
@@ -594,8 +615,8 @@ function back() {
                                                                             @click.prevent="fetchQuestions(section, index)">
                                                                         {{ t("generated_questions.Fetch Questions Automatically") }}
                                                                     </Button>
-                                                                    <Button variant="primary" class="btn btn-primary ml-5"
-                                                                            @click.prevent="fetchQuestions()">
+                                                                    <Button variant="primary" class="btn btn-primary"
+                                                                            @click.prevent="fetchQuestions(section, index)">
                                                                         {{ t("generated_questions.Fetch Questions Manually") }}
                                                                     </Button>
                                                                 </div>
@@ -703,7 +724,7 @@ function back() {
                                                         />
                                                         <span class="ml-2">Manual</span>
                                                         <Button variant="primary" class="btn btn-primary ml-5"
-                                                                @click.prevent="fetchQuestions()">
+                                                                @click.prevent="fetchQuestions(section, index)">
                                                             {{ t("templates.Fetch Questions") }}
                                                         </Button>
                                                     </div>
@@ -801,21 +822,12 @@ function back() {
             <Dialog :open="warningModalPreview" @hidden="warningModalPreview = false">
                 <Dialog.Panel class="p-0">
                     <div class="p-5 text-center">
-                        <!-- <Lucide icon="XCircleIcon" class="w-16 h-16 text-warning mx-auto mt-3"/> -->
-                        <!-- <div class="text-3xl mt-5">Oops...</div>
+                        <Lucide icon="XCircleIcon" class="w-16 h-16 text-warning mx-auto mt-3"/>
+                        <div class="text-3xl mt-5">Oops...</div>
                         <div class="text-slate-500 mt-2">
                             {{ warningMessage }}
-                        </div> -->
-                        <!-- <div v-if="loading" class="text-3xl mt-5">Fetching questions...</div>
-                    
-                    <div v-if="loading && fetchedQuestions.length > 0" class="text-slate-500 mt-2">
-                        <div v-for="(question, idx) in fetchedQuestions" :key="idx">
-                            <div>Question: {{ question.question_name }}</div>
-                            <div>Marks: {{ question.marks }}</div>
-                            <div>Negative Marks: {{ question.negative_marks }}</div>
                         </div>
-                    </div> -->
-                </div>
+                    </div>
                     <div class="px-5 pb-8 text-center">
                         <Button type="button" @click="warningModalPreview = false" class="btn w-24 btn-primary">
                             Ok
@@ -862,3 +874,11 @@ function back() {
 <style scoped>
 
 </style>
+
+function fetchQuestionsManually(section: any, index: any) {
+  throw new Error("Function not implemented.");
+}
+
+function fetchQuestionsManually(section: any, index: any) {
+  throw new Error("Function not implemented.");
+}

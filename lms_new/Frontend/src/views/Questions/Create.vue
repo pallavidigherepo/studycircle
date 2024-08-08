@@ -266,7 +266,7 @@ async function submitForm() {
 
     submitted.value = true;
     v$.value.$validate(); // checks all inputs
-    //validateQuestionAnswers(); // Checks all question and answer inputs
+    validateQuestionAnswers(); // Checks all question and answer inputs
 
     if (!v$.value.$error) {
         isLoading.value = true;

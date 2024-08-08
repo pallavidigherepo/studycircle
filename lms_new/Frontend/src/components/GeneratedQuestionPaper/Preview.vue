@@ -37,7 +37,7 @@ function printMe() {
     window.print();
 }
 
-function assignToStudent(item) {
+function assignToStudent(item: { id: any; }) {
     router.push({
         name: "AssignToStudent",
         params: { id: item.id },

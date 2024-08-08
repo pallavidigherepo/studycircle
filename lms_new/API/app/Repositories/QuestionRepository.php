@@ -1,12 +1,26 @@
 <?php
 namespace App\Repositories;
 
+use App\Models\Role;
+use App\Imports\QuestionImport;
 use App\Models\Question;
 use App\Http\Resources\QuestionResource;
 use App\Repositories\Interfaces\QuestionRepositoryInterface;
-use App\Http\Requests\StoreQuestionRequest;
-use App\Http\Requests\UpdateQuestionRequest;
+use App\Http\Requests\QuestionRequest;
+use Illuminate\Http\Request;
+use App\Models\Board;
+use App\Models\Standard;
+use App\Models\Language;
+use App\Models\QuestionDifficultyLevel;
+use App\Models\QuestionType;
+use App\Models\Chapter;
+use App\Models\Subject;
+use App\Models\Topic;
+use App\Models\Answer;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 
 class QuestionRepository implements QuestionRepositoryInterface
@@ -185,17 +199,9 @@ class QuestionRepository implements QuestionRepositoryInterface
         return response()->json($response);
     }
 
-    public function __importQuestionInBulk($request)
-    {
+    public function __importQuestionInBulk($request): array
+    {   
         try {
-            // if (!$request->hasFile('import')) {
-            //     return [
-            //         'success' => false,
-            //         'message' => 'No file uploaded.',
-            //         'failures' => null,
-            //     ];
-            // }
-    
             $file = $request->file('import')->store('import');
             $importClass = "App\\Imports\\QuestionImport";
             $import = new $importClass($request);
@@ -216,8 +222,10 @@ class QuestionRepository implements QuestionRepositoryInterface
         }
         return $response;
     }
+        
 
-    public function __createAndUpdateQuestion()
+
+    public function __createAndUpdateQuestion(Array $inputArray, Question $parentQuestion = null)
     {
         $id = null;
         if (isset($inputArray['id'])) {
@@ -256,7 +264,7 @@ class QuestionRepository implements QuestionRepositoryInterface
         }
     }
 
-    public function __createAndUpdateAnswer()
+    public function __createAndUpdateAnswer(Array $answers, Question $question)
     {
         if (!empty($answers)) {
             // Get ids as plain array of existing answers
@@ -304,7 +312,7 @@ class QuestionRepository implements QuestionRepositoryInterface
         }
     }
 
-    public function __createAnswer()
+    public function __createAnswer($data)
     {
         $validator = Validator::make($data, [
             'answer' => 'required|string',
@@ -316,7 +324,7 @@ class QuestionRepository implements QuestionRepositoryInterface
         return Answer::create($validator->validated());
     }
 
-    public function __updateAnswer()
+    public function __updateAnswer($answer, $data)
     {
         $validator = Validator::make($data, [
             'id' => 'exists:App\Models\Answer,id',

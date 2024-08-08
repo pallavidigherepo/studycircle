@@ -19,11 +19,11 @@ const props = defineProps({
     <Table class="border-none w-full ">
         <Table.Tr v-for="(question, qidx) in questions" :key="qidx">
             <Table.Td class="border-none whitespace-nowrap">
-                {{ qidx + 1 }})&nbsp;{{ question.question }}
+                {{ qidx + 1 }}&nbsp;{{ question.question }}
                 <Table class="w-full border-none">
                     <Table.Tr v-for="(answer, aidx) in question.answers" :key="aidx">
                         <Table.Td class="border-none whitespace-nowrap">
-                            {{ aidx + 1 }})&nbsp;
+                            {{ aidx + 1 }}&nbsp;
                             <template v-if="isOnline">
                                 <FormCheck.Input
                                     v-if="question.type_id == 1 || question.type_id == 3"
@@ -43,7 +43,7 @@ const props = defineProps({
                             </template>
                             <template v-else>{{ answer.answer }}</template>
                             <template v-if="answer.is_correct && showPreviewForTeacher">
-                                <div class="ml-5 btn btn-success">{{ t("questions.Correct Answer") }}</div>
+                                <div variant="success" class="ml-5 btn btn-success">{{ t("questions.Correct Answer") }}</div>
                             </template>
                         </Table.Td>
                     </Table.Tr>
