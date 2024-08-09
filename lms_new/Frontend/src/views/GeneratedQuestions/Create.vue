@@ -13,6 +13,7 @@ import Lucide from "@/components/Base/Lucide";
 import Button from "@/components/Base/Button";
 import { Dialog, Menu } from "@/components/Base/Headless";
 import Table from "@/components/Base/Table";
+import Alert from "@/components/Base/Alert";
 import Preview from "@/components/GeneratedQuestionPaper/Preview.vue";
 
 const route = useRoute();
@@ -589,8 +590,12 @@ function back() {
                                                 <div class="font-bold text-xl">{{ t("templates.Sections") }}</div>
                                             </div>
                                             <!-- BEGIN: Notification -->
-                                            <info :typeClass="'alert-warning-soft'"
-                                                  :message="'templates.While fetching questions make sure to have all the above selections like Difficulty level Subject Chapter and Topic If you have NOT selected these questions will be fetched without any conditions'"/>
+                                            <Alert variant="soft-warning" class="flex items-center mb-2">
+                                                <Lucide icon="AlertCircle" class="w-6 h-6 mr-2" />
+                                                {{t("templates.While fetching questions make sure to have all the above selections like Difficulty level Subject Chapter and Topic If you have NOT selected these questions will be fetched without any conditions")}}
+                                            </Alert>
+                                            <!-- <info :typeClass="'alert-warning-soft'"
+                                                  :message="'templates.While fetching questions make sure to have all the above selections like Difficulty level Subject Chapter and Topic If you have NOT selected these questions will be fetched without any conditions'"/> -->
 
                                             <!-- BEGIN: Notification -->
                                             <template v-for="(section, index) in template.sections" :key="index">
@@ -724,7 +729,7 @@ function back() {
                                                         />
                                                         <span class="ml-2">Manual</span>
                                                         <Button variant="primary" class="btn btn-primary ml-5"
-                                                                @click.prevent="fetchQuestions(section, index)">
+                                                                @click.prevent="fetchQuestions()">
                                                             {{ t("templates.Fetch Questions") }}
                                                         </Button>
                                                     </div>

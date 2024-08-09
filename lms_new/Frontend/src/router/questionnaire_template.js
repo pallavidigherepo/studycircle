@@ -3,6 +3,7 @@ import QuestionnaireDashboard from "../views/Questionnaire/Index.vue";
 import PaperGenerator from "../views/GeneratedQuestions/Create.vue";
 import GeneratedQuestionPapers from "../views/GeneratedQuestions/Index.vue";
 import ShowGeneratedQuestionPaper from "../views/GeneratedQuestions/Show.vue";
+import EditGeneratedQuestionPaper from "../views/GeneratedQuestions/Edit.vue";
 import AssignToStudent from "../views/GeneratedQuestions/AssignStudent.vue";
 
 import Templates from '../views/Templates/Index.vue';
@@ -21,6 +22,14 @@ const questionnaireTemplateRoutes = [
         path: "/generated_question_papers",
         name: "GeneratedQuestionPapers",
         component: GeneratedQuestionPapers,
+        meta: {
+            parent: 'GeneratedQuestionPapers'
+        },
+    },
+    {
+        path: "/generated_question_papers/:id",
+        name: "EditGeneratedQuestionPaper",
+        component: EditGeneratedQuestionPaper,
         meta: {
             parent: 'GeneratedQuestionPapers'
         },

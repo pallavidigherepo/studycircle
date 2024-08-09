@@ -82,6 +82,7 @@ class GeneratedQuestionPaperController extends Controller
      */
     public function destroy(int $id): JsonResponse
     {
+        $generatedQuestionPaper = GeneratedQuestionPaper::findOrFail($id);
         if (!$this->generatedQuestionPaperService->delete($generatedQuestionPaper)) {
             return response()->json(['message' => 'There are a few errors in form. Please check again.'], 403);
         }

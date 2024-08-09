@@ -13,7 +13,7 @@ import {useVuelidate} from "@vuelidate/core";
 import {helpers, minLength, minValue, numeric, required, requiredIf} from "@vuelidate/validators";
 import {useI18n} from "vue-i18n";
 import axiosClient from "@/axios";
-// import Editor from "@tinymce/tinymce-vue";
+import Editor from "@tinymce/tinymce-vue";
 import SectionEditor from "@/components/Editor/Section.vue";
 
 const route = useRoute();
@@ -251,7 +251,7 @@ function makeid(length) {
             </div>
         </div>
         <!-- BEGIN: Notification -->
-        <Alert
+        <!-- <Alert
             class="intro-y col-span-11 alert-warning alert-dismissible mb-6 mt-5"
             v-slot="{ dismiss }"
             role="alert"
@@ -260,7 +260,7 @@ function makeid(length) {
                 <span><Lucide icon="InfoIcon" class="w-4 h-4 mr-2" /></span>
                 <span>{{ t("templates.Template created here will be used for any subject") }}</span>
             </div>
-        </Alert>
+        </Alert> -->
         <!-- BEGIN: Notification -->
         <div v-if="isErrored" class="alert alert-danger show flex items-center mb-2" role="alert">
             <AlertOctagonIcon class="w-6 h-6 mr-2"/>

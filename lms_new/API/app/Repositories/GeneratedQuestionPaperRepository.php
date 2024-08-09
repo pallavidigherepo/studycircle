@@ -85,7 +85,7 @@ class GeneratedQuestionPaperRepository implements GeneratedQuestionPaperReposito
             'message' => null,
             'errors' => null,
         ];
-        $generatedQuestionPaper = GeneratedQuestionPaper::findOrFail($id);
+        // $generatedQuestionPaper = GeneratedQuestionPaper::findOrFail($id);
         if ($generatedQuestionPaper->delete()) {
             unset($response);
             $response = [
