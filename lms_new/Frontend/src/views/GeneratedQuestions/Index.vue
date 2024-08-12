@@ -306,7 +306,7 @@ function deleteI(item) {
     </div>
     <!-- BEGIN: Delete Confirmation Modal -->
     <Dialog
-        :show="deleteConfirmationModal"
+        :open="deleteConfirmationModal"
         @hidden="deleteConfirmationModal = false"
     >
         <Dialog.Panel class="p-0">

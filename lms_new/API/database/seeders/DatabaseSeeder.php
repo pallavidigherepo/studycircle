@@ -34,6 +34,8 @@ class DatabaseSeeder extends Seeder
             FeeCategorySeeder::class,
             FeeDiscountSeeder::class,
             ClientProjectSeeder::class,
+            LeaveTypesSeeder::class,
+            LeaveStatusesSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 
