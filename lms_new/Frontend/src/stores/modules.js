@@ -24,6 +24,8 @@ import topicsModule from "./modules/topics/index.js";
 import inquiryFollowupModule from "./modules/inquiry_followups/index.js";
 import feeCategoryModule from "./modules/fee_categories/index.js";
 import feeDiscountModule from "./modules/fee_discounts/index.js";
+import leaveModule from "./modules/leave/index.js";
+
 
 export default {
   auth: authModule,
@@ -52,5 +54,6 @@ export default {
   inquiry_followups: inquiryFollowupModule,
   fee_categories: feeCategoryModule,
   fee_discounts: feeDiscountModule,
+  leave: leaveModule,
   
 };

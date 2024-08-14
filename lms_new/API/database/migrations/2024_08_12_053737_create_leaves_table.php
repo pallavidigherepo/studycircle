@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id(); 
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('leave_type_id')->constrained('leave_types')->onDelete('cascade');
-            $table->foreignId('leave_statuses_id')->constrained('leave_statuses')->onDelete('cascade');
+            $table->foreignId('leave_statuses_id')->constrained('leave_statuses')->default(1);
             $table->date('from');
             $table->date('to');
             $table->text('description')->nullable();

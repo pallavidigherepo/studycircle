@@ -123,6 +123,7 @@ function searchMe(event) {
 // End: Searching
 
 const deleteConfirmationModal = ref(false);
+const itemToDelete = ref(null);
 
 function assign(item) {
     listing.value = false;
@@ -149,8 +150,18 @@ function show(item) {
 }
 
 function deleteI(item) {
+    itemToDelete.value = item;
     deleteConfirmationModal.value = true
-    store.dispatch("generated_questions/delete", item.id);
+    // store.dispatch("generated_questions/delete", item.id);
+}
+function confirmDelete() {
+    if (itemToDelete.value) {
+        store.dispatch("generated_questions/delete", itemToDelete.value.id).then(() => {
+            fetchList(); 
+        });
+        deleteConfirmationModal.value = false;
+        itemToDelete.value = null;
+    }
 }
 </script>
 
@@ -327,7 +338,7 @@ function deleteI(item) {
                 >
                     Cancel
                 </Button>
-                <Button variant="danger" type="button" class="btn btn-danger w-24">Delete</Button>
+                <Button variant="danger" type="button" class="btn btn-danger w-24" @click="confirmDelete">Delete</Button>
             </div>
         </Dialog.Panel>
     </Dialog>

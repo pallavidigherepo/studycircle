@@ -38,9 +38,19 @@ if (userRole.value == 'super-admin') {
         },
         {
           icon: "List",
-          pageName: "leave-request",
-          title: "Leave Request",
+          pageName: "Leave",
+          title: "Leave",
         },
+        // {
+        //   icon: "List",
+        //   pageName: "Leave-Request",
+        //   title: "Leave Request",
+        // },
+        // {
+        //   icon: "List",
+        //   pageName: "Leave-Balance",
+        //   title: "Leave Balance",
+        // },
         {
           icon: "Calendar",
           pageName: "events",

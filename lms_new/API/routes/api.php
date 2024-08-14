@@ -1,80 +1,83 @@
 <?php
 
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Resources\FeeStructureResource;
-use App\Models\DocumentType;
 use App\Models\Fee;
-use App\Models\FeeCategory;
-use App\Models\FeeStructure;
-use App\Models\FeeStudentDiscount;
-use App\Models\FeeType;
-use App\Models\Student;
-use App\Http\Controllers\Api\V1\BoardController;
-use App\Http\Controllers\Api\V1\StandardController;
-use App\Models\InquiryFollowupType;
-use App\Models\InquirySource;
-use App\Models\InquiryStatus;
 use App\Models\User;
-use App\Http\Controllers\Api\V1\AuthController;
-use App\Http\Controllers\Api\V1\DashboardController;
-//
-use App\Http\Controllers\Api\V1\PermissionController;
-use App\Http\Controllers\Api\V1\RoleController;
-use App\Http\Controllers\Api\V1\UserController;
-use App\Http\Controllers\Api\V1\CoursesTypeController;
-use App\Http\Controllers\Api\V1\CourseController;
-use App\Http\Controllers\Api\V1\SubjectController;
-use App\Http\Controllers\Api\V1\ChapterController;
-use App\Http\Controllers\Api\V1\TopicController;
-
-use App\Http\Controllers\Api\V1\ExportController;
-use App\Http\Controllers\Api\V1\ImportController;
-use App\Http\Controllers\Api\V1\QuestionController;
-use App\Http\Controllers\Api\V1\StudentController;
-use App\Http\Controllers\Api\V1\ProfileController;
-use App\Http\Controllers\Api\V1\TemplateController;
-use App\Http\Controllers\Api\V1\GeneratedQuestionPaperController;
-use App\Http\Controllers\Api\V1\BatchController;
-use App\Http\Controllers\Api\V1\StudentPaperController;
-use App\Http\Controllers\Api\V1\InquiryFollowupTypeController;
-use App\Http\Controllers\Api\V1\InquirySourceController;
-use App\Http\Controllers\Api\V1\InquiryStatusController;
-use App\Http\Controllers\Api\V1\InquiryController;
-use App\Http\Controllers\Api\V1\InquiryFollowupController;
-use App\Http\Controllers\Api\V1\FeeTypeController;
-use App\Http\Controllers\Api\V1\FeeCategoryController;
-use App\Http\Controllers\Api\V1\FeeDiscountController;
-
-use App\Http\Controllers\Api\V1\SettingController;
-use App\Http\Controllers\Api\V1\StudentParentController;
-use App\Http\Controllers\Api\V1\FeeController;
-use App\Http\Controllers\Api\V1\FeeStructureController;
-use App\Http\Controllers\Api\V1\FeeTransactionController;
-
-use App\Models\Board;
-use App\Models\Chapter;
-use App\Models\CoursesType;
-use App\Models\Language;
-use App\Models\QuestionDifficultyLevel;
-use App\Models\QuestionType;
-use App\Models\Standard;
-use App\Models\Subject;
-use App\Models\Topic;
 use App\Models\Batch;
+use App\Models\Board;
+use App\Models\Topic;
 use App\Models\Course;
-use App\Models\GeneratedQuestionPaper;
+use App\Models\Chapter;
+use App\Models\FeeType;
 use App\Models\Section;
+use App\Models\Student;
+use App\Models\Subject;
+use App\Models\Language;
+use App\Models\Standard;
 use App\Models\Template;
 use Maatwebsite\Excel\Row;
+use App\Models\CoursesType;
+use App\Models\FeeCategory;
+use Illuminate\Support\Str;
+use App\Models\DocumentType;
+use App\Models\FeeStructure;
+use App\Models\QuestionType;
+use Illuminate\Http\Request;
+use App\Models\InquirySource;
+use App\Models\InquiryStatus;
+use App\Models\FeeStudentDiscount;
+//
+use App\Models\InquiryFollowupType;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
+use App\Models\GeneratedQuestionPaper;
+use App\Models\QuestionDifficultyLevel;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Password;
+
+use Illuminate\Auth\Events\PasswordReset;
+
+use App\Http\Resources\FeeStructureResource;
+use App\Http\Controllers\Api\V1\FeeController;
+use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\RoleController;
+use App\Http\Controllers\Api\V1\UserController;
+use App\Http\Controllers\Api\V1\BatchController;
+use App\Http\Controllers\Api\V1\BoardController;
+use App\Http\Controllers\Api\V1\LeaveController;
+use App\Http\Controllers\Api\V1\TopicController;
+use App\Http\Controllers\Api\V1\CourseController;
+use App\Http\Controllers\Api\V1\ExportController;
+use App\Http\Controllers\Api\V1\ImportController;
+use App\Http\Controllers\Api\V1\ChapterController;
+use App\Http\Controllers\Api\V1\FeeTypeController;
+use App\Http\Controllers\Api\V1\InquiryController;
+use App\Http\Controllers\Api\V1\ProfileController;
+
+use App\Http\Controllers\Api\V1\SettingController;
+use App\Http\Controllers\Api\V1\StudentController;
+use App\Http\Controllers\Api\V1\SubjectController;
+use App\Http\Controllers\Api\V1\QuestionController;
+use App\Http\Controllers\Api\V1\StandardController;
+
+use App\Http\Controllers\Api\V1\TemplateController;
+use App\Http\Controllers\Api\V1\DashboardController;
+use App\Http\Controllers\Api\V1\LeaveTypeController;
+use App\Http\Controllers\Api\V1\PermissionController;
+use App\Http\Controllers\Api\V1\CoursesTypeController;
+use App\Http\Controllers\Api\V1\FeeCategoryController;
+use App\Http\Controllers\Api\V1\FeeDiscountController;
+use App\Http\Controllers\Api\V1\FeeStructureController;
+use App\Http\Controllers\Api\V1\StudentPaperController;
+use App\Http\Controllers\Api\V1\InquirySourceController;
+use App\Http\Controllers\Api\V1\InquiryStatusController;
+use App\Http\Controllers\Api\V1\StudentParentController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\Api\V1\FeeTransactionController;
+use App\Http\Controllers\Api\V1\InquiryFollowupController;
+use App\Http\Controllers\Api\V1\InquiryFollowupTypeController;
+use App\Http\Controllers\Api\V1\GeneratedQuestionPaperController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,6 +101,12 @@ Route::group(['middleware' => ['jwt.auth', \App\Http\Middleware\DatabaseSwitcher
     });
     
     Route::post('v1/logout', [AuthController::class, 'logout']);
+
+    Route::post('v1/leaves', [LeaveController::class, 'applyLeave']);
+    Route::get('v1/leaves/balance', [LeaveController::class, 'viewLeaveBalance']);
+    Route::get('v1/leaves/requests', [LeaveController::class, 'viewLeaveRequests']);
+    Route::post('v1/leaves/{id}/approve', [LeaveController::class, 'approveLeave']);
+    Route::post('v1/leaves/{id}/reject', [LeaveController::class, 'rejectLeave']);
 
     //
     Route::get('v1/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -133,6 +142,8 @@ Route::group(['middleware' => ['jwt.auth', \App\Http\Middleware\DatabaseSwitcher
     Route::resource('v1/fee_structures', FeeStructureController::class);
     Route::resource('v1/fees', FeeController::class);
     Route::resource('v1/fee_transactions', FeeTransactionController::class);
+    Route::resource('v1/leave-types', LeaveTypeController::class);
+   
 
     Route::resource('v1/parents', StudentParentController::class);
     Route::resource('v1/settings', SettingController::class);

@@ -11,6 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -67,6 +68,10 @@ class User extends Authenticatable implements JWTSubject
     public function subjects():HasOne
     {
         return $this->hasOne(Subject::class);
+    }
+    public function leaves(): BelongsTo
+    {
+        return $this->belongsTo(leave::class);
     }
 
     public function getJWTIdentifier()

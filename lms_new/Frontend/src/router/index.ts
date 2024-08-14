@@ -3,6 +3,9 @@ import Layout from "@/themes";
 
 import Dashboard from "@/views/Dashboard/Index.vue";
 import Profile from "@/views/Auth/Profile.vue";
+import Leave from "@/views/Leave/Leave.vue";
+import LeaveRequest from "@/views/Leave/LeaveRequest.vue";
+import LeaveBalance from "@/views/Leave/LeaveBalance.vue";
 
 
 import authRoutes from "./auth";
@@ -47,6 +50,33 @@ const routes = [
         path: "/profile",
         name: "Profile",
         component: Profile,
+        meta: { 
+          requiresAuth: true,
+          // requiresVerification: true, 
+        },
+      },
+      {
+        path: "/leave",
+        name: "Leave",
+        component: Leave,
+        meta: { 
+          requiresAuth: true,
+          // requiresVerification: true, 
+        },
+      },
+      {
+        path: "/leave_request",
+        name: "Leave-Request",
+        component: LeaveRequest,
+        meta: { 
+          requiresAuth: true,
+          // requiresVerification: true, 
+        },
+      },
+      {
+        path: "/leave_balance",
+        name: "Leave-Balance",
+        component: LeaveBalance,
         meta: { 
           requiresAuth: true,
           // requiresVerification: true, 
