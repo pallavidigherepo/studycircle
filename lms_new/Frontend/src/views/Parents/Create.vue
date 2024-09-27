@@ -106,7 +106,7 @@ function onImageChoose(ev) {
 <template>
     <div>
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-            <h2 class="text-lg font-medium mr-auto">{{ t("clients.Add Client") }}</h2>
+            <h2 class="text-lg font-medium mr-auto">Add Client</h2>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                 <Button
                 variant="primary"
@@ -119,7 +119,7 @@ function onImageChoose(ev) {
                             sm:ml-0
                         "
                      @click="router.push('/clients')"
-                ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />{{ t("common.Back") }}
+                ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />Back
                 </Button>
             </div>
         </div>
@@ -136,9 +136,7 @@ function onImageChoose(ev) {
                     </div>
                     <form @submit.prevent="submitForm" class="validate-form">
                         <div>
-                            <label for="form-name" class="form-label">{{
-                                    t("clients.Name")
-                                }}</label>
+                            <label for="form-name" class="form-label">Name</label>
                             <FormInput
                                 id="form-name"
                                 type="text"
@@ -158,9 +156,7 @@ function onImageChoose(ev) {
                             </div>
                         </div>
                         <div class="mt-3">
-                            <label for="form-email" class="form-label">{{
-                                    t("clients.Email")
-                                }}</label>
+                            <label for="form-email" class="form-label">Email</label>
 
                             <FormInput
                                 id="form-email"
@@ -181,9 +177,7 @@ function onImageChoose(ev) {
                             </div>
                         </div>
                         <div class="mt-3">
-                            <label for="form-mobile-number" class="form-label">{{
-                                    t("clients.Mobile Number")
-                                }}</label>
+                            <label for="form-mobile-number" class="form-label">Mobile Number</label>
 
                             <FormInput
                                 id="form-mobile-number"
@@ -204,9 +198,7 @@ function onImageChoose(ev) {
                             </div>
                         </div>
                         <div class="mt-3">
-                            <label for="form-alt-mobile-number" class="form-label">{{
-                                    t("clients.Alternate Mobile Number")
-                                }}</label>
+                            <label for="form-alt-mobile-number" class="form-label">Alternate Mobile Number</label>
 
                             <FormInput
                                 id="form-alt-mobile-number"
@@ -227,9 +219,7 @@ function onImageChoose(ev) {
                             </div>
                         </div>
                         <div class="mt-3">
-                            <label for="form-address" class="form-label">{{
-                                    t("clients.Address")
-                                }}</label>
+                            <label for="form-address" class="form-label">Address</label>
 
                             <FormInput
                                 id="form-address"
@@ -251,9 +241,7 @@ function onImageChoose(ev) {
                         </div>
 
                         <div class="mt-3">
-                            <label for="form-website_url" class="form-label">{{
-                                    t("clients.Website Url")
-                                }}</label>
+                            <label for="form-website_url" class="form-label">Website Url</label>
 
                             <FormInput
                                 id="form-website_url"
@@ -264,9 +252,7 @@ function onImageChoose(ev) {
                             />
                         </div>
                         <div class="mt-3">
-                            <label for="form-website_slogan" class="form-label">{{
-                                    t("clients.Website Slogan")
-                                }}</label>
+                            <label for="form-website_slogan" class="form-label">Website Slogan</label>
 
                             <FormInput
                                 id="form-website_slogan"
@@ -277,9 +263,7 @@ function onImageChoose(ev) {
                             />
                         </div>
                         <div class="mt-3">
-                            <label for="form-sub-domain" class="form-label">{{
-                                    t("clients.Sub domain")
-                                }}</label>
+                            <label for="form-sub-domain" class="form-label">Sub domain</label>
 
                             <FormInput
                                 id="form-sub-domain"
@@ -300,7 +284,7 @@ function onImageChoose(ev) {
                             </div>
                         </div>
                         <div class="mt-3">
-                            <label class="form-label"> {{ t("clients.Avatar") }} </label>
+                            <label class="form-label"> Avatar </label>
                             <div class="mt-1 flex items-center">
                                 <img
                                     v-if="model.avatar"
@@ -321,7 +305,7 @@ function onImageChoose(ev) {
                                         accept="image/png, image/jpeg, image/jpg"
                                         class="absolute left-0 top-0 right-0 bottom-0 opacity-0 cursor-pointer rounded-full"
                                     />
-                                    {{ t("clients.Upload Avatar") }}
+                                    Upload Avatar
                                 </Button>
 
                             </div>
@@ -335,10 +319,10 @@ function onImageChoose(ev) {
                                         @click="router.push('/clients')"
                                         
                                     >
-                                {{ t("common.Cancel") }}
+                                    Cancel
                             </Button>
                             <Button variant="primary" class="btn btn-primary w-20" type="submit">
-                                                {{ t("common.Save") }}
+                                Save
                             </Button>
                         </div>
                         <!-- END: Slide Over Footer -->

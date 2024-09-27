@@ -104,7 +104,7 @@ function makeid(length) {
           </div>
           <div>
             <div class="form-inline mt-5 first:mt-0">
-              <label class="form-label sm:w-20">{{ t("questions.Question") }}</label>
+              <label class="form-label sm:w-20">Question</label>
               <div class="flex items-center flex-1 xl:pr-10">
                   <div class="flex-1">
                       <FormInput type="text"
@@ -127,7 +127,7 @@ function makeid(length) {
             </div>
 
             <div class="form-inline mt-5 first:mt-0">
-                <label class="form-label sm:w-20">{{ t("questions.Description") }}</label>
+                <label class="form-label sm:w-20">Description</label>
                 <div class="flex items-center flex-1 xl:pr-10">
                     <div class="flex-1">
                         <FormTextarea class="form-control"
@@ -147,7 +147,7 @@ function makeid(length) {
                 </div>
             </div>
             <div class="form-inline mt-5 first:mt-0">
-                <label class="form-label sm:w-20">{{ t("questions.Note/Explaination")}}</label>
+                <label class="form-label sm:w-20">Note/Explaination</label>
                 <div class="flex items-center flex-1 xl:pr-10">
                     <div class="flex-1">
                         <FormTextarea class="form-control"
@@ -166,9 +166,7 @@ function makeid(length) {
                 </div>
             </div>
             <div class="form-inline mt-5 first:mt-0">
-                <label class="form-label sm:w-20">{{
-                        t("questions.Marks")
-                    }}</label>
+                <label class="form-label sm:w-20">Marks</label>
 
                 <div class="flex items-center flex-1 xl:pr-10">
                     <div class="flex-1">
@@ -190,13 +188,11 @@ function makeid(length) {
                     </div>
                 </div>
                 <!-- <div class="form-help text-right">
-                  {{ t("questions.These are the marks, if answered correctly")}}
+                  These are the marks, if answered correctly
                 </div> -->
             </div>
             <div class="form-inline mt-5 first:mt-0">
-                <label class="form-label sm:w-20">{{
-                        t("questions.Negative Marks")
-                    }}</label>
+                <label class="form-label sm:w-20">Negative Marks</label>
                 <div class="flex items-center flex-1 xl:pr-10">
                     <div class="flex-1">
                         <FormInput id="form-negative-marks"
@@ -217,12 +213,12 @@ function makeid(length) {
                     </div>
                 </div>
                 <!-- <div class="form-help text-right">
-                  {{ t("questions.These are negative marks if answered incorrect")}}
+                  These are negative marks if answered incorrect
                 </div> -->
 
             </div>
             <div class="form-inline mt-5 first:mt-0">
-                <label class="form-label sm:w-20">{{ t("questions.Question type")}}</label>
+                <label class="form-label sm:w-20">Question type</label>
                 <div class="flex items-center flex-1 xl:pr-10">
                     <div class="w-full mt-3 xl:mt-0 flex-1">
                         <TomSelect id="form-type" v-model="model.type_id" placeholder="Select Type"
@@ -234,7 +230,7 @@ function makeid(length) {
                               onChange: changeType,
                               items:model.type_id,
                             }" >
-                            <option>{{ t('questions.Select Question Type') }}</option>
+                            <option>Select Question Type</option>
                             <option v-for="(type, indext) in typeParagraph" :key="indext" :value="indext">
                               {{ JSON.parse(type) }}
                             </option>
@@ -250,7 +246,7 @@ function makeid(length) {
 
             <div class="xl:ml-20 xl:pl-5 xl:pr-10 mt-5 first:mt-0" v-if="model.type_id != ''">
                 <div v-if="model.answers && !model.answers.length" class="text-center text-gray-600">
-                  {{ t("questions.You do not have any answers added yet") }}
+                  You do not have any answers added yet
                 </div>
                 <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
                   <Button
@@ -258,7 +254,7 @@ function makeid(length) {
                     type="button"
                     v-if="showAnswerButton == true" @click="addAnswer()"
                   >
-                  <Lucide icon="PlusIcon" class="w-4 h-4 mr-2" /> {{ t("questions.Add Answer") }}
+                  <Lucide icon="PlusIcon" class="w-4 h-4 mr-2" /> Add Answer
                   </Button>
                 </div>
 

@@ -119,7 +119,7 @@ const standardSections = computed(() => store.getters.listStandardSections);
     <div>
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                {{ t("standards.Standards") }}
+                Standards
             </h2>
         </div>
         <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
@@ -144,7 +144,7 @@ const standardSections = computed(() => store.getters.listStandardSections);
             <div class="col-span-12 lg:col-span-4">
                 <div class="intro-y box p-5">
                     <h2 class="text-lg font-medium mr-auto pt-5 pb-5">
-                        {{ t("common." + actionText) }}
+                        {{ actionText }}
                     </h2>
                     <div
                         class="alert alert-danger show flex items-center mb-2"
@@ -157,14 +157,12 @@ const standardSections = computed(() => store.getters.listStandardSections);
 
                     <form @submit.prevent="submitForm" class="validate-form">
                         <div>
-                            <label for="standard-name" class="form-label">{{
-                                    t("standards.Name")
-                                }}</label>
+                            <label for="standard-name" class="form-label">Name</label>
                             <FormInput
                                 id="standard-name"
                                 type="text"
                                 class="form-control w-full"
-                                :placeholder="t('standards.Name')"
+                                placeholder="Name"
                                 v-model.trim="model.name"
                                 :class="{ 'border-danger': submitted && v$.name.$error }"
                             />
@@ -176,9 +174,7 @@ const standardSections = computed(() => store.getters.listStandardSections);
                             </span>
                         </div>
                         <div class="mt-3">
-                            <label for="standard-section" class="form-label">{{
-                                t("standard.Select Sections if Any")
-                            }}</label>
+                            <label for="standard-section" class="form-label">Select Sections if Any</label>
                             <TomSelect
                                 id="course-type"
                                 v-model="model.standard_section_ids"
@@ -210,10 +206,10 @@ const standardSections = computed(() => store.getters.listStandardSections);
                                 class="btn btn-outline-secondary w-24 mr-1"
                                 @click.prevent="cancel"
                             >
-                                {{ t("common.Cancel") }}
+                            Cancel
                             </Button>
                             <Button  variant="primary"  type="submit" class="btn btn-primary w-24">
-                                {{ t("common.Save") }}
+                                Save
                             </Button>
                         </div>
                     </form>

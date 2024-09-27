@@ -130,7 +130,7 @@ function random(string) {
   <div>
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
       <h2 class="text-lg font-medium mr-auto">
-        {{ t("chapters.Edit Chapter") }}
+        Edit Chapter
       </h2>
       <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
         <Button
@@ -144,7 +144,7 @@ function random(string) {
                     sm:ml-0
                 "
             @click="router.push('/chapters')"
-        ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />{{ t("common.Back") }}
+        ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />Back
         </Button>
       </div>
     </div>
@@ -162,14 +162,12 @@ function random(string) {
           
           <form @submit.prevent="submitForm" class="validate-form">
             <div>
-              <label for="form-subject-id" class="form-label">{{
-                t("chapters.Choose Subject")
-              }}</label>
+              <label for="form-subject-id" class="form-label">Choose Subject</label>
               
               <TomSelect
                 id="form-subject-id"
                 v-model="model.parent_id"
-                :placeholder="t('chapters.Select Subject')"
+                placeholder= Select Subject
                 :options="{
                   allowEmptyOption: false,
                   create: false,
@@ -191,9 +189,7 @@ function random(string) {
               </TomSelect>
             </div>  
             <div class="mt-3">
-              <label for="form-label" class="form-label">{{
-                t("chapters.Label")
-              }}</label>
+              <label for="form-label" class="form-label">Label</label>
               <FormInput
                 id="form-label"
                 type="text"
@@ -213,9 +209,8 @@ function random(string) {
               </div>
             </div>
             <div class="mt-3">
-              <label for="form-description" class="form-label">{{
-                t("chapters.Description")
-              }}</label>
+              <label for="form-description" class="form-label">
+                Description</label>
 
               <div class="mt-3 py-2">
                 <!-- <ClassicEditor v-model="editorData" /> -->
@@ -256,9 +251,7 @@ function random(string) {
               </div>
             </div>
             <div class="mt-3">
-              <label for="form-language" class="form-label">{{
-                t("chapters.Choose Language")
-              }}</label>
+              <label for="form-language" class="form-label">Choose Language</label>
               <TomSelect
                 id="form-language"
                 v-model="model.language_id"
@@ -284,9 +277,8 @@ function random(string) {
               </TomSelect>
             </div>
             <div class="mt-3">
-              <label for="form-icon" class="form-label">{{
-                t("chapters.Icon")
-              }}</label>
+              <label for="form-icon" class="form-label">
+                Icon</label>
               <FormInput
                 type="text"
                 id="form-icon"
@@ -300,13 +292,12 @@ function random(string) {
               </span>
             </div>
             <div class="mt-3">
-              <label for="chapters-tags" class="form-label">{{
-                t("chapters.Tags")
-              }}</label>
+              <label for="chapters-tags" class="form-label">
+                Tags</label>
               <TomSelect
                 id="chapters-tags"
                 v-model="model.tags_list"
-                :placeholder="t('chapters.Tags')"
+                placeholder= Tags
                 :options="{
                   create: true,
                 }"
@@ -331,10 +322,10 @@ function random(string) {
                 @click="router.push('/chapters')"
                 
             >
-            {{ t("common.Cancel") }}
+            Cancel
             </Button>
             <Button variant="primary" class="btn btn-primary w-20" type="submit">
-                                {{ t("common.Save") }}
+                                Save
             </Button>
             </div>
             <!-- END: Slide Over Footer -->

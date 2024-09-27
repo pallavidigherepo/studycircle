@@ -159,7 +159,7 @@ function random(string) {
   <div>
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
       <h2 class="text-lg font-medium mr-auto">
-        {{ t("courses.Courses") }}
+        Courses
       </h2>
     </div>
     <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
@@ -184,7 +184,7 @@ function random(string) {
       <div class="col-span-12 lg:col-span-4">
         <div class="intro-y box p-5">
           <h2 class="text-lg font-medium mr-auto pt-5 pb-5">
-            {{ t("common." + actionText) }}
+            {{  actionText }}
           </h2>
           <div
             class="alert alert-danger show flex items-center mb-2"
@@ -197,9 +197,9 @@ function random(string) {
 
           <form @submit.prevent="submitForm" class="validate-form">
             <div>
-              <label for="course-type" class="form-label">{{
-                t("courses.Choose course type")
-              }}</label>
+              <label for="course-type" class="form-label">
+                Choose course type
+              </label>
               <TomSelect
                   id="course-type"
                   v-model="model.type_ids"
@@ -228,14 +228,14 @@ function random(string) {
                 
             </div>
             <div class="mt-3">
-              <label for="course-code" class="form-label">{{
-                t("courses.Code")
-              }}</label>
+              <label for="course-code" class="form-label">
+                Code
+              </label>
               <FormInput
                 id="course_code"
                 type="text"
                 class="form-control w-full"
-                :placeholder="t('courses.Course Code')"
+                placeholder=Course Code
                 v-model.trim="model.course_code"
                 :class="{ 'border-danger': submitted && v$.course_code.$error }"
               />
@@ -244,14 +244,14 @@ function random(string) {
               </span>
             </div>
             <div class="mt-3">
-              <label for="course-name" class="form-label">{{
-                t("courses.Name")
-              }}</label>
+              <label for="course-name" class="form-label">
+                Name
+              </label>
               <FormInput
                 id="course-name"
                 type="text"
                 class="form-control w-full"
-                :placeholder="t('courses.Name')"
+                placeholder=Name
                 v-model.trim="model.name"
                 :class="{ 'border-danger': submitted && v$.name.$error }"
               />
@@ -260,9 +260,9 @@ function random(string) {
               </span>
             </div>
             <div class="mt-3">
-              <label for="course-language" class="form-label">{{
-                t("courses.Choose Language")
-              }}</label>
+              <label for="course-language" class="form-label">
+                Choose Language
+              </label>
               <TomSelect
                   id="course-language"
                   v-model="model.language_id"
@@ -285,14 +285,14 @@ function random(string) {
                 
             </div>
             <div class="mt-3">
-              <label for="course-tags" class="form-label">{{
-                t("courses.Tags")
-              }}</label>
+              <label for="course-tags" class="form-label">
+                Tags
+              </label>
               
               <TomSelect
                   id="course-tags"
                   v-model="model.tags_list"
-                  :placeholder="t('Tags')"
+                  placeholder=Tags
                   :options="{
                     create: true
                   }"
@@ -312,10 +312,10 @@ function random(string) {
                 class="btn btn-outline-secondary w-24 mr-1"
                 @click.prevent="cancel"
               >
-                {{ t("common.Cancel") }}
+                Cancel
               </Button>
               <Button  variant="primary" type="submit" class="btn btn-primary w-24">
-                {{ t("common.Save") }}
+                Save
               </Button>
             </div>
           </form>

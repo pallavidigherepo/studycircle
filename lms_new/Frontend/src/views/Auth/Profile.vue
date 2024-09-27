@@ -270,15 +270,15 @@ function cancel()
               </div>
               <Tab.List class="nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center">
                   <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
-                      <Lucide icon="UserIcon" class="w-4 h-4 mr-2" /> {{ t("auth.Profile") }}
+                      <Lucide icon="UserIcon" class="w-4 h-4 mr-2" /> Profile
                   </Tab>
                   <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
                     <Lucide icon="ShieldIcon" class="w-4 h-4 mr-2" />
-                       {{ t("auth.Account") }}
+                    Account
                   </Tab>
                   <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
                     <Lucide icon="LockIcon" class="w-4 h-4 mr-2" />
-                      {{ t("auth.Reset Password") }}
+                    Reset Password
                   </Tab>
               </Tab.List>
           </div>
@@ -290,7 +290,7 @@ function cancel()
                       <div class="intro-y box col-span-12 lg:col-span-12">
                           <div
                               class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                              <h2 class="font-medium text-base mr-auto">{{ t("auth.Latest Courses") }}</h2>
+                              <h2 class="font-medium text-base mr-auto">Latest Courses</h2>
 
                           </div>
                           <div class="p-5">
@@ -299,8 +299,8 @@ function cancel()
                                       <Table.Thead>
                                           <Table.Tr>
                                               <Table.Th class="whitespace-nowrap">#</Table.Th>
-                                              <Table.Th class="whitespace-nowrap">{{ t("courses.Name") }}</Table.Th>
-                                              <Table.Th class="whitespace-nowrap">{{ t("courses.Code") }}</Table.Th>
+                                              <Table.Th class="whitespace-nowrap">Name</Table.Th>
+                                              <Table.Th class="whitespace-nowrap">Code</Table.Th>
                                           </Table.Tr>
                                       </Table.Thead>
                                       <Table.Tbody>
@@ -321,7 +321,7 @@ function cancel()
                       <div class="intro-y box col-span-12">
                           <div
                               class="flex items-center px-5 py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                              <h2 class="font-medium text-base mr-auto">{{ t("subjects.Subjects")}}</h2>
+                              <h2 class="font-medium text-base mr-auto">Subjects</h2>
 
                           </div>
                           <div id="subjects" class="py-5">
@@ -330,8 +330,8 @@ function cancel()
                                       <Table.Thead>
                                           <Table.Tr>
                                               <Table.Th class="whitespace-nowrap">#</Table.Th>
-                                              <Table.Th class="whitespace-nowrap">{{ t("subjects.Label") }}</Table.Th>
-                                              <Table.Th class="whitespace-nowrap">{{ t("subjects.Icon") }}</Table.Th>
+                                              <Table.Th class="whitespace-nowrap">Label</Table.Th>
+                                              <Table.Th class="whitespace-nowrap">Icon</Table.Th>
                                           </Table.Tr>
                                       </Table.Thead>
                                       <Table.Tbody>
@@ -351,7 +351,7 @@ function cancel()
                       <div class="intro-y box col-span-12">
                           <div
                               class="flex items-center px-5 py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                              <h2 class="font-medium text-base mr-auto">{{ t("questions.Questions") }}</h2>
+                              <h2 class="font-medium text-base mr-auto">Questions</h2>
 
                           </div>
 
@@ -361,8 +361,8 @@ function cancel()
                                       <Table.Thead>
                                           <Table.Tr>
                                               <Table.Th class="whitespace-nowrap">#</Table.Th>
-                                              <Table.Th class="whitespace-nowrap">{{ t("questions.Question") }}</Table.Th>
-                                              <Table.Th class="whitespace-nowrap">{{ t("questions.Board") }}</Table.Th>
+                                              <Table.Th class="whitespace-nowrap">Question</Table.Th>
+                                              <Table.Th class="whitespace-nowrap">Board</Table.Th>
                                           </Table.Tr>
                                       </Table.Thead>
                                       <Table.Tbody>
@@ -386,13 +386,13 @@ function cancel()
                       <div class="intro-y box col-span-12 lg:col-span-12">
                           <div
                               class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                              <h2 class="font-medium text-base mr-auto">{{ t("auth.Account Information") }}</h2>
+                              <h2 class="font-medium text-base mr-auto">Account Information</h2>
 
                           </div>
                           <form @submit.prevent="submitAccount">
                               <div class="p-5">
                                   <div>
-                                      <label class="block text-sm font-medium text-gray-700"> {{ t("auth.Avatar") }} </label>
+                                      <label class="block text-sm font-medium text-gray-700"> Avatar </label>
                                       <div class="mt-1 flex items-center">
                                           <img
                                               v-if="modelAccount.avatar"
@@ -413,14 +413,14 @@ function cancel()
                                                   accept="image/png, image/jpeg, image/jpg"
                                                   class="absolute left-0 top-0 right-0 bottom-0 opacity-0 cursor-pointer rounded-full"
                                               />
-                                              {{ t("auth.Change Avatar") }}
+                                              Change Avatar
                                           </Button>
 
                                       </div>
                                   </div>
                                   <div class="mt-3">
-                                      <label for="alt-email" class="form-label">{{ t("auth.Alternate Email")
-                                      }}</label>
+                                      <label for="alt-email" class="form-label">Alternate Email
+                                      </label>
                                       <FormInput id="alt-email" type="email" class="form-control"
                                           placeholder="Enter Alternate Email" v-model.trim="modelAccount.alt_email"
                                           :class="{
@@ -432,7 +432,7 @@ function cancel()
                                       </div>
                                   </div>
                                   <div class="mt-3">
-                                      <label for="mobile" class="form-label">{{ t("auth.Mobile Number") }}</label>
+                                      <label for="mobile" class="form-label">Mobile Number</label>
                                       <FormInput id="mobile" type="text" class="form-control"
                                           placeholder="Enter Mobile Number" v-model.trim="modelAccount.mobile" :class="{
                                               'border-danger': submitted && v$.mobile.$errors.length,
@@ -443,7 +443,7 @@ function cancel()
                                       </div>
                                   </div>
                                   <div class="mt-3">
-                                      <label for="alt-mobile" class="form-label">{{ t("auth.Alternate Mobile Number")}}</label>
+                                      <label for="alt-mobile" class="form-label">Alternate Mobile Number</label>
                                       <FormInput id="alt-mobile" type="text" class="form-control"
                                           placeholder="Enter Alternate Mobile No"
                                           v-model.trim="modelAccount.alt_mobile" :class="{
@@ -456,7 +456,7 @@ function cancel()
                                   </div>
 
                                   <div class="mt-3">
-                                      <label for="address" class="form-label">{{ t("auth.Address") }}</label>
+                                      <label for="address" class="form-label">Address</label>
                                       <FormTextarea id="address" class="form-control" placeholder="Enter Address"
                                           v-model.trim="modelAccount.address" :class="{
                                               'border-danger': submitted && v$.address.$errors.length,
@@ -468,7 +468,7 @@ function cancel()
                                       </div>
                                   </div>
                                   <div class="mt-3">
-                                      <label for="alt-address" class="form-label">{{ t("auth.Alternate Address")}}</label>
+                                      <label for="alt-address" class="form-label">Alternate Address</label>
                                       <FormTextarea id="alt-address" class="form-control"
                                           placeholder="Enter Alternate Address"
                                           v-model.trim="modelAccount.alt_address" :class="{
@@ -481,7 +481,7 @@ function cancel()
                                       </div>
                                   </div>
                                   <div class="mt-3">
-                                      <label for="gender" class="form-label">{{ t("auth.Gender") }}</label>
+                                      <label for="gender" class="form-label">Gender</label>
                                       <TomSelect id="gender" v-model="modelAccount.gender" placeholder="Select Gender"
                                           :options="{
                                               allowEmptyOption: false,
@@ -492,10 +492,10 @@ function cancel()
                                           }" class="w-full" :class="{
   'border-danger': submitted && v$.gender.$errors.length,
 }">
-                                          <option value="">{{ t('common.Select Gender') }}</option>
-                                          <option value="male">{{ t('common.Male') }}</option>
-                                          <option value="female">{{ t('common.Female') }}</option>
-                                          <option value="other">{{ t('common.Other') }}</option>
+                                          <option value="">Select Gender</option>
+                                          <option value="male">Male</option>
+                                          <option value="female">Female</option>
+                                          <option value="other">Other</option>
                                       </TomSelect>
 
                                       <div class="text-danger mt-2" v-for="(error, index) of v$.gender.$errors"
@@ -504,9 +504,7 @@ function cancel()
                                       </div>
                                   </div>
                                   <div class="mt-3">
-                                      <label for="qualification" class="form-label">{{
-                                              t("auth.Qualification")
-                                      }}</label>
+                                      <label for="qualification" class="form-label">Qualification</label>
                                       <FormInput id="qualification" type="text" v-model="modelAccount.qualification"
                                           placeholder="Enter your qualification" class="form-control w-full" :class="{
                                               'border-danger': submitted && v$.qualification.$errors.length,
@@ -518,7 +516,7 @@ function cancel()
                                       </div>
                                   </div>
                                   <div class="mt-3">
-                                      <label for="designation" class="form-label">{{ t("auth.Designation") }}</label>
+                                      <label for="designation" class="form-label">Designation</label>
                                       <FormInput id="designation" type="text" v-model="modelAccount.designation"
                                           placeholder="Enter your designation" class="form-control w-full" :class="{
                                               'border-danger': submitted && v$.designation.$errors.length,
@@ -532,19 +530,19 @@ function cancel()
                                   <div class="text-right mt-5 p-5">
                                       <!-- <button type="button" class="btn btn-outline-secondary w-24 mr-1"
                                           @click.prevent="cancel">
-                                          {{ t("common.Cancel") }}
+                                          Cancel
                                       </button>
                                       <button type="submit" class="btn btn-primary w-24">
-                                          {{ t("common.Save") }}
+                                        Save
                                       </button> -->
                                       <Button
                                           variant="secondary"
                                           class="btn btn-outline-secondary w-20 mr-1"
                                           @click.prevent="cancel">
-                                      {{ t("common.Cancel") }}
+                                          Cancel
                                       </Button>
                                       <Button variant="primary" class="btn btn-primary w-20" type="submit">
-                                                          {{ t("common.Save") }}
+                                        Save
                                       </Button>
                                   </div>
                               </div>
@@ -561,13 +559,13 @@ function cancel()
                       <div class="intro-y box col-span-12 lg:col-span-12">
                           <div
                               class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                              <h2 class="font-medium text-base mr-auto">{{ t("auth.Change Password") }}</h2>
+                              <h2 class="font-medium text-base mr-auto">Change Password</h2>
 
                           </div>
                           <form @submit.prevent="submitPasswordForm">
                               <div class="p-5">
                                   <div>
-                                      <label for="password" class="form-label">{{ t("auth.Password") }}</label>
+                                      <label for="password" class="form-label">Password</label>
                                       <FormInput id="password" type="password" class="form-control"
                                           placeholder="Enter Password" v-model.trim="modelPassword.password" :class="{
                                               'border-danger': submitted && vP$.password.$errors.length,
@@ -579,7 +577,7 @@ function cancel()
                                   </div>
                                   <div class="mt-3">
                                       <label for="confirm-password" class="form-label">
-                                          {{ t("auth.Confirm Password")}}
+                                        Confirm Password
                                       </label>
                                       <FormInput id="confirm-password" type="password" class="form-control"
                                           placeholder="Confirm Password" v-model.trim="modelPassword.confirm_password"
@@ -598,10 +596,10 @@ function cancel()
                                     variant="secondary"
                                     class="btn btn-outline-secondary w-20 mr-1"
                                     @click.prevent="cancel">
-                                {{ t("common.Cancel") }}
+                                    Cancel
                                 </Button>
                                 <Button variant="primary" class="btn btn-primary w-20" type="submit">
-                                                    {{ t("common.Save") }}
+                                    Save
                                 </Button>
                               </div>
                           </form>

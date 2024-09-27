@@ -55,7 +55,7 @@ onMounted(() => {
   <div>
     <div class="intro-y flex items-center mt-8">
       <h2 class="text-lg font-medium mr-auto">
-        {{ t("subjects.Subject details") }}
+        Subject details
       </h2>
       <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
         <Button
@@ -69,7 +69,7 @@ onMounted(() => {
                             sm:ml-0
                         "
                      @click="router.push('/subjects')"
-                ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />{{ t("common.Back") }}
+                ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />Back
         </Button>
       </div>
     </div>
@@ -124,7 +124,7 @@ onMounted(() => {
             "
           >
             <div class="font-medium text-center lg:text-left lg:mt-3">
-              {{ t('subjects.Description')}}
+              Description
             </div>
             <div
               class="
@@ -156,7 +156,7 @@ onMounted(() => {
           >
             <div class="text-center rounded-md w-20 py-3">
               <div class="font-medium text-primary text-xl">{{ model.chapters_count }}</div>
-              <div class="text-slate-500">{{ t('subjects.Chapters')}}</div>
+              <div class="text-slate-500">Chapters</div>
             </div>
             <!-- <div class="text-center rounded-md w-20 py-3">
               <div class="font-medium text-primary text-xl">{{ model.topics_count }}</div>

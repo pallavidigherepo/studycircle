@@ -267,7 +267,7 @@ function closeMe()
 <template>
     <div>
         <template v-if="listing">
-            <h2 class="intro-y text-lg font-medium mt-10">{{ t("inquiries.Inquiries") }}</h2>
+            <h2 class="intro-y text-lg font-medium mt-10">Inquiries</h2>
             <div class="box overflow-x-auto intro-y grid grid-cols-12 gap-6 mt-5 p-5" >
                 <div
                     class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2"
@@ -275,14 +275,14 @@ function closeMe()
                     <Button  variant="primary" class="btn btn-primary shadow-md mr-2"
                                  @click.prevent="add"
                                  @click="router.push('/inquiries/create')">
-                        {{ t("common.Add New") }}
+                                 Add New
                     </Button>
                     <Menu>
                     <div v-if="datatableoptions.export" class="dropdown">
                         <Menu.Button aria-expanded="false" :as="Button" variant="primary" class="dropdown-toggle btn btn-primary ml-2"
                                 data-tw-toggle="dropdown">
                               <span class="flex items-center justify-center">
-                                {{ t("common.Export/Print") }}&nbsp;
+                                Export/Print&nbsp;
                                 <Lucide icon="DownloadIcon" class="w-4 h-4"/>
                               </span>
                         </Menu.Button>
@@ -298,14 +298,14 @@ function closeMe()
                                     <a class="dropdown-item" href="javascript:;"
                                        @click.prevent="exportMe('xlsx')">
                                        <Lucide icon="FileTextIcon" class="w-4 h-4"/>
-                                        {{ t("common.Export to Excel") }}
+                                       Export to Excel
                                     </a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="javascript:;"
                                        @click.prevent="exportMe('csv')">
                                        <Lucide icon="FileTextIcon" class="w-4 h-4"/>
-                                        {{ t("common.Export to CSV") }}
+                                       Export to CSV
                                     </a>
                                 </li>
                                 <!-- <li>
@@ -327,7 +327,7 @@ function closeMe()
                         <Menu.Button aria-expanded="false" :as="Button" variant="primary" class="dropdown-toggle btn btn-primary ml-2"
                                 data-tw-toggle="dropdown">
                                       <span class="flex items-center justify-center">
-                                        {{ t("common.Import") }}&nbsp;
+                                        Import&nbsp;
                                         <Lucide icon="UploadIcon" class="w-4 h-4"/>
                                       </span>
                         </Menu.Button>
@@ -336,7 +336,7 @@ function closeMe()
                                 <li>
                                     <a class="dropdown-item" href="#" @click.prevent="openModal">
                                         <Lucide icon="FileTextIcon" class="w-4 h-4 mr-2"/>
-                                        {{ t("common.CSV/Excel") }}
+                                        CSV/Excel
                                     </a>
                                 </li>
                             </ul>
@@ -351,7 +351,7 @@ function closeMe()
                     </div>
                     <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                         <div class="w-56 relative text-slate-500">
-                            <FormInput v-model="search" :placeholder="t('common.Search') + '...'"
+                            <FormInput v-model="search" placeholder="Search..."
                                    class="form-control w-56 pr-10 w-full"
                                    type="text" @keyup="searchMe($event)"/>
                             <Lucide icon="SearchIcon" class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"/>
@@ -364,13 +364,13 @@ function closeMe()
                         <Table.Thead>
                         <Table.Tr>
                             <Table.Th class="whitespace-nowrap">#</Table.Th>
-                            <Table.Th class="whitespace-nowrap">{{ t("inquiries.DATE AND CODE") }}</Table.Th>
-                            <Table.Th class="text-center whitespace-nowrap">{{ t("inquiries.BATCH AND STANDARD") }}</Table.Th>
-                            <Table.Th class="text-center whitespace-nowrap">{{ t("inquiries.MOBILE") }}</Table.Th>
-                            <Table.Th class="text-center whitespace-nowrap">{{ t("inquiries.STATUS") }}</Table.Th>
-                            <Table.Th class="text-center whitespace-nowrap">{{ t("inquiries.ASSIGNED TO") }}</Table.Th>
-                            <Table.Th class="text-center whitespace-nowrap">{{ t("inquiries.FOLLOW UPS") }}</Table.Th>
-                            <Table.Th class="text-center whitespace-nowrap">{{ t("common.ACTIONS") }}</Table.Th>
+                            <Table.Th class="whitespace-nowrap">DATE AND CODE</Table.Th>
+                            <Table.Th class="text-center whitespace-nowrap">BATCH AND STANDARD</Table.Th>
+                            <Table.Th class="text-center whitespace-nowrap">MOBILE</Table.Th>
+                            <Table.Th class="text-center whitespace-nowrap">STATUS</Table.Th>
+                            <Table.Th class="text-center whitespace-nowrap">ASSIGNED TO</Table.Th>
+                            <Table.Th class="text-center whitespace-nowrap">FOLLOW UPS</Table.Th>
+                            <Table.Th class="text-center whitespace-nowrap">ACTIONS</Table.Th>
                         </Table.Tr>
                         </Table.Thead>
 
@@ -444,7 +444,7 @@ function closeMe()
                                            class="flex items-center text-warning mr-2"
                                            @click.prevent="showFollowups(item)"
                                         >
-                                            <Lucide icon="MessageCircleIcon"  class="w-4 h-4 mr-1" />{{ t("inquiries.Follow Ups") }}
+                                            <Lucide icon="MessageCircleIcon"  class="w-4 h-4 mr-1" />Follow Ups
                                         </a>
                                     </div>
                                 </Table.Td>
@@ -452,18 +452,18 @@ function closeMe()
                                     <div class="flex justify-center items-center">
                                         <router-link :to="{ name: 'ShowInquiry', params: { id: item.id } }"
                                                      class="flex items-center text-primary mr-2">
-                                            <Lucide icon="EyeIcon" class="w-4 h-4 mr-1"/>{{ t("common.Show") }}
+                                            <Lucide icon="EyeIcon" class="w-4 h-4 mr-1"/>Show
                                         </router-link>
                                         <router-link :to="{ name: 'EditInquiry', params: { id: item.id } }"
                                                      class="flex items-center text-success mr-2">
                                             <Lucide icon="Edit3Icon"  class="w-4 h-4 mr-1" />
-                                            {{ t("common.Edit") }}
+                                            Edit
                                         </router-link>
                                         <a class="flex items-center text-danger"
                                            href="javascript:;"
                                            @click.prevent="deleteI(item)">
                                             <Lucide icon="Trash2Icon" Trash2Icon class="w-4 h-4 mr-1"/>
-                                            {{ t("common.Delete") }}
+                                            Delete
                                         </a>
                                         <!--                                    <Dropdown>-->
                                         <!--                                        <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">-->
@@ -500,7 +500,7 @@ function closeMe()
                             <Table.Tbody v-if="noRecords && !items.data.length">
                                 <Table.Tr class="intro-x bg-secondary">
                                     <Table.Td colspan="8" class="text-center">
-                                        {{ t("common.Sorry, no records found") }}
+                                        Sorry, no records found
                                     </Table.Td>
                                 </Table.Tr>
                             </Table.Tbody>

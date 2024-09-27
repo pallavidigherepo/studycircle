@@ -304,7 +304,7 @@ function back() {
         <template v-if="!preview">
             <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
                 <h2 class="text-lg font-medium mr-auto">
-                    {{ t("templates.Generate Question Paper") }}
+                    Generate Question Paper
                 </h2>
                 <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                     <Button
@@ -318,7 +318,7 @@ function back() {
                                         sm:ml-0
                                     "
                                 @click="router.push('/templates')"
-                            ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />{{ t("templates.Question Paper Formats") }}
+                            ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />Question Paper Formats
                     </Button>
                 </div>
             </div>
@@ -332,62 +332,62 @@ function back() {
                                 class="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5 mb-5"
                             >
                                 <div class="font-medium text-base truncate">
-                                    {{ t("templates.Question Paper Format Details") }}
+                                    Question Paper Format Details
                                 </div>
 
                             </div>
                             <div class="flex items-center">
                                 <Lucide icon="ClipboardIcon" class="w-4 h-4 text-slate-500 mr-2"/>
-                                {{ t("common.Name") }}: <span
+                                Name: <span
                                 class="underline decoration-dotted ml-1">{{ template ? template.name : null }}</span>
                             </div>
                             <div class="flex items-center mt-3">
                                 <Lucide icon="CalendarIcon" class="w-4 h-4 text-slate-500 mr-2"/>
-                                {{ t("templates.Board") }}: <span class="ml-2">{{
+                                Board: <span class="ml-2">{{
                                     template ? template.board : null
                                 }}</span>
                             </div>
                             <div class="flex items-center mt-3">
                                 <Lucide icon="BookOpenIcon" class="w-4 h-4 text-slate-500 mr-2"/>
-                                {{ t("templates.Standard") }}: <span class="ml-2">{{
+                                Standard: <span class="ml-2">{{
                                     template ? template.standard : null
                                 }}</span>
                             </div>
                             <div class="flex items-center mt-3">
                                 <Lucide icon="ColumnsIcon" class="w-4 h-4 text-slate-500 mr-2"/>
-                                {{ t("templates.Total Marks") }}: <span
+                                Total Marks: <span
                                 class="ml-2">{{ template ? template.total_marks : null }}</span>
                             </div>
                             <div class="flex items-center mt-3">
                                 <Lucide icon="ClockIcon" class="w-4 h-4 text-slate-500 mr-2"/>
-                                {{ t("templates.Duration") }}: <span class="ml-2">{{
+                                Duration: <span class="ml-2">{{
                                     template ? template.duration : null
                                 }}</span>
                             </div>
                             <div class="flex items-center mt-3">
                                 <Lucide icon="PlayIcon" class="w-4 h-4 text-slate-500 mr-2"/>
-                                {{ t("templates.Active") }}: <span class="ml-2">{{
+                                Active: <span class="ml-2">{{
                                     template ? template.is_active : null
                                 }}</span>
                             </div>
                             <div class="flex items-center mt-3">
                                 <Lucide icon="ServerIcon" class="w-4 h-4 text-slate-500 mr-2"/>
-                                {{ t("templates.Has Section") }}: <span
+                                Has Section: <span
                                 class="ml-2">{{ template ? template.has_section : null }}</span>
                             </div>
                             <div v-if="!(template && template.has_section)" class="flex items-center mt-3">
                                 <Lucide icon="SidebarIcon" class="w-4 h-4 text-slate-500 mr-2"/>
-                                {{ t("templates.Total Questions") }}:<span
+                                Total Questions:<span
                                 class="ml-2">{{ template ? template.total_questions : null }}</span>
                             </div>
                             <div v-if="!(template && template.has_section)" class="flex items-center mt-3">
                                 <Lucide icon="SidebarIcon" class="w-4 h-4 text-slate-500 mr-2"/>
-                                {{ t("templates.Compulsory Questions") }}: <span
+                                Compulsory Questions: <span
                                 class="ml-2">{{ template ? template.compulsory_questions : null }}</span>
                             </div>
                             <div v-if="!(template && template.has_section)" class="flex items-center mt-3">
                                 <Lucide icon="SidebarIcon" class="w-4 h-4 text-slate-500 mr-2"/>
-                                {{ t("templates.Question type") }}:<span
+                                Question type:<span
                                 class="ml-2">{{ template ? template.type_name : null }}</span>
                             </div>
                         </div>
@@ -397,7 +397,7 @@ function back() {
                             <div
                                 class="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5 mb-5"
                             >
-                                <div class="font-medium text-base truncate">{{ t("templates.Generate") }}</div>
+                                <div class="font-medium text-base truncate">Generate</div>
                             </div>
                             <div class="overflow-auto lg:overflow-visible mt-3">
                                 <!-- BEGIN: Subject, Chapter and Topic selection -->
@@ -405,7 +405,7 @@ function back() {
                                     <div
                                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                         <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>
-                                        {{ t("templates.Select Subject Chapter and topic") }}
+                                        Select Subject Chapter and topic
                                     </div>
                                     <div class="mt-5">
                                         <div
@@ -413,13 +413,11 @@ function back() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{
-                                                                t("templates.Paper Name")
-                                                            }}
+                                                        <div class="font-medium">Paper Name
                                                         </div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -442,13 +440,11 @@ function back() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{
-                                                                t("questions.Choose Difficulty Level")
-                                                            }}
+                                                        <div class="font-medium">Choose Difficulty Level
                                                         </div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -464,7 +460,7 @@ function back() {
                                                       placeholder: 'Select Difficulty Level',
                                                       autocomplete: 'off',
                                                     }">
-                                                    <option>{{ t('questions.Select Difficulty Level') }}</option>
+                                                    <option>Select Difficulty Level</option>
                                                     <option v-for="(level, indexd) in difficultyList" :key="indexd"
                                                             :value="indexd">
                                                         {{ JSON.parse(level) }}
@@ -481,9 +477,7 @@ function back() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{
-                                                                t("templates.Subject")
-                                                            }}
+                                                        <div class="font-medium">Subject
                                                         </div>
                                                     </div>
                                                 </div>
@@ -519,9 +513,7 @@ function back() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{
-                                                                t("templates.Chapter")
-                                                            }}
+                                                        <div class="font-medium">Chapter
                                                         </div>
                                                     </div>
                                                 </div>
@@ -538,7 +530,7 @@ function back() {
                                                           }"
                                                            class="w-full"
                                                            placeholder="Select Chapter">
-                                                    <option>{{ t("templates.All Chapters") }}</option>
+                                                    <option>All Chapters</option>
                                                     <option v-for="(chapter, indexchap) in chapters" :key="indexchap"
                                                             :value="indexchap">
                                                         {{ JSON.parse(chapter) }}
@@ -551,9 +543,7 @@ function back() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{
-                                                                t("templates.Topic")
-                                                            }}
+                                                        <div class="font-medium">Topic
                                                         </div>
                                                     </div>
 
@@ -570,7 +560,7 @@ function back() {
                                                           }"
                                                            class="w-full"
                                                            placeholder="Select Topic">
-                                                    <option>{{ t("templates.All Topics") }}</option>
+                                                    <option>All Topics</option>
                                                     <option v-for="(topic, indextop) in topics" :key="indextop"
                                                             :value="indextop">
                                                         {{ JSON.parse(topic) }}
@@ -587,12 +577,12 @@ function back() {
                                     <div class="intro-y box overflow-hidden mt-5">
                                         <div class="border-b border-slate-200/60 dark:border-darkmode-400 sm:text-left">
                                             <div class="px-1 py-2 sm:px-1 sm:py-2">
-                                                <div class="font-bold text-xl">{{ t("templates.Sections") }}</div>
+                                                <div class="font-bold text-xl">Sections</div>
                                             </div>
                                             <!-- BEGIN: Notification -->
                                             <Alert variant="soft-warning" class="flex items-center mb-2">
                                                 <Lucide icon="AlertCircle" class="w-6 h-6 mr-2" />
-                                                {{t("templates.While fetching questions make sure to have all the above selections like Difficulty level Subject Chapter and Topic If you have NOT selected these questions will be fetched without any conditions")}}
+                                                While fetching questions make sure to have all the above selections like Difficulty level Subject Chapter and Topic If you have NOT selected these questions will be fetched without any conditions
                                             </Alert>
                                             <!-- <info :typeClass="'alert-warning-soft'"
                                                   :message="'templates.While fetching questions make sure to have all the above selections like Difficulty level Subject Chapter and Topic If you have NOT selected these questions will be fetched without any conditions'"/> -->
@@ -614,30 +604,30 @@ function back() {
 
                                                                 <div class="form-check flex form-switch">
                                                                     <div class="form-label xl:!mr-10">
-                                                                        {{ t("generated_questions.Fetch questions") }}
+                                                                        Fetch questions
                                                                     </div>
                                                                     <Button variant="primary" class="btn btn-primary"
                                                                             @click.prevent="fetchQuestions(section, index)">
-                                                                        {{ t("generated_questions.Fetch Questions Automatically") }}
+                                                                            Fetch Questions Automatically
                                                                     </Button>
                                                                     <Button variant="primary" class="btn btn-primary"
                                                                             @click.prevent="fetchQuestions(section, index)">
-                                                                        {{ t("generated_questions.Fetch Questions Manually") }}
+                                                                            Fetch Questions Manually
                                                                     </Button>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="lg:text-right mt-10 lg:mt-0 lg:ml-auto">
                                                             <div class="font-medium mt-3 text-left">
-                                                                {{ section.total_marks }} {{ t("templates.Marks") }}
+                                                                {{ section.total_marks }} Marks
                                                             </div>
                                                             <div class="font-medium mt-3 text-left">
                                                                 {{ section.total_questions }}
-                                                                {{ t("templates.Questions") }}
+                                                                Questions
                                                             </div>
                                                             <div class="font-medium mt-3 text-left">
                                                                 {{ section.compulsory_questions }}
-                                                                {{ t("templates.Compulsory Questions") }}
+                                                                Compulsory Questions
                                                             </div>
                                                         </div>
                                                     </div>
@@ -650,16 +640,16 @@ function back() {
                                                                         #
                                                                     </Table.Th>
                                                                     <Table.Th class="border-b-2 dark:border-darkmode-400 whitespace-nowrap">
-                                                                        {{ t("questions.QUESTION") }}
+                                                                        QUESTION
                                                                     </Table.Th>
                                                                     <Table.Th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">
-                                                                        {{ t("questions.MARKS") }}
+                                                                        MARKS
                                                                     </Table.Th>
                                                                     <Table.Th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">
-                                                                        {{ t("questions.NEGATIVE MARKS") }}
+                                                                        NEGATIVE MARKS
                                                                     </Table.Th>
                                                                     <Table.Th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">
-                                                                        {{ t("common.ACTION") }}
+                                                                        ACTION
                                                                     </Table.Th>
                                                                 </Table.Tr>
                                                                 </Table.Thead>
@@ -720,7 +710,7 @@ function back() {
                                                 <div class="mt-3">
                                                     <div class="form-check flex form-switch">
                                                         <div class="form-label xl:!mr-10">
-                                                            {{ t("templates.Section questions") }}
+                                                            Section questions
                                                         </div>
                                                         <span class="mr-2">Auto</span>
                                                         <FormSwitch.Input id="form-is-active"
@@ -730,7 +720,7 @@ function back() {
                                                         <span class="ml-2">Manual</span>
                                                         <Button variant="primary" class="btn btn-primary ml-5"
                                                                 @click.prevent="fetchQuestions()">
-                                                            {{ t("templates.Fetch Questions") }}
+                                                                Fetch Questions
                                                         </Button>
                                                     </div>
                                                 </div>
@@ -743,16 +733,16 @@ function back() {
                                                             #
                                                         </Table.Th>
                                                         <Table.Th class="border-b-2 dark:border-darkmode-400 whitespace-nowrap">
-                                                            {{ t("questions.QUESTION") }}
+                                                            QUESTION
                                                         </Table.Th>
                                                         <Table.Th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">
-                                                            {{ t("questions.MARKS") }}
+                                                            MARKS
                                                         </Table.Th>
                                                         <Table.Th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">
-                                                            {{ t("questions.NEGATIVE MARKS") }}
+                                                            NEGATIVE MARKS
                                                         </Table.Th>
                                                         <Table.Th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">
-                                                            {{ t("common.ACTION") }}
+                                                            ACTION
                                                         </Table.Th>
                                                     </Table.Tr>
                                                     </Table.Thead>
@@ -811,15 +801,15 @@ function back() {
                         variant="secondary"
                         class="btn py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 w-full md:w-52"
                         @click="router.push('/templates')">
-                        {{ t("common.Cancel") }}
+                        Cancel
                     </Button>
 
                     <Button variant="primary" class="btn py-3 btn-primary w-full md:w-52" type="submit" @click="isOnline = true">
-                        {{ t("generated_questions.Preview Generated Paper In Online Mode") }}
+                        Preview Generated Paper In Online Mode
                     </Button>
 
                     <Button variant="primary" class="btn py-3 btn-primary w-full md:w-52" type="submit" @click="isOnline = false">
-                        {{ t("generated_questions.Preview Generated Paper In Offline Mode") }}
+                        Preview Generated Paper In Offline Mode
                     </Button>
                 </div>
             </form>
@@ -864,11 +854,11 @@ function back() {
                         "
                     @click="router.push('/templates')"
                 >
-                    {{ t("common.Cancel") }}
+                Cancel
                 </Button>
 
                 <Button variant="primary" class="btn py-3 btn-primary w-full md:w-52" type="button" @click="submitForm(false)">
-                    {{ t("templates.Generate Paper") }}
+                    Generate Paper
                 </Button>
             </div>
         </template>

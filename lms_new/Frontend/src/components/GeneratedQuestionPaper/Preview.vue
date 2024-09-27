@@ -49,7 +49,7 @@ function assignToStudent(item: { id: any; }) {
     <div>
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                {{ t("templates.Preview Generated Question Paper") }}
+                Preview Generated Question Paper
             </h2>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                 <Button variant="soft-pending" class="btn mr-2 btn-warning-soft"
@@ -57,27 +57,27 @@ function assignToStudent(item: { id: any; }) {
                         @click.prevent="assignToStudent(data)"
                         >
                         <Lucide icon="UsersIcon" class="w-4 h-4 mr-2" />
-                    {{ t("generated_questions.Assign") }}
+                        Assign
                 </Button>
                 <Button variant="soft-primary" class="btn mr-2"
                         v-if="!isCreate"
                         @click.prevent="printGeneratedQuestion(false)"
                         :class="!showPreviewForTeacher ? 'btn-primary' : 'btn-primary-soft'">
                         <Lucide icon="PrinterIcon" class="w-4 h-4 mr-2" />
-                    {{ t("generated_questions.Preview and Print for Student") }}
+                        Preview and Print for Student
                 </Button>
                 <Button variant="primary" class="btn mr-2 btn-primary"
                         v-if="!isCreate"
                         @click.prevent="printGeneratedQuestion(true)"
                         :class="showPreviewForTeacher ? 'btn-primary' : 'btn-primary-soft'">
                         <Lucide icon="PrinterIcon" class="w-4 h-4 mr-2" />
-                    {{ t("generated_questions.Preview and Print for Teacher") }}
+                        Preview and Print for Teacher
                 </Button>
                 <Button 
                    @click.prevent="emits('back', preview)"
                    class="btn box text-gray-700 dark:text-gray-300 mr-2 flex items-center ml-auto sm:ml-0">
                    <Lucide icon="ArrowLeftCircleIcon" class="w-4 h-4 mr-2" />
-                    {{ t("common.Back") }}
+                   Back
                 </Button>
             </div>
         </div>
@@ -98,18 +98,18 @@ function assignToStudent(item: { id: any; }) {
                     <div class=" mt-10 lg:mt-0 lg:ml-auto text-center">
                         <div class="text-lg font-medium mt-2">{{ data.name }}</div>
                         <div class="text-lg font-medium mt-2">
-                            {{ t("templates.Standard") }}: {{ data.template.standard ? data.template.standard : template.standard.name}}
+                            Standard: {{ data.template.standard ? data.template.standard : template.standard.name}}
                         </div>
 <!--                        <pre>{{data}}</pre>-->
-                        <div class="text-lg font-medium mt-2">{{ t("templates.Subject") }}: {{ data.subject }}</div>
+                        <div class="text-lg font-medium mt-2">Subject: {{ data.subject }}</div>
                     </div>
                     <div class="lg:text-left mt-10 lg:mt-0 lg:ml-auto pr-2">
                         <div class="text-lg font-medium mt-2">Date:</div>
                         <div class="text-lg font-medium mt-2">
-                            {{ t("templates.Total Marks") }}: {{ template.total_marks }}
+                            Total Marks: {{ template.total_marks }}
                         </div>
                         <div class="text-lg font-medium mt-2" v-if="!template.has_section">
-                            {{ t("templates.Total Questions") }}: {{ template.total_questions }}
+                            Total Questions: {{ template.total_questions }}
                         </div>
                     </div>
                 </div>

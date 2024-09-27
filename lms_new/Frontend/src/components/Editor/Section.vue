@@ -75,7 +75,7 @@ function makeid(length) {
 
             <div>
                 <div class="form-inline mt-5 first:mt-0">
-                    <label class="form-label sm:w-20">{{ t("templates.Name") }}</label>
+                    <label class="form-label sm:w-20">Name</label>
                     <div class="flex items-center flex-1 xl:pr-10">
                         <div class="flex-1">
                             <FormInput type="text"
@@ -94,7 +94,7 @@ function makeid(length) {
                 </div>
 
                 <div class="form-inline mt-5 first:mt-0">
-                    <label class="form-label sm:w-20">{{ t("templates.Description") }}</label>
+                    <label class="form-label sm:w-20">Description</label>
                     <div class="flex items-center flex-1 xl:pr-10">
                         <div class="flex-1">
                             <FormTextarea class="form-control"
@@ -108,7 +108,7 @@ function makeid(length) {
                 </div>
 
                 <div class="form-inline mt-5 first:mt-0">
-                    <label class="form-label sm:w-20">{{ t("templates.Question Type") }}</label>
+                    <label class="form-label sm:w-20">Question Type</label>
                     <div class="flex items-center flex-1 xl:pr-10">
                         <div class="flex-1">
                             <TomSelect id="form-type"
@@ -123,7 +123,7 @@ function makeid(length) {
                                           items:model.type_id,
                                         }"
                             >
-                                <option>{{ t('questions.Select Question Type') }}</option>
+                                <option>Select Question Type</option>
                                 <option v-for="(type, id) in questionTypes" :key="id" :value="id">
                                     {{ JSON.parse(type) }}
                                 </option>
@@ -132,7 +132,7 @@ function makeid(length) {
                     </div>
                 </div>
                 <div class="form-inline mt-5 first:mt-0">
-                    <label class="form-label sm:w-20">{{ t("templates.Total Questions") }}</label>
+                    <label class="form-label sm:w-20">Total Questions</label>
                     <div class="flex items-center flex-1 xl:pr-10">
                         <div class="flex-1">
                             <FormInput type="number"
@@ -145,7 +145,7 @@ function makeid(length) {
                     </div>
                 </div>
                 <div class="form-inline mt-5 first:mt-0">
-                    <label class="form-label sm:w-20">{{ t("templates.Compulsory Questions") }}</label>
+                    <label class="form-label sm:w-20">Compulsory Questions</label>
                     <div class="flex items-center flex-1 xl:pr-10">
                         <div class="flex-1">
                             <FormInput type="number"
@@ -158,7 +158,7 @@ function makeid(length) {
                     </div>
                 </div>
                 <div class="form-inline mt-5 first:mt-0">
-                    <label class="form-label sm:w-20">{{ t("templates.Marks per Question") }}</label>
+                    <label class="form-label sm:w-20">Marks per Question</label>
                     <div class="flex items-center flex-1 xl:pr-10">
                         <div class="flex-1">
                             <FormInput type="number"
@@ -171,7 +171,7 @@ function makeid(length) {
                     </div>
                 </div>
                 <div class="form-inline mt-5 first:mt-0">
-                    <label class="form-label sm:w-20">{{ t("templates.Total Marks") }}</label>
+                    <label class="form-label sm:w-20">Total Marks</label>
                     <div class="flex items-center flex-1 xl:pr-10">
                         <div class="flex-1">
                             <FormInput type="text"

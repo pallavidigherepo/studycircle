@@ -154,7 +154,7 @@ function random(string) {
     <div>
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                {{ t("fee_structures.Fee Structures") }}
+                Fee Structures
             </h2>
         </div>
         <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
@@ -179,7 +179,7 @@ function random(string) {
             <div class="col-span-12 lg:col-span-4">
                 <div class="intro-y box p-5">
                     <h2 class="text-lg font-medium mr-auto pt-5 pb-5">
-                        {{ t("common." + actionText) }}
+                        {{ actionText }}
                     </h2>
                     <div
                         class="alert alert-danger show flex items-center mb-2"
@@ -192,9 +192,7 @@ function random(string) {
 
                     <form @submit.prevent="submitForm" class="validate-form">
                         <div>
-                            <label for="fee-category" class="form-label">{{
-                                    t("fee_structures.Fee Category")
-                                }}</label>
+                            <label for="fee-category" class="form-label">Fee Category</label>
                             <TomSelect id="fee-category"
                                        v-model="model.fee_category_id"
                                        :class="{ 'border-danger': submitted && v$.fee_category_id.$errors.length, }"
@@ -207,7 +205,7 @@ function random(string) {
                                       }"
                                        :placeholder="'Select Fee Category'"
                                        class="w-full">
-                                <option>{{ t('fee_structures.Select Fee Category') }}</option>
+                                <option>Select Fee Category</option>
                                 <option v-for="(feeCategory, index) in feeCategories" :key="index" :value="index">
                                     {{ feeCategory }}
                                 </option>
@@ -220,9 +218,7 @@ function random(string) {
                             </span>
                         </div>
                         <div>
-                            <label for="fee-batch" class="form-label">{{
-                                    t("fee_structures.Batch")
-                                }}</label>
+                            <label for="fee-batch" class="form-label">Batch</label>
                             <TomSelect id="fee-batch"
                                    v-model="model.batch_id"
                                    :class="{ 'border-danger': submitted && v$.batch_id.$errors.length, }"
@@ -248,9 +244,7 @@ function random(string) {
                             </span>
                         </div>
                         <div>
-                            <label for="fee-standard" class="form-label">{{
-                                    t("fee_structures.Standard")
-                                }}</label>
+                            <label for="fee-standard" class="form-label">Standard</label>
                             <TomSelect id="fee-standard"
                                        v-model="model.standard_id"
                                        :class="{ 'border-danger': submitted && v$.standard_id.$errors.length, }"
@@ -263,7 +257,7 @@ function random(string) {
                                       }"
                                        :placeholder="'Select Standard'"
                                        class="w-full">
-                                <option>{{ t('fee_structures.Select Standard') }}</option>
+                                <option>Select Standard</option>
                                 <option v-for="(standard, index) in standards" :key="index" :value="index">
                                     {{ standard }}
                                 </option>
@@ -276,14 +270,12 @@ function random(string) {
                             </span>
                         </div>
                         <div class="mt-3">
-                            <label for="fee-structures-amount" class="form-label">{{
-                                    t("fee_structures.Amount")
-                                }}</label>
+                            <label for="fee-structures-amount" class="form-label">Amount</label>
                             <FormInput
                                 id="fee-discount-amount"
                                 type="text"
                                 class="form-control w-full"
-                                :placeholder="t('fee_structures.Amount')"
+                                placeholder="Amount"
                                 v-model.trim="model.amount"
                                 :class="{ 'border-danger': submitted && v$.amount.$error }"
                             />
@@ -301,10 +293,10 @@ function random(string) {
                                 class="btn btn-outline-secondary w-24 mr-1"
                                 @click.prevent="cancel"
                             >
-                                {{ t("common.Cancel") }}
+                                Cancel
                             </Button>
                             <Button variant="primary" type="submit" class="btn btn-primary w-24">
-                                {{ t("common.Save") }}
+                                Save
                             </Button>
                         </div>
                     </form>

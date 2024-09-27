@@ -43,7 +43,7 @@ const props = defineProps({
                             </template>
                             <template v-else>{{ answer.answer }}</template>
                             <template v-if="answer.is_correct && showPreviewForTeacher">
-                                <div variant="success" class="ml-5 btn btn-success">{{ t("questions.Correct Answer") }}</div>
+                                <div variant="success" class="ml-5 btn btn-success">Correct Answer</div>
                             </template>
                         </Table.Td>
                     </Table.Tr>

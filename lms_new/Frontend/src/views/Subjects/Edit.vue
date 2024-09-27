@@ -122,7 +122,7 @@ const standards = computed(() => store.getters.listStandards);
     <div>
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                {{ t("subjects.Edit Subject") }}
+                Edit Subject
             </h2>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                 <Button
@@ -138,7 +138,7 @@ const standards = computed(() => store.getters.listStandards);
                      @click="router.push('/subjects')"
                 >
                 <Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />
-                    {{ t("common.Back") }}
+                Back
                 </Button>
             </div>
         </div>
@@ -155,9 +155,7 @@ const standards = computed(() => store.getters.listStandards);
                     </div>
                     <form class="validate-form" @submit.prevent="submitForm()">
                         <div>
-                            <label class="form-label" for="form-label">{{
-                                    t("subjects.Board")
-                                }}</label>
+                            <label class="form-label" for="form-label">Board</label>
                             <TomSelect id="form-board"
                                        v-model="model.board_id"
                                        :class="{ 'border-danger': submitted && v$.board_id.$errors.length,}"
@@ -170,7 +168,7 @@ const standards = computed(() => store.getters.listStandards);
                                         }"
                                        placeholder="'Select Board'"
                                        class="w-full">
-                                <option>{{ t('questions.Select Board') }}</option>
+                                <option>Select Board</option>
                                 <option v-for="(board, index) in boards" :key="index" :value="index">
                                     {{ board }}
                                 </option>
@@ -181,9 +179,7 @@ const standards = computed(() => store.getters.listStandards);
                             </div>
                         </div>
                         <div class="mt-3">
-                            <label class="form-label" for="form-label">{{
-                                    t("subjects.Standard")
-                                }}</label>
+                            <label class="form-label" for="form-label">Standard</label>
                             <TomSelect id="form-standard" v-model="model.standard_id" :class="{
 'border-danger': submitted && v$.standard_id.$errors.length,
 }"
@@ -194,7 +190,7 @@ const standards = computed(() => store.getters.listStandards);
                                             autocomplete: 'off',
                                             items: [model.standard_id],
                                           }" class="w-full" placeholder="Select Standard">
-                                <option>{{ t('questions.Select Standard') }}</option>
+                                <option>Select Standard</option>
                                 <option v-for="(standard, indexs) in standards" :key="indexs" :value="indexs">
                                     {{ standard }}
                                 </option>
@@ -204,9 +200,7 @@ const standards = computed(() => store.getters.listStandards);
                             </div>
                         </div>
                         <div class="mt-3">
-                            <label class="form-label" for="form-label">{{
-                                    t("subjects.Label")
-                                }}</label>
+                            <label class="form-label" for="form-label">Label</label>
                             <FormInput
                                 id="form-label"
                                 v-model.trim="model.label"
@@ -226,9 +220,7 @@ const standards = computed(() => store.getters.listStandards);
                             </div>
                         </div>
                         <div class="mt-3">
-                            <label class="form-label" for="form-description">{{
-                                    t("subjects.Description")
-                                }}</label>
+                            <label class="form-label" for="form-description">Description</label>
 
                             <div class="mt-3 py-2">
                                
@@ -270,9 +262,7 @@ const standards = computed(() => store.getters.listStandards);
                             </div> -->
                         </div>
                         <div class="mt-3">
-                            <label class="form-label" for="form-language">{{
-                                    t("subjects.Choose Language")
-                                }}</label>
+                            <label class="form-label" for="form-language">Choose Language</label>
                             <TomSelect
                                 id="form-language"
                                 v-model="model.language_id"
@@ -298,9 +288,7 @@ const standards = computed(() => store.getters.listStandards);
                             </TomSelect>
                         </div>
                         <div class="mt-3">
-                            <label class="form-label" for="subject-icon">{{
-                                    t("subjects.Icon")
-                                }}</label>
+                            <label class="form-label" for="subject-icon">Icon</label>
                             <FormInput
                                 id="subject-icon"
                                 v-model="model.icon"
@@ -314,16 +302,14 @@ const standards = computed(() => store.getters.listStandards);
               </span>
                         </div>
                         <div class="mt-3">
-                            <label class="form-label" for="subject-tags">{{
-                                    t("subjects.Tags")
-                                }}</label>
+                            <label class="form-label" for="subject-tags">Tags</label>
                             <TomSelect
                                 id="subject-tags"
                                 v-model="model.tags_list"
                                 :options="{
                   create: true,
                 }"
-                                :placeholder="t('subjects.Tags')"
+                                placeholder="Tags"
                                 class="w-full"
                                 multiple
                             >
@@ -345,10 +331,10 @@ const standards = computed(() => store.getters.listStandards);
                                 @click="router.push('/subjects')"
                                 
                             >
-                                {{ t("common.Cancel") }}
+                                Cancel
                             </Button>
                             <Button variant="primary" class="btn btn-primary w-20" type="submit">
-                                {{ t("common.Save") }}
+                               Save
                             </Button>
                         </div>
                         <!-- END: Slide Over Footer -->

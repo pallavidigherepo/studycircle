@@ -96,7 +96,7 @@ function deleteI(item) {
     <template v-if="chapterListing">
       <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
-          {{ t("chapters.List of all the Topics of Chapter") }} {{ chapterName }}
+          List of all the Topics of Chapter {{ chapterName }}
         </h2>
       </div>
       <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">

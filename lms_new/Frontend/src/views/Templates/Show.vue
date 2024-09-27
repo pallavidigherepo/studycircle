@@ -44,7 +44,7 @@ const template = computed(() => store.getters['templates/template']);
     <div>
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                {{ t("templates.Question Paper Format Details") }}
+                Question Paper Format Details
             </h2>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
 <!--                <router-link v-if="template"
@@ -74,7 +74,7 @@ const template = computed(() => store.getters['templates/template']);
                                 sm:ml-0
                                 ">
                     <Lucide icon="ServerIcon" class="w-4 h-4 mr-2"/>
-                    {{ t("templates.Generate Question Paper") }}
+                    Generate Question Paper
                 </router-link>
                 <router-link v-if="template"
                              :to="{name: 'EditTemplate', params:{id:template.id}}"
@@ -89,7 +89,7 @@ const template = computed(() => store.getters['templates/template']);
                                     sm:ml-0
                                   ">
                     <Lucide icon="EditIcon" class="w-4 h-4 mr-2"/>
-                    {{ t("templates.Edit Template") }}
+                    Edit Template
                 </router-link>
                 <Button
                     variant="primary"
@@ -102,7 +102,7 @@ const template = computed(() => store.getters['templates/template']);
                             sm:ml-0
                         "
                     @click="router.push('/templates')"
-                ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />{{ t("common.Back") }}
+                ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />Back
                 </Button>
             </div>
         </div>
@@ -115,7 +115,7 @@ const template = computed(() => store.getters['templates/template']);
                     <div
                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                         <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>
-                        {{ t("templates.Selected Board & Standard/Class") }}
+                        Selected Board & Standard/Class
                     </div>
                     <div class="mt-5">
 
@@ -123,9 +123,7 @@ const template = computed(() => store.getters['templates/template']);
                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                 <div class="text-left flex-grow">
                                     <div class="flex items-center">
-                                        <div class="font-medium">{{
-                                                t("templates.Board")
-                                            }}
+                                        <div class="font-medium">Board
                                         </div>
                                     </div>
 
@@ -139,9 +137,7 @@ const template = computed(() => store.getters['templates/template']);
                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                 <div class="text-left flex-grow">
                                     <div class="flex items-center">
-                                        <div class="font-medium">{{
-                                                t("templates.Standard")
-                                            }}
+                                        <div class="font-medium">Standard
                                         </div>
                                     </div>
 
@@ -161,7 +157,7 @@ const template = computed(() => store.getters['templates/template']);
                     <div
                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                         <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>
-                        {{ t("templates.Information") }}
+                        Information
                     </div>
                     <div class="mt-5">
 
@@ -169,9 +165,7 @@ const template = computed(() => store.getters['templates/template']);
                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                 <div class="text-left flex-grow">
                                     <div class="flex items-center">
-                                        <div class="font-medium">{{
-                                                t("common.Name")
-                                            }}
+                                        <div class="font-medium">Name
                                         </div>
 
                                     </div>
@@ -185,9 +179,7 @@ const template = computed(() => store.getters['templates/template']);
                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                 <div class="text-left flex-grow">
                                     <div class="flex items-center">
-                                        <div class="font-medium">{{
-                                                t("templates.Total Marks")
-                                            }}
+                                        <div class="font-medium">Total Marks
                                         </div>
 
                                     </div>
@@ -202,9 +194,7 @@ const template = computed(() => store.getters['templates/template']);
                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                 <div class="text-left flex-grow">
                                     <div class="flex items-center">
-                                        <div class="font-medium">{{
-                                                t("templates.Duration")
-                                            }}
+                                        <div class="font-medium">Duration
                                         </div>
 
                                     </div>
@@ -219,7 +209,7 @@ const template = computed(() => store.getters['templates/template']);
                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                 <div class="text-left flex-grow">
                                     <div class="flex items-center">
-                                        <div class="font-medium">{{ t("templates.Is Active") }}</div>
+                                        <div class="font-medium">Is Active</div>
                                     </div>
                                 </div>
                             </div>
@@ -231,7 +221,7 @@ const template = computed(() => store.getters['templates/template']);
                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                 <div class="text-left flex-grow">
                                     <div class="flex items-center">
-                                        <div class="font-medium">{{ t("templates.Has Section") }}</div>
+                                        <div class="font-medium">Has Section</div>
                                     </div>
 
                                 </div>
@@ -249,18 +239,18 @@ const template = computed(() => store.getters['templates/template']);
                     <div
                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                         <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>
-                        {{ t("templates.Sections") }}
+                        Sections
                     </div>
                     <div class="mt-5 overflow-x-auto">
                         <Table class="table table-striped">
                             <Table.Thead>
                                 <Table.Tr>
                                     <Table.Th class="whitespace-nowrap">#</Table.Th>
-                                    <Table.Th class="whitespace-nowrap">{{ t("templates.Name") }}</Table.Th>
-                                    <Table.Th class="whitespace-nowrap">{{ t("templates.Total Questions") }}</Table.Th>
-                                    <Table.Th class="whitespace-nowrap">{{ t("templates.Compulsory Questions") }}</Table.Th>
-                                    <Table.Th class="whitespace-nowrap">{{ t("templates.Total Marks") }}</Table.Th>
-                                    <Table.Th class="whitespace-nowrap">{{ t("templates.Marks per Question") }}</Table.Th>
+                                    <Table.Th class="whitespace-nowrap">Name</Table.Th>
+                                    <Table.Th class="whitespace-nowrap">Total Questions</Table.Th>
+                                    <Table.Th class="whitespace-nowrap">Compulsory Questions</Table.Th>
+                                    <Table.Th class="whitespace-nowrap">Total Marks</Table.Th>
+                                    <Table.Th class="whitespace-nowrap">Marks per Question</Table.Th>
                                 </Table.Tr>
                             </Table.Thead>
                             <Table.Tbody>

@@ -125,7 +125,8 @@ function deleteI(item) {
   <div>
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
       <h2 class="text-lg font-medium mr-auto">
-        {{ t("coursesTypes.Courses Types") }}
+        <!-- {{ t("coursesTypes.Courses Types") }} -->
+        Courses Types
       </h2>
     </div>
     <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
@@ -150,7 +151,8 @@ function deleteI(item) {
       <div class="col-span-12 lg:col-span-4">
         <div class="intro-y box p-5">
           <h2 class="text-lg font-medium mr-auto pt-5 pb-5">
-            {{ t("common." + actionText) }}
+            <!-- {{ t("common." + actionText) }} -->
+          {{ actionText }}
           </h2>
           <div
             class="alert alert-danger show flex items-center mb-2"
@@ -163,14 +165,16 @@ function deleteI(item) {
 
           <form @submit.prevent="submitForm" class="validate-form">
             <div>
-              <label for="course-type-label" class="form-label">{{
+              <label for="course-type-label" class="form-label">Label
+                <!-- {{
                 t("coursesTypes.Label")
-              }}</label>
+              }} -->
+              </label>
               <FormInput
                 id="course-type-label"
                 type="text"
                 class="form-control w-full"
-                :placeholder="t('coursesTypes.Label')"
+                placeholder=Label
                 v-model.trim="model.label"
                 :class="{ 'border-danger': submitted && v$.label.$error }"
               />
@@ -182,14 +186,14 @@ function deleteI(item) {
               </span>
             </div>
             <div class="mt-3">
-              <label for="course-type-description" class="form-label">{{
-                t("coursesTypes.Description")
-              }}</label>
+              <label for="course-type-description" class="form-label">Description
+              
+              </label>
               <FormInput
                 id="course-type-description"
                 type="text"
                 class="form-control w-full"
-                :placeholder="t('coursesTypes.Course type description')"
+                placeholder= "Course type description"
                 v-model.trim="model.description"
                 :class="{
                   'border-danger': submitted && v$.description.$error,
@@ -203,9 +207,8 @@ function deleteI(item) {
               </span>
             </div>
             <div class="mt-3">
-              <label for="courses-types-icon" class="form-label">{{
-                t("coursesTypes.Icon")
-              }}</label>
+              <label for="courses-types-icon" class="form-label">Icon
+                </label>
               <FormInput
                 id="courses-types-icon"
                 type="text"
@@ -221,10 +224,10 @@ function deleteI(item) {
                 class="btn btn-outline-secondary w-24 mr-1"
                 @click.prevent="cancel"
               >
-                {{ t("common.Cancel") }}
+                Cancel
               </Button>
               <Button variant="primary" type="submit" class="btn btn-primary w-24">
-                {{ t("common.Save") }}
+                Save
               </Button>
             </div>
           </form>

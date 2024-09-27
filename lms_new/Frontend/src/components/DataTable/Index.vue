@@ -318,13 +318,13 @@ function searchMe(event) {
     :class="{'mt-2': datatableoptions.addNew}">
           <Button v-if="datatableoptions.addNew" variant="primary"  class="shadow-md mr-2"
                   @click.prevent="emit('addModel', true)">
-              {{ t("common.Add New") }}
+              Add New
           </Button>
           <Menu>
           <div v-if="datatableoptions.export" class="dropdown">
               <Menu.Button aria-expanded="false" :as="Button" variant="primary" class="dropdown-toggle  ml-2" data-tw-toggle="dropdown">
                 <span class="flex items-center justify-center">
-                  {{ t("common.Export/Print") }}&nbsp;
+                  Export/Print &nbsp;
                   <Lucide icon="Upload" class="w-4 h-4"/>
                 </span>
               </Menu.Button>
@@ -333,13 +333,13 @@ function searchMe(event) {
                       <li>
                           <a class="dropdown-item" href="javascript:;" @click.prevent="exportMe('xlsx')">
                               <Lucide icon="FileText" class="w-4 h-4 mr-2"/>
-                              {{ t("common.Export to Excel") }}
+                              Export to Excel
                           </a>
                       </li>
                       <li>
                           <a class="dropdown-item" href="javascript:;" @click.prevent="exportMe('csv')">
                               <Lucide icon="FileText" class="w-4 h-4 mr-2"/>
-                              {{ t("common.Export to CSV") }}
+                              Export to CSV
                           </a>
                       </li>
                       <!-- <li>
@@ -360,7 +360,7 @@ function searchMe(event) {
           <div v-if="datatableoptions.import" class="dropdown">
               <Menu.Button aria-expanded="false" :as="Button" variant="primary" class="dropdown-toggle ml-2" data-tw-toggle="dropdown">
                     <span class="flex items-center justify-center">
-                    {{ t("common.Import") }}&nbsp;
+                    Import &nbsp;
                     <Lucide icon="DownloadIcon" class="w-4 h-4"/>
                     </span>
               </Menu.Button>
@@ -369,7 +369,7 @@ function searchMe(event) {
                       <li>
                           <a class="dropdown-item" href="#" @click.prevent="openModal">
                             <Lucide icon="FileTextIcon" class="w-4 h-4"/>
-                              {{ t("common.CSV/Excel") }}
+                              CSV/Excel
                           </a>
                       </li>
                   </ul>
@@ -384,7 +384,7 @@ function searchMe(event) {
           </div>
           <div class="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto md:ml-0">
               <div class="relative w-56 text-slate-500">
-                  <FormInput v-model="search" :placeholder="t('common.Search') + '...'" class="w-56 pr-10 !box"
+                  <FormInput v-model="search" placeholder=Search...  class="w-56 pr-10 !box"
                          type="text" @keyup="searchMe($event)"/>
                   <Lucide icon="SearchIcon" class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"/>
               </div>
@@ -402,11 +402,11 @@ function searchMe(event) {
                           <a href="#" @click.prevent="sorting(column.field, sortOrder)">
                               <div class="flex items-center justify-between">
                                   <template v-if="column.label === 'ID' || column.label === 'ACTIONS'">{{
-                                          t("common." + column.label)
+                                           (column.label)
                                       }}
                                   </template>
                                   <template v-else>{{
-                                          t(module + "." + column.label)
+                                           (column.label)
                                       }}
                                   </template>
 
@@ -419,10 +419,10 @@ function searchMe(event) {
                       </template>
                       <template v-else>
                           <template v-if="column.label === 'ID' || column.label === 'ACTIONS'">{{
-                                  t("common." + column.label)
+                                 column.label
                               }}
                           </template>
-                          <template v-else>{{ t(module + "." + column.label) }}</template>
+                          <template v-else>{{ (column.label) }}</template>
                       </template>
                   </Table.Th>
               </Table.Tr>
@@ -447,18 +447,18 @@ function searchMe(event) {
                                   <a v-if="column.actions.show" class="flex items-center mr-3" href="javascript:;"
                                      @click.prevent="showMe(item)">
                                       <Lucide icon="Eye" class="w-4 h-4 mr-1"/>
-                                      {{ t("common.Show") }}
+                                      Show
                                   </a>
                                   <a v-if="column.actions.edit" class="flex items-center mr-3" href="javascript:;"
                                      @click.prevent="editMe(item)">
                                       <Lucide icon="CheckSquare" class="w-4 h-4 mr-1"/>
-                                      {{ t("common.Edit") }}
+                                      Edit
                                   </a>
                                   <a v-if="column.actions.delete" class="flex items-center text-danger"
                                      href="javascript:;"
                                      @click.prevent="emit('deleteItem', item)">
                                       <Lucide icon="Trash2" class="w-4 h-4 mr-1"/>
-                                      {{ t("common.Delete") }}
+                                      Delete
                                   </a>
                               </div>
                           </template>
@@ -489,7 +489,7 @@ function searchMe(event) {
                   <Table.Tbody v-if="noRecords && !items.data.length">
                   <Table.Tr class="intro-x bg-secondary">
                       <Table.Td :colspan="datatableoptions.columns.length" class="text-center">
-                          {{ t("common.Sorry, no records found") }}
+                          Sorry, no records found
                       </Table.Td>
                   </Table.Tr>
                   </Table.Tbody>
@@ -518,15 +518,13 @@ function searchMe(event) {
           <Dialog.Panel class="grid grid-cols-12 gap-4 gap-y-3">
             <Dialog.Title>
               <h2 class="font-medium text-base mr-auto">
-                  {{ t("common.Import as CSV/Excel") }}
+                  Import as CSV/Excel
               </h2>
             </Dialog.Title>
               <div class="col-span-12 sm:col-span-14 text-center">
                   <slot name="info"></slot>
                   <div class="upload-btn-wrapper">
-                      <Button class="upload-btn">{{
-                              t("common.Upload file")
-                          }}
+                      <Button class="upload-btn">Upload file
                       </Button>
                       <FormInput id="modal-form-1" name="myfile" type="file" @change="importMe($event)"/>
                   </div>
@@ -564,7 +562,7 @@ function searchMe(event) {
                                       <div class="text-base text-slate-500 mt-1">
                                           <Button variant="primary" class="btn btn-primary h-20"
                                                   @click.prevent="exportMe('xlsx', true)">
-                                              {{ t('common.Download Template for EXCEL') }}
+                                              Download Template for EXCEL
                                           </Button>
                                       </div>
                                   </div>
@@ -582,7 +580,7 @@ function searchMe(event) {
                                       <div class="text-base text-slate-500 mt-1">
                                           <Button variant="primary" class="btn btn-primary h-20"
                                                   @click.prevent="exportMe('csv', true)">
-                                              {{ t('common.Download Template for CSV') }}
+                                              Download Template for CSV
                                           </Button>
                                       </div>
                                   </div>
@@ -600,10 +598,10 @@ function searchMe(event) {
                       class="w-20 mr-1"
                       type="button"
                       @click="headerFooterModalPreview = false">
-                  {{ t("common.Cancel") }}
+                  Cancel
               </Button>
               <Button type="button" variant="primary" class="w-20">
-                  {{ t("permissions.Import") }}
+                  Import
              </Button>
           </Dialog.Footer>
         </Dialog.Panel>

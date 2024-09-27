@@ -62,7 +62,7 @@ function deleteI(item) {
     <template v-if="listing">
       <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
-          {{ t("chapters.Chapters") }}
+          Chapters
         </h2>
       </div>
       <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">

@@ -92,7 +92,7 @@ function showResult() {
 <template>
     <div>
         <div class="intro-y flex items-center mt-8">
-            <h2 class="text-lg font-medium mr-auto">{{ t("students.Student Details") }}</h2>
+            <h2 class="text-lg font-medium mr-auto">Student Details</h2>
 
             <router-link v-if="student"
                          :to="{ name: 'EditStudent', params: { id: student.id } }"
@@ -106,7 +106,7 @@ function showResult() {
                                 sm:ml-0
                               ">
                               <Lucide icon="EditIcon" class="w-4 h-4 mr-2" />
-                {{ t("students.Edit Student") }}
+                              Edit Student
             </router-link>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                 <Button
@@ -120,7 +120,7 @@ function showResult() {
                             sm:ml-0
                         "
                      @click="router.push('/students')"
-                ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />{{ t("common.Back") }}
+                ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />Back
                 </Button>
             </div>
         </div>
@@ -146,7 +146,7 @@ function showResult() {
                             <div class="w-24 sm:w-40 truncate sm:whitespace-normal font-medium text-lg">
                                 {{ student.name }}
                             </div>
-                            <div class="text-slate-500">{{ student.board }} {{ t("students.of Standard") }} {{ student.standard }}</div>
+                            <div class="text-slate-500">{{ student.board }} of Standard {{ student.standard }}</div>
                         </div>
                     </div>
                     <div
@@ -172,19 +172,19 @@ function showResult() {
                 </div>
                 <Tab.List class="nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center">
                     <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
-                        <Lucide icon="UserIcon" class="w-4 h-4 mr-2" /> {{ t("students.Information") }}
+                        <Lucide icon="UserIcon" class="w-4 h-4 mr-2" /> Information
                     </Tab>
                     <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
-                        <Lucide icon="ServerIcon" class="w-4 h-4 mr-2" /> {{ t("students.Documents") }}
+                        <Lucide icon="ServerIcon" class="w-4 h-4 mr-2" /> Documents
                     </Tab>
                     <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
-                        <Lucide icon="ServerIcon" class="w-4 h-4 mr-2" /> {{ t("students.Siblings") }}
+                        <Lucide icon="ServerIcon" class="w-4 h-4 mr-2" /> Siblings
                     </Tab>
                     <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
-                        <Lucide icon="ServerIcon" class="w-4 h-4 mr-2" /> {{ t("students.Papers") }}
+                        <Lucide icon="ServerIcon" class="w-4 h-4 mr-2" /> Papers
                     </Tab>
                     <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
-                        <Lucide icon="TrendingUpIcon" class="w-4 h-4 mr-2" /> {{ t("students.Results") }}
+                        <Lucide icon="TrendingUpIcon" class="w-4 h-4 mr-2" /> Results
                     </Tab>
                 </Tab.List>
             </div>
@@ -196,7 +196,7 @@ function showResult() {
                         <div class="intro-y box col-span-12 lg:col-span-12">
                             <div
                                 class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                                <h2 class="font-medium text-base mr-auto">{{ t("students.Basic Information") }}</h2>
+                                <h2 class="font-medium text-base mr-auto">Basic Information</h2>
                             </div>
                             <div class="p-5">
                                 <!-- BEGIN: Board and Standard selection -->
@@ -205,16 +205,14 @@ function showResult() {
                                         <div
                                             class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                             <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2" />
-                                            {{ t("questions.Select Board & Standard/Class") }}
+                                            Select Board & Standard/Class
                                         </div>
                                         <div class="mt-2">
                                             <div class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{
-                                                                    t("students.Standard")
-                                                                }}
+                                                            <div class="font-medium">Standard
                                                             </div>
                                                         </div>
 
@@ -228,9 +226,7 @@ function showResult() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{
-                                                                    t("students.Batch")
-                                                                }}
+                                                            <div class="font-medium">Batch
                                                             </div>
                                                         </div>
                                                     </div>
@@ -249,7 +245,7 @@ function showResult() {
                                         <div
                                             class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                             <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2" />
-                                            {{ t("students.Basic Information Of Student") }}
+                                            Basic Information Of Student
                                         </div>
                                         <div class="mt-5">
                                             <!-- Begin: Name-->
@@ -257,7 +253,7 @@ function showResult() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("students.Name") }}</div>
+                                                            <div class="font-medium">Name</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -271,7 +267,7 @@ function showResult() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("students.Gender") }}</div>
+                                                            <div class="font-medium">Gender</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -285,7 +281,7 @@ function showResult() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("students.Date Of Birth") }}
+                                                            <div class="font-medium">Date Of Birth
                                                             </div>
                                                         </div>
                                                     </div>
@@ -300,7 +296,7 @@ function showResult() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("students.Permanent Address") }}
+                                                            <div class="font-medium">Permanent Address
                                                             </div>
                                                         </div>
 
@@ -316,7 +312,7 @@ function showResult() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("students.Address") }}</div>
+                                                            <div class="font-medium">Address</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -330,7 +326,7 @@ function showResult() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("students.Aadhaar") }}
+                                                            <div class="font-medium">Aadhaar
                                                             </div>
                                                         </div>
                                                     </div>
@@ -350,7 +346,7 @@ function showResult() {
                                         <div
                                             class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                             <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2" />
-                                            {{ t("students.Mother Information Of Student") }}
+                                            Mother Information Of Student
                                         </div>
                                         <div class="mt-5">
                                             <!-- Begin: Mother Name-->
@@ -358,7 +354,7 @@ function showResult() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("students.Mother Name") }}</div>
+                                                            <div class="font-medium">Mother Name</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -372,7 +368,7 @@ function showResult() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("students.Mother Email") }}</div>
+                                                            <div class="font-medium">Mother Email</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -386,7 +382,7 @@ function showResult() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("students.Mother Mobile") }}</div>
+                                                            <div class="font-medium">Mother Mobile</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -400,7 +396,7 @@ function showResult() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("students.Mother Qualification") }}</div>
+                                                            <div class="font-medium">Mother Qualification</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -414,7 +410,7 @@ function showResult() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("students.Mother Occupation") }}</div>
+                                                            <div class="font-medium">Mother Occupation</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -433,7 +429,7 @@ function showResult() {
                                         <div
                                             class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                             <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2" />
-                                            {{ t("students.Father Information Of Student") }}
+                                            Father Information Of Student
                                         </div>
                                         <div class="mt-5">
                                             <!-- Begin: Father Name-->
@@ -441,7 +437,7 @@ function showResult() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("students.Father Name") }}</div>
+                                                            <div class="font-medium">Father Name</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -455,7 +451,7 @@ function showResult() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("students.Father Email") }}</div>
+                                                            <div class="font-medium">Father Email</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -469,7 +465,7 @@ function showResult() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("students.Father Mobile") }}</div>
+                                                            <div class="font-medium">Father Mobile</div>
                                                         </div>
 
                                                     </div>
@@ -484,7 +480,7 @@ function showResult() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("students.Father Qualification") }}</div>
+                                                            <div class="font-medium">Father Qualification</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -498,7 +494,7 @@ function showResult() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("students.Father Occupation") }}</div>
+                                                            <div class="font-medium">Father Occupation</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -523,7 +519,7 @@ function showResult() {
                         <div class="intro-y box col-span-12 lg:col-span-12">
                             <div
                                 class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                                <h2 class="font-medium text-base mr-auto">{{ t("students.Documents Uploaded") }}</h2>
+                                <h2 class="font-medium text-base mr-auto">Documents Uploaded</h2>
                             </div>
                             <div class="p-5">
                                 <!-- BEGIN: Board and Standard selection -->
@@ -555,9 +551,7 @@ function showResult() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{
-                                                                    t("students.Batch")
-                                                                }}
+                                                            <div class="font-medium">Batch
                                                             </div>
                                                         </div>
                                                     </div>
@@ -581,7 +575,7 @@ function showResult() {
                         <div class="intro-y box col-span-12 lg:col-span-12">
                             <div
                                 class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                                <h2 class="font-medium text-base mr-auto">{{ t("students.Basic Information") }}</h2>
+                                <h2 class="font-medium text-base mr-auto">Basic Information</h2>
                             </div>
                             <div class="p-5">
                                 <!-- BEGIN: Board and Standard selection -->
@@ -590,16 +584,14 @@ function showResult() {
                                         <div
                                             class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                             <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2" />
-                                            {{ t("questions.Select Board & Standard/Class") }}
+                                            Select Board & Standard/Class
                                         </div>
                                         <div class="mt-2">
                                             <div class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{
-                                                                    t("students.Standard")
-                                                                }}
+                                                            <div class="font-medium">Standard
                                                             </div>
                                                         </div>
 
@@ -613,9 +605,7 @@ function showResult() {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{
-                                                                    t("students.Batch")
-                                                                }}
+                                                            <div class="font-medium">Batch
                                                             </div>
                                                         </div>
                                                     </div>
@@ -639,7 +629,7 @@ function showResult() {
                         <div class="intro-y box col-span-12 lg:col-span-12">
                             <div
                                 class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                                <h2 class="font-medium text-base mr-auto">{{ t("students.Papers") }}</h2>
+                                <h2 class="font-medium text-base mr-auto">Papers</h2>
                             </div>
                             <div class="pos intro-y grid grid-cols-12 gap-5 mt-5" v-if="papers">
                                 <template v-for="(paper, index) in papers.can_take_test"
@@ -685,7 +675,7 @@ function showResult() {
                         <div class="intro-y box col-span-12 lg:col-span-12">
                             <div
                                 class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                                <h2 class="font-medium text-base mr-auto">{{ t("students.Results") }}</h2>
+                                <h2 class="font-medium text-base mr-auto">Results</h2>
 
                             </div>
                             <div class="pos intro-y grid grid-cols-12 gap-5 mt-5" v-if="papers">
@@ -737,10 +727,10 @@ function showResult() {
                 <div class="p-5 text-center">
 
                     <AlertTriangleIcon class="w-16 h-16 text-warning mx-auto mt-3" />
-                    <div class="text-3xl mt-5">{{ t("common.Are you sure") }}?</div>
+                    <div class="text-3xl mt-5">Are you sure?</div>
                     <div class="text-slate-500 mt-2">
-                        {{ t("students.Do you really want to take the test") }}? <br />
-                        {{ t("students.This process cannot be undone") }}.
+                        Do you really want to take the test? <br />
+                        This process cannot be undone
                     </div>
                 </div>
                 <div class="px-5 pb-8 text-center">
@@ -749,9 +739,9 @@ function showResult() {
                         @click="takeTestConfirmationModal = false"
                         class="btn btn-outline-secondary w-24 mr-1"
                     >
-                        {{ t("common.Cancel") }}
+                    Cancel
                     </Button>
-                    <Button type="button" class="btn btn-danger w-24" @click.prevent="startTest">{{ t("common.Yes") }}</Button>
+                    <Button type="button" class="btn btn-danger w-24" @click.prevent="startTest">Yes</Button>
                 </div>
             </ModalBody>
         </Dialog>

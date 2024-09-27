@@ -352,7 +352,7 @@ function showTransaction(transaction)
     <div>
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                {{ t("fees.Fees") }}
+                Fees
             </h2>
         </div>
         <div class="pos intro-y grid grid-cols-12 gap-6 ">
@@ -373,8 +373,8 @@ function showTransaction(transaction)
                                 <div v-if="datatableoptions.export" class="dropdown">
                                     <Menu.Button aria-expanded="false" :as="Button" variant="primary" class="dropdown-toggle btn btn-primary ml-2"
                                             data-tw-toggle="dropdown">
-                                      <span class="flex items-center justify-center">
-                                        {{ t("common.Export/Print") }}&nbsp;
+                                      <span class="flex items-center justify-center mr-2">
+                                    Export/Print&nbsp;
                                         <Lucide icon="DownloadIcon" class="w-4 h-4 mr-2"/>
                                       </span>
                                     </Menu.Button>
@@ -390,14 +390,14 @@ function showTransaction(transaction)
                                                 <a class="dropdown-item" href="javascript:;"
                                                    @click.prevent="exportMe('xlsx')">
                                                    <Lucide icon="FileText" class="w-4 h-4 mr-2"/>
-                                                    {{ t("common.Export to Excel") }}
+                                                   Export to Excel
                                                 </a>
                                             </li>
                                             <li>
                                                 <a class="dropdown-item" href="javascript:;"
                                                    @click.prevent="exportMe('csv')">
                                                    <Lucide icon="FileText" class="w-4 h-4 mr-2"/>
-                                                    {{ t("common.Export to CSV") }}
+                                                   Export to CSV
                                                 </a>
                                             </li>
                                             <!-- <li>
@@ -419,7 +419,7 @@ function showTransaction(transaction)
                                     <Menu.Button aria-expanded="false" class="dropdown-toggle btn btn-primary ml-2"
                                             data-tw-toggle="dropdown">
                                       <span class="flex items-center justify-center">
-                                        {{ t("common.Import") }}&nbsp;
+                                        Import&nbsp;
                                         <Lucide icon="UploadIcon" class="w-4 h-4"/>
                                       </span>
                                     </Menu.Button>
@@ -428,7 +428,7 @@ function showTransaction(transaction)
                                             <li>
                                                 <a class="dropdown-item" href="#" @click.prevent="openModal">
                                                     <Lucide icon="FileText" class="w-4 h-4 mr-2"/>
-                                                    {{ t("common.CSV/Excel") }}
+                                                    CSV/Excel
                                                 </a>
                                             </li>
                                         </ul>
@@ -462,7 +462,7 @@ function showTransaction(transaction)
                                                        }"
                                                        class="w-56"
                                                        placeholder="Select Batch">
-                                                <option>{{ t('fees.All Batches') }}</option>
+                                                <option>All Batches</option>
                                                 <option v-for="(standard, indexs) in standards" :key="indexs"
                                                         :value="indexs">
                                                     {{ standard }}
@@ -480,7 +480,7 @@ function showTransaction(transaction)
                                                        }"
                                                        class="w-56"
                                                        placeholder="Select Standard">
-                                                <option>{{ t('fees.All Standards') }}</option>
+                                                <option>All Standards</option>
                                                 <option v-for="(standard, indexs) in standards" :key="indexs"
                                                         :value="indexs">
                                                     {{ standard }}
@@ -498,7 +498,7 @@ function showTransaction(transaction)
                                                        }"
                                                        class="w-56"
                                                        placeholder="Select Fee Type">
-                                                <option>{{ t('fees.All Fee Types') }}</option>
+                                                <option>All Fee Types</option>
                                                 <option v-for="(feeType, indexs) in feeTypes" :key="indexs"
                                                         :value="indexs">
                                                     {{ feeType }}
@@ -507,7 +507,7 @@ function showTransaction(transaction)
                                         </div>
                                         <div class="col-span-3 flex flex-wrap">
                                             <FormInput v-model="model.student_name"
-                                                   :placeholder="t('fees.Student Name') + '...'"
+                                                   placeholder="Student Name..."
                                                    class="form-control w-56 pr-10 w-full mr-5"
                                                    type="text" @keyup="searchMe($event)"/>
                                             <SearchIcon class="w-4 h-4 absolute my-auto inset-y-0 mr-1 right-0"/>
@@ -524,7 +524,7 @@ function showTransaction(transaction)
                                         <Table.Th class="uppercase whitespace-nowrap" scope="col"
                                             :class="{ 'table-report__action w-56': !'id' }">
                                             <div class="flex items-center justify-between">
-                                                {{ t("fees.ID") }}
+                                                ID
                                                 <span v-if="'id' === sortBy">
                                                   <ChevronUpIcon v-if="sortOrder === 'asc'"
                                                                  class="w-4 h-4 text-gray-400"></ChevronUpIcon>
@@ -536,7 +536,7 @@ function showTransaction(transaction)
                                         <Table.Th class="uppercase whitespace-nowrap" scope="col"
                                             :class="{ 'table-report__action w-56': !'batch_id' }">
                                             <div class="flex items-center justify-between">
-                                                {{ t("fees.STUDENT") }}
+                                                STUDENT
                                                 <span v-if="'student' === sortBy">
                                                   <ChevronUpIcon v-if="sortOrder === 'asc'"
                                                                  class="w-4 h-4 text-gray-400"></ChevronUpIcon>
@@ -548,7 +548,7 @@ function showTransaction(transaction)
                                         <Table.Th class="uppercase whitespace-nowrap" scope="col"
                                             :class="{ 'table-report__action w-56': !'batch_id' }">
                                             <div class="flex items-center justify-between">
-                                                {{ t("fees.BATCH") }}
+                                                BATCH
                                                 <span v-if="'batch_id' === sortBy">
                                                   <ChevronUpIcon v-if="sortOrder === 'asc'"
                                                                  class="w-4 h-4 text-gray-400"></ChevronUpIcon>
@@ -560,7 +560,7 @@ function showTransaction(transaction)
                                         <Table.Th class="uppercase whitespace-nowrap" scope="col"
                                             :class="{ 'table-report__action w-56': !'batch_id' }">
                                             <div class="flex items-center justify-between">
-                                                {{ t("fees.STANDARD") }}
+                                                STANDARD
                                                 <span v-if="'standard' === sortBy">
                                                   <ChevronUpIcon v-if="sortOrder === 'asc'"
                                                                  class="w-4 h-4 text-gray-400"></ChevronUpIcon>
@@ -572,7 +572,7 @@ function showTransaction(transaction)
                                         <Table.Th class="uppercase whitespace-nowrap" scope="col"
                                             :class="{ 'table-report__action w-56': !'batch_id' }">
                                             <div class="flex items-center justify-between">
-                                                {{ t("fees.FEE TYPE") }}
+                                                FEE TYPE
                                                 <span v-if="'fee_type' === sortBy">
                                                   <ChevronUpIcon v-if="sortOrder === 'asc'"
                                                                  class="w-4 h-4 text-gray-400"></ChevronUpIcon>
@@ -584,7 +584,7 @@ function showTransaction(transaction)
                                         <Table.Th class="uppercase whitespace-nowrap" scope="col"
                                             :class="{ 'table-report__action w-56': !'batch_id' }">
                                             <div class="flex items-center justify-between">
-                                                {{ t("fees.AMOUNT") }}
+                                                AMOUNT
                                                 <span v-if="'amount' === sortBy">
                                                   <ChevronUpIcon v-if="sortOrder === 'asc'"
                                                                  class="w-4 h-4 text-gray-400"></ChevronUpIcon>
@@ -596,7 +596,7 @@ function showTransaction(transaction)
                                         <Table.Th class="uppercase whitespace-nowrap" scope="col"
                                             :class="{ 'table-report__action w-56': !'batch_id' }">
                                             <div class="flex items-center justify-between">
-                                                {{ t("fees.BALANCE") }}
+                                                BALANCE
                                                 <span v-if="'balance' === sortBy">
                                                   <ChevronUpIcon v-if="sortOrder === 'asc'"
                                                                  class="w-4 h-4 text-gray-400"></ChevronUpIcon>
@@ -608,7 +608,7 @@ function showTransaction(transaction)
                                         <Table.Th class="uppercase whitespace-nowrap" scope="col"
                                             :class="{ 'table-report__action w-56': !'batch_id' }">
                                             <div class="flex items-center justify-between">
-                                                {{ t("fees.STATUS") }}
+                                                STATUS
                                                 <span v-if="'status' === sortBy">
                                                   <ChevronUpIcon v-if="sortOrder === 'asc'"
                                                                  class="w-4 h-4 text-gray-400"></ChevronUpIcon>
@@ -620,7 +620,7 @@ function showTransaction(transaction)
                                         <Table.Th class="uppercase whitespace-nowrap" scope="col"
                                             :class="{ 'table-report__action w-56': !'batch_id' }">
                                             <div class="flex items-center justify-between">
-                                                {{ t("common.ACTION") }}
+                                                ACTION
                                             </div>
                                         </Table.Th>
                                     </Table.Tr>
@@ -685,13 +685,13 @@ function showTransaction(transaction)
                                                         <a class="flex items-center mr-3" href="javascript:;"
                                                            @click.prevent="payNow(item)">
                                                             <CheckSquareIcon class="w-4 h-4 mr-1"/>
-                                                            {{ t("fees.Pay Now") }}
+                                                            Pay Now
                                                         </a>
                                                     </template>
                                                     <a class="flex items-center mr-3" href="javascript:;"
                                                        @click.prevent="paymentHistory(item)">
                                                         <CheckSquareIcon class="w-4 h-4 mr-1"/>
-                                                        {{ t("fees.Payment History") }}
+                                                        Payment History
                                                     </a>
 
                                                 </div>
@@ -704,7 +704,7 @@ function showTransaction(transaction)
                                         <Table.Tbody v-if="noRecords && !items.data.length">
                                         <Table.Tr class="intro-x bg-secondary">
                                             <Table.Td colspan="8" class="text-center">
-                                                {{ t("common.Sorry, no records found") }}
+                                                Sorry, no records found
                                             </Table.Td>
                                         </Table.Tr>
                                         </Table.Tbody>
@@ -737,7 +737,7 @@ function showTransaction(transaction)
                                 </a>
                                 <Dialog.Title>
                                     <h2 class="font-medium text-base mr-auto">
-                                        {{ t("fees.Pay") }}
+                                        Pay
                                     </h2>
                                 </Dialog.Title>
                                 <!--                                <CustomeAlert v-if="responseMessage"
@@ -752,14 +752,14 @@ function showTransaction(transaction)
                                             <div
                                                 class="flex items-center pb-5 mb-5 border-b border-slate-200/60 dark:border-darkmode-400"
                                             >
-                                                <div class="text-base font-medium truncate">{{ t('fees.Payment Details') }}</div>
+                                                <div class="text-base font-medium truncate">Payment Details</div>
                                                 <!--                                                    <a href="" class="flex items-center ml-auto text-primary">
                                                                                                         <Lucide icon="Edit" class="w-4 h-4 mr-2" /> Change Status
                                                                                                     </a>-->
                                             </div>
                                             <div class="flex items-center">
                                                 <div class="flex font-medium">
-                                                    {{ t('fees.Student Name') }}:
+                                                    Student Name:
                                                 </div>
                                                 <div class="ml-2">
                                                     <a href="" class="underline decoration-dotted">
@@ -769,13 +769,13 @@ function showTransaction(transaction)
                                             </div>
                                             <div class="flex items-center mt-3">
                                                 <div class="flex font-medium">
-                                                    {{ t('fees.Batch') }}:
+                                                    Batch:
                                                 </div>
                                                 <div class="ml-2">{{ payHistory ? payHistory.batch : "" }}</div>
                                             </div>
                                             <div class="flex items-center mt-3">
                                                 <div class="flex font-medium">
-                                                    {{ t('fees.Standard') }}:
+                                                    Standard:
                                                 </div>
                                                 <div class="ml-2">{{ payHistory ? payHistory.standard : "" }}</div>
                                             </div>
@@ -786,10 +786,10 @@ function showTransaction(transaction)
                                                 <div
                                                     class="flex items-center pb-5 mb-5 border-b border-slate-200/60 dark:border-darkmode-400"
                                                 >
-                                                    <div class="text-base font-medium truncate">{{ t('fees.Amount to Pay') }}</div>
+                                                    <div class="text-base font-medium truncate">Amount to Pay</div>
                                                 </div>
                                                 <div class="flex items-center mt-3">
-                                                    {{ t('fees.Total Amount') }}:
+                                                    Total Amount:
                                                     <div class="ml-auto">{{
                                                             payHistory ? payHistory.total_amount : ''
                                                         }}
@@ -797,14 +797,14 @@ function showTransaction(transaction)
                                                 </div>
 
                                                 <div class="flex items-center mt-3">
-                                                    {{ t('fees.Total Discounts') }}:
+                                                    Total Discounts:
                                                     <div class="ml-auto">{{
                                                             discountsForStudent ? discountsForStudent['total_discounts'] : ''
                                                         }}
                                                     </div>
                                                 </div>
                                                 <div class="flex items-center mt-3">
-                                                    {{ t('fees.Balance') }}:
+                                                    Balance:
                                                     <div class="ml-auto">{{
                                                             payHistory ? payHistory.balance : ''
                                                         }}
@@ -812,7 +812,7 @@ function showTransaction(transaction)
                                                 </div>
                                                 <div class="flex items-center mt-3"
                                                      v-if="payHistory && discountsForStudent">
-                                                    {{ t('fees.Amount to Pay') }}:
+                                                     Amount to Pay:
                                                     <div class="ml-auto">
                                                         <template
                                                             v-if="payHistory.balance > discountsForStudent['total_discounts']">
@@ -825,7 +825,7 @@ function showTransaction(transaction)
                                                 </div>
 
                                                 <div class="flex items-center">
-                                                    {{ t('fees.Payment Method') }}:
+                                                    Payment Method:
 
                                                     <div class="ml-auto flex w-40">
                                                         <template v-if="transactionModel.payment_method === 'cheque'">
@@ -850,10 +850,10 @@ function showTransaction(transaction)
                                                                       }"
                                                                    :placeholder="'Select Payment Method'"
                                                                    class="w-full">
-                                                            <option>{{ t('fees.Select method') }}</option>
-                                                            <option value="cash" selected>{{ t('fees.Cash') }}</option>
-                                                            <option value="cheque">{{ t('fees.Cheque') }}</option>
-                                                            <option value="upi">{{ t('fees.UPI') }}</option>
+                                                            <option>Select method</option>
+                                                            <option value="cash" selected>Cash</option>
+                                                            <option value="cheque">Cheque</option>
+                                                            <option value="upi">UPI</option>
                                                         </TomSelect>
                                                     </div>
                                                 </div>
@@ -865,7 +865,7 @@ function showTransaction(transaction)
                                                 <div
                                                     class="flex items-center pt-5 mt-5 font-medium border-t border-slate-200/60 dark:border-darkmode-400"
                                                 >
-                                                    {{ t('fees.Amount') }}:
+                                                Amount:
                                                     <div class="ml-auto">
                                                         <FormInput type="number"
                                                                v-model="transactionModel.amount"
@@ -886,7 +886,7 @@ function showTransaction(transaction)
                                                 >
 
                                                     <div class="ml-auto">
-                                                        <Button class="btn btn-primary" type="submit">{{ t('fees.Pay Now') }}</Button>
+                                                        <Button class="btn btn-primary" type="submit">Pay Now</Button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -895,14 +895,14 @@ function showTransaction(transaction)
                                             <div
                                                 class="flex items-center pb-5 mb-5 border-b border-slate-200/60 dark:border-darkmode-400"
                                             >
-                                                <div class="text-base font-medium truncate">{{ t('fees.Fee Structure') }}</div>
+                                                <div class="text-base font-medium truncate">Fee Structure</div>
                                             </div>
                                             <div class="overflow-auto lg:overflow-visible">
                                                 <Table class="table striped">
                                                     <Table.Tr>
-                                                        <Table.Th class="whitespace-nowrap">{{ t('fees.Fee Structure Name') }}</Table.Th>
-                                                        <Table.Th class="text-right whitespace-nowrap">{{ t('fees.Amount') }}</Table.Th>
-                                                        <Table.Th class="text-right whitespace-nowrap">{{ t('fees.Amount To Pay') }}
+                                                        <Table.Th class="whitespace-nowrap">Fee Structure Name</Table.Th>
+                                                        <Table.Th class="text-right whitespace-nowrap">Amount</Table.Th>
+                                                        <Table.Th class="text-right whitespace-nowrap">Amount To Pay
                                                         </Table.Th>
                                                     </Table.Tr>
                                                     <Table.Tbody>
@@ -939,7 +939,7 @@ function showTransaction(transaction)
                                             <div
                                                 class="flex items-center pb-5 mb-5 border-b border-slate-200/60 dark:border-darkmode-400"
                                             >
-                                                <div class="text-base font-medium truncate">{{ t('fees.Discounts Available') }}</div>
+                                                <div class="text-base font-medium truncate">Discounts Available</div>
                                             </div>
                                             <div class="overflow-auto lg:overflow-visible">
                                                 <Table class="table striped">
@@ -989,10 +989,10 @@ function showTransaction(transaction)
                                             class="btn btn-outline-secondary w-20 mr-1"
                                             type="button"
                                             @click="showPayNowPreview = false">
-                                        {{ t("common.Cancel") }}
+                                            Cancel
                                     </Button>
                                     <!-- <button type="button" class="btn btn-primary w-20">
-                                        {{ t("permissions.Import") }}
+                                        Import
                                         </button> -->
                                 </Dialog.Footer>
                             </Dialog.Panel>
@@ -1004,7 +1004,7 @@ function showTransaction(transaction)
                                    @hidden="showTransactionHistory = false">
                                 <Dialog.Title>
                                     <h2 class="font-medium text-base mr-auto">
-                                        {{ t("fees.Transaction List") }}
+                                        Transaction List
                                     </h2>
                                 </Dialog.Title>
                                 <Dialog.Panel class="grid grid-cols-12 gap-4 gap-y-3 intro-y">
@@ -1014,7 +1014,7 @@ function showTransaction(transaction)
 
                                                 <div class="flex items-center">
                                                     <div class="flex font-medium">
-                                                        {{ t('fees.Student Name') }}:
+                                                        Student Name:
                                                     </div>
                                                     <div class="ml-2">
                                                         <a href="" class="underline decoration-dotted">
@@ -1024,13 +1024,13 @@ function showTransaction(transaction)
                                                 </div>
                                                 <div class="flex items-center mt-3">
                                                     <div class="flex font-medium">
-                                                        {{ t('fees.Batch') }}:
+                                                        Batch:
                                                     </div>
                                                     <div class="ml-2">{{ payHistory ? payHistory.batch : "" }}</div>
                                                 </div>
                                                 <div class="flex items-center mt-3">
                                                     <div class="flex font-medium">
-                                                        {{ t('fees.Standard') }}:
+                                                        Standard:
                                                     </div>
                                                     <div class="ml-2">{{ payHistory ? payHistory.standard : "" }}</div>
                                                 </div>
@@ -1084,7 +1084,7 @@ function showTransaction(transaction)
                                    @hidden="showInvoiceModal = false">
                                 <Dialog.Title>
                                     <h2 class="font-medium text-base mr-auto">
-                                        {{ t("fees.Invoice") }}
+                                        Invoice
                                     </h2>
                                 </Dialog.Title>
                                 <Dialog.Panel class="intro-y box overflow-hidden mt-5">

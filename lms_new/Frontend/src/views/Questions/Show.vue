@@ -48,7 +48,7 @@ const question = computed(() => store.getters['questions/question']);
   <div>
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
       <h2 class="text-lg font-medium mr-auto">
-        {{ t("questions.Question Details") }}
+        Question Details
       </h2>
       <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
           <router-link v-if="question"
@@ -63,7 +63,7 @@ const question = computed(() => store.getters['questions/question']);
                             sm:ml-0
                           ">
               <Lucide icon="EditIcon" class="w-4 h-4 mr-2"/>
-              {{ t("questions.Edit Question") }}
+              Edit Question
           </router-link>
           <Button
             variant="primary"
@@ -76,7 +76,7 @@ const question = computed(() => store.getters['questions/question']);
                     sm:ml-0
                 "
               @click="router.push('/questions')"
-        ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />{{ t("common.Back") }}
+        ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />Back
         </Button>
       </div>
     </div>
@@ -88,7 +88,7 @@ const question = computed(() => store.getters['questions/question']);
           <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
             <div
               class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-              <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/> {{ t("questions.Selected Board & Standard/Class") }}
+              <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/> Selected Board & Standard/Class
             </div>
             <div class="mt-5">
 
@@ -96,9 +96,7 @@ const question = computed(() => store.getters['questions/question']);
                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                     <div class="text-left flex-grow">
                     <div class="flex items-center">
-                      <div class="font-medium">{{
-                          t("questions.Board")
-                      }}</div>
+                      <div class="font-medium">Board</div>
                     </div>
 
                   </div>
@@ -111,9 +109,7 @@ const question = computed(() => store.getters['questions/question']);
                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                     <div class="text-left flex-grow">
                     <div class="flex items-center">
-                      <div class="font-medium">{{
-                          t("questions.Standard")
-                      }}</div>
+                      <div class="font-medium">Standard</div>
                     </div>
 
                   </div>
@@ -131,7 +127,7 @@ const question = computed(() => store.getters['questions/question']);
           <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
             <div
               class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-              <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/> {{ t("questions.Select Difficulty level & Language") }}
+              <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/> Select Difficulty level & Language
             </div>
             <div class="mt-5">
 
@@ -139,9 +135,7 @@ const question = computed(() => store.getters['questions/question']);
                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                     <div class="text-left flex-grow">
                     <div class="flex items-center">
-                      <div class="font-medium">{{
-                          t("questions.Difficulty Level")
-                      }}</div>
+                      <div class="font-medium">Difficulty Level</div>
 
                     </div>
                   </div>
@@ -154,9 +148,7 @@ const question = computed(() => store.getters['questions/question']);
                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                     <div class="text-left flex-grow">
                     <div class="flex items-center">
-                      <div class="font-medium">{{
-                          t("questions.Language")
-                      }}</div>
+                      <div class="font-medium">Language</div>
 
                     </div>
 
@@ -175,7 +167,7 @@ const question = computed(() => store.getters['questions/question']);
           <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
             <div
               class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-              <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/> {{ t("questions.Select Subject, Chapter and Topic") }}
+              <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/> Select Subject, Chapter and Topic
             </div>
             <div class="mt-5">
 
@@ -183,9 +175,7 @@ const question = computed(() => store.getters['questions/question']);
                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                     <div class="text-left flex-grow">
                     <div class="flex items-center">
-                      <div class="font-medium">{{
-                          t("questions.Choose Subject")
-                      }}</div>
+                      <div class="font-medium">Choose Subject</div>
 
                     </div>
                   </div>
@@ -198,9 +188,7 @@ const question = computed(() => store.getters['questions/question']);
                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                     <div class="text-left flex-grow">
                     <div class="flex items-center">
-                      <div class="font-medium">{{
-                          t("questions.Choose Chapter")
-                      }}</div>
+                      <div class="font-medium">Choose Chapter</div>
 
                     </div>
 
@@ -214,9 +202,7 @@ const question = computed(() => store.getters['questions/question']);
                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                     <div class="text-left flex-grow">
                     <div class="flex items-center">
-                      <div class="font-medium">{{
-                          t("questions.Choose Topic")
-                      }}</div>
+                      <div class="font-medium">Choose Topic</div>
                     </div>
 
                   </div>
@@ -234,7 +220,7 @@ const question = computed(() => store.getters['questions/question']);
           <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
             <div
               class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-              <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/> {{ t("questions.Question & Solution") }}
+              <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/> Question & Solution
             </div>
             <div class="mt-5">
 
@@ -242,9 +228,7 @@ const question = computed(() => store.getters['questions/question']);
                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                     <div class="text-left flex-grow">
                     <div class="flex items-center">
-                      <div class="font-medium">{{
-                          t("questions.Question")
-                      }}</div>
+                      <div class="font-medium">Question</div>
 
                     </div>
                   </div>
@@ -257,9 +241,7 @@ const question = computed(() => store.getters['questions/question']);
                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                     <div class="text-left flex-grow">
                     <div class="flex items-center">
-                      <div class="font-medium">{{
-                          t("questions.Description")
-                      }}</div>
+                      <div class="font-medium">Description</div>
                     </div>
                   </div>
                 </div>
@@ -271,9 +253,7 @@ const question = computed(() => store.getters['questions/question']);
                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                     <div class="text-left flex-grow">
                     <div class="flex items-center">
-                      <div class="font-medium">{{
-                          t("questions.Note/Explaination")
-                      }}</div>
+                      <div class="font-medium">Note/Explaination</div>
                     </div>
                   </div>
                 </div>
@@ -285,9 +265,7 @@ const question = computed(() => store.getters['questions/question']);
                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                     <div class="text-left flex-grow">
                     <div class="flex items-center">
-                      <div class="font-medium">{{
-                          t("questions.Marks")
-                      }}</div>
+                      <div class="font-medium">Marks</div>
                     </div>
                   </div>
                 </div>
@@ -299,9 +277,7 @@ const question = computed(() => store.getters['questions/question']);
                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                     <div class="text-left flex-grow">
                     <div class="flex items-center">
-                      <div class="font-medium">{{
-                          t("questions.Negative Marks")
-                      }}</div>
+                      <div class="font-medium">Negative Marks</div>
                     </div>
                   </div>
                 </div>
@@ -318,7 +294,7 @@ const question = computed(() => store.getters['questions/question']);
           <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
             <div
               class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-              <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>{{ t("questions.Select Question Type & Add Answer") }}
+              <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>Select Question Type & Add Answer
             </div>
             <div class="mt-5">
 
@@ -326,9 +302,7 @@ const question = computed(() => store.getters['questions/question']);
                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                     <div class="text-left flex-grow">
                     <div class="flex items-center">
-                      <div class="font-medium">{{
-                          t("questions.Choose Question Type")
-                      }}</div>
+                      <div class="font-medium">Choose Question Type</div>
                     </div>
 
                   </div>
@@ -342,7 +316,7 @@ const question = computed(() => store.getters['questions/question']);
                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                   <div class="text-left flex-grow">
                     <div class="flex items-center">
-                      <div class="font-medium">{{ t("questions.Answers") }}</div>
+                      <div class="font-medium">Answers</div>
 
                     </div>
                   </div>
@@ -354,7 +328,7 @@ const question = computed(() => store.getters['questions/question']);
                     </template>
                     <template v-else-if="question.type_id == 5">
                       <div v-if="!question.questions.length" class="text-center text-gray-600">
-                        {{ t("questions.You do not have any questions added yet") }}
+                        You do not have any questions added yet
                       </div>
 
                       <div v-for="(question, index) in question.questions" :key="index">
@@ -363,7 +337,7 @@ const question = computed(() => store.getters['questions/question']);
                     </template>
                     <template v-else>
                       <div v-if="!question.answers.length" class="text-center text-gray-600">
-                        {{ t("questions.You do not have any answers added yet") }}
+                        You do not have any answers added yet
                       </div>
 
                       <div class="mt-5">
@@ -384,13 +358,13 @@ const question = computed(() => store.getters['questions/question']);
                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                   <div
                     class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
-                    <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/> {{ t("questions.Questions of paragraph") }}
+                    <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/> Questions of paragraph
 
                   </div>
 
                   <div class="mt-5">
                     <div v-if="!question.questions.length" class="text-center text-gray-600">
-                      {{ t("questions.You do not have any questions added yet") }}
+                      You do not have any questions added yet
                     </div>
                     <template v-else>
                       <div class="form-inline flex items-start flex-col xl:flex-row mt-2 pt-2 first:mt-0 first:pt-0"
@@ -398,10 +372,10 @@ const question = computed(() => store.getters['questions/question']);
                         <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                           <div class="text-left flex-grow">
                             <div class="flex items-center">
-                              <div class="font-medium">{{ t("questions.Question") }} {{ index + 1 }}.</div>
+                              <div class="font-medium">Question {{ index + 1 }}.</div>
                             </div>
                             <div class="leading-relaxed text-slate-500 text-xs mt-3">
-                              {{ t("questions.Add questions and its answers accordingly") }}
+                              Add questions and its answers accordingly
                             </div>
                           </div>
                         </div>

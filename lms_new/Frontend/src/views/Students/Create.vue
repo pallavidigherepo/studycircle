@@ -272,7 +272,7 @@ function uploadDoc(ev, documentId) {
 <template>
     <div>
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8" v-if="!new_admission_from">
-            <h2 class="text-lg font-medium mr-auto">{{ t("students.Add Student") }}</h2>
+            <h2 class="text-lg font-medium mr-auto">Add Student</h2>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                 <Button
                 variant="primary"
@@ -285,7 +285,7 @@ function uploadDoc(ev, documentId) {
                             sm:ml-0
                         "
                      @click="router.push('/students')"
-                ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />{{ t("common.Back") }}
+                ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />Back
                 </Button>
             </div>
         </div>
@@ -308,16 +308,16 @@ function uploadDoc(ev, documentId) {
                                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                                     <div class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                         <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2" />
-                                        {{ t("students.Select Standard Class Fee Type") }}
+                                        Select Standard Class Fee Type
                                     </div>
                                     <div class="mt-10">
                                         <div class="form-inline items-start flex flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("questions.Choose Standard") }}</div>
+                                                        <div class="font-medium">Choose Standard</div>
                                                         <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -336,7 +336,7 @@ function uploadDoc(ev, documentId) {
                                                         }"
                                                         class="w-full"
                                                         placeholder="Select Standard">
-                                                    <option>{{ t('questions.Select Standard') }}</option>
+                                                    <option>Select Standard</option>
                                                     <option v-for="(standard, index) in standards" :key="index" :value="index">
                                                         {{ standard }}
                                                     </option>
@@ -350,9 +350,9 @@ function uploadDoc(ev, documentId) {
                                             <div class="form-label xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Choose Fee Type") }}</div>
+                                                        <div class="font-medium">Choose Fee Type</div>
                                                         <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -369,7 +369,7 @@ function uploadDoc(ev, documentId) {
                                                             }"
                                                         :placeholder="'Select Fee Type'"
                                                         class="w-full">
-                                                    <option>{{ t('students.Select Fee Type') }}</option>
+                                                    <option>Select Fee Type</option>
                                                     <option v-for="(feeType, index) in feeTypes" :key="index" :value="index">
                                                         {{ feeType }}
                                                     </option>
@@ -389,17 +389,17 @@ function uploadDoc(ev, documentId) {
                                     <div
                                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                         <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2" />
-                                        {{ t("students.Basic Information Of Student") }}
+                                        Basic Information Of Student
                                     </div>
                                     <div class="mt-10">
                                         <div class="form-inline flex items-start flex-col xl:flex-row mt-1 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Enrollment Number") }}</div>
+                                                        <div class="font-medium">Enrollment Number</div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -424,10 +424,10 @@ function uploadDoc(ev, documentId) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Transfer Number") }}</div>
+                                                        <div class="font-medium">Transfer Number</div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -451,10 +451,10 @@ function uploadDoc(ev, documentId) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Name") }}</div>
+                                                        <div class="font-medium">Name</div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -478,11 +478,11 @@ function uploadDoc(ev, documentId) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Aadhaar") }}
+                                                        <div class="font-medium">Aadhaar
                                                         </div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
 
@@ -507,10 +507,10 @@ function uploadDoc(ev, documentId) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Gender") }}</div>
+                                                        <div class="font-medium">Gender</div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
 
@@ -528,7 +528,7 @@ function uploadDoc(ev, documentId) {
                                                               }"
                                                            :placeholder="'Select Gender'"
                                                            class="w-full">
-                                                    <option>{{ t('students.Select Gender') }}</option>
+                                                    <option>Select Gender</option>
                                                     <option v-for="(gender, index) in genders" :key="index" :value="index">
                                                         {{ gender }}
                                                     </option>
@@ -544,10 +544,10 @@ function uploadDoc(ev, documentId) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Avatar") }}</div>
+                                                        <div class="font-medium">Avatar</div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -570,7 +570,7 @@ function uploadDoc(ev, documentId) {
                                                         accept="image/png, image/jpeg, image/jpg"
                                                         class="absolute left-0 top-0 right-0 bottom-0 opacity-0 cursor-pointer rounded-full"
                                                     />
-                                                    {{ t("students.Avatar") }}
+                                                    Avatar
                                                 </Button>
 
                                                 <div v-for="(error, index) of v$.avatar.$errors" :key="index"
@@ -583,11 +583,11 @@ function uploadDoc(ev, documentId) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Date Of Admission") }}
+                                                        <div class="font-medium">Date Of Admission
                                                         </div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
 
@@ -612,11 +612,11 @@ function uploadDoc(ev, documentId) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Date Of Birth") }}
+                                                        <div class="font-medium">Date Of Birth
                                                         </div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
 
@@ -641,11 +641,11 @@ function uploadDoc(ev, documentId) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Permanent Address") }}
+                                                        <div class="font-medium">Permanent Address
                                                         </div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
 
@@ -669,10 +669,10 @@ function uploadDoc(ev, documentId) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Address") }}</div>
+                                                        <div class="font-medium">Address</div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
 
@@ -696,11 +696,11 @@ function uploadDoc(ev, documentId) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Blood Group") }}
+                                                        <div class="font-medium">Blood Group
                                                         </div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
 
@@ -725,11 +725,11 @@ function uploadDoc(ev, documentId) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Medical Notes") }}
+                                                        <div class="font-medium">Medical Notes
                                                         </div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
 
@@ -754,13 +754,11 @@ function uploadDoc(ev, documentId) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{
-                                                                t("students.Category")
-                                                            }}
+                                                        <div class="font-medium">Category
                                                         </div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
 
@@ -785,13 +783,11 @@ function uploadDoc(ev, documentId) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{
-                                                                t("students.Caste")
-                                                            }}
+                                                        <div class="font-medium">Caste
                                                         </div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
 
@@ -817,10 +813,10 @@ function uploadDoc(ev, documentId) {
                                                 <div class="text-left flex-grow">
 
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Religion") }}</div>
+                                                        <div class="font-medium">Religion</div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -844,10 +840,10 @@ function uploadDoc(ev, documentId) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Mother Tongue Language") }}</div>
+                                                        <div class="font-medium">Mother Tongue Language</div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -871,10 +867,10 @@ function uploadDoc(ev, documentId) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Interests") }}</div>
+                                                        <div class="font-medium">Interests</div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -903,16 +899,16 @@ function uploadDoc(ev, documentId) {
                                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                                     <div class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                         <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2" />
-                                        {{ t("students.Documents of Student") }}
+                                        Documents of Student
                                     </div>
                                     <div class="mt-5">
                                         <div class="flex flex-col xl:flex-row items-start mt-1 pt-5">
                                             <div class="form-label xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("students.Select documents submitted by student") }}</div>
+                                                        <div class="font-medium">Select documents submitted by student</div>
                                                         <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -952,15 +948,15 @@ function uploadDoc(ev, documentId) {
                                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                                     <div class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                         <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2" />
-                                        {{ t("students.Aadhaar Number of Parents") }}
+                                        Aadhaar Number of Parents
                                     </div>
                                     <div class="mt-5">
                                         <!-- Parent Aadhaar Number -->
                                         <div class="flex flex-col xl:flex-row items-start mt-1 pt-5">
                                             <div class="form-label xl:w-64 xl:mr-10 flex items-center">
-                                                <div class="font-medium">{{ t("students.Parent Aadhaar Number") }}</div>
+                                                <div class="font-medium">Parent Aadhaar Number</div>
                                                 <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                    {{ t("common.Required") }}
+                                                    Required
                                                 </div>
                                             </div>
                                             <div class="w-full mt-3 xl:mt-0 flex-1">
@@ -987,15 +983,15 @@ function uploadDoc(ev, documentId) {
                                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                                     <div class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                         <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2" />
-                                        {{ t("students.Mother Information Of Student") }}
+                                        Mother Information Of Student
                                     </div>
                                     <div class="mt-5">
                                         <!-- Mother Name -->
                                         <div class="flex flex-col xl:flex-row items-start mt-1 pt-5">
                                             <div class="form-label xl:w-64 xl:mr-10 flex items-center">
-                                                <div class="font-medium">{{ t("students.Mother Name") }}</div>
+                                                <div class="font-medium">Mother Name</div>
                                                 <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                    {{ t("common.Required") }}
+                                                    Required
                                                 </div>
                                             </div>
                                             <div class="w-full mt-3 xl:mt-0 flex-1">
@@ -1016,9 +1012,9 @@ function uploadDoc(ev, documentId) {
                                         <!-- Mother Email -->
                                         <div class="flex flex-col xl:flex-row items-start mt-1 pt-5">
                                             <div class="form-label xl:w-64 xl:mr-10 flex items-center">
-                                                <div class="font-medium">{{ t("students.Mother Email") }}</div>
+                                                <div class="font-medium">Mother Email</div>
                                                 <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                    {{ t("common.Required") }}
+                                                    Required
                                                 </div>
                                             </div>
                                             <div class="w-full mt-3 xl:mt-0 flex-1">
@@ -1039,9 +1035,9 @@ function uploadDoc(ev, documentId) {
                                         <!-- Mother Mobile -->
                                         <div class="flex flex-col xl:flex-row items-start mt-1 pt-5">
                                             <div class="form-label xl:w-64 xl:mr-10 flex items-center">
-                                                <div class="font-medium">{{ t("students.Mother Mobile") }}</div>
+                                                <div class="font-medium">Mother Mobile</div>
                                                 <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                    {{ t("common.Required") }}
+                                                    Required
                                                 </div>
                                             </div>
                                             <div class="w-full mt-3 xl:mt-0 flex-1">
@@ -1062,7 +1058,7 @@ function uploadDoc(ev, documentId) {
                                         <!-- Mother Qualification -->
                                         <div class="flex flex-col xl:flex-row items-start mt-1 pt-5">
                                             <div class="form-label xl:w-64 xl:mr-10 flex items-center">
-                                                <div class="font-medium">{{ t("students.Mother Qualification") }}</div>
+                                                <div class="font-medium">Mother Qualification</div>
                                             </div>
                                             <div class="w-full mt-3 xl:mt-0 flex-1">
                                                 <FormInput
@@ -1078,7 +1074,7 @@ function uploadDoc(ev, documentId) {
                                         <!-- Mother Occupation -->
                                         <div class="flex flex-col xl:flex-row items-start mt-1 pt-5">
                                             <div class="form-label xl:w-64 xl:mr-10 flex items-center">
-                                                <div class="font-medium">{{ t("students.Mother Occupation") }}</div>
+                                                <div class="font-medium">Mother Occupation</div>
                                             </div>
                                             <div class="w-full mt-3 xl:mt-0 flex-1">
                                                 <FormInput
@@ -1100,15 +1096,15 @@ function uploadDoc(ev, documentId) {
                                 <div class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
                                     <div class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                         <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2" />
-                                        {{ t("students.Father Information Of Student") }}
+                                        Father Information Of Student
                                     </div>
                                     <div class="mt-5">
                                         <!-- Father Name -->
                                         <div class="form-inline flex flex-col xl:flex-row mt-1 pt-5">
                                             <div class="form-label xl:w-64 xl:mr-10 flex items-center">
-                                                <div class="font-medium">{{ t("students.Father Name") }}</div>
+                                                <div class="font-medium">Father Name</div>
                                                 <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                    {{ t("common.Required") }}
+                                                    Required
                                                 </div>
                                             </div>
                                             <div class="w-full mt-3 xl:mt-0 flex-1">
@@ -1129,9 +1125,9 @@ function uploadDoc(ev, documentId) {
                                         <!-- Father Email -->
                                         <div class="form-inline flex flex-col xl:flex-row mt-1 pt-5">
                                             <div class="form-label xl:w-64 xl:mr-10 flex items-center">
-                                                <div class="font-medium">{{ t("students.Father Email") }}</div>
+                                                <div class="font-medium">Father Email</div>
                                                 <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                    {{ t("common.Required") }}
+                                                    Required
                                                 </div>
                                             </div>
                                             <div class="w-full mt-3 xl:mt-0 flex-1">
@@ -1152,9 +1148,9 @@ function uploadDoc(ev, documentId) {
                                         <!-- Father Mobile -->
                                         <div class="form-inline flex flex-col xl:flex-row mt-1 pt-5">
                                             <div class="form-label xl:w-64 xl:mr-10 flex items-center">
-                                                <div class="font-medium">{{ t("students.Father Mobile") }}</div>
+                                                <div class="font-medium">Father Mobile</div>
                                                 <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                    {{ t("common.Required") }}
+                                                    Required
                                                 </div>
                                             </div>
                                             <div class="w-full mt-3 xl:mt-0 flex-1">
@@ -1175,7 +1171,7 @@ function uploadDoc(ev, documentId) {
                                         <!-- Father Qualification -->
                                         <div class="form-inline flex flex-col xl:flex-row mt-1 pt-5">
                                             <div class="form-label xl:w-64 xl:mr-10 flex items-center">
-                                                <div class="font-medium">{{ t("students.Father Qualification") }}</div>
+                                                <div class="font-medium">Father Qualification</div>
                                             </div>
                                             <div class="w-full mt-3 xl:mt-0 flex-1">
                                                 <FormInput
@@ -1191,7 +1187,7 @@ function uploadDoc(ev, documentId) {
                                         <!-- Father Occupation -->
                                         <div class="form-inline flex flex-col xl:flex-row mt-1 pt-5">
                                             <div class="form-label xl:w-64 xl:mr-10 flex items-center">
-                                                <div class="font-medium">{{ t("students.Father Occupation") }}</div>
+                                                <div class="font-medium">Father Occupation</div>
                                             </div>
                                             <div class="w-full mt-3 xl:mt-0 flex-1">
                                                 <FormInput
@@ -1216,10 +1212,10 @@ function uploadDoc(ev, documentId) {
                                         @click="router.push('/students')"
                                         
                                     >
-                                {{ t("common.Cancel") }}
+                                    Cancel
                             </Button>
                             <Button variant="primary" class="btn btn-primary w-20" type="submit">
-                                                {{ t("common.Save") }}
+                                Save
                             </Button>
                         </div>
                     </form>

@@ -119,7 +119,7 @@ function makeid(length) {
                     @change="dataChange"
                     :value="model.is_correct == 'true' ? true : false "
                   />
-                  <label :for="`is_correct-`+index" class="form-check-label">{{ t("questions.Is Correct") }}</label>
+                  <label :for="`is_correct-`+index" class="form-check-label">Is Correct</label>
                 </div>
               </div>
               <div class="w-20 flex text-slate-500 mt-3 xl:mt-0">

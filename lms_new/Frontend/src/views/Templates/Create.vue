@@ -233,7 +233,7 @@ function makeid(length) {
     <div>
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                {{ t("templates.Add Question Paper Format") }}
+                Add Question Paper Format
             </h2>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                 <Button
@@ -247,14 +247,14 @@ function makeid(length) {
                             sm:ml-0
                         "
                     @click="router.push('/templates')"
-                ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />{{ t("common.Back") }}
+                ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />Back
                 </Button>
             </div>
         </div>
         <!-- BEGIN: Notification -->
         <Alert variant="warning" class="flex items-center mb-6 mt-5">
             <Lucide icon="AlertCircle" class="w-6 h-6 mr-2" />
-            <span>{{ t("templates.Template created here will be used for any subject") }}</span>
+            <span>Template created here will be used for any subject</span>
         </Alert>
         <!-- <Alert
             class="intro-y col-span-11 alert-warning alert-dismissible mb-6 mt-5"
@@ -280,7 +280,7 @@ function makeid(length) {
                         <div
                             class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                             <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>
-                            {{ t("questions.Select Board & Standard/Class") }}
+                            Select Board & Standard/Class
                         </div>
                         <div class="mt-5">
 
@@ -288,13 +288,11 @@ function makeid(length) {
                                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                     <div class="text-left flex-grow">
                                         <div class="flex items-center">
-                                            <div class="font-medium">{{
-                                                    t("questions.Choose Board")
-                                                }}
+                                            <div class="font-medium">Choose Board
                                             </div>
                                             <div
                                                 class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                Required
                                             </div>
                                         </div>
                                     </div>
@@ -309,7 +307,7 @@ function makeid(length) {
                                                   }"
                                                :placeholder="'Select Board'"
                                                class="w-full">
-                                        <option>{{ t('questions.Select Board') }}</option>
+                                        <option>Select Board</option>
                                         <option v-for="(board, index) in boards" :key="index" :value="index">
                                             {{ board }}
                                         </option>
@@ -326,13 +324,11 @@ function makeid(length) {
                                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                     <div class="text-left flex-grow">
                                         <div class="flex items-center">
-                                            <div class="font-medium">{{
-                                                    t("questions.Choose Standard")
-                                                }}
+                                            <div class="font-medium">Choose Standard
                                             </div>
                                             <div
                                                 class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                Required
                                             </div>
                                         </div>
 
@@ -352,7 +348,7 @@ function makeid(length) {
                                                   }"
                                                class="w-full"
                                                placeholder="Select Standard">
-                                        <option>{{ t('questions.Select Standard') }}</option>
+                                        <option>Select Standard</option>
                                         <option v-for="(standard, indexs) in standards" :key="indexs" :value="indexs">
                                             {{ standard }}
                                         </option>
@@ -375,7 +371,7 @@ function makeid(length) {
                             class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5"
                             >
                             <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>
-                            {{ t("templates.Detail information of template") }}
+                            Detail information of template
                         </div>
 
                         <div class="mt-5">
@@ -384,13 +380,11 @@ function makeid(length) {
                                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                     <div class="text-left flex-grow">
                                         <div class="flex items-center">
-                                            <div class="font-medium">{{
-                                                    t("templates.Name")
-                                                }}
+                                            <div class="font-medium">Name
                                             </div>
                                             <div
                                                 class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                Required
                                             </div>
                                         </div>
                                     </div>
@@ -412,13 +406,11 @@ function makeid(length) {
                                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                     <div class="text-left flex-grow">
                                         <div class="flex items-center">
-                                            <div class="font-medium">{{
-                                                    t("templates.Description")
-                                                }}
+                                            <div class="font-medium">Description
                                             </div>
                                             <div
                                                 class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                Required
                                             </div>
                                         </div>
                                     </div>
@@ -443,13 +435,11 @@ function makeid(length) {
                                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                     <div class="text-left flex-grow">
                                         <div class="flex items-center">
-                                            <div class="font-medium">{{
-                                                    t("templates.Duration")
-                                                }}
+                                            <div class="font-medium">Duration
                                             </div>
                                             <div
                                                 class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                Required
                                             </div>
                                         </div>
                                     </div>
@@ -460,7 +450,7 @@ function makeid(length) {
                     }"
                                            class="form-control"
                                            placeholder="Duration." type="text"/>
-                                    <div class="form-help text-right">{{ t("templates.Please enter duration in Minutes Eg 2 Hrs is 120 Minutes") }}</div>
+                                    <div class="form-help text-right">Please enter duration in Minutes Eg 2 Hrs is 120 Minutes</div>
                                     <div v-for="(error, index) of v$.duration.$errors" :key="index"
                                          class="text-danger mt-2">
                                         <div class="error-msg">{{ error.$message }}</div>
@@ -471,13 +461,11 @@ function makeid(length) {
                                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                     <div class="text-left flex-grow">
                                         <div class="flex items-center">
-                                            <div class="font-medium">{{
-                                                    t("templates.Total Marks")
-                                                }}
+                                            <div class="font-medium">Total Marks
                                             </div>
                                             <div
                                                 class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                Required
                                             </div>
                                         </div>
                                     </div>
@@ -489,7 +477,7 @@ function makeid(length) {
                                            class="form-control"
                                            placeholder="Total Marks"
                                            type="text"/>
-                                    <div class="form-help text-right">{{ t("templates.Total marks for this templates") }}</div>
+                                    <div class="form-help text-right">Total marks for this templates</div>
                                     <div v-for="(error, index) of v$.total_marks.$errors" :key="index"
                                          class="text-danger mt-2">
                                         <div class="error-msg">{{ error.$message }}</div>
@@ -500,13 +488,11 @@ function makeid(length) {
                                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                     <div class="text-left flex-grow">
                                         <div class="flex items-center">
-                                            <div class="font-medium">{{
-                                                    t("templates.Is Active")
-                                                }}
+                                            <div class="font-medium">Is Active
                                             </div>
                                             <div
                                                 class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                Required
                                             </div>
                                         </div>
                                     </div>
@@ -520,7 +506,7 @@ function makeid(length) {
                                         />
                                     </div>
                                     <div class="form-help text-right">
-                                        {{ t("templates.You can activate or de active any time") }}
+                                        You can activate or de active any time
                                     </div>
                                 </div>
                             </div>
@@ -528,13 +514,11 @@ function makeid(length) {
                                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                     <div class="text-left flex-grow">
                                         <div class="flex items-center">
-                                            <div class="font-medium">{{
-                                                    t("templates.Has Section")
-                                                }}
+                                            <div class="font-medium">Has Section
                                             </div>
                                             <div
                                                 class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                Required
                                             </div>
                                         </div>
                                     </div>
@@ -549,7 +533,7 @@ function makeid(length) {
 
                                     </div>
                                     <div class="form-help text-right">
-                                        {{ t("templates.You need to add sections if switched on") }}
+                                        You need to add sections if switched on
                                     </div>
 
                                     <div v-if="model.has_section" class="w-full mt-3 xl:mt-0 flex-1">
@@ -557,13 +541,13 @@ function makeid(length) {
                                             <div
                                                 class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                                 <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2"/>
-                                                {{ t("templates.Sections") }}
+                                                Sections
                                                 <div class="xl:ml-20 xl:pl-5 xl:pr-20 first:mt-0 mt-5">
                                                     <Button variant="outline-primary" class="btn btn-outline-primary border-dashed w-full" type="button"
                                                             @click="addSection()">
                                                             <Lucide icon="PlusIcon" class="w-4 h-4 mr-2" />
                                                        
-                                                        {{ t("templates.Add Section") }}
+                                                            Add Section
                                                     </Button>
                                                 </div>
                                             </div>
@@ -572,7 +556,7 @@ function makeid(length) {
                                                 <div class="error-msg">{{ error.$message }}</div>
                                             </div>
                                             <div v-if="!model.sections.length" class="text-center text-gray-600">
-                                                {{ t("templates.You do not have any section added yet") }}
+                                                You do not have any section added yet
                                             </div>
                                             <div v-for="(section, index) in model.sections"
                                                  :key="index"
@@ -581,7 +565,7 @@ function makeid(length) {
                                                 <div class="form-label xl:w-20 xl:!mr-10">
                                                     <div class="text-left">
                                                         <div class="flex items-center">
-                                                            <div class="font-medium">{{ t("templates.Section") }}
+                                                            <div class="font-medium">Section
                                                                 {{ index + 1 }}.
                                                             </div>
                                                         </div>
@@ -606,13 +590,11 @@ function makeid(length) {
                                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                     <div class="text-left flex-grow">
                                         <div class="flex items-center">
-                                            <div class="font-medium">{{
-                                                    t("templates.Question Type")
-                                                }}
+                                            <div class="font-medium">Question Type
                                             </div>
                                             <div
                                                 class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                Required
                                             </div>
                                         </div>
                                     </div>
@@ -628,7 +610,7 @@ function makeid(length) {
                                                   autocomplete: 'off',
                                                 }"
                                     >
-                                        <option>{{ t('questions.Select Question Type') }}</option>
+                                        <option>Select Question Type</option>
                                         <option v-for="(type, id) in typeList" :key="id" :value="id">
                                             {{ JSON.parse(type) }}
                                         </option>
@@ -645,13 +627,11 @@ function makeid(length) {
                                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                     <div class="text-left flex-grow">
                                         <div class="flex items-center">
-                                            <div class="font-medium">{{
-                                                    t("templates.Total Questions")
-                                                }}
+                                            <div class="font-medium">Total Questions
                                             </div>
                                             <div
                                                 class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                Required
                                             </div>
                                         </div>
                                     </div>
@@ -676,13 +656,11 @@ function makeid(length) {
                                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                     <div class="text-left flex-grow">
                                         <div class="flex items-center">
-                                            <div class="font-medium">{{
-                                                    t("templates.Compulsory Questions")
-                                                }}
+                                            <div class="font-medium">Compulsory Questions
                                             </div>
                                             <div
                                                 class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                Required
                                             </div>
                                         </div>
                                     </div>
@@ -707,13 +685,11 @@ function makeid(length) {
                                 <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                     <div class="text-left flex-grow">
                                         <div class="flex items-center">
-                                            <div class="font-medium">{{
-                                                    t("templates.Marks per Question")
-                                                }}
+                                            <div class="font-medium">Marks per Question
                                             </div>
                                             <div
                                                 class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                {{ t("common.Required") }}
+                                                Required
                                             </div>
                                         </div>
                                     </div>
@@ -745,10 +721,10 @@ function makeid(length) {
                         @click="router.push('/templates')"
                         
                     >
-                    {{ t("common.Cancel") }}
+                    Cancel
                     </Button>
                     <Button variant="primary" class="btn btn-primary w-20" type="submit">
-                                        {{ t("common.Save") }}
+                        Save
                     </Button>
                 </div>
             </div>

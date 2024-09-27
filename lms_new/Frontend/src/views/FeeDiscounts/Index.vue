@@ -126,7 +126,7 @@ function deleteI(item) {
     <div>
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                {{ t("fee_discounts.Fee Discounts") }}
+                Fee Discounts
             </h2>
         </div>
         <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
@@ -151,7 +151,7 @@ function deleteI(item) {
             <div class="col-span-12 lg:col-span-4">
                 <div class="intro-y box p-5">
                     <h2 class="text-lg font-medium mr-auto pt-5 pb-5">
-                        {{ t("common." + actionText) }}
+                        {{ actionText }}
                     </h2>
                     <div
                         class="alert alert-danger show flex items-center mb-2"
@@ -164,14 +164,12 @@ function deleteI(item) {
 
                     <form @submit.prevent="submitForm" class="validate-form">
                         <div>
-                            <label for="fee-discount-name" class="form-label">{{
-                                    t("fee_discounts.Name")
-                                }}</label>
+                            <label for="fee-discount-name" class="form-label">Name</label>
                             <FormInput
                                 id="fee-discount-name"
                                 type="text"
                                 class="form-control w-full"
-                                :placeholder="t('fee_discounts.Name')"
+                                placeholder="Name"
                                 v-model.trim="model.name"
                                 :class="{ 'border-danger': submitted && v$.name.$error }"
                             />
@@ -183,14 +181,12 @@ function deleteI(item) {
                             </span>
                         </div>
                         <div class="mt-3">
-                            <label for="fee-discount-amount" class="form-label">{{
-                                    t("fee_discounts.Amount")
-                                }}</label>
+                            <label for="fee-discount-amount" class="form-label">Amount</label>
                             <FormInput
                                 id="fee-discount-amount"
                                 type="text"
                                 class="form-control w-full"
-                                :placeholder="t('fee_discounts.Amount')"
+                                placeholder="Amount"
                                 v-model.trim="model.amount"
                                 :class="{ 'border-danger': submitted && v$.amount.$error }"
                             />
@@ -203,14 +199,12 @@ function deleteI(item) {
                         </div>
 
                         <div class="mt-3">
-                            <label for="fee-discount-expiry-date" class="form-label">{{
-                                    t("fee_discounts.Expiry Date")
-                                }}</label>
+                            <label for="fee-discount-expiry-date" class="form-label">Expiry Date</label>
                             <FormInput
                                 id="fee-discount-expiry-date"
                                 type="date"
                                 class="form-control w-full"
-                                :placeholder="t('fee_discounts.Expiry Date')"
+                                placeholder="Expiry Date"
                                 v-model.trim="model.expiry_date"
                                 :class="{ 'border-danger': submitted && v$.expiry_date.$error }"
                             />
@@ -227,10 +221,10 @@ function deleteI(item) {
                                 class="btn btn-outline-secondary w-24 mr-1"
                                 @click.prevent="cancel"
                             >
-                                {{ t("common.Cancel") }}
+                            Cancel
                             </Button>
                             <Button variant="primary" type="submit" class="btn btn-primary w-24">
-                                {{ t("common.Save") }}
+                                Save
                             </Button>
                         </div>
                     </form>

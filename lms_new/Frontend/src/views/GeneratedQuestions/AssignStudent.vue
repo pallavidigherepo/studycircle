@@ -162,7 +162,7 @@ function setRestest() {
     <div>
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                {{ t("generated_questions.Assign to Students") }}
+                Assign to Students
             </h2>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                 <Button
@@ -176,7 +176,7 @@ function setRestest() {
                                 sm:ml-0
                             "
                         @click="router.push('/generated_question_papers')"
-                    ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" /> {{ t("common.Back") }}
+                    ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" /> Back
                 </Button>
             </div>
         </div>
@@ -203,63 +203,63 @@ function setRestest() {
                             class="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5 mb-5"
                         >
                             <div class="font-medium text-base truncate">
-                                {{ t("generated_questions.Question Paper Details") }}
+                                Question Paper Details
                             </div>
 
                         </div>
                         <div class="flex items-center">
                             <ClipboardIcon class="w-4 h-4 text-slate-500 mr-2"/>
-                            {{ t("common.Name") }}: <span
+                            Name: <span
                             class="underline decoration-dotted ml-1">{{ paperInfo ? paperInfo.name : null }}</span>
                         </div>
                         <div class="flex items-center mt-3">
                             <CalendarIcon class="w-4 h-4 text-slate-500 mr-2"/>
-                            {{ t("templates.Board") }}: <span class="ml-2">{{
+                            Board: <span class="ml-2">{{
                                 paperInfo ? paperInfo.board : null
                             }}</span>
                         </div>
                         <div class="flex items-center mt-3">
                             <BookOpenIcon class="w-4 h-4 text-slate-500 mr-2"/>
-                            {{ t("templates.Standard") }}: <span class="ml-2">{{
+                            Standard: <span class="ml-2">{{
                                 paperInfo ? paperInfo.standard : null
                             }}</span>
                         </div>
                         <div class="flex items-center mt-3">
                             <ColumnsIcon class="w-4 h-4 text-slate-500 mr-2"/>
-                            {{ t("templates.Total Marks") }}: <span
+                            Total Marks: <span
                             class="ml-2">{{ paperInfo ? paperInfo.template_info.total_marks : null }}</span>
                         </div>
                         <div class="flex items-center mt-3">
                             <ClockIcon class="w-4 h-4 text-slate-500 mr-2"/>
-                            {{ t("templates.Duration") }}: <span class="ml-2">{{
+                            Duration: <span class="ml-2">{{
                                 paperInfo ? paperInfo.template_info.duration : null
                             }}</span>
                         </div>
 
                         <div class="flex items-center mt-3">
                             <PlayIcon class="w-4 h-4 text-slate-500 mr-2"/>
-                            {{ t("templates.Active") }}: <span class="ml-2">
+                            Active: <span class="ml-2">
                                 {{ paperInfo ? (paperInfo.template_info.is_active === 1 ? "Yes" : "No") : null }}
                             </span>
                         </div>
                         <div class="flex items-center mt-3">
                             <ServerIcon class="w-4 h-4 text-slate-500 mr-2"/>
-                            {{ t("templates.Has Section") }}: <span
+                            Has Section: <span
                             class="ml-2">{{ paperInfo ? (paperInfo.template_info.has_section === 1 ? "Yes" : "No") : null }}</span>
                         </div>
                         <div v-if="!(paperInfo && paperInfo.template_info.has_section)" class="flex items-center mt-3">
                             <SidebarIcon class="w-4 h-4 text-slate-500 mr-2"/>
-                            {{ t("templates.Total Questions") }}:<span
+                            Total Questions:<span
                             class="ml-2">{{ paperInfo ? paperInfo.template_info.total_questions : null }}</span>
                         </div>
                         <div v-if="!(paperInfo && paperInfo.template_info.has_section)" class="flex items-center mt-3">
                             <SidebarIcon class="w-4 h-4 text-slate-500 mr-2"/>
-                            {{ t("templates.Compulsory Questions") }}: <span
+                            Compulsory Questions: <span
                             class="ml-2">{{ paperInfo ? paperInfo.template_info.compulsory_questions : null }}</span>
                         </div>
                         <div v-if="!(paperInfo && paperInfo.template_info.has_section)" class="flex items-center mt-3">
                             <SidebarIcon class="w-4 h-4 text-slate-500 mr-2"/>
-                            {{ t("templates.Question type") }}:<span
+                            Question type:<span
                             class="ml-2">{{ paperInfo ? paperInfo.template_info.type_name : null }}</span>
                         </div>
                     </div>
@@ -269,7 +269,7 @@ function setRestest() {
                         <div
                             class="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5 mb-5"
                         >
-                            <div class="font-medium text-base truncate">{{ t("generated_questions.Assign to Students") }}</div>
+                            <div class="font-medium text-base truncate">Assign to Students</div>
                         </div>
                         <div class="overflow-auto lg:overflow-visible mt-3">
                             <!-- BEGIN: Subject, Chapter and Topic selection -->
@@ -277,20 +277,18 @@ function setRestest() {
                                 <div
                                     class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                     <ChevronDownIcon class="w-4 h-4 mr-2"/>
-                                    {{ t("generated_questions.Select Batch and Course of Students") }}
+                                    Select Batch and Course of Students
                                 </div>
                                 <div class="mt-5">
                                     <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                                         <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                             <div class="text-left flex-grow">
                                                 <div class="flex items-center">
-                                                    <div class="font-medium">{{
-                                                            t("generated_questions.Choose Batch")
-                                                        }}
+                                                    <div class="font-medium">Choose Batch
                                                     </div>
                                                     <div
                                                         class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                        {{ t("common.Required") }}
+                                                        Required
                                                     </div>
                                                 </div>
                                             </div>
@@ -308,7 +306,7 @@ function setRestest() {
                                                           autocomplete: 'off',
                                                           onChange: selectedBatch
                                                         }">
-                                                <option>{{ t('generated_questions.Select Batch') }}</option>
+                                                <option>Select Batch</option>
                                                 <option v-for="(batch, indexb) in batches" :key="indexb"
                                                         :value="indexb">
                                                     {{ batch }}
@@ -324,13 +322,11 @@ function setRestest() {
                                         <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                             <div class="text-left flex-grow">
                                                 <div class="flex items-center">
-                                                    <div class="font-medium">{{
-                                                            t("generated_questions.Choose Course")
-                                                        }}
+                                                    <div class="font-medium">Choose Course
                                                     </div>
                                                     <div
                                                         class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                        {{ t("common.Required") }}
+                                                        Required
                                                     </div>
                                                 </div>
                                             </div>
@@ -348,7 +344,7 @@ function setRestest() {
                                                           autocomplete: 'off',
                                                           onChange: selectedCourse,
                                                         }">
-                                                <option>{{ t('generated_questions.Select Course') }}</option>
+                                                <option>Select Course</option>
                                                 <option v-for="(course, indexc) in courses"
                                                         :key="indexc"
                                                         :value="indexc">
@@ -365,9 +361,7 @@ function setRestest() {
                                         <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                             <div class="text-left flex-grow">
                                                 <div class="flex items-center">
-                                                    <div class="font-medium">{{
-                                                            t("generated_questions.Starts On")
-                                                        }}
+                                                    <div class="font-medium">Starts On
                                                     </div>
                                                 </div>
                                             </div>
@@ -396,9 +390,7 @@ function setRestest() {
                                         <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                             <div class="text-left flex-grow">
                                                 <div class="flex items-center">
-                                                    <div class="font-medium">{{
-                                                            t("generated_questions.Can Retest")
-                                                        }}
+                                                    <div class="font-medium">Can Retest
                                                     </div>
                                                 </div>
                                             </div>
@@ -418,9 +410,7 @@ function setRestest() {
                                         <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                             <div class="text-left flex-grow">
                                                 <div class="flex items-center">
-                                                    <div class="font-medium">{{
-                                                            t("generated_questions.Show result on")
-                                                        }}
+                                                    <div class="font-medium">Show result on
                                                     </div>
                                                 </div>
                                             </div>
@@ -449,13 +439,13 @@ function setRestest() {
                             <div class="intro-y box overflow-hidden mt-5">
                                 <div class="border-b border-slate-200/60 dark:border-darkmode-400 sm:text-left">
                                     <div class="px-1 py-2 sm:px-1 sm:py-2">
-                                        <div class="font-bold text-xl">{{ t("students.Students") }}</div>
+                                        <div class="font-bold text-xl">Students</div>
                                     </div>
                                     <div v-for="(error, index) of v$.students.$errors"
                                          :key="index" class="text-danger mt-2">
                                         <div class="error-msg">{{ error.$message }}</div>
                                         <Button variant="primary" class="btn btn-primary-soft" @click.prevent="fetchStudents">
-                                            {{ t("generated_questions.Fetch Students") }}
+                                            Fetch Students
                                         </Button>
                                     </div>
 
@@ -468,10 +458,10 @@ function setRestest() {
                                                         #
                                                     </Table.Th>
                                                     <Table.Th class="border-b-2 dark:border-darkmode-400 whitespace-nowrap">
-                                                        {{ t("students.Name") }}
+                                                        Name
                                                     </Table.Th>
                                                     <Table.Th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">
-                                                        {{ t("common.ACTION") }}
+                                                        ACTION
                                                     </Table.Th>
                                                 </Table.Tr>
                                                 </Table.Thead>
@@ -503,7 +493,7 @@ function setRestest() {
                                                     <Table.Tr>
                                                         <Table.Td colspan="3"
                                                             class="border-b dark:border-darkmode-400 text-center">
-                                                            {{ t("generated_questions.No Students") }}.
+                                                            No Students.
                                                         </Table.Td>
                                                     </Table.Tr>
                                                 </template>
@@ -524,11 +514,11 @@ function setRestest() {
                     variant="secondary"
                     class="btn py-3 border-slate-300 dark:border-darkmode-400 text-slate-500 w-full md:w-52"
                     @click="router.push('/generated_question_papers')">
-                    {{ t("common.Cancel") }}
+                    Cancel
                 </Button>
 
                 <Button variant="primary" class="btn py-3 btn-primary w-full md:w-52" type="submit" @click="isOnline = true">
-                    {{ t("generated_questions.Assign") }}
+                    Assign
                 </Button>
             </div>
         </form>

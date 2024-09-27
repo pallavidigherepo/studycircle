@@ -57,7 +57,7 @@ function deleteI(item) {
   <div>
     <div class="intro-y flex items-center mt-8">
       <h2 class="text-lg font-medium mr-auto">
-        {{ t("chapters.Chapter details") }}
+        Chapter details
       </h2>
       <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
         <Button
@@ -71,7 +71,7 @@ function deleteI(item) {
                     ml-auto
                     sm:ml-0
           "
-          ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />{{ t("common.Back") }}
+          ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />Back
         </Button>
       </div>
     </div>
@@ -126,7 +126,7 @@ function deleteI(item) {
             "
           >
             <div class="font-medium text-center lg:text-left lg:mt-3">
-              {{ t('chapters.Description')}}
+              Description
             </div>
             <div
               class="
@@ -158,7 +158,7 @@ function deleteI(item) {
           >
             <div class="text-center rounded-md w-20 py-3">
               <div class="font-medium text-primary text-xl">1k</div>
-              <div class="text-slate-500">{{ t('chapters.Topics')}}</div>
+              <div class="text-slate-500">Topics</div>
             </div>
           </div>
         </div>

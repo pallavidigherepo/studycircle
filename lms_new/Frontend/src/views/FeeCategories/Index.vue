@@ -112,7 +112,7 @@ function deleteI(item) {
     <div>
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                {{ t("fee_categories.Fee Categories") }}
+                Fee Categories
             </h2>
         </div>
         <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
@@ -137,7 +137,7 @@ function deleteI(item) {
             <div class="col-span-12 lg:col-span-4">
                 <div class="intro-y box p-5">
                     <h2 class="text-lg font-medium mr-auto pt-5 pb-5">
-                        {{ t("common." + actionText) }}
+                        {{ actionText }}
                     </h2>
                     <div
                         class="alert alert-danger show flex items-center mb-2"
@@ -150,9 +150,7 @@ function deleteI(item) {
 
                     <form @submit.prevent="submitForm" class="validate-form">
                         <div>
-                            <label for="fee-category-name" class="form-label">{{
-                                    t("fee_categories.Name")
-                                }}</label>
+                            <label for="fee-category-name" class="form-label">Name</label>
                             <FormInput
                                 id="fee-category-name"
                                 type="text"
@@ -174,10 +172,10 @@ function deleteI(item) {
                                 class="btn btn-outline-secondary w-24 mr-1"
                                 @click.prevent="cancel"
                             >
-                                {{ t("common.Cancel") }}
+                            Cancel
                             </Button>
                             <Button variant="primary" type="submit" class="btn btn-primary w-24">
-                                {{ t("common.Save") }}
+                                Save
                             </Button>
                         </div>
                     </form>

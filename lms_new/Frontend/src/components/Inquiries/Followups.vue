@@ -163,7 +163,7 @@ function cancel() {
                 </a>
                 <Slideover.Title class="p-5">
                     <h2 class="font-medium text-base mr-auto">
-                        {{ t("inquiries.Follow ups") }}
+                        Follow ups
                     </h2>
                 </Slideover.Title>
                     <div class="
@@ -184,10 +184,10 @@ function cancel() {
                                             <Table.Thead>
                                                 <Table.Tr>
                                                     <Table.Th class="whitespace-nowrap">#</Table.Th>
-                                                    <Table.Th class="whitespace-nowrap">{{ t("inquiries.DATE") }}</Table.Th>
-                                                    <Table.Th class="text-center whitespace-nowrap">{{ t("inquiries.FOLLOWUP TYPE") }}</Table.Th>
-                                                    <Table.Th class="text-center whitespace-nowrap">{{ t("inquiries.STATUS") }}</Table.Th>
-                                                    <Table.Th class="text-center whitespace-nowrap">{{ t("inquiries.COMMENTS") }}</Table.Th>
+                                                    <Table.Th class="whitespace-nowrap">DATE</Table.Th>
+                                                    <Table.Th class="text-center whitespace-nowrap">FOLLOWUP TYPE</Table.Th>
+                                                    <Table.Th class="text-center whitespace-nowrap">STATUS</Table.Th>
+                                                    <Table.Th class="text-center whitespace-nowrap">COMMENTS</Table.Th>
                                                 </Table.Tr>
                                             </Table.Thead>
                                             <Table.Tbody>
@@ -213,7 +213,7 @@ function cancel() {
                                 <div class="lg:col-span-4 flex">
                                     <div class="intro-y box p-5">
                                         <h2 class="text-lg font-medium mr-auto pt-5 pb-5">
-                                            {{ t("inquiries.Add Follow Up") }}
+                                            Add Follow Up
                                         </h2>
 
                                         <div
@@ -228,7 +228,7 @@ function cancel() {
                                             <div>
                                                 <div>
                                                     <label for="form-followup-type" class="form-label">
-                                                        {{ t("inquiries.Followup Type") }}
+                                                        Followup Type
                                                     </label>
                                                     <TomSelect id="form-followup-type"
                                                                v-model="followupModel.inquiry_followup_type_id"
@@ -242,7 +242,7 @@ function cancel() {
                                                                   }"
                                                                :placeholder="'Select Assignee'"
                                                                class="w-full">
-                                                        <option>{{ t('inquiries.Select Follow up Type') }}</option>
+                                                        <option>Select Follow up Type</option>
                                                         <option v-for="(type, index) in followupTypes" :key="index" :value="index">
                                                             {{ type }}
                                                         </option>
@@ -256,7 +256,7 @@ function cancel() {
 
                                                 <div class="mt-3">
                                                     <label for="form-followup-date" class="form-label">
-                                                        {{ t("inquiries.Date of Next Follow Up") }}
+                                                        Date of Next Follow Up
                                                     </label>
                                                     <div class="relative w-56">
                                                         <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-slate-100 border text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
@@ -275,7 +275,7 @@ function cancel() {
                                                 </div>
                                                 <div class="mt-3">
                                                     <label for="form-followup-time" class="form-label">
-                                                        {{ t("inquiries.Time of Next Follow Up") }}
+                                                        Time of Next Follow Up
                                                     </label>
                                                     <div class="relative w-56">
                                                         <div class="absolute rounded-l w-10 h-full flex items-center justify-center bg-slate-100 border text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
@@ -294,7 +294,7 @@ function cancel() {
                                                 </div>
                                                 <div class="mt-3">
                                                     <label for="form-followup-time" class="form-label">
-                                                        {{ t("inquiries.Comment") }}
+                                                        Comment
                                                     </label>
                                                     <FormTextarea
                                                         id="form-comment"
@@ -316,10 +316,10 @@ function cancel() {
                                                     class="btn btn-outline-secondary w-24 mr-1"
                                                     @click.prevent="cancel"
                                                 >
-                                                    {{ t("common.Cancel") }}
+                                                Cancel
                                                 </Button>
                                                 <Button variant="primary" type="submit" class="btn btn-primary w-24">
-                                                    {{ t("common.Save") }}
+                                                    Save
                                                 </Button>
                                             </div>
                                         </form>

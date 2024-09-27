@@ -101,13 +101,13 @@ const listPermissions = computed(() => {
 <template>
   <div>
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-            <h2 class="text-lg font-medium mr-auto">{{ t("roles.Edit Role") }}</h2>
+            <h2 class="text-lg font-medium mr-auto">Edit Role</h2>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                 <Button  variant="primary"
                             class="box mr-2 flex items-center ml-auto sm:ml-0"
                              @click="router.push('/roles')"
                             ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />
-                    {{ t("common.Back") }}
+                            Back
                 </Button>
             </div>
         </div>
@@ -120,7 +120,7 @@ const listPermissions = computed(() => {
                     </div>
                     <form @submit.prevent = "submitForm()" class="validate-form">
                         <div>
-                            <label for="form-name" class="form-label">{{ t("roles.Name") }}</label>
+                            <label for="form-name" class="form-label">Name</label>
                             <FormInput id="form-name"
                                     type="text"
                                     class="form-control"
@@ -134,14 +134,14 @@ const listPermissions = computed(() => {
                         </div>
                         <div class="mt-3">
 
-                            <label for="form-permission" class="form-label">{{ t("roles.Permission") }}</label>
+                            <label for="form-permission" class="form-label">Permission</label>
                                 <div
                                 class="p-5 flex flex-col-reverse sm:flex-row text-gray-600 border-b border-gray-200 dark:border-dark-1"
                                 >
                                 <div
                                     class="flex items-center mt-3 sm:mt-0 border-t sm:border-0 border-gray-200 pt-5 sm:pt-0 mt-5 sm:mt-0 -mx-5 sm:mx-0 px-5 sm:px-0"
                                 >
-                                    <h2>{{ t("roles.Select permissions by toggling individual permissions per category")}}</h2>
+                                    <h2>Select permissions by toggling individual permissions per category</h2>
                                 </div>
 
                             </div>
@@ -177,10 +177,10 @@ const listPermissions = computed(() => {
                                     @click="router.push('/roles')"
                                         
                             >
-                            {{ t("common.Cancel") }}
+                            Cancel
                             </Button>
                             <Button variant="primary" class="btn btn-primary w-20" type="submit">
-                                                {{ t("common.Save") }}
+                                Save
                             </Button>
                         </div>
                     </form>

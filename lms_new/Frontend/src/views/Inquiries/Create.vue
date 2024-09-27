@@ -165,7 +165,7 @@ function onImageChoose(ev) {
 
     <div>
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-            <h2 class="text-lg font-medium mr-auto">{{ t("inquiries.Add Inquiry") }}</h2>
+            <h2 class="text-lg font-medium mr-auto">Add Inquiry</h2>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                 <Button
                 variant="primary"
@@ -178,7 +178,7 @@ function onImageChoose(ev) {
                             sm:ml-0
                         "
                      @click="router.push('/inquiries')"
-                ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />{{ t("common.Back") }}
+                ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />Back
         </Button>
             </div>
         </div>
@@ -202,7 +202,7 @@ function onImageChoose(ev) {
                                     <div
                                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                         <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2 " />
-                                        {{ t("inquiries.Select Standard Class, Batch Source and etc") }}
+                                        Select Standard Class, Batch Source and etc
                                     </div>
                                     <div class="mt-5">
 
@@ -249,13 +249,11 @@ function onImageChoose(ev) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{
-                                                                t("inquiries.Status")
-                                                            }}
+                                                        <div class="font-medium">Status
                                                         </div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -272,7 +270,7 @@ function onImageChoose(ev) {
                                                               }"
                                                            :placeholder="'Select Status'"
                                                            class="w-full">
-                                                    <option>{{ t('inquiries.Select Status') }}</option>
+                                                    <option>Select Status</option>
                                                     <option v-for="(status, index) in statuses" :key="index" :value="index">
                                                         {{ status }}
                                                     </option>
@@ -288,13 +286,11 @@ function onImageChoose(ev) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{
-                                                                t("questions.Choose Standard")
-                                                            }}
+                                                        <div class="font-medium">Choose Standard
                                                         </div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
 
@@ -314,7 +310,7 @@ function onImageChoose(ev) {
                                                            }"
                                                            class="w-full"
                                                            placeholder="Select Standard">
-                                                    <option>{{ t('questions.Select Standard') }}</option>
+                                                    <option>Select Standard</option>
                                                     <option v-for="(standard, indexs) in standards" :key="indexs" :value="indexs">
                                                         {{ standard }}
                                                     </option>
@@ -329,13 +325,11 @@ function onImageChoose(ev) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{
-                                                                t("inquiries.Choose Batch")
-                                                            }}
+                                                        <div class="font-medium">Choose Batch
                                                         </div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -352,7 +346,7 @@ function onImageChoose(ev) {
                                                               }"
                                                            :placeholder="'Select Batch'"
                                                            class="w-full">
-                                                    <option>{{ t('inquiries.Select Batch') }}</option>
+                                                    <option>Select Batch</option>
                                                     <option v-for="(batch, index) in batches" :key="index" :value="index">
                                                         {{ batch }}
                                                     </option>
@@ -369,13 +363,11 @@ function onImageChoose(ev) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{
-                                                                t("inquiries.Inquiry Source")
-                                                            }}
+                                                        <div class="font-medium">Inquiry Source
                                                         </div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -392,7 +384,7 @@ function onImageChoose(ev) {
                                                               }"
                                                            :placeholder="'Select Inquiry Source'"
                                                            class="w-full">
-                                                    <option>{{ t('inquiries.Select Inquiry Source') }}</option>
+                                                    <option>Select Inquiry Source</option>
                                                     <option v-for="(source, index) in sources" :key="index" :value="index">
                                                         {{ source }}
                                                     </option>
@@ -408,13 +400,11 @@ function onImageChoose(ev) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{
-                                                                t("inquiries.Follow Up Type")
-                                                            }}
+                                                        <div class="font-medium">Follow Up Type
                                                         </div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -431,7 +421,7 @@ function onImageChoose(ev) {
                                                               }"
                                                            :placeholder="'Select Follow Up Type'"
                                                            class="w-full">
-                                                    <option>{{ t('inquiries.Select Follow Up Type') }}</option>
+                                                    <option>Select Follow Up Type</option>
                                                     <option v-for="(followupType, index) in followupTypes" :key="index" :value="index">
                                                         {{ followupType }}
                                                     </option>
@@ -454,17 +444,17 @@ function onImageChoose(ev) {
                                     <div
                                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                         <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2 " />
-                                        {{ t("inquiries.Assigned to") }}
+                                        Assigned to
                                     </div>
                                     <div class="mt-5">
                                         <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("inquiries.Assigned to") }}</div>
+                                                        <div class="font-medium">Assigned to</div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -481,7 +471,7 @@ function onImageChoose(ev) {
                                                               }"
                                                            :placeholder="'Select Assignee'"
                                                            class="w-full">
-                                                    <option>{{ t('inquiries.Select Assignee') }}</option>
+                                                    <option>Select Assignee</option>
                                                     <option v-for="(assignee, index) in assignees" :key="index" :value="index">
                                                         {{ assignee }}
                                                     </option>
@@ -504,17 +494,17 @@ function onImageChoose(ev) {
                                     <div
                                         class="font-medium text-base flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5">
                                         <Lucide icon="ChevronDownIcon" class="w-4 h-4 mr-2 " />
-                                        {{ t("inquiries.Basic Information Of Student") }}
+                                        Basic Information Of Student
                                     </div>
                                     <div class="mt-5">
                                         <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("inquiries.Student Name") }}</div>
+                                                        <div class="font-medium">Student Name</div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -538,10 +528,10 @@ function onImageChoose(ev) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("inquiries.Contact Name") }}</div>
+                                                        <div class="font-medium">Contact Name</div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -565,11 +555,11 @@ function onImageChoose(ev) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("inquiries.Contact Email") }}
+                                                        <div class="font-medium">Contact Email
                                                         </div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
 
@@ -594,11 +584,11 @@ function onImageChoose(ev) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("inquiries.Contact Mobile") }}
+                                                        <div class="font-medium">Contact Mobile
                                                         </div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
 
@@ -623,10 +613,10 @@ function onImageChoose(ev) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("inquiries.Gender") }}</div>
+                                                        <div class="font-medium">Gender</div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
 
@@ -644,7 +634,7 @@ function onImageChoose(ev) {
                                                               }"
                                                            :placeholder="'Select Gender'"
                                                            class="w-full">
-                                                    <option>{{ t('students.Select Gender') }}</option>
+                                                    <option>Select Gender</option>
                                                     <option v-for="(gender, index) in genders" :key="index" :value="index">
                                                         {{ gender }}
                                                     </option>
@@ -660,11 +650,11 @@ function onImageChoose(ev) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("inquiries.Date Of Birth") }}
+                                                        <div class="font-medium">Date Of Birth
                                                         </div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
 
@@ -689,10 +679,10 @@ function onImageChoose(ev) {
                                             <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
                                                 <div class="text-left flex-grow">
                                                     <div class="flex items-center">
-                                                        <div class="font-medium">{{ t("inquiries.Address") }}</div>
+                                                        <div class="font-medium">Address</div>
                                                         <div
                                                             class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                            {{ t("common.Required") }}
+                                                            Required
                                                         </div>
                                                     </div>
 
@@ -724,10 +714,10 @@ function onImageChoose(ev) {
                                         @click="router.push('/inquiries')"
                                         
                                     >
-                                {{ t("common.Cancel") }}
+                                    Cancel
                             </Button>
                             <Button variant="primary" class="btn btn-primary w-20" type="submit">
-                                                {{ t("common.Save") }}
+                                Save
                             </Button>
                         </div>
                     </form>

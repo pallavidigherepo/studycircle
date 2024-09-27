@@ -168,7 +168,7 @@ function confirmDelete() {
 
 <template>
 <div>
-    <h2 class="intro-y text-lg font-medium mt-10">{{ t("generated_questions.Generated Question Papers") }}</h2>
+    <h2 class="intro-y text-lg font-medium mt-10">Generated Question Papers</h2>
     <div class="grid grid-cols-12 gap-6 mt-5">
         <div
             class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2"
@@ -177,7 +177,7 @@ function confirmDelete() {
             <div v-if="datatableoptions.export" class="dropdown">
                 <Button aria-expanded="false" class="dropdown-toggle btn btn-primary ml-2" data-tw-toggle="dropdown">
                   <span class="flex items-center justify-center">
-                    {{ t("common.Export/Print") }}&nbsp;
+                    Export/Print&nbsp;
                     <Lucide icon="DownloadIcon" class="w-4 h-4" />
                   </span>
                 </Button>
@@ -192,13 +192,13 @@ function confirmDelete() {
                         <li>
                             <a class="dropdown-item" href="javascript:;" @click.prevent="exportMe('xlsx')">
                                 <Lucide icon="FileTextIcon" class="w-4 h-4 mr-2" />
-                                {{ t("common.Export to Excel") }}
+                                Export to Excel
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="javascript:;" @click.prevent="exportMe('csv')">
                                 <Lucide icon="FileTextIcon" class="w-4 h-4 mr-2" />
-                                {{ t("common.Export to CSV") }}
+                                Export to CSV
                             </a>
                         </li>
                         <!-- <li>
@@ -250,25 +250,25 @@ function confirmDelete() {
 
                     <div class="text-slate-600 dark:text-slate-500 mt-5">
                         <div class="flex items-center">
-                            <Lucide icon="LinkIcon" class="w-4 h-4 mr-2" /> {{ t("questions.Board") }}: {{ item.board }}
+                            <Lucide icon="LinkIcon" class="w-4 h-4 mr-2" /> Board: {{ item.board }}
                         </div>
                         <div class="flex items-center mt-2">
-                            <Lucide icon="LayersIcon" class="w-4 h-4 mr-2" /> {{ t("templates.Standard") }}: {{ item.standard }}
+                            <Lucide icon="LayersIcon" class="w-4 h-4 mr-2" /> Standard: {{ item.standard }}
                         </div>
                         <div class="flex items-center mt-2">
-                            <Lucide icon="BookOpenIcon" class="w-4 h-4 mr-2" /> {{ t("templates.Subject") }}: {{ item.subject }}
+                            <Lucide icon="BookOpenIcon" class="w-4 h-4 mr-2" /> Subject: {{ item.subject }}
                         </div>
                         <div class="flex items-center mt-2">
-                            <Lucide icon="LayersIcon" class="w-4 h-4 mr-2" /> {{ t("templates.Total Marks") }}: {{ item.template_info.total_marks }}
+                            <Lucide icon="LayersIcon" class="w-4 h-4 mr-2" /> Total Marks: {{ item.template_info.total_marks }}
                         </div>
                         <div class="flex items-center mt-2">
-                            <Lucide icon="ClockIcon" class="w-4 h-4 mr-2" /> {{ t("templates.Duration") }}: {{ item.template_info.duration }}
+                            <Lucide icon="ClockIcon" class="w-4 h-4 mr-2" /> Duration: {{ item.template_info.duration }}
                         </div>
                         <div class="flex items-center mt-2">
-                            <Lucide icon="ArchiveIcon" class="w-4 h-4 mr-2" /> {{ t("templates.Has Section") }}: {{ item.template_info.has_section ? "Yes": "No" }}
+                            <Lucide icon="ArchiveIcon" class="w-4 h-4 mr-2" /> Has Section: {{ item.template_info.has_section ? "Yes": "No" }}
                         </div>
                         <div class="flex items-center mt-2">
-                            <Lucide icon="CheckSquareIcon" class="w-4 h-4 mr-2" /> {{ t("templates.Status") }}: {{ item.template_info.is_active ? "Active": "In-active" }}
+                            <Lucide icon="CheckSquareIcon" class="w-4 h-4 mr-2" /> Status: {{ item.template_info.is_active ? "Active": "In-active" }}
                         </div>
                     </div>
                 </div>
@@ -278,21 +278,21 @@ function confirmDelete() {
                     <router-link :to="{ name: 'ShowGeneratedQuestionPaper',  params: { id: item.id }}"
                                  class="flex items-center text-primary mr-auto mr-1">
                                  <Lucide icon="EyeIcon" class="w-4 h-4" />
-                        {{ t("generated_questions.Preview") }}
+                                 Preview
                     </router-link>
 
                     <a href="javascript:;"
                        @click="assign(item)"
                        class="flex items-center mr-1 text-warning">
                        <Lucide icon="UsersIcon" class="w-4 h-4 mr-1" />
-                        {{ t("generated_questions.Assign") }}
+                       Assign
                     </a>
 
                     <a href="javascript:;"
                        @click="edit(item)"
                        class="flex items-center mr-1">
                        <Lucide icon="CheckSquareIcon" class="w-4 h-4 mr-1" />
-                        {{ t("common.Edit") }}
+                       Edit
                     </a>
                     <a
                         class="flex items-center text-danger"
@@ -300,7 +300,7 @@ function confirmDelete() {
                         @click="deleteI(item)"
                     >
                     <Lucide icon="Trash2Icon" class="w-4 h-4 mr-1" />
-                        {{ t("common.Delete") }}
+                    Delete
                     </a>
                 </div>
             </div>

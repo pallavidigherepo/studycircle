@@ -112,7 +112,7 @@ const roles = computed(() => store.getters["users/roleList"]);
 <template>
     <div>
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
-            <h2 class="text-lg font-medium mr-auto">{{ t("users.Edit User") }}</h2>
+            <h2 class="text-lg font-medium mr-auto">Edit User</h2>
             <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                 <Button
                 variant="primary"
@@ -125,7 +125,7 @@ const roles = computed(() => store.getters["users/roleList"]);
                             sm:ml-0
                         "
                      @click="router.push('/users')"
-                ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />{{ t("common.Back") }}
+                ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />Back
         </Button>
             </div>
         </div>
@@ -142,9 +142,7 @@ const roles = computed(() => store.getters["users/roleList"]);
                     </div>
                     <form @submit.prevent="submitForm()" class="validate-form">
                         <div>
-                            <label for="form-name" class="form-label">{{
-                                    t("users.Name")
-                                }}</label>
+                            <label for="form-name" class="form-label">Name</label>
                             <FormInput
                                 id="form-name"
                                 type="text"
@@ -167,9 +165,7 @@ const roles = computed(() => store.getters["users/roleList"]);
                                           </span>-->
                         </div>
                         <div class="mt-3">
-                            <label for="form-email" class="form-label">{{
-                                    t("users.Email")
-                                }}</label>
+                            <label for="form-email" class="form-label">Email</label>
 
                             <FormInput
                                 id="form-email"
@@ -193,9 +189,7 @@ const roles = computed(() => store.getters["users/roleList"]);
                                           </span>-->
                         </div>
                         <div class="mt-3">
-                            <label for="form-mobile-number" class="form-label">{{
-                                    t("users.Mobile Number")
-                                }}</label>
+                            <label for="form-mobile-number" class="form-label">Mobile Number</label>
 
                             <FormInput
                                 id="form-mobile-number"
@@ -220,7 +214,7 @@ const roles = computed(() => store.getters["users/roleList"]);
                         </div>
                         <div class="mt-3">
                             <label for="form-role" class="form-label"
-                            >{{ t("users.Role") }}
+                            >Role
                             </label>
                             <div class="mt-2">
                                 <TomSelect
@@ -264,10 +258,10 @@ const roles = computed(() => store.getters["users/roleList"]);
                                         @click="router.push('/users')"
                                         
                                     >
-                                {{ t("common.Cancel") }}
+                                    Cancel
                             </Button>
                             <Button variant="primary" class="btn btn-primary w-20" type="submit">
-                                                {{ t("common.Save") }}
+                                Save
                             </Button>
                         </div>
                         <!-- END: Slide Over Footer -->
