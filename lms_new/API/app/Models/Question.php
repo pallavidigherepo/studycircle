@@ -44,7 +44,7 @@ class Question extends Model
                                 'language_id',
                                 'subject_id',
                                 'chapter_id',
-                                'topic_id',
+                                // 'topic_id',
                                 'created_by',
                                 'updated_by',
         );

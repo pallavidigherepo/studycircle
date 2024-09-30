@@ -37,6 +37,8 @@ const successModalPreview = ref(false);
 let warningModalPreview = ref(false);
 const isOnline = ref(false);
 const loading = ref(false);
+const fetchDialogOpen = ref(false);
+const fetchedQuestion = ref([]);
 
 const warningMessage = ref("");
 const model = ref({
@@ -52,7 +54,8 @@ const model = ref({
     template: {},
     generated_questions: {
         sections: {}
-    }
+    },
+    selectedQuestions: []
 });
 onMounted(() => {
     fetch();
@@ -165,49 +168,41 @@ async function fetchQuestions(section, index) {
     }
 }
 
-// async function fetchQuestionsManually(section: any, index: any) {
-//     if (!model.value.subject_id) {
-//         warningModalPreview.value = true;
-//         warningMessage.value = "Make sure you have selected your subject";
-//         return;
-//     }
 
-//     let typeId = "";
-//     let limit = "";
+async function fetchQuestionsManually() {
+    if (!model.value.subject_id) {
+        warningModalPreview.value = true;
+        warningMessage.value = "Make sure you have selected your subject";
+        return;
+    }
 
-//     if (!section && !index) {
-//         typeId = template.value.type_id;
-//         limit = template.value.total_questions;
-//     } else {
-//         typeId = section.type_id;
-//         limit = section.total_questions;
-//     }
+    // let typeId = "";
+    // let limit = "";
 
-//     let url = "paper_generation=" + true
-//         + "&board_id=" + boardId.value
-//         + "&standard_id=" + standardId.value
-//         + "&subject_id=" + model.value.subject_id
-//         + "&chapter_id=" + model.value.chapter_id
-//         + "&topic_id=" + model.value.topic_id
-//         + "&difficulty_level_id=" + model.value.difficulty_level_id
-//         + "&type_id=" + typeId
-//         + "&limit=" + limit;
+    // typeId = template.value.type_id;
+    // limit = template.value.total_questions;
 
-//     const result = await axiosClient.get("/questions?" + url);
+    let url = "paper_generation=" + true
+        + "&board_id=" + boardId.value
+        + "&standard_id=" + standardId.value
+        + "&subject_id=" + model.value.subject_id
+        + "&chapter_id=" + model.value.chapter_id
+        + "&topic_id=" + model.value.topic_id
+        + "&difficulty_level_id=" + model.value.difficulty_level_id
+        // + "&type_id=" + typeId
+        // + "&limit=" + limit;
 
-//     if (result.status !== 200) {
-//         throw new Error("Failed to fetch questions");
-//     } else {
-//         if (!section && !index) {
-//             delete model.value.generated_questions.sections;
-//             model.value.generated_questions = result.data.data;
-//         } else {
-//             model.value.generated_questions.sections[index] = section;
-//             model.value.generated_questions.sections[index].questions = result.data.data;
-//         }
-//     }
+    const result = await axiosClient.get("/questions?" + url);
+
+    if (result.status !== 200) {
+        throw new Error("Failed to fetch questions");
+    } else {
+        const questions = result.data.data;
+        console.log("Received questions:", questions);
+        fetchedQuestion.value = questions;
+    }
     
-// };
+};
 
 const rules = computed(() => {
     return {
@@ -232,7 +227,7 @@ const rules = computed(() => {
 });
 const v$ = useVuelidate(rules, model);
 
-async function submitForm(pre: any) {
+async function submitForm(this: any, pre: any) {
 
     submitted.value = true;
     v$.value.$validate(); // checks all inputs
@@ -245,9 +240,13 @@ async function submitForm(pre: any) {
         isLoading.value = true;
         warningMessage.value = "";
         if (pre) {
+            // const filteredQuestions = this.model.generated_questions.filter((question: { id: any; }) => {
+            //     return this.selectedQuestions.includes(question.id);
+            // });
             preview.value = true;
             isLoading.value = false;
             submitted.value = false;
+            // this.model.generated_questions = filteredQuestions;
         } else {
             await store
                 .dispatch("generated_questions/save", model.value)
@@ -495,7 +494,7 @@ function back() {
                                                           }"
                                                            class="w-full"
                                                            placeholder="Select Subject">
-                                                    <option>{{ t("templates.Select Subject") }}</option>
+                                                    <option>Select Subject</option>
                                                     <option v-for="(subject, indexsub) in subjects" :key="indexsub"
                                                             :value="indexsub">
                                                         {{ JSON.parse(subject) }}
@@ -596,7 +595,7 @@ function back() {
                                                             <div class="mt-3">{{ section.description }}</div>
                                                             <div class="flex mt-3">
                                                                 <div class="form-label xl:!mr-10">
-                                                                    {{ t("templates.Question Type") }}
+                                                                    Question Type
                                                                 </div>
                                                                 {{ section.type_name }}
                                                             </div>
@@ -611,7 +610,7 @@ function back() {
                                                                             Fetch Questions Automatically
                                                                     </Button>
                                                                     <Button variant="primary" class="btn btn-primary"
-                                                                            @click.prevent="fetchQuestions(section, index)">
+                                                                    @click="fetchDialogOpen = true">
                                                                             Fetch Questions Manually
                                                                     </Button>
                                                                 </div>
@@ -814,22 +813,222 @@ function back() {
                 </div>
             </form>
             <!-- BEGIN: Modal Content -->
-            <Dialog :open="warningModalPreview" @hidden="warningModalPreview = false">
-                <Dialog.Panel class="p-0">
-                    <div class="p-5 text-center">
-                        <Lucide icon="XCircleIcon" class="w-16 h-16 text-warning mx-auto mt-3"/>
-                        <div class="text-3xl mt-5">Oops...</div>
-                        <div class="text-slate-500 mt-2">
-                            {{ warningMessage }}
+            
+<Dialog size="xl" :open="fetchDialogOpen" @close="fetchDialogOpen = false">
+  <Dialog.Panel class="p-0" style="max-height: 500px; overflow-y: auto;">
+    <div class="p-5">
+      <form @submit.prevent="fetchQuestionsManually">
+        <!-- Inputs for selecting subject, chapter, topic, and difficulty level -->
+        <div class="overflow-auto lg:overflow-visible mt-3">
+          <!-- BEGIN: Subject, Chapter and Topic selection -->
+          <div  class="border border-slate-200/60 dark:border-darkmode-400 rounded-md p-5">
+            <div class="mt-5">
+              <div class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                  <div class="text-left flex-grow">
+                    <div class="flex items-center">
+                      <div class="font-medium">Choose Difficulty Level</div>
+                      <div class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
+                        Required
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-full mt-3 xl:mt-0 flex-1">
+                  <TomSelect id="form-level"
+                             v-model="model.difficulty_level_id"
+                             class="w-full" placeholder="Select Difficulty Level"
+                             :class="{ 'border-danger': submitted && v$.difficulty_level_id.$errors.length,}"
+                             :options="{
+                              allowEmptyOption: false,
+                              create: false,
+                              placeholder: 'Select Difficulty Level',
+                              autocomplete: 'off',
+                            }">
+                    <option>Select Difficulty Level</option>
+                    <option v-for="(level, indexd) in difficultyList" :key="indexd" :value="indexd">
+                      {{ JSON.parse(level) }}
+                    </option>
+                  </TomSelect>
+                  <div v-for="(error, index) of v$.difficulty_level_id.$errors" :key="index" class="text-danger mt-2">
+                    <div class="error-msg">{{ error.$message }}</div>
+                  </div>
+                </div>
+              </div>
+              <div
+                    class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                        <div class="text-left flex-grow">
+                            <div class="flex items-center">
+                                <div class="font-medium">Subject
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="px-5 pb-8 text-center">
-                        <Button type="button" @click="warningModalPreview = false" class="btn w-24 btn-primary">
-                            Ok
-                        </Button>
+                    <div class="w-full mt-3 xl:mt-0 flex-1">
+                        <TomSelect id="form-subject"
+                                    v-model="model.subject_id"
+                                    :class="{ 'border-danger': submitted && v$.subject_id.$errors.length, }"
+                                    :options="{
+                                    allowEmptyOption: false,
+                                    create: false,
+                                    placeholder: 'Select Subject',
+                                    autocomplete: 'off',
+                                    onChange: selectedSubject,
+                                    }"
+                                    class="w-full"
+                                    placeholder="Select Subject">
+                            <option>Select Subject</option>
+                            <option v-for="(subject, indexsub) in subjects" :key="indexsub"
+                                    :value="indexsub">
+                                {{ JSON.parse(subject) }}
+                            </option>
+                        </TomSelect>
+                        <FormInput type="hidden" v-model="model.subject" />
+                        <div v-for="(error, index) of v$.subject_id.$errors"
+                                :key="index" class="text-danger mt-2">
+                            <div class="error-msg">{{ error.$message }}</div>
+                        </div>
                     </div>
-                </Dialog.Panel>
-            </Dialog>
+                </div>
+                <div
+                    class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                        <div class="text-left flex-grow">
+                            <div class="flex items-center">
+                                <div class="font-medium">Chapter
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full mt-3 xl:mt-0 flex-1">
+                        <TomSelect id="form-chapter"
+                                    v-model="model.chapter_id"
+                                    :options="{
+                                    allowEmptyOption: false,
+                                    create: false,
+                                    placeholder: 'Select Chapter',
+                                    autocomplete: 'off',
+                                    onChange: selectedChapter,
+                                    }"
+                                    class="w-full"
+                                    placeholder="Select Chapter">
+                            <option>All Chapters</option>
+                            <option v-for="(chapter, indexchap) in chapters" :key="indexchap"
+                                    :value="indexchap">
+                                {{ JSON.parse(chapter) }}
+                            </option>
+                        </TomSelect>
+                    </div>
+                </div>
+                <div
+                    class="form-inline flex items-start flex-col xl:flex-row mt-5 pt-5 first:mt-0 first:pt-0">
+                    <div class="form-label flex xl:w-64 xl:mr-10 flex items-center">
+                        <div class="text-left flex-grow">
+                            <div class="flex items-center">
+                                <div class="font-medium">Topic
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="w-full mt-3 xl:mt-0 flex-1">
+                        <TomSelect id="form-subject"
+                                    v-model="model.topic_id"
+                                    :options="{
+                                    allowEmptyOption: false,
+                                    create: false,
+                                    placeholder: 'Select Topic',
+                                    autocomplete: 'off',
+                                    }"
+                                    class="w-full"
+                                    placeholder="Select Topic">
+                            <option>All Topics</option>
+                            <option v-for="(topic, indextop) in topics" :key="indextop"
+                                    :value="indextop">
+                                {{ JSON.parse(topic) }}
+                            </option>
+                        </TomSelect>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <!-- END: Subject, Chapter and Topic selection -->
+        </div>
+
+        <!-- Button to fetch questions -->
+        <Button type="submit" class="btn btn-primary">
+          Fetch Questions
+        </Button>
+
+        <!-- Display the fetched questions -->
+        <div v-if="fetchedQuestion.length > 0" class="mt-5">
+        <Table class="table">
+          <Table.Thead>
+            <Table.Tr>
+              <Table.Th class="border-b-2 dark:border-darkmode-400 whitespace-nowrap">
+                #
+              </Table.Th>
+              <Table.Th class="border-b-2 dark:border-darkmode-400 whitespace-nowrap">
+                QUESTION
+              </Table.Th>
+              <Table.Th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">
+                MARKS
+              </Table.Th>
+              <Table.Th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">
+                NEGATIVE MARKS
+              </Table.Th>
+              <Table.Th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">
+                DIFFICULTY LEVEL
+              </Table.Th>
+              <Table.Th class="border-b-2 dark:border-darkmode-400 text-right whitespace-nowrap">
+                SELECT
+              </Table.Th>
+            </Table.Tr>
+          </Table.Thead>
+          <Table.Tbody>
+            <Table.Tr v-for="(question, index) in fetchedQuestion" :key="index">
+              <Table.Td class="border-b dark:border-darkmode-400">
+                {{ index + 1 }}
+              </Table.Td>
+              <Table.Td class="border-b dark:border-darkmode-400">
+                {{ question.question }}
+              </Table.Td>
+              <Table.Td class="border-b dark:border-darkmode-400 text-right">
+                {{ question.marks }}
+              </Table.Td>
+              <Table.Td class="border-b dark:border-darkmode-400 text-right">
+                {{ question.negative_marks }}
+              </Table.Td>
+              <Table.Td class="border-b dark:border-darkmode-400 text-right">
+                {{ question.difficulty_level }}
+              </Table.Td>
+              <Table.Td class="border-b dark:border-darkmode-400 text-right">
+                <FormCheck.Input
+                  type="checkbox"
+                  :id="'question-' + index"
+                  :value="question.id"
+                  v-model="selectedQuestions"
+                />
+              </Table.Td>
+            </Table.Tr>
+          </Table.Tbody>
+        </Table>
+      </div>
+
+      <div class="flex justify-end mt-5">
+        <Button variant="primary" class="btn py-3 btn-primary w-full md:w-52" type="submit" @click="isOnline = true">
+            Preview Generated Paper In Online Mode
+        </Button>
+
+        <Button variant="primary" class="btn py-3 btn-primary w-full md:w-52" type="submit" @click="isOnline = false">
+            Preview Generated Paper In Offline Mode
+        </Button>
+      </div>
+      </form>
+    </div>
+  </Dialog.Panel>
+</Dialog>
             <!-- END: Modal Content -->
         </template>
         <template v-else>

@@ -34,7 +34,7 @@ class QuestionResource extends JsonResource
             'language_id' => $this->language_id,
             'subject_id' => $this->subject_id,
             'chapter_id' => $this->chapter_id,
-            'topic_id' => $this->topic_id,
+            // 'topic_id' => $this->topic_id,
             'subject' => json_decode($this->subject->label),
             'chapter' => json_decode($this->chapter->label),
             'created_by' => $this->created_by,

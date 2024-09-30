@@ -55,9 +55,9 @@ class QuestionRequest extends FormRequest
             'chapter_id' => [
                 'required',
             ],
-            'topic_id' => [
-                'required',
-            ],
+            // 'topic_id' => [
+            //     'required',
+            // ],
         ];
     }
 }

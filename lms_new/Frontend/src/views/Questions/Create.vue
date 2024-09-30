@@ -719,13 +719,8 @@ function makeid(length) {
                                     <div class="text-left flex-grow">
                                         <div class="flex items-center">
                                             <div class="font-medium">Choose Topic
-                                            </div>
-<!--                                            <div
-                                                class="ml-2 px-2 py-0.5 bg-slate-200 text-slate-600 dark:bg-darkmode-300 dark:text-slate-400 text-xs rounded-md">
-                                                Required
-                                            </div>-->
+                                            </div> 
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="w-full mt-3 xl:mt-0 flex-1">
@@ -744,10 +739,6 @@ function makeid(length) {
                                             {{ JSON.parse(topic) }}
                                         </option>
                                     </TomSelect>
-<!--                                    <div v-for="(error, index) of v$.topic_id.$errors" :key="index"
-                                         class="text-danger mt-2">
-                                        <div class="error-msg">{{ error.$message }}</div>
-                                    </div>-->
                                 </div>
                             </div>
                         </div>
