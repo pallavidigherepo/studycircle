@@ -4,8 +4,7 @@ import App from "./App.vue";
 import router from "./router";
 import "./assets/css/app.css";
 import store from './stores/index.js'
-import i18n from './i18n'; 
-
+import i18n  from "./i18n.js";
 const app = createApp(App);
 
 app.use(createPinia());

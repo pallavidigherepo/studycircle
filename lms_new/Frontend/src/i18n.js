@@ -1,23 +1,35 @@
 import { createI18n } from 'vue-i18n'
-import { messages } from "vite-plugin-i18n-resources"
 
+import messages from "@intlify/unplugin-vue-i18n/messages";
 const lang = document.documentElement.lang;
+
+function loadLocaleMessages() {
+    const locales = require.context('./locales', true, /[A-Za-z0-9-_,\s]+\.json$/i)
+    const messages = {}
+    locales.keys().forEach(key => {
+      const matched = key.match(/([A-Za-z0-9-_]+)\./i)
+      if (matched && matched.length > 1) {
+        const locale = matched[1]
+        messages[locale] = locales(key).default
+      }
+    })
+    return messages
+  }
 
 const i18n = createI18n({
     fullInstall: true,
     legacy: false,
     locale: lang,
-    fallbackLocale: "en",
-    messages,
+    fallbackLocale: 'en',
+    globalInjection: true,
+    messages: messages,
   })
 
-// Only if you want hot module replacement when translation message file change
-if (import.meta.hot) {
+  if (import.meta.hot) {
     import.meta.hot.on("locales-update", (data) => {
       Object.keys(data).forEach((lang) => {
         i18n.global.setLocaleMessage(lang, data[lang]);
       });
     });
   }
-   
 export default i18n;
