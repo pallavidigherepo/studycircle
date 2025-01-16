@@ -9,69 +9,73 @@ import LoadingIcon from "@/components/Base/LoadingIcon";
 import _ from "lodash";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import { useVuelidate } from "@vuelidate/core";
-import { required, email, helpers } from "@vuelidate/validators";
+import { required, email, helpers, sameAs } from "@vuelidate/validators";
 import store from "@/stores/index.js";
 import { useRouter, useRoute } from "vue-router";
 import { ref, reactive, computed } from "vue";
 
+const submitted = ref(false);
 const router = useRouter();
-// interface ForgotPasswordPayload {
-//     email: string,
-// }
 
+const route = useRoute();
 const model = reactive({
-    email: '',
+  email: "",
+  password: "",
+  password_confirmation: "",
+  token: route.query.token
+  
 });
+
 const rules = computed(() => {
-    return {
-        email: {
-            required: helpers.withMessage("Please enter email address", required),
-            email: helpers.withMessage("Please enter valid email address", email),
-        },
-    }
+  return {
+    email: {
+      required: helpers.withMessage("Please enter email address", required),
+      email: helpers.withMessage("Please enter valid email address", email),
+    },
+    password: {
+      required: helpers.withMessage("Please enter password.", required),
+    },
+    password_confirmation: {
+        required: helpers.withMessage("Please enter confirm password same as password.", required),
+        sameAsPassword: helpers.withMessage('Passwords do not match.', sameAs(model.password))
+    },
+  };
 });
 
 const v$ = useVuelidate(rules, model);
-
-const errorMsg = ref('');
-const submitted = ref(false);
+const errorMsg = ref("");
 const loading = ref(false);
-const msg = ref('');
-function submit()
-{
+
+async function resetPassword(){
     submitted.value = true;
     v$.value.$validate();
     if (v$.value.$error) {
         return false;
     }
-    loading.value = true;
-    
     try {
-        store.dispatch('auth/forgot_password', model)
+        store.dispatch('auth/reset_password', model)
             .then((response) => {
-              if (response.success) {
-                loading.value = false;
-                submitted.value = false;
-                msg.value = "We have sent you an email with reset password link. Please check it.";
-              } else {
-                loading.value = false;
-                submitted.value = false;
-                msg.value = '';
-                errorMsg.value = JSON.stringify(response.errors);
-              }
-              return response.success;
+                if (response.success) {
+                    loading.value = false;
+                    submitted.value = false;
+                    router.push('/login');
+                } else {
+                    loading.value = false;
+                    submitted.value = false;
+                    errorMsg.value = JSON.stringify(response.errors);
+                }
+                return response.success;
             })
             .catch(() => {
-                // loading.value = false;
+                loading.value = false;
+                submitted.value = false;
                 errorMsg.value = "Provided email address does not exists.";
             });
-        // console.log(response);
     } catch (e) {
         console.log(e);
     }
-
-    return ;
 }
+
 </script>
 
 <template>
@@ -107,7 +111,7 @@ function submit()
           </div>
         </div>
         <div class="mt-10">
-          <div class="text-2xl font-medium">Forgot Password</div>
+          <div class="text-2xl font-medium">Reset Password</div>
           <!-- <div class="mt-2.5 text-slate-600 dark:text-slate-400">
             Don't have an account?
             <a class="font-medium text-primary" href=""> Sign Up </a>
@@ -138,7 +142,9 @@ function submit()
               <Lucide icon="X" class="w-5 h-5" />
             </Alert.DismissButton>
           </Alert>
+          
           <div class="mt-6">
+            <form @submit.prevent="resetPassword">
             <FormLabel>Email*</FormLabel>
             <FormInput
               type="text"
@@ -146,40 +152,70 @@ function submit()
               placeholder="Email"
               v-model="model.email"
               :class="{
-                'border-danger': submitted && v$.email.$errors.Length
-              }"
+                    'border-danger': submitted && v$.email.$errors.length,
+                  }"
             />
-            <div class="text-danger mt-2" v-for="(error, index) of v$.email.$errors"
-            :key="index">
-                <div class="error-msg">{{ error.$message }}</div>
+            <div
+                v-if="v$.email"
+                  class="text-danger mt-2"
+                  v-for="(error, index) of v$.email.$errors"
+                  :key="index"
+                >
+                  <div class="error-msg">{{ error.$message }}</div>
             </div>
-            <template v-if="loading"><div class="mt-5 text-warning">Please wait while we are sending reset password link on your email address</div></template>
+            <FormLabel class="mt-4">Password*</FormLabel>
+            <FormInput
+              type="password"
+              class="block px-4 py-3.5 rounded-[0.6rem] border-slate-300/80"
+              placeholder="password"
+              v-model="model.password"
+                :class="{
+                    'border-danger': submitted && v$.password.$errors.length,
+                  }"
+            />
+            <div
+                  v-if="v$.password"
+                  class="text-danger mt-2"
+                  v-for="(error, index) of v$.password.$errors"
+                  :key="index"
+                >
+                  <div class="error-msg">{{ error.$message }}</div>
+            </div>
+
+            <FormLabel class="mt-4">Confirm Password*</FormLabel>
+            <FormInput
+              type="password"
+              class="block px-4 py-3.5 rounded-[0.6rem] border-slate-300/80"
+              placeholder="confirm password"
+              v-model="model.password_confirmation"
+                :class="{
+                    'border-danger': submitted && v$.password_confirmation.$errors.length,
+                  }"
+            />
+            <div
+                  v-if="v$.password_confirmation"
+                  class="text-danger mt-2"
+                  v-for="(error, index) of v$.password_confirmation.$errors"
+                  :key="index"
+                >
+                  <div class="error-msg">{{ error.$message }}</div>
+            </div>
             
             <div class="mt-5 text-center xl:mt-8 xl:text-left">
               <Button
                 variant="primary"
                 rounded
-                type="button"
-                @click="submit"
+                type="submit"
+                
                 class="bg-gradient-to-r from-theme-1/70 to-theme-2/70 w-full py-3.5 xl:mr-3 dark:border-darkmode-400"
               >
-                Submit
-                <LoadingIcon
-                    icon="spinning-circles"
-                    color="white"
-                    class="w-4 h-4 ml-2"
-                    v-if="submitted"
-                  />
+                Reset Password
+                <LoadingIcon icon="spinning-circles" color="white"
+                class="w-4 h-4 ml-2" v-if="submitted" />
               </Button>
-              <Button
-                variant="outline-secondary"
-                rounded
-                class="bg-white/70 w-full py-3.5 mt-3 dark:bg-darkmode-400"
-                @click="$router.push('/login')"
-              >
-                Login
-              </Button>
+             
             </div>
+            </form>
           </div>
         </div>
       </div>

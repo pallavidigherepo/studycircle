@@ -1,7 +1,7 @@
 import Login from "@/views/Auth/Login.vue";
 import ForgotPassword from "@/views/Auth/ForgotPassword.vue";
-// // import Profile from "@/views/Auth/Profile.vue";
-// import ResetPassword from "@/views/Auth/ResetPassword.vue";
+// import Profile from "@/views/Auth/Profile.vue";
+import ResetPassword from "@/views/Auth/ResetPassword.vue";
 
 const authRoutes = [
     {
@@ -14,11 +14,11 @@ const authRoutes = [
         name: "ForgotPassword",
         component: ForgotPassword
     },
-    // {
-    //     path: "/reset_password",
-    //     name: "ResetPassword",
-    //     component: ResetPassword
-    // },
+    {
+        path: "/reset_password",
+        name: "ResetPassword",
+        component: ResetPassword
+    },
    
 ]
 
