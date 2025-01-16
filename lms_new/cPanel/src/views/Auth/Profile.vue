@@ -1,0 +1,615 @@
+<script setup lang="ts">
+import { ref, computed, onMounted, reactive } from "vue";
+import { Tab as HeadlessTab } from "@headlessui/vue";
+import Table from "@/components/Base/Table";
+import { Menu, Tab } from "@/components/Base/Headless";
+import Button from "@/components/Base/Button";
+import Lucide from "@/components/Base/Lucide";
+import TomSelect from "@/components/Base/TomSelect";
+import { FormInput, FormSelect, FormCheck, FormTextarea } from "@/components/Base/Form";
+
+import { useVuelidate } from "@vuelidate/core";
+import { required, helpers, sameAs, minLength, email, numeric } from "@vuelidate/validators";
+
+import store from "@/stores";
+import { useRoute, useRouter } from "vue-router";
+const route = useRoute();
+const router = useRouter();
+
+import { useI18n } from "vue-i18n";
+import axiosClient from "@/axios";
+const { t } = useI18n();
+
+// const user = computed(() => JSON.parse(sessionStorage.getItem("USER")));
+
+const profile = ref();
+const courses = ref();
+const subjects = ref();
+const questions = ref();
+
+const user = computed(() => {
+  const userItem = localStorage.getItem("USER");
+  return userItem ? JSON.parse(userItem) : null;
+});
+
+const modelAccount = ref({
+  id: '',
+  alt_email: '',
+  mobile: '',
+  alt_mobile: '',
+  address: '',
+  alt_address: '',
+  gender: '',
+  qualification: '',
+  avatar: '',
+  designation: '',
+});
+
+const modelPassword = reactive({
+  id: '',
+  password: '',
+  confirm_password: '',
+  isChangePassword: true,
+});
+
+const submitted = ref(false);
+const rules = computed(() => {
+  return {
+      password: {
+          required: helpers.withMessage("Please enter password.", required),
+          minLength: helpers.withMessage("Enter password of minimum length 9.", minLength(9)),
+      },
+      confirm_password: {
+          required: helpers.withMessage("Please enter confirm password.", required),
+          sameAs: helpers.withMessage("Password and confirm password does not match.", sameAs(modelPassword.password))
+      },
+  };
+});
+
+
+const vP$ = useVuelidate(rules, modelPassword);
+
+const accountRules = computed(() => {
+  return {
+      /*avatar: {
+          file_size_validation
+      },*/
+      alt_email: {
+          //required: helpers.withMessage("Please enter email address.", required),
+          email: helpers.withMessage("Enter valid email address.", email),
+      },
+      mobile: {
+          required: helpers.withMessage("Please enter mobile number.", required),
+          numeric: helpers.withMessage("Enter valid mobile number.", numeric),
+          minLength: helpers.withMessage("Enter valid mobile number with minimum length of 10 digits.", minLength(10)),
+      },
+      alt_mobile: {
+          //required: helpers.withMessage("Please enter mobile number.", required),
+          numeric: helpers.withMessage("Enter valid mobile number.", numeric),
+          minLength: helpers.withMessage("Enter valid mobile number with minimum length of 10 digits.", minLength(10)),
+      },
+      address: {
+          //required: helpers.withMessage("Please enter your address.", required),
+      },
+      alt_address: {
+          //required: helpers.withMessage("Please enter alternate address.", required),
+      },
+      gender: {
+          //required: helpers.withMessage("Please select your gender.", required),
+      },
+      qualification: {
+          //required: helpers.withMessage("Please enter your qualification.", required),
+      },
+      designation: {
+          //required: helpers.withMessage("Please enter your designation.", required),
+      },
+  };
+});
+const file_size_validation = (value) =>  {
+
+  if (!value) {
+      return true;
+  }
+  return true;
+  //let file = value;
+  //console.log(value)
+  //return (file.size < 2097152);
+}
+
+const v$ = useVuelidate(accountRules, modelAccount);
+
+const isLoading = ref(false);
+
+async function submitPasswordForm() {
+  submitted.value = true;
+  vP$.value.$validate(); // checks all inputs
+
+  if (!vP$.value.$error) {
+
+      isLoading.value = true;
+      await store
+          .dispatch("auth/save", modelPassword)
+          .then(() => {
+              isLoading.value = false;
+              submitted.value = false;
+              //router.push({ name: "Chapters" });
+          })
+          .catch((err) => {
+              isLoading.value = false;
+              isErrored.value = true;
+              //if (err.response) {
+              message.value = err.response.data.message;
+              //}
+
+          });
+  } else {
+      // if ANY fail validation
+      return;
+  }
+}
+
+
+
+async function submitAccount() {
+  submitted.value = true;
+  v$.value.$validate(); // checks all inputs
+
+  if (!v$.value.$error) {
+
+      isLoading.value = true;
+      await store
+          .dispatch("auth/save", modelAccount.value)
+          .then(() => {
+              isLoading.value = false;
+              submitted.value = false;
+              fetch();
+              //router.push({ name: "Chapters" });
+          })
+          .catch((err) => {
+              isLoading.value = false;
+              isErrored.value = true;
+              //if (err.response) {
+              message.value = err.response.data.message;
+              //}
+
+          });
+  } else {
+      // if ANY fail validation
+      return;
+  }
+}
+
+onMounted(() => {
+  fetch();
+  //store.dispatch("auth/profile");
+});
+
+const fetch = async () => {
+  const result = await axiosClient.get('/profile');
+  
+  if (result.status !== 200) {
+      throw new Error('Failed to fetch profile information.')
+  }
+  modelAccount.value = JSON.parse(JSON.stringify(result.data));
+  modelPassword.id = JSON.parse(JSON.stringify(result.data.id));
+  // user.value = JSON.parse(JSON.stringify(result.data));
+  profile.value = result.data;
+  courses.value = result.data.user.courses;
+  subjects.value = result.data.user.subjects;
+  questions.value = result.data.user.questions;
+}
+function onImageChoose(ev) {
+  const file = ev.target.files[0];
+  const reader = new FileReader();
+  reader.onload = () => {
+      // The field to send on backend and apply validations
+      modelAccount.value.avatar = reader.result;
+      ev.target.value = "";
+  };
+  reader.readAsDataURL(file);
+}
+
+function cancel()
+{
+
+}
+</script>
+
+
+<template>
+  <div>
+      <div class="intro-y flex items-center mt-8">
+          <h2 class="text-lg font-medium mr-auto">My Profile</h2>
+      </div>
+      <Tab.Group>
+          <!-- BEGIN: Profile Info -->
+          <div class="intro-y box px-5 pt-5 mt-5">
+              <div class="flex flex-col lg:flex-row border-b border-slate-200/60 dark:border-darkmode-400 pb-5 -mx-5">
+                  <div class="flex flex-1 px-5 items-center justify-center lg:justify-start">
+                      <div class="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 image-fit relative">
+
+
+                          <img
+                              v-if="profile && profile.avatar"
+                              :alt="user.name"
+                              class="rounded-full"
+                              :src="modelAccount.avatar" />
+                          <img
+                              v-else
+                              :alt="user.name"
+                              class="rounded-full"
+                              :src="`https://eu.ui-avatars.com/api/?size=225&name=` + user.name"
+                              />
+                      </div>
+                      <div class="ml-5">
+                          <div class="w-24 sm:w-40 truncate sm:whitespace-normal font-medium text-lg">
+                              {{ user.name }}
+                          </div>
+                          <div class="text-slate-500">{{ modelAccount.designation }}</div>
+                      </div>
+                  </div>
+                  <div
+                      class="mt-6 lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 border-t lg:border-t-0 pt-5 lg:pt-0">
+                      <div class="font-medium text-center lg:text-left lg:mt-3">
+                          Contact Details
+                      </div>
+                      <div class="flex flex-col justify-center items-center lg:items-start mt-4">
+                          <div class="truncate sm:whitespace-normal flex items-center">
+                            <Lucide icon="MailIcon" class="w-4 h-4 mr-2" />
+                              {{ user.email }}
+                          </div>
+                          <div class="truncate sm:whitespace-normal flex items-center mt-3"
+                               v-if="profile && profile.mobile">
+                               <Lucide icon="PhoneIcon" class="w-4 h-4 mr-2" />
+                              {{ profile.mobile }}
+                          </div>
+
+                      </div>
+                  </div>
+
+              </div>
+              <Tab.List class="nav-link-tabs flex-col sm:flex-row justify-center lg:justify-start text-center">
+                  <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
+                      <Lucide icon="UserIcon" class="w-4 h-4 mr-2" /> Profile
+                  </Tab>
+                  <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
+                    <Lucide icon="ShieldIcon" class="w-4 h-4 mr-2" />
+                    Account
+                  </Tab>
+                  <Tab :fullWidth="false" class="py-4 flex items-center cursor-pointer">
+                    <Lucide icon="LockIcon" class="w-4 h-4 mr-2" />
+                    Reset Password
+                  </Tab>
+              </Tab.List>
+          </div>
+          <!-- END: Profile Info -->
+          <Tab.Panels class="mt-5">
+              <Tab.Panel>
+                  <div class="grid grid-cols-12 gap-6">
+                      <!-- BEGIN: Latest Uploads -->
+                      <div class="intro-y box col-span-12 lg:col-span-12">
+                          <div
+                              class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                              <h2 class="font-medium text-base mr-auto">Latest Courses</h2>
+
+                          </div>
+                          <div class="p-5">
+                              <div class="overflow-x-auto">
+                                  <Table class="table table-striped">
+                                      <Table.Thead>
+                                          <Table.Tr>
+                                              <Table.Th class="whitespace-nowrap">#</Table.Th>
+                                              <Table.Th class="whitespace-nowrap">Name</Table.Th>
+                                              <Table.Th class="whitespace-nowrap">Code</Table.Th>
+                                          </Table.Tr>
+                                      </Table.Thead>
+                                      <Table.Tbody>
+                                          <Table.Tr v-for="(course, index) in courses" :key="course.id">
+                                              <Table.Td>{{ index + 1 }}</Table.Td>
+                                              <Table.Td>{{ course.name }}</Table.Td>
+                                              <Table.Td>{{ course.course_code }}</Table.Td>
+                                          </Table.Tr>
+                                      </Table.Tbody>
+                                  </Table>
+                              </div>
+
+                          </div>
+                      </div>
+                      <!-- END: Latest Uploads -->
+
+                      <!-- BEGIN: Subject -->
+                      <div class="intro-y box col-span-12">
+                          <div
+                              class="flex items-center px-5 py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                              <h2 class="font-medium text-base mr-auto">Subjects</h2>
+
+                          </div>
+                          <div id="subjects" class="py-5">
+                              <div class="overflow-x-auto">
+                                  <Table class="table table-striped">
+                                      <Table.Thead>
+                                          <Table.Tr>
+                                              <Table.Th class="whitespace-nowrap">#</Table.Th>
+                                              <Table.Th class="whitespace-nowrap">Label</Table.Th>
+                                              <Table.Th class="whitespace-nowrap">Icon</Table.Th>
+                                          </Table.Tr>
+                                      </Table.Thead>
+                                      <Table.Tbody>
+                                          <Table.Tr v-for="(subject, index) in subjects" :key="subject.id">
+                                              <Table.Td>{{ index + 1 }}</Table.Td>
+                                              <Table.Td>{{ JSON.parse(subject.label) }}</Table.Td>
+                                              <Table.Td>{{ subject.icon }}</Table.Td>
+                                          </Table.Tr>
+
+                                      </Table.Tbody>
+                                  </Table>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- END: Subjects -->
+                      <!-- BEGIN: New Authors -->
+                      <div class="intro-y box col-span-12">
+                          <div
+                              class="flex items-center px-5 py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                              <h2 class="font-medium text-base mr-auto">Questions</h2>
+
+                          </div>
+
+                          <div id="subjects" class="py-5">
+                              <div class="overflow-x-auto">
+                                  <Table class="table table-striped">
+                                      <Table.Thead>
+                                          <Table.Tr>
+                                              <Table.Th class="whitespace-nowrap">#</Table.Th>
+                                              <Table.Th class="whitespace-nowrap">Question</Table.Th>
+                                              <Table.Th class="whitespace-nowrap">Board</Table.Th>
+                                          </Table.Tr>
+                                      </Table.Thead>
+                                      <Table.Tbody>
+                                          <Table.Tr v-for="(question, index) in questions" :key="question.id">
+                                              <Table.Td>{{ index + 1 }}</Table.Td>
+                                              <Table.Td>{{ question.question }}</Table.Td>
+                                              <Table.Td>{{ question.board_id }}</Table.Td>
+                                          </Table.Tr>
+
+                                      </Table.Tbody>
+                                  </Table>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- END: New Authors -->
+                  </div>
+              </Tab.Panel>
+              <Tab.Panel>
+                  <div class="grid grid-cols-12 gap-6">
+                      <!-- BEGIN: Latest Uploads -->
+                      <div class="intro-y box col-span-12 lg:col-span-12">
+                          <div
+                              class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                              <h2 class="font-medium text-base mr-auto">Account Information</h2>
+
+                          </div>
+                          <form @submit.prevent="submitAccount">
+                              <div class="p-5">
+                                  <div>
+                                      <label class="block text-sm font-medium text-gray-700"> Avatar </label>
+                                      <div class="mt-1 flex items-center">
+                                          <img
+                                              v-if="modelAccount.avatar"
+                                              :src="modelAccount.avatar"
+                                              :alt="user.name"
+                                              class="w-64 h-48 object-cover"
+                                          />
+                                          <img  v-else :alt="user.name" class="rounded-full"
+                                               :src="`https://eu.ui-avatars.com/api/?size=50&name=` + user.name" />
+
+                                          <Button
+                                              type="button"
+                                              class="relative overflow-hidden ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                          >
+                                              <FormInput
+                                                  type="file"
+                                                  @change="onImageChoose"
+                                                  accept="image/png, image/jpeg, image/jpg"
+                                                  class="absolute left-0 top-0 right-0 bottom-0 opacity-0 cursor-pointer rounded-full"
+                                              />
+                                              Change Avatar
+                                          </Button>
+
+                                      </div>
+                                  </div>
+                                  <div class="mt-3">
+                                      <label for="alt-email" class="form-label">Alternate Email
+                                      </label>
+                                      <FormInput id="alt-email" type="email" class="form-control"
+                                          placeholder="Enter Alternate Email" v-model.trim="modelAccount.alt_email"
+                                          :class="{
+                                              'border-danger': submitted && v$.alt_email.$errors.length,
+                                          }" />
+                                      <div class="text-danger mt-2" v-for="(error, index) of v$.alt_email.$errors"
+                                          :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+                                  <div class="mt-3">
+                                      <label for="mobile" class="form-label">Mobile Number</label>
+                                      <FormInput id="mobile" type="text" class="form-control"
+                                          placeholder="Enter Mobile Number" v-model.trim="modelAccount.mobile" :class="{
+                                              'border-danger': submitted && v$.mobile.$errors.length,
+                                          }" />
+                                      <div class="text-danger mt-2" v-for="(error, index) of v$.mobile.$errors"
+                                          :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+                                  <div class="mt-3">
+                                      <label for="alt-mobile" class="form-label">Alternate Mobile Number</label>
+                                      <FormInput id="alt-mobile" type="text" class="form-control"
+                                          placeholder="Enter Alternate Mobile No"
+                                          v-model.trim="modelAccount.alt_mobile" :class="{
+                                              'border-danger': submitted && v$.alt_mobile.$errors.length,
+                                          }" />
+                                      <div class="text-danger mt-2" v-for="(error, index) of v$.alt_mobile.$errors"
+                                          :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+
+                                  <div class="mt-3">
+                                      <label for="address" class="form-label">Address</label>
+                                      <FormTextarea id="address" class="form-control" placeholder="Enter Address"
+                                          v-model.trim="modelAccount.address" :class="{
+                                              'border-danger': submitted && v$.address.$errors.length,
+                                          }"></FormTextarea>
+
+                                      <div class="text-danger mt-2" v-for="(error, index) of v$.address.$errors"
+                                          :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+                                  <div class="mt-3">
+                                      <label for="alt-address" class="form-label">Alternate Address</label>
+                                      <FormTextarea id="alt-address" class="form-control"
+                                          placeholder="Enter Alternate Address"
+                                          v-model.trim="modelAccount.alt_address" :class="{
+                                              'border-danger': submitted && v$.alt_address.$errors.length,
+                                          }"></FormTextarea>
+
+                                      <div class="text-danger mt-2" v-for="(error, index) of v$.alt_address.$errors"
+                                          :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+                                  <div class="mt-3">
+                                      <label for="gender" class="form-label">Gender</label>
+                                      <TomSelect id="gender" v-model="modelAccount.gender" placeholder="Select Gender"
+                                          :options="{
+                                              allowEmptyOption: false,
+                                              create: false,
+                                              placeholder: 'Select Gender',
+                                              autocomplete: 'off',
+                                              items: modelAccount.gender,
+                                          }" class="w-full" :class="{
+  'border-danger': submitted && v$.gender.$errors.length,
+}">
+                                          <option value="">Select Gender</option>
+                                          <option value="male">Male</option>
+                                          <option value="female">Female</option>
+                                          <option value="other">Other</option>
+                                      </TomSelect>
+
+                                      <div class="text-danger mt-2" v-for="(error, index) of v$.gender.$errors"
+                                          :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+                                  <div class="mt-3">
+                                      <label for="qualification" class="form-label">Qualification</label>
+                                      <FormInput id="qualification" type="text" v-model="modelAccount.qualification"
+                                          placeholder="Enter your qualification" class="form-control w-full" :class="{
+                                              'border-danger': submitted && v$.qualification.$errors.length,
+                                          }" />
+
+                                      <div class="text-danger mt-2" v-for="(error, index) of v$.qualification.$errors"
+                                          :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+                                  <div class="mt-3">
+                                      <label for="designation" class="form-label">Designation</label>
+                                      <FormInput id="designation" type="text" v-model="modelAccount.designation"
+                                          placeholder="Enter your designation" class="form-control w-full" :class="{
+                                              'border-danger': submitted && v$.designation.$errors.length,
+                                          }" />
+
+                                      <div class="text-danger mt-2" v-for="(error, index) of v$.designation.$errors"
+                                          :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+                                  <div class="text-right mt-5 p-5">
+                                      <!-- <button type="button" class="btn btn-outline-secondary w-24 mr-1"
+                                          @click.prevent="cancel">
+                                          Cancel
+                                      </button>
+                                      <button type="submit" class="btn btn-primary w-24">
+                                        Save
+                                      </button> -->
+                                      <Button
+                                          variant="secondary"
+                                          class="btn btn-outline-secondary w-20 mr-1"
+                                          @click.prevent="cancel">
+                                          Cancel
+                                      </Button>
+                                      <Button variant="primary" class="btn btn-primary w-20" type="submit">
+                                        Save
+                                      </Button>
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
+                      <!-- END: Latest Uploads -->
+
+                  </div>
+              </Tab.Panel>
+              <Tab.Panel>
+                  <div class="grid grid-cols-12 gap-6">
+
+                      <!-- BEGIN: Latest Uploads -->
+                      <div class="intro-y box col-span-12 lg:col-span-12">
+                          <div
+                              class="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+                              <h2 class="font-medium text-base mr-auto">Change Password</h2>
+
+                          </div>
+                          <form @submit.prevent="submitPasswordForm">
+                              <div class="p-5">
+                                  <div>
+                                      <label for="password" class="form-label">Password</label>
+                                      <FormInput id="password" type="password" class="form-control"
+                                          placeholder="Enter Password" v-model.trim="modelPassword.password" :class="{
+                                              'border-danger': submitted && vP$.password.$errors.length,
+                                          }" />
+                                      <div class="text-danger mt-2" v-for="(error, index) of vP$.password.$errors"
+                                          :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+                                  <div class="mt-3">
+                                      <label for="confirm-password" class="form-label">
+                                        Confirm Password
+                                      </label>
+                                      <FormInput id="confirm-password" type="password" class="form-control"
+                                          placeholder="Confirm Password" v-model.trim="modelPassword.confirm_password"
+                                          :class="{
+                                              'border-danger': submitted && vP$.confirm_password.$errors.length,
+                                          }" />
+                                      <div class="text-danger mt-2"
+                                          v-for="(error, index) of vP$.confirm_password.$errors" :key="index">
+                                          <div class="error-msg">{{ error.$message }}</div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="text-right mt-5 p-5">
+                                <Button
+                                    variant="secondary"
+                                    class="btn btn-outline-secondary w-20 mr-1"
+                                    @click.prevent="cancel">
+                                    Cancel
+                                </Button>
+                                <Button variant="primary" class="btn btn-primary w-20" type="submit">
+                                    Save
+                                </Button>
+                              </div>
+                          </form>
+                      </div>
+                      <!-- END: Latest Uploads -->
+
+                  </div>
+              </Tab.Panel>
+          </Tab.Panels>
+      </Tab.Group>
+  </div>
+
+</template>
