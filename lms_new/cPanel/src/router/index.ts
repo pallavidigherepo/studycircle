@@ -10,14 +10,14 @@ import LeaveBalance from "@/views/Leave/LeaveBalance.vue";
 
 import authRoutes from "./auth.js";
 // import masterRoutes from "./master";
-// import subjectChapterTopicRoutes from "./subject_chapter_topic";
+import subjectChapterTopicRoutes from "./subject_chapter_topic";
 // import studentRoute from "./students";
 // import parentRoutes from "./parents";
 // import questionRoutes from "./questions";
 // import questionnaireTemplateRoutes from "./questionnaire_template";
 // import inquiryRoutes from "./inquiries";
 // import feeRoutes from "./fees";
-// import userRoutes from "./users";
+import userRoutes from "./users";
 // import roleRoutes from "./role";
 
 const routes = [
@@ -36,14 +36,14 @@ const routes = [
       },      
       
       // ...masterRoutes,
-      // ...subjectChapterTopicRoutes,
+      ...subjectChapterTopicRoutes,
       // ...studentRoute,
       // ...parentRoutes,
       // ...questionRoutes,
       // ...questionnaireTemplateRoutes,
       // ...inquiryRoutes,
       // ...feeRoutes,
-      // ...userRoutes,
+      ...userRoutes,
       // ...roleRoutes,
       
       // {
