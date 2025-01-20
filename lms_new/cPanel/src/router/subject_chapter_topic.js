@@ -8,10 +8,10 @@ import CreateChapter from '../views/Chapters/Create.vue';
 import EditChapter from '../views/Chapters/Edit.vue';
 import ShowChapter from '../views/Chapters/Show.vue';
 
-// import Topics from '../views/Topics/Index.vue';
-// import CreateTopic from '../views/Topics/Create.vue';
-// import EditTopic from '../views/Topics/Edit.vue';
-// import ShowTopic from '../views/Topics/Show.vue';
+import Topics from '../views/Topics/Index.vue';
+import CreateTopic from '../views/Topics/Create.vue';
+import EditTopic from '../views/Topics/Edit.vue';
+import ShowTopic from '../views/Topics/Show.vue';
 
 const subjectChapterTopicRoutes = [
     {

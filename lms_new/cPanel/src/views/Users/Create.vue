@@ -105,7 +105,7 @@ const roles = computed(() => store.getters["users/roleList"]);
         class="flex flex-col mt-4 md:mt-0 md:h-10 gap-y-3 md:items-center md:flex-row"
       >
         <div class="text-base font-medium group-[.mode--light]:text-white">
-          Create Chapter
+          Create User
         </div>
       </div>
       <div class="flex flex-col mt-2">

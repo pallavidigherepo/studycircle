@@ -24,10 +24,11 @@ import store from "@/stores/index.js";
 import { useRouter, useRoute } from "vue-router";
 import { ref, reactive, computed, onMounted } from "vue";
 import _ from "lodash";
+import Editor from "@tinymce/tinymce-vue";
 
 const subcategory = ref(["0"]);
 const editorData = ref("<p>Content of the editor.</p>");
-import Editor from "@tinymce/tinymce-vue";
+
 const submitted = ref(false);
 
 const isErrored = ref(false);

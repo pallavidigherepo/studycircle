@@ -13,18 +13,19 @@ import {
   FormHelp,
 } from "@/components/Base/Form";
 import Tippy from "@/components/Base/Tippy";
+import users from "@/fakers/users";
 import Button from "@/components/Base/Button";
 import Alert from "@/components/Base/Alert";
 import LoadingIcon from "@/components/Base/LoadingIcon";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import { useVuelidate } from "@vuelidate/core";
-import { required, email, helpers, minLength, numeric } from "@vuelidate/validators";
+import { required, email, helpers, minLength, numeric} from "@vuelidate/validators";
 import store from "@/stores/index.js";
 import { useRouter, useRoute } from "vue-router";
 import { ref, reactive, computed, onMounted } from "vue";
 import _ from "lodash";
-import axiosClient from "@/axios";
 // import {useI18n} from "vue-i18n";
+import axiosClient from "@/axios";
 
 const submitted = ref(false);
 
@@ -51,7 +52,6 @@ const fetch = async () => {
         //const result = await store.dispatch('roles/edit', id);
 
         const result = await axiosClient.get(`/users/${id}/edit`);
-        console.log(result.data);
         if (result.status != 200) {
             const error = new Error('Failed to fetch roles')
             throw error;
@@ -64,7 +64,7 @@ const fetch = async () => {
         isLoading.value = false;
     }
 };
-// fetch();
+
 
 const rules = computed(() => {
     return {
@@ -124,13 +124,13 @@ const roles = computed(() => store.getters["users/roleList"]);
 </script>
 
 <template>
-      <div class="grid grid-cols-12 gap-y-10 gap-x-6">
+    <div class="grid grid-cols-12 gap-y-10 gap-x-6">
     <div class="col-span-12">
       <div
         class="flex flex-col mt-4 md:mt-0 md:h-10 gap-y-3 md:items-center md:flex-row"
       >
         <div class="text-base font-medium group-[.mode--light]:text-white">
-          Edit User
+          Create Parents
         </div>
       </div>
       <div class="flex flex-col mt-2">
@@ -153,7 +153,7 @@ const roles = computed(() => store.getters["users/roleList"]);
                         <h2 class="text-lg font-medium mr-auto">Edit User</h2>
                         <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
                             <Button
-                            variant="primary"
+                                variant="primary"
                                 class="
                                         box
                                         mr-2
@@ -164,7 +164,7 @@ const roles = computed(() => store.getters["users/roleList"]);
                                     "
                                 @click="router.push('/users')"
                             ><Lucide icon="ArrowLeftCircle" class="w-4 h-4 mr-2" />Back
-                    </Button>
+                            </Button>
                         </div>
                     </div>
                     <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
@@ -178,9 +178,9 @@ const roles = computed(() => store.getters["users/roleList"]);
                                     <AlertOctagonIcon class="w-6 h-6 mr-2"/>
                                     {{ message }}
                                 </div>
-                                <form @submit.prevent="submitForm()" class="validate-form">
+                                <form @submit.prevent="submitForm" class="validate-form">
                                     <div>
-                                        <FormLabel for="form-name" class="form-label">Name</FormLabel>
+                                        <FormLabel for="form-name" class="form-label">Name"</FormLabel>
                                         <FormInput
                                             id="form-name"
                                             type="text"
@@ -258,13 +258,13 @@ const roles = computed(() => store.getters["users/roleList"]);
                                             <TomSelect
                                                 v-model="user.designation"
                                                 :options="{
-                                placeholder: 'Select role',
-                                allowEmptyOption: true
-                            }"
+                                                            placeholder: 'Select role',
+                                                            allowEmptyOption: true
+                                                            }"
                                                 class="w-full"
                                                 :class="{
-                                'border-danger': submitted && v$.designation.$errors.length,
-                            }"
+                                                            'border-danger': submitted && v$.designation.$errors.length,
+                                                        }"
                                             >
                                                 <option value="">Select Role</option>
                                                 <option

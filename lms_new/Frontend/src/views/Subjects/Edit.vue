@@ -6,7 +6,7 @@ import TomSelect from "@/components/Base/TomSelect";
 import { FormInput, FormSelect } from "@/components/Base/Form";
 import Lucide from "@/components/Base/Lucide";
 import Button from "@/components/Base/Button";
-// import { ClassicEditor } from "@/components/Base/Ckeditor";
+import { ClassicEditor } from "@/components/Base/Ckeditor";
 
 import {useVuelidate} from "@vuelidate/core";
 import {required, helpers} from "@vuelidate/validators";
@@ -24,7 +24,7 @@ const response = ref();
 const route = useRoute();
 const router = useRouter();
 // Now we must get editing details for the selected item
-const {t} = useI18n();
+// const {t} = useI18n();
 
 const model = ref({
     id: route.params.id,

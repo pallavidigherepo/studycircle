@@ -11,14 +11,14 @@ import LeaveBalance from "@/views/Leave/LeaveBalance.vue";
 import authRoutes from "./auth.js";
 // import masterRoutes from "./master";
 import subjectChapterTopicRoutes from "./subject_chapter_topic";
-// import studentRoute from "./students";
-// import parentRoutes from "./parents";
+import studentRoute from "./students";
+import parentRoutes from "./parents";
 // import questionRoutes from "./questions";
 // import questionnaireTemplateRoutes from "./questionnaire_template";
-// import inquiryRoutes from "./inquiries";
+import inquiryRoutes from "./inquiries";
 // import feeRoutes from "./fees";
 import userRoutes from "./users";
-// import roleRoutes from "./role";
+import roleRoutes from "./role";
 
 const routes = [
   {
@@ -37,14 +37,14 @@ const routes = [
       
       // ...masterRoutes,
       ...subjectChapterTopicRoutes,
-      // ...studentRoute,
-      // ...parentRoutes,
+      ...studentRoute,
+      ...parentRoutes,
       // ...questionRoutes,
       // ...questionnaireTemplateRoutes,
-      // ...inquiryRoutes,
+      ...inquiryRoutes,
       // ...feeRoutes,
       ...userRoutes,
-      // ...roleRoutes,
+      ...roleRoutes,
       
       // {
       //   path: "/profile",
