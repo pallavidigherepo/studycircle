@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, computed, watch, reactive } from "vue";
-import { useI18n } from "vue-i18n";
+// import { useI18n } from "vue-i18n";
 import { useRoute, useRouter } from "vue-router";
 import { Dialog, Menu } from "@/components/Base/Headless";
 import Button from "@/components/Base/Button";
@@ -13,7 +13,7 @@ import _ from "lodash";
 const route = useRoute();
 const router = useRouter();
 
-const { t } = useI18n();
+// const { t } = useI18n();
 const listing = ref(true);
 const loading = ref(false);
 

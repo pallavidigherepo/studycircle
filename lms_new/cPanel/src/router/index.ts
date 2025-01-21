@@ -13,8 +13,8 @@ import authRoutes from "./auth.js";
 import subjectChapterTopicRoutes from "./subject_chapter_topic";
 import studentRoute from "./students";
 import parentRoutes from "./parents";
-// import questionRoutes from "./questions";
-// import questionnaireTemplateRoutes from "./questionnaire_template";
+import questionRoutes from "./questions";
+import questionnaireTemplateRoutes from "./questionnaire_template";
 import inquiryRoutes from "./inquiries";
 // import feeRoutes from "./fees";
 import userRoutes from "./users";
@@ -39,8 +39,8 @@ const routes = [
       ...subjectChapterTopicRoutes,
       ...studentRoute,
       ...parentRoutes,
-      // ...questionRoutes,
-      // ...questionnaireTemplateRoutes,
+      ...questionRoutes,
+      ...questionnaireTemplateRoutes,
       ...inquiryRoutes,
       // ...feeRoutes,
       ...userRoutes,

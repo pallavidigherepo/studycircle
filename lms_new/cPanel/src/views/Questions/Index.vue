@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, computed, watch } from "vue";
-import { useI18n } from "vue-i18n";
+// import { useI18n } from "vue-i18n";
 import { useRoute, useRouter } from "vue-router";
-import DataTable from "@/components/DataTable/Index.vue";
+// import DataTable from "@/components/DataTable/Index.vue";
 import store from "@/stores";
 
 const route = useRoute();
@@ -11,7 +11,7 @@ const router = useRouter();
 const options = {
   modelName: "Question",
 };
-const { t } = useI18n();
+// const { t } = useI18n();
 const listing = ref(true);
 
 onMounted(() => {

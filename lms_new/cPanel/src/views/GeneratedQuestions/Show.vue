@@ -4,11 +4,11 @@ import {ref, computed, onMounted} from "vue";
 import {useRoute, useRouter} from "vue-router";
 import Preview from "@/components/GeneratedQuestionPaper/Preview.vue";
 
-import {useI18n} from "vue-i18n";
+// import {useI18n} from "vue-i18n";
 
 const route = useRoute();
 const router = useRouter();
-const {t} = useI18n();
+// const {t} = useI18n();
 
 const message = ref("");
 const isLoading = ref(false);

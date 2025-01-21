@@ -8,12 +8,12 @@ import Lucide from "@/components/Base/Lucide";
 import Button from "@/components/Base/Button";
 import Table from "@/components/Base/Table";
 
-import { useI18n } from "vue-i18n";
+// import { useI18n } from "vue-i18n";
 // import {Tab} from "../../global-components/tab";
 
 const route = useRoute();
 const router = useRouter();
-const { t } = useI18n();
+// const { t } = useI18n();
 
 const message = ref("");
 const isLoading = ref(false);

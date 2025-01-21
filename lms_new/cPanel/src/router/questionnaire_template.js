@@ -1,4 +1,4 @@
-import QuestionnaireDashboard from "../views/Questionnaire/Index.vue";
+// import QuestionnaireDashboard from "../views/Questionnaire/Index.vue";
 
 import PaperGenerator from "../views/GeneratedQuestions/Create.vue";
 import GeneratedQuestionPapers from "../views/GeneratedQuestions/Index.vue";
@@ -12,12 +12,12 @@ import EditTemplate from '../views/Templates/Edit.vue';
 import ShowTemplate from '../views/Templates/Show.vue';
 
 const questionnaireTemplateRoutes = [
-    {
-        path: "/questionnaire",
-        name: "QuestionnaireDashboard",
-        component: QuestionnaireDashboard,
+    // {
+    //     path: "/questionnaire",
+    //     name: "QuestionnaireDashboard",
+    //     component: QuestionnaireDashboard,
 
-    },
+    // },
     {
         path: "/generated_question_papers",
         name: "GeneratedQuestionPapers",
