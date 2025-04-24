@@ -13,6 +13,10 @@ import Viper from "@/themes/Viper";
 
 export const themes = [
   {
+    name: "exort",
+    component: Exort,
+  },
+  {
     name: "echo",
     component: Echo,
   },
@@ -49,10 +53,6 @@ export const themes = [
     component: Raze,
   },
   {
-    name: "exort",
-    component: Exort,
-  },
-  {
     name: "viper",
     component: Viper,
   },
@@ -81,7 +81,7 @@ export const useThemeStore = defineStore("theme", {
   getters: {
     theme(state) {
       if (localStorage.getItem("theme") === null) {
-        localStorage.setItem("theme", "echo");
+        localStorage.setItem("theme", "exort");
       }
 
       return state.value;

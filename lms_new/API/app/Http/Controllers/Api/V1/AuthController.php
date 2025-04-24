@@ -6,13 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-// use Illuminate\Validation\Rules\Password;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Support\Str;
-use Tymon\JWTAuth\Facades\JWTAuth;
-use Tymon\JWTAuth\Exceptions\JWTException;
+use Illuminate\Testing\Fluent\Concerns\Has;
+use Illuminate\Validation\Rules\Password;
 
 /**
  * Class AuthController
@@ -39,7 +34,7 @@ class AuthController extends Controller
             'password' => Hash::make($data['password'])
         ]);
 
-        $token = JWTAuth::fromUser($user);
+        $token = Auth::fromUser($user);
 
         return response([
             'user' => $user,
@@ -53,13 +48,13 @@ class AuthController extends Controller
             'email' => 'required|email|string',
             'password' => 'required|string',
         ]);
+        $remember = $credentials['remember'] ?? false;
+        unset($credentials['remember']);
 
-        try {
-            if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(['message' => 'The provided credentials are not correct.'], 422);
-            }
-        } catch (JWTException $e) {
-            return response()->json(['message' => 'Could not create token.'], 500);
+        if (!Auth::attempt($credentials, $remember)) {
+            return response([
+                'message' => 'The provided credentials are not correct.'
+            ], 422);
         }
 
         $user = Auth::user();
@@ -70,6 +65,9 @@ class AuthController extends Controller
             $user->user_roles = [];
         }
 
+
+        $token = $user->createToken('main')->plainTextToken;
+
         return response()->json([
             'user' => $user,
             'token' => $token,
@@ -78,12 +76,14 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        try {
-            JWTAuth::invalidate(JWTAuth::getToken());
-            return response()->json(['success' => true]);
-        } catch (JWTException $e) {
-            return response()->json(['message' => 'Failed to logout, please try again.'], 500);
-        }
+        /** @var User $user */
+        $user = Auth::user();
+        // Revoke the token that was used to authenticate the current request...
+        $user->currentAccessToken()->delete();
+
+        return response([
+            'success' => true
+        ]);
     }
 
     public function forgot_password(Request $request)

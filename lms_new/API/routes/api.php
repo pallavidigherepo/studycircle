@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 use App\Models\Fee;
 use App\Models\User;
@@ -22,7 +24,6 @@ use Illuminate\Support\Str;
 use App\Models\DocumentType;
 use App\Models\FeeStructure;
 use App\Models\QuestionType;
-use Illuminate\Http\Request;
 use App\Models\InquirySource;
 use App\Models\InquiryStatus;
 use App\Models\FeeStudentDiscount;
@@ -30,7 +31,6 @@ use App\Models\FeeStudentDiscount;
 use App\Models\InquiryFollowupType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Route;
 use App\Models\GeneratedQuestionPaper;
 use App\Models\QuestionDifficultyLevel;
 use Illuminate\Support\Facades\Storage;
@@ -89,17 +89,10 @@ use App\Http\Controllers\Api\V1\GeneratedQuestionPaperController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
-// Route::middleware(['auth:sanctum', \App\Http\Middleware\DatabaseSwitcher::class])->group(function () {
-//     Route::get('/user', function (Request $request) {
-//         return $request->user();
-//     });
-
-Route::group(['middleware' => ['jwt.auth', \App\Http\Middleware\DatabaseSwitcher::class]], function () {
+Route::group(['middleware' => ['auth:sanctum', \App\Http\Middleware\DatabaseSwitcher::class]], function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-    
     Route::post('v1/logout', [AuthController::class, 'logout']);
 
     Route::post('v1/leaves', [LeaveController::class, 'applyLeave']);
@@ -143,7 +136,7 @@ Route::group(['middleware' => ['jwt.auth', \App\Http\Middleware\DatabaseSwitcher
     Route::resource('v1/fees', FeeController::class);
     Route::resource('v1/fee_transactions', FeeTransactionController::class);
     Route::resource('v1/leave-types', LeaveTypeController::class);
-   
+
 
     Route::resource('v1/parents', StudentParentController::class);
     Route::resource('v1/settings', SettingController::class);
@@ -291,9 +284,7 @@ Route::group(['middleware' => ['jwt.auth', \App\Http\Middleware\DatabaseSwitcher
             'permissions' => auth()->user()->getAllPermissions()->pluck('name'),
         ];
     })->name('check_user_permissions');
-   
-});
-
+})->middleware('auth:sanctum');
 
 Route::post('v1/login', [AuthController::class, 'login']);
 Route::post('v1/forgot_password', [AuthController::class, 'forgot_password']);

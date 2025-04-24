@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'email' => 'pals.ver@gmail.com',
             'password' => Hash::make(123456789),
         ];
-        $profile = [            
+        $profile = [
             'mobile' => 7030501188,
             'designation' => 'Chief Technical Officer',
         ];
@@ -31,9 +31,9 @@ class UserSeeder extends Seeder
             'name'=> 'Minal Shamgule',
             'email' => 'ss.minal@gmail.com',
             'password' => Hash::make(123456789),
-            
+
         ];
-        $profile = [            
+        $profile = [
             'mobile' => 9850627909,
             'designation' => 'Product Manager',
         ];
@@ -45,7 +45,7 @@ class UserSeeder extends Seeder
             'email' => 'sudhirff@gmail.com',
             'password' => Hash::make(123456789),
         ];
-        $profile = [            
+        $profile = [
             'mobile' => 7620098848,
             'designation' => 'Chief Executive Officer',
         ];

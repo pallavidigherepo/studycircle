@@ -90,32 +90,16 @@ function submit() {
     >
       <div
         class="relative z-10 flex flex-col justify-center w-full h-full py-2 lg:py-32"
-      >
-        <div
-          class="rounded-[0.8rem] w-[55px] h-[55px] border border-primary/30 flex items-center justify-center"
-        >
-          <div
-            class="relative flex items-center justify-center w-[50px] rounded-[0.6rem] h-[50px] bg-gradient-to-b from-theme-1/90 to-theme-2/90 bg-white"
-          >
-            <div class="w-[26px] h-[26px] relative -rotate-45 [&_div]:bg-white">
-              <div
-                class="absolute w-[20%] left-0 inset-y-0 my-auto rounded-full opacity-50 h-[75%]"
-              ></div>
-              <div
-                class="absolute w-[20%] inset-0 m-auto h-[120%] rounded-full"
-              ></div>
-              <div
-                class="absolute w-[20%] right-0 inset-y-0 my-auto rounded-full opacity-50 h-[75%]"
-              ></div>
-            </div>
-          </div>
-        </div>
+      ><Tippy
+                as="img"
+                alt="Tailwise - Admin Dashboard Template"
+                class="full border-[3px] border-white/50"
+                src="/src/assets/images/logos/logo.png"
+                :content="users.fakeUsers()[0].name"
+              />
+        
         <div class="mt-10">
-          <div class="text-2xl font-medium">Sign In</div>
-          <div class="mt-2.5 text-slate-600 dark:text-slate-400">
-            Don't have an account?
-            <a class="font-medium text-primary" href=""> Sign Up </a>
-          </div>
+          <div class="text-2xl font-medium">Meritest Solutions Pvt. Ltd.</div>
           <Alert
             variant="outline-primary"
             class="flex items-center px-4 py-3 my-7 bg-primary/5 border-primary/20 rounded-[0.6rem] leading-[1.7]"
@@ -203,13 +187,6 @@ function submit() {
                 Sign In
                 <LoadingIcon icon="spinning-circles" color="white"
                 class="w-4 h-4 ml-2" v-if="submitted" />
-              </Button>
-              <Button
-                variant="outline-secondary"
-                rounded
-                class="bg-white/70 w-full py-3.5 mt-3 dark:bg-darkmode-400"
-              >
-                Sign Up
               </Button>
             </div>
           </div>

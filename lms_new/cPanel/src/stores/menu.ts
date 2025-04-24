@@ -17,12 +17,12 @@ export interface MenuState {
 export const useMenuStore = defineStore("menu", {
   state: (): MenuState => ({
     value: [
-      "DASHBOARDS",
       {
         icon: "GaugeCircle",
         pageName: "dashboard",
         title: "Dashboard",
       },
+      "Academics Master Data",
       {
         icon: "GraduationCap",
         pageName: "academics",
@@ -119,7 +119,7 @@ export const useMenuStore = defineStore("menu", {
       {
         icon: "KeyIcon",
         pageName: "auth-management",
-        title: "Auth Management",
+        title: "Roles and Permissions",
         subMenu: [
           {
             icon: "SettingsIcon",
@@ -155,7 +155,7 @@ export const useMenuStore = defineStore("menu", {
           },            
         ]
       }, 
-      "divider",
+      "Human Resources",
       {
         icon: "Video",
         pageName: "meetings",
