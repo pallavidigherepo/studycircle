@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import DataTable from "@/custom_components/BaseTable.vue";
+import DataTable from "@/custom_components/DataTable/UserTable.vue";
 
 function handleView(row: any) {
   alert(`Viewing: ${JSON.stringify(row)}`)
