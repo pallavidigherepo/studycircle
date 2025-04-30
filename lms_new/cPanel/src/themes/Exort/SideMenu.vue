@@ -24,6 +24,7 @@ import QuickSearch from "@/components/QuickSearch";
 import SwitchAccount from "@/components/SwitchAccount";
 import NotificationsPanel from "@/components/NotificationsPanel";
 import ActivitiesPanel from "@/components/ActivitiesPanel";
+import store from "@/stores/index";
 
 const compactMenu = useCompactMenuStore();
 const setCompactMenu = (val: boolean) => {
@@ -111,6 +112,15 @@ onMounted(() => {
     compactLayout();
   };
 });
+
+async function logout() {
+  await store.dispatch('auth/logout').then(() => {
+    router.push('/login')
+  }).catch(() => {
+
+  });;
+
+}
 </script>
 
 <template>
@@ -173,7 +183,7 @@ onMounted(() => {
             <div
               class="ml-3.5 group-[.side-menu--collapsed.side-menu--on-hover]:xl:opacity-100 group-[.side-menu--collapsed]:xl:opacity-0 transition-opacity text-white font-medium"
             >
-              EXORT
+              Meritest - Learning Management System
             </div>
           </a>
           <a
@@ -374,14 +384,7 @@ onMounted(() => {
                     Profile Info
                   </Menu.Item>
                   <Menu.Item
-                    @click="
-                      () => {
-                        router.push({
-                          name: 'settings',
-                          query: { page: 'security' },
-                        });
-                      }
-                    "
+                    @click="logout"
                   >
                     <Lucide icon="Power" class="w-4 h-4 mr-2" />
                     Logout

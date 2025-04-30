@@ -21,7 +21,7 @@ import { Menu } from "@/components/Base/Headless";
 import Table from "@/components/Base/Table";
 import axiosClient from "@/axios";
 
-// import GeneralReport from "@/components/Dashboard/GeneralReport.vue";
+//import GeneralReport from "@/components/Dashboard/GeneralReport.vue";
 const message = ref();
 const isErrored = ref();
 const loading = ref(false);
@@ -80,7 +80,7 @@ const nextImportantNotes = () => {
               <Lucide icon="RefreshCcw" class="w-4 h-4 mr-3" /> Reload Data
             </a>
           </div>
-          <GeneralReport :response="response" ></GeneralReport>
+          <!-- <GeneralReport :response="response" ></GeneralReport> -->
         </div>
         <!-- END: General Report -->
         <!-- BEGIN: Sales Report -->
