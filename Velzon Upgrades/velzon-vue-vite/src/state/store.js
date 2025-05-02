@@ -1,14 +1,14 @@
-import { createStore } from 'vuex'
+import { createPinia } from 'pinia'
 
 import modules from './modules'
 
-const store = createStore({
+const pinia = createPinia({
   modules,
   // Enable strict mode in development to get a warning
   // when mutating state outside of a mutation.
   // https://vuex.vuejs.org/guide/strict.html
-  strict: process.env.NODE_ENV !== 'production',
+  strict: import.meta.env.MODE === 'development',
 })
 
-export default store
+export default pinia
 

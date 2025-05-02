@@ -1,4 +1,4 @@
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'pinia'
 
 export const authComputed = {
   ...mapState('auth', {

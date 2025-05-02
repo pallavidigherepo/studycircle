@@ -29,9 +29,9 @@ import HelloWorld from './components/HelloWorld.vue'
 }
 </style> -->
 <template>
-  <router-view />
+ <router-view></router-view>
 </template>
 
 <script setup>
-// No need to define name or components in script setup unless you're importing something here.
+import { RouterLink, RouterView } from 'vue-router'
 </script>

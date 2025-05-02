@@ -1,80 +1,43 @@
-// Register each file as a corresponding Vuex module. Module nesting
-// will mirror [sub-]directory hierarchy and modules are namespaced
-// as the camelCase equivalent of their file name.
+import { createPinia, defineStore } from 'pinia';
+import camelCase from 'lodash/camelCase';
 
-import camelCase from 'lodash/camelCase'
+const pinia = createPinia();
+const modulesCache = {};
+const piniaStoreData = { stores: {} };
 
-const modulesCache = {}
-const storeData = { modules: {} }
+// Dynamically import all store files except this index file or unit tests
+const storeModules = import.meta.glob('./**/*.js', { eager: true });
 
-;(function updateModules() {
-  // Allow us to dynamically require all Vuex module files.
-  // https://webpack.js.org/guides/dependency-management/#require-context
-  const requireModule = require.context(
-    // Search for files in the current directory.
-    '.',
-    // Search for files in subdirectories.
-    true,
-    // Include any .js files that are not this file or a unit test.
-    /^((?!index|\.unit\.).)*\.js$/
-  )
+for (const path in storeModules) {
+  if (path.includes('index') || path.includes('.unit.')) continue;
 
-  // For every Vuex module...
-  requireModule.keys().forEach((fileName) => {
-    const moduleDefinition = requireModule(fileName)
+  const storeDefinition = storeModules[path];
+  if (modulesCache[path] === storeDefinition) continue;
+  modulesCache[path] = storeDefinition;
 
-    // Skip the module during hot reload if it refers to the
-    // same module definition as the one we have cached.
-    if (modulesCache[fileName] === moduleDefinition) return
+  const storePath = path
+    .replace(/^\.\//, '')     // Remove "./" prefix
+    .replace(/\.\w+$/, '')    // Remove file extension
+    .split(/\//)              // Split folders
+    .map(camelCase);          // Convert all to camelCase
 
-    // Update the module cache, for efficient hot reloading.
-    modulesCache[fileName] = moduleDefinition
-
-    // Get the module path as an array.
-    const modulePath = fileName
-      // Remove the "./" from the beginning.
-      .replace(/^\.\//, '')
-      // Remove the file extension from the end.
-      .replace(/\.\w+$/, '')
-      // Split nested modules into an array path.
-      .split(/\//)
-      // camelCase all module namespaces and names.
-      .map(camelCase)
-
-    // Get the modules object for the current path.
-    const { modules } = getNamespace(storeData, modulePath)
-
-    // Add the module to our modules object.
-    modules[modulePath.pop()] = {
-      // Modules are namespaced by default.
-      namespaced: true,
-      ...moduleDefinition,
-    }
-  })
-
-  // If the environment supports hot reloading...
-  if (module.hot) {
-    // Whenever any Vuex module is updated...
-    module.hot.accept(requireModule.id, () => {
-      // Update `storeData.modules` with the latest definitions.
-      updateModules()
-      // Trigger a hot update in the store.
-      require('../store').default.hotUpdate({ modules: storeData.modules })
-    })
-  }
-})()
-
-// Recursively get the namespace of a Vuex module, even if nested.
-function getNamespace(subtree, path) {
-  if (path.length === 1) return subtree
-
-  const namespace = path.shift()
-  subtree.modules[namespace] = {
-    modules: {},
-    namespaced: true,
-    ...subtree.modules[namespace],
-  }
-  return getNamespace(subtree.modules[namespace], path)
+  const { stores } = getNamespace(piniaStoreData, storePath);
+  const storeName = storePath.pop();
+  stores[storeName] = defineStore(storeName, storeDefinition.default || storeDefinition);
 }
 
-export default storeData.modules
+// Recursively get the namespace of a Pinia store, even if nested.
+function getNamespace(subtree, path) {
+  if (path.length === 1) return subtree;
+
+  const namespace = path.shift();
+  subtree.stores = subtree.stores || {};
+  subtree.stores[namespace] = {
+    stores: {},
+    ...subtree.stores?.[namespace],
+  };
+  return getNamespace(subtree.stores[namespace], path);
+}
+
+export default piniaStoreData.stores;
+export { pinia };

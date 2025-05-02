@@ -4,20 +4,22 @@ import router from './router'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import i18n from './i18n'
-import store from './state/store'
+import pinia from './state/store'
 
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
 
-import BootstrapVueNext from 'bootstrap-vue-next'
+import * as BootstrapVueNext from 'bootstrap-vue-next'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
 import vClickOutside from 'click-outside-vue3'
-// import VueApexCharts from 'vue3-apexcharts'
-import { vMaska } from 'maska'
-// import VueFeather from 'vue-feather'
+import VueApexCharts from 'vue3-apexcharts'
+// import { vMaska } from 'maska' 
+import VueFeather from 'vue-feather'
 
 // import '@/assets/scss/config/default/app.scss'
 import 'leaflet/dist/leaflet.css'
-// import '@/assets/scss/mermaid.min.css'
+import '@/assets/scss/mermaid.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 
 AOS.init({
@@ -26,12 +28,12 @@ AOS.init({
 })
 
 const app = createApp(App)
-app.use(store)
+app.use(pinia)
 app.use(router)
-// app.use(VueApexCharts)
+app.use(VueApexCharts)
 app.use(BootstrapVueNext)
-// app.component(VueFeather.type, VueFeather)
-app.directive('maska', vMaska)
+app.component(VueFeather.type, VueFeather)
+// app.directive('maska', vMaska)
 app.use(i18n)
 app.use(VueSweetalert2)
 app.use(vClickOutside)
