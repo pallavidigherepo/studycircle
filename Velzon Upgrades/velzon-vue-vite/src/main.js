@@ -21,6 +21,7 @@ import VueFeather from 'vue-feather'
 import 'leaflet/dist/leaflet.css'
 import '@/assets/scss/mermaid.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
+import '@vueform/toggle/themes/default.css';
 
 AOS.init({
   easing: 'ease-out-back',

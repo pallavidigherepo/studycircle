@@ -2,25 +2,26 @@
 import { ref } from 'vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, helpers } from '@vuelidate/validators';
-// import Lottie from '@/components/widgets/lottie.vue';
+import Lottie from '@/components/widgets/lottie.vue';
 import { authMethods } from '@/state/helpers';
-// import animationData from '@/components/widgets/rhvddzym.json';
+import animationData from '@/components/widgets/rhvddzym.json';
 
 const email = ref('');
 const submitted = ref(false);
 const error = ref(null);
 const tryingToReset = ref(false);
 const isResetError = ref(false);
-const defaultOptions = { animationData };
-
-const v$ = useVuelidate();
 
 const validations = {
   email: {
     required: helpers.withMessage('Email is required', required),
-    // email: helpers.withMessage('Please enter a valid email', email),
   },
 };
+
+// 👇 Move this below `validations` and pass state explicitly
+const v$ = useVuelidate(validations, { email });
+
+const { resetPassword } = authMethods;
 
 const tryToReset = async () => {
   submitted.value = true;
@@ -38,14 +39,13 @@ const tryToReset = async () => {
       isResetError.value = false;
     } catch (err) {
       tryingToReset.value = false;
-      error.value = err || '';
+      error.value = err?.message || 'Something went wrong';
       isResetError.value = true;
     }
   }
 };
-
-const { resetPassword } = authMethods;
 </script>
+
 
 <template>
   <div class="auth-page-wrapper pt-5">

@@ -1,40 +1,30 @@
-<script>
-import { layoutComputed } from "@/state/helpers";
+<script setup>
+import { useLayoutStore } from '@/state/modules/layout.js';
 
-import Vertical from "./vertical.vue";
-import Horizontal from "./horizontal.vue";
-import TwoColumns from "./twocolumn.vue";
-
-export default {
-    components: {
-        Vertical,
-        Horizontal,
-        TwoColumns
-    },
-    data() {
-        return {};
-    },
-    computed: {
-        ...layoutComputed,
-    },
-    mounted() {
-        // document.querySelector("html").setAttribute('dir', 'rtl');
-    }
-};
+const layoutStore = useLayoutStore();
 </script>
 
 <template>
-    <div>
-        <Vertical v-if="layoutType === 'vertical' || layoutType === 'semibox'" :layout="layoutType">
-            <slot />
-        </Vertical>
+  <div>
+    <Vertical
+      v-if="layoutStore.layoutType === 'vertical' || layoutStore.layoutType === 'semibox'"
+      :layout="layoutStore.layoutType"
+    >
+      <slot />
+    </Vertical>
 
-        <Horizontal v-if="layoutType === 'horizontal'" :layout="layoutType">
-            <slot />
-        </Horizontal>
+    <Horizontal
+      v-if="layoutStore.layoutType === 'horizontal'"
+      :layout="layoutStore.layoutType"
+    >
+      <slot />
+    </Horizontal>
 
-        <TwoColumns v-if="layoutType === 'twocolumn'" :layout="layoutType">
-            <slot />
-        </TwoColumns>
-    </div>
+    <TwoColumns
+      v-if="layoutStore.layoutType === 'twocolumn'"
+      :layout="layoutStore.layoutType"
+    >
+      <slot />
+    </TwoColumns>
+  </div>
 </template>
