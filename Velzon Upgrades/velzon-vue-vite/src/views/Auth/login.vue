@@ -1,4 +1,5 @@
 <template>
+  <Layout>
   <div class="auth-page-wrapper pt-5">
     <div class="auth-one-bg-position auth-one-bg" id="auth-particles">
       <div class="bg-overlay"></div>
@@ -137,6 +138,7 @@
       </BContainer>
     </footer>
   </div>
+</Layout>
 </template>
   
   <script setup>
@@ -145,6 +147,7 @@
   import axios from 'axios'
   import useVuelidate from '@vuelidate/core'
   import { required, helpers } from '@vuelidate/validators'
+  import Layout from "@/layouts/main.vue";
   
   // Refs
   const email = ref('admin@themesbrand.com')

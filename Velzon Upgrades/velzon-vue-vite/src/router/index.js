@@ -1,13 +1,37 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Login from '../views/Auth/login.vue'
-import Register from '../views/Auth/register.vue'
-import ForgotPassword from '../views/Auth/forgot-password.vue'
-import Animation from '../views/Advance-UI/animation.vue'
-import Highlight from '../views/Advance-UI/highlight.vue'
-import Scrollbar from '../views/Advance-UI/scrollbar.vue'
-import Scrollspy from '../views/Advance-UI/scrollspy.vue'
-import Sweetalerts from '../views/Advance-UI/sweetalerts.vue'
-import SwiperSlider from '../views/Advance-UI/swiper.vue'
+import Login from '@/views/Auth/login.vue'
+import Register from '@/views/Auth/register.vue'
+import ForgotPassword from '@/views/Auth/forgot-password.vue'
+import Animation from '@/views/Advance-UI/animation.vue'
+import Highlight from '@/views/Advance-UI/highlight.vue'
+import Scrollbar from '@/views/Advance-UI/scrollbar.vue'
+import Scrollspy from '@/views/Advance-UI/scrollspy.vue'
+import Sweetalerts from '@/views/Advance-UI/sweetalerts.vue'
+import SwiperSlider from '@/views/Advance-UI/swiper.vue'
+import Accordions from '@/views/UI/accordions.vue'
+import Ribbons from '@/views/UI/ribbons.vue'
+import Progress from '@/views/UI/progress.vue'
+import Placeholders from '@/views/UI/placeholders.vue'
+import Offcanvas from '@/views/UI/offcanvas.vue'
+import Notifications from '@/views/UI/notifications.vue'
+import Modals from '@/views/UI/modals.vue'
+import Media from '@/views/UI/media.vue'
+import Lists from '@/views/UI/lists.vue'
+import Links from '@/views/UI/links.vue'
+import Images from '@/views/UI/images.vue'
+import Grid from '@/views/UI/grid.vue'
+import General from '@/views/UI/general.vue'
+import Embedvideo from '@/views/UI/embed-video.vue'
+import Dropdowns from '@/views/UI/dropdowns.vue'
+import Colors from '@/views/UI/colors.vue'
+import Carousel from '@/views/UI/carousel.vue'
+import Cards from '@/views/UI/cards.vue'
+import Buttons from '@/views/UI/buttons.vue'
+import Badges from '@/views/UI/badges.vue'
+import Alerts from '@/views/UI/alerts.vue'
+import Typography from '@/views/UI/typography.vue'
+import Tabs from '@/views/UI/tabs.vue'
+import Utilities from '@/views/UI/utilities.vue'
 
 
 const routes = [
@@ -55,6 +79,126 @@ const routes = [
     path: '/swiper',
     name: 'Swiper Slider',
     component: SwiperSlider
+  },
+  {
+    path: '/ui/accordions',
+    name: 'accordions',
+    component: Accordions
+  },
+  {
+    path: '/ui/alerts',
+    name: 'alerts',
+    component: Alerts
+  },
+  {
+    path: '/ui/badges',
+    name: 'badges',
+    component: Badges
+  },
+  {
+    path: '/ui/buttons',
+    name: 'buttons',
+    component: Buttons
+  },
+  {
+    path: '/ui/cards',
+    name: 'cards',
+    component: Cards
+  },
+  {
+    path: '/ui/carousel',
+    name: 'carousel',
+    component: Carousel
+  },
+  {
+    path: '/ui/colors',
+    name: 'colors',
+    component: Colors
+  },
+  {
+    path: '/ui/dropdowns',
+    name: 'dropdowns',
+    component: Dropdowns
+  },
+  {
+    path: '/ui/embed-video',
+    name: 'embed-video',
+    component: Embedvideo
+  },
+  {
+    path: '/ui/general',
+    name: 'general',
+    component: General
+  },
+  {
+    path: '/ui/grid',
+    name: 'grid',
+    component: Grid
+  },
+  {
+    path: '/ui/images',
+    name: 'images',
+    component: Images
+  },
+  {
+    path: '/ui/links',
+    name: 'links',
+    component: Links
+  },
+  {
+    path: '/ui/lists',
+    name: 'lists',
+    component: Lists
+  },
+  {
+    path: '/ui/media',
+    name: 'media',
+    component: Media
+  },
+  {
+    path: '/ui/modals',
+    name: 'modals',
+    component: Modals
+  },
+  {
+    path: '/ui/notifications',
+    name: 'notifications',
+    component: Notifications
+  },
+  {
+    path: '/ui/offcanvas',
+    name: 'offcanvas',
+    component: Offcanvas
+  },
+  {
+    path: '/ui/placeholders',
+    name: 'placeholders',
+    component: Placeholders
+  },
+  {
+    path: '/ui/progress',
+    name: 'progress',
+    component: Progress
+  },
+  {
+    path: '/ui/ribbons',
+    name: 'ribbons',
+    component: Ribbons
+  },
+  {
+    path: '/ui/tabs',
+    name: 'tabs',
+    component: Tabs
+  },
+  {
+    path: '/ui/typography',
+    name: 'typography',
+    component: Typography
+  },
+  {
+    path: '/ui/utilities',
+    name: 'utilities',
+    component: Utilities
   },
   
 ];
