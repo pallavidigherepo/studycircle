@@ -32,7 +32,24 @@ import Alerts from '@/views/UI/alerts.vue'
 import Typography from '@/views/UI/typography.vue'
 import Tabs from '@/views/UI/tabs.vue'
 import Utilities from '@/views/UI/utilities.vue'
-
+import FormAdvance from '@/views/Forms/advanced.vue'
+import FormElements from '@/views/Forms/elements.vue'
+import FormLayouts from '@/views/Forms/layouts.vue'
+import FormEditors from '@/views/Forms/editors.vue'
+import FileUploads from '@/views/Forms/file-uploads.vue'
+import FormValidation from '@/views/Forms/validation.vue'
+import FormWizard from '@/views/Forms/wizard.vue'
+import FormMask from '@/views/Forms/masks.vue'
+import FormPicker from '@/views/Forms/pickers.vue'
+import FormRangeSlider from '@/views/Forms/range-sliders.vue'
+import FormSelect from '@/views/Forms/select.vue'
+import CheckboxsRadios from '@/views/Forms/checkboxs-radios.vue'
+import Boxicons from '@/views/Forms/boxicons.vue'
+import MaterialDesign from '@/views/Forms/materialdesign.vue'
+import Feather from '@/views/Forms/feather.vue'
+import LineAwesome from '@/views/Forms/lineawesome.vue'
+import Remix from '@/views/Forms/remix.vue'
+import Crypto from '@/views/Forms/crypto.vue'
 
 const routes = [
   {
@@ -199,6 +216,96 @@ const routes = [
     path: '/ui/utilities',
     name: 'utilities',
     component: Utilities
+  },
+  {
+    path: "/form/advanced",
+    name: "formadvanced",
+    component: FormAdvance 
+  },
+  {
+    path: "/form/elements",
+    name: "formelements",
+    component: FormElements
+  },
+  {
+    path: "/form/layouts",
+    name: "formlayouts",
+    component: FormLayouts
+  },
+  {
+    path: "/form/editors",
+    name: "formeditors",
+    component: FormEditors
+  },
+  {
+    path: "/form/file-uploads",
+    name: "FileUploads",
+    component: FileUploads
+  },
+  {
+    path: "/form/validation",
+    name: "FormValidation",
+    component: FormValidation
+  },
+  {
+    path: "/form/wizard",
+    name: "FormWizard",
+    component: FormWizard
+  },
+  {
+    path: "/form/masks",
+    name: "formmask",
+    component: FormMask
+  },
+  {
+    path: "/form/pickers",
+    name: "formpickers",
+    component: FormPicker
+  },
+  {
+    path: "/form/range-sliders",
+    name: "formrangeslider",
+    component: FormRangeSlider
+  },
+  {
+    path: "/form/select",
+    name: "formselect",
+    component: FormSelect
+  },
+  {
+    path: "/form/checkboxs-radios",
+    name: "formcheckboxsradio",
+    component: CheckboxsRadios
+  },
+  {
+    path: "/icons/boxicons",
+    name: "boxiconsicon",
+    component: Boxicons
+  },
+  {
+    path: "/icons/materialdesign",
+    name: "MaterialDesign",
+    component: MaterialDesign
+  },
+  {
+    path: "/icons/feather",
+    name: "feather",
+    component: Feather
+  },
+  {
+    path: "/icons/lineawesome",
+    name: "lineawesome",
+    component: LineAwesome
+  },
+  {
+    path: "/icons/remix",
+    name: "remix",
+    component: Remix
+  },
+  {
+    path: "/icons/crypto",
+    name: "crypto",
+    component: Crypto
   },
   
 ];
