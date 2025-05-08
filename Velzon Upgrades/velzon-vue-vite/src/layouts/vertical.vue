@@ -1,110 +1,105 @@
-<script>
-import router from "@/router";
-import simplebar from "simplebar-vue";
-import { layoutComputed } from "@/state/helpers";
+<script setup>
+import { ref, onMounted, onBeforeUnmount, computed, watch } from 'vue';
+import { useRouter } from 'vue-router';
+import simplebar from 'simplebar-vue';
+import { layoutComputed } from '@/state/helpers';
 
-import NavBar from "@/components/nav-bar.vue";
-import Menu from "@/components/menu.vue";
-import RightBar from "@/components/right-bar.vue";
-import Footer from "@/components/footer.vue";
-localStorage.setItem('hoverd', false);
+import NavBar from '@/components/nav-bar.vue';
+import Menu from '@/components/menu.vue';
+import RightBar from '@/components/right-bar.vue';
+import Footer from '@/components/footer.vue';
 
-/**
- * Vertical layout
- */
-export default {
-  components: { NavBar, RightBar, Footer, Menu, simplebar },
-  data() {
-    return {
-      isMenuCondensed: false,
-    };
-  },
-  computed: {
-    ...layoutComputed,
-    },
-  created: () => {
-    document.body.removeAttribute("data-layout", "horizontal");
-    document.body.removeAttribute("data-topbar", "dark");
-    document.body.removeAttribute("data-layout-size", "boxed");
-    // this.updateSidebarSize();
-  },
-  methods: {
-    updateSidebarSize() {
-      let sidebarSize = ''
-      // Check window.screen.width and update the data-sidebar-size attribute
-      if (window.innerWidth < 1025) {
-        this.sidebarSize = "sm";
-        sidebarSize = 'sm'
-      } else {
-        this.sidebarSize = "lg"; // Reset sidebarSize if screen width is >= 1025
-        sidebarSize = 'lg'
-      }
-      // Update the data-sidebar-size attribute of document.documentElement
-      document.documentElement.setAttribute("data-sidebar-size", sidebarSize);
-    },
+// Reactive state
+const isMenuCondensed = ref(false);
+const hoverd = ref(localStorage.getItem('hoverd') === 'true');
+const sidebarSize = ref('');
 
-    initActiveMenu() {
-      if (document.documentElement.getAttribute('data-sidebar-size') === 'sm-hover') {
-        localStorage.setItem('hoverd', true);
-        document.documentElement.setAttribute('data-sidebar-size', 'sm-hover-active');
-      } else if (document.documentElement.getAttribute('data-sidebar-size') === 'sm-hover-active') {
-        localStorage.setItem('hoverd', false);
-        document.documentElement.setAttribute('data-sidebar-size', 'sm-hover');
-      } else {
-        document.documentElement.setAttribute('data-sidebar-size', 'sm-hover');
-      }
-    },
-    toggleMenu() {
+// Access router
+const router = useRouter();
 
-      document.body.classList.toggle("sidebar-enable");
-      if (window.screen.width >= 992) {
-        // eslint-disable-next-line no-unused-vars
-        router.afterEach((routeTo, routeFrom) => {
-          document.body.classList.remove("sidebar-enable");
-          document.body.classList.remove("vertical-collpsed");
-        });
-        document.body.classList.toggle("vertical-collpsed");
-      } else {
-        // eslint-disable-next-line no-unused-vars
-        router.afterEach((routeTo, routeFrom) => {
-          document.body.classList.remove("sidebar-enable");
-        });
-        document.body.classList.remove("vertical-collpsed");
-      }
-      this.isMenuCondensed = !this.isMenuCondensed;
-    },
-    toggleRightSidebar() {
-      document.body.classList.toggle("right-bar-enabled");
-    },
-    hideRightSidebar() {
-      document.body.classList.remove("right-bar-enabled");
-    },
+// Computed property for layout
+const layout = computed(() => layoutComputed);
 
-  },
-  mounted() {
-    if (localStorage.getItem('hoverd') == 'true') {
-      document.documentElement.setAttribute('data-sidebar-size', 'sm-hover-active');
-    }
-
-    document.getElementById('overlay').addEventListener('click', () => {
-      document.body.classList.remove('vertical-sidebar-enable');
-    });
-    if (window.screen.width < 1025) {
-      document.documentElement.setAttribute("data-sidebar-size", "sm");
-    }
-
-    window.addEventListener("resize", () => {
-      document.body.classList.remove('vertical-sidebar-enable');
-      document.querySelector(".hamburger-icon").classList.add("open")
-      this.updateSidebarSize()
-    });
-    
-  },
-  unmounted() {
-    window.removeEventListener("resize", this.updateSidebarSize )
+// Method to update the sidebar size
+const updateSidebarSize = () => {
+  if (window.innerWidth < 1025) {
+    sidebarSize.value = 'sm';
+    document.documentElement.setAttribute('data-sidebar-size', 'sm');
+  } else {
+    sidebarSize.value = 'lg';
+    document.documentElement.setAttribute('data-sidebar-size', 'lg');
   }
 };
+
+// Initialize the active menu and toggle hover state
+const initActiveMenu = () => {
+  if (document.documentElement.getAttribute('data-sidebar-size') === 'sm-hover') {
+    hoverd.value = true;
+    localStorage.setItem('hoverd', 'true');
+    document.documentElement.setAttribute('data-sidebar-size', 'sm-hover-active');
+  } else if (document.documentElement.getAttribute('data-sidebar-size') === 'sm-hover-active') {
+    hoverd.value = false;
+    localStorage.setItem('hoverd', 'false');
+    document.documentElement.setAttribute('data-sidebar-size', 'sm-hover');
+  } else {
+    document.documentElement.setAttribute('data-sidebar-size', 'sm-hover');
+  }
+};
+
+// Toggle the menu
+const toggleMenu = () => {
+  document.body.classList.toggle('sidebar-enable');
+  if (window.screen.width >= 992) {
+    router.afterEach(() => {
+      document.body.classList.remove('sidebar-enable');
+      document.body.classList.remove('vertical-collpsed');
+    });
+    document.body.classList.toggle('vertical-collpsed');
+  } else {
+    router.afterEach(() => {
+      document.body.classList.remove('sidebar-enable');
+    });
+    document.body.classList.remove('vertical-collpsed');
+  }
+  isMenuCondensed.value = !isMenuCondensed.value;
+};
+
+// Toggle right sidebar
+const toggleRightSidebar = () => {
+  document.body.classList.toggle('right-bar-enabled');
+};
+
+// Hide right sidebar
+const hideRightSidebar = () => {
+  document.body.classList.remove('right-bar-enabled');
+};
+
+// On mounted, initialize settings
+onMounted(() => {
+  if (hoverd.value) {
+    document.documentElement.setAttribute('data-sidebar-size', 'sm-hover-active');
+  }
+  document.getElementById('overlay').addEventListener('click', () => {
+    document.body.classList.remove('vertical-sidebar-enable');
+  });
+
+  if (window.screen.width < 1025) {
+    document.documentElement.setAttribute('data-sidebar-size', 'sm');
+  }
+
+  window.addEventListener('resize', () => {
+    document.body.classList.remove('vertical-sidebar-enable');
+    document.querySelector('.hamburger-icon').classList.add('open');
+    updateSidebarSize();
+  });
+});
+
+// Cleanup on unmounted
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateSidebarSize);
+});
 </script>
+
   
 <template>
   <div id="layout-wrapper">

@@ -1,627 +1,322 @@
-<script>
-localStorage.setItem("rightbar_isopen", false);
+<script setup>
+import { ref, onMounted, watch, defineProps, defineEmits } from 'vue';
 import { layoutMethods, layoutComputed } from "@/state/helpers";
 import simpleBar from "simplebar-vue";
-/**
- * Right sidebar component
- */
 
-export default {
-  data() {
-    return {
-      show: false,
-      showGradients: false,
-      resetLayoutMode: {},
-    };
+// Props (if any, define here)
+const props = defineProps({
+  title: {
+    type: String,
+    default: "",
   },
-  beforeCreate() {
-    // console.log(
-    //   "this.resetLayoutMode",
-    //   (this.resetLayoutMode = this.$store.state.layout)
-    // );
-    localStorage.setItem(
-      "resetValue",
-      JSON.stringify(this.$store.state.layout)
-    );
-
-    localStorage.setItem(
-      "resetValue",
-      JSON.stringify(this.$store.state.layout)
-    );
+  pageTitle: {
+    type: String,
+    default: "",
   },
+});
 
-  methods: {
-    ...layoutMethods,
-    click() {
-      this.show = !this.show;
-    },
-    topFunction() {
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
-    },
+// Emits (for emitting events to parent components)
+const emit = defineEmits([]);
 
-    resizeWindow() {
-      var windowSize = document.documentElement.clientWidth;
-      if (windowSize >= 1025) {
-        if (
-          document.documentElement.getAttribute("data-layout") === "vertical"
-        ) {
-          document.documentElement.setAttribute(
-            "data-sidebar-size",
-            this.$store.state.layout.sidebarSize
-          );
-        }
-        if (
-          document.documentElement.getAttribute("data-layout") === "semibox"
-        ) {
-          document.documentElement.setAttribute(
-            "data-sidebar-size",
-            this.$store.state.layout.sidebarSize
-          );
-        }
-        if (
-          document.documentElement.getAttribute("data-sidebar-visibility") ===
-          "show" &&
-          document.querySelector(".hamburger-icon")
-        ) {
-          document.querySelector(".hamburger-icon").classList.remove("open");
-        }
-      } else if (windowSize < 1025 && windowSize > 767) {
-        document.body.classList.remove("twocolumn-panel");
-        if (
-          document.documentElement.getAttribute("data-layout") === "vertical"
-        ) {
-          document.documentElement.setAttribute("data-sidebar-size", "sm");
-        }
-        if (
-          document.documentElement.getAttribute("data-layout") === "semibox"
-        ) {
-          document.documentElement.setAttribute("data-sidebar-size", "sm");
-        }
-        if (document.querySelector(".hamburger-icon")) {
-          document.querySelector(".hamburger-icon").classList.add("open");
-        }
-      } else if (windowSize <= 767) {
-        document.body.classList.remove("vertical-sidebar-enable");
-        document.body.classList.add("twocolumn-panel");
-        if (
-          document.documentElement.getAttribute("data-layout") !== "horizontal"
-        ) {
-          document.documentElement.setAttribute("data-sidebar-size", "lg");
-        }
-        if (document.querySelector(".hamburger-icon")) {
-          document.querySelector(".hamburger-icon").classList.add("open");
-        }
-      }
-    },
+// Local state using `ref`
+const show = ref(false);
+const showGradients = ref(false);
+const resetLayoutMode = ref({});
 
-    resetLayout() {
-      let reset = JSON.parse(localStorage.getItem("resetValue"));
-      document.documentElement.setAttribute("data-sidebar-size", "lg");
-      this.changeMode({ mode: reset.mode });
-      this.changeSidebarColor({ sidebarColor: reset.sidebarColor });
-      this.changeLayoutType({ layoutType: reset.layoutType });
-      this.changeTopbar({ topbar: reset.topbar });
-      this.changeLayoutWidth({ layoutWidth: reset.layoutWidth });
-      this.changeSidebarSize({ sidebarSize: reset.sidebarSize });
-      this.changeSidebarImage({ sidebarImage: reset.sidebarImage });
-      this.changeSidebarColor({ sidebarColor: reset.sidebarColor });
-      this.changePreloader({ preloader: reset.preloader });
-      this.changeSidebarView({ sidebarView: reset.sidebarView });
-      this.changeVisibility({ visibility: reset.visibility });
-      this.changePosition({ position: reset.position });
+// Watchers
+const mode = ref("");
+const preloader = ref("");
+const layoutType = ref("");
+const sidebarSize = ref("");
+const layoutWidth = ref("");
+const position = ref("");
+const topbar = ref("");
+const sidebarView = ref("");
+const sidebarColor = ref("");
+const sidebarImage = ref("");
+const visibility = ref("");
 
-    },
+// Methods (can use existing helpers or define new ones)
+const click = () => {
+  show.value = !show.value;
+};
 
-    gradiantColor() {
-      this.changeSidebarColor({ sidebarColor: "gradient" });
-    },
+const topFunction = () => {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+};
 
-    onSideBarColorClick(color) {
-      if (color !== "gradient") {
-        this.showGradients = false;
-      } else {
-        this.showGradients = true;
-        this.gradiantColor();
-      }
-    },
-  },
-  mounted() {
-    let backtoTop = document.getElementById("back-to-top");
-
-    if (backtoTop) {
-      backtoTop = document.getElementById("back-to-top");
-      window.onscroll = function () {
-        if (
-          document.body.scrollTop > 100 ||
-          document.documentElement.scrollTop > 100
-        ) {
-          backtoTop.style.display = "block";
-        } else {
-          backtoTop.style.display = "none";
-        }
-      };
+const resizeWindow = () => {
+  const windowSize = document.documentElement.clientWidth;
+  if (windowSize >= 1025) {
+    if (document.documentElement.getAttribute("data-layout") === "vertical" || document.documentElement.getAttribute("data-layout") === "semibox") {
+      document.documentElement.setAttribute("data-sidebar-size", sidebarSize.value);
     }
-    var setpreloader = document.getElementById("preloader");
-    if (
-      localStorage.getItem("data-preloader") &&
-      localStorage.getItem("data-preloader") == "enable"
-    ) {
-      document.documentElement.setAttribute("data-preloader", "enable");
-      if (setpreloader) {
-        setTimeout(function () {
-          setpreloader.style.opacity = "0";
-          setpreloader.style.visibility = "hidden";
-        }, 1000);
+    if (document.documentElement.getAttribute("data-sidebar-visibility") === "show" && document.querySelector(".hamburger-icon")) {
+      document.querySelector(".hamburger-icon").classList.remove("open");
+    }
+  } else if (windowSize < 1025 && windowSize > 767) {
+    document.body.classList.remove("twocolumn-panel");
+    document.documentElement.setAttribute("data-sidebar-size", "sm");
+    if (document.querySelector(".hamburger-icon")) {
+      document.querySelector(".hamburger-icon").classList.add("open");
+    }
+  } else if (windowSize <= 767) {
+    document.body.classList.remove("vertical-sidebar-enable");
+    document.body.classList.add("twocolumn-panel");
+    if (document.documentElement.getAttribute("data-layout") !== "horizontal") {
+      document.documentElement.setAttribute("data-sidebar-size", "lg");
+    }
+    if (document.querySelector(".hamburger-icon")) {
+      document.querySelector(".hamburger-icon").classList.add("open");
+    }
+  }
+};
+
+const resetLayout = () => {
+  const reset = JSON.parse(localStorage.getItem("resetValue"));
+  document.documentElement.setAttribute("data-sidebar-size", "lg");
+  layoutMethods.changeMode({ mode: reset.mode });
+  layoutMethods.changeSidebarColor({ sidebarColor: reset.sidebarColor });
+  layoutMethods.changeLayoutType({ layoutType: reset.layoutType });
+  layoutMethods.changeTopbar({ topbar: reset.topbar });
+  layoutMethods.changeLayoutWidth({ layoutWidth: reset.layoutWidth });
+  layoutMethods.changeSidebarSize({ sidebarSize: reset.sidebarSize });
+  layoutMethods.changeSidebarImage({ sidebarImage: reset.sidebarImage });
+  layoutMethods.changeSidebarColor({ sidebarColor: reset.sidebarColor });
+  layoutMethods.changePreloader({ preloader: reset.preloader });
+  layoutMethods.changeSidebarView({ sidebarView: reset.sidebarView });
+  layoutMethods.changeVisibility({ visibility: reset.visibility });
+  layoutMethods.changePosition({ position: reset.position });
+};
+
+const gradiantColor = () => {
+  layoutMethods.changeSidebarColor({ sidebarColor: "gradient" });
+};
+
+const onSideBarColorClick = (color) => {
+  if (color !== "gradient") {
+    showGradients.value = false;
+  } else {
+    showGradients.value = true;
+    gradiantColor();
+  }
+};
+
+// Mounted hook
+onMounted(() => {
+  let backtoTop = document.getElementById("back-to-top");
+
+  if (backtoTop) {
+    window.onscroll = function () {
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        backtoTop.style.display = "block";
+      } else {
+        backtoTop.style.display = "none";
       }
-    } else {
-      document.documentElement.setAttribute("data-preloader", "disable");
-      if (setpreloader) {
+    };
+  }
+
+  let setpreloader = document.getElementById("preloader");
+  if (localStorage.getItem("data-preloader") && localStorage.getItem("data-preloader") == "enable") {
+    document.documentElement.setAttribute("data-preloader", "enable");
+    if (setpreloader) {
+      setTimeout(function () {
         setpreloader.style.opacity = "0";
         setpreloader.style.visibility = "hidden";
-      }
+      }, 1000);
     }
-    if (document.getElementById("collapseBgGradient")) {
-      Array.from(
-        document.querySelectorAll("#collapseBgGradient .form-check input")
-      ).forEach(function () {
-        if (document.querySelector("[data-bs-target='#collapseBgGradient']")) {
-          document
-            .querySelector("[data-bs-target='#collapseBgGradient']")
-            .addEventListener("click", function () {
-              document.getElementById("sidebar-color-gradient").click();
-            });
-        }
-      });
-      Array.from(document.querySelectorAll("[name='data-sidebar']")).forEach(
-        function (elem) {
-          if (
-            document.querySelector("[data-bs-target='#collapseBgGradient']")
-          ) {
-            if (
-              document.querySelector(
-                "#collapseBgGradient .form-check input:checked"
-              )
-            ) {
-              document
-                .querySelector("[data-bs-target='#collapseBgGradient']")
-                .classList.add("active");
-            } else {
-              document
-                .querySelector("[data-bs-target='#collapseBgGradient']")
-                .classList.remove("active");
-              document
-                .getElementById("collapseBgGradient")
-                .classList.remove("show");
-            }
-
-            elem.addEventListener("change", function () {
-              if (
-                document.querySelector(
-                  "#collapseBgGradient .form-check input:checked"
-                )
-              ) {
-                document
-                  .querySelector("[data-bs-target='#collapseBgGradient']")
-                  .classList.add("active");
-              } else {
-                document
-                  .getElementById("collapseBgGradient")
-                  .classList.remove("show");
-                document
-                  .querySelector("[data-bs-target='#collapseBgGradient']")
-                  .classList.remove("active");
-              }
-            });
-          }
-        }
-      );
+  } else {
+    document.documentElement.setAttribute("data-preloader", "disable");
+    if (setpreloader) {
+      setpreloader.style.opacity = "0";
+      setpreloader.style.visibility = "hidden";
     }
-  },
-  computed: {
-    ...layoutComputed,
-    layoutType: {
-      get() {
-        return this.$store ? this.$store.state.layout.layoutType : {} || {};
-      },
-      set(layout) {
-        localStorage.setItem("rightbar_isopen", true);
-        this.changeLayoutType({ layoutType: layout });
-        document.querySelector(".hamburger-icon").classList.remove("open");
-      },
-    },
-    preloader: {
-      get() {
-        return this.$store ? this.$store.state.layout.preloader : {} || {};
-      },
-      set(preloader) {
-        return this.changePreloader({
-          preloader: preloader,
-        });
-      },
-    },
-    mode: {
-      get() {
-        return this.$store ? this.$store.state.layout.mode : {} || {};
-      },
-      set(mode) {
-        if (mode == "dark") {
-          this.changeMode({ mode: mode });
-          this.changeTopbar({ topbar: "light" });
-        } else {
-          this.changeMode({ mode: mode });
-          this.changeTopbar({ topbar: "light" });
-        }
-      },
-    },
-    sidebarSize: {
-      get() {
-        return this.$store ? this.$store.state.layout.sidebarSize : {} || {};
-      },
-      set(type) {
-        return this.changeSidebarSize({
-          sidebarSize: type,
-        });
-      },
-    },
-    layoutWidth: {
-      get() {
-        return this.$store ? this.$store.state.layout.layoutWidth : {} || {};
-      },
-      set(width) {
-        if (width == "boxed") {
-          this.changeLayoutWidth({ layoutWidth: width });
-          this.changeSidebarSize({ sidebarSize: "sm-hover" });
-        } else {
-          this.changeLayoutWidth({ layoutWidth: width });
-          this.changeSidebarSize({ sidebarSize: "lg" });
-        }
-      },
-    },
-    position: {
-      get() {
-        return this.$store ? this.$store.state.layout.position : {} || {};
-      },
-      set(position) {
-        return this.changePosition({
-          position: position,
-        });
-      },
-    },
-    topbar: {
-      get() {
-        return this.$store ? this.$store.state.layout.topbar : {} || {};
-      },
-      set(topbar) {
-        this.changeTopbar({
-          topbar: topbar,
-        });
-      },
-    },
-    sidebarView: {
-      get() {
-        return this.$store ? this.$store.state.layout.sidebarView : {} || {};
-      },
-      set(sidebarView) {
-        return this.changeSidebarView({
-          sidebarView: sidebarView,
-        });
-      },
-    },
-    sidebarColor: {
-      get() {
-        return this.$store ? this.$store.state.layout.sidebarColor : {} || {};
-      },
-      set(sidebarColor) {
-        console.log(
-          "this.$store.state.layout.sidebarColor",
-          this.$store.state.layout.sidebarColor
-        );
-        return this.changeSidebarColor({
-          sidebarColor: sidebarColor,
-        });
-      },
-    },
-    sidebarImage: {
-      get() {
-        return this.$store ? this.$store.state.layout.sidebarImage : {} || {};
-      },
-      set(sidebarImage) {
-        return this.changeSidebarImage({
-          sidebarImage: sidebarImage,
-        });
-      },
-    },
+  }
+});
 
-    visibility: {
-      get() {
-        return this.$store ? this.$store.state.layout.visibility : {} || {};
-      },
-      set(visibility) {
-        if (visibility == "hidden") {
-          document.querySelector(".hamburger-icon").classList.add("open");
-        } else {
-          document.querySelector(".hamburger-icon").classList.remove("open");
-        }
-        this.changeVisibility({
-          visibility: visibility,
-        });
-      },
-    },
-  },
+// Watchers for reactive state
+watch(mode, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    switch (newVal) {
+      case "dark":
+        document.documentElement.setAttribute("data-bs-theme", "dark");
+        break;
+      case "light":
+        document.documentElement.setAttribute("data-bs-theme", "light");
+        break;
+    }
+  }
+});
 
-  watch: {
-    mode: {
-      immediate: true,
-      deep: true,
-      handler(newVal, oldVal) {
-        if (newVal !== oldVal) {
-          switch (newVal) {
-            case "dark":
-              document.documentElement.setAttribute("data-bs-theme", "dark");
-              break;
-            case "light":
-              document.documentElement.setAttribute("data-bs-theme", "light");
-              break;
-          }
-        }
-      },
-    },
-    preloader: {
-      immediate: true,
-      deep: true,
-      handler(newVal, oldVal) {
-        if (newVal !== oldVal) {
-          switch (newVal) {
-            case "enable":
-              document.documentElement.setAttribute("data-preloader", "enable");
-              break;
-            case "disable":
-              document.documentElement.setAttribute(
-                "data-preloader",
-                "disable"
-              );
-              break;
-          }
-          localStorage.setItem("data-preloader", newVal);
-        }
-      },
-    },
-    layoutType: {
-      immediate: true,
-      deep: true,
-      handler(newVal, oldVal) {
-        if (newVal !== oldVal) {
-          switch (newVal) {
-            case "horizontal":
-              document.documentElement.setAttribute(
-                "data-layout",
-                "horizontal"
-              );
-              break;
-            case "vertical":
-              document.documentElement.setAttribute("data-layout", "vertical");
-              break;
-            case "twocolumn":
-              document.documentElement.setAttribute("data-layout", "twocolumn");
-              break;
-            case "semibox":
-              document.documentElement.setAttribute("data-layout", "semibox");
-              break;
-          }
-        }
-      },
-    },
-    layoutWidth: {
-      immediate: true,
-      deep: true,
-      handler(newVal, oldVal) {
-        if (newVal !== oldVal) {
-          switch (newVal) {
-            case "fluid":
-              document.documentElement.setAttribute(
-                "data-layout-width",
-                "fluid"
-              );
-              break;
-            case "boxed":
-              document.documentElement.setAttribute(
-                "data-layout-width",
-                "boxed"
-              );
-              break;
-          }
-        }
-      },
-    },
-    position: {
-      immediate: true,
-      deep: true,
-      handler(newVal, oldVal) {
-        if (newVal !== oldVal) {
-          switch (newVal) {
-            case "fixed":
-              document.documentElement.setAttribute(
-                "data-layout-position",
-                "fixed"
-              );
-              break;
-            case "scrollable":
-              document.documentElement.setAttribute(
-                "data-layout-position",
-                "scrollable"
-              );
-              break;
-          }
-        }
-      },
-    },
-    topbar: {
-      immediate: true,
-      deep: true,
-      handler(newVal, oldVal) {
-        if (newVal !== oldVal) {
-          switch (newVal) {
-            case "light":
-              document.documentElement.setAttribute("data-topbar", "light");
-              break;
-            case "dark":
-              document.documentElement.setAttribute("data-topbar", "dark");
-              break;
-          }
-        }
-      },
-    },
-    sidebarSize: {
-      immediate: true,
-      deep: true,
-      handler(newVal, oldVal) {
-        if (newVal !== oldVal) {
-          switch (newVal) {
-            case "lg":
-              document.documentElement.setAttribute("data-sidebar-size", "lg");
-              break;
-            case "sm":
-              document.documentElement.setAttribute("data-sidebar-size", "sm");
-              break;
-            case "md":
-              document.documentElement.setAttribute("data-sidebar-size", "md");
-              break;
-            case "sm-hover":
-              document.documentElement.setAttribute(
-                "data-sidebar-size",
-                "sm-hover"
-              );
-              break;
-          }
-        }
-      },
-    },
-    sidebarView: {
-      immediate: true,
-      deep: true,
-      handler(newVal, oldVal) {
-        if (newVal !== oldVal) {
-          switch (newVal) {
-            case "detached":
-              document.documentElement.setAttribute(
-                "data-layout-style",
-                "detached"
-              );
-              break;
-            case "default":
-              document.documentElement.setAttribute(
-                "data-layout-style",
-                "default"
-              );
-              break;
-          }
-        }
-      },
-    },
-    sidebarColor: {
-      immediate: true,
-      deep: true,
-      handler(newVal, oldVal) {
-        if (newVal !== oldVal) {
-          switch (newVal) {
-            case "dark":
-              document.documentElement.setAttribute("data-sidebar", "dark");
-              break;
-            case "light":
-              document.documentElement.setAttribute("data-sidebar", "light");
-              break;
-            case "gradient":
-              document.documentElement.setAttribute("data-sidebar", "gradient");
-              break;
-            case "gradient-2":
-              document.documentElement.setAttribute(
-                "data-sidebar",
-                "gradient-2"
-              );
-              break;
-            case "gradient-3":
-              document.documentElement.setAttribute(
-                "data-sidebar",
-                "gradient-3"
-              );
-              break;
-            case "gradient-4":
-              document.documentElement.setAttribute(
-                "data-sidebar",
-                "gradient-4"
-              );
-              break;
-          }
-        }
-      },
-    },
-    sidebarImage: {
-      immediate: true,
-      deep: true,
-      handler(newVal, oldVal) {
-        if (newVal !== oldVal) {
-          switch (newVal) {
-            case "img-1":
-              document.documentElement.setAttribute(
-                "data-sidebar-image",
-                "img-1"
-              );
-              break;
-            case "img-2":
-              document.documentElement.setAttribute(
-                "data-sidebar-image",
-                "img-2"
-              );
-              break;
-            case "img-3":
-              document.documentElement.setAttribute(
-                "data-sidebar-image",
-                "img-3"
-              );
-              break;
-            case "img-4":
-              document.documentElement.setAttribute(
-                "data-sidebar-image",
-                "img-4"
-              );
-              break;
-            case "none":
-              document.documentElement.setAttribute(
-                "data-sidebar-image",
-                "none"
-              );
-              break;
-          }
-        }
-      },
-    },
-    visibility: {
-      immediate: true,
-      deep: true,
-      handler(newVal, oldVal) {
-        if (newVal !== oldVal) {
-          switch (newVal) {
-            case "show":
-              document.documentElement.setAttribute(
-                "data-sidebar-visibility",
-                "show"
-              );
-              break;
-            case "hidden":
-              document.documentElement.setAttribute(
-                "data-sidebar-visibility",
-                "hidden"
-              );
-              break;
-          }
-        }
-      },
-    },
-  },
-  components: { simpleBar },
-};
+watch(preloader, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    switch (newVal) {
+      case "enable":
+        document.documentElement.setAttribute("data-preloader", "enable");
+        break;
+      case "disable":
+        document.documentElement.setAttribute("data-preloader", "disable");
+        break;
+    }
+    localStorage.setItem("data-preloader", newVal);
+  }
+});
+
+watch(layoutType, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    switch (newVal) {
+      case "horizontal":
+        document.documentElement.setAttribute("data-layout", "horizontal");
+        break;
+      case "vertical":
+        document.documentElement.setAttribute("data-layout", "vertical");
+        break;
+      case "twocolumn":
+        document.documentElement.setAttribute("data-layout", "twocolumn");
+        break;
+      case "semibox":
+        document.documentElement.setAttribute("data-layout", "semibox");
+        break;
+    }
+  }
+});
+
+watch(layoutWidth, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    switch (newVal) {
+      case "fluid":
+        document.documentElement.setAttribute("data-layout-width", "fluid");
+        break;
+      case "boxed":
+        document.documentElement.setAttribute("data-layout-width", "boxed");
+        break;
+    }
+  }
+});
+
+watch(position, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    switch (newVal) {
+      case "fixed":
+        document.documentElement.setAttribute("data-layout-position", "fixed");
+        break;
+      case "scrollable":
+        document.documentElement.setAttribute("data-layout-position", "scrollable");
+        break;
+    }
+  }
+});
+
+watch(topbar, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    switch (newVal) {
+      case "light":
+        document.documentElement.setAttribute("data-topbar", "light");
+        break;
+      case "dark":
+        document.documentElement.setAttribute("data-topbar", "dark");
+        break;
+    }
+  }
+});
+
+watch(sidebarSize, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    switch (newVal) {
+      case "lg":
+        document.documentElement.setAttribute("data-sidebar-size", "lg");
+        break;
+      case "sm":
+        document.documentElement.setAttribute("data-sidebar-size", "sm");
+        break;
+      case "md":
+        document.documentElement.setAttribute("data-sidebar-size", "md");
+        break;
+      case "sm-hover":
+        document.documentElement.setAttribute("data-sidebar-size", "sm-hover");
+        break;
+    }
+  }
+});
+
+watch(sidebarView, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    switch (newVal) {
+      case "detached":
+        document.documentElement.setAttribute("data-layout-style", "detached");
+        break;
+      case "default":
+        document.documentElement.setAttribute("data-layout-style", "default");
+        break;
+    }
+  }
+});
+
+watch(sidebarColor, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    switch (newVal) {
+      case "dark":
+        document.documentElement.setAttribute("data-sidebar", "dark");
+        break;
+      case "light":
+        document.documentElement.setAttribute("data-sidebar", "light");
+        break;
+      case "gradient":
+        document.documentElement.setAttribute("data-sidebar", "gradient");
+        break;
+      case "gradient-2":
+        document.documentElement.setAttribute("data-sidebar", "gradient-2");
+        break;
+      case "gradient-3":
+        document.documentElement.setAttribute("data-sidebar", "gradient-3");
+        break;
+      case "gradient-4":
+        document.documentElement.setAttribute("data-sidebar", "gradient-4");
+        break;
+    }
+  }
+});
+
+watch(sidebarImage, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    switch (newVal) {
+      case "img-1":
+        document.documentElement.setAttribute("data-sidebar-image", "img-1");
+        break;
+      case "img-2":
+        document.documentElement.setAttribute("data-sidebar-image", "img-2");
+        break;
+      case "img-3":
+        document.documentElement.setAttribute("data-sidebar-image", "img-3");
+        break;
+      case "img-4":
+        document.documentElement.setAttribute("data-sidebar-image", "img-4");
+        break;
+      case "none":
+        document.documentElement.setAttribute("data-sidebar-image", "none");
+        break;
+    }
+  }
+});
+
+watch(visibility, (newVal, oldVal) => {
+  if (newVal !== oldVal) {
+    switch (newVal) {
+      case "show":
+        document.documentElement.setAttribute("data-sidebar-visibility", "show");
+        break;
+      case "hidden":
+        document.documentElement.setAttribute("data-sidebar-visibility", "hidden");
+        break;
+    }
+  }
+});
+
+// Components
+const components = { simpleBar };
 </script>
+
 
 <template>
   <div>

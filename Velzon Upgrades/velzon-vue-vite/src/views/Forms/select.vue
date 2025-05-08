@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 import Layout from '@/layouts/main.vue'
-import PageHeader from '@/components/page-header'
-import CardHeader from '@/common/card-header'
+import PageHeader from '@/components/page-header.vue';
+import CardHeader from '@/common/card-header.vue'
 
 // Selected values
 const exManualSelected = ref(null)

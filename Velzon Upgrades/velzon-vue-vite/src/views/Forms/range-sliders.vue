@@ -2,7 +2,7 @@
 import { ref, reactive } from 'vue'
 import Slider from '@vueform/slider'
 import Layout from '@/layouts/main.vue'
-import PageHeader from '@/components/page-header'
+import PageHeader from '@/components/page-header.vue';
 
 // Simple value
 const simpleValue = ref(10)

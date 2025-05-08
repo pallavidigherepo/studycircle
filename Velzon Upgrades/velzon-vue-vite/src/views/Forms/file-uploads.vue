@@ -2,9 +2,9 @@
 import { ref, watch } from "vue"
 import useVuelidate from "@vuelidate/core"
 
-import DropZone from "@/components/widgets/dropZone"
+import DropZone from "@/components/widgets/dropZone.vue"
 import Layout from "@/layouts/main.vue"
-import PageHeader from "@/components/page-header"
+import PageHeader from '@/components/page-header.vue';
 
 // File drop & upload handling
 const files = ref([])

@@ -1,295 +1,226 @@
-<script>
+<script setup>
+import { ref, computed, onMounted, watch } from 'vue';
+import { useLayoutStore } from '@/state/modules/layout'; // Correct import of your store
+const store = useLayoutStore()
+// import { useStore } from 'pinia';
 import { layoutMethods } from "@/state/helpers";
-import img1 from "../assets/images/products/img-1.png"
-import img2 from "../assets/images/products/img-2.png"
-import img3 from "../assets/images/products/img-3.png"
-import img4 from "../assets/images/products/img-6.png"
-import img5 from "../assets/images/products/img-5.png"
-
+import img1 from "../assets/images/products/img-1.png";
+import img2 from "../assets/images/products/img-2.png";
+import img3 from "../assets/images/products/img-3.png";
+import img4 from "../assets/images/products/img-6.png";
+import img5 from "../assets/images/products/img-5.png";
 import simplebar from "simplebar-vue";
-
 import i18n from "../i18n";
 
-/**
- * Nav-bar Component
- */
-export default {
-  data() {
-    return {
-      cartItems: [
-        {
-          id: 1,
-          productImage: img1,
-          productName: "Branded T-Shirts",
-          productLink: "/ecommerce/product-details",
-          quantity: "10 x $32",
-          itemPrice: "320",
-        },
-        {
-          id: 2,
-          productImage: img2,
-          productName: "Bentwood Chair",
-          productLink: "/ecommerce/product-details",
-          quantity: "5 x $18",
-          itemPrice: "89",
-        },
-        {
-          id: 3,
-          productImage: img3,
-          productName: "Borosil Paper Cup",
-          productLink: "/ecommerce/product-details",
-          quantity: "3 x $250",
-          itemPrice: "750",
-        },
-        {
-          id: 4,
-          productImage: img4,
-          productName: "Gray Styled T-Shirt",
-          productLink: "/ecommerce/product-details",
-          quantity: "1 x $1250",
-          itemPrice: "1250",
-        },
-        {
-          id: 5,
-          productImage: img5,
-          productName: "Stillbird Helmet",
-          productLink: "/ecommerce/product-details",
-          quantity: "2 x $495",
-          itemPrice: "990",
-        },
-      ],
+import usFlag from "@/assets/images/flags/us.svg";
+import spainFlag from "@/assets/images/flags/spain.svg";
+import germanyFlag from "@/assets/images/flags/germany.svg";
+import italyFlag from "@/assets/images/flags/italy.svg";
+import russiaFlag from "@/assets/images/flags/russia.svg";
+import chinaFlag from "@/assets/images/flags/china.svg";
+import frenchFlag from "@/assets/images/flags/french.svg";
+import aeFlag from "@/assets/images/flags/ae.svg";
 
-      languages: [{
-        flag: require("@/assets/images/flags/us.svg"),
-        language: "en",
-        title: "English",
-      },
-      {
-        flag: require("@/assets/images/flags/spain.svg"),
-        language: "sp",
-        title: "Española",
-      },
-      {
-        flag: require("@/assets/images/flags/germany.svg"),
-        language: "gr",
-        title: "Deutsche",
-      },
-      {
-        flag: require("@/assets/images/flags/italy.svg"),
-        language: "it",
-        title: "italiana",
-      },
-      {
-        flag: require("@/assets/images/flags/russia.svg"),
-        language: "ru",
-        title: "русский",
-      },
-      {
-        flag: require("@/assets/images/flags/china.svg"),
-        language: "ch",
-        title: "中國人",
-      },
-      {
-        flag: require("@/assets/images/flags/french.svg"),
-        language: "fr",
-        title: "Français",
-      },
-      {
-        flag: require("@/assets/images/flags/ae.svg"),
-        language: "ar",
-        title: "Arabic",
-      },
-      ],
-      lan: i18n.locale,
-      text: null,
-      flag: null,
-      value: null,
-      myVar: 1,
-    };
-  },
-  components: {
-    simplebar
-  },
+// Pinia store
+// const store = useStore();
 
-  methods: {
-    ...layoutMethods,
-    isCustomDropdown() {
-      //Search bar
-      var searchOptions = document.getElementById("search-close-options");
-      var dropdown = document.getElementById("search-dropdown");
-      var searchInput = document.getElementById("search-options");
+// Cart items and languages setup
+const cartItems = ref([
+  { id: 1, productImage: img1, productName: "Branded T-Shirts", productLink: "/ecommerce/product-details", quantity: "10 x $32", itemPrice: "320" },
+  { id: 2, productImage: img2, productName: "Bentwood Chair", productLink: "/ecommerce/product-details", quantity: "5 x $18", itemPrice: "89" },
+  { id: 3, productImage: img3, productName: "Borosil Paper Cup", productLink: "/ecommerce/product-details", quantity: "3 x $250", itemPrice: "750" },
+  { id: 4, productImage: img4, productName: "Gray Styled T-Shirt", productLink: "/ecommerce/product-details", quantity: "1 x $1250", itemPrice: "1250" },
+  { id: 5, productImage: img5, productName: "Stillbird Helmet", productLink: "/ecommerce/product-details", quantity: "2 x $495", itemPrice: "990" },
+]);
 
-      searchInput.addEventListener("focus", () => {
-        var inputLength = searchInput.value.length;
-        if (inputLength > 0) {
-          dropdown.classList.add("show");
-          searchOptions.classList.remove("d-none");
-        } else {
-          dropdown.classList.remove("show");
-          searchOptions.classList.add("d-none");
-        }
-      });
+const languages = ref([
+  { flag: usFlag, language: "en", title: "English" },
+  { flag: spainFlag, language: "sp", title: "Española" },
+  { flag: germanyFlag, language: "gr", title: "Deutsche" },
+  { flag: italyFlag, language: "it", title: "italiana" },
+  { flag: russiaFlag, language: "ru", title: "русский" },
+  { flag: chinaFlag, language: "ch", title: "中國人" },
+  { flag: frenchFlag, language: "fr", title: "Français" },
+  { flag: aeFlag, language: "ar", title: "Arabic" },
+]);
 
-      searchInput.addEventListener("keyup", () => {
-        var inputLength = searchInput.value.length;
-        if (inputLength > 0) {
-          dropdown.classList.add("show");
-          searchOptions.classList.remove("d-none");
-        } else {
-          dropdown.classList.remove("show");
-          searchOptions.classList.add("d-none");
-        }
-      });
+const lan = ref(i18n.locale);
+const flag = ref(null);
+const text = ref(null);
 
-      searchOptions.addEventListener("click", () => {
-        searchInput.value = "";
-        dropdown.classList.remove("show");
-        searchOptions.classList.add("d-none");
-      });
+const myVar = ref(1);
 
-      document.body.addEventListener("click", (e) => {
-        if (e.target.getAttribute("id") !== "search-options") {
-          dropdown.classList.remove("show");
-          searchOptions.classList.add("d-none");
-        }
-      });
-    },
-    toggleHamburgerMenu() {
-      var windowSize = document.documentElement.clientWidth;
-      let layoutType = document.documentElement.getAttribute("data-layout");
+// Helper function to calculate total price
+const calculateTotalPrice = computed(() => {
+  return cartItems.value.reduce((total, item) => total + parseFloat(item.itemPrice), 0).toFixed(2);
+});
 
-      document.documentElement.setAttribute("data-sidebar-visibility", "show");
-      let visiblilityType = document.documentElement.getAttribute("data-sidebar-visibility");
+// Methods moved from `methods` to `setup`
+const isCustomDropdown = () => {
+  const searchOptions = document.getElementById("search-close-options");
+  const dropdown = document.getElementById("search-dropdown");
+  const searchInput = document.getElementById("search-options");
 
-      if (windowSize > 767)
-        document.querySelector(".hamburger-icon").classList.toggle("open");
-
-      //For collapse horizontal menu
-      if (
-        document.documentElement.getAttribute("data-layout") === "horizontal"
-      ) {
-        document.body.classList.contains("menu") ?
-          document.body.classList.remove("menu") :
-          document.body.classList.add("menu");
-      }
-
-      //For collapse vertical menu
-
-      if (visiblilityType === "show" && (layoutType === "vertical" || layoutType === "semibox")) {
-        if (windowSize < 1025 && windowSize > 767) {
-          document.body.classList.remove("vertical-sidebar-enable");
-          document.documentElement.getAttribute("data-sidebar-size") == "sm" ?
-            document.documentElement.setAttribute("data-sidebar-size", "") :
-            document.documentElement.setAttribute("data-sidebar-size", "sm");
-        } else if (windowSize > 1025) {
-          document.body.classList.remove("vertical-sidebar-enable");
-          document.documentElement.getAttribute("data-sidebar-size") == "lg" ?
-            document.documentElement.setAttribute("data-sidebar-size", "sm") :
-            document.documentElement.setAttribute("data-sidebar-size", "lg");
-        } else if (windowSize <= 767) {
-          document.body.classList.add("vertical-sidebar-enable");
-          document.documentElement.setAttribute("data-sidebar-size", "lg");
-        }
-      }
-
-      //Two column menu
-      if (document.documentElement.getAttribute("data-layout") == "twocolumn") {
-        document.body.classList.contains("twocolumn-panel") ?
-          document.body.classList.remove("twocolumn-panel") :
-          document.body.classList.add("twocolumn-panel");
-      }
-    },
-    toggleMenu() {
-      this.$parent.toggleMenu();
-    },
-    toggleRightSidebar() {
-      this.$parent.toggleRightSidebar();
-    },
-    initFullScreen() {
-      document.body.classList.toggle("fullscreen-enable");
-      if (
-        !document.fullscreenElement &&
-        /* alternative standard method */
-        !document.mozFullScreenElement &&
-        !document.webkitFullscreenElement
-      ) {
-        // current working methods
-        if (document.documentElement.requestFullscreen) {
-          document.documentElement.requestFullscreen();
-        } else if (document.documentElement.mozRequestFullScreen) {
-          document.documentElement.mozRequestFullScreen();
-        } else if (document.documentElement.webkitRequestFullscreen) {
-          document.documentElement.webkitRequestFullscreen(
-            Element.ALLOW_KEYBOARD_INPUT
-          );
-        }
-      } else {
-        if (document.cancelFullScreen) {
-          document.cancelFullScreen();
-        } else if (document.mozCancelFullScreen) {
-          document.mozCancelFullScreen();
-        } else if (document.webkitCancelFullScreen) {
-          document.webkitCancelFullScreen();
-        }
-      }
-    },
-    setLanguage(locale, country, flag) {
-      this.lan = locale;
-      this.text = country;
-      this.flag = flag;
-      document.getElementById("header-lang-img").setAttribute("src", flag);
-      i18n.global.locale = locale;
-    },
-    toggleDarkMode() {
-
-      if (document.documentElement.getAttribute("data-bs-theme") == "dark") {
-        document.documentElement.setAttribute("data-bs-theme", "light");
-      } else {
-        document.documentElement.setAttribute("data-bs-theme", "dark");
-      }
-
-      const mode = document.documentElement.getAttribute("data-bs-theme")
-      this.changeMode({
-        mode: mode,
-      });
-    },
-    removeItem(cartItem) {
-      this.cartItems = this.cartItems.filter(item => item.id !== cartItem.id)
-      this.$emit("cart-item-price", this.cartItems.length);
-    },
-  },
-
-  computed: {
-    calculateTotalPrice() {
-      return this.cartItems.reduce((total, item) => total + parseFloat(item.itemPrice), 0).toFixed(2);
-    },
-  },
-  mounted() {
-    if (process.env.VUE_APP_I18N_LOCALE) {
-      this.flag = process.env.VUE_APP_I18N_LOCALE;
-      this.languages.forEach((item) => {
-        if (item.language == this.flag) {
-          document.getElementById("header-lang-img").setAttribute("src", item.flag);
-        }
-      });
+  searchInput.addEventListener("focus", () => {
+    const inputLength = searchInput.value.length;
+    if (inputLength > 0) {
+      dropdown.classList.add("show");
+      searchOptions.classList.remove("d-none");
+    } else {
+      dropdown.classList.remove("show");
+      searchOptions.classList.add("d-none");
     }
+  });
 
-    document.addEventListener("scroll", function () {
-      var pageTopbar = document.getElementById("page-topbar");
-      if (pageTopbar) {
-        document.body.scrollTop >= 50 || document.documentElement.scrollTop >= 50 ? pageTopbar.classList.add(
-          "topbar-shadow") : pageTopbar.classList.remove("topbar-shadow");
+  searchInput.addEventListener("keyup", () => {
+    const inputLength = searchInput.value.length;
+    if (inputLength > 0) {
+      dropdown.classList.add("show");
+      searchOptions.classList.remove("d-none");
+    } else {
+      dropdown.classList.remove("show");
+      searchOptions.classList.add("d-none");
+    }
+  });
+
+  searchOptions.addEventListener("click", () => {
+    searchInput.value = "";
+    dropdown.classList.remove("show");
+    searchOptions.classList.add("d-none");
+  });
+
+  document.body.addEventListener("click", (e) => {
+    if (e.target.getAttribute("id") !== "search-options") {
+      dropdown.classList.remove("show");
+      searchOptions.classList.add("d-none");
+    }
+  });
+};
+
+const toggleHamburgerMenu = () => {
+  const windowSize = document.documentElement.clientWidth;
+  const layoutType = document.documentElement.getAttribute("data-layout");
+  document.documentElement.setAttribute("data-sidebar-visibility", "show");
+
+  if (windowSize > 767) document.querySelector(".hamburger-icon").classList.toggle("open");
+
+  if (layoutType === "horizontal") {
+    document.body.classList.toggle("menu");
+  }
+
+  const visibilityType = document.documentElement.getAttribute("data-sidebar-visibility");
+  if (visibilityType === "show" && (layoutType === "vertical" || layoutType === "semibox")) {
+    if (windowSize < 1025 && windowSize > 767) {
+      document.body.classList.remove("vertical-sidebar-enable");
+      document.documentElement.setAttribute("data-sidebar-size", "sm");
+    } else if (windowSize > 1025) {
+      document.body.classList.remove("vertical-sidebar-enable");
+      document.documentElement.setAttribute("data-sidebar-size", "lg");
+    } else if (windowSize <= 767) {
+      document.body.classList.add("vertical-sidebar-enable");
+      document.documentElement.setAttribute("data-sidebar-size", "lg");
+    }
+  }
+
+  if (document.documentElement.getAttribute("data-layout") == "twocolumn") {
+    document.body.classList.toggle("twocolumn-panel");
+  }
+};
+
+const setLanguage = (locale, country, flagImage) => {
+  lan.value = locale;
+  text.value = country;
+  flag.value = flagImage;
+  document.getElementById("header-lang-img").setAttribute("src", flagImage);
+  i18n.global.locale = locale;
+};
+
+const toggleDarkMode = () => {
+  const currentTheme = document.documentElement.getAttribute("data-bs-theme");
+  const newTheme = currentTheme === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-bs-theme", newTheme);
+  store.changeMode({ mode: newTheme });
+};
+
+const removeItem = (cartItem) => {
+  cartItems.value = cartItems.value.filter(item => item.id !== cartItem.id);
+  // Emit cart item count
+  emit('cart-item-price', cartItems.value.length);
+};
+
+onMounted(() => {
+  if (import.meta.VUE_APP_I18N_LOCALE) {
+    flag.value = process.env.VUE_APP_I18N_LOCALE;
+    languages.value.forEach((item) => {
+      if (item.language == flag.value) {
+        document.getElementById("header-lang-img").setAttribute("src", item.flag);
       }
     });
-    if (document.getElementById("topnav-hamburger-icon"))
-      document
-        .getElementById("topnav-hamburger-icon")
-        .addEventListener("click", this.toggleHamburgerMenu);
+  }
 
-    this.isCustomDropdown();
-  },
+  document.addEventListener("scroll", function () {
+    const pageTopbar = document.getElementById("page-topbar");
+    if (pageTopbar) {
+      document.body.scrollTop >= 50 || document.documentElement.scrollTop >= 50 ?
+        pageTopbar.classList.add("topbar-shadow") :
+        pageTopbar.classList.remove("topbar-shadow");
+    }
+  });
+
+  const hamburgerIcon = document.getElementById("topnav-hamburger-icon");
+  if (hamburgerIcon) {
+    hamburgerIcon.addEventListener("click", toggleHamburgerMenu);
+  }
+
+  const isCustomDropdown = () => {
+  const searchOptions = document.getElementById("search-close-options");
+  const dropdown = document.getElementById("search-dropdown");
+  const searchInput = document.getElementById("search-options");
+
+  // Check if elements exist before adding event listeners
+  if (!searchOptions || !dropdown || !searchInput) {
+    return; // If any element is not found, exit early
+  }
+
+  searchInput.addEventListener("focus", () => {
+    const inputLength = searchInput.value.length;
+    if (inputLength > 0) {
+      dropdown.classList.add("show");
+      searchOptions.classList.remove("d-none");
+    } else {
+      dropdown.classList.remove("show");
+      searchOptions.classList.add("d-none");
+    }
+  });
+
+  searchInput.addEventListener("keyup", () => {
+    const inputLength = searchInput.value.length;
+    if (inputLength > 0) {
+      dropdown.classList.add("show");
+      searchOptions.classList.remove("d-none");
+    } else {
+      dropdown.classList.remove("show");
+      searchOptions.classList.add("d-none");
+    }
+  });
+
+  searchOptions.addEventListener("click", () => {
+    searchInput.value = "";
+    dropdown.classList.remove("show");
+    searchOptions.classList.add("d-none");
+  });
+
+  document.body.addEventListener("click", (e) => {
+    if (e.target.getAttribute("id") !== "search-options") {
+      dropdown.classList.remove("show");
+      searchOptions.classList.add("d-none");
+    }
+  });
 };
+
+});
 </script>
+
 
 <template>
   <header id="page-topbar">

@@ -1,6 +1,8 @@
 <script setup>
 import { useLayoutStore } from '@/state/modules/layout.js';
-
+import Vertical from '@/layouts/vertical.vue';  // Correct import path
+import Horizontal from '@/layouts/horizontal.vue';
+import TwoColumns from '@/layouts/twocolumn.vue';
 const layoutStore = useLayoutStore();
 </script>
 

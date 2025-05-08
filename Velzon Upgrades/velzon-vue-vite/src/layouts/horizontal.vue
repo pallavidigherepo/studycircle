@@ -1,133 +1,113 @@
-<script>
+<script setup>
+import { onMounted, watch, ref } from 'vue';
 import NavBar from "@/components/nav-bar.vue";
 import RightBar from "@/components/right-bar.vue";
 import Footer from "@/components/footer.vue";
 
-export default {
-  watch: {
-    $route: {
-      handler: "onRoutechange",
-      immediate: true,
-      deep: true,
-    },
-  },
-  methods: {
-    onRoutechange(ele) {
-      this.initActiveMenu(ele.path);
-    },
-    initActiveMenu(ele) {
-      setTimeout(() => {
-        if (document.querySelector("#navbar-nav")) {
-          let a = document
-            .querySelector("#navbar-nav")
-            .querySelector('[href="' + ele + '"]');
+// Refs to hold component state or data
+const activeMenu = ref('');
 
-          if (a) {
-            a.classList.add("active");
-            let parentCollapseDiv = a.closest(".collapse.menu-dropdown");
-            if (parentCollapseDiv) {
-              parentCollapseDiv.classList.add("show");
-              parentCollapseDiv.parentElement.children[0].classList.add(
-                "active"
-              );
-              parentCollapseDiv.parentElement.children[0].setAttribute(
-                "aria-expanded",
-                "true"
-              );
-              if (
-                parentCollapseDiv.parentElement.closest(
-                  ".collapse.menu-dropdown"
-                )
-              ) {
-                parentCollapseDiv.parentElement
-                  .closest(".collapse")
-                  .classList.add("show");
-                if (
-                  parentCollapseDiv.parentElement.closest(".collapse")
-                    .previousElementSibling
-                )
-                  parentCollapseDiv.parentElement
-                    .closest(".collapse")
-                    .previousElementSibling.classList.add("active");
-              }
+// onRoutechange and initActiveMenu functions are now inside setup
+const initActiveMenu = (ele) => {
+  setTimeout(() => {
+    if (document.querySelector("#navbar-nav")) {
+      let a = document
+        .querySelector("#navbar-nav")
+        .querySelector('[href="' + ele + '"]');
+
+      if (a) {
+        a.classList.add("active");
+        let parentCollapseDiv = a.closest(".collapse.menu-dropdown");
+        if (parentCollapseDiv) {
+          parentCollapseDiv.classList.add("show");
+          parentCollapseDiv.parentElement.children[0].classList.add("active");
+          parentCollapseDiv.parentElement.children[0].setAttribute("aria-expanded", "true");
+          if (parentCollapseDiv.parentElement.closest(".collapse.menu-dropdown")) {
+            parentCollapseDiv.parentElement.closest(".collapse").classList.add("show");
+            if (parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling) {
+              parentCollapseDiv.parentElement.closest(".collapse").previousElementSibling.classList.add("active");
             }
           }
         }
-      }, 1000);
-    },
-  },
-  mounted() {
-    if (document.querySelectorAll(".navbar-nav .collapse")) {
-      let collapses = document.querySelectorAll(".navbar-nav .collapse");
-      collapses.forEach((collapse) => {
-        // Hide sibling collapses on `show.bs.collapse`
-        collapse.addEventListener("show.bs.collapse", (e) => {
-          e.stopPropagation();
-          let closestCollapse = collapse.parentElement.closest(".collapse");
-          if (closestCollapse) {
-            let siblingCollapses =
-              closestCollapse.querySelectorAll(".collapse");
-            siblingCollapses.forEach((siblingCollapse) => {
-              if (siblingCollapse.classList.contains("show")) {
-                siblingCollapse.classList.remove("show");
-                siblingCollapse.parentElement.firstChild.setAttribute("aria-expanded", "false");
-              }
-            });
-          } else {
-            let getSiblings = (elem) => {
-              // Setup siblings array and get the first sibling
-              let siblings = [];
-              let sibling = elem.parentNode.firstChild;
-              // Loop through each sibling and push to the array
-              while (sibling) {
-                if (sibling.nodeType === 1 && sibling !== elem) {
-                  siblings.push(sibling);
-                }
-                sibling = sibling.nextSibling;
-              }
-              return siblings;
-            };
-            let siblings = getSiblings(collapse.parentElement);
-            siblings.forEach((item) => {
-              if (item.childNodes.length > 2) {
-                item.firstElementChild.setAttribute("aria-expanded", "false");
-                item.firstElementChild.classList.remove("active");
-              }
-              let ids = item.querySelectorAll("*[id]");
-              ids.forEach((item1) => {
-                item1.classList.remove("show");
-                item1.parentElement.firstChild.setAttribute("aria-expanded", "false");
-                item1.parentElement.firstChild.classList.remove("active");
-                if (item1.childNodes.length > 2) {
-                  let val = item1.querySelectorAll("ul li a");
-                  val.forEach((subitem) => {
-                    if (subitem.hasAttribute("aria-expanded"))
-                      subitem.setAttribute("aria-expanded", "false");
-                  });
-                }
-              });
-            });
-          }
-        });
-        // Hide nested collapses on `hide.bs.collapse`
-        collapse.addEventListener("hide.bs.collapse", (e) => {
-          e.stopPropagation();
-          let childCollapses = collapse.querySelectorAll(".collapse");
-          childCollapses.forEach((childCollapse) => {
-            let childCollapseInstance = childCollapse;
-            childCollapseInstance.classList.remove("show");
-            childCollapseInstance.parentElement.firstChild.setAttribute("aria-expanded", "false");
+      }
+    }
+  }, 1000);
+};
+
+// Watch for route changes and handle active menu updates
+watch(
+  () => $route.path, 
+  (newPath) => initActiveMenu(newPath),
+  { immediate: true }
+);
+
+// Mounted hook to handle navbar collapse behavior
+onMounted(() => {
+  if (document.querySelectorAll(".navbar-nav .collapse")) {
+    let collapses = document.querySelectorAll(".navbar-nav .collapse");
+    collapses.forEach((collapse) => {
+      // Hide sibling collapses on `show.bs.collapse`
+      collapse.addEventListener("show.bs.collapse", (e) => {
+        e.stopPropagation();
+        let closestCollapse = collapse.parentElement.closest(".collapse");
+        if (closestCollapse) {
+          let siblingCollapses = closestCollapse.querySelectorAll(".collapse");
+          siblingCollapses.forEach((siblingCollapse) => {
+            if (siblingCollapse.classList.contains("show")) {
+              siblingCollapse.classList.remove("show");
+              siblingCollapse.parentElement.firstChild.setAttribute("aria-expanded", "false");
+            }
           });
+        } else {
+          let getSiblings = (elem) => {
+            // Setup siblings array and get the first sibling
+            let siblings = [];
+            let sibling = elem.parentNode.firstChild;
+            // Loop through each sibling and push to the array
+            while (sibling) {
+              if (sibling.nodeType === 1 && sibling !== elem) {
+                siblings.push(sibling);
+              }
+              sibling = sibling.nextSibling;
+            }
+            return siblings;
+          };
+          let siblings = getSiblings(collapse.parentElement);
+          siblings.forEach((item) => {
+            if (item.childNodes.length > 2) {
+              item.firstElementChild.setAttribute("aria-expanded", "false");
+              item.firstElementChild.classList.remove("active");
+            }
+            let ids = item.querySelectorAll("*[id]");
+            ids.forEach((item1) => {
+              item1.classList.remove("show");
+              item1.parentElement.firstChild.setAttribute("aria-expanded", "false");
+              item1.parentElement.firstChild.classList.remove("active");
+              if (item1.childNodes.length > 2) {
+                let val = item1.querySelectorAll("ul li a");
+                val.forEach((subitem) => {
+                  if (subitem.hasAttribute("aria-expanded"))
+                    subitem.setAttribute("aria-expanded", "false");
+                });
+              }
+            });
+          });
+        }
+      });
+      // Hide nested collapses on `hide.bs.collapse`
+      collapse.addEventListener("hide.bs.collapse", (e) => {
+        e.stopPropagation();
+        let childCollapses = collapse.querySelectorAll(".collapse");
+        childCollapses.forEach((childCollapse) => {
+          let childCollapseInstance = childCollapse;
+          childCollapseInstance.classList.remove("show");
+          childCollapseInstance.parentElement.firstChild.setAttribute("aria-expanded", "false");
         });
       });
-    }
-  },
-  components: {
-    NavBar,
-    RightBar,
-    Footer
-  },
-};
+    });
+  }
+});
+
 </script>
 
 <template>

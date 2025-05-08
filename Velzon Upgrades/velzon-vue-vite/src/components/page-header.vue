@@ -1,18 +1,19 @@
-<script>
-export default {
-  components: {},
-  props: {
-    title: {
-      type: String,
-      default: "",
-    },
-    pageTitle: {
-      type: String,
-      default: "",
-    }
+<script setup>
+import { defineProps } from 'vue';
+
+// Defining the props using `defineProps` in the Composition API
+const props = defineProps({
+  title: {
+    type: String,
+    default: ""
   },
-};
+  pageTitle: {
+    type: String,
+    default: ""
+  }
+});
 </script>
+
 
 
 

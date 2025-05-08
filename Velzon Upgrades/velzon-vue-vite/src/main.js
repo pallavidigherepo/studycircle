@@ -9,9 +9,12 @@ import pinia from './state/store'
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
 
-import * as BootstrapVueNext from 'bootstrap-vue-next'
+// import * as BootstrapVueNext from 'bootstrap-vue-next'
+// import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
+import BootstrapVue3 from 'bootstrap-vue-3'
 import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
+import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 import vClickOutside from 'click-outside-vue3'
 import VueApexCharts from 'vue3-apexcharts'
 // import { vMaska } from 'maska' 
@@ -32,7 +35,8 @@ const app = createApp(App)
 app.use(pinia)
 app.use(router)
 app.use(VueApexCharts)
-app.use(BootstrapVueNext)
+app.use(BootstrapVue3)
+// app.use(BootstrapVueNext)
 app.component(VueFeather.type, VueFeather)
 // app.directive('maska', vMaska)
 app.use(i18n)

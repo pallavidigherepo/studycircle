@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import Layout from "@/layouts/main.vue"
-import PageHeader from "@/components/page-header"
+import PageHeader from "@/components/page-header.vue"
 import animationData from "@/components/widgets/lupuorrc.json"
 import Lottie from "@/components/widgets/lottie.vue"
 

@@ -6,8 +6,8 @@ import Multiselect from "@vueform/multiselect"
 import "@vueform/multiselect/themes/default.css"
 
 import Layout from "@/layouts/main.vue"
-import PageHeader from "@/components/page-header"
-import CardHeader from "@/common/card-header"
+import PageHeader from '@/components/page-header.vue';
+import CardHeader from "@/common/card-header.vue"
 
 // Multiselect values
 const value = ref(null)

@@ -44,14 +44,44 @@ import FormPicker from '@/views/Forms/pickers.vue'
 import FormRangeSlider from '@/views/Forms/range-sliders.vue'
 import FormSelect from '@/views/Forms/select.vue'
 import CheckboxsRadios from '@/views/Forms/checkboxs-radios.vue'
-import Boxicons from '@/views/Forms/boxicons.vue'
-import MaterialDesign from '@/views/Forms/materialdesign.vue'
-import Feather from '@/views/Forms/feather.vue'
-import LineAwesome from '@/views/Forms/lineawesome.vue'
-import Remix from '@/views/Forms/remix.vue'
-import Crypto from '@/views/Forms/crypto.vue'
+import Boxicons from '@/views/Icons/boxicons.vue'
+import MaterialDesign from '@/views/Icons/materialdesign.vue'
+import Feather from '@/views/Icons/feather.vue'
+import LineAwesome from '@/views/Icons/lineawesome.vue'
+import Remix from '@/views/Icons/remix.vue'
+import Crypto from '@/views/Icons/crypto.vue'
+import Starter from '@/views/Pages/starter.vue'
+import TermConditions from '@/views/Pages/term-conditions.vue'
+import PrivacyPolicy from '@/views/Pages/privacy-policy.vue'
+import Sitemap from '@/views/Pages/sitemap.vue'
+import SearchResults from '@/views/Pages/search-results.vue'
+import Team from '@/views/Pages/team.vue'
+import Pricing from '@/views/Pages/pricing.vue'
+import FAQs from '@/views/Pages/faqs.vue'
+import Timeline from '@/views/Pages/timeline.vue'
+import CommingSoon from '@/views/Pages/coming-soon.vue'
+import Maintanance from '@/views/Pages/maintenance.vue'
+import Setting from '@/views/Pages/profile/setting.vue'
+import Profile from '@/views/Pages/profile/simple.vue'
+import GridView from '@/views/Pages/blogs/grid-view.vue'
+import ListView from '@/views/Pages/blogs/list-view.vue'
+import Overview from '@/views/Pages/blogs/overview.vue'
+import Dashboard from '@/views/Dashboard/analytics/index.vue'
 
 const routes = [
+  {
+    path: "/",
+    name: "default",
+    component: Dashboard
+  },
+   // {
+  //   path: "/dashboard/analytics",
+  //   name: "dashboard-analytics",
+  //   meta: {
+  //     title: "Analytics", authRequired: true,
+  //   },
+  //   component: () => import("../views/dashboard/analytics/index"),
+  // },
   {
     path: '/login',
     name: 'Login',
@@ -306,6 +336,86 @@ const routes = [
     path: "/icons/crypto",
     name: "crypto",
     component: Crypto
+  },
+  {
+    path: "/pages/starter",
+    name: "Starter",
+    component: Starter
+  },
+  {
+    path: "/pages/profile",
+    name: "Profile",
+    component: Profile
+  },
+  {
+    path: "/pages/profile-setting",
+    name: "profile-setting",
+    component: Setting
+  },
+  {
+    path: "/pages/maintenance",
+    name: "Maintanance",
+    component: Maintanance
+  },
+  {
+    path: "/pages/coming-soon",
+    name: "coming-soon",
+    component: CommingSoon
+  },
+  {
+    path: "/pages/timeline",
+    name: "timeline",
+    component: Timeline
+  },
+  {
+    path: "/pages/faqs",
+    name: "FAQs",
+    component: FAQs
+  },
+  {
+    path: "/pages/pricing",
+    name: "pricing",
+    component: Pricing
+  },
+  {
+    path: "/pages/team",
+    name: "team",
+    component: Team
+  },
+  {
+    path: "/pages/search-results",
+    name: "search-results",
+    component: SearchResults
+  },
+  {
+    path: "/pages/sitemap",
+    name: "sitemap",
+    component: Sitemap
+  },
+  {
+    path: "/pages/privacy-policy",
+    name: "privacy-policy",
+    component: PrivacyPolicy
+  },
+  {
+    path: "/pages/term-conditions",
+    name: "term-conditions",
+    component: TermConditions
+  },
+  {
+    path: "/blogs/list-view",
+    name: "List View",
+    component: ListView
+  },
+  {
+    path: "/blogs/grid-view",
+    name: "grid-view",
+    component: GridView
+  },
+  {
+    path: "/blogs/overview",
+    name: "overview",
+    component: Overview
   },
   
 ];

@@ -1,6 +1,6 @@
 <script setup>
 import Layout from "@/layouts/main.vue";
-import PageHeader from "@/components/page-header";
+import PageHeader from '@/components/page-header.vue';
 </script>
 
 <template>
