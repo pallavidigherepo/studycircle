@@ -2,7 +2,7 @@
 import { onMounted } from 'vue';
 import * as Prism from 'prismjs';
 
-// Props declaration
+// Props
 defineProps({
   title: {
     type: String,
@@ -14,12 +14,13 @@ defineProps({
 onMounted(() => {
   Prism.highlightAll();
 
-  const checkbox = document.getElementsByClassName("code-switcher");
-  Array.from(checkbox).forEach((check) => {
+  const checkboxes = document.getElementsByClassName("code-switcher");
+  Array.from(checkboxes).forEach((check) => {
     check.addEventListener("change", () => {
       const card = check.closest(".card");
       const preview = card.querySelector(".live-preview");
       const code = card.querySelector(".code-view");
+
       if (check.checked) {
         // do this
         preview.classList.add("d-none");

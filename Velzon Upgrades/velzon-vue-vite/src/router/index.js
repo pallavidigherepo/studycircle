@@ -67,21 +67,76 @@ import GridView from '@/views/Pages/blogs/grid-view.vue'
 import ListView from '@/views/Pages/blogs/list-view.vue'
 import Overview from '@/views/Pages/blogs/overview.vue'
 import Dashboard from '@/views/Dashboard/analytics/index.vue'
+import CryptoDashboard from '@/views/Dashboard/crypto/index.vue'
+import Projects from '@/views/Dashboard/projects/index.vue'
+import CRM from '@/views/Dashboard/crm/index.vue'
+import NFT from '@/views/Dashboard/nft/index.vue'
+import Job from '@/views/Dashboard/job/index.vue'
+import Blog from '@/views/Dashboard/blog/index.vue'
 
 const routes = [
   {
     path: "/",
     name: "default",
+    meta: {
+          title: "Dashboard", authRequired: true,
+        },
     component: Dashboard
   },
-   // {
-  //   path: "/dashboard/analytics",
-  //   name: "dashboard-analytics",
-  //   meta: {
-  //     title: "Analytics", authRequired: true,
-  //   },
-  //   component: () => import("../views/dashboard/analytics/index"),
-  // },
+  {
+    path: "/dashboard/crypto",
+    name: "dashboard-crypto",
+    meta: {
+      title: "CryptoDashboard",
+      authRequired: true,
+    },
+    component: CryptoDashboard,
+  },
+  {
+    path: "/dashboard/projects",
+    name: "dashboard-projects",
+    meta: {
+      title: "Projects",
+      authRequired: true,
+    },
+    component: Projects,
+  },
+  {
+    path: "/dashboard/crm",
+    name: "dashboard-crm",
+    meta: {
+      title: "CRM",
+      authRequired: true,
+    },
+    component: CRM,
+  },
+  {
+    path: "/dashboard/nft",
+    name: "dashboard-nft",
+    meta: {
+      title: "NFT Dashboard",
+      authRequired: true,
+    },
+    component: NFT,
+  },
+  {
+    path: "/dashboard/job",
+    name: "dashboard-job",
+    meta: {
+      title: "Job Dashboard",
+      authRequired: true,
+    },
+    component: Job,
+  },
+  {
+    path: "/dashboard/blog",
+    name: "dashboard-blog",
+    meta: {
+      title: "Blog Dashboard",
+      authRequired: true,
+    },
+    component: Blog,
+  },
   {
     path: '/login',
     name: 'Login',

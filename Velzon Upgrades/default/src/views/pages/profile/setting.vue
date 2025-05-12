@@ -1,55 +1,60 @@
-<script setup>
-import { ref } from 'vue';
-import axios from 'axios';
+<script>
 import Multiselect from "@vueform/multiselect";
 import "@vueform/multiselect/themes/default.css";
 import flatPickr from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
+import axios from 'axios';
 import Layout from "@/layouts/main.vue";
 
-// Reactive variables
-const value = ref(['javascript']);
-const date = ref(null);
+export default {
 
-// Methods
-const changepass = () => {
-  const data = {
-    password: document.getElementById('oldpasswordInput').value,
-    new_password: document.getElementById('newpasswordInput').value,
-    confirm_password: document.getElementById('confirmpasswordInput').value,
-  };
-  axios.patch('https://api-node.themesbrand.website/updatepassword', data)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-
-const updatedata = () => {
-  const userid = localStorage.getItem('userid');
-  const data = {
-    first_name: document.getElementById('firstnameInput').value,
-    last_name: document.getElementById('lastnameInput').value,
-    phone: document.getElementById('phonenumberInput').value,
-    email: document.getElementById('emailInput').value,
-    joining_date: document.getElementById('dateinput').value,
-    skills: document.getElementById('skillsinput').value,
-    designation: document.getElementById('designationInput').value,
-    website: document.getElementById('websiteInput1').value,
-    city: document.getElementById('cityInput').value,
-    country: document.getElementById('countryInput').value,
-    zipcode: document.getElementById('zipcodeInput').value,
-    Description: document.getElementById('exampleFormControlTextarea').value,
-  };
-  axios.patch(`https://api-node.themesbrand.website/user/${userid}`, data)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  data() {
+    return {
+      value: ['javascript'],
+      date: null,
+    };
+  },
+  components: {
+    Layout,
+    Multiselect,
+    flatPickr
+  },
+  methods: {
+    changepass() {
+      var data = {
+        password: document.getElementById('oldpasswordInput').value,
+        new_password: document.getElementById('newpasswordInput').value,
+        confirm_password: document.getElementById('confirmpasswordInput').value
+      };
+      axios.patch('https://api-node.themesbrand.website/updatepassword', data).then((data) => {
+        console.log(data);
+      }).catch((e) => {
+        console.log(e);
+      });
+    },
+    updatedata() {
+      var userid = localStorage.getItem('userid');
+      var data = {
+        first_name: document.getElementById('firstnameInput').value,
+        last_name: document.getElementById('lastnameInput').value,
+        phone: document.getElementById('phonenumberInput').value,
+        email: document.getElementById('emailInput').value,
+        joining_date: document.getElementById('dateinput').value,
+        skills: document.getElementById('skillsinput').value,
+        designation: document.getElementById('designationInput').value,
+        website: document.getElementById('websiteInput1').value,
+        city: document.getElementById('cityInput').value,
+        country: document.getElementById('countryInput').value,
+        zipcode: document.getElementById('zipcodeInput').value,
+        Description: document.getElementById('exampleFormControlTextarea').value,
+      };
+      axios.patch('https://api-node.themesbrand.website/user/' + userid, data).then((data) => {
+        console.log(data);
+      }).catch((e) => {
+        console.log(e);
+      });
+    }
+  },
 };
 </script>
 

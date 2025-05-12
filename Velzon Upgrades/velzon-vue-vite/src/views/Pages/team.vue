@@ -9,9 +9,9 @@ const modalShow = ref(false);
 const teammember = ref([
   {
     "id": 12,
-    "coverImg": require("@/assets/images/small/img-9.jpg"),
+    "coverImg": "@/assets/images/small/img-9.jpg",
     "bookmark": false,
-    "memberImg": require("@/assets/images/users/avatar-2.jpg"),
+    "memberImg": "@/assets/images/users/avatar-2.jpg",
     "memberName": "Nancy Martino",
     "position": "Team Leader & HR",
     "projects": "225",
@@ -19,7 +19,7 @@ const teammember = ref([
   },
   {
     "id": 11,
-    "coverImg": require("@/assets/images/small/img-12.jpg"),
+    "coverImg": "@/assets/images/small/img-12.jpg",
     "bookmark": true,
     "memberImg": "",
     "nickname": "HB",
@@ -30,9 +30,9 @@ const teammember = ref([
   },
   {
     "id": 10,
-    "coverImg": require("@/assets/images/small/img-11.jpg"),
+    "coverImg": "@/assets/images/small/img-11.jpg",
     "bookmark": false,
-    "memberImg": require("@/assets/images/users/avatar-3.jpg"),
+    "memberImg": "@/assets/images/users/avatar-3.jpg",
     "memberName": "Frank Hook",
     "position": "Project Manager",
     "projects": "164",
@@ -40,9 +40,9 @@ const teammember = ref([
   },
   {
     "id": 9,
-    "coverImg": require("@/assets/images/small/img-1.jpg"),
+    "coverImg": "@/assets/images/small/img-1.jpg",
     "bookmark": true,
-    "memberImg": require("@/assets/images/users/avatar-8.jpg"),
+    "memberImg": "@/assets/images/users/avatar-8.jpg",
     "memberName": "Jennifer Carter",
     "position": "UI/UX Designer",
     "projects": "241",
@@ -50,7 +50,7 @@ const teammember = ref([
   },
   {
     "id": 8,
-    "coverImg": require("@/assets/images/small/img-10.jpg"),
+    "coverImg": "@/assets/images/small/img-10.jpg",
     "bookmark": false,
     "memberImg": "",
     "nickname": "ME",
@@ -61,9 +61,9 @@ const teammember = ref([
   },
   {
     "id": 7,
-    "coverImg": require("@/assets/images/small/img-2.jpg"),
+    "coverImg": "@/assets/images/small/img-2.jpg",
     "bookmark": false,
-    "memberImg": require("@/assets/images/users/avatar-4.jpg"),
+    "memberImg": "@/assets/images/users/avatar-4.jpg",
     "memberName": "Alexis Clarke",
     "position": "Backend Developer",
     "projects": "132",
@@ -71,7 +71,7 @@ const teammember = ref([
   },
   {
     "id": 6,
-    "coverImg": require("@/assets/images/small/img-4.jpg"),
+    "coverImg": "@/assets/images/small/img-4.jpg",
     "bookmark": true,
     "memberImg": "",
     "nickname": "NC",
@@ -82,9 +82,9 @@ const teammember = ref([
   },
   {
     "id": 5,
-    "coverImg": require("@/assets/images/small/img-7.jpg"),
+    "coverImg": "@/assets/images/small/img-7.jpg",
     "bookmark": true,
-    "memberImg": require("@/assets/images/users/avatar-6.jpg"),
+    "memberImg": "@/assets/images/users/avatar-6.jpg",
     "memberName": "Joseph Parker",
     "position": "Full Stack Developer",
     "projects": "64",
@@ -92,9 +92,9 @@ const teammember = ref([
   },
   {
     "id": 4,
-    "coverImg": require("@/assets/images/small/img-3.jpg"),
+    "coverImg": "@/assets/images/small/img-3.jpg",
     "bookmark": false,
-    "memberImg": require("@/assets/images/users/avatar-5.jpg"),
+    "memberImg": "@/assets/images/users/avatar-5.jpg",
     "memberName": "Erica Kernan",
     "position": "Web Designer",
     "projects": "345",
@@ -102,7 +102,7 @@ const teammember = ref([
   },
   {
     "id": 3,
-    "coverImg": require("@/assets/images/small/img-5.jpg"),
+    "coverImg": "@/assets/images/small/img-5.jpg",
     "bookmark": true,
     "memberImg": "",
     "nickname": "DP",
@@ -113,9 +113,9 @@ const teammember = ref([
   },
   {
     "id": 2,
-    "coverImg": require("@/assets/images/small/img-8.jpg"),
+    "coverImg": "@/assets/images/small/img-8.jpg",
     "bookmark": false,
-    "memberImg": require("@/assets/images/users/avatar-7.jpg"),
+    "memberImg": "@/assets/images/users/avatar-7.jpg",
     "memberName": "Jack Gough",
     "position": "React Js Developer",
     "projects": "87",
@@ -123,7 +123,7 @@ const teammember = ref([
   },
   {
     "id": 1,
-    "coverImg": require("@/assets/images/small/img-6.jpg"),
+    "coverImg": "@/assets/images/small/img-6.jpg",
     "bookmark": false,
     "memberImg": "",
     "nickname": "MW",

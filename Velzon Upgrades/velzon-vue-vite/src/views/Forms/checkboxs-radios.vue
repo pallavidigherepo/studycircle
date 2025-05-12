@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue'
-import Layout from "@/layouts/main.vue"
+import Layout from '@/layouts/main.vue'
 import PageHeader from '@/components/page-header.vue';
-import CardHeader from "@/common/card-header.vue"
+import CardHeader from '@/common/card-header.vue'
 
 // Checkboxes
 const checkbox1 = ref(false)
@@ -26,7 +26,7 @@ const checkbox3 = ref(false)
 const checkbox4 = ref(true)
 const checkbox5 = ref(true)
 const checkbox6 = ref(true)
-const checkbox7 = ref(null)
+const checkbox7 = ref(true)
 
 // Radios
 const radio1 = ref('default')

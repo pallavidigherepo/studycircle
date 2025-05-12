@@ -169,7 +169,7 @@ onMounted(() => {
           <div class="collapse menu-dropdown" id="sidebarDashboards">
             <ul class="nav nav-sm flex-column">
               <li class="nav-item">
-                <router-link to="/dashboard/analytics" class="nav-link custom-abc" data-key="t-analytics">
+                <router-link to="/" class="nav-link custom-abc" data-key="t-analytics">
                   {{ $t("t-analytics") }}
                 </router-link>
               </li>
@@ -1138,28 +1138,28 @@ onMounted(() => {
           <div class="collapse menu-dropdown" id="sidebarAdvanceUI">
             <ul class="nav nav-sm flex-column">
               <li class="nav-item">
-                <router-link to="/advance-ui/sweetalerts" class="nav-link" data-key="t-sweet-alerts">
+                <router-link to="/sweetalerts" class="nav-link" data-key="t-sweet-alerts">
                   {{ $t("t-sweet-alerts") }}</router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/advance-ui/scrollbar" class="nav-link" data-key="t-scrollbar">{{ $t("t-scrollbar") }}
+                <router-link to="/scrollbar" class="nav-link" data-key="t-scrollbar">{{ $t("t-scrollbar") }}
                 </router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/advance-ui/animation" class="nav-link" data-key="t-animation">{{ $t("t-animation") }}
+                <router-link to="/animation" class="nav-link" data-key="t-animation">{{ $t("t-animation") }}
                 </router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/advance-ui/swiper" class="nav-link" data-key="t-swiper-slider">
+                <router-link to="/swiper" class="nav-link" data-key="t-swiper-slider">
                   {{ $t("t-swiper-slider") }}</router-link>
               </li>
 
               <li class="nav-item">
-                <router-link to="/advance-ui/highlight" class="nav-link" data-key="t-highlight">{{ $t("t-highlight") }}
+                <router-link to="/highlight" class="nav-link" data-key="t-highlight">{{ $t("t-highlight") }}
                 </router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/advance-ui/scrollspy" class="nav-link" data-key="t-scrollSpy">{{ $t("t-scrollSpy") }}
+                <router-link to="/scrollspy" class="nav-link" data-key="t-scrollSpy">{{ $t("t-scrollSpy") }}
                 </router-link>
               </li>
             </ul>

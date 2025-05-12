@@ -7,6 +7,10 @@ import "@simonwep/pickr/dist/themes/classic.min.css"; // 'classic' theme
 import "@simonwep/pickr/dist/themes/monolith.min.css"; // 'monolith' theme
 import "@simonwep/pickr/dist/themes/nano.min.css"; // 'nano' theme
 
+import Layout from "@/layouts/main.vue"
+import PageHeader from '@/components/page-header.vue';
+import CardHeader from "@/common/card-header.vue"
+
 // Configuration for flatpickr
 const date = ref(null);
 const date1 = ref(null);

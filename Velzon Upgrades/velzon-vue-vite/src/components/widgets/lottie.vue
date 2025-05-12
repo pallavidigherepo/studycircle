@@ -1,10 +1,12 @@
 <template>
-  <div :style="style" ref="lavContainer"></div>
+ <div :style="style" ref="lavContainer"></div>
+
 </template>
 
 <script setup>
-import { ref, defineProps, onMounted } from 'vue';
+import { ref, defineProps, defineEmits, onMounted } from 'vue';
 import lottie from 'lottie-web';
+const lavContainer = ref(null)
 
 const props = defineProps({
   options: {
@@ -21,6 +23,8 @@ const props = defineProps({
   },
 });
 
+const emit = defineEmits(['animCreated'])
+
 const style = ref({
   width: props.width ? `${props.width}px` : '100%',
   height: props.height ? `${props.height}px` : '100%',
@@ -32,7 +36,7 @@ let anim;
 
 onMounted(() => {
   anim = lottie.loadAnimation({
-    container: document.querySelector('[ref="lavContainer"]'),
+    container: lavContainer.value,
     renderer: 'svg',
     loop: props.options.loop !== false,
     autoplay: props.options.autoplay !== false,
@@ -40,7 +44,6 @@ onMounted(() => {
     rendererSettings: props.options.rendererSettings,
   });
 
-  
   emit('animCreated', anim);
 });
 </script>
