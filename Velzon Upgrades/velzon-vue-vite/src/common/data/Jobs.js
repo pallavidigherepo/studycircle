@@ -3,8 +3,8 @@
 // Jobs > Job Lists > List
 const joblist = [{
     id: 1,
-    img: require("@/assets/images/small/img-2.jpg"),
-    logo: require("@/assets/images/companies/img-3.png"),
+    img: "@/assets/images/small/img-2.jpg",
+    logo: "@/assets/images/companies/img-3.png",
     designation: "UI/UX designer",
     name: "Nesta Technologies",
     description: "A UI/UX designer's job is to create user-friendly interfaces that enable users to understand how to use complex technical products. If you're passionate about the latest technology trends and devices, you'll find great fulfillment in being involved in the design process for the next hot gadget.",
@@ -16,8 +16,8 @@ const joblist = [{
     postDate: "11 Sep, 2022"
 }, {
     id: 2,
-    img: require("@/assets/images/small/img-4.jpg"),
-    logo: require("@/assets/images/companies/img-4.png"),
+    img: "@/assets/images/small/img-4.jpg",
+    logo: "@/assets/images/companies/img-4.png",
     designation: "Marketing Director",
     name: "Meta4Systems",
     description: "These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents to do what we like best, every pleasure is to be welcomed and every pain avoided. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure.",
@@ -29,8 +29,8 @@ const joblist = [{
     postDate: "13 Sep, 2022"
 }, {
     id: 3,
-    img: require("@/assets/images/small/img-7.jpg"),
-    logo: require("@/assets/images/companies/img-5.png"),
+    img: "@/assets/images/small/img-7.jpg",
+    logo: "@/assets/images/companies/img-5.png",
     designation: "Product Sales Specialist",
     name: "Digitech Galaxy",
     description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.",
@@ -42,8 +42,8 @@ const joblist = [{
     postDate: "14 Sep, 2022"
 }, {
     id: 4,
-    img: require("@/assets/images/small/img-3.jpg"),
-    logo: require("@/assets/images/companies/img-6.png"),
+    img: "@/assets/images/small/img-3.jpg",
+    logo: "@/assets/images/companies/img-6.png",
     designation: "Project Manager",
     name: "Syntyce Solutions",
     description: "In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated.",
@@ -55,8 +55,8 @@ const joblist = [{
     postDate: "14 Sep, 2022"
 }, {
     id: 5,
-    img: require("@/assets/images/small/img-8.jpg"),
-    logo: require("@/assets/images/companies/img-7.png"),
+    img: "@/assets/images/small/img-8.jpg",
+    logo: "@/assets/images/companies/img-7.png",
     designation: "Product Designer",
     name: "Themesbrand",
     description: "A UI/UX designer's job is to create user-friendly interfaces that enable users to understand how to use complex technical products. If you're passionate about the latest technology trends and devices, you'll find great fulfillment in being involved in the design process for the next hot gadget.",
@@ -71,7 +71,7 @@ const joblist = [{
 // Jobs > Job Lists > Grid
 const jobgrid = [{
     id: 1,
-    img: require("@/assets/images/companies/img-1.png"),
+    img: "@/assets/images/companies/img-1.png",
     designation: "Education Training",
     name: "Micro Design",
     location: "Escondido,California",
@@ -81,7 +81,7 @@ const jobgrid = [{
     tags: ["Full Time", "Freelance", "Urgent"],
 }, {
     id: 2,
-    img: require("@/assets/images/companies/img-2.png"),
+    img: "@/assets/images/companies/img-2.png",
     designation: "Magento Developer",
     name: "Themesbrand",
     location: "Stordorf, Germany",
@@ -91,7 +91,7 @@ const jobgrid = [{
     tags: ["Part Time", "Freelance"],
 }, {
     id: 3,
-    img: require("@/assets/images/companies/img-3.png"),
+    img: "@/assets/images/companies/img-3.png",
     designation: "Product Designer",
     name: "Themesbrand",
     location: "Cullera, Spain",
@@ -101,7 +101,7 @@ const jobgrid = [{
     tags: ["Full Time", "Private"],
 }, {
     id: 4,
-    img: require("@/assets/images/companies/img-5.png"),
+    img: "@/assets/images/companies/img-5.png",
     designation: "React Developer",
     name: "iTest Factory",
     location: "Haren, Germany",
@@ -111,7 +111,7 @@ const jobgrid = [{
     tags: ["Full Time", "Freelance", "Urgent"],
 }, {
     id: 5,
-    img: require("@/assets/images/companies/img-6.png"),
+    img: "@/assets/images/companies/img-6.png",
     designation: "UI/UX Designer",
     name: "Creative Team",
     location: "Vinninga, Sweden",
@@ -121,7 +121,7 @@ const jobgrid = [{
     tags: ["Part Time"],
 }, {
     id: 6,
-    img: require("@/assets/images/companies/img-7.png"),
+    img: "@/assets/images/companies/img-7.png",
     designation: "Marketing Director",
     name: "Themesbrand",
     location: "Zhoukou, China",
@@ -131,7 +131,7 @@ const jobgrid = [{
     tags: ["Freelance", "Urgent"],
 }, {
     id: 7,
-    img: require("@/assets/images/companies/img-8.png"),
+    img: "@/assets/images/companies/img-8.png",
     designation: "Full Stack Engineer",
     name: "Syntyce Solutions",
     location: "Boroaia, Romania",
@@ -141,7 +141,7 @@ const jobgrid = [{
     tags: ["Full Time"],
 }, {
     id: 8,
-    img: require("@/assets/images/companies/img-1.png"),
+    img: "@/assets/images/companies/img-1.png",
     designation: "Project Manager",
     name: "Themesbrand",
     location: "Pazmand, Hungary",
@@ -151,7 +151,7 @@ const jobgrid = [{
     tags: ["Full Time", "Freelance"],
 }, {
     id: 9,
-    img: require("@/assets/images/companies/img-2.png"),
+    img: "@/assets/images/companies/img-2.png",
     designation: "HTML Developer",
     name: "Themesbrand",
     location: "Donsieders, Germany",
@@ -161,7 +161,7 @@ const jobgrid = [{
     tags: ["Part Time", "Freelance"],
 }, {
     id: 10,
-    img: require("@/assets/images/companies/img-3.png"),
+    img: "@/assets/images/companies/img-3.png",
     designation: "Business Associate",
     name: "Themesbrand",
     location: "Sermerieu, France",
@@ -171,7 +171,7 @@ const jobgrid = [{
     tags: ["Full Time", "Freelance", "Urgent"],
 }, {
     id: 11,
-    img: require("@/assets/images/companies/img-5.png"),
+    img: "@/assets/images/companies/img-5.png",
     designation: "Assistant / Store Keeper",
     name: "Force Medicines",
     location: "San Lorenzo, Philippines",
@@ -181,7 +181,7 @@ const jobgrid = [{
     tags: ["Part Time"],
 }, {
     id: 12,
-    img: require("@/assets/images/companies/img-6.png"),
+    img: "@/assets/images/companies/img-6.png",
     designation: "Product Sales Specialist",
     name: "Themesbrand",
     location: "Pazmand, Hungary",
@@ -194,7 +194,7 @@ const jobgrid = [{
 // Jobs > Candidate Lists > List
 const candidatelist = [{
     id: 1,
-    img: require("@/assets/images/users/avatar-10.jpg"),
+    img: "@/assets/images/users/avatar-10.jpg",
     name: "Tonya Noble",
     designation: "Web Designer",
     location: "Cullera, Spain",
@@ -204,7 +204,7 @@ const candidatelist = [{
     bookmark: "true"
 }, {
     id: 2,
-    img: require("@/assets/images/users/avatar-1.jpg"),
+    img: "@/assets/images/users/avatar-1.jpg",
     name: "Nicholas Ball",
     designation: "Assistant / Store Keeper",
     location: "San Lorenzo",
@@ -214,7 +214,7 @@ const candidatelist = [{
     bookmark: "true"
 }, {
     id: 3,
-    img: require("@/assets/images/users/avatar-4.jpg"),
+    img: "@/assets/images/users/avatar-4.jpg",
     name: "Zynthia Marrow",
     designation: "Assistant / Store Keeper",
     location: "Cullera, Spain",
@@ -224,7 +224,7 @@ const candidatelist = [{
     bookmark: "false"
 }, {
     id: 4,
-    img: require("@/assets/images/users/avatar-2.jpg"),
+    img: "@/assets/images/users/avatar-2.jpg",
     name: "Philippa Santiago",
     designation: "Project Manager ",
     location: "Ugashik, US",
@@ -234,7 +234,7 @@ const candidatelist = [{
     bookmark: "true"
 }, {
     id: 5,
-    img: require("@/assets/images/users/avatar-4.jpg"),
+    img: "@/assets/images/users/avatar-4.jpg",
     name: "Elizabeth Allen",
     designation: "Education Training ",
     location: "Zuweihir, UAE",
@@ -244,7 +244,7 @@ const candidatelist = [{
     bookmark: "false"
 }, {
     id: 6,
-    img: require("@/assets/images/users/avatar-5.jpg"),
+    img: "@/assets/images/users/avatar-5.jpg",
     name: "Cassian Jenning",
     designation: "Graphic Designer ",
     location: "Limestone, US",
@@ -254,7 +254,7 @@ const candidatelist = [{
     bookmark: "false"
 }, {
     id: 7,
-    img: require("@/assets/images/users/avatar-6.jpg"),
+    img: "@/assets/images/users/avatar-6.jpg",
     name: "Scott Holt",
     designation: "UI/UX Designer ",
     location: "Germany",
@@ -264,7 +264,7 @@ const candidatelist = [{
     bookmark: "false"
 }, {
     id: 8,
-    img: require("@/assets/images/users/avatar-9.jpg"),
+    img: "@/assets/images/users/avatar-9.jpg",
     name: "Philbert Schwartz",
     designation: "React Developer ",
     location: "Zuweihir, UAE",
@@ -274,7 +274,7 @@ const candidatelist = [{
     bookmark: "true"
 }, {
     id: 9,
-    img: require("@/assets/images/users/avatar-2.jpg"),
+    img: "@/assets/images/users/avatar-2.jpg",
     name: "Larry Villa",
     designation: "Assistant / Store Keeper",
     location: "San Lorenzo",
@@ -284,7 +284,7 @@ const candidatelist = [{
     bookmark: "false"
 }, {
     id: 10,
-    img: require("@/assets/images/users/avatar-10.jpg"),
+    img: "@/assets/images/users/avatar-10.jpg",
     name: "Harley Watkins",
     designation: "Project Manager ",
     location: "Texanna, US",
@@ -294,7 +294,7 @@ const candidatelist = [{
     bookmark: "false"
 }, {
     id: 11,
-    img: require("@/assets/images/users/avatar-2.jpg"),
+    img: "@/assets/images/users/avatar-2.jpg",
     name: "Marie Stewart",
     designation: "Web Designer",
     location: "Cullera, Spain",
@@ -304,7 +304,7 @@ const candidatelist = [{
     bookmark: "true"
 }, {
     id: 12,
-    img: require("@/assets/images/users/avatar-9.jpg"),
+    img: "@/assets/images/users/avatar-9.jpg",
     name: "Hadley Leonard",
     designation: "Executive, HR Operations ",
     location: "Zuweihir, UAE",
@@ -314,7 +314,7 @@ const candidatelist = [{
     bookmark: "false"
 }, {
     id: 13,
-    img: require("@/assets/images/users/avatar-6.jpg"),
+    img: "@/assets/images/users/avatar-6.jpg",
     name: "Zoderick Rodriquez",
     designation: "Full Stack Developer",
     location: "Muhtarqah, UAE",
@@ -324,7 +324,7 @@ const candidatelist = [{
     bookmark: "false"
 }, {
     id: 14,
-    img: require("@/assets/images/users/avatar-7.jpg"),
+    img: "@/assets/images/users/avatar-7.jpg",
     name: "Nadia Harding",
     designation: "Web Designer",
     location: "Pahoa, US",
@@ -334,7 +334,7 @@ const candidatelist = [{
     bookmark: "true"
 }, {
     id: 15,
-    img: require("@/assets/images/users/avatar-1.jpg"),
+    img: "@/assets/images/users/avatar-1.jpg",
     name: "Addison Black",
     designation: "UI/UX Designer",
     location: "Phoenix, Arizona",
@@ -344,7 +344,7 @@ const candidatelist = [{
     bookmark: "false"
 }, {
     id: 16,
-    img: require("@/assets/images/users/avatar-4.jpg"),
+    img: "@/assets/images/users/avatar-4.jpg",
     name: "Priscilla Wise",
     designation: "Executive, HR Operations",
     location: "Ghurayfah, UAE",
@@ -354,7 +354,7 @@ const candidatelist = [{
     bookmark: "false"
 }, {
     id: 17,
-    img: require("@/assets/images/users/avatar-8.jpg"),
+    img: "@/assets/images/users/avatar-8.jpg",
     name: "Lizzie Chandler",
     designation: "React Developer",
     location: "Maidaq, UAE",
@@ -364,7 +364,7 @@ const candidatelist = [{
     bookmark: "false"
 }, {
     id: 18,
-    img: require("@/assets/images/users/avatar-1.jpg"),
+    img: "@/assets/images/users/avatar-1.jpg",
     name: "Jenson Carlson",
     designation: "Graphic Designer",
     location: "Quesada, US",
@@ -374,7 +374,7 @@ const candidatelist = [{
     bookmark: "false"
 }, {
     id: 19,
-    img: require("@/assets/images/users/avatar-1.jpg"),
+    img: "@/assets/images/users/avatar-1.jpg",
     name: "Jaylee Ward",
     designation: "Education Training",
     location: "Cullera, Spain",
@@ -384,7 +384,7 @@ const candidatelist = [{
     bookmark: "true"
 }, {
     id: 20,
-    img: require("@/assets/images/users/avatar-2.jpg"),
+    img: "@/assets/images/users/avatar-2.jpg",
     name: "Trista Guerrero",
     designation: "Product Director",
     location: "Jereirah, UAE",
@@ -394,7 +394,7 @@ const candidatelist = [{
     bookmark: "false"
 }, {
     id: 21,
-    img: require("@/assets/images/users/avatar-1.jpg"),
+    img: "@/assets/images/users/avatar-1.jpg",
     name: "James Stone",
     designation: "Graphic Designer",
     location: "Quesada, US",
@@ -404,7 +404,7 @@ const candidatelist = [{
     bookmark: "false"
 }, {
     id: 22,
-    img: require("@/assets/images/users/avatar-4.jpg"),
+    img: "@/assets/images/users/avatar-4.jpg",
     name: "Mike Watson",
     designation: "Product Director",
     location: "Jereirah, UAE",
@@ -414,7 +414,7 @@ const candidatelist = [{
     bookmark: "false"
 }, {
     id: 23,
-    img: require("@/assets/images/users/avatar-9.jpg"),
+    img: "@/assets/images/users/avatar-9.jpg",
     name: "Mary Sak",
     designation: "Education Training",
     location: "Cullera, Spain",
@@ -424,7 +424,7 @@ const candidatelist = [{
     bookmark: "true"
 }, {
     id: 24,
-    img: require("@/assets/images/users/avatar-8.jpg"),
+    img: "@/assets/images/users/avatar-8.jpg",
     name: "Roderick Jones",
     designation: "React Developer",
     location: "Maidaq, UAE",
@@ -437,7 +437,7 @@ const candidatelist = [{
 // Jobs > Candidate Lists > Grid
 const candidategrid = [{
     id: 1,
-    img: require("@/assets/images/users/avatar-10.jpg"),
+    img: "@/assets/images/users/avatar-10.jpg",
     name: "Tonya Noble",
     designation: "Web Designer",
     location: "Cullera, Spain",
@@ -447,7 +447,7 @@ const candidategrid = [{
     bookmark: true
 }, {
     id: 2,
-    img: require("@/assets/images/users/avatar-1.jpg"),
+    img: "@/assets/images/users/avatar-1.jpg",
     name: "Nicholas Ball",
     designation: "Assistant / Store Keeper",
     location: "San Lorenzo",
@@ -457,7 +457,7 @@ const candidategrid = [{
     bookmark: true
 }, {
     id: 3,
-    img: require("@/assets/images/users/avatar-4.jpg"),
+    img: "@/assets/images/users/avatar-4.jpg",
     name: "Zynthia Marrow",
     designation: "Assistant / Store Keeper",
     location: "Cullera, Spain",
@@ -467,7 +467,7 @@ const candidategrid = [{
     bookmark: false
 }, {
     id: 4,
-    img: require("@/assets/images/users/avatar-2.jpg"),
+    img: "@/assets/images/users/avatar-2.jpg",
     name: "Philippa Santiago",
     designation: "Project Manager ",
     location: "Ugashik, US",
@@ -477,7 +477,7 @@ const candidategrid = [{
     bookmark: true
 }, {
     id: 5,
-    img: require("@/assets/images/users/avatar-4.jpg"),
+    img: "@/assets/images/users/avatar-4.jpg",
     name: "Elizabeth Allen",
     designation: "Education Training ",
     location: "Zuweihir, UAE",
@@ -487,7 +487,7 @@ const candidategrid = [{
     bookmark: false
 }, {
     id: 6,
-    img: require("@/assets/images/users/avatar-5.jpg"),
+    img: "@/assets/images/users/avatar-5.jpg",
     name: "Cassian Jenning",
     designation: "Graphic Designer ",
     location: "Limestone, US",
@@ -497,7 +497,7 @@ const candidategrid = [{
     bookmark: false
 }, {
     id: 7,
-    img: require("@/assets/images/users/avatar-6.jpg"),
+    img: "@/assets/images/users/avatar-6.jpg",
     name: "Scott Holt",
     designation: "UI/UX Designer ",
     location: "Germany",
@@ -507,7 +507,7 @@ const candidategrid = [{
     bookmark: false
 }, {
     id: 8,
-    img: require("@/assets/images/users/avatar-9.jpg"),
+    img: "@/assets/images/users/avatar-9.jpg",
     name: "Philbert Schwartz",
     designation: "React Developer ",
     location: "Zuweihir, UAE",
@@ -517,7 +517,7 @@ const candidategrid = [{
     bookmark: true
 }, {
     id: 9,
-    img: require("@/assets/images/users/avatar-2.jpg"),
+    img: "@/assets/images/users/avatar-2.jpg",
     name: "Larry Villa",
     designation: "Assistant / Store Keeper",
     location: "San Lorenzo",
@@ -527,7 +527,7 @@ const candidategrid = [{
     bookmark: false
 }, {
     id: 10,
-    img: require("@/assets/images/users/avatar-10.jpg"),
+    img: "@/assets/images/users/avatar-10.jpg",
     name: "Harley Watkins",
     designation: "Project Manager ",
     location: "Texanna, US",
@@ -537,7 +537,7 @@ const candidategrid = [{
     bookmark: false
 }, {
     id: 11,
-    img: require("@/assets/images/users/avatar-2.jpg"),
+    img: "@/assets/images/users/avatar-2.jpg",
     name: "Marie Stewart",
     designation: "Web Designer",
     location: "Cullera, Spain",
@@ -547,7 +547,7 @@ const candidategrid = [{
     bookmark: true
 }, {
     id: 12,
-    img: require("@/assets/images/users/avatar-9.jpg"),
+    img: "@/assets/images/users/avatar-9.jpg",
     name: "Hadley Leonard",
     designation: "Executive, HR Operations ",
     location: "Zuweihir, UAE",
@@ -557,7 +557,7 @@ const candidategrid = [{
     bookmark: false
 }, {
     id: 13,
-    img: require("@/assets/images/users/avatar-6.jpg"),
+    img: "@/assets/images/users/avatar-6.jpg",
     name: "Zoderick Rodriquez",
     designation: "Full Stack Developer",
     location: "Muhtarqah, UAE",
@@ -567,7 +567,7 @@ const candidategrid = [{
     bookmark: false
 }, {
     id: 14,
-    img: require("@/assets/images/users/avatar-7.jpg"),
+    img: "@/assets/images/users/avatar-7.jpg",
     name: "Nadia Harding",
     designation: "Web Designer",
     location: "Pahoa, US",
@@ -577,7 +577,7 @@ const candidategrid = [{
     bookmark: true
 }, {
     id: 15,
-    img: require("@/assets/images/users/avatar-9.jpg"),
+    img: "@/assets/images/users/avatar-9.jpg",
     name: "Addison Black",
     designation: "UI/UX Designer",
     location: "Phoenix, Arizona",
@@ -587,7 +587,7 @@ const candidategrid = [{
     bookmark: false
 }, {
     id: 16,
-    img: require("@/assets/images/users/avatar-4.jpg"),
+    img: "@/assets/images/users/avatar-4.jpg",
     name: "Priscilla Wise",
     designation: "Executive, HR Operations",
     location: "Ghurayfah, UAE",
@@ -597,7 +597,7 @@ const candidategrid = [{
     bookmark: false
 }, {
     id: 17,
-    img: require("@/assets/images/users/avatar-8.jpg"),
+    img: "@/assets/images/users/avatar-8.jpg",
     name: "Lizzie Chandler",
     designation: "React Developer",
     location: "Maidaq, UAE",
@@ -607,7 +607,7 @@ const candidategrid = [{
     bookmark: false
 }, {
     id: 18,
-    img: require("@/assets/images/users/avatar-1.jpg"),
+    img: "@/assets/images/users/avatar-1.jpg",
     name: "Jenson Carlson",
     designation: "Graphic Designer",
     location: "Quesada, US",
@@ -617,7 +617,7 @@ const candidategrid = [{
     bookmark: false
 }, {
     id: 19,
-    img: require("@/assets/images/users/avatar-6.jpg"),
+    img: "@/assets/images/users/avatar-6.jpg",
     name: "Jaylee Ward",
     designation: "Education Training",
     location: "Cullera, Spain",
@@ -627,7 +627,7 @@ const candidategrid = [{
     bookmark: true
 }, {
     id: 20,
-    img: require("@/assets/images/users/avatar-2.jpg"),
+    img: "@/assets/images/users/avatar-2.jpg",
     name: "Trista Guerrero",
     designation: "Product Director",
     location: "Jereirah, UAE",
@@ -637,7 +637,7 @@ const candidategrid = [{
     bookmark: false
 }, {
     id: 21,
-    img: require("@/assets/images/users/avatar-1.jpg"),
+    img: "@/assets/images/users/avatar-1.jpg",
     name: "James Stone",
     designation: "Graphic Designer",
     location: "Quesada, US",
@@ -647,7 +647,7 @@ const candidategrid = [{
     bookmark: false
 }, {
     id: 22,
-    img: require("@/assets/images/users/avatar-4.jpg"),
+    img: "@/assets/images/users/avatar-4.jpg",
     name: "Mike Watson",
     designation: "Product Director",
     location: "Jereirah, UAE",
@@ -657,7 +657,7 @@ const candidategrid = [{
     bookmark: false
 }, {
     id: 23,
-    img: require("@/assets/images/users/avatar-5.jpg"),
+    img: "@/assets/images/users/avatar-5.jpg",
     name: "Mary Sak",
     designation: "Education Training",
     location: "Cullera, Spain",
@@ -667,7 +667,7 @@ const candidategrid = [{
     bookmark: true
 }, {
     id: 24,
-    img: require("@/assets/images/users/avatar-8.jpg"),
+    img: "@/assets/images/users/avatar-8.jpg",
     name: "Roderick Jones",
     designation: "React Developer",
     location: "Maidaq, UAE",
@@ -680,7 +680,7 @@ const candidategrid = [{
 // Jobs > Application
 const application = [{
     id: "001",
-    img: require("@/assets/images/companies/img-4.png"),
+    img: "@/assets/images/companies/img-4.png",
     name: "Syntyce Solutions",
     designation: "Web Designer",
     date: "30 Sep, 2022",
@@ -690,7 +690,7 @@ const application = [{
 },
 {
     id: "002",
-    img: require("@/assets/images/brands/slack.png"),
+    img: "@/assets/images/brands/slack.png",
     name: "Plunkett Infotech",
     designation: "Product Designer",
     date: "26 Sep, 2022",
@@ -699,7 +699,7 @@ const application = [{
     status: "New"
 }, {
     id: "003",
-    img: require("@/assets/images/companies/img-4.png"),
+    img: "@/assets/images/companies/img-4.png",
     name: "Martin's",
     designation: "Business Associate",
     date: "26 Sep, 2022",
@@ -708,7 +708,7 @@ const application = [{
     status: "New"
 }, {
     id: "004",
-    img: require("@/assets/images/companies/img-3.png"),
+    img: "@/assets/images/companies/img-3.png",
     name: "Meta4Systems",
     designation: "Magento Developer",
     date: "27 Sep, 2022",
@@ -717,7 +717,7 @@ const application = [{
     status: "Rejected"
 }, {
     id: "005",
-    img: require("@/assets/images/companies/img-4.png"),
+    img: "@/assets/images/companies/img-4.png",
     name: "Grey Fade",
     designation: "Marketing Director",
     date: "28 Sep, 2022",
@@ -726,7 +726,7 @@ const application = [{
     status: "Pending"
 }, {
     id: "006",
-    img: require("@/assets/images/brands/mail_chimp.png"),
+    img: "@/assets/images/brands/mail_chimp.png",
     name: "Syntyce Solutions",
     designation: "Project Manager",
     date: "28 Sep, 2022",
@@ -735,7 +735,7 @@ const application = [{
     status: "Approved"
 }, {
     id: "007",
-    img: require("@/assets/images/brands/dropbox.png"),
+    img: "@/assets/images/brands/dropbox.png",
     name: "Micro Design",
     designation: "HTML Developer",
     date: "29 Sep, 2022",
@@ -744,7 +744,7 @@ const application = [{
     status: "New"
 }, {
     id: "008",
-    img: require("@/assets/images/companies/img-6.png"),
+    img: "@/assets/images/companies/img-6.png",
     name: "Android Galaxy",
     designation: "Product Sales Specialist",
     date: "29 Sep, 2022",
@@ -753,7 +753,7 @@ const application = [{
     status: "Pending"
 }, {
     id: "009",
-    img: require("@/assets/images/companies/img-1.png"),
+    img: "@/assets/images/companies/img-1.png",
     name: "Digitech Galaxy",
     designation: "Magento Developer",
     date: "29 Sep, 2022",
@@ -762,7 +762,7 @@ const application = [{
     status: "New"
 }, {
     id: "010",
-    img: require("@/assets/images/brands/bitbucket.png"),
+    img: "@/assets/images/brands/bitbucket.png",
     name: "iTest Factory",
     designation: "Business Associate",
     date: "30 Sep, 2022",
@@ -771,7 +771,7 @@ const application = [{
     status: "Approved"
 }, {
     id: "011",
-    img: require("@/assets/images/brands/dribbble.png"),
+    img: "@/assets/images/brands/dribbble.png",
     name: "Nesta Technologies",
     designation: "UI/UX Designer",
     date: "01 Sep, 2022",
@@ -780,7 +780,7 @@ const application = [{
     status: "Pending"
 }, {
     id: "012",
-    img: require("@/assets/images/companies/img-4.png"),
+    img: "@/assets/images/companies/img-4.png",
     name: "Digitech Galaxy",
     designation: "Product Designer",
     date: "02 Sep, 2022",
@@ -789,7 +789,7 @@ const application = [{
     status: "New"
 }, {
     id: "013",
-    img: require("@/assets/images/brands/slack.png"),
+    img: "@/assets/images/brands/slack.png",
     name: "Syntyce Solutions",
     designation: "Web Designer",
     date: "02 Sep, 2022",
@@ -801,7 +801,7 @@ const application = [{
 // Jobs > Companies List
 const companiesList = [{
     id: 1,
-    image_src: require("@/assets/images/companies/img-3.png"),
+    image_src: "@/assets/images/companies/img-3.png",
     name: "Martin's Solutions",
     industry_type: "IT Department",
     vacancy: "97",
@@ -814,7 +814,7 @@ const companiesList = [{
     since: "1995"
 }, {
     id: 2,
-    image_src: require("@/assets/images/companies/img-4.png"),
+    image_src: "@/assets/images/companies/img-4.png",
     name: "Syntyce Solutions",
     industry_type: "Health Services",
     vacancy: "31",
@@ -827,7 +827,7 @@ const companiesList = [{
     since: "2001"
 }, {
     id: 3,
-    image_src: require("@/assets/images/companies/img-1.png"),
+    image_src: "@/assets/images/companies/img-1.png",
     name: "Moetic Fashion",
     industry_type: "Textiles: Clothing, Footwear",
     vacancy: "641",
@@ -840,7 +840,7 @@ const companiesList = [{
     since: "2000"
 }, {
     id: 4,
-    image_src: require("@/assets/images/companies/img-5.png"),
+    image_src: "@/assets/images/companies/img-5.png",
     name: "Meta4Systems",
     industry_type: "Computer Industry",
     vacancy: "322",
@@ -853,7 +853,7 @@ const companiesList = [{
     since: "2019"
 }, {
     id: 5,
-    image_src: require("@/assets/images/companies/img-1.png"),
+    image_src: "@/assets/images/companies/img-1.png",
     name: "Kent's",
     industry_type: "IT Department",
     vacancy: "10",
@@ -866,7 +866,7 @@ const companiesList = [{
     since: "2018"
 }, {
     id: 6,
-    image_src: require("@/assets/images/companies/img-7.png"),
+    image_src: "@/assets/images/companies/img-7.png",
     name: "Micro Design",
     industry_type: "Financial Services",
     vacancy: "140",
@@ -879,7 +879,7 @@ const companiesList = [{
     since: "2016"
 }, {
     id: 7,
-    image_src: require("@/assets/images/companies/img-6.png"),
+    image_src: "@/assets/images/companies/img-6.png",
     name: "Zoetic Fashion",
     industry_type: "Textiles: Clothing, Footwear",
     vacancy: "21",
@@ -892,7 +892,7 @@ const companiesList = [{
     since: "2018"
 }, {
     id: 8,
-    image_src: require("@/assets/images/companies/img-8.png"),
+    image_src: "@/assets/images/companies/img-8.png",
     name: "Digitech Galaxy",
     industry_type: "Telecommunications Services",
     vacancy: "154",
@@ -905,7 +905,7 @@ const companiesList = [{
     since: "2014"
 }, {
     id: 9,
-    image_src: require("@/assets/images/companies/img-9.png"),
+    image_src: "@/assets/images/companies/img-9.png",
     name: "Erlebacher's",
     industry_type: "Health Services",
     vacancy: "134",
@@ -918,7 +918,7 @@ const companiesList = [{
     since: "2016"
 }, {
     id: 10,
-    image_src: require("@/assets/images/companies/img-5.png"),
+    image_src: "@/assets/images/companies/img-5.png",
     name: "iTest Factory",
     industry_type: "Chemical Industries",
     vacancy: "126",
@@ -931,7 +931,7 @@ const companiesList = [{
     since: "2016"
 }, {
     id: 11,
-    image_src: require("@/assets/images/companies/img-7.png"),
+    image_src: "@/assets/images/companies/img-7.png",
     name: "Zoetic Fashion",
     industry_type: "Textiles: Clothing, Footwear",
     vacancy: "47",
@@ -944,7 +944,7 @@ const companiesList = [{
     since: "2015"
 }, {
     id: 12,
-    image_src: require("@/assets/images/companies/img-3.png"),
+    image_src: "@/assets/images/companies/img-3.png",
     name: "Micro Design",
     industry_type: "IT Department",
     vacancy: "23",
@@ -957,7 +957,7 @@ const companiesList = [{
     since: "2014"
 }, {
     id: 13,
-    image_src: require("@/assets/images/companies/img-4.png"),
+    image_src: "@/assets/images/companies/img-4.png",
     name: "Syntyce Solutions",
     industry_type: "Computer Industry",
     vacancy: "11",
@@ -970,7 +970,7 @@ const companiesList = [{
     since: "2016"
 }, {
     id: 14,
-    image_src: require("@/assets/images/companies/img-1.png"),
+    image_src: "@/assets/images/companies/img-1.png",
     name: "Asiatic Solutions",
     industry_type: "Health Services",
     vacancy: "9",
@@ -983,7 +983,7 @@ const companiesList = [{
     since: "2019"
 }, {
     id: 15,
-    image_src: require("@/assets/images/companies/img-1.png"),
+    image_src: "@/assets/images/companies/img-1.png",
     name: "Great Clothes",
     industry_type: "Textiles: Clothing, Footwear",
     vacancy: "60",
@@ -996,7 +996,7 @@ const companiesList = [{
     since: "2017"
 }, {
     id: 16,
-    image_src: require("@/assets/images/companies/img-5.png"),
+    image_src: "@/assets/images/companies/img-5.png",
     name: "Kent's Solutions",
     industry_type: "IT Department",
     vacancy: "26",
@@ -1009,7 +1009,7 @@ const companiesList = [{
     since: "2018"
 }, {
     id: 17,
-    image_src: require("@/assets/images/companies/img-4.png"),
+    image_src: "@/assets/images/companies/img-4.png",
     name: "Syntyce Solutions",
     industry_type: "Computer Industry",
     vacancy: "11",
@@ -1022,7 +1022,7 @@ const companiesList = [{
     since: "2016"
 }, {
     id: 18,
-    image_src: require("@/assets/images/companies/img-4.png"),
+    image_src: "@/assets/images/companies/img-4.png",
     name: "Syntyce Solutions",
     industry_type: "Health Services",
     vacancy: "31",
@@ -1035,7 +1035,7 @@ const companiesList = [{
     since: "2001"
 }, {
     id: 19,
-    image_src: require("@/assets/images/companies/img-5.png"),
+    image_src: "@/assets/images/companies/img-5.png",
     name: "iTest Factory",
     industry_type: "Chemical Industries",
     vacancy: "126",
@@ -1048,7 +1048,7 @@ const companiesList = [{
     since: "2016"
 }, {
     id: 20,
-    image_src: require("@/assets/images/companies/img-6.png"),
+    image_src: "@/assets/images/companies/img-6.png",
     name: "Zoetic Fashion",
     industry_type: "Textiles: Clothing, Footwear",
     vacancy: "21",

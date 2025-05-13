@@ -4,7 +4,7 @@
 const invoiceList = [{
     id: 1,
     invoiceId: "#VL25000351",
-    img: require("@/assets/images/users/avatar-2.jpg"),
+    img: "@/assets/images/users/avatar-2.jpg",
     name: "Diana Kohler",
     email: "dianakohler@velzon.com",
     country: "Brazil",
@@ -17,7 +17,7 @@ const invoiceList = [{
 {
     id: 2,
     invoiceId: "#VL25000352",
-    img: require("@/assets/images/users/avatar-3.jpg"),
+    img: "@/assets/images/users/avatar-3.jpg",
     name: "James Morris",
     email: "jamesmorris@velzon.com",
     country: "Germany",
@@ -30,7 +30,7 @@ const invoiceList = [{
 {
     id: 3,
     invoiceId: "#VL25000353",
-    img: require("@/assets/images/users/avatar-4.jpg"),
+    img: "@/assets/images/users/avatar-4.jpg",
     name: "Dawn Koh",
     email: "dawnkoh@velzon.com",
     country: "United Kingdom",
@@ -43,7 +43,7 @@ const invoiceList = [{
 {
     id: 4,
     invoiceId: "#VL25000354",
-    img: require("@/assets/images/users/avatar-5.jpg"),
+    img: "@/assets/images/users/avatar-5.jpg",
     name: "Tonya Noble",
     email: "tonynoble@velzon.com",
     country: "Spain",
@@ -56,7 +56,7 @@ const invoiceList = [{
 {
     id: 5,
     invoiceId: "#VL25000355",
-    img: require("@/assets/images/users/avatar-6.jpg"),
+    img: "@/assets/images/users/avatar-6.jpg",
     name: "David Nichols",
     email: "davidnochols@velzon.com",
     country: "United States of America",
@@ -69,7 +69,7 @@ const invoiceList = [{
 {
     id: 6,
     invoiceId: "#VL25000356",
-    img: require("@/assets/images/users/avatar-7.jpg"),
+    img: "@/assets/images/users/avatar-7.jpg",
     name: "Joseph Payten",
     email: "josephpayten@velzon.com",
     country: "France",
@@ -106,7 +106,7 @@ const invoiceList = [{
 {
     id: 9,
     invoiceId: "#VL25000359",
-    img: require("@/assets/images/users/avatar-8.jpg"),
+    img: "@/assets/images/users/avatar-8.jpg",
     name: "Ryan Cowie",
     email: "rayancowie@velzon.com",
     country: "France",
@@ -119,7 +119,7 @@ const invoiceList = [{
 {
     id: 10,
     invoiceId: "#VL25000360",
-    img: require("@/assets/images/users/avatar-4.jpg"),
+    img: "@/assets/images/users/avatar-4.jpg",
     name: "Christina Maier",
     email: "christinamaier@velzon.com",
     country: "United States of America",
@@ -132,7 +132,7 @@ const invoiceList = [{
 {
     id: 11,
     invoiceId: "#VL25000361",
-    img: require("@/assets/images/users/avatar-2.jpg"),
+    img: "@/assets/images/users/avatar-2.jpg",
     name: "Jennifer Winkel",
     email: "jenniferwinkal@velzon.com",
     country: "Brazil",

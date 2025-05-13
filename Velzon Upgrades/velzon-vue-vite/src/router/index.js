@@ -73,6 +73,72 @@ import CRM from '@/views/Dashboard/crm/index.vue'
 import NFT from '@/views/Dashboard/nft/index.vue'
 import Job from '@/views/Dashboard/job/index.vue'
 import Blog from '@/views/Dashboard/blog/index.vue'
+import Chat from '@/views/Apps/chat.vue'
+import FileManager from '@/views/Apps/filemanager.vue'
+import ToDoList from '@/views/Apps/todo.vue'
+import APIKey from '@/views/Apps/apikey.vue'
+
+import Mailbox from '@/views/Apps/email/mailbox.vue'
+import BasicAction from '@/views/Apps/email/email-basic.vue'
+import EcommerceAction from '@/views/Apps/email/email-ecommerce.vue'
+import LiveAuction from '@/views/Apps/nft/nft-auction.vue'
+
+import Collactions from '@/views/Apps/nft/nft-collection.vue'
+import Create from '@/views/Apps/nft/nft-create.vue'
+import Creators from '@/views/Apps/nft/nft-creators.vue'
+import ExploreNow from '@/views/Apps/nft/nft-explore.vue'
+import ItemDetail from '@/views/Apps/nft/nft-item-detail.vue'
+import Marketplace from '@/views/Apps/nft/nft-marketplace.vue'
+import Ranking from '@/views/Apps/nft/nft-ranking.vue'
+import Wallet from '@/views/Apps/nft/nft-wallet.vue'
+
+import ProjectsList from '@/views/Apps/projects/list.vue'
+import ProjectsOverview from '@/views/Apps/projects/overview.vue'
+import ProjectsCreate from '@/views/Apps/projects/create.vue'
+
+import TasksDetails from '@/views/Apps/tasks/details.vue'
+import TasksKanban from '@/views/Apps/tasks/kanban.vue'
+import TasksList from '@/views/Apps/tasks/list-view.vue'
+
+import CRMContacts from '@/views/Apps/crm/contacts.vue'
+import CRMcompanies from '@/views/Apps/crm/companies.vue'
+import CRMDeals from '@/views/Apps/crm/deals.vue'
+import CRMLeads from '@/views/Apps/crm/leads.vue'
+
+import Customers from '@/views/Apps/ecommerce/customers.vue'
+import Products from '@/views/Apps/ecommerce/products.vue'
+import ProductDetails from '@/views/Apps/ecommerce/product-details.vue'
+import Orders from '@/views/Apps/ecommerce/orders.vue'
+import OrderDetails from '@/views/Apps/ecommerce/order-details.vue'
+import CreateProduct from '@/views/Apps/ecommerce/add-product.vue'
+import ShoppingCart from '@/views/Apps/ecommerce/shopping-cart.vue'
+import CheckOut from '@/views/Apps/ecommerce/checkout.vue'
+import Sellers from '@/views/Apps/ecommerce/sellers.vue'
+import SellerDetails from '@/views/Apps/ecommerce/seller-details.vue'
+
+import BuySell from '@/views/Apps/crypto/buy-sell.vue'
+import KYCApplication from '@/views/Apps/crypto/kyc.vue'
+import ICOList from '@/views/Apps/crypto/ico.vue'
+import CryptoOrders from '@/views/Apps/crypto/orders.vue'
+import MyWallet from '@/views/Apps/crypto/wallet.vue'
+import Transactions from '@/views/Apps/crypto/transactions.vue'
+
+import InvoiceDetails from '@/views/Apps/invoices/details.vue'
+import InvoiceList from '@/views/Apps/invoices/list.vue'
+import CreateInvoice from '@/views/Apps/invoices/create.vue'
+
+import JobApplication from '@/views/Apps/jobs/application.vue'
+import CandidateGrid from '@/views/Apps/jobs/candidate-grid.vue'
+import CandidateLists from '@/views/Apps/jobs/candidate-lists.vue'
+import JobCategories from '@/views/Apps/jobs/categories.vue'
+import CompaniesList from '@/views/Apps/jobs/companies-list.vue'
+import JobDetails from '@/views/Apps/jobs/details.vue'
+import GridLists from '@/views/Apps/jobs/grid-lists.vue'
+import JobLists from '@/views/Apps/jobs/lists.vue'
+import NewJob from '@/views/Apps/jobs/new.vue'
+import JobStatistics from '@/views/Apps/jobs/statistics.vue'
+
+
 
 const routes = [
   {
@@ -151,6 +217,348 @@ const routes = [
     path: '/forgot-password',
     name: 'forgot-password',
     component: ForgotPassword
+  },
+  {
+    path: "/chat",
+    name: "chat",
+    meta: { title: "Chat", authRequired: true },
+    component: Chat
+  },
+  {
+    path: "/apps-file-manager",
+    name: "file manager",
+    meta: { title: "File Manager", authRequired: true },
+    component: FileManager
+  },
+  {
+    path: "/apps-todo",
+    name: "To Do List",
+    meta: { title: "To Do List", authRequired: true },
+    component: ToDoList
+  },
+  {
+    path: "/mailbox",
+    name: "mailbox",
+    meta: { title: "Mailbox", authRequired: true },
+    component: Mailbox
+  },
+  {
+    path: "/email/email-basic",
+    name: "email-basic",
+    meta: { title: "Basic Action", authRequired: true },
+    component: BasicAction
+  },
+  {
+    path: "/email/email-ecommerce",
+    name: "email-ecommerce",
+    meta: { title: "Ecommerce Action", authRequired: true },
+    component: EcommerceAction
+  },
+  {
+    path: "/apps/nft-auction",
+    name: "auction",
+    meta: { title: "Live Auction", authRequired: true },
+    component: LiveAuction
+  },
+  {
+    path: "/apps/nft-collection",
+    name: "collection",
+    meta: { title: "Collactions", authRequired: true },
+    component: Collactions
+  },
+  {
+    path: "/apps/nft-create",
+    name: "create",
+    meta: { title: "Create", authRequired: true },
+    component: Create 
+  },
+  {
+    path: "/apps/nft-creators",
+    name: "creators",
+    meta: { title: "Creators", authRequired: true },
+    component: Creators
+  },
+  {
+    path: "/apps/nft-explore",
+    name: "explore",
+    meta: { title: "Explore Now", authRequired: true },
+    component: ExploreNow 
+  },
+  {
+    path: "/apps/nft-item-detail",
+    name: "item-detail",
+    meta: { title: "Item Detail", authRequired: true },
+    component: ItemDetail
+  },
+  {
+    path: "/apps/nft-marketplace",
+    name: "marketplace",
+    meta: { title: "Marketplace", authRequired: true },
+    component: Marketplace
+  },
+  {
+    path: "/apps/nft-ranking",
+    name: "ranking",
+    meta: { title: "Ranking", authRequired: true },
+    component: Ranking
+  },
+  {
+    path: "/apps/nft-wallet",
+    name: "nft-wallet",
+    meta: { title: "Wallet", authRequired: true },
+    component: Wallet
+  },
+  {
+    path: "/apps/projects-list",
+    name: "projects-list",
+    meta: { title: "Projects List", authRequired: true },
+    component: ProjectsList
+  },
+  {
+    path: "/apps/projects-overview",
+    name: "projects Overview",
+    meta: { title: "Projects Overview", authRequired: true },
+    component: ProjectsOverview
+  },
+  {
+    path: "/apps/projects-create",
+    name: "projects-create",
+    meta: { title: "Projects Create", authRequired: true },
+    component: ProjectsCreate
+  },
+  {
+    path: "/apps/tasks-details",
+    name: "tasks-details",
+    meta: { title: "Tasks Details", authRequired: true },
+    component: TasksDetails
+  },
+  {
+    path: "/apps/tasks-kanban",
+    name: "tasks-kanban",
+    meta: { title: "Tasks Kanban", authRequired: true },
+    component: TasksKanban
+  },
+  {
+    path: "/apps/tasks-list-view",
+    name: "tasks-list-view",
+    meta: { title: "Tasks List", authRequired: true },
+    component: TasksList
+  },
+  // {
+  //   path: "/apps/tickets-details",
+  //   name: "tickets-details",
+  //   meta: { title: "Ticket Details", authRequired: true },
+  //   component: () => import("../views/tickets/details"),
+  // },
+  // {
+  //   path: "/apps/tickets-list",
+  //   name: "tickets-list",
+  //   meta: { title: "Tickets List", authRequired: true },
+  //   component: () => import("../views/tickets/list"),
+  // },
+  {
+    path: "/apps/crm-contacts",
+    name: "crm-contacts",
+    meta: { title: "CRM Contacts", authRequired: true },
+    component: CRMContacts
+  },
+  {
+    path: "/apps/crm-companies",
+    name: "crm-companies",
+    meta: { title: "CRM companies", authRequired: true },
+    component: CRMcompanies
+  },
+  {
+    path: "/apps/crm-deals",
+    name: "crm-deals",
+    meta: { title: "CRM Deals", authRequired: true },
+    component: CRMDeals
+  },
+  {
+    path: "/apps/crm-leads",
+    name: "crm-leads",
+    meta: { title: "CRM Leads", authRequired: true },
+    component: CRMLeads
+  },
+  {
+    path: "/ecommerce/customers",
+    name: "customers",
+    meta: { title: "Customers", authRequired: true },
+    component: Customers
+  },
+  {
+    path: "/ecommerce/products",
+    name: "products",
+    meta: { title: "Products", authRequired: true },
+    component: Products
+  },
+  {
+    path: "/ecommerce/product-details",
+    name: "product-detail",
+    meta: { title: "Product Details", authRequired: true },
+    component: ProductDetails
+  },
+  {
+    path: "/ecommerce/orders",
+    name: "orders",
+    meta: { title: "Orders", authRequired: true },
+    component: Orders
+  },
+  {
+    path: "/ecommerce/order-details",
+    name: "order-details",
+    meta: { title: "Order Details", authRequired: true },
+    component: OrderDetails
+  },
+  {
+    path: "/ecommerce/add-product",
+    name: "add-product",
+    meta: { title: "Create Product", authRequired: true },
+    component: CreateProduct
+  },
+  {
+    path: "/ecommerce/shopping-cart",
+    name: "shopping cart",
+    meta: { title: "Shopping Cart", authRequired: true },
+    component: ShoppingCart
+  },
+  {
+    path: "/ecommerce/checkout",
+    name: "checkout",
+    meta: { title: "Check Out", authRequired: true },
+    component: CheckOut
+  },
+  {
+    path: "/ecommerce/sellers",
+    name: "sellers",
+    meta: { title: "Sellers", authRequired: true },
+    component: Sellers
+  },
+  {
+    path: "/ecommerce/seller-details",
+    name: "seller-details",
+    meta: { title: "Seller Details", authRequired: true },
+    component: SellerDetails
+  },
+  {
+    path: "/crypto/buy-sell",
+    name: "buy/sell",
+    meta: { title: "Buy & Sell", authRequired: true },
+    component: BuySell
+  },
+  {
+    path: "/crypto/kyc",
+    name: "kyc",
+    meta: { title: "KYC Application", authRequired: true },
+    component: KYCApplication
+  },
+  {
+    path: "/crypto/ico",
+    name: "ico",
+    meta: { title: "ICO List", authRequired: true },
+    component: ICOList
+  },
+  {
+    path: "/crypto/orders",
+    name: "crypto-orders",
+    meta: { title: "Orders", authRequired: true },
+    component: CryptoOrders
+  },
+  {
+    path: "/crypto/wallet",
+    name: "wallet",
+    meta: { title: "My Wallet", authRequired: true },
+    component: MyWallet
+  },
+  {
+    path: "/crypto/transactions",
+    name: "transactions",
+    meta: { title: "Transactions", authRequired: true },
+    component: Transactions
+  },
+  {
+    path: "/invoices/detail/:id?",
+    name: "invoice-detail",
+    meta: { title: "Invoice Details", authRequired: true },
+    component: InvoiceDetails
+  },
+  {
+    path: "/invoices/list",
+    name: "invoice-list",
+    meta: { title: "Invoice List", authRequired: true },
+    component: InvoiceList
+  },
+  {
+    path: "/invoices/create",
+    name: "invoice-create",
+    meta: { title: "Create Invoice", authRequired: true },
+    component: CreateInvoice
+  },
+  {
+    path: "/jobs/application",
+    name: "job-application",
+    meta: { title: "Job Application", authRequired: true },
+    component: JobApplication
+  },
+  {
+    path: "/jobs/candidate-grid",
+    name: "job-candidate-grid",
+    meta: { title: "Candidate Grid", authRequired: true },
+    component: CandidateGrid
+  },
+  {
+    path: "/jobs/candidate-lists",
+    name: "job-candidate-lists",
+    meta: { title: "Candidate Lists", authRequired: true },
+    component: CandidateLists
+  },
+  {
+    path: "/jobs/categories",
+    name: "job-categories",
+    meta: { title: "Job Categories", authRequired: true },
+    component: JobCategories
+  },
+  {
+    path: "/jobs/companies-list",
+    name: "job-companies-list",
+    meta: { title: "Companies List", authRequired: true },
+    component: CompaniesList
+  },
+  {
+    path: "/jobs/details",
+    name: "job-details",
+    meta: { title: "Job Details", authRequired: true },
+    component: JobDetails
+  },
+  {
+    path: "/jobs/grid-lists",
+    name: "job-grid-lists",
+    meta: { title: "Grid Lists", authRequired: true },
+    component: GridLists
+  },
+  {
+    path: "/jobs/lists",
+    name: "job-lists",
+    meta: { title: "Job Lists", authRequired: true },
+    component: JobLists
+  },
+  {
+    path: "/jobs/new",
+    name: "job-new",
+    meta: { title: "New Job", authRequired: true },
+    component: NewJob
+  },
+  {
+    path: "/jobs/statistics",
+    name: "job-statistics",
+    meta: { title: "Job Statistics", authRequired: true },
+    component: JobStatistics
+  },
+  {
+    path: "/apps-api-key",
+    name: "API Key",
+    meta: { title: "API Key", authRequired: true },
+    component: APIKey
   },
   {
     path: '/animation',

@@ -6,10 +6,10 @@ const todoList = [{
     todo: 'Added Email Templates',
     assignedto: [{
         assigneeName: "Test 01",
-        assigneeImg: require("@/assets/images/users/avatar-1.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-1.jpg",
     }, {
         assigneeName: "John Robles",
-        assigneeImg: require("@/assets/images/users/avatar-3.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-3.jpg",
     }
     ],
     dueDate: '03 Apr, 2022',
@@ -21,13 +21,13 @@ const todoList = [{
     todo: 'Additional Mailbox',
     assignedto: [{
         assigneeName: "Virgie Price",
-        assigneeImg: require("@/assets/images/users/avatar-5.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-5.jpg",
     }, {
         assigneeName: "Diego Norris",
-        assigneeImg: require("@/assets/images/users/avatar-9.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-9.jpg",
     }, {
         assigneeName: "Anthony Mills",
-        assigneeImg: require("@/assets/images/users/avatar-10.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-10.jpg",
     }
     ],
     dueDate: '02 Apr, 2022',
@@ -39,16 +39,16 @@ const todoList = [{
     todo: 'Make a creating an account profile',
     assignedto: [{
         assigneeName: "Virgie Price",
-        assigneeImg: require("@/assets/images/users/avatar-5.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-5.jpg",
     }, {
         assigneeName: "Marian Angel",
-        assigneeImg: require("@/assets/images/users/avatar-6.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-6.jpg",
     }, {
         assigneeName: "Johnnie Walton",
-        assigneeImg: require("@/assets/images/users/avatar-7.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-7.jpg",
     }, {
         assigneeName: "Donna Weston",
-        assigneeImg: require("@/assets/images/users/avatar-8.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-8.jpg",
     }
     ],
     dueDate: '02 May, 2022',
@@ -60,7 +60,7 @@ const todoList = [{
     todo: 'Added new tabs styles',
     assignedto: [{
         assigneeName: "James Forbes",
-        assigneeImg: require("@/assets/images/users/avatar-2.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-2.jpg",
     }
     ],
     dueDate: '01 May, 2022',
@@ -72,13 +72,13 @@ const todoList = [{
     todo: 'Added bdge new style - gradient',
     assignedto: [{
         assigneeName: "John Robles",
-        assigneeImg: require("@/assets/images/users/avatar-3.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-3.jpg",
     }, {
         assigneeName: "Anthony Mills",
-        assigneeImg: require("@/assets/images/users/avatar-10.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-10.jpg",
     }, {
         assigneeName: "Diego Norris",
-        assigneeImg: require("@/assets/images/users/avatar-9.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-9.jpg",
     }
     ],
     dueDate: '01 May, 2022',
@@ -90,10 +90,10 @@ const todoList = [{
     todo: 'Added Back to Top button',
     assignedto: [{
         assigneeName: "Marian Angel",
-        assigneeImg: require("@/assets/images/users/avatar-6.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-6.jpg",
     }, {
         assigneeName: "Johnnie Walton",
-        assigneeImg: require("@/assets/images/users/avatar-7.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-7.jpg",
     }
     ],
     dueDate: '30 Apr, 2022',
@@ -105,13 +105,13 @@ const todoList = [{
     todo: 'Added File Manager Apps',
     assignedto: [{
         assigneeName: "John Robles",
-        assigneeImg: require("@/assets/images/users/avatar-3.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-3.jpg",
     }, {
         assigneeName: "Mary Gant",
-        assigneeImg: require("@/assets/images/users/avatar-4.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-4.jpg",
     }, {
         assigneeName: "Virgie Price",
-        assigneeImg: require("@/assets/images/users/avatar-5.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-5.jpg",
     }
     ],
     dueDate: '29 Apr, 2022',
@@ -123,13 +123,13 @@ const todoList = [{
     todo: 'Datatable with jQuery cdn',
     assignedto: [{
         assigneeName: "Marian Angel",
-        assigneeImg: require("@/assets/images/users/avatar-6.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-6.jpg",
     }, {
         assigneeName: "Johnnie Walton",
-        assigneeImg: require("@/assets/images/users/avatar-7.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-7.jpg",
     }, {
         assigneeName: "Donna Weston",
-        assigneeImg: require("@/assets/images/users/avatar-8.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-8.jpg",
     }
     ],
     dueDate: '28 Apr, 2022',
@@ -141,10 +141,10 @@ const todoList = [{
     todo: 'Profile Page Structure',
     assignedto: [{
         assigneeName: "Mary Gant",
-        assigneeImg: require("@/assets/images/users/avatar-4.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-4.jpg",
     }, {
         assigneeName: "Virgie Price",
-        assigneeImg: require("@/assets/images/users/avatar-5.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-5.jpg",
     }
     ],
     dueDate: '27 Apr, 2022',
@@ -156,7 +156,7 @@ const todoList = [{
     todo: 'Make a creating an account profile',
     assignedto: [{
         assigneeName: "John Robles",
-        assigneeImg: require("@/assets/images/users/avatar-3.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-3.jpg",
     }
     ],
     dueDate: '26 Apr, 2022',
@@ -168,13 +168,13 @@ const todoList = [{
     todo: 'Change email option process',
     assignedto: [{
         assigneeName: "John Robles",
-        assigneeImg: require("@/assets/images/users/avatar-3.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-3.jpg",
     }, {
         assigneeName: "Anthony Mills",
-        assigneeImg: require("@/assets/images/users/avatar-10.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-10.jpg",
     }, {
         assigneeName: "Diego Norris",
-        assigneeImg: require("@/assets/images/users/avatar-9.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-9.jpg",
     }
     ],
     dueDate: '25 Apr, 2022',
@@ -186,13 +186,13 @@ const todoList = [{
     todo: 'Brand Logo design',
     assignedto: [{
         assigneeName: "James Forbes",
-        assigneeImg: require("@/assets/images/users/avatar-2.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-2.jpg",
     }, {
         assigneeName: "Anthony Mills",
-        assigneeImg: require("@/assets/images/users/avatar-10.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-10.jpg",
     }, {
         assigneeName: "Diego Norris",
-        assigneeImg: require("@/assets/images/users/avatar-9.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-9.jpg",
     }
     ],
     dueDate: '25 Apr, 2022',
@@ -204,16 +204,16 @@ const todoList = [{
     todo: 'Add Dynamic Contact List',
     assignedto: [{
         assigneeName: "Virgie Price",
-        assigneeImg: require("@/assets/images/users/avatar-5.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-5.jpg",
     }, {
         assigneeName: "Marian Angel",
-        assigneeImg: require("@/assets/images/users/avatar-6.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-6.jpg",
     }, {
         assigneeName: "Johnnie Walton",
-        assigneeImg: require("@/assets/images/users/avatar-7.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-7.jpg",
     }, {
         assigneeName: "Donna Weston",
-        assigneeImg: require("@/assets/images/users/avatar-8.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-8.jpg",
     }
     ],
     dueDate: '24 Apr, 2022',
@@ -225,13 +225,13 @@ const todoList = [{
     todo: 'Additional Calendar',
     assignedto: [{
         assigneeName: "Virgie Price",
-        assigneeImg: require("@/assets/images/users/avatar-5.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-5.jpg",
     }, {
         assigneeName: "Diego Norris",
-        assigneeImg: require("@/assets/images/users/avatar-9.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-9.jpg",
     }, {
         assigneeName: "Anthony Mills",
-        assigneeImg: require("@/assets/images/users/avatar-10.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-10.jpg",
     }
     ],
     dueDate: '23 Apr, 2022',
@@ -243,10 +243,10 @@ const todoList = [{
     todo: 'Added Select2',
     assignedto: [{
         assigneeName: "Curtis Saenz",
-        assigneeImg: require("@/assets/images/users/avatar-1.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-1.jpg",
     }, {
         assigneeName: "John Robles",
-        assigneeImg: require("@/assets/images/users/avatar-3.jpg"),
+        assigneeImg: "@/assets/images/users/avatar-3.jpg",
     }
     ],
     dueDate: '23 Apr, 2022',

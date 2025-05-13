@@ -4,7 +4,7 @@
 const projectWidgets1 = [{
     id: 1,
     time: "Updated 3hrs ago",
-    img: require("@/assets/images/brands/slack.png"),
+    img: "@/assets/images/brands/slack.png",
     color: "warning",
     label: "Slack brand logo design",
     caption: "Create a Brand logo design for a velzon admin.",
@@ -12,7 +12,7 @@ const projectWidgets1 = [{
     progressBar: "34%",
     subItem: [{
         id: 1,
-        imgFooter: require("@/assets/images/users/avatar-2.jpg")
+        imgFooter: "@/assets/images/users/avatar-2.jpg"
     },
     {
         id: 2,
@@ -24,7 +24,7 @@ const projectWidgets1 = [{
 {
     id: 2,
     time: "Last update : 08 May",
-    img: require("@/assets/images/brands/dribbble.png"),
+    img: "@/assets/images/brands/dribbble.png",
     color: "danger",
     label: "Redesign - Landing page",
     caption: "Resign a landing page design. as per abc minimal design.",
@@ -32,7 +32,7 @@ const projectWidgets1 = [{
     progressBar: "54%",
     subItem: [{
         id: 1,
-        imgFooter: require("@/assets/images/users/avatar-3.jpg")
+        imgFooter: "@/assets/images/users/avatar-3.jpg"
     },
     {
         id: 2,
@@ -41,7 +41,7 @@ const projectWidgets1 = [{
     },
     {
         id: 3,
-        imgFooter: require("@/assets/images/users/avatar-4.jpg")
+        imgFooter: "@/assets/images/users/avatar-4.jpg"
     },
     {
         id: 4,
@@ -53,7 +53,7 @@ const projectWidgets1 = [{
 {
     id: 3,
     time: "Updated 2hrs ago",
-    img: require("@/assets/images/brands/mail_chimp.png"),
+    img: "@/assets/images/brands/mail_chimp.png",
     color: "success",
     label: "Chat Application",
     caption: "Create a Chat application for business messaging needs. Collaborate efficiently with secure direct messages and group chats.",
@@ -61,7 +61,7 @@ const projectWidgets1 = [{
     progressBar: "65%",
     subItem: [{
         id: 1,
-        imgFooter: require("@/assets/images/users/avatar-5.jpg")
+        imgFooter: "@/assets/images/users/avatar-5.jpg"
     },
     {
         id: 2,
@@ -78,7 +78,7 @@ const projectWidgets1 = [{
 {
     id: 4,
     time: "Last update : 21 Jun",
-    img: require("@/assets/images/brands/dropbox.png"),
+    img: "@/assets/images/brands/dropbox.png",
     color: "info",
     label: "Project App",
     caption: "Create a project application for a project management and task management.",
@@ -116,11 +116,11 @@ const projectWidgets2 = [{
     },
     {
         id: 2,
-        imgTeam: require("@/assets/images/users/avatar-5.jpg")
+        imgTeam: "@/assets/images/users/avatar-5.jpg"
     },
     {
         id: 3,
-        imgTeam: require("@/assets/images/users/avatar-6.jpg")
+        imgTeam: "@/assets/images/users/avatar-6.jpg"
     },
     {
         id: 4,
@@ -138,11 +138,11 @@ const projectWidgets2 = [{
     deadline: "10 Jun, 2021",
     subItem: [{
         id: 1,
-        imgTeam: require("@/assets/images/users/avatar-7.jpg")
+        imgTeam: "@/assets/images/users/avatar-7.jpg"
     },
     {
         id: 2,
-        imgTeam: require("@/assets/images/users/avatar-8.jpg")
+        imgTeam: "@/assets/images/users/avatar-8.jpg"
     },
     {
         id: 3,
@@ -179,7 +179,7 @@ const projectWidgets2 = [{
     deadline: "22 Nov, 2021",
     subItem: [{
         id: 1,
-        imgTeam: require("@/assets/images/users/avatar-8.jpg")
+        imgTeam: "@/assets/images/users/avatar-8.jpg"
     },
     {
         id: 2,
@@ -191,7 +191,7 @@ const projectWidgets2 = [{
 
 const projectWidgets3 = [{
     id: 1,
-    img: require("@/assets/images/brands/dribbble.png"),
+    img: "@/assets/images/brands/dribbble.png",
     color: "secondary-subtle",
     label: "Kanban Board",
     status: "Inprogress",
@@ -206,7 +206,7 @@ const projectWidgets3 = [{
     },
     {
         id: 2,
-        imgTeam: require("@/assets/images/users/avatar-5.jpg")
+        imgTeam: "@/assets/images/users/avatar-5.jpg"
     },
     {
         id: 3,
@@ -216,7 +216,7 @@ const projectWidgets3 = [{
 },
 {
     id: 2,
-    img: require("@/assets/images/brands/slack.png"),
+    img: "@/assets/images/brands/slack.png",
     color: "light",
     label: "Ecommerce app",
     status: "Inprogress",
@@ -226,11 +226,11 @@ const projectWidgets3 = [{
     progressBar: "20%",
     subItem: [{
         id: 1,
-        imgTeam: require("@/assets/images/users/avatar-9.jpg")
+        imgTeam: "@/assets/images/users/avatar-9.jpg"
     },
     {
         id: 2,
-        imgTeam: require("@/assets/images/users/avatar-10.jpg")
+        imgTeam: "@/assets/images/users/avatar-10.jpg"
     },
     {
         id: 3,
@@ -240,7 +240,7 @@ const projectWidgets3 = [{
 },
 {
     id: 3,
-    img: require("@/assets/images/brands/dropbox.png"),
+    img: "@/assets/images/brands/dropbox.png",
     color: "primary-subtle",
     label: "Redesign - Landing page",
     status: "Inprogress",
@@ -250,7 +250,7 @@ const projectWidgets3 = [{
     progressBar: "54%",
     subItem: [{
         id: 1,
-        imgTeam: require("@/assets/images/users/avatar-3.jpg")
+        imgTeam: "@/assets/images/users/avatar-3.jpg"
     },
     {
         id: 2,
@@ -259,7 +259,7 @@ const projectWidgets3 = [{
     },
     {
         id: 3,
-        imgTeam: require("@/assets/images/users/avatar-4.jpg")
+        imgTeam: "@/assets/images/users/avatar-4.jpg"
     },
     {
         id: 4,
@@ -269,7 +269,7 @@ const projectWidgets3 = [{
 },
 {
     id: 4,
-    img: require("@/assets/images/brands/mail_chimp.png"),
+    img: "@/assets/images/brands/mail_chimp.png",
     color: "danger-subtle",
     label: "Multipurpose landing template",
     status: "Completed",
@@ -284,11 +284,11 @@ const projectWidgets3 = [{
     },
     {
         id: 2,
-        imgTeam: require("@/assets/images/users/avatar-5.jpg")
+        imgTeam: "@/assets/images/users/avatar-5.jpg"
     },
     {
         id: 3,
-        imgTeam: require("@/assets/images/users/avatar-6.jpg")
+        imgTeam: "@/assets/images/users/avatar-6.jpg"
     },
     {
         id: 4,

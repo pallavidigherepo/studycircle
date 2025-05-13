@@ -3,7 +3,7 @@
 // Ecommerce > Products
 const productsData = [{
     id: 1,
-    image: require("@/assets/images/products/img-1.png"),
+    image:"@/assets/images/products/img-1.png",
     name: "Half Sleeve Round Neck T-Shirts",
     category: "Clothes",
     stock: "12",
@@ -14,7 +14,7 @@ const productsData = [{
 },
 {
     id: 2,
-    image: require("@/assets/images/products/img-2.png"),
+    image:"@/assets/images/products/img-2.png",
     name: "Urban Ladder Pashe Chair",
     category: "Furniture",
     stock: "06",
@@ -25,7 +25,7 @@ const productsData = [{
 },
 {
     id: 3,
-    image: require("@/assets/images/products/img-3.png"),
+    image:"@/assets/images/products/img-3.png",
     name: "350 ml Glass Grocery Container",
     category: "Kitchen Storage & Containers",
     stock: "10",
@@ -36,7 +36,7 @@ const productsData = [{
 },
 {
     id: 4,
-    image: require("@/assets/images/products/img-4.png"),
+    image:"@/assets/images/products/img-4.png",
     name: "Fabric Dual Tone Living Room Chair",
     category: "Furniture",
     stock: "15",
@@ -47,7 +47,7 @@ const productsData = [{
 },
 {
     id: 5,
-    image: require("@/assets/images/products/img-5.png"),
+    image:"@/assets/images/products/img-5.png",
     name: "Crux Motorsports Helmet",
     category: "Bike Accessories",
     stock: "08",
@@ -58,7 +58,7 @@ const productsData = [{
 },
 {
     id: 6,
-    image: require("@/assets/images/products/img-6.png"),
+    image:"@/assets/images/products/img-6.png",
     name: "Half Sleeve T-Shirts (Blue)",
     category: "Clothes",
     stock: "15",
@@ -69,7 +69,7 @@ const productsData = [{
 },
 {
     id: 7,
-    image: require("@/assets/images/products/img-7.png"),
+    image:"@/assets/images/products/img-7.png",
     name: "Noise Evolve Smartwatch",
     category: "Watches",
     stock: "12",
@@ -80,7 +80,7 @@ const productsData = [{
 },
 {
     id: 8,
-    image: require("@/assets/images/products/img-8.png"),
+    image:"@/assets/images/products/img-8.png",
     name: "Sweatshirt for Men (Pink)",
     category: "Clothes",
     stock: "20",
@@ -91,7 +91,7 @@ const productsData = [{
 },
 {
     id: 9,
-    image: require("@/assets/images/products/img-9.png"),
+    image:"@/assets/images/products/img-9.png",
     name: "Reusable Ecological Coffee Cup",
     category: "Tableware & Dinnerware",
     stock: "14",
@@ -102,7 +102,7 @@ const productsData = [{
 },
 {
     id: 10,
-    image: require("@/assets/images/products/img-10.png"),
+    image:"@/assets/images/products/img-10.png",
     name: "Travel Carrying Pouch Bag",
     category: "Bags, Wallets and Luggage",
     stock: "20",
@@ -113,7 +113,7 @@ const productsData = [{
 },
 {
     id: 11,
-    image: require("@/assets/images/products/img-1.png"),
+    image:"@/assets/images/products/img-1.png",
     name: "Half Sleeve Round Neck T-Shirts",
     category: "Clothes",
     stock: "12",
@@ -124,7 +124,7 @@ const productsData = [{
 },
 {
     id: 12,
-    image: require("@/assets/images/products/img-2.png"),
+    image:"@/assets/images/products/img-2.png",
     name: "Urban Ladder Pashe Chair",
     category: "Furniture",
     stock: "06",
@@ -394,7 +394,7 @@ const customerList = [{
 const sellersList = [{
     id: 1,
     isTrending: true,
-    img: require("@/assets/images/companies/img-1.png"),
+    img:"@/assets/images/companies/img-1.png",
     label: "Force Medicines",
     name: "David Marshall",
     stock: "452",
@@ -405,7 +405,7 @@ const sellersList = [{
 {
     id: 2,
     isTrending: false,
-    img: require("@/assets/images/companies/img-2.png"),
+    img:"@/assets/images/companies/img-2.png",
     label: "Micro Design",
     name: "Katia Stapleton",
     stock: "784",
@@ -416,7 +416,7 @@ const sellersList = [{
 {
     id: 3,
     isTrending: false,
-    img: require("@/assets/images/companies/img-3.png"),
+    img:"@/assets/images/companies/img-3.png",
     label: "Nesta Technologies",
     name: "Harley Fuller",
     stock: "320",
@@ -427,7 +427,7 @@ const sellersList = [{
 {
     id: 4,
     isTrending: true,
-    img: require("@/assets/images/companies/img-4.png"),
+    img:"@/assets/images/companies/img-4.png",
     series: [{ data: [26, 15, 48, 12, 47, 19, 35, 19, 85, 68, 50] }],
     chartcolor: "#67b173",
     label: "iTest Factory",
@@ -438,7 +438,7 @@ const sellersList = [{
 {
     id: 5,
     isTrending: false,
-    img: require("@/assets/images/companies/img-5.png"),
+    img:"@/assets/images/companies/img-5.png",
     series: [{ data: [60, 67, 12, 49, 6, 78, 63, 51, 33, 8, 16] }],
     chartcolor: "#ffc84b",
     label: "Meta4Systems",
@@ -449,7 +449,7 @@ const sellersList = [{
 {
     id: 6,
     isTrending: true,
-    img: require("@/assets/images/companies/img-6.png"),
+    img:"@/assets/images/companies/img-6.png",
     series: [{ data: [78, 63, 51, 33, 8, 16, 60, 67, 12, 49] }],
     chartcolor: "#67b173",
     label: "Digitech Galaxy",
@@ -460,7 +460,7 @@ const sellersList = [{
 {
     id: 7,
     isTrending: true,
-    img: require("@/assets/images/companies/img-7.png"),
+    img:"@/assets/images/companies/img-7.png",
     series: [{ data: [15, 35, 75, 20, 67, 8, 42, 30, 5, 35] }],
     chartcolor: "#f44336",
     label: "Syntyce Solutions",
@@ -471,7 +471,7 @@ const sellersList = [{
 {
     id: 8,
     isTrending: false,
-    img: require("@/assets/images/companies/img-8.png"),
+    img:"@/assets/images/companies/img-8.png",
     series: [{ data: [45, 32, 68, 55, 36, 10, 48, 25, 74, 54] }],
     chartcolor: "#ffc84b",
     label: "Zoetic Fashion",

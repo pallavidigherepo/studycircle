@@ -4,7 +4,7 @@
 const rankinglist = [{
     id: 1,
     ranking: 1,
-    img: require("@/assets/images/nft/img-01.jpg"),
+    img: "@/assets/images/nft/img-01.jpg",
     collection: "Abstract Face Painting",
     volume_price: "7,50,000",
     hours: 342.35,
@@ -26,7 +26,7 @@ const rankinglist = [{
 {
     id: 3,
     ranking: 3,
-    img: require("@/assets/images/nft/img-02.jpg"),
+    img: "@/assets/images/nft/img-02.jpg",
     collection: "Creative Filtered Portrait",
     volume_price: "1,36,000",
     hours: 170.31,
@@ -48,7 +48,7 @@ const rankinglist = [{
 {
     id: 5,
     ranking: 5,
-    img: require("@/assets/images/nft/img-04.jpg"),
+    img: "@/assets/images/nft/img-04.jpg",
     collection: "Robotic Body Art",
     volume_price: "25,800",
     hours: -347.42,
@@ -59,7 +59,7 @@ const rankinglist = [{
 {
     id: 6,
     ranking: 6,
-    img: require("@/assets/images/nft/img-06.jpg"),
+    img: "@/assets/images/nft/img-06.jpg",
     collection: "Smillevers Crypto",
     volume_price: "37,100",
     hours: 1.42,
@@ -103,7 +103,7 @@ const rankinglist = [{
 {
     id: 10,
     ranking: 10,
-    img: require("@/assets/images/nft/img-03.jpg"),
+    img: "@/assets/images/nft/img-03.jpg",
     collection: "Walking On Air",
     volume_price: "3,35,750",
     hours: 238.13,
@@ -114,7 +114,7 @@ const rankinglist = [{
 {
     id: 11,
     ranking: 11,
-    img: require("@/assets/images/nft/img-04.jpg"),
+    img: "@/assets/images/nft/img-04.jpg",
     collection: "Highstreet IHO Part",
     volume_price: "35,750",
     hours: 23.1,

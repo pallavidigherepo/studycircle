@@ -6,7 +6,7 @@ const transactions = [{
     icon: "ri-arrow-right-up-fill",
     date: "24 Dec, 2021",
     time: "08:58AM",
-    image: require("@/assets/images/svg/crypto-icons/btc.svg"),
+    image: "@/assets/images/svg/crypto-icons/btc.svg",
     currency: "BTC",
     from: "Wallet",
     to: "Thomas Taylor",
@@ -22,7 +22,7 @@ const transactions = [{
     icon: "ri-arrow-left-down-fill",
     date: "16 Dec, 2021",
     time: "10:58AM",
-    image: require("@/assets/images/svg/crypto-icons/eth.svg"),
+    image: "@/assets/images/svg/crypto-icons/eth.svg",
     currency: "ETH",
     from: "Tonya Noble",
     to: "Wallet",
@@ -38,7 +38,7 @@ const transactions = [{
     icon: "ri-arrow-left-down-fill",
     date: "04 Jan, 2021",
     time: "10:58AM",
-    image: require("@/assets/images/svg/crypto-icons/eur.svg"),
+    image: "@/assets/images/svg/crypto-icons/eur.svg",
     currency: "EUR",
     from: "Nancy Martino",
     to: "Wallet",
@@ -54,7 +54,7 @@ const transactions = [{
     icon: "ri-arrow-right-up-fill",
     date: "28 Oct, 2021",
     time: "11:42AM",
-    image: require("@/assets/images/svg/crypto-icons/gbp.svg"),
+    image: "@/assets/images/svg/crypto-icons/gbp.svg",
     currency: "GBP",
     from: "Wallet",
     to: "Michael Morris",
@@ -70,7 +70,7 @@ const transactions = [{
     icon: "ri-arrow-left-down-fill",
     date: "14 Nov, 2021",
     time: "12:38PM",
-    image: require("@/assets/images/svg/crypto-icons/jpy.svg"),
+    image: "@/assets/images/svg/crypto-icons/jpy.svg",
     currency: "JPY",
     from: "Alexis Clarke",
     to: "Wallet",
@@ -86,7 +86,7 @@ const transactions = [{
     icon: "ri-arrow-right-up-fill",
     date: "02 Jan, 2021",
     time: "08:58AM",
-    image: require("@/assets/images/svg/crypto-icons/xrp.svg"),
+    image: "@/assets/images/svg/crypto-icons/xrp.svg",
     currency: "XRP",
     from: "Wallet",
     to: "Kevin Dawson",
@@ -102,7 +102,7 @@ const transactions = [{
     icon: "ri-arrow-left-down-fill",
     date: "17 Oct, 2021",
     time: "07:08PM",
-    image: require("@/assets/images/svg/crypto-icons/ltc.svg"),
+    image: "@/assets/images/svg/crypto-icons/ltc.svg",
     currency: "LTC",
     from: "Tonya Noble",
     to: "Wallet",
@@ -118,7 +118,7 @@ const transactions = [{
     icon: "ri-arrow-right-up-fill",
     date: "27 Dec, 2021",
     time: "01:24PM",
-    image: require("@/assets/images/svg/crypto-icons/xmr.svg"),
+    image: "@/assets/images/svg/crypto-icons/xmr.svg",
     currency: "XMR",
     from: "Wallet",
     to: "Mary Cousar",
@@ -134,7 +134,7 @@ const transactions = [{
     icon: "ri-arrow-left-down-fill",
     date: "23 Dec, 2021",
     time: "01:47AM",
-    image: require("@/assets/images/svg/crypto-icons/xpm.svg"),
+    image: "@/assets/images/svg/crypto-icons/xpm.svg",
     currency: "XPM",
     from: "Glen Matney",
     to: "Wallet",
@@ -150,7 +150,7 @@ const transactions = [{
     icon: "ri-arrow-left-down-fill",
     date: "15 Dec, 2021",
     time: "08:58AM",
-    image: require("@/assets/images/svg/crypto-icons/ppt.svg"),
+    image: "@/assets/images/svg/crypto-icons/ppt.svg",
     currency: "PPT",
     from: "Timothy Smith",
     to: "Wallet",
@@ -165,7 +165,7 @@ const transactions = [{
 // Crypto > Buy & Sell
 const buySellList = [{
     id: 1,
-    image: require("@/assets/images/svg/crypto-icons/btc.svg"),
+    image: "@/assets/images/svg/crypto-icons/btc.svg",
     currency_name: "Bitcoin (BTC)",
     price: "47071",
     pairs: "BTC/USD",
@@ -176,7 +176,7 @@ const buySellList = [{
 },
 {
     id: 2,
-    image: require("@/assets/images/svg/crypto-icons/eth.svg"),
+    image: "@/assets/images/svg/crypto-icons/eth.svg",
     currency_name: "Ethereum (ETH)",
     price: "3,813.14",
     pairs: "ETH/USDT",
@@ -187,7 +187,7 @@ const buySellList = [{
 },
 {
     id: 3,
-    image: require("@/assets/images/svg/crypto-icons/ltc.svg"),
+    image: "@/assets/images/svg/crypto-icons/ltc.svg",
     currency_name: "Litecoin (LTC)",
     price: "149.65",
     pairs: "LTC/USDT",
@@ -198,7 +198,7 @@ const buySellList = [{
 },
 {
     id: 4,
-    image: require("@/assets/images/svg/crypto-icons/fil.svg"),
+    image: "@/assets/images/svg/crypto-icons/fil.svg",
     currency_name: "Filecoin (FIL)",
     price: "35.21",
     pairs: "FIL/USD",
@@ -209,7 +209,7 @@ const buySellList = [{
 },
 {
     id: 5,
-    image: require("@/assets/images/svg/crypto-icons/eth.svg"),
+    image: "@/assets/images/svg/crypto-icons/eth.svg",
     currency_name: "Ethereum (ETH)",
     price: "3,813.14",
     pairs: "ETH/USDT",
@@ -220,7 +220,7 @@ const buySellList = [{
 },
 {
     id: 6,
-    image: require("@/assets/images/svg/crypto-icons/btc.svg"),
+    image: "@/assets/images/svg/crypto-icons/btc.svg",
     currency_name: "Bitcoin (BTC)",
     price: "47,071.60",
     pairs: "BTC/USD",
@@ -231,7 +231,7 @@ const buySellList = [{
 },
 {
     id: 7,
-    image: require("@/assets/images/svg/crypto-icons/aave.svg"),
+    image: "@/assets/images/svg/crypto-icons/aave.svg",
     currency_name: "Aave (AAVE)",
     price: "275.47",
     pairs: "AAVE/USDT",
@@ -242,7 +242,7 @@ const buySellList = [{
 },
 {
     id: 8,
-    image: require("@/assets/images/svg/crypto-icons/dot.svg"),
+    image: "@/assets/images/svg/crypto-icons/dot.svg",
     currency_name: "Polkadot (DOT)",
     price: "28.88",
     pairs: "DOT/USD",
@@ -253,7 +253,7 @@ const buySellList = [{
 },
 {
     id: 9,
-    image: require("@/assets/images/svg/crypto-icons/ant.svg"),
+    image: "@/assets/images/svg/crypto-icons/ant.svg",
     currency_name: "Aragon (ANT)",
     price: "13.31",
     pairs: "ANT/USD",
@@ -264,7 +264,7 @@ const buySellList = [{
 },
 {
     id: 10,
-    image: require("@/assets/images/svg/crypto-icons/ada.svg"),
+    image: "@/assets/images/svg/crypto-icons/ada.svg",
     currency_name: "Cardano (ADA)",
     price: "1.35",
     pairs: "ADA/USD",
@@ -278,7 +278,7 @@ const buySellList = [{
 const cryptoOrders = [{
     id: 1,
     date: ["02 Jan, 2022", "03:45PM"],
-    img: require("@/assets/images/svg/crypto-icons/btc.svg"),
+    img: "@/assets/images/svg/crypto-icons/btc.svg",
     coinName: "Bitcoin (BTC)",
     type: "Buy",
     typeClass: "success",
@@ -292,7 +292,7 @@ const cryptoOrders = [{
 {
     id: 2,
     date: ["27 Dec, 2021", "02:47PM"],
-    img: require("@/assets/images/svg/crypto-icons/eth.svg"),
+    img: "@/assets/images/svg/crypto-icons/eth.svg",
     coinName: "Ethereum (ETH)",
     type: "Sell",
     typeClass: "danger",
@@ -306,7 +306,7 @@ const cryptoOrders = [{
 {
     id: 3,
     date: ["19 Dec, 2021", "10:24AM"],
-    img: require("@/assets/images/svg/crypto-icons/xmr.svg"),
+    img: "@/assets/images/svg/crypto-icons/xmr.svg",
     coinName: "Monero (XMR)",
     type: "Sell",
     typeClass: "danger",
@@ -320,7 +320,7 @@ const cryptoOrders = [{
 {
     id: 4,
     date: ["19 Dec, 2021", "11:20AM"],
-    img: require("@/assets/images/svg/crypto-icons/mkr.svg"),
+    img: "@/assets/images/svg/crypto-icons/mkr.svg",
     coinName: "Maker (MKR)",
     type: "Buy",
     typeClass: "success",
@@ -334,7 +334,7 @@ const cryptoOrders = [{
 {
     id: 5,
     date: ["11 Dec, 2021", "02:47PM"],
-    img: require("@/assets/images/svg/crypto-icons/yfi.svg"),
+    img: "@/assets/images/svg/crypto-icons/yfi.svg",
     coinName: "Yearn.finance (YFI)",
     type: "Buy",
     typeClass: "success",
@@ -348,7 +348,7 @@ const cryptoOrders = [{
 {
     id: 6,
     date: ["05 Dec, 2021", "09:20AM"],
-    img: require("@/assets/images/svg/crypto-icons/mkr.svg"),
+    img: "@/assets/images/svg/crypto-icons/mkr.svg",
     coinName: "Maker (MKR)",
     type: "Sell",
     typeClass: "danger",
@@ -362,7 +362,7 @@ const cryptoOrders = [{
 {
     id: 7,
     date: ["28 Nov, 2021", "11:42AM"],
-    img: require("@/assets/images/svg/crypto-icons/ltc.svg"),
+    img: "@/assets/images/svg/crypto-icons/ltc.svg",
     coinName: "Litecoin (LTC)",
     type: "Buy",
     typeClass: "success",
@@ -376,7 +376,7 @@ const cryptoOrders = [{
 {
     id: 8,
     date: ["19 Nov, 2021", "03:36PM"],
-    img: require("@/assets/images/svg/crypto-icons/xmr.svg"),
+    img: "@/assets/images/svg/crypto-icons/xmr.svg",
     coinName: "Monero (XMR)",
     type: "Sell",
     typeClass: "danger",
@@ -390,7 +390,7 @@ const cryptoOrders = [{
 {
     id: 9,
     date: ["27 Oct, 2021", "03:36PM"],
-    img: require("@/assets/images/svg/crypto-icons/dash.svg"),
+    img: "@/assets/images/svg/crypto-icons/dash.svg",
     coinName: "Dash (DASH)",
     type: "Buy",
     typeClass: "success",
@@ -404,7 +404,7 @@ const cryptoOrders = [{
 {
     id: 10,
     date: ["27 Oct, 2021", "03:36PM"],
-    img: require("@/assets/images/svg/crypto-icons/neo.svg"),
+    img: "@/assets/images/svg/crypto-icons/neo.svg",
     coinName: "Neo (NEO)",
     type: "Sell",
     typeClass: "danger",
@@ -418,7 +418,7 @@ const cryptoOrders = [{
 {
     id: 11,
     date: ["21 Oct, 2021", "11:45AM"],
-    img: require("@/assets/images/svg/crypto-icons/mln.svg"),
+    img: "@/assets/images/svg/crypto-icons/mln.svg",
     coinName: "Enzyme (MLN)",
     type: "Sell",
     typeClass: "danger",
@@ -432,7 +432,7 @@ const cryptoOrders = [{
 {
     id: 12,
     date: ["24 Sep, 2021", "02:32AM"],
-    img: require("@/assets/images/svg/crypto-icons/eth.svg"),
+    img: "@/assets/images/svg/crypto-icons/eth.svg",
     coinName: "Ethereum (ETH)",
     type: "Buy",
     typeClass: "success",
@@ -447,7 +447,7 @@ const cryptoOrders = [{
 // Crypto > My Wallet
 const market = [{
     id: 1,
-    image: require("@/assets/images/svg/crypto-icons/btc.svg"),
+    image: "@/assets/images/svg/crypto-icons/btc.svg",
     currency_name: "Bitcoin (BTC)",
     quantity: "08",
     price: "47071",
@@ -457,7 +457,7 @@ const market = [{
 },
 {
     id: 2,
-    image: require("@/assets/images/svg/crypto-icons/eth.svg"),
+    image: "@/assets/images/svg/crypto-icons/eth.svg",
     currency_name: "Ethereum (ETH)",
     quantity: "50",
     price: "3813",
@@ -467,7 +467,7 @@ const market = [{
 },
 {
     id: 3,
-    image: require("@/assets/images/svg/crypto-icons/xmr.svg"),
+    image: "@/assets/images/svg/crypto-icons/xmr.svg",
     currency_name: "Monero (XMR)",
     quantity: "150",
     price: "227",
@@ -477,7 +477,7 @@ const market = [{
 },
 {
     id: 4,
-    image: require("@/assets/images/svg/crypto-icons/aave.svg"),
+    image: "@/assets/images/svg/crypto-icons/aave.svg",
     currency_name: "Aave (AAVE)",
     quantity: "180",
     price: "250",
@@ -487,7 +487,7 @@ const market = [{
 },
 {
     id: 5,
-    image: require("@/assets/images/svg/crypto-icons/mkr.svg"),
+    image: "@/assets/images/svg/crypto-icons/mkr.svg",
     currency_name: "Maker (MKR)",
     quantity: "60",
     price: "2470",
@@ -497,7 +497,7 @@ const market = [{
 },
 {
     id: 6,
-    image: require("@/assets/images/svg/crypto-icons/mkr.svg"),
+    image: "@/assets/images/svg/crypto-icons/mkr.svg",
     currency_name: "Yearn.finance (YFI)",
     quantity: "25",
     price: "37632",
@@ -507,7 +507,7 @@ const market = [{
 },
 {
     id: 7,
-    image: require("@/assets/images/svg/crypto-icons/mkr.svg"),
+    image: "@/assets/images/svg/crypto-icons/mkr.svg",
     currency_name: "Maker (MKR)",
     quantity: "60",
     price: "37632",
@@ -517,7 +517,7 @@ const market = [{
 },
 {
     id: 8,
-    image: require("@/assets/images/svg/crypto-icons/mkr.svg"),
+    image: "@/assets/images/svg/crypto-icons/mkr.svg",
     currency_name: "Yearn.finance (YFI)",
     quantity: "25",
     price: "37632",

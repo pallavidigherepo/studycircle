@@ -114,7 +114,7 @@ const companies = [{
     website: "www.abcd.com",
     contact_email: "info@abcd.com",
     since: "1995",
-    image_src: require("@/assets/images/brands/dribbble.png"),
+    image_src: "@/assets/images/brands/dribbble.png",
 },
 {
     id: 2,
@@ -127,7 +127,7 @@ const companies = [{
     website: "www.itesttech.com",
     contact_email: "info@itesttech.com",
     since: "2005",
-    image_src: require("@/assets/images/brands/bitbucket.png")
+    image_src: "@/assets/images/brands/bitbucket.png"
 },
 {
     id: 3,
@@ -140,7 +140,7 @@ const companies = [{
     website: "www.forcemedicine.com",
     contact_email: "info@forcemedicine.com",
     since: "1998",
-    image_src: require("@/assets/images/companies/img-8.png")
+    image_src: "@/assets/images/companies/img-8.png"
 },
 {
     id: 4,
@@ -153,7 +153,7 @@ const companies = [{
     website: "www.digitech.com",
     contact_email: "info@digitech.com",
     since: "1992",
-    image_src: require("@/assets/images/companies/img-1.png")
+    image_src: "@/assets/images/companies/img-1.png"
 },
 {
     id: 5,
@@ -166,7 +166,7 @@ const companies = [{
     website: "www.zoetic.com",
     contact_email: "info@zoetic.com",
     since: "1993",
-    image_src: require("@/assets/images/companies/img-6.png")
+    image_src: "@/assets/images/companies/img-6.png"
 },
 {
     id: 6,
@@ -179,7 +179,7 @@ const companies = [{
     website: "www.microdesign.com",
     contact_email: "info@microdesign.com",
     since: "2005",
-    image_src: require("@/assets/images/brands/dropbox.png")
+    image_src: "@/assets/images/brands/dropbox.png"
 },
 {
     id: 7,
@@ -192,7 +192,7 @@ const companies = [{
     website: "www.syntycesolu.com",
     contact_email: "info@syntycesolu.com",
     since: "1991",
-    image_src: require("@/assets/images/brands/mail_chimp.png")
+    image_src: "@/assets/images/brands/mail_chimp.png"
 },
 {
     id: 8,
@@ -205,7 +205,7 @@ const companies = [{
     website: "www.meta4systems.com",
     contact_email: "info@meta4systems.com",
     since: "1989",
-    image_src: require("@/assets/images/companies/img-3.png")
+    image_src: "@/assets/images/companies/img-3.png"
 },
 {
     id: 9,
@@ -218,7 +218,7 @@ const companies = [{
     website: "www.moetic.com",
     contact_email: "info@moetic.com",
     since: "1975",
-    image_src: require("@/assets/images/companies/img-4.png")
+    image_src: "@/assets/images/companies/img-4.png"
 },
 {
     id: 10,
@@ -231,7 +231,7 @@ const companies = [{
     website: "www.syntyce.com",
     contact_email: "info@syntyce.com",
     since: "2009",
-    image_src: require("@/assets/images/brands/slack.png")
+    image_src: "@/assets/images/brands/slack.png"
 }];
 
 // CRM > Leads

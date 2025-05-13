@@ -6,7 +6,7 @@ const unassigned = [{
     title: "Profile Page Structure",
     description: "Profile Page means a web page accessible to the public or to guests.",
     features: ["Admin"],
-    users: [require("@/assets/images/users/avatar-6.jpg"), require("@/assets/images/users/avatar-5.jpg")],
+    users: ["@/assets/images/users/avatar-6.jpg", "@/assets/images/users/avatar-5.jpg"],
     id: "#VL2436",
     watch: "04",
     message: "19",
@@ -17,7 +17,7 @@ const unassigned = [{
     title: "Velzon - Admin Layout Design",
     description: "The dashboard is the front page of the Administration UI.",
     features: ["Layout", "Admin", "Dashboard"],
-    users: [require("@/assets/images/users/avatar-7.jpg"), require("@/assets/images/users/avatar-6.jpg"), require("@/assets/images/users/avatar-1.jpg")],
+    users: ["@/assets/images/users/avatar-7.jpg", "@/assets/images/users/avatar-6.jpg", "@/assets/images/users/avatar-1.jpg"],
     id: "#VL2436",
     watch: "04",
     message: "19",
@@ -30,7 +30,7 @@ const todo = [{
     title: "Admin Layout Design",
     description: "Landing page template with clean, minimal and modern design.",
     features: ["Design", "Wensite"],
-    users: [require("@/assets/images/users/avatar-10.jpg"), require("@/assets/images/users/avatar-3.jpg")],
+    users: ["@/assets/images/users/avatar-10.jpg", "@/assets/images/users/avatar-3.jpg"],
     id: "#VL2436",
     watch: "13",
     message: "52",
@@ -42,7 +42,7 @@ const todo = [{
     title: "Marketing & Sales",
     description: "Sales and marketing are two business functions within an organization.",
     features: ["Marketing", "Business"],
-    users: [require("@/assets/images/users/avatar-9.jpg"), require("@/assets/images/users/avatar-8.jpg")],
+    users: ["@/assets/images/users/avatar-9.jpg", "@/assets/images/users/avatar-8.jpg"],
     id: "#VL2436",
     watch: "24",
     message: "10",
@@ -55,7 +55,7 @@ const inprogress = [{
     title: "Brand Logo Design ",
     description: "BrandCrowd's brand logo maker allows you to generate and customize stand-out brand logos in minutes.",
     features: ["Logo", "Design", "UI/UX"],
-    users: [require("@/assets/images/users/avatar-10.jpg"), require("@/assets/images/users/avatar-3.jpg")],
+    users: ["@/assets/images/users/avatar-10.jpg", "@/assets/images/users/avatar-3.jpg"],
     id: "#VL2436",
     watch: "24",
     message: "10",
@@ -67,7 +67,7 @@ const inprogress = [{
     title: "Change Old App Icon",
     description: "Change app icons on Android: How do you change the look of your apps.",
     features: ["Marketing", "Business"],
-    users: [require("@/assets/images/users/avatar-9.jpg"), require("@/assets/images/users/avatar-8.jpg")],
+    users: ["@/assets/images/users/avatar-9.jpg", "@/assets/images/users/avatar-8.jpg"],
     id: "#VL2436",
     watch: "64",
     message: "35",
@@ -80,7 +80,7 @@ const reviews = [{
     title: "Product Features Analysis",
     description: "An essential part of strategic planning is running a product feature analysis.",
     features: ["Project", "Analysis"],
-    users: [require("@/assets/images/users/avatar-5.jpg"), require("@/assets/images/users/avatar-6.jpg")],
+    users: ["@/assets/images/users/avatar-5.jpg", "@/assets/images/users/avatar-6.jpg"],
     id: "#VL2436",
     watch: "14",
     message: "31",
@@ -92,7 +92,7 @@ const reviews = [{
     title: "Create a Graph of Sketch",
     description: "To make a pie chart with equal slices create a perfect circle by selecting an Oval Tool.",
     features: ["Sketch", "Marketing", "Design"],
-    users: [require("@/assets/images/users/avatar-4.jpg"), require("@/assets/images/users/avatar-8.jpg"), require("@/assets/images/users/avatar-2.jpg"), require("@/assets/images/users/avatar-1.jpg")],
+    users: ["@/assets/images/users/avatar-4.jpg", "@/assets/images/users/avatar-8.jpg", "@/assets/images/users/avatar-2.jpg", "@/assets/images/users/avatar-1.jpg"],
     id: "#VL2436",
     watch: "64",
     message: "35",
@@ -105,7 +105,7 @@ const completed = [{
     title: "Create a Blog Template UI",
     description: "Landing page template with clean, minimal and modern design.",
     features: ["Design", "Website"],
-    users: [require("@/assets/images/users/avatar-8.jpg"), require("@/assets/images/users/avatar-7.jpg"), require("@/assets/images/users/avatar-6.jpg")],
+    users: ["@/assets/images/users/avatar-8.jpg", "@/assets/images/users/avatar-7.jpg", "@/assets/images/users/avatar-6.jpg"],
     id: "#VL2451",
     watch: "24",
     message: "10",
@@ -116,9 +116,9 @@ const completed = [{
 const newData = [{
     board_id: 1,
     title: "Banner Design for FB & Twitter",
-    image: require("@/assets/images/small/img-4.jpg"),
+    image: "@/assets/images/small/img-4.jpg",
     features: ["UI/UX", "Graphic"],
-    users: [require("@/assets/images/users/avatar-8.jpg"), require("@/assets/images/users/avatar-7.jpg"), require("@/assets/images/users/avatar-6.jpg")],
+    users: ["@/assets/images/users/avatar-8.jpg", "@/assets/images/users/avatar-7.jpg", "@/assets/images/users/avatar-6.jpg"],
     id: "#VL2451",
     watch: "24",
     message: "10",
@@ -135,11 +135,11 @@ const allTask = [{
     creater: "Robert McMahon",
     subItem: [{
         id: 1,
-        img: require("@/assets/images/users/avatar-3.jpg")
+        img: "@/assets/images/users/avatar-3.jpg"
     },
     {
         id: 2,
-        img: require("@/assets/images/users/avatar-1.jpg")
+        img: "@/assets/images/users/avatar-1.jpg"
     },
     ],
     dueDate: "25 Jan, 2022",
@@ -156,15 +156,15 @@ const allTask = [{
     creater: "Mary Cousar",
     subItem: [{
         id: 1,
-        img: require("@/assets/images/users/avatar-10.jpg")
+        img: "@/assets/images/users/avatar-10.jpg"
     },
     {
         id: 2,
-        img: require("@/assets/images/users/avatar-9.jpg")
+        img: "@/assets/images/users/avatar-9.jpg"
     },
     {
         id: 3,
-        img: require("@/assets/images/users/avatar-5.jpg")
+        img: "@/assets/images/users/avatar-5.jpg"
     },
     ],
     dueDate: "20 Dec, 2021",
@@ -181,19 +181,19 @@ const allTask = [{
     creater: "Nathan Cole",
     subItem: [{
         id: 1,
-        img: require("@/assets/images/users/avatar-5.jpg")
+        img: "@/assets/images/users/avatar-5.jpg"
     },
     {
         id: 2,
-        img: require("@/assets/images/users/avatar-6.jpg")
+        img: "@/assets/images/users/avatar-6.jpg"
     },
     {
         id: 3,
-        img: require("@/assets/images/users/avatar-7.jpg")
+        img: "@/assets/images/users/avatar-7.jpg"
     },
     {
         id: 4,
-        img: require("@/assets/images/users/avatar-8.jpg")
+        img: "@/assets/images/users/avatar-8.jpg"
     },
     ],
     dueDate: "23 Oct, 2021",
@@ -210,7 +210,7 @@ const allTask = [{
     creater: "Joseph Parker",
     subItem: [{
         id: 1,
-        img: require("@/assets/images/users/avatar-2.jpg")
+        img: "@/assets/images/users/avatar-2.jpg"
     },],
     dueDate: "05 Oct, 2021",
     status: "Pending",
@@ -226,15 +226,15 @@ const allTask = [{
     creater: "Henry Baird",
     subItem: [{
         id: 1,
-        img: require("@/assets/images/users/avatar-3.jpg")
+        img: "@/assets/images/users/avatar-3.jpg"
     },
     {
         id: 2,
-        img: require("@/assets/images/users/avatar-10.jpg")
+        img: "@/assets/images/users/avatar-10.jpg"
     },
     {
         id: 3,
-        img: require("@/assets/images/users/avatar-9.jpg")
+        img: "@/assets/images/users/avatar-9.jpg"
     },
     ],
     dueDate: "17 Oct, 2021",
@@ -251,11 +251,11 @@ const allTask = [{
     creater: "Tonya Noble",
     subItem: [{
         id: 1,
-        img: require("@/assets/images/users/avatar-6.jpg")
+        img: "@/assets/images/users/avatar-6.jpg"
     },
     {
         id: 2,
-        img: require("@/assets/images/users/avatar-7.jpg")
+        img: "@/assets/images/users/avatar-7.jpg"
     },
     ],
     dueDate: "04 Dec, 2021",
@@ -272,19 +272,19 @@ const allTask = [{
     creater: "Donald Palmer",
     subItem: [{
         id: 1,
-        img: require("@/assets/images/users/avatar-10.jpg")
+        img: "@/assets/images/users/avatar-10.jpg"
     },
     {
         id: 2,
-        img: require("@/assets/images/users/avatar-9.jpg")
+        img: "@/assets/images/users/avatar-9.jpg"
     },
     {
         id: 3,
-        img: require("@/assets/images/users/avatar-8.jpg")
+        img: "@/assets/images/users/avatar-8.jpg"
     },
     {
         id: 4,
-        img: require("@/assets/images/users/avatar-1.jpg")
+        img: "@/assets/images/users/avatar-1.jpg"
     },
     ],
     dueDate: "11 Oct, 2021",
@@ -301,11 +301,11 @@ const allTask = [{
     creater: "Carter",
     subItem: [{
         id: 1,
-        img: require("@/assets/images/users/avatar-5.jpg")
+        img: "@/assets/images/users/avatar-5.jpg"
     },
     {
         id: 2,
-        img: require("@/assets/images/users/avatar-4.jpg")
+        img: "@/assets/images/users/avatar-4.jpg"
     },
     ],
     dueDate: "16 Dec, 2021",
@@ -322,15 +322,15 @@ const allTask = [{
     creater: "David Nichols",
     subItem: [{
         id: 1,
-        img: require("@/assets/images/users/avatar-6.jpg")
+        img: "@/assets/images/users/avatar-6.jpg"
     },
     {
         id: 2,
-        img: require("@/assets/images/users/avatar-7.jpg")
+        img: "@/assets/images/users/avatar-7.jpg"
     },
     {
         id: 3,
-        img: require("@/assets/images/users/avatar-8.jpg")
+        img: "@/assets/images/users/avatar-8.jpg"
     },
     ],
     dueDate: "29 Dec, 2021",
@@ -347,7 +347,7 @@ const allTask = [{
     creater: "Diana Kohler",
     subItem: [{
         id: 1,
-        img: require("@/assets/images/users/avatar-4.jpg")
+        img: "@/assets/images/users/avatar-4.jpg"
     },],
     dueDate: "13 Oct, 2021",
     status: "New",
@@ -363,11 +363,11 @@ const allTask = [{
     creater: "Nathan Cole",
     subItem: [{
         id: 1,
-        img: require("@/assets/images/users/avatar-7.jpg")
+        img: "@/assets/images/users/avatar-7.jpg"
     },
     {
         id: 2,
-        img: require("@/assets/images/users/avatar-8.jpg")
+        img: "@/assets/images/users/avatar-8.jpg"
     },
     ],
     dueDate: "02 Jan, 2021",
