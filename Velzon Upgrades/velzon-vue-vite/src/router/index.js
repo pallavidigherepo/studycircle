@@ -138,9 +138,63 @@ import JobLists from '@/views/Apps/jobs/lists.vue'
 import NewJob from '@/views/Apps/jobs/new.vue'
 import JobStatistics from '@/views/Apps/jobs/statistics.vue'
 
+import Calendar from '@/views/Calendar/main.vue'
+import MonthGrid from '@/views/Calendar/month.vue'
+
+import Landing from '@/views/landing/index.vue'
+import NFTLanding from '@/views/landing/nft-landing.vue'
+import JobLanding from '@/views/landing/job-landing.vue'
+
+import GoogleMaps from '@/views/maps/google.vue'
+import LeafletMaps from '@/views/maps/leaflet/index.vue'
+
 
 
 const routes = [
+  {
+    path: "/maps/google",
+    name: "Google Maps",
+    meta: {
+      title: "Google Maps", authRequired: true,
+    },
+    component: GoogleMaps
+  },
+  {
+    path: "/maps/leaflet",
+    name: "Leaflet Maps",
+    meta: { title: "Leaflet Maps", authRequired: true },
+    component: LeafletMaps
+  },
+  {
+    path: "/landing",
+    name: "landing",
+    meta: { title: "Landing", authRequired: true },
+    component: Landing
+  },
+  {
+    path: "/nft-landing",
+    name: "nft-landing",
+    meta: { title: "NFT Landing", authRequired: true },
+    component: NFTLanding
+  },
+  {
+    path: "/job-landing",
+    name: "job-landing",
+    meta: { title: "Job Landing", authRequired: true },
+    component: JobLanding
+  },
+  {
+    path: "/main-calendar",
+    name: "main-calendar",
+    meta: { title: "Calendar", authRequired: true },
+    component: Calendar
+  },
+  {
+    path: "/month-grid",
+    name: "month-grid",
+    meta: { title: "Month Grid", authRequired: true },
+    component: MonthGrid
+  },
   {
     path: "/",
     name: "default",
