@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Login from '@/views/Auth/login.vue'
-import Register from '@/views/Auth/register.vue'
-import ForgotPassword from '@/views/Auth/forgot-password.vue'
+import Login from '@/views/Account/login.vue'
+import Register from '@/views/Account/register.vue'
+import ForgotPassword from '@/views/Account/forgot-password.vue'
 import Animation from '@/views/Advance-UI/animation.vue'
 import Highlight from '@/views/Advance-UI/highlight.vue'
 import Scrollbar from '@/views/Advance-UI/scrollbar.vue'
@@ -148,9 +148,238 @@ import JobLanding from '@/views/landing/job-landing.vue'
 import GoogleMaps from '@/views/maps/google.vue'
 import LeafletMaps from '@/views/maps/leaflet/index.vue'
 
+import SuccessMessage from '@/views/Auth/success-msg/basic.vue'
+import SuccessMessageCover from '@/views/Auth/success-msg/cover.vue'
+import LogoutCover from '@/views/Auth/logout/cover.vue'
+import Logout from '@/views/Auth/logout/basic.vue'
+import Offline from '@/views/Auth/errors/ofline.vue'
+import Error404Cover from '@/views/Auth/errors/404-cover.vue'
+import Error404Basic from '@/views/Auth/errors/404-basic.vue'
+import Error500 from '@/views/Auth/errors/500.vue'
+import Error404 from '@/views/Auth/errors/404.vue'
+import TwoStepAuthCover from '@/views/Auth/twostep/cover.vue'
+import TwoStepAuth from '@/views/Auth/twostep/basic.vue'
+import LockScreenCover from '@/views/Auth/lockscreen/cover.vue'
+import LockScreen from '@/views/Auth/lockscreen/basic.vue'
+import CreatePasswordCover from '@/views/Auth/create/cover.vue'
+import CreatePassword from '@/views/Auth/create/basic.vue'
+import ResetCover from '@/views/Auth/reset/cover.vue'
+import ResetPassword from '@/views/Auth/reset/basic.vue'
+import SignupCover from '@/views/Auth/signup/cover.vue'
+import SignupBasic from '@/views/Auth/signup/basic.vue'
+import SigninCover from '@/views/Auth/signin/cover.vue'
+import SigninBasic from '@/views/Auth/signin/basic.vue'
+
+import Widgets from '@/views/widgets/index.vue'
+
+import TicketDetails from '@/views/tickets/details.vue'
+import TicketsList from '@/views/tickets/list.vue'
+
+import BasicTable from '@/views/tables/basic.vue'
+import GridJS from '@/views/tables/grid/index.vue'
+
+
 
 
 const routes = [
+   {
+    path: "/widgets",
+    name: "widgets",
+    meta: { title: "Widgets", authRequired: true },
+    component:Widgets
+  },
+  {
+    path: "/apps/tickets-details",
+    name: "tickets-details",
+    meta: { title: "Ticket Details", authRequired: true },
+    component: TicketDetails
+  },
+  {
+    path: "/apps/tickets-list",
+    name: "tickets-list",
+    meta: { title: "Tickets List", authRequired: true },
+    component: TicketsList
+  },
+  {
+    path: "/tables/basic",
+    name: "basic-table",
+    meta: { title: "Basic Table", authRequired: true },
+    component: BasicTable
+  },
+  {
+    path: "/tables/gridjs",
+    name: "gridjs",
+    meta: { title: "Grid JS", authRequired: true },
+    component: GridJS
+  },
+  {
+    path: '/auth/signin-basic',
+    name: 'signin-basic',
+    meta: {
+      title: "Signin Basic", authRequired: true,
+    },
+    component: SigninBasic
+  },
+  {
+    path: '/auth/signin-cover',
+    name: 'signin-cover',
+    meta: {
+      title: "Signin Cover", authRequired: true,
+    },
+    component: SigninCover
+  },
+  {
+    path: '/auth/signup-basic',
+    name: 'signup-basic',
+    meta: {
+      title: "Signup Basic", authRequired: true,
+    },
+    component: SignupBasic
+  },
+  {
+    path: '/auth/signup-cover',
+    name: 'signup-cover',
+    meta: {
+      title: "Signup Cover", authRequired: true,
+    },
+    component: SignupCover
+  },
+  {
+    path: '/auth/reset-pwd-basic',
+    name: 'reset-pwd-basic',
+    meta: {
+      title: "Reset Password", authRequired: true,
+    },
+    component: ResetPassword
+  },
+  {
+    path: '/auth/reset-pwd-cover',
+    name: 'reset-pwd-cover',
+    meta: {
+      title: "Reset Password", authRequired: true,
+    },
+    component: ResetCover
+  },
+  {
+    path: '/auth/create-pwd-basic',
+    name: 'create-pwd-basic',
+    meta: {
+      title: "create Password", authRequired: true,
+    },
+    component: CreatePassword
+  },
+  {
+    path: '/auth/create-pwd-cover',
+    name: 'create-pwd-cover',
+    meta: {
+      title: "create Password", authRequired: true,
+    },
+    component: CreatePasswordCover
+  },
+  {
+    path: '/auth/lockscreen-basic',
+    name: 'lock-screen-basic',
+    meta: {
+      title: "Lock Screen", authRequired: true,
+    },
+    component: LockScreen
+  },
+  {
+    path: '/auth/lockscreen-cover',
+    name: 'lock-screen-cover',
+    meta: {
+      title: "Lock Screen", authRequired: true,
+    },
+    component: LockScreenCover
+  },
+  {
+    path: '/auth/twostep-basic',
+    name: 'twostep-basic',
+    meta: {
+      title: "Two Step Auth", authRequired: true,
+    },
+    component: TwoStepAuth 
+  }, 
+  {
+    path: '/auth/twostep-cover',
+    name: 'twostep-cover',
+    meta: {
+      title: "Two Step Auth", authRequired: true,
+    },
+    component: TwoStepAuthCover
+  },
+  {
+    path: '/auth/404',
+    name: '404',
+    meta: {
+      title: "Error 404", authRequired: true,
+    },
+    component: Error404
+  },
+  {
+    path: '/auth/500',
+    name: '500',
+    meta: {
+      title: "Error 500", authRequired: true,
+    },
+    component: Error500
+  },
+  {
+    path: '/auth/404-basic',
+    name: '404-basic',
+    meta: {
+      title: "Error 404", authRequired: true,
+    },
+    component: Error404Basic
+  },
+  {
+    path: '/auth/404-cover',
+    name: '404-cover',
+    meta: {
+      title: "Error 404", authRequired: true,
+    },
+    component: Error404Cover
+  },
+  {
+    path: '/auth/ofline',
+    name: 'ofline',
+    meta: {
+      title: "Offline", authRequired: true,
+    },
+    component: Offline
+  },
+  {
+    path: '/auth/logout-basic',
+    name: 'logout-basic',
+    meta: {
+      title: "Logout", authRequired: true,
+    },
+    component: Logout
+  },
+  {
+    path: '/auth/logout-cover',
+    name: 'logout-cover',
+    meta: {
+      title: "Logout", authRequired: true,
+    },
+    component: LogoutCover
+  },
+  {
+    path: '/auth/success-msg-basic',
+    name: 'success-msg-basic',
+    meta: {
+      title: "Success Message", authRequired: true,
+    },
+    component: SuccessMessage
+  },
+  {
+    path: '/auth/success-msg-cover',
+    name: 'success-msg-cover',
+    meta: {
+      title: "Success Message", authRequired: true,
+    },
+    component: SuccessMessageCover
+  },
   {
     path: "/maps/google",
     name: "Google Maps",
