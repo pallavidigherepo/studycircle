@@ -1,4 +1,435 @@
-<script>
+<script setup>
+import * as echarts from 'echarts/core';
+import { MapChart } from 'echarts/charts';
+import { TooltipComponent } from 'echarts/components';
+import { CanvasRenderer } from 'echarts/renderers';
+import { ref, computed, onMounted, nextTick } from 'vue';
+import Layout from '@/layouts/main.vue';
+import PageHeader from '@/components/page-header.vue';
+import { UsersIcon, ActivityIcon, ClockIcon, ExternalLinkIcon, AlertTriangleIcon } from 'lucide-vue-next';
+import CountTo from 'vue3-count-to';
+import SessionsCounties from '@/views/Dashboard/analytics/sessions-countries.vue';
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/autoplay";
+import animationData from '@/components/widgets/lupuorrc.json';
+
+import usaJson from "../../components/widgets/USA.json";
+import worldJson from "../../components/widgets/world.json";
+
+echarts.use([MapChart, TooltipComponent, CanvasRenderer]);
+
+const usaChartRef = ref(null);
+const worldChartRef = ref(null);
+
+import getChartColorsArray from '@/common/getChartColorsArray';
+import SimpleBar from 'simplebar-vue';
+
+// Register component
+// import { generateData } from '@/utils/helpers'
+
+
+const chartData = ref([])
+
+function generateData(count, yrange) {
+  const series = [];
+  for (let i = 0; i < count; i++) {
+    const x = `w${i + 1}`;
+    const y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+    series.push({ x, y });
+  }
+  return series;
+}
+
+// Utility functions assumed to be globally available
+// getChartColorsArray and generateData
+
+const searchQuery = ref(null);
+
+const candidateList = ref([
+  { id: "1", name: "Anna Adame", img: '@/assets/images/users/avatar-1.jpg', username: "@Anna", designation: "Web Developer" },
+  { id: "2", name: "Patricia Cavin", img: '@/assets/images/users/avatar-2.jpg', username: "@Patricia", designation: "Web Developer" },
+  { id: "3", name: "Jason Tran", img: '@/assets/images/users/avatar-3.jpg', username: "@Jason", designation: "Magento Developer" },
+  { id: "4", name: "Cheryl Moore", img: '@/assets/images/users/avatar-4.jpg', username: "@Cheryl", designation: "Product Designer" },
+  { id: "5", name: "Jennifer Bailey", img: '@/assets/images/users/avatar-5.jpg', username: "@Jennifer", designation: "Marketing Director" },
+]);
+
+const audienceChartOptions = ref({
+  series: [
+    { name: 'Last Year', data: [25.3, 12.5, 20.2, 18.5, 40.4, 25.4, 15.8, 22.3, 19.2, 25.3, 12.5, 20.2] },
+    { name: 'Current Year', data: [36.2, 22.4, 38.2, 30.5, 26.4, 30.4, 20.2, 29.6, 10.9, 36.2, 22.4, 38.2] }
+  ],
+  chartOptions: {
+    chart: {
+      type: 'bar',
+      height: 306,
+      stacked: true,
+      toolbar: { show: false }
+    },
+    plotOptions: {
+      bar: { horizontal: false, columnWidth: '30%', borderRadius: 6 }
+    },
+    dataLabels: { enabled: false },
+    legend: {
+      show: true,
+      position: 'bottom',
+      horizontalAlign: 'center',
+      fontWeight: 400,
+      fontSize: '8px',
+      offsetX: 0,
+      offsetY: 0,
+      markers: { width: 9, height: 9, radius: 4 }
+    },
+    stroke: { show: true, width: 2, colors: ['transparent'] },
+    grid: { show: false },
+    colors: getChartColorsArray('["--vz-success", "--vz-light"]'),
+    xaxis: {
+      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      axisTicks: { show: false },
+      axisBorder: {
+        show: true,
+        strokeDashArray: 1,
+        height: 1,
+        width: '100%',
+        offsetX: 0,
+        offsetY: 0
+      }
+    },
+    yaxis: { show: false },
+    fill: { opacity: 1 }
+  }
+});
+
+// Define additional reactive state and computed properties here (portfolioChart, topReferralsChart, etc.)
+
+const portfolioChart = ref({
+  series: [19405, 40552, 15824, 30635],
+  chartOptions: {
+    labels: ["Bitcoin", "Ethereum", "Litecoin", "Dash"],
+    chart: {
+      type: "donut",
+      height: 210,
+    },
+    plotOptions: {
+      pie: {
+        size: 100,
+        offsetX: 0,
+        offsetY: 0,
+        donut: {
+          size: "70%",
+          labels: {
+            show: true,
+            name: {
+              show: true,
+              fontSize: "18px",
+              offsetY: -5,
+            },
+            value: {
+              show: true,
+              fontSize: "20px",
+              color: "#343a40",
+              fontWeight: 500,
+              offsetY: 5,
+              formatter: val => "$" + val,
+            },
+            total: {
+              show: true,
+              fontSize: "13px",
+              label: "Total value",
+              color: "#9599ad",
+              fontWeight: 500,
+              formatter: w => "$" + w.globals.seriesTotals.reduce((a, b) => a + b, 0),
+            },
+          },
+        },
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    legend: {
+      show: false,
+    },
+    yaxis: {
+      labels: {
+        formatter: value => "$" + value,
+      },
+    },
+    stroke: {
+      lineCap: "round",
+      width: 2,
+    },
+    colors: getChartColorsArray('["--vz-primary", "--vz-info", "--vz-warning", "--vz-success"]'),
+  }
+})
+
+const topReferralsChart = ref({
+  series: [
+    { name: "Jan", data: generateData(20, { min: -30, max: 55 }) },
+    { name: "Feb", data: generateData(20, { min: -30, max: 55 }) },
+    { name: "Mar", data: generateData(20, { min: -30, max: 55 }) },
+    { name: "Apr", data: generateData(20, { min: -30, max: 55 }) },
+    { name: "May", data: generateData(20, { min: -30, max: 55 }) },
+    { name: "Jun", data: generateData(20, { min: -30, max: 55 }) },
+    { name: "Jul", data: generateData(20, { min: -30, max: 55 }) },
+    { name: "Aug", data: generateData(20, { min: -30, max: 55 }) },
+    { name: "Sep", data: generateData(20, { min: -30, max: 55 }) },
+  ],
+  chartOptions: {
+    chart: {
+      height: 310,
+      type: "heatmap",
+      toolbar: {
+        show: false,
+      },
+    },
+    legend: {
+      show: false,
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    stroke: {
+      width: 1,
+    },
+    title: {
+      style: {
+        fontWeight: 500,
+      },
+    },
+    colors: getChartColorsArray('["--vz-success", "--vz-info", "--vz-primary", "--vz-warning", "--vz-secondary"]'),
+  }
+})
+
+const chartcolors = ref({
+  colors: ["#f06548"]
+})
+
+const chartoptions = ref({
+  chart: {
+    width: 140,
+    type: "area",
+    sparkline: {
+      enabled: true,
+    },
+    toolbar: {
+      show: false,
+    },
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  stroke: {
+    curve: "smooth",
+    width: 1.5,
+  },
+  fill: {
+    type: "gradient",
+    gradient: {
+      shadeIntensity: 1,
+      inverseColors: false,
+      opacityFrom: 0.45,
+      opacityTo: 0.05,
+      stops: [50, 100, 100, 100],
+    },
+  },
+  colors: ["#0ab39c"]
+})
+
+const defaultOptions = ref({
+  animationData: animationData
+})
+
+const autoplay = ref(true)
+
+const displayedPosts = computed(() => candidateList.value);
+
+const resultQuery = computed(() => {
+  if (searchQuery.value) {
+    const search = searchQuery.value.toLowerCase();
+    return displayedPosts.value.filter(data =>
+      data.name.toLowerCase().includes(search) ||
+      data.username.toLowerCase().includes(search) ||
+      data.designation.toLowerCase().includes(search)
+    );
+  }
+  return displayedPosts.value;
+});
+
+function selectBank() {
+  const checked = document.querySelector('input[name=listGroupRadioGrid]:checked');
+  if (checked) {
+    document.getElementById("notification-overlay").style.visibility = "visible";
+    document.getElementById("notification-overlay").style.opacity = "1";
+
+    const payamount = checked.parentElement.querySelector(".pay-amount").innerHTML;
+    document.querySelector("#notification-overlay .success-pay").innerHTML = payamount;
+  } else {
+    document.getElementById("notification-warn").classList.remove("d-none");
+    setTimeout(() => document.getElementById("notification-warn").classList.add("d-none"), 2000);
+  }
+}
+
+function selectBankback() {
+  document.getElementById("notification-overlay").style.visibility = "hidden";
+  document.getElementById("notification-overlay").style.opacity = "0";
+}
+
+function updateQuantity(productQty, itemAmount, priceselection) {
+  const totalPrice = parseInt(productQty) * parseFloat(itemAmount);
+  if (priceselection) {
+    priceselection.textContent = totalPrice.toFixed(2);
+  }
+}
+
+function plusamount(event) {
+  event.target.previousElementSibling.value++;
+  const itemAmount = event.target.closest(".product-item").querySelector(".product-price")?.value;
+  const priceselection = event.target.closest(".product-item").querySelector(".product-line-price");
+  const productQty = event.target.parentElement.querySelector(".product-quantity").value;
+  updateQuantity(productQty, itemAmount, priceselection);
+}
+
+function minusamount(event) {
+  event.target.nextElementSibling.value--;
+  const itemAmount = event.target.closest(".product-item").querySelector(".product-price")?.value;
+  const priceselection = event.target.closest(".product-item").querySelector(".product-line-price");
+  const productQty = event.target.parentElement.querySelector(".product-quantity").value;
+  updateQuantity(productQty, itemAmount, priceselection);
+}
+
+function showdetail(data) {
+  document.getElementById('candidate-img').setAttribute('src', data.img);
+  document.querySelector('#candidate-name').innerHTML = data.name;
+  document.querySelector('#candidate-position').innerHTML = data.username;
+}
+
+function customcreditcard() {
+  const cardNumInput = document.getElementById("card-num-input");
+  const cardNumElem = document.getElementById("card-num-elem");
+  const cardHolderInput = document.getElementById("card-holder-input");
+  const cardHolderElem = document.getElementById("card-holder-elem");
+  const expiryMonthInput = document.getElementById("expiry-month-input");
+  const expiryMonthElem = document.getElementById("expiry-month-elem");
+  const expiryYearInput = document.getElementById("expiry-year-input");
+  const expiryYearElem = document.getElementById("expiry-year-elem");
+  const cvcInput = document.getElementById("cvc-input");
+  const cvcElem = document.getElementById("cvc-elem");
+  const cardForm = document.getElementById("custom-card-form");
+
+  cardNumInput.onkeydown = e => {
+    const key = e.keyCode || e.charCode;
+    const isDigit = key >= 48 && key <= 57 || key >= 96 && key <= 105;
+    const isDelete = key === 8 || key === 46;
+
+    if (isDigit || isDelete) {
+      const text = e.target.value;
+      const len = text.length;
+      if (isDigit && (len === 4 || len === 9 || len === 14)) cardNumInput.value = text + " ";
+    } else return false;
+  };
+
+  cardNumInput.onkeyup = e => {
+    const key = e.keyCode || e.charCode;
+    const isDigit = key >= 48 && key <= 57 || key >= 96 && key <= 105;
+    const isDelete = key === 8 || key === 46;
+
+    if (isDigit || isDelete) {
+      const text = e.target.value;
+      const digits = "XXXX XXXX XXXX XXXX".split('');
+      for (let i = 0; i < text.length; i++) {
+        digits[i] = text.charAt(i);
+      }
+      cardNumElem.innerText = digits.join('');
+    } else return false;
+  };
+
+  cardHolderInput.onkeyup = e => cardHolderElem.innerText = e.target.value;
+  expiryMonthInput.onchange = e => expiryMonthElem.innerText = e.target.value || "00";
+  expiryYearInput.onchange = e => expiryYearElem.innerText = e.target.value || "0000";
+  cvcInput.onkeyup = e => {
+    const text = e.target.value;
+    const digits = ['_', '_', '_'];
+    for (let i = 0; i < text.length; i++) {
+      digits[i] = text.charAt(i);
+    }
+    cvcElem.innerText = digits.join('');
+  };
+
+  cardForm.onsubmit = e => e.preventDefault();
+}
+
+onMounted(async () => {
+  chartData.value = generateData(18, { min: 10, max: 90 })
+
+  await nextTick()
+
+  if (!usaChartRef.value || !worldChartRef.value) {
+    console.error("Chart DOM elements not available!")
+    return
+  }
+
+  const userChart = echarts.init(worldChartRef.value)
+  const myChart = echarts.init(usaChartRef.value)
+
+  // Register USA Map
+  echarts.registerMap('USA', usaJson, {
+    Alaska: { left: -131, top: 25, width: 15 },
+    Hawaii: { left: -110, top: 28, width: 5 },
+    'Puerto Rico': { left: -76, top: 26, width: 2 },
+  })
+
+  myChart.setOption({
+    tooltip: {
+      trigger: 'item',
+      showDelay: 0,
+      transitionDuration: 0.2,
+    },
+    series: [
+      {
+        name: 'USA PopEstimates',
+        type: 'map',
+        roam: true,
+        map: 'USA',
+        emphasis: {
+          label: {
+            show: true,
+          },
+        },
+        data: [ /* ...state data here... */ ],
+      },
+    ],
+  })
+
+  // Register World Map
+  echarts.registerMap('world', worldJson, {
+    Alaska: { left: -131, top: 25, width: 15 },
+    Hawaii: { left: -110, top: 28, width: 5 },
+    'Puerto Rico': { left: -76, top: 26, width: 2 },
+  })
+
+  userChart.setOption({
+    tooltip: {
+      trigger: 'item',
+      showDelay: 0,
+      transitionDuration: 0.2,
+    },
+    series: [
+      {
+        name: 'World',
+        type: 'map',
+        map: 'world',
+        label: {
+          show: false,
+        },
+      },
+    ],
+  })
+})
+</script>
+
+<!-- <script>
 import { CountTo } from "vue3-count-to";
 
 var echarts = "echarts";
@@ -811,7 +1242,7 @@ export default {
     useroption && userChart.setOption(useroption);
   },
 };
-</script>
+</script> -->
 
 <template>
   <Layout>

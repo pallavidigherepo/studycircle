@@ -178,10 +178,185 @@ import TicketsList from '@/views/tickets/list.vue'
 import BasicTable from '@/views/tables/basic.vue'
 import GridJS from '@/views/tables/grid/index.vue'
 
-
+import Slope from '@/views/charts/apex/slope/index.vue'
+import Polararea from '@/views/charts/apex/polararea/index.vue'
+import ApexRadar from '@/views/charts/apex/radar/index.vue'
+import ApexRadialbar from '@/views/charts/apex/radiabar/index.vue'
+import ApexPie from '@/views/charts/apex/pie/index.vue'
+import Treemap from '@/views/charts/apex/treemap/index.vue'
+import Heatmap from '@/views/charts/apex/heatmap/index.vue'
+import Scatter from '@/views/charts/apex/scatter/index.vue'
+import BubbleChart from '@/views/charts/apex/bubble/index.vue'
+import Boxplot from '@/views/charts/apex/boxplot/index.vue'
+import Candlestick from '@/views/charts/apex/candlestick/index.vue'
+import FunnelCharts from '@/views/charts/apex/funnel/index.vue'
+import RangeAreaCharts from '@/views/charts/apex/rangearea/index.vue'
+import MixedCharts from '@/views/charts/apex/mixed/index.vue'
+import ColumnCharts from '@/views/charts/apex/column/index.vue'
+import BarCharts from '@/views/charts/apex/bar/index.vue'
+import AreaCharts from '@/views/charts/apex/area/index.vue'
+import LineCharts from '@/views/charts/apex/line/index.vue'
+import Echarts from '@/views/charts/echart/index.vue'
+import Chartjs from '@/views/charts/chartjs/index.vue'
 
 
 const routes = [
+  {
+    path: "/charts/chartjs",
+    name: "chartjs-chart",
+    meta: { title: "Chartjs", authRequired: true },
+    component: Chartjs
+  },
+  {
+    path: "/charts/echart",
+    name: "echart",
+    meta: { title: "Echarts", authRequired: true },
+    component: Echarts
+  },
+  {
+    path: '/charts/apex-line',
+    name: 'line',
+    meta: {
+      title: "Line Charts", authRequired: true,
+    },
+    component: LineCharts
+  },
+  {
+    path: '/charts/apex-area',
+    name: 'area-chart',
+    meta: {
+      title: "Area Charts", authRequired: true,
+    },
+    component: AreaCharts
+  },
+  {
+    path: '/charts/apex-bar',
+    name: 'bar-chart',
+    meta: {
+      title: "Bar Charts", authRequired: true,
+    },
+    component: BarCharts
+  },
+  {
+    path: '/charts/apex-column',
+    name: 'column-chart',
+    meta: {
+      title: "Column Charts", authRequired: true,
+    },
+    component: ColumnCharts
+  },
+  {
+    path: '/charts/apex-mixed',
+    name: 'mixed-chart',
+    meta: {
+      title: "Mixed Charts", authRequired: true,
+    },
+    component: MixedCharts
+  },
+  {
+    path: '/charts/apex-range-area',
+    name: 'range-area-chart',
+    meta: {
+      title: "Range Area Charts", authRequired: true,
+    },
+    component: RangeAreaCharts
+  },
+  {
+    path: '/charts/apex-funnel',
+    name: 'funnel-chart',
+    meta: {
+      title: "Funnel Charts", authRequired: true,
+    },
+    component: FunnelCharts
+  },
+  {
+    path: '/charts/apex-candlestick',
+    name: 'candlestick',
+    meta: {
+      title: "Candlestick", authRequired: true,
+    },
+    component: Candlestick
+  },
+  {
+    path: '/charts/apex-boxplot',
+    name: 'boxplot',
+    meta: {
+      title: "Boxplot", authRequired: true,
+    },
+    component: Boxplot
+  },
+  {
+    path: '/charts/apex-bubble',
+    name: 'bubble',
+    meta: {
+      title: "Bubble Chart", authRequired: true,
+    },
+    component: BubbleChart
+  },
+  {
+    path: '/charts/apex-scatter',
+    name: 'scatter',
+    meta: {
+      title: "Scatter", authRequired: true,
+    },
+    component: Scatter
+  },
+  {
+    path: '/charts/apex-heatmap',
+    name: 'heatmap',
+    meta: {
+      title: "Heatmap", authRequired: true,
+    },
+    component: Heatmap
+  },
+  {
+    path: '/charts/apex-treemap',
+    name: 'treemap',
+    meta: {
+      title: "Treemap", authRequired: true,
+    },
+    component: Treemap
+  },
+  {
+    path: '/charts/apex-pie',
+    name: 'pie',
+    meta: {
+      title: "Apex Pie", authRequired: true,
+    },
+    component: ApexPie
+  },
+  {
+    path: '/charts/apex-radialbar',
+    name: 'radialbar',
+    meta: {
+      title: "Apex Radialbar", authRequired: true,
+    },
+    component: ApexRadialbar
+  },
+  {
+    path: '/charts/apex-radar',
+    name: 'radar',
+    meta: {
+      title: "Apex Radar", authRequired: true,
+    },
+    component: ApexRadar
+  },
+  {
+    path: '/charts/apex-polararea',
+    name: 'polararea',
+    meta: {
+      title: "Polararea", authRequired: true,
+    },
+    component: Polararea
+  },
+  {
+    path: '/charts/apex-slope',
+    name: 'slope',
+    meta: {
+      title: "Slope", authRequired: true,
+    },
+    component: Slope
+  },
    {
     path: "/widgets",
     name: "widgets",
