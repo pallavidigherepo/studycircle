@@ -228,7 +228,7 @@ onMounted(() => {
       <div class="navbar-header">
         <div class="d-flex">
           <!-- LOGO -->
-          <div class="navbar-brand-box horizontal-logo">
+          <!-- <div class="navbar-brand-box horizontal-logo">
             <router-link to="/" class="logo logo-dark">
               <span class="logo-sm">
                 <img src="@/assets/images/logo-sm.png" alt="" height="22" />
@@ -246,7 +246,7 @@ onMounted(() => {
                 <img src="@/assets/images/logo-light.png" alt="" height="17" />
               </span>
             </router-link>
-          </div>
+          </div> -->
 
           <BButton variant="white" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger"
             id="topnav-hamburger-icon">
