@@ -2,86 +2,105 @@
 import { ref, computed, onMounted, watch } from 'vue';
 import { useLayoutStore } from '@/state/modules/layout'; // Correct import of your store
 const store = useLayoutStore()
+import { BDropdown, BDropdownItem, BTabs, BTab, BButton, BRow, BCol, BBadge, BLink } from 'bootstrap-vue-3'
 // import { useStore } from 'pinia';
 import { layoutMethods } from "@/state/helpers";
+import simplebar from "simplebar-vue";
+import i18n from "../i18n";
+
 import img1 from "../assets/images/products/img-1.png";
 import img2 from "../assets/images/products/img-2.png";
 import img3 from "../assets/images/products/img-3.png";
 import img4 from "../assets/images/products/img-6.png";
 import img5 from "../assets/images/products/img-5.png";
-import simplebar from "simplebar-vue";
-import i18n from "../i18n";
 
-import usFlag from "@/assets/images/flags/us.svg";
-import spainFlag from "@/assets/images/flags/spain.svg";
-import germanyFlag from "@/assets/images/flags/germany.svg";
-import italyFlag from "@/assets/images/flags/italy.svg";
-import russiaFlag from "@/assets/images/flags/russia.svg";
-import chinaFlag from "@/assets/images/flags/china.svg";
-import frenchFlag from "@/assets/images/flags/french.svg";
-import aeFlag from "@/assets/images/flags/ae.svg";
-
-// Pinia store
-// const store = useStore();
-
-// Cart items and languages setup
+// Reactive state
 const cartItems = ref([
-  { id: 1, productImage: img1, productName: "Branded T-Shirts", productLink: "/ecommerce/product-details", quantity: "10 x $32", itemPrice: "320" },
-  { id: 2, productImage: img2, productName: "Bentwood Chair", productLink: "/ecommerce/product-details", quantity: "5 x $18", itemPrice: "89" },
-  { id: 3, productImage: img3, productName: "Borosil Paper Cup", productLink: "/ecommerce/product-details", quantity: "3 x $250", itemPrice: "750" },
-  { id: 4, productImage: img4, productName: "Gray Styled T-Shirt", productLink: "/ecommerce/product-details", quantity: "1 x $1250", itemPrice: "1250" },
-  { id: 5, productImage: img5, productName: "Stillbird Helmet", productLink: "/ecommerce/product-details", quantity: "2 x $495", itemPrice: "990" },
+  {
+    id: 1,
+    productImage: img1,
+    productName: "Branded T-Shirts",
+    productLink: "/ecommerce/product-details",
+    quantity: "10 x $32",
+    itemPrice: "320",
+  },
+  {
+    id: 2,
+    productImage: img2,
+    productName: "Bentwood Chair",
+    productLink: "/ecommerce/product-details",
+    quantity: "5 x $18",
+    itemPrice: "89",
+  },
+  {
+    id: 3,
+    productImage: img3,
+    productName: "Borosil Paper Cup",
+    productLink: "/ecommerce/product-details",
+    quantity: "3 x $250",
+    itemPrice: "750",
+  },
+  {
+    id: 4,
+    productImage: img4,
+    productName: "Gray Styled T-Shirt",
+    productLink: "/ecommerce/product-details",
+    quantity: "1 x $1250",
+    itemPrice: "1250",
+  },
+  {
+    id: 5,
+    productImage: img5,
+    productName: "Stillbird Helmet",
+    productLink: "/ecommerce/product-details",
+    quantity: "2 x $495",
+    itemPrice: "990",
+  },
 ]);
 
-const languages = ref([
-  { flag: usFlag, language: "en", title: "English" },
-  { flag: spainFlag, language: "sp", title: "Española" },
-  { flag: germanyFlag, language: "gr", title: "Deutsche" },
-  { flag: italyFlag, language: "it", title: "italiana" },
-  { flag: russiaFlag, language: "ru", title: "русский" },
-  { flag: chinaFlag, language: "ch", title: "中國人" },
-  { flag: frenchFlag, language: "fr", title: "Français" },
-  { flag: aeFlag, language: "ar", title: "Arabic" },
-]);
+const languages = [
+  { flag: "@/assets/images/flags/us.svg", language: "en", title: "English" },
+  { flag: "@/assets/images/flags/spain.svg", language: "sp", title: "Española" },
+  { flag: "@/assets/images/flags/germany.svg", language: "gr", title: "Deutsche" },
+  { flag: "@/assets/images/flags/italy.svg", language: "it", title: "italiana" },
+  { flag: "@/assets/images/flags/russia.svg", language: "ru", title: "русский" },
+  { flag: "@/assets/images/flags/china.svg", language: "ch", title: "中國人" },
+  { flag: "@/assets/images/flags/french.svg", language: "fr", title: "Français" },
+  { flag: "@/assets/images/flags/ae.svg", language: "ar", title: "Arabic" },
+];
 
 const lan = ref(i18n.locale);
-const flag = ref(null);
 const text = ref(null);
-
+const flag = ref(null);
+const value = ref(null);
 const myVar = ref(1);
 
-// Helper function to calculate total price
-const calculateTotalPrice = computed(() => {
-  return cartItems.value.reduce((total, item) => total + parseFloat(item.itemPrice), 0).toFixed(2);
-});
+// Computed
+const calculateTotalPrice = computed(() =>
+  cartItems.value.reduce((total, item) => total + parseFloat(item.itemPrice), 0).toFixed(2)
+);
 
-// Methods moved from `methods` to `setup`
-const isCustomDropdown = () => {
+// Methods
+
+function isCustomDropdown() {
   const searchOptions = document.getElementById("search-close-options");
   const dropdown = document.getElementById("search-dropdown");
   const searchInput = document.getElementById("search-options");
 
-  searchInput.addEventListener("focus", () => {
-    const inputLength = searchInput.value.length;
-    if (inputLength > 0) {
-      dropdown.classList.add("show");
-      searchOptions.classList.remove("d-none");
-    } else {
-      dropdown.classList.remove("show");
-      searchOptions.classList.add("d-none");
-    }
-  });
+  if (!searchInput || !dropdown || !searchOptions) return;
 
-  searchInput.addEventListener("keyup", () => {
-    const inputLength = searchInput.value.length;
-    if (inputLength > 0) {
+  const showDropdown = () => {
+    if (searchInput.value.length > 0) {
       dropdown.classList.add("show");
       searchOptions.classList.remove("d-none");
     } else {
       dropdown.classList.remove("show");
       searchOptions.classList.add("d-none");
     }
-  });
+  };
+
+  searchInput.addEventListener("focus", showDropdown);
+  searchInput.addEventListener("keyup", showDropdown);
 
   searchOptions.addEventListener("click", () => {
     searchInput.value = "";
@@ -95,75 +114,143 @@ const isCustomDropdown = () => {
       searchOptions.classList.add("d-none");
     }
   });
-};
+}
 
-const toggleHamburgerMenu = () => {
+function toggleHamburgerMenu() {
   const windowSize = document.documentElement.clientWidth;
   const layoutType = document.documentElement.getAttribute("data-layout");
+
   document.documentElement.setAttribute("data-sidebar-visibility", "show");
+  const visiblilityType = document.documentElement.getAttribute("data-sidebar-visibility");
 
-  if (windowSize > 767) document.querySelector(".hamburger-icon").classList.toggle("open");
+  if (windowSize > 767) {
+    const hamburgerIcon = document.querySelector(".hamburger-icon");
+    if (hamburgerIcon) hamburgerIcon.classList.toggle("open");
+  }
 
+  // Collapse horizontal menu
   if (layoutType === "horizontal") {
     document.body.classList.toggle("menu");
   }
 
-  const visibilityType = document.documentElement.getAttribute("data-sidebar-visibility");
-  if (visibilityType === "show" && (layoutType === "vertical" || layoutType === "semibox")) {
+  // Collapse vertical menu
+  if (
+    visiblilityType === "show" &&
+    (layoutType === "vertical" || layoutType === "semibox")
+  ) {
     if (windowSize < 1025 && windowSize > 767) {
       document.body.classList.remove("vertical-sidebar-enable");
-      document.documentElement.setAttribute("data-sidebar-size", "sm");
+      const sidebarSize = document.documentElement.getAttribute("data-sidebar-size");
+      document.documentElement.setAttribute(
+        "data-sidebar-size",
+        sidebarSize === "sm" ? "" : "sm"
+      );
     } else if (windowSize > 1025) {
       document.body.classList.remove("vertical-sidebar-enable");
-      document.documentElement.setAttribute("data-sidebar-size", "lg");
+      const sidebarSize = document.documentElement.getAttribute("data-sidebar-size");
+      document.documentElement.setAttribute(
+        "data-sidebar-size",
+        sidebarSize === "lg" ? "sm" : "lg"
+      );
     } else if (windowSize <= 767) {
       document.body.classList.add("vertical-sidebar-enable");
       document.documentElement.setAttribute("data-sidebar-size", "lg");
     }
   }
 
-  if (document.documentElement.getAttribute("data-layout") == "twocolumn") {
+  // Two column menu
+  if (layoutType === "twocolumn") {
     document.body.classList.toggle("twocolumn-panel");
   }
-};
+}
 
-const setLanguage = (locale, country, flagImage) => {
+function toggleMenu() {
+  // In script setup, parent communication requires emit or provide/inject.
+  // You might want to emit an event or call a global store method.
+  // Here, we'll just emit an event named 'toggle-menu'
+  emit("toggle-menu");
+}
+
+function toggleRightSidebar() {
+  emit("toggle-right-sidebar");
+}
+
+function initFullScreen() {
+  document.body.classList.toggle("fullscreen-enable");
+  if (
+    !document.fullscreenElement &&
+    !document.mozFullScreenElement &&
+    !document.webkitFullscreenElement
+  ) {
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen();
+    } else if (document.documentElement.mozRequestFullScreen) {
+      document.documentElement.mozRequestFullScreen();
+    } else if (document.documentElement.webkitRequestFullscreen) {
+      document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+    }
+  } else {
+    if (document.cancelFullScreen) {
+      document.cancelFullScreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.webkitCancelFullScreen) {
+      document.webkitCancelFullScreen();
+    }
+  }
+}
+
+function setLanguage(locale, country, flagSrc) {
   lan.value = locale;
   text.value = country;
-  flag.value = flagImage;
-  document.getElementById("header-lang-img").setAttribute("src", flagImage);
+  flag.value = flagSrc;
+  const langImg = document.getElementById("header-lang-img");
+  if (langImg) langImg.setAttribute("src", flagSrc);
   i18n.global.locale = locale;
-};
+}
 
-const toggleDarkMode = () => {
-  const currentTheme = document.documentElement.getAttribute("data-bs-theme");
-  const newTheme = currentTheme === "dark" ? "light" : "dark";
-  document.documentElement.setAttribute("data-bs-theme", newTheme);
-  store.changeMode({ mode: newTheme });
-};
+function toggleDarkMode() {
+  if (document.documentElement.getAttribute("data-bs-theme") === "dark") {
+    document.documentElement.setAttribute("data-bs-theme", "light");
+  } else {
+    document.documentElement.setAttribute("data-bs-theme", "dark");
+  }
 
-const removeItem = (cartItem) => {
-  cartItems.value = cartItems.value.filter(item => item.id !== cartItem.id);
-  // Emit cart item count
-  emit('cart-item-price', cartItems.value.length);
-};
+  const mode = document.documentElement.getAttribute("data-bs-theme");
+  if (typeof layoutMethods.changeMode === "function") {
+    store.changeMode({ mode });
+  }
+}
 
+
+function removeItem(cartItem) {
+  cartItems.value = cartItems.value.filter((item) => item.id !== cartItem.id);
+  emit("cart-item-price", cartItems.value.length);
+}
+
+// Lifecycle
 onMounted(() => {
-  if (import.meta.VUE_APP_I18N_LOCALE) {
-    flag.value = process.env.VUE_APP_I18N_LOCALE;
-    languages.value.forEach((item) => {
-      if (item.language == flag.value) {
-        document.getElementById("header-lang-img").setAttribute("src", item.flag);
+  if (import.meta.env.VITE_I18N_LOCALE) {
+    flag.value = import.meta.env.VITE_I18N_LOCALE;
+    languages.forEach((item) => {
+      if (item.language === flag.value) {
+        const langImg = document.getElementById("header-lang-img");
+        if (langImg) langImg.setAttribute("src", item.flag);
       }
     });
   }
 
-  document.addEventListener("scroll", function () {
+  document.addEventListener("scroll", () => {
     const pageTopbar = document.getElementById("page-topbar");
     if (pageTopbar) {
-      document.body.scrollTop >= 50 || document.documentElement.scrollTop >= 50 ?
-        pageTopbar.classList.add("topbar-shadow") :
+      if (
+        document.body.scrollTop >= 50 ||
+        document.documentElement.scrollTop >= 50
+      ) {
+        pageTopbar.classList.add("topbar-shadow");
+      } else {
         pageTopbar.classList.remove("topbar-shadow");
+      }
     }
   });
 
@@ -172,55 +259,9 @@ onMounted(() => {
     hamburgerIcon.addEventListener("click", toggleHamburgerMenu);
   }
 
-  const isCustomDropdown = () => {
-  const searchOptions = document.getElementById("search-close-options");
-  const dropdown = document.getElementById("search-dropdown");
-  const searchInput = document.getElementById("search-options");
-
-  // Check if elements exist before adding event listeners
-  if (!searchOptions || !dropdown || !searchInput) {
-    return; // If any element is not found, exit early
-  }
-
-  searchInput.addEventListener("focus", () => {
-    const inputLength = searchInput.value.length;
-    if (inputLength > 0) {
-      dropdown.classList.add("show");
-      searchOptions.classList.remove("d-none");
-    } else {
-      dropdown.classList.remove("show");
-      searchOptions.classList.add("d-none");
-    }
-  });
-
-  searchInput.addEventListener("keyup", () => {
-    const inputLength = searchInput.value.length;
-    if (inputLength > 0) {
-      dropdown.classList.add("show");
-      searchOptions.classList.remove("d-none");
-    } else {
-      dropdown.classList.remove("show");
-      searchOptions.classList.add("d-none");
-    }
-  });
-
-  searchOptions.addEventListener("click", () => {
-    searchInput.value = "";
-    dropdown.classList.remove("show");
-    searchOptions.classList.add("d-none");
-  });
-
-  document.body.addEventListener("click", (e) => {
-    if (e.target.getAttribute("id") !== "search-options") {
-      dropdown.classList.remove("show");
-      searchOptions.classList.add("d-none");
-    }
-  });
-};
-
+  isCustomDropdown();
 });
 </script>
-
 
 <template>
   <header id="page-topbar">

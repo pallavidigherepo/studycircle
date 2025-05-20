@@ -1730,7 +1730,7 @@ blurhash@2.0.5:
 
 bootstrap-vue-3@^0.5.1:
   version "0.5.1"
-  resolved "https://registry.npmjs.org/bootstrap-vue-3/-/bootstrap-vue-3-0.5.1.tgz"
+  resolved "https://registry.yarnpkg.com/bootstrap-vue-3/-/bootstrap-vue-3-0.5.1.tgz#ea7f7f2eddbeb3f6eaef000bb357e8cbe6a045c5"
   integrity sha512-azgy+97Ih+TJvI1vJnqt4mptQ8Wvm3P8eKDvL9ZMGBWN/9k2ikU4Wx1OM0KNOZDcC4kyaWmC08n9cbaaShrkJg==
   dependencies:
     "@nuxt/kit" "3.0.0"
@@ -1743,7 +1743,7 @@ bootstrap-vue-next@^0.29.0:
 
 bootstrap@^5.3.6:
   version "5.3.6"
-  resolved "https://registry.npmjs.org/bootstrap/-/bootstrap-5.3.6.tgz"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.3.6.tgz#fbd91ebaff093f5b191a1c01a8c866d24f9fa6e1"
   integrity sha512-jX0GAcRzvdwISuvArXn3m7KZscWWFAf1MKBcnzaN02qWMb3jpMoUX4/qgeiGzqyIb4ojulRzs89UCUmGcFSzTA==
 
 braces@^3.0.3, braces@~3.0.2:

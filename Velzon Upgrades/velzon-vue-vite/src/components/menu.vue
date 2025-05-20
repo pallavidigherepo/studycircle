@@ -297,7 +297,7 @@ onMounted(() => {
                       </router-link>
                     </li>
                     <li class="nav-item">
-                      <router-link to="/ecommerce/product.details" class="nav-link" data-key="t.product.Details">
+                      <router-link to="/ecommerce/product-details" class="nav-link" data-key="t.product.Details">
                         {{ t("t.productDetails") }}
                       </router-link>
                     </li>
@@ -519,47 +519,47 @@ onMounted(() => {
                 <div class="collapse menu-dropdown" id="nftmarketplace">
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
-                      <router-link to="/apps/nft.marketplace" class="nav-link" data-key="t.list.view">
+                      <router-link to="/apps/nft-marketplace" class="nav-link" data-key="t.list.view">
                         {{ t("t.marketplace") }}
                       </router-link>
                     </li>
                     <li class="nav-item">
-                      <router-link to="/apps/nft.explore" class="nav-link" data-key="t.ticket.details">
+                      <router-link to="/apps/nft-explore" class="nav-link" data-key="t.ticket.details">
                         {{ t("t.explore-now") }}
                       </router-link>
                     </li>
                     <li class="nav-item">
-                      <router-link to="/apps/nft.auction" class="nav-link" data-key="t.ticket.details">
+                      <router-link to="/apps/nft-auction" class="nav-link" data-key="t.ticket.details">
                         {{ t("t.live-auction") }}
                       </router-link>
                     </li>
                     <li class="nav-item">
-                      <router-link to="/apps/nft.item-detail" class="nav-link" data-key="t.ticket.details">
+                      <router-link to="/apps/nft-item-detail" class="nav-link" data-key="t.ticket.details">
                         {{ t("t.item-details") }}
                       </router-link>
                     </li>
                     <li class="nav-item">
-                      <router-link to="/apps/nft.collection" class="nav-link" data-key="t.ticket.details">
+                      <router-link to="/apps/nft-collection" class="nav-link" data-key="t.ticket.details">
                         {{ t("t.collections") }}
                       </router-link>
                     </li>
                     <li class="nav-item">
-                      <router-link to="/apps/nft.creators" class="nav-link" data-key="t.ticket.details">
+                      <router-link to="/apps/nft-creators" class="nav-link" data-key="t.ticket.details">
                         {{ t("t.creators") }}
                       </router-link>
                     </li>
                     <li class="nav-item">
-                      <router-link to="/apps/nft.ranking" class="nav-link" data-key="t.ticket.details">
+                      <router-link to="/apps/nft-ranking" class="nav-link" data-key="t.ticket.details">
                         {{ t("t.ranking") }}
                       </router-link>
                     </li>
                     <li class="nav-item">
-                      <router-link to="/apps/nft.wallet" class="nav-link" data-key="t.ticket.details">
+                      <router-link to="/apps/nft-wallet" class="nav-link" data-key="t.ticket.details">
                         {{ t("t.walletconnect") }}
                       </router-link>
                     </li>
                     <li class="nav-item">
-                      <router-link to="/apps/nft.create" class="nav-link" data-key="t.ticket.details">
+                      <router-link to="/apps/nft-create" class="nav-link" data-key="t.ticket.details">
                         {{ t("t.create-nft") }}
                       </router-link>
                     </li>
@@ -726,12 +726,12 @@ onMounted(() => {
                 <div class="collapse menu-dropdown" id="sidebarResetPass">
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
-                      <router-link to="/auth/reset.pwd-basic" class="nav-link" data-key="t.basic">
+                      <router-link to="/auth/reset-pwd-basic" class="nav-link" data-key="t.basic">
                         {{ t("t.basic") }}
                       </router-link>
                     </li>
                     <li class="nav-item">
-                      <router-link to="/auth/reset.pwd-cover" class="nav-link" data-key="t.cover">
+                      <router-link to="/auth/reset-pwd-cover" class="nav-link" data-key="t.cover">
                         {{ t("t.cover") }}
                       </router-link>
                     </li>
@@ -788,12 +788,12 @@ onMounted(() => {
                 <div class="collapse menu-dropdown" id="sidebarLogout">
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
-                      <router-link to="/auth/logout.basic" class="nav-link" data-key="t.basic">
+                      <router-link to="/auth/logout-basic" class="nav-link" data-key="t.basic">
                         {{ t("t.basic") }}
                       </router-link>
                     </li>
                     <li class="nav-item">
-                      <router-link to="/auth/logout.cover" class="nav-link" data-key="t.cover">
+                      <router-link to="/auth/logout-cover" class="nav-link" data-key="t.cover">
                         {{ t("t.cover") }}
                       </router-link>
                     </li>
@@ -969,7 +969,7 @@ onMounted(() => {
                 <div class="collapse menu-dropdown" id="sidebarBlogs">
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
-                      <router-link to="/blogs/list.view" class="nav-link" data-key="t.list.view">
+                      <router-link to="/blogs/list-view" class="nav-link" data-key="t.list.view">
                         {{ t("t.listview") }}
                       </router-link>
                     </li>
