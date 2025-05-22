@@ -27,7 +27,7 @@
 .navbar-menu {
     width: var(--#{$prefix}vertical-menu-width);
     z-index: $vertical-menu-z-index;
-    background: var(--#{$prefix}vertical-menu-bg);
+    background: #405189;
     border-right: 1px solid var(--#{$prefix}vertical-menu-border);
     bottom: 0;
     margin-top: 0;
@@ -47,7 +47,7 @@
             font-family: $vertical-menu-item-font-family;
 
             &.active {
-                color: var(--#{$prefix}vertical-menu-item-active-color);
+                color: white;
             }
 
             &:hover {
@@ -74,7 +74,7 @@
             }
 
             &:hover {
-                color: var(--#{$prefix}vertical-menu-item-hover-color);
+                color: white;
 
                 .icon-dual {
                     color: var(--#{$prefix}vertical-menu-item-hover-color);
@@ -96,16 +96,16 @@
                 }
 
                 &[aria-expanded=true] {
-                    color: var(--#{$prefix}vertical-menu-item-active-color);
+                    color: white;
 
                     .icon-dual {
-                        color: var(--#{$prefix}vertical-menu-item-hover-color);
+                        color: white;
                         fill: rgba($primary, 0.16);
                     }
 
                     &:after {
                         transform: rotate(90deg);
-                        color: var(--#{$prefix}vertical-menu-item-active-color);
+                        color: white;
                     }
 
                     &:before {
@@ -148,7 +148,7 @@
                 }
 
                 &:hover {
-                    color: var(--#{$prefix}vertical-menu-sub-item-hover-color);
+                    color: white;
 
                     &:before {
                         background-color: var(--#{$prefix}vertical-menu-sub-item-hover-color) !important;
@@ -157,7 +157,7 @@
                 }
 
                 &.active {
-                    color: var(--#{$prefix}vertical-menu-item-active-color);
+                    color: white;
 
                     &:before {
                         background-color: var(--#{$prefix}vertical-menu-item-active-color);
@@ -185,7 +185,7 @@
     }
 
     .btn-vertical-sm-hover {
-        color: var(--#{$prefix}secondary-color);
+        color: white;
         display: none;
     }
 }

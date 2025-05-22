@@ -86,3 +86,8 @@ const crmWidgets = ref([
     </BCardBody>
   </BCard>
 </template>
+
+<style setup>
+
+
+</style>

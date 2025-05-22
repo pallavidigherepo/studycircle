@@ -2,7 +2,6 @@
 import { ref, computed, onMounted, watch } from 'vue';
 import { useLayoutStore } from '@/state/modules/layout'; // Correct import of your store
 const store = useLayoutStore()
-import { BDropdown, BDropdownItem, BTabs, BTab, BButton, BRow, BCol, BBadge, BLink } from 'bootstrap-vue-3'
 // import { useStore } from 'pinia';
 import { layoutMethods } from "@/state/helpers";
 import simplebar from "simplebar-vue";
