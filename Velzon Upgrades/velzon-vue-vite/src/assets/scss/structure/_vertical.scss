@@ -21,6 +21,7 @@
 }
 
 .page-content {
+    background-color: #f3f3f9;
     padding: calc(#{$header-height} + #{$grid-gutter-width}) calc(#{$grid-gutter-width} * 0.5) $footer-height calc(#{$grid-gutter-width} * 0.5);
 }
 
