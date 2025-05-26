@@ -1,64 +1,27 @@
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue';
-import { useLayoutStore } from '@/state/modules/layout'; // Correct import of your store
-const store = useLayoutStore()
-// import { useStore } from 'pinia';
+import { ref, computed, onMounted } from "vue";
 import { layoutMethods } from "@/state/helpers";
-import simplebar from "simplebar-vue";
-import i18n from "../i18n";
-
-const emit = defineEmits(['toggle-menu', 'toggle-right-sidebar', 'cart-item-price']);
-
-
 import img1 from "../assets/images/products/img-1.png";
 import img2 from "../assets/images/products/img-2.png";
 import img3 from "../assets/images/products/img-3.png";
 import img4 from "../assets/images/products/img-6.png";
 import img5 from "../assets/images/products/img-5.png";
+import simplebar from "simplebar-vue";
+import i18n from "../i18n";
+import { useAttrs, useSlots, defineEmits } from "vue";
+import { Import } from "lucide-vue-next";
 
+import { useLayoutStore } from '@/state/modules/layout'; 
+const store = useLayoutStore()
 
-// Reactive state
+const emit = defineEmits(["cart-item-price"]);
+
 const cartItems = ref([
-  {
-    id: 1,
-    productImage: img1,
-    productName: "Branded T-Shirts",
-    productLink: "/ecommerce/product-details",
-    quantity: "10 x $32",
-    itemPrice: "320",
-  },
-  {
-    id: 2,
-    productImage: img2,
-    productName: "Bentwood Chair",
-    productLink: "/ecommerce/product-details",
-    quantity: "5 x $18",
-    itemPrice: "89",
-  },
-  {
-    id: 3,
-    productImage: img3,
-    productName: "Borosil Paper Cup",
-    productLink: "/ecommerce/product-details",
-    quantity: "3 x $250",
-    itemPrice: "750",
-  },
-  {
-    id: 4,
-    productImage: img4,
-    productName: "Gray Styled T-Shirt",
-    productLink: "/ecommerce/product-details",
-    quantity: "1 x $1250",
-    itemPrice: "1250",
-  },
-  {
-    id: 5,
-    productImage: img5,
-    productName: "Stillbird Helmet",
-    productLink: "/ecommerce/product-details",
-    quantity: "2 x $495",
-    itemPrice: "990",
-  },
+  { id: 1, productImage: img1, productName: "Branded T-Shirts", productLink: "/ecommerce/product-details", quantity: "10 x $32", itemPrice: "320" },
+  { id: 2, productImage: img2, productName: "Bentwood Chair", productLink: "/ecommerce/product-details", quantity: "5 x $18", itemPrice: "89" },
+  { id: 3, productImage: img3, productName: "Borosil Paper Cup", productLink: "/ecommerce/product-details", quantity: "3 x $250", itemPrice: "750" },
+  { id: 4, productImage: img4, productName: "Gray Styled T-Shirt", productLink: "/ecommerce/product-details", quantity: "1 x $1250", itemPrice: "1250" },
+  { id: 5, productImage: img5, productName: "Stillbird Helmet", productLink: "/ecommerce/product-details", quantity: "2 x $495", itemPrice: "990" },
 ]);
 
 const languages = [
@@ -78,12 +41,9 @@ const flag = ref(null);
 const value = ref(null);
 const myVar = ref(1);
 
-// Computed
-const calculateTotalPrice = computed(() =>
-  cartItems.value.reduce((total, item) => total + parseFloat(item.itemPrice), 0).toFixed(2)
-);
-
-// Methods
+const calculateTotalPrice = computed(() => {
+  return cartItems.value.reduce((total, item) => total + parseFloat(item.itemPrice), 0).toFixed(2);
+});
 
 function isCustomDropdown() {
   const searchOptions = document.getElementById("search-close-options");
@@ -92,18 +52,17 @@ function isCustomDropdown() {
 
   if (!searchInput || !dropdown || !searchOptions) return;
 
-  const showDropdown = () => {
-    if (searchInput.value.length > 0) {
-      dropdown.classList.add("show");
-      searchOptions.classList.remove("d-none");
-    } else {
-      dropdown.classList.remove("show");
-      searchOptions.classList.add("d-none");
-    }
-  };
+  searchInput.addEventListener("focus", () => {
+    const inputLength = searchInput.value.length;
+    dropdown.classList.toggle("show", inputLength > 0);
+    searchOptions.classList.toggle("d-none", inputLength === 0);
+  });
 
-  searchInput.addEventListener("focus", showDropdown);
-  searchInput.addEventListener("keyup", showDropdown);
+  searchInput.addEventListener("keyup", () => {
+    const inputLength = searchInput.value.length;
+    dropdown.classList.toggle("show", inputLength > 0);
+    searchOptions.classList.toggle("d-none", inputLength === 0);
+  });
 
   searchOptions.addEventListener("click", () => {
     searchInput.value = "";
@@ -124,36 +83,26 @@ function toggleHamburgerMenu() {
   const layoutType = document.documentElement.getAttribute("data-layout");
 
   document.documentElement.setAttribute("data-sidebar-visibility", "show");
-  const visiblilityType = document.documentElement.getAttribute("data-sidebar-visibility");
+  const visibilityType = document.documentElement.getAttribute("data-sidebar-visibility");
 
   if (windowSize > 767) {
-    const hamburgerIcon = document.querySelector(".hamburger-icon");
-    if (hamburgerIcon) hamburgerIcon.classList.toggle("open");
+    document.querySelector(".hamburger-icon")?.classList.toggle("open");
   }
 
-  // Collapse horizontal menu
   if (layoutType === "horizontal") {
     document.body.classList.toggle("menu");
   }
 
-  // Collapse vertical menu
-  if (
-    visiblilityType === "show" &&
-    (layoutType === "vertical" || layoutType === "semibox")
-  ) {
+  if (visibilityType === "show" && (layoutType === "vertical" || layoutType === "semibox")) {
     if (windowSize < 1025 && windowSize > 767) {
       document.body.classList.remove("vertical-sidebar-enable");
-      const sidebarSize = document.documentElement.getAttribute("data-sidebar-size");
-      document.documentElement.setAttribute(
-        "data-sidebar-size",
-        sidebarSize === "sm" ? "" : "sm"
+      document.documentElement.setAttribute("data-sidebar-size",
+        document.documentElement.getAttribute("data-sidebar-size") === "sm" ? "" : "sm"
       );
     } else if (windowSize > 1025) {
       document.body.classList.remove("vertical-sidebar-enable");
-      const sidebarSize = document.documentElement.getAttribute("data-sidebar-size");
-      document.documentElement.setAttribute(
-        "data-sidebar-size",
-        sidebarSize === "lg" ? "sm" : "lg"
+      document.documentElement.setAttribute("data-sidebar-size",
+        document.documentElement.getAttribute("data-sidebar-size") === "lg" ? "sm" : "lg"
       );
     } else if (windowSize <= 767) {
       document.body.classList.add("vertical-sidebar-enable");
@@ -161,54 +110,31 @@ function toggleHamburgerMenu() {
     }
   }
 
-  // Two column menu
   if (layoutType === "twocolumn") {
     document.body.classList.toggle("twocolumn-panel");
   }
 }
 
-// function toggleMenu() {
-//   // In script setup, parent communication requires emit or provide/inject.
-//   // You might want to emit an event or call a global store method.
-//   // Here, we'll just emit an event named 'toggle-menu'
-//   emit("toggle-menu");
-// }
-
 function toggleMenu() {
-  // Emit the event if parent listens to it
-  emit('toggle-menu');
-
-  // Toggle visibility
-  store.changeVisibility(!store.visibility);
-  document.documentElement.setAttribute(
-    'data-sidebar-visibility',
-    store.visibility ? 'show' : 'hidden'
-  );
-
-  // Toggle sidebar size
-  const currentSize = store.sidebarSize;
-  const newSize = currentSize === 'lg' ? 'sm' : 'lg';
-  store.changeSidebarSize(newSize);
-  document.documentElement.setAttribute('data-sidebar-size', newSize);
+  // must be emitted or use global event bus
+  // Use defineExpose or emit upward to parent
 }
 
 function toggleRightSidebar() {
-  emit("toggle-right-sidebar");
+  // must be emitted or use global event bus
 }
 
 function initFullScreen() {
   document.body.classList.toggle("fullscreen-enable");
-  if (
-    !document.fullscreenElement &&
-    !document.mozFullScreenElement &&
-    !document.webkitFullscreenElement
-  ) {
-    if (document.documentElement.requestFullscreen) {
-      document.documentElement.requestFullscreen();
-    } else if (document.documentElement.mozRequestFullScreen) {
-      document.documentElement.mozRequestFullScreen();
-    } else if (document.documentElement.webkitRequestFullscreen) {
-      document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+  const docEl = document.documentElement;
+
+  if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement) {
+    if (docEl.requestFullscreen) {
+      docEl.requestFullscreen();
+    } else if (docEl.mozRequestFullScreen) {
+      docEl.mozRequestFullScreen();
+    } else if (docEl.webkitRequestFullscreen) {
+      docEl.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
     }
   } else {
     if (document.cancelFullScreen) {
@@ -221,69 +147,49 @@ function initFullScreen() {
   }
 }
 
-function setLanguage(locale, country, flagSrc) {
+function setLanguage(locale, country, flagIcon) {
   lan.value = locale;
   text.value = country;
-  flag.value = flagSrc;
-  const langImg = document.getElementById("header-lang-img");
-  if (langImg) langImg.setAttribute("src", flagSrc);
+  flag.value = flagIcon;
+  document.getElementById("header-lang-img")?.setAttribute("src", flagIcon);
   i18n.global.locale = locale;
 }
 
 function toggleDarkMode() {
-  if (document.documentElement.getAttribute("data-bs-theme") === "dark") {
-    document.documentElement.setAttribute("data-bs-theme", "light");
-  } else {
-    document.documentElement.setAttribute("data-bs-theme", "dark");
-  }
-
-  const mode = document.documentElement.getAttribute("data-bs-theme");
-  if (typeof layoutMethods.changeMode === "function") {
-    store.changeMode({ mode });
-  }
+  const current = document.documentElement.getAttribute("data-bs-theme");
+  const newMode = current === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-bs-theme", newMode);
+  store.changeMode({ mode: newMode });
 }
 
-
 function removeItem(cartItem) {
-  cartItems.value = cartItems.value.filter((item) => item.id !== cartItem.id);
+  cartItems.value = cartItems.value.filter(item => item.id !== cartItem.id);
   emit("cart-item-price", cartItems.value.length);
 }
 
-// Lifecycle
 onMounted(() => {
-
   if (import.meta.env.VITE_I18N_LOCALE) {
     flag.value = import.meta.env.VITE_I18N_LOCALE;
-    languages.forEach((item) => {
-      if (item.language === flag.value) {
-        const langImg = document.getElementById("header-lang-img");
-        if (langImg) langImg.setAttribute("src", item.flag);
-      }
-    });
+    const currentLang = languages.find(lang => lang.language === flag.value);
+    if (currentLang) {
+      document.getElementById("header-lang-img")?.setAttribute("src", currentLang.flag);
+    }
   }
 
   document.addEventListener("scroll", () => {
-    const pageTopbar = document.getElementById("page-topbar");
-    if (pageTopbar) {
-      if (
-        document.body.scrollTop >= 50 ||
-        document.documentElement.scrollTop >= 50
-      ) {
-        pageTopbar.classList.add("topbar-shadow");
-      } else {
-        pageTopbar.classList.remove("topbar-shadow");
-      }
+    const topbar = document.getElementById("page-topbar");
+    if (topbar) {
+      const scrolled = document.body.scrollTop >= 50 || document.documentElement.scrollTop >= 50;
+      topbar.classList.toggle("topbar-shadow", scrolled);
     }
   });
 
-  const hamburgerIcon = document.getElementById("topnav-hamburger-icon");
-  if (hamburgerIcon) {
-    hamburgerIcon.addEventListener("click", toggleHamburgerMenu);
-  }
+  document.getElementById("topnav-hamburger-icon")?.addEventListener("click", toggleHamburgerMenu);
 
   isCustomDropdown();
 });
 </script>
+
 
 <template>
   <header id="page-topbar">
@@ -435,7 +341,7 @@ onMounted(() => {
             <BLink href="javascript:void(0);" class="dropdown-item notify-item language py-2"
               v-for="(entry, key) in languages" :data-lang="entry.language" :title="entry.title"
               @click="setLanguage(entry.language, entry.title, entry.flag)" :key="key">
-              <img :src="entry.flag" alt="user-image" class="me-2 rounded" height="18">
+              <img :src="entry.flag" alt="" class="me-2 rounded" height="18">
               <span class="align-middle">{{ entry.title }}</span>
             </BLink>
           </BDropdown>
@@ -908,7 +814,7 @@ onMounted(() => {
                 class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i>
               <span class="align-middle"> Lock screen</span>
             </router-link>
-            <router-link class="dropdown-item" to="/logout"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
+            <router-link class="dropdown-item" to="/auth/logout-basic"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
               <span class="align-middle" data-key="t-logout"> Logout</span>
             </router-link>
           </BDropdown>

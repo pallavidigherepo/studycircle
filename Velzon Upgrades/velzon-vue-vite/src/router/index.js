@@ -67,6 +67,7 @@ import GridView from '@/views/Pages/blogs/grid-view.vue'
 import ListView from '@/views/Pages/blogs/list-view.vue'
 import Overview from '@/views/Pages/blogs/overview.vue'
 import Dashboard from '@/views/Dashboard/analytics/index.vue'
+import Ecommerce from '@/views/Dashboard/ecommerce/index.vue'
 import CryptoDashboard from '@/views/Dashboard/crypto/index.vue'
 import Projects from '@/views/Dashboard/projects/index.vue'
 import CRM from '@/views/Dashboard/crm/index.vue'
@@ -660,6 +661,15 @@ const routes = [
       authRequired: true,
     },
     component: Blog,
+  },
+  {
+    path: "/dashboard/ecommerce",
+    name: "dashboard-ecommerce",
+    meta: {
+      title: "Ecommerce Dashboard",
+      authRequired: true,
+    },
+    component: Ecommerce,
   },
   {
     path: '/login',

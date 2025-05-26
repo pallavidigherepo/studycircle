@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import simplebar from 'simplebar-vue';
+import simplebar from "simplebar-vue";
 import { SearchIcon, InfoIcon, MoreVerticalIcon } from '@zhuowenli/vue-feather-icons';
 
 import { required, helpers } from "@vuelidate/validators";

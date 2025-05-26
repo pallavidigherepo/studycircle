@@ -2,7 +2,6 @@
 import { ref, onMounted, watch, defineProps, defineEmits } from 'vue';
 import { layoutMethods, layoutComputed } from "@/state/helpers";
 import simpleBar from "simplebar-vue";
-import { BOffcanvas } from 'bootstrap-vue-3'
 
 // Props (if any, define here)
 const props = defineProps({
@@ -94,6 +93,7 @@ const resetLayout = () => {
 const gradiantColor = () => {
   layoutMethods.changeSidebarColor({ sidebarColor: "gradient" });
 };
+
 
 const onSideBarColorClick = (color) => {
   if (color !== "gradient") {

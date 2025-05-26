@@ -182,7 +182,7 @@ onMounted(() => {
                 </router-link>
               </li>
               <li class="nav-item">
-                <router-link to="/" class="nav-link" data-key="t.ecommerce">
+                <router-link to="/dashboard/ecommerce" class="nav-link" data-key="t.ecommerce">
                   {{ t("t.ecommerce") }}
                 </router-link>
               </li>

@@ -15,8 +15,8 @@ import flatPickr from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
 
 import Layout from "@/layouts/main.vue";
-import Revenue from "./revenue";
-import SalesLocation from "./sales-location";
+import Revenue from "./revenue.vue";
+import SalesLocation from "./sales-location.vue";
 
 // Reactive state
 const date = ref("2022-01-01 to 2022-01-31");

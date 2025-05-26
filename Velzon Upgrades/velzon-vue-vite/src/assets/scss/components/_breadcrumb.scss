@@ -20,9 +20,8 @@
 
 // Breadcrumb item arrow
 .breadcrumb-item {
-   
     >a {
-        color: var(--#{$prefix}body-color); 
+        color: var(--#{$prefix}body-color);
     }
 
     +.breadcrumb-item {
@@ -35,6 +34,5 @@
 }
 .breadcrumb{
     margin: 0;
-    
 }
   
