@@ -528,7 +528,8 @@ onMounted(() => {
             </div>
             <BTabs nav-class="dropdown-tabs nav-tab-custom bg-primary px-2 pt-2">
               <BTab title=" All (4) " class="tab-pane fade py-2 ps-2 show" id="all-noti-tab" role="tabpanel">
-                <simplebar data-simplebar style="max-height: 300px" class="pe-2">
+                <simplebar data-simplebar style="max-height: 300px" >
+                  <div class="pe-2">
                   <div class="text-reset notification-item d-block dropdown-item position-relative">
                     <div class="d-flex">
                       <div class="avatar-xs me-3 flex-shrink-0">
@@ -538,7 +539,7 @@ onMounted(() => {
                       </div>
                       <div class="flex-grow-1">
                         <BLink href="#!" class="stretched-link">
-                          <h6 class="mt-0 mb-2 lh-base">
+                          <h6 class="mt-0 mb-2">
                             Your <b>Elite</b> author Graphic Optimization
                             <span class="text-secondary">reward</span> is
                             ready!
@@ -553,7 +554,8 @@ onMounted(() => {
                       </div>
                     </div>
                   </div>
-
+                  </div>
+                  
                   <div class="text-reset notification-item d-block dropdown-item position-relative">
                     <div class="d-flex">
                       <img src="@/assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs flex-shrink-0"

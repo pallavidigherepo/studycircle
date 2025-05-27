@@ -154,6 +154,7 @@ onMounted(() => {
 
 </script>
 
+
 <template>
   <BContainer fluid>
     <div id="two-column-menu"></div>

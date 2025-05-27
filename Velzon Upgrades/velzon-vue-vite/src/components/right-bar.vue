@@ -910,7 +910,7 @@ const components = { simpleBar };
                 <h5 class="fs-13 text-center mt-2">Dark</h5>
               </BCol>
               <BCol cols="4">
-                <BButton class="btn btn-link avatar-md w-100 p-0 overflow-hidden border collapsed " type="button" v-b-toggle="'collapseBgGradient'" @click="onSideBarColorClick('gradient')">
+                <BButton class="btn btn-link avatar-md w-100 p-0 overflow-hidden border collapsed " type="button" v-show="'collapseBgGradient'" @click="onSideBarColorClick('gradient')">
                   <span class="d-flex gap-1 h-100">
                     <span class="flex-shrink-0">
                       <span class="bg-vertical-gradient d-flex h-100 flex-column gap-1 p-1">
