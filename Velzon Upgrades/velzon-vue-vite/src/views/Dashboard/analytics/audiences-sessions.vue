@@ -90,16 +90,16 @@ const chartOptions = {
     <BCardHeader class="align-items-center d-flex py-0">
       <BCardTitle class="mb-0 flex-grow-1">Audiences Sessions by Country</BCardTitle>
       <div class="flex-shrink-0">
-          <BDropdown variant="link" class="card-header-dropdown" toggle-class="text-reset dropdown-btn arrow-none"
-            menu-class="dropdown-menu-end" aria-haspopup="true">
-            <template #button-content> <span class="fw-semibold text-uppercase fs-12">Sort by: </span><span
-                class="text-muted">Current Week<i class="mdi mdi-chevron-down ms-1"></i></span>
-            </template>
-            <BDropdownItem>Today</BDropdownItem>
-            <BDropdownItem>Last Week</BDropdownItem>
-            <BDropdownItem>Last Month</BDropdownItem>
-            <BDropdownItem>Current Year</BDropdownItem>
-          </BDropdown>
+        <BDropdown variant="link" class="card-header-dropdown" toggle-class="text-reset dropdown-btn" no-caret
+          menu-class="dropdown-menu-end" aria-haspopup="true">
+          <template #button-content> <span class="fw-semibold text-uppercase fs-12">Sort by: </span><span
+              class="text-muted">Current Week<i class="mdi mdi-chevron-down ms-1"></i></span>
+          </template>
+          <BDropdownItem>Today</BDropdownItem>
+          <BDropdownItem>Last Week</BDropdownItem>
+          <BDropdownItem>Last Month</BDropdownItem>
+          <BDropdownItem>Current Year</BDropdownItem>
+        </BDropdown>
       </div>
     </BCardHeader>
     <BCardBody class="p-0">

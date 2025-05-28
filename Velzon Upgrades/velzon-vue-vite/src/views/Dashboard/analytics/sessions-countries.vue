@@ -66,9 +66,9 @@ const chartOptions = {
     <BCardHeader class="align-items-center d-flex">
       <BCardTitle class="mb-0 flex-grow-1">Sessions by Countries</BCardTitle>
       <div class="hstack gap-1">
-        <BButton type="button" variant="soft-secondary" size="sm">ALL</BButton>
-        <BButton type="button" variant="soft-primary" size="sm">1M</BButton>
-        <BButton type="button" variant="soft-secondary" size="sm">6M</BButton>
+        <BButton type="button" variant="soft-secondary" size="sm" class="material-shadow-none">ALL</BButton>
+        <BButton type="button" variant="soft-primary" size="sm" class="material-shadow-none">1M</BButton>
+        <BButton type="button" variant="soft-secondary" size="sm" class="material-shadow-none">6M</BButton>
       </div>
     </BCardHeader>
     <BCardBody class="p-0">

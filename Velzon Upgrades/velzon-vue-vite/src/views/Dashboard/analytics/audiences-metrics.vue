@@ -90,10 +90,10 @@ const chartOptions = {
     <BCardHeader class="border-0 align-items-center d-flex">
       <BCardTitle class="mb-0 flex-grow-1">Audiences Metrics</BCardTitle>
       <div class="hstack gap-1">
-        <BButton type="button" variant="soft-secondary" size="sm">ALL</BButton>
-        <BButton type="button" variant="soft-secondary" size="sm">1M</BButton>
-        <BButton type="button" variant="soft-secondary" size="sm">6M</BButton>
-        <BButton type="button" variant="soft-primary" size="sm">1Y</BButton>
+        <BButton type="button" variant="soft-secondary" size="sm" class="material-shadow-none">ALL</BButton>
+        <BButton type="button" variant="soft-secondary" size="sm" class="material-shadow-none">1M</BButton>
+        <BButton type="button" variant="soft-secondary" size="sm" class="material-shadow-none">6M</BButton>
+        <BButton type="button" variant="soft-primary" size="sm" class="material-shadow-none">1Y</BButton>
       </div>
     </BCardHeader>
     <BCardHeader class="p-0 border-0 bg-light-subtle">

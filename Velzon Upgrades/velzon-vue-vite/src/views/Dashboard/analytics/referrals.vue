@@ -7,7 +7,7 @@
         <BCardHeader class="align-items-center d-flex">
             <BCardTitle class="mb-0 flex-grow-1">Top Referrals Pages</BCardTitle>
             <div class="flex-shrink-0">
-                <BButton type="button" variant="soft-primary" size="sm">
+                <BButton type="button" variant="soft-primary" size="sm" class="material-shadow-none">
                     Export Report
                 </BButton>
             </div>

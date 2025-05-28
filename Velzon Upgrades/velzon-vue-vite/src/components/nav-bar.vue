@@ -500,10 +500,10 @@ onMounted(() => {
             </BButton>
           </div>
 
-          <BDropdown variant="ghost-dark" dropstart class="ms-1 dropdown"
-            :offset="{ alignmentAxis: 57, crossAxis: 0, mainAxis: -42 }"
-            toggle-class="btn-icon btn-topbar rounded-circle arrow-none" id="page-header-notifications-dropdown"
-            menu-class="dropdown-menu-lg dropdown-menu-end p-0" auto-close="outside">
+          <BDropdown variant="ghost-dark" dropstart class="ms-1 dropdown" no-caret
+            :offset="{ alignmentAxis: 57, crossAxis: 0, mainAxis: -42 }" toggle-class="btn-icon btn-topbar rounded-circle material-shadow-none"
+            id="page-header-notifications-dropdown" menu-class="dropdown-menu-lg dropdown-menu-end p-0"
+            auto-close="outside">
             <template #button-content>
               <i class='bx bx-bell fs-22'></i>
               <span class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger"><span
@@ -521,15 +521,14 @@ onMounted(() => {
                     </h6>
                   </BCol>
                   <BCol cols="auto" class="dropdown-tabs">
-                    <BBadge variant="light-subtle" class="bg-light-subtle text-body fs-13"> 4 New</BBadge>
+                    <BBadge variant="light" class="bg-light text-body fs-13"> 4 New</BBadge>
                   </BCol>
                 </BRow>
               </div>
             </div>
             <BTabs nav-class="dropdown-tabs nav-tab-custom bg-primary px-2 pt-2">
               <BTab title=" All (4) " class="tab-pane fade py-2 ps-2 show" id="all-noti-tab" role="tabpanel">
-                <simplebar data-simplebar style="max-height: 300px" >
-                  <div class="pe-2">
+                <simplebar data-simplebar style="max-height: 300px" class="pe-2">
                   <div class="text-reset notification-item d-block dropdown-item position-relative">
                     <div class="d-flex">
                       <div class="avatar-xs me-3 flex-shrink-0">
@@ -539,7 +538,7 @@ onMounted(() => {
                       </div>
                       <div class="flex-grow-1">
                         <BLink href="#!" class="stretched-link">
-                          <h6 class="mt-0 mb-2">
+                          <h6 class="mt-0 mb-2 lh-base">
                             Your <b>Elite</b> author Graphic Optimization
                             <span class="text-secondary">reward</span> is
                             ready!
@@ -554,8 +553,7 @@ onMounted(() => {
                       </div>
                     </div>
                   </div>
-                  </div>
-                  
+
                   <div class="text-reset notification-item d-block dropdown-item position-relative">
                     <div class="d-flex">
                       <img src="@/assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs flex-shrink-0"

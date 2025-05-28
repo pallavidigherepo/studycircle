@@ -7,7 +7,7 @@
         <BCardHeader class="align-items-center d-flex py-0">
             <BCardTitle class="mb-0 flex-grow-1">Top Pages</BCardTitle>
             <div class="flex-shrink-0">
-                <BDropdown variant="link" class="card-header-dropdown" toggle-class="text-reset dropdown-btn arrow-none"
+                <BDropdown variant="link" class="card-header-dropdown" toggle-class="text-reset dropdown-btn" no-caret
                     menu-class="dropdown-menu-end" :offset="{ alignmentAxis: -140, crossAxis: 0, mainAxis: 0 }">
                     <template #button-content> <span class="text-muted fs-16"><i
                                 class="mdi mdi-dots-vertical align-middle"></i></span> </template>
@@ -73,7 +73,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <BLink href="javascript:void(0);">/minton/pages-29739</BLink>
+                                <BLink href="javascript:void(0);">/steex/pages-29739</BLink>
                             </td>
                             <td>10</td>
                             <td>07.3%</td>
