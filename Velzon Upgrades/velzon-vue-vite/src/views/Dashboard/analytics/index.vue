@@ -22,38 +22,49 @@ import Users from "./users.vue";
     <BRow>
       <BCol xxl="5">
         <BRow>
-          <BCol cols="12">
-            <BCard no-body>
-              <BCardBody class="p-0">
-                <BAlert :model-value="true" variant="warning" class="border-0 rounded-0 m-0 d-flex align-items-center">
-                  <AlertTriangleIcon class="text-warning me-2 icon-sm"></AlertTriangleIcon>
-                  <div class="flex-grow-1 text-truncate">
-                    Your free trial expired in <b>17</b> days.
+          <BCol xl="12" class="d-flex">
+        <BCard no-body class="w-100">
+          <BCardBody class="p-0">
+            <BAlert
+              variant="warning"
+              class="border-0 rounded-top rounded-0 m-0 d-flex align-items-center justify-content-between gap-2 flex-wrap"
+              show
+            >
+              <alert-triangle-icon class="text-warning icon-sm me-2"></alert-triangle-icon>
+              <span class="text-truncate text-nowrap flex-grow-1">
+                Your free trial expired in <b>17</b> days.
+              </span>
+              <router-link
+                to="/pages/profile"
+                class="text-reset text-decoration-underline fw-bold flex-shrink-0 text-nowrap"
+              >
+                Upgrade
+              </router-link>
+            </BAlert>
+
+            <BRow class="align-items-end">
+              <BCol sm="8">
+                <div class="p-3">
+                  <p class="fs-16 lh-base">
+                    Upgrade your plan from a
+                    <span class="fw-semibold">Free trial</span>, to ‘Premium
+                    Plan’ 
+                  </p><i class="mdi mdi-arrow-right"></i>
+                  <div class="mt-3">
+                    <router-link to="/pages/profile" class="btn btn-success">Upgrade Account!</router-link>
                   </div>
-                  <div class="flex-shrink-0">
-                    <router-link to="/pages/pricing" class="text-reset text-decoration-underline"><b>Upgrade</b>
-                    </router-link>
-                  </div>
-                </BAlert>
-                <BRow class="align-items-end">
-                  <BCol sm="8">
-                    <div class="p-3">
-                      <p class="fs-16 lh-base">Upgrade your plan from a <span class="fw-semibold">Free
-                          trial</span>, to ‘Premium Plan’ <i class="mdi mdi-arrow-right"></i></p>
-                      <div class="mt-3">
-                        <router-link to="/pages/pricing" class="btn btn-success">Upgrade Account!</router-link>
-                      </div>
-                    </div>
-                  </BCol>
-                  <BCol sm="4">
-                    <div class="px-3">
-                      <img src="@/assets/images/user-illustarator-2.png" class="img-fluid" alt="">
-                    </div>
-                  </BCol>
-                </BRow>
-              </BCardBody>
-            </BCard>
-          </BCol>
+                </div>
+              </BCol>
+              <BCol sm="4">
+                <div class="px-3">
+                  <img src="@/assets/images/user-illustarator-2.png" class="img-fluid" alt="" />
+                </div>
+              </BCol>
+            </BRow>
+          </BCardBody>
+
+        </BCard>
+      </BCol>
         </BRow>
         <Widget />
       </BCol>

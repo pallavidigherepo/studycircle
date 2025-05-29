@@ -6,8 +6,8 @@ import { CanvasRenderer } from 'echarts/renderers';
 import { ref, computed, onMounted, nextTick } from 'vue';
 import Layout from '@/layouts/main.vue';
 import PageHeader from '@/components/page-header.vue';
-import { UsersIcon, ActivityIcon, ClockIcon, ExternalLinkIcon, AlertTriangleIcon } from 'lucide-vue-next';
-import CountTo from 'vue3-count-to';
+import { UsersIcon, ActivityIcon, ClockIcon, ExternalLinkIcon, AlertTriangleIcon, AlertCircle } from 'lucide-vue-next';
+import {CountTo} from 'vue3-count-to';
 import SessionsCounties from '@/views/Dashboard/analytics/sessions-countries.vue';
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay } from "swiper/modules";
@@ -1256,7 +1256,7 @@ export default {
     <BRow>
       <BCol xl="3" md="6">
         <BCard no-body class="card-animate">
-          <BCardBody>
+          <BCardBody class="dashboard-widget">
             <div class="d-flex align-items-center">
               <div class="flex-grow-1">
                 <p class="text-uppercase fw-medium text-muted mb-0">
@@ -1292,7 +1292,7 @@ export default {
 
       <BCol xl="3" md="6">
         <BCard no-body class="card-animate bg-info">
-          <BCardBody>
+          <BCardBody class="dashboard-widget">
             <div class="d-flex align-items-center">
               <div class="flex-grow-1">
                 <p class="text-uppercase fw-medium text-white-50 mb-0">
@@ -1328,7 +1328,7 @@ export default {
 
       <BCol xl="3" md="6">
         <BCard no-body class="card-animate">
-          <BCardBody>
+          <BCardBody class="dashboard-widget">
             <div class="d-flex align-items-center">
               <div class="flex-grow-1">
                 <p class="text-uppercase fw-medium text-muted mb-0">
@@ -1364,7 +1364,7 @@ export default {
 
       <BCol xl="3" md="6">
         <BCard no-body class="card-animate">
-          <BCardBody>
+          <BCardBody class="dashboard-widget">
             <div class="d-flex align-items-center">
               <div class="flex-grow-1">
                 <p class="text-uppercase fw-medium text-muted mb-0">
@@ -1403,15 +1403,9 @@ export default {
             <BRow class="row-cols-md-3 row-cols-1">
               <BCol lg class="border-end">
                 <div class="py-4 px-3">
-                  <h5 class="text-muted text-uppercase fs-13">
+                  <h5 class="text-muted text-uppercase fs-13 d-flex align-items-center justify-content-between">
                     Campaign Sent
-                    <i class="
-                        ri-arrow-up-circle-line
-                        text-success
-                        fs-18
-                        float-end
-                        align-middle
-                      "></i>
+                    <i class="ri-arrow-up-circle-line text-success fs-18 ms-2"></i>
                   </h5>
                   <div class="d-flex align-items-center">
                     <div class="flex-shrink-0">
@@ -1428,15 +1422,9 @@ export default {
 
               <BCol lg class="border-end">
                 <div class="mt-3 mt-md-0 py-4 px-3">
-                  <h5 class="text-muted text-uppercase fs-13">
+                  <h5 class="text-muted text-uppercase fs-13 d-flex align-items-center justify-content-between">
                     Annual Profit
-                    <i class="
-                        ri-arrow-up-circle-line
-                        text-success
-                        fs-18
-                        float-end
-                        align-middle
-                      "></i>
+                    <i class="ri-arrow-up-circle-line text-success fs-18 ms-2"></i>
                   </h5>
                   <div class="d-flex align-items-center">
                     <div class="flex-shrink-0">
@@ -1453,15 +1441,16 @@ export default {
 
               <BCol lg class="border-end">
                 <div class="mt-3 mt-md-0 py-4 px-3">
-                  <h5 class="text-muted text-uppercase fs-13">
+                  <h5 class="text-muted text-uppercase fs-13 d-flex align-items-center justify-content-between">
                     Lead Conversation
-                    <i class="
+                    <i class="ri-arrow-down-circle-line text-danger fs-18 ms-2"></i>
+                    <!-- <i class="
                         ri-arrow-down-circle-line
                         text-danger
                         fs-18
                         float-end
                         align-middle
-                      "></i>
+                      "></i> -->
                   </h5>
                   <div class="d-flex align-items-center">
                     <div class="flex-shrink-0">
@@ -1478,14 +1467,12 @@ export default {
 
               <BCol lg class="border-end">
                 <div class="mt-3 mt-lg-0 py-4 px-3">
-                  <h5 class="text-muted text-uppercase fs-13">
+                  <h5 class="text-muted text-uppercase fs-13 d-flex align-items-center justify-content-between">
                     Daily Average Income
                     <i class="
                         ri-arrow-up-circle-line
                         text-success
-                        fs-18
-                        float-end
-                        align-middle
+                        fs-18 ms-2
                       "></i>
                   </h5>
                   <div class="d-flex align-items-center">
@@ -1503,14 +1490,13 @@ export default {
 
               <BCol lg>
                 <div class="mt-3 mt-lg-0 py-4 px-3">
-                  <h5 class="text-muted text-uppercase fs-13">
+                  <h5 class="text-muted text-uppercase fs-13 d-flex align-items-center justify-content-between">
                     Annual Deals
                     <i class="
                         ri-arrow-down-circle-line
                         text-danger
                         fs-18
-                        float-end
-                        align-middle
+                        
                       "></i>
                   </h5>
                   <div class="d-flex align-items-center">
@@ -1537,9 +1523,9 @@ export default {
     </BRow>
 
     <BRow>
-      <BCol xl="3" md="6">
-        <BCard no-body class="card-animate">
-          <BCardBody>
+      <BCol xl="3" md="6" class="d-flex">
+        <BCard no-body class="card-animate flex-fill">
+          <BCardBody class="dashboard-widget d-flex flex-column justify-content-between">
             <div class="d-flex justify-content-between">
               <div>
                 <p class="fw-medium text-muted mb-0">Users</p>
@@ -1568,9 +1554,9 @@ export default {
       </BCol>
 
 
-      <BCol xl="3" md="6">
-        <BCard no-body class="card-animate">
-          <BCardBody>
+      <BCol xl="3" md="6" class="d-flex">
+        <BCard no-body class="card-animate flex-fill">
+          <BCardBody class="dashboard-widget d-flex flex-column justify-content-between">
             <div class="d-flex justify-content-between">
               <div>
                 <p class="fw-medium text-muted mb-0">Sessions</p>
@@ -1599,9 +1585,9 @@ export default {
       </BCol>
 
 
-      <BCol xl="3" md="6">
-        <BCard no-body class="card-animate bg-primary">
-          <BCardBody>
+      <BCol xl="3" md="6" class="d-flex">
+        <BCard no-body class="card-animate bg-primary flex-fill">
+          <BCardBody class="dashboard-widget d-flex flex-column justify-content-between">
             <div class="d-flex justify-content-between">
               <div>
                 <p class="fw-medium text-white-50 mb-0">Avg. Visit Duration</p>
@@ -1631,9 +1617,9 @@ export default {
       </BCol>
 
 
-      <BCol xl="3" md="6">
-        <BCard no-body class="card-animate">
-          <BCardBody>
+      <BCol xl="3" md="6" class="d-flex">
+        <BCard no-body class="card-animate flex-fill">
+          <BCardBody class="dashboard-widget d-flex flex-column justify-content-between">
             <div class="d-flex justify-content-between">
               <div>
                 <p class="fw-medium text-muted mb-0">Bounce Rate</p>
@@ -1786,6 +1772,7 @@ export default {
       </BCol>
 
     </BRow>
+   <!-- totalsales -->
 
     <BRow>
       <BCol xl="3" md="6">
@@ -1874,18 +1861,24 @@ export default {
     </BRow>
 
     <BRow>
-      <BCol xl="4">
-        <BCard no-body>
+      <BCol xl="4" class="d-flex">
+        <BCard no-body class="w-100">
           <BCardBody class="p-0">
-            <BAlert variant="warning" class="border-0 rounded-top rounded-0 m-0 d-flex align-items-center" show>
-              <alert-triangle-icon class="text-warning me-2 icon-sm"></alert-triangle-icon>
-              <div class="flex-grow-1 text-truncate">
+            <BAlert
+              variant="warning"
+              class="border-0 rounded-top rounded-0 m-0 d-flex align-items-center justify-content-between gap-2 flex-wrap"
+              show
+            >
+              <alert-triangle-icon class="text-warning icon-sm me-2"></alert-triangle-icon>
+              <span class="text-truncate text-nowrap flex-grow-1">
                 Your free trial expired in <b>17</b> days.
-              </div>
-              <div class="flex-shrink-0">
-                <router-link to="/pages/profile" class="text-reset text-decoration-underline"><b>Upgrade</b>
-                </router-link>
-              </div>
+              </span>
+              <router-link
+                to="/pages/profile"
+                class="text-reset text-decoration-underline fw-bold flex-shrink-0 text-nowrap"
+              >
+                Upgrade
+              </router-link>
             </BAlert>
 
             <BRow class="align-items-end">
@@ -1894,8 +1887,8 @@ export default {
                   <p class="fs-16 lh-base">
                     Upgrade your plan from a
                     <span class="fw-semibold">Free trial</span>, to ‘Premium
-                    Plan’ <i class="mdi mdi-arrow-right"></i>
-                  </p>
+                    Plan’ 
+                  </p><i class="mdi mdi-arrow-right"></i>
                   <div class="mt-3">
                     <router-link to="/pages/profile" class="btn btn-success">Upgrade Account!</router-link>
                   </div>
@@ -1912,19 +1905,28 @@ export default {
         </BCard>
       </BCol>
 
-      <BCol xl="4">
+      <BCol xl="4" class="d-flex">
         <BCard no-body class="bg-primary">
           <BCardBody class="p-0">
-            <BAlert variant="danger" class="rounded-top alert-solid alert-label-icon border-0 rounded-0 m-0 d-flex align-items-center" show>
-              <i class="ri-error-warning-line label-icon"></i>
-              <div class="flex-grow-1 text-truncate">
-                Your free trial expired in <b>17</b> days.
-              </div>
-              <div class="flex-shrink-0">
-                <router-link to="/pages/profile" class="text-reset text-decoration-underline"><b>Upgrade</b>
-                </router-link>
-              </div>
-            </BAlert>
+           <BAlert
+            variant="danger"
+            class="rounded-top alert-solid alert-label-icon border-0 rounded-0 m-0 d-flex align-items-center flex-nowrap"
+            show
+          >
+            <i class="ri-error-warning-line label-icon-sm me-2"></i>
+            <span class="flex-grow-1 text-truncate text-nowrap me-2">
+              Your free trial expired in <b>17</b> days.
+            </span>
+
+            <router-link
+              to="/pages/profile"
+              class="text-reset text-decoration-underline fw-bold flex-shrink-0 text-nowrap"
+            >
+              Upgrade
+            </router-link>
+          </BAlert>
+
+
 
             <BRow class="align-items-end">
               <BCol sm="8">
@@ -1932,8 +1934,9 @@ export default {
                   <p class="fs-16 lh-base text-white">
                     Upgrade your plan from a
                     <span class="fw-semibold">Free trial</span>, to ‘Premium
-                    Plan’ <i class="mdi mdi-arrow-right"></i>
+                    Plan’ 
                   </p>
+                  <i class="mdi mdi-arrow-right"></i>
                   <div class="mt-3">
                     <router-link to="/pages/profile" class="btn btn-info">Upgrade Account!</router-link>
                   </div>
@@ -1953,15 +1956,23 @@ export default {
       <BCol xl="4">
         <BCard no-body>
           <BCardBody class="p-0">
-            <BAlert variant="warning" class="border-0 rounded-top rounded-0 m-0 d-flex align-items-center" show>
-              <div class="flex-grow-1 text-truncate">
+            <BAlert
+              variant="warning"
+              class="border-0 rounded-top rounded-0 m-0 d-flex align-items-center flex-nowrap"
+              show
+            >
+              <span class="flex-grow-1 text-truncate text-nowrap me-0">
                 We will choose a gift for you in <b>5</b> days.
-              </div>
-              <div class="flex-shrink-0">
-                <router-link to="/pages/profile" class="text-reset text-decoration-underline"><b>Get Free Gift</b>
-                </router-link>
-              </div>
+              </span>
+
+              <router-link
+                to="/pages/profile"
+                class="text-reset text-decoration-underline fw-bold flex-shrink-0 text-nowrap"
+              >
+                Get Free Gift
+              </router-link>
             </BAlert>
+
             <div class="d-flex p-3">
               <div class="flex-shrink-0">
                 <div class="avatar-md me-3">
@@ -1972,10 +1983,10 @@ export default {
               </div>
               <div>
                 <p class="fs-16 lh-base">
-                  Personalized <span class="fw-semibold">Gift Boxes</span>, with
+                  Personalized <span class="fw-semibold ">Gift Boxes</span>, with
                   attitude, Let's collect your Xmas box
-                  <i class="mdi mdi-arrow-right"></i>
-                </p>
+                  
+                </p><i class="mdi mdi-arrow-right"></i>
                 <div class="mt-3">
                   <router-link to="/pages/profile" class="btn btn-secondary">Get a Free Gift</router-link>
                 </div>
@@ -2425,7 +2436,7 @@ export default {
                 </div>
 
 
-                <simplebar data-simplebar style="max-height: 257px">
+                <simplebar data-simplebar style="max-height: 275px">
                   <ul class="list-group list-group-flush border-dashed px-3">
                     <li class="list-group-item ps-0">
                       <div class="d-flex align-items-start">
@@ -2434,8 +2445,7 @@ export default {
                         </div>
                         <div class="flex-grow-1">
                           <label class="form-check-label mb-0 ps-2" for="task_one">Review and make sure nothing slips
-                            through
-                            cracks</label>
+                            through cracks</label>
                         </div>
                         <div class="flex-shrink-0 ms-2">
                           <p class="text-muted fs-12 mb-0">15 Sep, 2021</p>
@@ -2471,7 +2481,7 @@ export default {
                         </div>
                       </div>
                     </li>
-                    <li class="list-group-item ps-0">
+                     <li class="list-group-item ps-0">
                       <div class="d-flex align-items-start">
                         <div class="form-check ps-0 flex-sharink-0">
                           <input type="checkbox" class="form-check-input ms-0" id="task_four" />
@@ -2486,7 +2496,7 @@ export default {
                         </div>
                       </div>
                     </li>
-                    <li class="list-group-item ps-0">
+                    <!--<li class="list-group-item ps-0">
                       <div class="d-flex align-items-start">
                         <div class="form-check ps-0 flex-sharink-0">
                           <input type="checkbox" class="form-check-input ms-0" id="task_five" />
@@ -2513,7 +2523,7 @@ export default {
                           <p class="text-muted fs-12 mb-0">27 Sep, 2021</p>
                         </div>
                       </div>
-                    </li>
+                    </li> -->
                   </ul>
 
                 </simplebar>
@@ -2542,7 +2552,7 @@ export default {
               </BCardHeader>
 
               <BCardBody class="p-0">
-                <simplebar data-simplebar style="max-height: 364px;" class="p-3">
+                <simplebar data-simplebar style="max-height: 275px;" class="p-3 mb-0">
                   <div class="acitivity-timeline acitivity-main">
                     <div class="acitivity-item d-flex">
                       <div class="flex-shrink-0 avatar-xs acitivity-avatar">
@@ -2590,7 +2600,7 @@ export default {
                         <small class="mb-0 text-muted">25 Dec, 2021</small>
                       </div>
                     </div>
-                    <div class="acitivity-item py-3 d-flex">
+                    <!-- <div class="acitivity-item py-3 d-flex">
                       <div class="flex-shrink-0">
                         <div class="avatar-xs acitivity-avatar">
                           <div class="avatar-title rounded-circle bg-secondary">
@@ -2663,7 +2673,7 @@ export default {
                           than a product. "</p>
                         <small class="mb-0 text-muted">26 Aug, 2021</small>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </simplebar>
               </BCardBody>

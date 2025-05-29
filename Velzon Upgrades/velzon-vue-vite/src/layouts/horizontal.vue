@@ -136,7 +136,7 @@ onMounted(() => {
               <img src="@/assets/images/logo-light.png" alt="" height="17" />
             </span>
           </router-link>
-          <BButton size="sm"  class="
+          <BButton size="sm" class="
               p-0
               fs-20
               header-item
@@ -153,11 +153,11 @@ onMounted(() => {
                 <span data-key="t-menu"> {{ $t("t-menu") }}</span>
               </li>
               <li class="nav-item">
-                <BLink class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
+                <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
                   aria-expanded="false" aria-controls="sidebarDashboards">
                   <i class="ri-dashboard-2-line"></i>
                   <span data-key="t-dashboards"> {{ $t("t-dashboards") }}</span>
-                </BLink>
+                </a>
                 <div class="collapse menu-dropdown" id="sidebarDashboards">
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
@@ -205,18 +205,18 @@ onMounted(() => {
               </li>
               <!-- end Dashboard Menu -->
               <li class="nav-item">
-                <BLink class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse" role="button"
+                <a class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse" role="button"
                   aria-expanded="false" aria-controls="sidebarApps">
                   <i class="ri-apps-2-line"></i>
                   <span data-key="t-apps"> {{ $t("t-apps") }}</span>
-                </BLink>
+                </a>
                 <div class="collapse menu-dropdown" id="sidebarApps">
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
-                      <BLink class="nav-link menu-link" href="#sidebarCalendar" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link menu-link" href="#sidebarCalendar" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarCalendar" data-key="t-calendar">
                         {{ $t("t-calendar") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarCalendar">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -237,10 +237,10 @@ onMounted(() => {
                       </router-link>
                     </li>
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#sidebaremail" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link" href="#sidebaremail" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebaremail" data-key="t-projects">
                         {{ $t("t-email") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebaremail">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -249,10 +249,10 @@ onMounted(() => {
                             </router-link>
                           </li>
                           <li class="nav-item">
-                            <BLink class="nav-link" href="#sidebarsubemail" data-bs-toggle="collapse" role="button"
+                            <a class="nav-link" href="#sidebarsubemail" data-bs-toggle="collapse" role="button"
                               aria-expanded="false" aria-controls="sidebarsubemail" data-key="t-projects">
                               {{ $t("t-email-templates") }}
-                            </BLink>
+                            </a>
                             <div class="collapse menu-dropdown" id="sidebarsubemail">
                               <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
@@ -272,10 +272,10 @@ onMounted(() => {
                       </div>
                     </li>
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#sidebarEcommerce" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link" href="#sidebarEcommerce" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarEcommerce" data-key="t-ecommerce">
                         {{ $t("t-ecommerce") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarEcommerce">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -332,10 +332,10 @@ onMounted(() => {
                       </div>
                     </li>
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#sidebarProjects" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link" href="#sidebarProjects" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarProjects" data-key="t-projects">
                         {{ $t("t-projects") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarProjects">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -357,10 +357,10 @@ onMounted(() => {
                       </div>
                     </li>
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#sidebarTasks" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link" href="#sidebarTasks" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarTasks" data-key="t-tasks">
                         {{ $t("t-tasks") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarTasks">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -382,10 +382,10 @@ onMounted(() => {
                       </div>
                     </li>
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#sidebarCRM" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="sidebarCRM" data-key="t-crm">
+                      <a class="nav-link" href="#sidebarCRM" data-bs-toggle="collapse" role="button" aria-expanded="false"
+                        aria-controls="sidebarCRM" data-key="t-crm">
                         {{ $t("t-crm") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarCRM">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -412,10 +412,10 @@ onMounted(() => {
                       </div>
                     </li>
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#sidebarCrypto" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link" href="#sidebarCrypto" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarCrypto" data-key="t-crypto">
                         {{ $t("t-crypto") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarCrypto">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -452,10 +452,10 @@ onMounted(() => {
                       </div>
                     </li>
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#sidebarInvoices" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link" href="#sidebarInvoices" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarInvoices" data-key="t-invoices">
                         {{ $t("t-invoices") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarInvoices">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -477,10 +477,10 @@ onMounted(() => {
                       </div>
                     </li>
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#sidebarTickets" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link" href="#sidebarTickets" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarTickets" data-key="t-supprt-tickets">
                         {{ $t("t-supprt-tickets") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarTickets">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -497,10 +497,10 @@ onMounted(() => {
                       </div>
                     </li>
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#nftmarketplace" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link" href="#nftmarketplace" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="nftmarketplace" data-key="t-supprt-tickets">
                         {{ $t("t-nft-marketplace") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="nftmarketplace">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -563,10 +563,10 @@ onMounted(() => {
                     </li>
 
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#sidebarjobs" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link" href="#sidebarjobs" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarjobs" data-key="t-jobs">
                         {{ $t("t-jobs") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarjobs">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -575,10 +575,10 @@ onMounted(() => {
                             </router-link>
                           </li>
                           <li class="nav-item">
-                            <BLink class="nav-link" href="#sidebarjoblists" data-bs-toggle="collapse" role="button"
+                            <a class="nav-link" href="#sidebarjoblists" data-bs-toggle="collapse" role="button"
                               aria-expanded="false" aria-controls="sidebarjoblists" data-key="t-projects">
                               {{ $t("t-job-lists") }}
-                            </BLink>
+                            </a>
                             <div class="collapse menu-dropdown" id="sidebarjoblists">
                               <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
@@ -600,10 +600,10 @@ onMounted(() => {
                             </div>
                           </li>
                           <li class="nav-item">
-                            <BLink class="nav-link" href="#sidebarcandidatelists" data-bs-toggle="collapse" role="button"
+                            <a class="nav-link" href="#sidebarcandidatelists" data-bs-toggle="collapse" role="button"
                               aria-expanded="false" aria-controls="sidebarcandidatelists" data-key="t-projects">
                               {{ $t("t-candidate-lists") }}
-                            </BLink>
+                            </a>
                             <div class="collapse menu-dropdown" id="sidebarcandidatelists">
                               <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
@@ -659,19 +659,19 @@ onMounted(() => {
               </li>
 
               <li class="nav-item">
-                <BLink class="nav-link menu-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button"
+                <a class="nav-link menu-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button"
                   aria-expanded="false" aria-controls="sidebarAuth">
                   <i class="ri-account-circle-line"></i>
                   <span data-key="t-authentication">{{
                     $t("t-authentication")
                   }}</span>
-                </BLink>
+                </a>
                 <div class="collapse menu-dropdown" id="sidebarAuth">
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#sidebarSignIn" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link" href="#sidebarSignIn" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarSignIn" data-key="t-signin">{{ $t("t-signin") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarSignIn">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -686,9 +686,9 @@ onMounted(() => {
                       </div>
                     </li>
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#sidebarSignUp" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link" href="#sidebarSignUp" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarSignUp" data-key="t-signup">{{ $t("t-signup") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarSignUp">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -704,10 +704,10 @@ onMounted(() => {
                     </li>
 
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#sidebarResetPass" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link" href="#sidebarResetPass" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarResetPass" data-key="t-password-reset">
                         {{ $t("t-password-reset") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarResetPass">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -724,10 +724,10 @@ onMounted(() => {
                       </div>
                     </li>
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#sidebarcreatepass" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link" href="#sidebarcreatepass" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarcreatepass" data-key="t-password-reset">
                         {{ $t("t-password-create") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarcreatepass">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -745,10 +745,10 @@ onMounted(() => {
                     </li>
 
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#sidebarLockScreen" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link" href="#sidebarLockScreen" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarLockScreen" data-key="t-lock-screen">
                         {{ $t("t-lock-screen") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarLockScreen">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -766,10 +766,10 @@ onMounted(() => {
                     </li>
 
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#sidebarLogout" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link" href="#sidebarLogout" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarLogout" data-key="t-logout">
                         {{ $t("t-logout") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarLogout">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -786,10 +786,10 @@ onMounted(() => {
                       </div>
                     </li>
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#sidebarSuccessMsg" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link" href="#sidebarSuccessMsg" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarSuccessMsg" data-key="t-success-message">
                         {{ $t("t-success-message") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarSuccessMsg">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -806,10 +806,10 @@ onMounted(() => {
                       </div>
                     </li>
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#sidebarTwoStep" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link" href="#sidebarTwoStep" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarTwoStep" data-key="t-two-step-verification">
                         {{ $t("t-two-step-verification") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarTwoStep">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -826,10 +826,10 @@ onMounted(() => {
                       </div>
                     </li>
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#sidebarErrors" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link" href="#sidebarErrors" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarErrors" data-key="t-errors">
                         {{ $t("t-errors") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarErrors">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -865,11 +865,11 @@ onMounted(() => {
               </li>
 
               <li class="nav-item">
-                <BLink class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button"
+                <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button"
                   aria-expanded="false" aria-controls="sidebarPages">
                   <i class="ri-pages-line"></i>
                   <span data-key="t-pages">{{ $t("t-pages") }}</span>
-                </BLink>
+                </a>
                 <div class="collapse menu-dropdown" id="sidebarPages">
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
@@ -877,9 +877,9 @@ onMounted(() => {
                       </router-link>
                     </li>
                     <li class="nav-item">
-                      <BLink class="nav-link" href="#sidebarProfile" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link" href="#sidebarProfile" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarProfile" data-key="t-profile">{{ $t("t-profile") }}
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarProfile">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -974,27 +974,27 @@ onMounted(() => {
                 </div>
               </li>
               <li class="nav-item">
-                <BLink class="nav-link" href="#sidebarlanding" data-bs-toggle="collapse" role="button"
-                  aria-expanded="false" aria-controls="sidebarlanding" data-key="t-projects">
+                <a class="nav-link" href="#sidebarlanding" data-bs-toggle="collapse" role="button" aria-expanded="false"
+                  aria-controls="sidebarlanding" data-key="t-projects">
                   <i class="ri-rocket-line"></i>
                   {{ $t("t-landing") }}
-                </BLink>
+                </a>
                 <div class="collapse menu-dropdown" id="sidebarlanding">
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
-                      <BLink class="nav-link menu-link" target="_blank" href="/landing">
+                      <a class="nav-link menu-link" target="_blank" href="/landing">
                         <span data-key="t-landing">{{ $t("t-one-page") }}</span>
-                      </BLink>
+                      </a>
                     </li>
                     <li class="nav-item">
-                      <BLink class="nav-link menu-link" target="_blank" href="/nft-landing">
+                      <a class="nav-link menu-link" target="_blank" href="/nft-landing">
                         <span data-key="t-landing">{{ $t("t-nft-landing") }}</span>
-                      </BLink>
+                      </a>
                     </li>
                     <li class="nav-item">
-                      <BLink class="nav-link menu-link" target="_blank" href="/job-landing">
+                      <a class="nav-link menu-link" target="_blank" href="/job-landing">
                         <span data-key="t-landing">{{ $t("t-job") }}</span>
-                      </BLink>
+                      </a>
                     </li>
 
                   </ul>
@@ -1007,11 +1007,11 @@ onMounted(() => {
               </li>
 
               <li class="nav-item">
-                <BLink class="nav-link menu-link" href="#sidebarUI" data-bs-toggle="collapse" role="button"
+                <a class="nav-link menu-link" href="#sidebarUI" data-bs-toggle="collapse" role="button"
                   aria-expanded="false" aria-controls="sidebarUI">
                   <i class="ri-pencil-ruler-2-line"></i>
                   <span data-key="t-base-ui">{{ $t("t-base-ui") }}</span>
-                </BLink>
+                </a>
                 <div class="collapse menu-dropdown mega-dropdown-menu" id="sidebarUI">
                   <BRow>
                     <BCol lg="4">
@@ -1125,18 +1125,18 @@ onMounted(() => {
               </li>
 
               <li class="nav-item">
-                <BLink class="nav-link" href="#sidebarMore" data-bs-toggle="collapse" role="button" aria-expanded="false"
+                <a class="nav-link" href="#sidebarMore" data-bs-toggle="collapse" role="button" aria-expanded="false"
                   aria-controls="sidebarMore">
                   <i class="ri-briefcase-2-line"></i> More
-                </BLink>
+                </a>
                 <div class="collapse menu-dropdown show" id="sidebarMore">
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
-                      <BLink class="nav-link menu-link" href="#sidebarAdvanceUI" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link menu-link" href="#sidebarAdvanceUI" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarAdvanceUI">
                         <i class="ri-stack-line"></i>
                         <span data-key="t-advance-ui">{{ $t("t-advance-ui") }}</span>
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarAdvanceUI">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -1176,11 +1176,11 @@ onMounted(() => {
                     </li>
 
                     <li class="nav-item">
-                      <BLink class="nav-link menu-link" href="#sidebarForms" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link menu-link" href="#sidebarForms" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarForms">
                         <i class="ri-file-list-3-line"></i>
                         <span data-key="t-forms">{{ $t("t-forms") }}</span>
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarForms">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -1238,11 +1238,11 @@ onMounted(() => {
                     </li>
 
                     <li class="nav-item">
-                      <BLink class="nav-link menu-link" href="#sidebarTables" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link menu-link" href="#sidebarTables" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarTables">
                         <i class="ri-layout-grid-line"></i>
                         <span data-key="t-tables">{{ $t("t-tables") }}</span>
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarTables">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -1258,18 +1258,18 @@ onMounted(() => {
                     </li>
 
                     <li class="nav-item">
-                      <BLink class="nav-link menu-link" href="#sidebarCharts" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link menu-link" href="#sidebarCharts" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarCharts">
                         <i class="ri-pie-chart-line"></i>
                         <span data-key="t-charts">{{ $t("t-charts") }}</span>
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarCharts">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
-                            <BLink class="nav-link" href="#sidebarApexcharts" data-bs-toggle="collapse" role="button"
+                            <a class="nav-link" href="#sidebarApexcharts" data-bs-toggle="collapse" role="button"
                               aria-expanded="false" aria-controls="sidebarApexcharts" data-key="t-apexcharts">
                               {{ $t("t-apexcharts") }}
-                            </BLink>
+                            </a>
                             <div class="collapse menu-dropdown" id="sidebarApexcharts">
                               <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
@@ -1357,8 +1357,8 @@ onMounted(() => {
                                   </router-link>
                                 </li>
                                 <li class="nav-item">
-                                  <router-link to="/charts/apex-slope" class="nav-link" data-key="t-slope">{{
-                                    $t("t-slope") }}</router-link>
+                                  <router-link to="/charts/apex-slope" class="nav-link" data-key="t-slope">
+                                    {{ $t("t-slope") }}</router-link>
                                 </li>
                               </ul>
                             </div>
@@ -1377,11 +1377,11 @@ onMounted(() => {
                     </li>
 
                     <li class="nav-item">
-                      <BLink class="nav-link menu-link" href="#sidebarIcons" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link menu-link" href="#sidebarIcons" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarIcons">
                         <i class="ri-compasses-2-line"></i>
                         <span data-key="t-icons">{{ $t("t-icons") }}</span>
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarIcons">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -1414,11 +1414,11 @@ onMounted(() => {
                     </li>
 
                     <li class="nav-item">
-                      <BLink class="nav-link menu-link" href="#sidebarMaps" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link menu-link" href="#sidebarMaps" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarMaps">
                         <i class="ri-map-pin-line"></i>
                         <span data-key="t-maps">{{ $t("t-maps") }}</span>
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarMaps">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
@@ -1427,8 +1427,8 @@ onMounted(() => {
                             </router-link>
                           </li>
                           <li class="nav-item">
-                            <router-link to="/maps/amcharts" class="nav-link" data-key="t-amchart">
-                              {{ $t("t-amchart") }}
+                            <router-link to="/maps/leaflet" class="nav-link" data-key="t-leaflet">
+                              {{ $t("t-leaflet") }}
                             </router-link>
                           </li>
                         </ul>
@@ -1436,48 +1436,48 @@ onMounted(() => {
                     </li>
 
                     <li class="nav-item">
-                      <BLink class="nav-link menu-link" href="#sidebarMultilevel" data-bs-toggle="collapse" role="button"
+                      <a class="nav-link menu-link" href="#sidebarMultilevel" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarMultilevel">
                         <i class="ri-share-line"></i>
                         <span data-key="t-multi-level">{{
                           $t("t-multi-level")
                         }}</span>
-                      </BLink>
+                      </a>
                       <div class="collapse menu-dropdown" id="sidebarMultilevel">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
-                            <BLink class="nav-link" data-key="t-level-1.1">
+                            <a class="nav-link" data-key="t-level-1.1">
                               {{ $t("t-level-1.1") }}
-                            </BLink>
+                            </a>
                           </li>
                           <li class="nav-item">
-                            <BLink class="nav-link" href="#sidebarAccount" data-bs-toggle="collapse" role="button"
+                            <a class="nav-link" href="#sidebarAccount" data-bs-toggle="collapse" role="button"
                               aria-expanded="false" aria-controls="sidebarAccount" data-key="t-level-1.2">
                               {{ $t("t-level-1.2") }}
-                            </BLink>
+                            </a>
                             <div class="collapse menu-dropdown" id="sidebarAccount">
                               <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                  <BLink class="nav-link" data-key="t-level-2.1">
+                                  <a class="nav-link" data-key="t-level-2.1">
                                     {{ $t("t-level-2.1") }}
-                                  </BLink>
+                                  </a>
                                 </li>
                                 <li class="nav-item">
-                                  <BLink class="nav-link" href="#sidebarCrm" data-bs-toggle="collapse" role="button"
+                                  <a class="nav-link" href="#sidebarCrm" data-bs-toggle="collapse" role="button"
                                     aria-expanded="false" aria-controls="sidebarCrm" data-key="t-level-2.2">
                                     {{ $t("t-level-2.2") }}
-                                  </BLink>
+                                  </a>
                                   <div class="collapse menu-dropdown" id="sidebarCrm">
                                     <ul class="nav nav-sm flex-column">
                                       <li class="nav-item">
-                                        <BLink class="nav-link" data-key="t-level-3.1">
+                                        <a class="nav-link" data-key="t-level-3.1">
                                           {{ $t("t-level-3.1") }}
-                                        </BLink>
+                                        </a>
                                       </li>
                                       <li class="nav-item">
-                                        <BLink class="nav-link" data-key="t-level-3.2">
+                                        <a class="nav-link" data-key="t-level-3.2">
                                           {{ $t("t-level-3.2") }}
-                                        </BLink>
+                                        </a>
                                       </li>
                                     </ul>
                                   </div>
