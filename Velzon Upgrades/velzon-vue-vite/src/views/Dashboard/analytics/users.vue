@@ -54,7 +54,7 @@ const chartOptions = {
 </script>
 
 <template>
-  <BCard no-body class="card-height-100">
+  <BCard no-body class="h-100 d-flex flex-column">
     <BCardHeader class="align-items-center d-flex py-0">
       <BCardTitle class="mb-0 flex-grow-1">Users by Device</BCardTitle>
       <div class="flex-shrink-0">

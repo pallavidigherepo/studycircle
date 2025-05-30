@@ -64,7 +64,7 @@ const chartOptions = ref({
 
 
 <template>
-  <BCard no-body class="card-height-100">
+  <BCard no-body class="card-height-100 ">
     <BCardHeader class="align-items-center d-flex py-0">
       <BCardTitle class="mb-0 flex-grow-1">Deal Type</BCardTitle>
       <div class="flex-shrink-0">
@@ -80,8 +80,8 @@ const chartOptions = ref({
         </BDropdown>
       </div>
     </BCardHeader>
-    <BCardBody class="pb-0">
-      <apexchart class="apex-charts" height="341" dir="ltr" :series="series" :options="chartOptions"></apexchart>
+    <BCardBody class="pb-2">
+      <apexchart class="apex-charts" height="340" dir="ltr" :series="series" :options="chartOptions"></apexchart>
     </BCardBody>
   </BCard>
 </template>

@@ -23,18 +23,26 @@ import ClosingDeals from "./closing-deals.vue"
       </BCol>
     </BRow>
 
-    <BRow>
-      <BCol xxl="3" md="6">
-        <SalesForecast />
+    <BRow class="align-items-stretch">
+      <BCol xxl="3" md="6" class="h-100">
+        <div class="h-100 d-flex flex-column">
+          <SalesForecast class="h-100 w-100" />
+        </div>
       </BCol>
 
-      <BCol xxl="3" md="6">
-        <DealType />
+      <BCol xxl="3" md="6" class="h-100">
+        <div class="h-100 d-flex flex-column">
+          <DealType class="h-100 w-100" />
+        </div>
       </BCol>
-      <BCol xxl="6">
-        <BalanceOverview />
+
+      <BCol xxl="6" class="h-100">
+        <div class="h-100 d-flex flex-column">
+          <BalanceOverview class="h-100 w-100" />
+        </div>
       </BCol>
     </BRow>
+
     <BRow>
       <BCol xl="7">
           <DealStatus />

@@ -67,9 +67,9 @@ const closingDeals = ref([
     </BCardHeader>
 
     <BCardBody>
-      <div class="table-responsive">
-        <table class="table table-bordered table-nowrap align-middle mb-0">
-          <thead>
+      <div class="table-responsive mt-5">
+        <table class="table table-bordered table-nowrap align-middle mb-4">
+          <thead class="mt-2">
             <tr>
               <th scope="col" style="width: 30%">Deal Name</th>
               <th scope="col" style="width: 30%">Sales Rep</th>
@@ -82,7 +82,7 @@ const closingDeals = ref([
             <tr v-for="(item, index) of closingDeals" :key="index">
               <td>{{ item.dealName }}</td>
               <td>
-                <img :src="item.img" alt="" class="avatar-xs rounded-circle me-2" />
+                <img :src="item.img" alt="" class="avatar-xs rounded-circle me-5" />
                 <BLink href="#javascript: void(0);" class="text-body fw-medium"> {{ item.salesRep }}</BLink>
               </td>
               <td>${{ item.amount }}k</td>

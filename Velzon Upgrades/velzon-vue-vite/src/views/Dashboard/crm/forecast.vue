@@ -111,8 +111,8 @@ const chartOptions = ref({
       </div>
     </BCardHeader>
 
-    <BCardBody class="pb-0">
-      <apexchart class="apex-charts" height="341" dir="ltr" :series="series" :options="chartOptions"></apexchart>
+    <BCardBody class="pb-1">
+      <apexchart class="apex-charts" height="342" dir="ltr" :series="series" :options="chartOptions"></apexchart>
     </BCardBody>
   </BCard>
 </template>

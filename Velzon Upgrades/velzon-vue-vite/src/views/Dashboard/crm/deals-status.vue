@@ -58,7 +58,7 @@ const dealsStatus = ref([
 
 <template>
   <BCard no-body>
-    <BCardHeader class="align-items-center d-flex py-0">
+    <BCardHeader class="align-items-center d-flex py-2">
       <BCardTitle class="mb-0 flex-grow-1">Deals Status</BCardTitle>
       <div class="flex-shrink-0">
         <BDropdown variant="link" class="card-header-dropdown" toggle-class="text-reset dropdown-btn arrow-none"

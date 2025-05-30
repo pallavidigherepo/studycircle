@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <BCard no-body class="card-height-100">
+    <BCard no-body class="h-100 d-flex flex-column">
         <BCardHeader class="align-items-center d-flex">
             <BCardTitle class="mb-0 flex-grow-1">Top Referrals Pages</BCardTitle>
             <div class="flex-shrink-0">
