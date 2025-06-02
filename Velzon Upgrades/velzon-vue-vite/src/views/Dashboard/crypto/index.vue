@@ -339,16 +339,16 @@ const chartOptions = ref({
     <PageHeader title="Crypto " pageTitle="Dashboards" />
 
     <BRow>
-      <BCol xxl="3">
+      <BCol xxl="3" class="h-100 d-flex flex-column">
         <Portfolio />
       </BCol>
 
       <BCol xxl="9" order-xxl="0" class="order-first">
-        <BRow>
-          <BCol lg="4" md="6" v-for="(item, index) of cyptoWidgets" :key="index">
-            <BCard no-body>
+        <BRow class="g-4">
+          <BCol lg="4" md="6" class="h-100" v-for="(item, index) of cyptoWidgets" :key="index">
+            <BCard no-body class="h-100">
               <BCardBody>
-                <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center h-100">
                   <div class="avatar-sm flex-shrink-0">
                     <span class="avatar-title bg-light text-primary rounded-circle fs-3">
                       <i :class="`${item.icon} align-middle`"></i>
@@ -359,17 +359,19 @@ const chartOptions = ref({
                       {{ item.label }}
                     </p>
                     <h4 class="mb-0">
-                      $
-                      <span class="counter-value">
-                        {{ item.counter }}
-                      </span>
+                      $<span class="counter-value">{{ item.counter }}</span>
                     </h4>
                   </div>
                   <div class="flex-shrink-0 align-self-end">
                     <span
-                      :class="{ 'badge bg-success-subtle text-success': item.badge == 'ri-arrow-up-s-fill', 'badge bg-danger-subtle text-danger': item.badge == 'ri-arrow-down-s-fill' }"><i
-                        :class="`${item.badge} align-middle me-1`"></i>
-                      {{ item.percentage }} %</span>
+                      :class="{
+                        'badge bg-success-subtle text-success': item.badge === 'ri-arrow-up-s-fill',
+                        'badge bg-danger-subtle text-danger': item.badge === 'ri-arrow-down-s-fill'
+                      }"
+                    >
+                      <i :class="`${item.badge} align-middle me-1`"></i>
+                      {{ item.percentage }} %
+                    </span>
                   </div>
                 </div>
               </BCardBody>
@@ -377,8 +379,9 @@ const chartOptions = ref({
           </BCol>
         </BRow>
 
+
         <BRow>
-          <BCol xl="12">
+          <BCol xl="12" class="h-100">
             <MarketGraph />
           </BCol>
         </BRow>
@@ -432,23 +435,32 @@ const chartOptions = ref({
 
     <BRow>
       <BCol xl="8">
-        <Currencies />
+        <Currencies  />
       </BCol>
       <BCol xl="4">
-        <Trading />
+        <Trading  />
       </BCol>
     </BRow>
 
-    <BRow>
-      <BCol xxl="4" lg="6">
-        <RecentActivity />
+   <BRow class="gy-4">
+      <BCol xxl="4" lg="6" class="d-flex">
+        <div class="w-100 h-100">
+          <RecentActivity />
+        </div>
       </BCol>
-      <BCol xxl="4" lg="6">
-        <TopProgram />
+
+      <BCol xxl="4" lg="6" class="d-flex">
+        <div class="w-100 h-100">
+          <TopProgram />
+        </div>
       </BCol>
-      <BCol xxl="4" lg="6">
-        <News />
+
+      <BCol xxl="4" lg="6" class="d-flex">
+        <div class="w-100 h-100">
+          <News />
+        </div>
       </BCol>
     </BRow>
+
   </Layout>
 </template>

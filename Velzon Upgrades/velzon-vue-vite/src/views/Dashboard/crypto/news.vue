@@ -53,7 +53,7 @@ const newsFeed = [
     </BCardHeader>
 
     <BCardBody>
-      <div class="d-flex align-middle mb-4" v-for="(item, index) of newsFeed" :key="index">
+      <div class="d-flex align-middle mb-2" v-for="(item, index) of newsFeed" :key="index">
         <div class="flex-shrink-0">
           <img :src="`${item.img}`" class="rounded img-fluid" style="height: 60px" alt="" />
         </div>

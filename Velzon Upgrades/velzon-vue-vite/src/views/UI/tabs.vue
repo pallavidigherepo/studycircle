@@ -1,6 +1,9 @@
 <script setup>
 import Layout from "@/layouts/main.vue";
 import PageHeader from "@/components/page-header.vue";
+import { ref } from "vue";
+
+const activeTab = ref(0); // 0 = Home, 1 = Profile, 2 = Message
 
 </script>
 
@@ -457,11 +460,87 @@ import PageHeader from "@/components/page-header.vue";
             <BCol xxl="6">
                 <h5 class="mb-3">Card Header Tabs</h5>
                 <BCard no-body>
+                    <BCardHeader class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <!-- Left: Text -->
+                        <div class="text-muted text-truncate">
+                        Use <code>card-header-tabs</code> class to create card header tabs.
+                        </div>
+
+                        <!-- Right: Tabs -->
+                        <BTabs
+                        v-model="activeTab"
+                        nav-class="nav-tabs-custom card-header-tabs m-0"
+                        content-class="d-none"
+                        >
+                        <BTab title="Home" />
+                        <BTab title="Profile" />
+                        <BTab title="Message" />
+                        </BTabs>
+                    </BCardHeader>
+
+                    <BCardBody>
+                    <!-- Tab content manually shown based on activeTab -->
+                    <div v-if="activeTab === 0">
+                        <!-- Home tab content -->
+                        <p class="flex-grow-1 mb-0">
+                        <img src="@/assets/images/users/avatar-2.jpg" alt=""
+                            class="avatar-lg rounded float-start me-3" />
+                        Food truck fixie locavore, accusamus mcsweeney's marfa nulla
+                                    single-origin coffee squid. Exercitation +1 labore velit, blog
+                                    sartorial PBR leggings next level wes anderson artisan four loko
+                                    farm-to-table craft beer twee. commodo enim craft beer mlkshk aliquip jean shorts
+                                    ullamco ad
+                                    vinyl cillum PBR. Homo nostrud organic, assumenda labore
+                                    aesthetic magna delectus.commodo enim craft beer mlkshk aliquip jean shorts ullamco
+                                    ad
+                                    vinyl cillum PBR. Homo nostrud organic, assumenda labore
+                                    aesthetic magna delectus. If you’re using multiple elements, make sure that your
+                                    principal object is larger than assumenda.
+                        </p>
+                    </div>
+                    <div v-if="activeTab === 1">
+                        <!-- Profile tab content -->
+                        <p class="me-3 mb-0">
+                        <img src="@/assets/images/users/avatar-3.jpg" alt=""
+                            class="avatar-lg rounded float-start ms-3" />
+                         Experiment and play around with the
+                                    fonts that you already have in the software you’re working with reputable font
+                                    websites. commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum
+                                    PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus.commodo enim
+                                    craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud
+                                    organic, assumenda labore aesthetic magna delectus Scale all elements of your
+                                    design: text, elements, buttons, everything. Increase or decrease the letter spacing
+                                    depending on the situation and try, try again until it looks right, and each.
+                        </p>
+                    </div>
+                    <div v-if="activeTab === 2">
+                        <!-- Message tab content -->
+                        <p class="ms-3 mb-0">
+                        <img src="@/assets/images/users/avatar-5.jpg" alt=""
+                            class="avatar-lg rounded float-start me-3" />
+                        Trust fund seitan letterpress, keytar
+                                    raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free
+                                    squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party
+                                    locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR,
+                                    beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic,
+                                    assumenda labore aes Homo nostrud organic, assumenda labore aesthetic magna delectus
+                                    Scale all elements of your design: text, elements, buttons, everything.Increase or
+                                    decrease the letter spacing depending on the situation and try, try again until it
+                                    looks right, and each.
+                        </p>
+                    </div>
+                    </BCardBody>
+                </BCard>
+            </BCol>
+            <!-- <BCol xxl="6">
+                <h5 class="mb-3">Card Header Tabs</h5>
+                <BCard no-body>
                     <BCardHeader class="align-items-center d-flex">
                         <div class="flex-grow-1 oveflow-hidden">
                             <p class="text-muted text-truncates mb-0">Use <code>card-header-tabs</code> class to create
                                 card header tabs.</p>
                         </div>
+                        
                     </BCardHeader>
                     <BCardBody>
 
@@ -512,7 +591,7 @@ import PageHeader from "@/components/page-header.vue";
                         </BTabs>
                     </BCardBody>
                 </BCard>
-            </BCol>
+            </BCol> -->
         </BRow>
 
         <BRow>
@@ -896,7 +975,7 @@ import PageHeader from "@/components/page-header.vue";
             </BCol>
 
             
-        </BRow><BCol xxl="6">
+        <BCol xxl="6">
                 <h5 class="mb-3">Bottom Card Nav Tabs</h5>
                 <BCard no-body>
                     <BCardBody>
@@ -956,6 +1035,7 @@ import PageHeader from "@/components/page-header.vue";
                     </BCardBody>
                 </BCard>
             </BCol>
+</BRow>
 
         <BRow>
             <BCol xxl="6">

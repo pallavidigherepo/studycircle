@@ -902,7 +902,7 @@ export default {
             </BCol>
 
             
-        </BRow><BCol xxl="6">
+        <BCol xxl="6">
                 <h5 class="mb-3">Bottom Card Nav Tabs</h5>
                 <BCard no-body>
                     <BCardBody>
@@ -962,7 +962,7 @@ export default {
                     </BCardBody>
                 </BCard>
             </BCol>
-
+</BRow>
         <BRow>
             <BCol xxl="6">
                 <h5 class="mb-3">Custom Hover Tabs</h5>

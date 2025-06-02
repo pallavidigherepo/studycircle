@@ -6,6 +6,8 @@ import 'aos/dist/aos.css'
 import i18n from './i18n'
 import pinia from './state/store'
 
+// import maska from 'maska';
+
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
 
@@ -48,7 +50,9 @@ import {
   BCardFooter,
   BModal,
   BDropdownItemButton,
-  BForm
+  BForm,
+  BCarouselSlide,
+  BCarousel
 } from 'bootstrap-vue-next'
 
 AOS.init({
@@ -64,6 +68,8 @@ app.use(VueApexCharts)
 app.use(BootstrapVueNext.default || BootstrapVueNext)
 // app.use(BootstrapVueNext)
 app.component(VueFeather.type, VueFeather)
+app.component('BCarouselSlide', BCarouselSlide)
+app.component('BCarousel', BCarousel)
 app.component('BForm', BForm)
 app.component('BDropdownItemButton', BDropdownItemButton)
 app.component('BModal', BModal)
@@ -89,6 +95,7 @@ app.component('BTabs', BTabs)
 app.component('BTab', BTab)
 
 app.use(i18n)
+// app.use(maska);
 app.use(VueSweetalert2)
 app.use(vClickOutside)
 

@@ -415,7 +415,7 @@ onMounted(() => {
               <BRow>
                 <BCol lg="4">
                   <div class="d-flex flex-wrap gap-2 mb-3 mb-lg-0">
-                    <BLink href="javascript:void(0);" class="btn btn-primary btn-label">
+                    <BLink href="javascript:void(0);" class="btn btn-primary btn-label-left">
                       <div class="d-flex">
                         <div class="flex-shrink-0">
                           <i class="ri-user-smile-line label-icon align-middle fs-16 me-2"></i>
@@ -423,11 +423,11 @@ onMounted(() => {
                         <div class="flex-grow-1">Primary</div>
                       </div>
                     </BLink>
-                    <BButton variant="success" class="btn-label">
-                      <i class="ri-check-double-line label-icon align-middle fs-16 me-2"></i>
+                    <BButton variant="success" class="btn-label-left">
+                      <i class="ri-check-double-line label-icon fs-16 me-2"></i>
                       Success
                     </BButton>
-                    <BButton variant="warning" class="btn-label">
+                    <BButton variant="warning" class="btn-label-left">
                       <i class="ri-error-warning-line label-icon align-middle fs-16 me-2"></i>
                       Warning
                     </BButton>
@@ -435,15 +435,15 @@ onMounted(() => {
                 </BCol>
                 <BCol lg="4">
                   <div class="d-flex flex-wrap gap-2 mb-3 mb-lg-0">
-                    <BButton variant="primary" class="btn-label" pill>
+                    <BButton variant="primary" class="btn-label-left" pill>
                       <i class="ri-user-smile-line label-icon align-middle rounded-pill fs-16 me-2"></i>
                       Primary
                     </BButton>
-                    <BButton variant="success" class="btn-label" pill>
+                    <BButton variant="success" class="btn-label-left" pill>
                       <i class="ri-check-double-line label-icon align-middle rounded-pill fs-16 me-2"></i>
                       Success
                     </BButton>
-                    <BButton variant="warning" class="btn-label" pill>
+                    <BButton variant="warning" class="btn-label-left" pill>
                       <i class="ri-error-warning-line label-icon align-middle rounded-pill fs-16 me-2"></i>
                       Warning
                     </BButton>

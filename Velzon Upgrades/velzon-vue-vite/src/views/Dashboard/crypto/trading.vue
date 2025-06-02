@@ -1,8 +1,189 @@
 <script setup>
+import { ref } from 'vue'
 
+const activeTab = ref(0)
 </script>
 
 <template>
+  <BCard no-body class="card-height-100" style="position: relative;">
+    <BCardHeader class="align-items-center border-0 d-flex justify-content-between">
+      <BCardTitle class="mb-0">Trading</BCardTitle>
+      <!-- Tabs Nav -->
+      <BTabs
+        v-model="activeTab"
+        nav-class="nav-tabs-custom card-header-tabs"
+        pills
+        end
+      >
+        <BTab title="Buy" active></BTab>
+        <BTab title="Sell"></BTab>
+      </BTabs>
+    </BCardHeader>
+
+    <!-- Tab Content -->
+    <BCardBody class="p-0">
+      <div v-if="activeTab === 0">
+        <!-- Buy Tab Content -->
+        <div class="p-2 bg-warning-subtle d-flex justify-content-between align-items-center">
+          <h6 class="mb-0 text-danger">Buy Coin</h6>
+          <h6 class="text-warning mb-0">USD Balance : <span class="text-body">$12,426.07</span></h6>
+        </div>
+        <!-- rest of Buy tab form ... (same as yours) -->
+         <div class="p-3">
+                        <BRow>
+                            <BCol cols="6">
+                                <div class="mb-3">
+                                    <label>Currency :</label>
+                                    <select class="form-select">
+                                        <option>BTC</option>
+                                        <option>ETH</option>
+                                        <option>LTC</option>
+                                    </select>
+                                </div>
+                            </BCol>
+                            <BCol cols="6">
+                                <div class="mb-3">
+                                    <label>Payment Method :</label>
+                                    <select class="form-select">
+                                        <option>Wallet Balance</option>
+                                        <option>Credit / Debit Card</option>
+                                        <option>PayPal</option>
+                                        <option>Payoneer</option>
+                                    </select>
+                                </div>
+                            </BCol>
+                        </BRow>
+                        <div>
+                            <div class="input-group mb-2">
+                                <label class="input-group-text">Amount</label>
+                                <input type="text" class="form-control" placeholder="0">
+                            </div>
+
+                            <div class="input-group mb-2">
+                                <label class="input-group-text">Price</label>
+                                <input type="text" class="form-control" placeholder="2.045585">
+                                <label class="input-group-text">$</label>
+                            </div>
+
+                            <div class="input-group mb-1">
+                                <label class="input-group-text">Total</label>
+                                <input type="text" class="form-control" placeholder="2700.16">
+                            </div>
+                        </div>
+                        <div class="mt-3 pt-2">
+                            <div class="d-flex mb-2">
+                                <div class="flex-grow-1">
+                                    <p class="fs-13 mb-0">Transaction Fees<span class="text-muted ms-1 fs-11">(0.05%)</span>
+                                    </p>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <h6 class="mb-0">$1.08</h6>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <div class="flex-grow-1">
+                                    <p class="fs-13 mb-0">Minimum Received<span class="text-muted ms-1 fs-11">(2%)</span>
+                                    </p>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <h6 class="mb-0">$7.85</h6>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="flex-grow-1">
+                                    <p class="fs-13 mb-0">Estimated Rate</p>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <h6 class="mb-0">1 BTC ~ $34572.00</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 pt-2">
+                            <BButton type="button" variant="primary" class="w-100">Buy Coin</BButton>
+                        </div>
+                    </div>
+      </div>
+
+      <div v-else-if="activeTab === 1">
+        <!-- Sell Tab Content -->
+        <div class="p-2 bg-warning-subtle d-flex justify-content-between align-items-center">
+          <h6 class="mb-0 text-danger">Sell Coin</h6>
+          <h6 class="text-warning mb-0">USD Balance : <span class="text-body">$12,426.07</span></h6>
+        </div>
+        <!-- rest of Sell tab form ... (same as yours) -->
+         <div class="p-3">
+                        <BRow>
+                            <BCol cols="6">
+                                <div class="mb-3">
+                                    <label>Currency :</label>
+                                    <select class="form-select">
+                                        <option>BTC</option>
+                                        <option>ETH</option>
+                                        <option>LTC</option>
+                                    </select>
+                                </div>
+                            </BCol>
+                            <BCol cols="6">
+                                <div class="mb-2">
+                                    <label>Email :</label>
+                                    <input type="email" class="form-control" placeholder="example@email.com">
+                                </div>
+                            </BCol>
+                        </BRow>
+                        <div>
+                            <div class="input-group mb-2">
+                                <label class="input-group-text">Amount</label>
+                                <input type="text" class="form-control" placeholder="0">
+                            </div>
+                            <div class="input-group mb-2">
+                                <label class="input-group-text">Price</label>
+                                <input type="text" class="form-control" placeholder="2.045585">
+                                <label class="input-group-text">$</label>
+                            </div>
+                            <div class="input-group mb-0">
+                                <label class="input-group-text">Total</label>
+                                <input type="text" class="form-control" placeholder="2700.16">
+                            </div>
+                        </div>
+                        <div class="mt-3 pt-2">
+                            <div class="d-flex mb-2">
+                                <div class="flex-grow-1">
+                                    <p class="fs-13 mb-0">Transaction Fees<span class="text-muted ms-1 fs-11">(0.05%)</span>
+                                    </p>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <h6 class="mb-0">$1.08</h6>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <div class="flex-grow-1">
+                                    <p class="fs-13 mb-0">Minimum Received<span class="text-muted ms-1 fs-11">(2%)</span>
+                                    </p>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <h6 class="mb-0">$7.85</h6>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="flex-grow-1">
+                                    <p class="fs-13 mb-0">Estimated Rate</p>
+                                </div>
+                                <div class="flex-shrink-0">
+                                    <h6 class="mb-0">1 BTC ~ $34572.00</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 pt-2">
+                            <BButton type="button" variant="danger" class="w-100">Sell Coin</BButton>
+                        </div>
+                    </div>
+      </div>
+    </BCardBody>
+  </BCard>
+</template>
+
+
+<!-- <template>
     <BCard no-body class="card-height-100" style="position: relative;">
         <BCardHeader class="align-items-center border-0 d-flex">
             <BCardTitle class="mb-0 flex-grow-1">Trading</BCardTitle>
@@ -12,12 +193,11 @@
                 nav-class="nav-tabs-custom rounded card-header-tabs border-bottom-0 tab-content p-0 tamp"
                 pills>
                 <BTab title="Buy">
-                    <div class="p-3 bg-warning-subtle">
-                        <div class="float-end ms-2">
-                            <h6 class="text-warning mb-0">USD Balance : <span class="text-body">$12,426.07</span></h6>
-                        </div>
+                    <div class="p-3 bg-warning-subtle d-flex justify-content-between align-items-center">
                         <h6 class="mb-0 text-danger">Buy Coin</h6>
+                        <h6 class="text-warning mb-0">USD Balance : <span class="text-body">$12,426.07</span></h6>
                     </div>
+
                     <div class="p-3">
                         <BRow>
                             <BCol cols="6">
@@ -170,7 +350,7 @@
             </BTabs>
         </BCardBody>
     </BCard>
-</template>
+</template> -->
 
 <style>
 .tamp{

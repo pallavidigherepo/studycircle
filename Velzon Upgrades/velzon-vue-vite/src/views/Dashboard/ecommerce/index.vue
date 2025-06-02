@@ -120,7 +120,7 @@ export default {
                       <BCol sm="auto">
                         <div class="input-group">
                           <flat-pickr v-model="date" :config="config"
-                            class="form-control border-0 dash-filter-picker shadow"></flat-pickr>
+                            class="form-control border-0 minimal-border dash-filter-picker shadow"></flat-pickr>
 
                           <div class="input-group-text bg-primary border-primary text-white">
                             <i class="ri-calendar-2-line"></i>
@@ -128,14 +128,14 @@ export default {
                         </div>
                       </BCol>
                       <div class="col-auto">
-                        <BButton type="button" variant="soft-success">
+                        <BButton type="button" variant="soft-success" class="material-shadow-none">
                           <i class="ri-add-circle-line align-middle me-1"></i>
                           Add Product
                         </BButton>
                       </div>
                       <div class="col-auto">
-                        <BButton type="button" variant="soft-info" class="btn-icon waves-effect layout-rightside-btn"
-                          @click="rightcolumn">
+                        <BButton type="button" variant="soft-info"
+                          class="btn-icon waves-effect layout-rightside-btn material-shadow-none" @click="rightcolumn">
                           <i class="ri-pulse-line"></i>
                         </BButton>
                       </div>
@@ -166,7 +166,7 @@ export default {
                   <div class="d-flex align-items-end justify-content-between mt-4">
                     <div>
                       <h4 class="fs-22 fw-semibold ff-secondary mb-4">
-                        $<count-to :startVal='0' :endVal='559' :duration='5000'></count-to>k
+                        $<count-to :startVal='0' :endVal='559.25' :duration='5000' :decimals="2"></count-to>k
                       </h4>
                       <BLink href="" class="text-decoration-underline">View net earnings</BLink>
                     </div>
@@ -232,7 +232,7 @@ export default {
                   <div class="d-flex align-items-end justify-content-between mt-4">
                     <div>
                       <h4 class="fs-22 fw-semibold ff-secondary mb-4">
-                        <count-to :startVal='0' :endVal='183' :duration='5000'></count-to>M
+                        <count-to :startVal='0' :endVal='183.35' :duration='5000' :decimals="2"></count-to>M
 
                       </h4>
                       <BLink href="" class="text-decoration-underline">See details</BLink>
@@ -263,7 +263,7 @@ export default {
                   <div class="d-flex align-items-end justify-content-between mt-4">
                     <div>
                       <h4 class="fs-22 fw-semibold ff-secondary mb-4">
-                        $<count-to :startVal='0' :endVal='165' :duration='5000'></count-to>k
+                        $<count-to :startVal='0' :endVal='165.89' :duration='5000' :decimals="2"></count-to>k
                       </h4>
                       <BLink href="" class="text-decoration-underline">Withdraw money</BLink>
                     </div>
@@ -294,9 +294,9 @@ export default {
                 <BCardHeader class="align-items-center d-flex py-0">
                   <BCardTitle class="mb-0 flex-grow-1"> Best Selling Products </BCardTitle>
                   <div class="flex-shrink-0">
-                    <BDropdown variant="link" class="card-header-dropdown"
-                      toggle-class="text-reset dropdown-btn arrow-none" menu-class="dropdown-menu-end"
-                      aria-haspopup="true" :offset="{ alignmentAxis: -45, crossAxis: 0, mainAxis: 0 }">
+                    <BDropdown variant="link" class="card-header-dropdown" toggle-class="text-reset dropdown-btn" no-caret
+                      menu-class="dropdown-menu-end" aria-haspopup="true"
+                      :offset="{ alignmentAxis: -45, crossAxis: 0, mainAxis: 0 }">
                       <template #button-content><span class="fw-semibold text-uppercase fs-12">Sort by: </span><span
                           class="text-muted">Today<i class="mdi mdi-chevron-down ms-1"></i></span>
                       </template>
@@ -518,9 +518,9 @@ export default {
                 <BCardHeader class="align-items-center d-flex py-0">
                   <BCardTitle class="mb-0 flex-grow-1">Top Sellers</BCardTitle>
                   <div class="flex-shrink-0">
-                    <BDropdown variant="link" class="card-header-dropdown"
-                      toggle-class="text-reset dropdown-btn arrow-none" menu-class="dropdown-menu-end"
-                      aria-haspopup="true" :offset="{ alignmentAxis: -100, crossAxis: 0, mainAxis: 0 }">
+                    <BDropdown variant="link" class="card-header-dropdown" toggle-class="text-reset dropdown-btn" no-caret
+                      menu-class="dropdown-menu-end" aria-haspopup="true"
+                      :offset="{ alignmentAxis: -100, crossAxis: 0, mainAxis: 0 }">
                       <template #button-content> <span class="text-muted">Report<i
                             class="mdi mdi-chevron-down ms-1"></i></span>
                       </template>
@@ -732,9 +732,9 @@ export default {
                 <BCardHeader class="align-items-center d-flex py-0">
                   <BCardTitle class="mb-0 flex-grow-1"> Store Visits by Source </BCardTitle>
                   <div class="flex-shrink-0">
-                    <BDropdown variant="link" class="card-header-dropdown"
-                      toggle-class="text-reset dropdown-btn arrow-none" menu-class="dropdown-menu-end"
-                      aria-haspopup="true" :offset="{ alignmentAxis: -100, crossAxis: 0, mainAxis: 0 }">
+                    <BDropdown variant="link" class="card-header-dropdown" toggle-class="text-reset dropdown-btn" no-caret
+                      menu-class="dropdown-menu-end" aria-haspopup="true"
+                      :offset="{ alignmentAxis: -100, crossAxis: 0, mainAxis: 0 }">
                       <template #button-content><span class="text-muted">Report<i
                             class="mdi mdi-chevron-down ms-1"></i></span>
                       </template>
@@ -757,7 +757,7 @@ export default {
                 <BCardHeader class="align-items-center d-flex">
                   <BCardTitle class="mb-0 flex-grow-1">Recent Orders</BCardTitle>
                   <div class="flex-shrink-0">
-                    <BButton type="button" variant="soft-info" size="sm">
+                    <BButton type="button" variant="soft-info" size="sm" class="material-shadow-none">
                       <i class="ri-file-list-3-line align-middle"></i> Generate
                       Report
                     </BButton>
@@ -787,7 +787,8 @@ export default {
                           <td>
                             <div class="d-flex align-items-center">
                               <div class="flex-shrink-0 me-2">
-                                <img src="@/assets/images/users/avatar-1.jpg" alt="" class="avatar-xs rounded-circle" />
+                                <img src="@/assets/images/users/avatar-1.jpg" alt=""
+                                  class="avatar-xs rounded-circle material-shadow" />
                               </div>
                               <div class="flex-grow-1">Alex Smith</div>
                             </div>
@@ -814,7 +815,8 @@ export default {
                           <td>
                             <div class="d-flex align-items-center">
                               <div class="flex-shrink-0 me-2">
-                                <img src="@/assets/images/users/avatar-2.jpg" alt="" class="avatar-xs rounded-circle" />
+                                <img src="@/assets/images/users/avatar-2.jpg" alt=""
+                                  class="avatar-xs rounded-circle material-shadow" />
                               </div>
                               <div class="flex-grow-1">Jansh Brown</div>
                             </div>
@@ -841,7 +843,8 @@ export default {
                           <td>
                             <div class="d-flex align-items-center">
                               <div class="flex-shrink-0 me-2">
-                                <img src="@/assets/images/users/avatar-3.jpg" alt="" class="avatar-xs rounded-circle" />
+                                <img src="@/assets/images/users/avatar-3.jpg" alt=""
+                                  class="avatar-xs rounded-circle material-shadow" />
                               </div>
                               <div class="flex-grow-1">Ayaan Bowen</div>
                             </div>
@@ -868,7 +871,8 @@ export default {
                           <td>
                             <div class="d-flex align-items-center">
                               <div class="flex-shrink-0 me-2">
-                                <img src="@/assets/images/users/avatar-4.jpg" alt="" class="avatar-xs rounded-circle" />
+                                <img src="@/assets/images/users/avatar-4.jpg" alt=""
+                                  class="avatar-xs rounded-circle material-shadow" />
                               </div>
                               <div class="flex-grow-1">Prezy Mark</div>
                             </div>
@@ -895,7 +899,8 @@ export default {
                           <td>
                             <div class="d-flex align-items-center">
                               <div class="flex-shrink-0 me-2">
-                                <img src="@/assets/images/users/avatar-6.jpg" alt="" class="avatar-xs rounded-circle" />
+                                <img src="@/assets/images/users/avatar-6.jpg" alt=""
+                                  class="avatar-xs rounded-circle material-shadow" />
                               </div>
                               <div class="flex-grow-1">Vihan Hudda</div>
                             </div>
@@ -931,14 +936,14 @@ export default {
             <BCardBody class="p-0">
               <div class="p-3">
                 <h6 class="text-muted mb-0 text-uppercase fw-semibold">
-                  Recent Activity
+                  Recent Activity 
                 </h6>
               </div>
               <SimpleBar data-simplebar style="max-height: 410px" class="p-3 pt-0">
                 <div class="acitivity-timeline acitivity-main">
                   <div class="acitivity-item d-flex">
                     <div class="flex-shrink-0 avatar-xs acitivity-avatar">
-                      <div class="avatar-title bg-success-subtle text-success rounded-circle">
+                      <div class="avatar-title bg-success-subtle text-success rounded-circle material-shadow">
                         <i class="ri-shopping-cart-2-line"></i>
                       </div>
                     </div>
@@ -952,7 +957,7 @@ export default {
                   </div>
                   <div class="acitivity-item py-3 d-flex">
                     <div class="flex-shrink-0 avatar-xs acitivity-avatar">
-                      <div class="avatar-title bg-danger-subtle text-danger rounded-circle">
+                      <div class="avatar-title bg-danger-subtle text-danger rounded-circle material-shadow">
                         <i class="ri-stack-fill"></i>
                       </div>
                     </div>
@@ -981,7 +986,7 @@ export default {
                   <div class="acitivity-item py-3 d-flex">
                     <div class="flex-shrink-0">
                       <img src="@/assets/images/users/avatar-2.jpg" alt=""
-                        class="avatar-xs rounded-circle acitivity-avatar" />
+                        class="avatar-xs rounded-circle acitivity-avatar material-shadow" />
                     </div>
                     <div class="flex-grow-1 ms-3">
                       <h6 class="mb-1 lh-base">
@@ -996,7 +1001,7 @@ export default {
                   <div class="acitivity-item py-3 d-flex">
                     <div class="flex-shrink-0">
                       <div class="avatar-xs acitivity-avatar">
-                        <div class="avatar-title rounded-circle bg-secondary">
+                        <div class="avatar-title rounded-circle bg-secondary material-shadow">
                           <i class="mdi mdi-sale fs-14"></i>
                         </div>
                       </div>
@@ -1016,7 +1021,7 @@ export default {
                   <div class="acitivity-item py-3 d-flex">
                     <div class="flex-shrink-0">
                       <div class="avatar-xs acitivity-avatar">
-                        <div class="avatar-title rounded-circle bg-danger-subtle text-danger">
+                        <div class="avatar-title rounded-circle bg-danger-subtle text-danger material-shadow">
                           <i class="ri-bookmark-fill"></i>
                         </div>
                       </div>
@@ -1032,7 +1037,7 @@ export default {
                   <div class="acitivity-item py-3 d-flex">
                     <div class="flex-shrink-0">
                       <div class="avatar-xs acitivity-avatar">
-                        <div class="avatar-title rounded-circle bg-secondary">
+                        <div class="avatar-title rounded-circle bg-secondary material-shadow">
                           <i class="mdi mdi-sale fs-14"></i>
                         </div>
                       </div>
@@ -1052,7 +1057,7 @@ export default {
                   <div class="acitivity-item py-3 d-flex">
                     <div class="flex-shrink-0">
                       <div class="avatar-xs acitivity-avatar">
-                        <div class="avatar-title rounded-circle bg-info-subtle text-info">
+                        <div class="avatar-title rounded-circle bg-info-subtle text-info material-shadow">
                           <i class="ri-line-chart-line"></i>
                         </div>
                       </div>
@@ -1071,7 +1076,7 @@ export default {
                   <div class="acitivity-item d-flex">
                     <div class="flex-shrink-0">
                       <img src="@/assets/images/users/avatar-3.jpg" alt=""
-                        class="avatar-xs rounded-circle acitivity-avatar" />
+                        class="avatar-xs rounded-circle acitivity-avatar material-shadow" />
                     </div>
                     <div class="flex-grow-1 ms-3">
                       <h6 class="mb-1 lh-base">Frank Hook Commented</h6>
@@ -1093,39 +1098,53 @@ export default {
                 <ol class="ps-3 text-muted">
                   <li class="py-1">
                     <BLink href="#" class="text-muted">Mobile & Accessories
-                      <span class="float-end">(10,294)</span>
+                      <!-- <span class="float-end">(10,294)</span> -->
                     </BLink>
                   </li>
                   <li class="py-1">
-                    <BLink href="#" class="text-muted">Desktop <span class="float-end">(6,256)</span></BLink>
+                    <BLink href="#" class="text-muted">Desktop 
+                      <!-- <span class="float-end">(6,256)</span> -->
+                    </BLink>
                   </li>
                   <li class="py-1">
-                    <BLink href="#" class="text-muted">Electronics <span class="float-end">(3,479)</span></BLink>
+                    <BLink href="#" class="text-muted">Electronics 
+                      <!-- <span class="float-end">(3,479)</span> -->
+                    </BLink>
                   </li>
                   <li class="py-1">
                     <BLink href="#" class="text-muted">Home & Furniture
-                      <span class="float-end">(2,275)</span>
+                      <!-- <span class="float-end">(2,275)</span> -->
                     </BLink>
                   </li>
                   <li class="py-1">
-                    <BLink href="#" class="text-muted">Grocery <span class="float-end">(1,950)</span></BLink>
+                    <BLink href="#" class="text-muted">Grocery 
+                      <!-- <span class="float-end">(1,950)</span> -->
+                    </BLink>
                   </li>
                   <li class="py-1">
-                    <BLink href="#" class="text-muted">Fashion <span class="float-end">(1,582)</span></BLink>
+                    <BLink href="#" class="text-muted">Fashion 
+                      <!-- <span class="float-end">(1,582)</span> -->
+                    </BLink>
                   </li>
                   <li class="py-1">
-                    <BLink href="#" class="text-muted">Appliances <span class="float-end">(1,037)</span></BLink>
+                    <BLink href="#" class="text-muted">Appliances 
+                      <!-- <span class="float-end">(1,037)</span> -->
+                    </BLink>
                   </li>
                   <li class="py-1">
                     <BLink href="#" class="text-muted">Beauty, Toys & More
-                      <span class="float-end">(924)</span>
+                      <!-- <span class="float-end">(924)</span> -->
                     </BLink>
                   </li>
                   <li class="py-1">
-                    <BLink href="#" class="text-muted">Food & Drinks <span class="float-end">(701)</span></BLink>
+                    <BLink href="#" class="text-muted">Food & Drinks 
+                      <!-- <span class="float-end">(701)</span> -->
+                    </BLink>
                   </li>
                   <li class="py-1">
-                    <BLink href="#" class="text-muted">Toys & Games <span class="float-end">(239)</span></BLink>
+                    <BLink href="#" class="text-muted">Toys & Games 
+                      <!-- <span class="float-end">(239)</span> -->
+                    </BLink>
                   </li>
                 </ol>
                 <div class="mt-3 text-center">
@@ -1147,7 +1166,7 @@ export default {
                           <BCardBody>
                             <div class="d-flex">
                               <div class="flex-shrink-0 avatar-sm">
-                                <div class="avatar-title bg-light rounded">
+                                <div class="avatar-title bg-light rounded material-shadow">
                                   <img src="@/assets/images/companies/img-1.png" alt="" height="30" />
                                 </div>
                               </div>
@@ -1181,7 +1200,8 @@ export default {
                           <BCardBody>
                             <div class="d-flex">
                               <div class="flex-shrink-0">
-                                <img src="@/assets/images/users/avatar-3.jpg" alt="" class="avatar-sm rounded" />
+                                <img src="@/assets/images/users/avatar-3.jpg" alt=""
+                                  class="avatar-sm rounded material-shadow" />
                               </div>
                               <div class="flex-grow-1 ms-3">
                                 <div>
@@ -1247,7 +1267,8 @@ export default {
                           <BCardBody>
                             <div class="d-flex">
                               <div class="flex-shrink-0">
-                                <img src="@/assets/images/users/avatar-2.jpg" alt="" class="avatar-sm rounded" />
+                                <img src="@/assets/images/users/avatar-2.jpg" alt=""
+                                  class="avatar-sm rounded material-shadow" />
                               </div>
                               <div class="flex-grow-1 ms-3">
                                 <div>
@@ -1405,10 +1426,14 @@ export default {
                     <p class="text-muted lh-base">
                       Refer a new seller to us and earn $100 per refer.
                     </p>
-                    <BButton type="button" variant="primary" pill class="btn-label">
-                      <i class="ri-mail-fill label-icon align-middle rounded-pill fs-16 me-2"></i>
-                      Invite Now
+                    <BButton type="button" variant="primary" pill class="btn-label align-items-center gap-3 px-3 py-2">
+                      <i class="ri-mail-fill fs-5 me-1"></i>
+                      <span class="fw-semibold">Invite Now</span>
                     </BButton>
+                    <!-- <BButton type="button" variant="primary" pill class="btn-label">
+                      <i class="ri-mail-fill label-icon align-middle rounded-pill fs-16 me-3"></i>
+                      Invite Now
+                    </BButton> -->
                   </div>
                 </BCardBody>
               </BCard>

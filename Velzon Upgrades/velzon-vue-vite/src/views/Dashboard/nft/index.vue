@@ -78,7 +78,7 @@ const chartOptions = {
                             <BCardBody>
                                 <div class="float-end">
                                     <BDropdown variant="link" class="card-header-dropdown"
-                                        toggle-class="text-reset dropdown-btn arrow-none" menu-class="dropdown-menu-end"
+                                        toggle-class="text-reset dropdown-btn" no-caret menu-class="dropdown-menu-end"
                                         aria-haspopup="true" :offset="{ alignmentAxis: -145, crossAxis: 0, mainAxis: 0 }">
                                         <template #button-content> <span class="text-muted fs-18"><i
                                                     class="mdi mdi-dots-vertical align-middle"></i></span>
@@ -116,7 +116,7 @@ const chartOptions = {
                             <BCardBody>
                                 <div class="float-end">
                                     <BDropdown variant="link" class="card-header-dropdown"
-                                        toggle-class="text-reset dropdown-btn arrow-none" menu-class="dropdown-menu-end"
+                                        toggle-class="text-reset dropdown-btn" no-caret menu-class="dropdown-menu-end"
                                         aria-haspopup="true" :offset="{ alignmentAxis: -145, crossAxis: 0, mainAxis: 0 }">
                                         <template #button-content> <span class="text-muted fs-18"><i
                                                     class="mdi mdi-dots-vertical align-middle"></i></span>
@@ -190,5 +190,8 @@ const chartOptions = {
     position: absolute;
     right: 15px;
     top: 0px;
+}
+.dropdown-toggle::after {
+  display: none !important;
 }
 </style>
