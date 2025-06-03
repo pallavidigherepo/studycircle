@@ -216,7 +216,7 @@ import CardHeader from "@/common/card-header.vue";
                         <div class="live-preview">
                             <BRow class="gy-4">
                                 <BCol xl="4" md="6">
-                                    <blockquote class="blockquote custom-blockquote blockquote-primary rounded mb-0">
+                                    <blockquote class="blockquote custom-blockquote blockquote-primary rounded material-shadow mb-0">
                                         <p class="text-body mb-2">Custom Blockquote Primary Example</p>
                                         <footer class="blockquote-footer mt-0">
                                             Angie Burt
@@ -226,7 +226,7 @@ import CardHeader from "@/common/card-header.vue";
                                 </BCol>
 
                                 <BCol xl="4" md="6">
-                                    <blockquote class="blockquote custom-blockquote blockquote-secondary rounded mb-0">
+                                    <blockquote class="blockquote custom-blockquote blockquote-secondary rounded material-shadow mb-0">
                                         <p class="text-body mb-2">Custom Blockquote Secondary Example</p>
                                         <footer class="blockquote-footer mt-0">
                                             Angie Burt
@@ -236,7 +236,7 @@ import CardHeader from "@/common/card-header.vue";
                                 </BCol>
 
                                 <BCol xl="4" md="6">
-                                    <blockquote class="blockquote custom-blockquote blockquote-success rounded mb-0">
+                                    <blockquote class="blockquote custom-blockquote blockquote-success rounded material-shadow mb-0">
                                         <p class="text-body mb-2">Custom Blockquote Success Example</p>
                                         <footer class="blockquote-footer mt-0">
                                             Angie Burt
@@ -246,7 +246,7 @@ import CardHeader from "@/common/card-header.vue";
                                 </BCol>
 
                                 <BCol xl="4" md="6">
-                                    <blockquote class="blockquote custom-blockquote blockquote-info rounded mb-0">
+                                    <blockquote class="blockquote custom-blockquote blockquote-info rounded material-shadow mb-0">
                                         <p class="text-body mb-2">Custom Blockquote Info Example</p>
                                         <footer class="blockquote-footer mt-0">
                                             Angie Burt
@@ -256,7 +256,7 @@ import CardHeader from "@/common/card-header.vue";
                                 </BCol>
 
                                 <BCol xl="4" md="6">
-                                    <blockquote class="blockquote custom-blockquote blockquote-danger rounded mb-0">
+                                    <blockquote class="blockquote custom-blockquote blockquote-danger rounded material-shadow mb-0">
                                         <p class="text-body mb-2">Custom Blockquote Danger Example</p>
                                         <footer class="blockquote-footer mt-0">
                                             Angie Burt
@@ -266,7 +266,7 @@ import CardHeader from "@/common/card-header.vue";
                                 </BCol>
 
                                 <BCol xl="4" md="6">
-                                    <blockquote class="blockquote custom-blockquote blockquote-warning rounded mb-0">
+                                    <blockquote class="blockquote custom-blockquote blockquote-warning rounded material-shadow mb-0">
                                         <p class="text-body mb-2">Custom Blockquote Warning Example</p>
                                         <footer class="blockquote-footer mt-0">
                                             Angie Burt
@@ -276,7 +276,7 @@ import CardHeader from "@/common/card-header.vue";
                                 </BCol>
 
                                 <BCol xl="4" md="6">
-                                    <blockquote class="blockquote custom-blockquote blockquote-dark rounded mb-0">
+                                    <blockquote class="blockquote custom-blockquote blockquote-dark rounded material-shadow mb-0">
                                         <p class="text-body mb-2">Custom Blockquote Dark Example</p>
                                         <footer class="blockquote-footer mt-0">
                                             Angie Burt
@@ -343,7 +343,7 @@ import CardHeader from "@/common/card-header.vue";
                             <BRow class="gy-4">
                                 <BCol xl="4" md="6">
                                     <blockquote
-                                        class="blockquote custom-blockquote blockquote-outline blockquote-primary rounded mb-0">
+                                        class="blockquote custom-blockquote blockquote-outline blockquote-primary rounded material-shadow mb-0">
                                         <p class="text-body mb-2">Custom Blockquote Outline Primary Example</p>
                                         <footer class="blockquote-footer mt-0">
                                             Angie Burt
@@ -354,7 +354,7 @@ import CardHeader from "@/common/card-header.vue";
 
                                 <BCol xl="4" md="6">
                                     <blockquote
-                                        class="blockquote custom-blockquote blockquote-outline blockquote-secondary rounded mb-0">
+                                        class="blockquote custom-blockquote blockquote-outline blockquote-secondary rounded material-shadow mb-0">
                                         <p class="text-body mb-2">Custom Blockquote Outline Secondary Example</p>
                                         <footer class="blockquote-footer mt-0">
                                             Angie Burt
@@ -365,7 +365,7 @@ import CardHeader from "@/common/card-header.vue";
 
                                 <BCol xl="4" md="6">
                                     <blockquote
-                                        class="blockquote custom-blockquote blockquote-outline blockquote-success rounded mb-0">
+                                        class="blockquote custom-blockquote blockquote-outline blockquote-success rounded material-shadow mb-0">
                                         <p class="text-body mb-2">Custom Blockquote Outline Success Example</p>
                                         <footer class="blockquote-footer mt-0">
                                             Angie Burt
@@ -376,7 +376,7 @@ import CardHeader from "@/common/card-header.vue";
 
                                 <BCol xl="4" md="6">
                                     <blockquote
-                                        class="blockquote custom-blockquote blockquote-outline blockquote-info rounded mb-0">
+                                        class="blockquote custom-blockquote blockquote-outline blockquote-info rounded material-shadow mb-0">
                                         <p class="text-body mb-2">Custom Blockquote Outline Info Example</p>
                                         <footer class="blockquote-footer mt-0">
                                             Angie Burt
@@ -387,7 +387,7 @@ import CardHeader from "@/common/card-header.vue";
 
                                 <BCol xl="4" md="6">
                                     <blockquote
-                                        class="blockquote custom-blockquote blockquote-outline blockquote-danger rounded mb-0">
+                                        class="blockquote custom-blockquote blockquote-outline blockquote-danger rounded material-shadow mb-0">
                                         <p class="text-body mb-2">Custom Blockquote Outline Danger Example</p>
                                         <footer class="blockquote-footer mt-0">
                                             Angie Burt
@@ -398,7 +398,7 @@ import CardHeader from "@/common/card-header.vue";
 
                                 <BCol xl="4" md="6">
                                     <blockquote
-                                        class="blockquote custom-blockquote blockquote-outline blockquote-warning rounded mb-0">
+                                        class="blockquote custom-blockquote blockquote-outline blockquote-warning rounded material-shadow mb-0">
                                         <p class="text-body mb-2">Custom Blockquote Outline Warning Example</p>
                                         <footer class="blockquote-footer mt-0">
                                             Angie Burt
@@ -409,7 +409,7 @@ import CardHeader from "@/common/card-header.vue";
 
                                 <BCol xl="4" md="6">
                                     <blockquote
-                                        class="blockquote custom-blockquote blockquote-outline blockquote-dark rounded mb-0">
+                                        class="blockquote custom-blockquote blockquote-outline blockquote-dark rounded material-shadow mb-0">
                                         <p class="text-body mb-2">Custom Blockquote Outline Dark Example</p>
                                         <footer class="blockquote-footer mt-0">
                                             Angie Burt
@@ -999,9 +999,9 @@ import CardHeader from "@/common/card-header.vue";
                             <code>clearfix</code> class to clear/set floated content within a container.
                         </p>
                         <div class="live-preview">
-                            <div class="bg-light clearfix p-3">
-                                <BButton variant="secondary" class="float-start">Example Button floated left</BButton>
-                                <BButton variant="success" class="float-end">Example Button floated right</BButton>
+                            <div class="bg-light d-flex justify-content-between p-3">
+                                <BButton variant="secondary">Example Button floated left</BButton>
+                                <BButton variant="success">Example Button floated right</BButton>
                             </div>
                         </div>
 

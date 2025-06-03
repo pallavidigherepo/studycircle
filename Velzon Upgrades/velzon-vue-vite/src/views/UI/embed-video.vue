@@ -62,7 +62,7 @@ import CardHeader from "@/common/card-header.vue";
                 </BCard>
 
                 <BCard no-body>
-                    <CardHeader title="Custom Ratios" />
+                    <CardHeader title="Custom Ratios 2:1" />
                     
                     <BCardBody>
                         <p class="text-muted">
@@ -71,7 +71,7 @@ import CardHeader from "@/common/card-header.vue";
                         </p>
                         <div class="live-preview">
                             <!-- 16:9 aspect ratio -->
-                            <div class="ratio" style="--vz-aspect-ratio: 50%;">
+                            <div class="ratio ratio-2x1">
                                 <iframe class="rounded" src="https://www.youtube.com/embed/2RZQN_ko0iU"
                                     title="YouTube video" allowfullscreen></iframe>
                             </div>
@@ -141,3 +141,11 @@ import CardHeader from "@/common/card-header.vue";
         </BRow>
     </Layout>
 </template>
+<style scoped>
+.ratio-2x1 {
+  position: relative;
+  width: 100%;
+  padding-top: var(--vz-aspect-ratio, 50%);
+}
+
+</style>

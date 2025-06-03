@@ -215,7 +215,7 @@ onMounted(() => {
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-start gap-3 mt-4">
-                                        <BButton variant="link" class="text-decoration-none btn-label previestab"
+                                        <BButton variant="link" class="text-decoration-none btn-label-left previestab"
                                             @click="toggleTab(1, 0);"><i
                                                 class="ri-arrow-left-line label-icon align-middle fs-lg me-2"></i> Back to
                                             General</BButton>
@@ -346,7 +346,7 @@ onMounted(() => {
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-start gap-3 mt-4">
-                                        <BButton variant="light" class="btn btn-light btn-label previestab"
+                                        <BButton variant="light" class="btn btn-light btn-label-left previestab"
                                             @click="toggleTabArrow(1);"><i
                                                 class="ri-arrow-left-line label-icon align-middle fs-lg me-2"></i> Back to
                                             General</BButton>
@@ -535,7 +535,7 @@ onMounted(() => {
                                                     </div>
                                                 </div>
                                                 <div class="d-flex align-items-start gap-3 mt-4">
-                                                    <BButton variant="light" type="button" class="btn-label previestab"
+                                                    <BButton variant="light" type="button" class="btn-label-left previstab"
                                                         @click="toggleTabVerti(1);"><i
                                                             class="ri-arrow-left-line label-icon align-middle fs-lg me-2"></i>
                                                         Back to Billing Info</BButton>
@@ -614,7 +614,7 @@ onMounted(() => {
                                                 </div>
 
                                                 <div class="d-flex align-items-start gap-3 mt-4">
-                                                    <BButton variant="light" class="btn-label previestab"
+                                                    <BButton variant="light" class="btn-label-left previestab"
                                                         @click="toggleTabVerti(2);"><i
                                                             class="ri-arrow-left-line label-icon align-middle fs-lg me-2"></i>
                                                         Back to Shipping Info</BButton>

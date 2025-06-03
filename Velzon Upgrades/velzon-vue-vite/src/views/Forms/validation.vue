@@ -3,6 +3,12 @@ import { ref } from 'vue'
 import Layout from '@/layouts/main.vue'
 import PageHeader from '@/components/page-header.vue';
 import CardHeader from '@/common/card-header.vue'
+import {
+BFormCheckbox,
+BFormInvalidFeedback,
+BFormValidFeedback,
+BInputGroupText
+} from 'bootstrap-vue-next'
 
 // Reactive form fields
 const firstName = ref('Mark')
@@ -78,7 +84,7 @@ function submitCustomForm() {
                                 </BCol>
                                 <BCol cols="12">
                                     <div class="form-check d-flex">
-                                        <BFormCheckbox class="form-check-input" type="checkbox" value="" id="invalidCheck2"
+                                        <BFormCheckbox class="form-checkbox" type="checkbox" value="" id="invalidCheck2"
                                             required />
                                         <label class="form-check-label" for="invalidCheck2">
                                             Agree to terms and conditions
@@ -176,7 +182,9 @@ Agree to terms and conditions
                                 <BCol md="4">
                                   <label for="validationCustomUsername" class="form-label">Username</label>
                                   <BInputGroup>
-                                    <BInputGroupPrepend is-text>@</BInputGroupPrepend>
+                                    <BInputGroupPrepend>
+                                    <BInputGroupText>@</BInputGroupText>
+                                    </BInputGroupPrepend>
                                     <BFormInput v-model="username" id="validationCustomUsername" required></BFormInput>
                                     <BFormInvalidFeedback>Please choose a username.</BFormInvalidFeedback>
                                   </BInputGroup>
@@ -425,7 +433,9 @@ Please enter a message in the textarea.
                                     <BCol md="4" class="position-relative">
                                       <label for="validationTooltipUsername" class="form-label">Username</label>
                                       <BInputGroup>
-                                        <BInputGroupPrepend is-text>@</BInputGroupPrepend>
+                                        <BInputGroupPrepend>
+                                        <BInputGroupText>@</BInputGroupText>
+                                        </BInputGroupPrepend>
                                         <BFormInput v-model="username" id="validationTooltipUsername" required></BFormInput>
                                         <BFormInvalidFeedback :tooltip="true">Please choose a unique and valid username.</BFormInvalidFeedback>
                                       </BInputGroup>

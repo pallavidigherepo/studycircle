@@ -52,7 +52,19 @@ import {
   BDropdownItemButton,
   BForm,
   BCarouselSlide,
-  BCarousel
+  BCarousel,
+  BListGroup,
+  BListGroupItem,
+  BSpinner,
+  BPagination,
+  BBreadcrumb,
+  BBreadcrumbItem,
+  BPopover,
+  BDropdownDivider,
+  BFormSelect,
+  BInputGroup,
+  BFormInput,
+  BFormSelectOption
 } from 'bootstrap-vue-next'
 
 AOS.init({
@@ -68,6 +80,19 @@ app.use(VueApexCharts)
 app.use(BootstrapVueNext.default || BootstrapVueNext)
 // app.use(BootstrapVueNext)
 app.component(VueFeather.type, VueFeather)
+app.component('BDropdownDivider', BDropdownDivider)
+app.component('BFormSelectOption', BFormSelectOption)
+app.component('BFormSelect', BFormSelect)
+app.component('BInputGroup', BInputGroup)
+app.component('BFormInput', BFormInput)
+
+app.component('BSpinner', BSpinner)
+app.component('BPagination', BPagination)
+app.component('BBreadcrumb', BBreadcrumb)
+app.component('BBreadcrumbItem', BBreadcrumbItem)
+app.component('BPopover', BPopover)
+app.component('BListGroup', BListGroup)
+app.component('BListGroupItem', BListGroupItem)
 app.component('BCarouselSlide', BCarouselSlide)
 app.component('BCarousel', BCarousel)
 app.component('BForm', BForm)

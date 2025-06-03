@@ -811,13 +811,13 @@ const selectedOption4 = ref('')
                                     <BCol lg="6">
                                         <BInputGroup>
                                             <BDropdown variant="primary" text="Dropdown">
-                                                <BDropdown-menu>
+                                                <!-- <BDropdown-menu> -->
                                                     <BDropdownItem href="#">Action</BDropdownItem>
                                                     <BDropdownItem href="#">Another action</BDropdownItem>
                                                     <BDropdownItem href="#">Something else here</BDropdownItem>
                                                     <BDropdownDivider></BDropdownDivider>
                                                     <BDropdownItem href="#">Separated link</BDropdownItem>
-                                                </BDropdown-menu>
+                                                <!-- </BDropdown-menu> -->
                                             </BDropdown>
                                             <BFormInput type="text" class="form-control" aria-label="Text input with dropdown button"></BFormInput>
                                         </BInputGroup>
@@ -826,36 +826,36 @@ const selectedOption4 = ref('')
                                         <BInputGroup>
                                             <BFormInput type="text" class="form-control" aria-label="Text input with dropdown button"></BFormInput>
                                             <BDropdown variant="success" text="Dropdown">
-                                                <BDropdown-menu class="dropdown-menu-end">
+                                                <!-- <BDropdown-menu class="dropdown-menu-end"> -->
                                                     <BDropdownItem href="#">Action</BDropdownItem>
                                                     <BDropdownItem href="#">Another action</BDropdownItem>
                                                     <BDropdownItem href="#">Something else here</BDropdownItem>
                                                     <BDropdownDivider></BDropdownDivider>
                                                     <BDropdownItem href="#">Separated link</BDropdownItem>
-                                                </BDropdown-menu>
+                                                <!-- </BDropdown-menu> -->
                                             </BDropdown>
                                         </BInputGroup>
                                     </BCol>
                                     <BCol lg="12">
                                         <BInputGroup>
                                             <BDropdown variant="outline-secondary" text="Dropdown">
-                                                <BDropdown-menu>
+                                                <!-- <BDropdown-menu class="card-header-dropdown" toggle-class="text-reset dropdown-btn arrow-none"> -->
                                                     <BDropdownItem href="#">Action before</BDropdownItem>
                                                     <BDropdownItem href="#">Another action before</BDropdownItem>
                                                     <BDropdownItem href="#">Something else here</BDropdownItem>
                                                     <BDropdownDivider></BDropdownDivider>
                                                     <BDropdownItem href="#">Separated link</BDropdownItem>
-                                                </BDropdown-menu>
+                                                <!-- </BDropdown-menu> -->
                                             </BDropdown>
                                             <BFormInput type="text" class="form-control" aria-label="Text input with 2 dropdown buttons"></BFormInput>
                                             <BDropdown variant="outline-secondary" text="Dropdown">
-                                                <BDropdown-menu class="dropdown-menu-end">
+                                                <!-- <BDropdown-menu class="dropdown-menu-end"> -->
                                                     <BDropdownItem href="#">Action</BDropdownItem>
                                                     <BDropdownItem href="#">Another action</BDropdownItem>
                                                     <BDropdownItem href="#">Something else here</BDropdownItem>
                                                     <BDropdownDivider></BDropdownDivider>
                                                     <BDropdownItem href="#">Separated link</BDropdownItem>
-                                                </BDropdown-menu>
+                                                <!-- </BDropdown-menu> -->
                                             </BDropdown>
                                         </BInputGroup>
                                     </BCol>

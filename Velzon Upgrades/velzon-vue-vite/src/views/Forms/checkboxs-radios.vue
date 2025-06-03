@@ -3,6 +3,12 @@ import { ref } from 'vue'
 import Layout from '@/layouts/main.vue'
 import PageHeader from '@/components/page-header.vue';
 import CardHeader from '@/common/card-header.vue'
+import {
+BFormCheckbox,
+BFormGroup,
+BFormRadio,
+BFormRadioGroup
+} from 'bootstrap-vue-next'
 
 // Checkboxes
 const checkbox1 = ref(false)

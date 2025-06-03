@@ -8,6 +8,10 @@ import "@vueform/multiselect/themes/default.css"
 import Layout from "@/layouts/main.vue"
 import PageHeader from '@/components/page-header.vue';
 import CardHeader from "@/common/card-header.vue"
+import {
+BFormCheckbox,
+BFormTextarea
+} from 'bootstrap-vue-next'
 
 // Multiselect values
 const value = ref(null)
@@ -235,7 +239,7 @@ const date3 = ref(null)
                 </BCol>
                 <BCol cols="12">
                   <div class="form-check d-flex">
-                    <BFormCheckbox class="form-check-input" type="checkbox" id="gridCheck" />
+                    <BFormCheckbox class="form-checkbox" type="checkbox" id="gridCheck" />
                     <label class="form-check-label" for="gridCheck">
                       Check me out
                     </label>
@@ -710,7 +714,7 @@ Check me out
                   </BCol>
                   <BCol sm="auto">
                     <div class="form-check d-flex">
-                      <BFormCheckbox class="form-check-input" type="checkbox" id="autoSizingCheck" />
+                      <BFormCheckbox class="form-checkbox" type="checkbox" id="autoSizingCheck" />
                       <label class="form-check-label" for="autoSizingCheck">
                         Remember me
                       </label>
@@ -750,7 +754,7 @@ Check me out
                   </BCol>
                   <div class="col-auto">
                     <div class="form-check d-flex">
-                      <BFormCheckbox class="form-check-input" type="checkbox" id="autoSizingCheck2" />
+                      <BFormCheckbox class="form-checkbox" type="checkbox" id="autoSizingCheck2" />
                       <label class="form-check-label" for="autoSizingCheck2">
                         Remember me
                       </label>
@@ -875,7 +879,7 @@ Remember me
                   </BCol>
                   <BCol cols="12">
                     <div class="form-check d-flex">
-                      <BFormCheckbox class="form-check-input" type="checkbox" id="inlineFormCheck" />
+                      <BFormCheckbox class="form-checkbox" type="checkbox" id="inlineFormCheck" />
                       <label class="form-check-label" for="inlineFormCheck">
                         Remember me
                       </label>

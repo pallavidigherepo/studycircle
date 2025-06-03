@@ -110,7 +110,7 @@
 
 "@ckeditor/ckeditor5-build-classic@^44.3.0":
   version "44.3.0"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-build-classic/-/ckeditor5-build-classic-44.3.0.tgz"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-build-classic/-/ckeditor5-build-classic-44.3.0.tgz#441c99ac9c7ce27fffa1350eb26bb34ece2ded06"
   integrity sha512-tvOwT1dAZlY4v1vZItqR0VFfTzr+OLoEmnOW/Lchl2Y0BUWT99GCfABCvAdakBBYvKdsMLsH0jqZFvnLxJCUmg==
   dependencies:
     "@ckeditor/ckeditor5-adapter-ckfinder" "44.3.0"
@@ -718,7 +718,7 @@
 
 "@ckeditor/ckeditor5-vue@^7.3.0":
   version "7.3.0"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-vue/-/ckeditor5-vue-7.3.0.tgz"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-vue/-/ckeditor5-vue-7.3.0.tgz#0535eee3a3c9cfd8c09bc248afe3995c6489e774"
   integrity sha512-OM8VW2bf5cXWKKaSr2eS1BhjzPmvkC2Jp/rWFdjU8wi4hhcKVJ5QqMepDguDcC+PHThaLec45WIrQTeLCb2AaA==
   dependencies:
     "@ckeditor/ckeditor5-integrations-common" "^2.2.2"
