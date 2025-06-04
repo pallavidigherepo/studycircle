@@ -1,6 +1,5 @@
 <script setup>
-import { reactive, computed } from 'vue';
-
+import { ref, computed } from "vue";
 import Layout from "@/layouts/main.vue";
 import PageHeader from "@/components/page-header.vue";
 
@@ -21,32 +20,66 @@ import {
   dumbbellChart
 } from "./data";
 
-// Reactive chart data (deep copied)
-const charts = reactive({
-  basicColumnChart: JSON.parse(JSON.stringify(basicColumnChart)),
-  columnDatalabelChart: JSON.parse(JSON.stringify(columnDatalabelChart)),
-  stackedColumnsChart: JSON.parse(JSON.stringify(stackedColumnsChart)),
-  columnStackedChart: JSON.parse(JSON.stringify(columnStackedChart)),
-  columnMarkersChart: JSON.parse(JSON.stringify(columnMarkersChart)),
-  columnRotatedLabel: JSON.parse(JSON.stringify(columnRotatedLabel)),
-  columnNegativeChart: JSON.parse(JSON.stringify(columnNegativeChart)),
-  rangeColumnChart: JSON.parse(JSON.stringify(rangeColumnChart)),
-  chartYearOptionChart: JSON.parse(JSON.stringify(chartYearOption)),
-  quarterChartOptionChart: JSON.parse(JSON.stringify(quarterChartOption)),
-  distributedColumnchart: JSON.parse(JSON.stringify(distributedColumnchart)),
-  dynamicQuarterLoadedChart: JSON.parse(JSON.stringify(dynamicQuarterLoadedChart)),
-  groupedStackedChart: JSON.parse(JSON.stringify(groupedStackedChart)),
-  dumbbellChart: JSON.parse(JSON.stringify(dumbbellChart))
-});
+// Refs with deep clones to preserve reactivity and immutability
+const basicColumnChartRef = ref(JSON.parse(JSON.stringify(basicColumnChart)));
+const columnDatalabelChartRef = ref(JSON.parse(JSON.stringify(columnDatalabelChart)));
+const stackedColumnsChartRef = ref(JSON.parse(JSON.stringify(stackedColumnsChart)));
+const columnStackedChartRef = ref(JSON.parse(JSON.stringify(columnStackedChart)));
+const columnMarkersChartRef = ref(JSON.parse(JSON.stringify(columnMarkersChart)));
+const columnRotatedLabelRef = ref(JSON.parse(JSON.stringify(columnRotatedLabel)));
+const columnNegativeChartRef = ref(JSON.parse(JSON.stringify(columnNegativeChart)));
+const rangeColumnChartRef = ref(JSON.parse(JSON.stringify(rangeColumnChart)));
+const chartYearOptionChartRef = ref(JSON.parse(JSON.stringify(chartYearOption)));
+const quarterChartOptionChartRef = ref(JSON.parse(JSON.stringify(quarterChartOption)));
+const distributedColumnchartRef = ref(JSON.parse(JSON.stringify(distributedColumnchart)));
+const dynamicQuarterLoadedChartRef = ref(JSON.parse(JSON.stringify(dynamicQuarterLoadedChart)));
+const groupedStackedChartRef = ref(JSON.parse(JSON.stringify(groupedStackedChart)));
+const dumbbellChartRef = ref(JSON.parse(JSON.stringify(dumbbellChart)));
 
-// Computed chart options and series
-const computedChartProps = {};
-for (const key in charts) {
-  const base = key;
-  computedChartProps[`${base}Options`] = computed(() => charts[base].chartOptions);
-  computedChartProps[`${base}Series`] = computed(() => charts[base].series);
-}
+// Computed properties
+const basicColumnChartOptions = computed(() => basicColumnChartRef.value.chartOptions);
+const basicColumnChartSeries = computed(() => basicColumnChartRef.value.series);
+
+const columnDatalabelChartOptions = computed(() => columnDatalabelChartRef.value.chartOptions);
+const columnDatalabelChartSeries = computed(() => columnDatalabelChartRef.value.series);
+
+const stackedColumnsChartOptions = computed(() => stackedColumnsChartRef.value.chartOptions);
+const stackedColumnsChartSeries = computed(() => stackedColumnsChartRef.value.series);
+
+const columnStackedChartOptions = computed(() => columnStackedChartRef.value.chartOptions);
+const columnStackedChartSeries = computed(() => columnStackedChartRef.value.series);
+
+const columnMarkersChartOptions = computed(() => columnMarkersChartRef.value.chartOptions);
+const columnMarkersChartSeries = computed(() => columnMarkersChartRef.value.series);
+
+const columnRotatedLabelOptions = computed(() => columnRotatedLabelRef.value.chartOptions);
+const columnRotatedLabelSeries = computed(() => columnRotatedLabelRef.value.series);
+
+const columnNegativeChartOptions = computed(() => columnNegativeChartRef.value.chartOptions);
+const columnNegativeChartSeries = computed(() => columnNegativeChartRef.value.series);
+
+const rangeColumnChartOptions = computed(() => rangeColumnChartRef.value.chartOptions);
+const rangeColumnChartSeries = computed(() => rangeColumnChartRef.value.series);
+
+const chartYearOptionOptions = computed(() => chartYearOptionChartRef.value.chartOptions);
+const chartYearSeries = computed(() => chartYearOptionChartRef.value.series);
+
+const quarterChartOptions = computed(() => quarterChartOptionChartRef.value.chartOptions);
+const quarterChartSeries = computed(() => quarterChartOptionChartRef.value.series);
+
+const distributedColumnchartOptions = computed(() => distributedColumnchartRef.value.chartOptions);
+const distributedColumnchartSeries = computed(() => distributedColumnchartRef.value.series);
+
+const dynamicQuarterLoadedChartOptions = computed(() => dynamicQuarterLoadedChartRef.value.chartOptions);
+const dynamicQuarterLoadedChartSeries = computed(() => dynamicQuarterLoadedChartRef.value.series);
+
+const groupedStackedChartOptions = computed(() => groupedStackedChartRef.value.chartOptions);
+const groupedStackedChartSeries = computed(() => groupedStackedChartRef.value.series);
+
+const dumbbellChartOptions = computed(() => dumbbellChartRef.value.chartOptions);
+const dumbbellChartSeries = computed(() => dumbbellChartRef.value.series);
 </script>
+
 
 
 <template>

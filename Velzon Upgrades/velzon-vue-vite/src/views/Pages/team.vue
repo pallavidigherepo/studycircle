@@ -7,130 +7,130 @@ import PageHeader from "@/components/page-header.vue";
 // Define reactive state
 const modalShow = ref(false);
 const teammember = ref([
-  {
-    "id": 12,
-    "coverImg": "@/assets/images/small/img-9.jpg",
-    "bookmark": false,
-    "memberImg": "@/assets/images/users/avatar-2.jpg",
-    "memberName": "Nancy Martino",
-    "position": "Team Leader & HR",
-    "projects": "225",
-    "tasks": "197"
+    {
+    id: 12,
+    coverImg: new URL('@/assets/images/small/img-9.jpg', import.meta.url).href,
+    memberImg: new URL('@/assets/images/users/avatar-2.jpg', import.meta.url).href,
+    bookmark: false,
+    memberName: 'Nancy Martino',
+    position: 'Team Leader & HR',
+    projects: '225',
+    tasks: '197'
   },
   {
-    "id": 11,
-    "coverImg": "@/assets/images/small/img-12.jpg",
-    "bookmark": true,
-    "memberImg": "",
-    "nickname": "HB",
-    "memberName": "Henry Baird",
-    "position": "Full Stack Developer",
-    "projects": "352",
-    "tasks": "376"
+    id: 11,
+    coverImg: new URL('@/assets/images/small/img-12.jpg', import.meta.url).href,
+    memberImg: "",
+    bookmark: true,
+    nickname: "HB",
+    memberName: "Henry Baird",
+    position: "Full Stack Developer",
+    projects: "352",
+    tasks: "376"
   },
   {
-    "id": 10,
-    "coverImg": "@/assets/images/small/img-11.jpg",
-    "bookmark": false,
-    "memberImg": "@/assets/images/users/avatar-3.jpg",
-    "memberName": "Frank Hook",
-    "position": "Project Manager",
-    "projects": "164",
-    "tasks": "182"
+    id: 10,
+    coverImg: new URL('@/assets/images/small/img-11.jpg', import.meta.url).href,
+    memberImg: new URL('@/assets/images/users/avatar-3.jpg', import.meta.url).href,
+    bookmark: false,
+    memberName: "Frank Hook",
+    position: "Project Manager",
+    projects: "164",
+    tasks: "182"
   },
   {
-    "id": 9,
-    "coverImg": "@/assets/images/small/img-1.jpg",
-    "bookmark": true,
-    "memberImg": "@/assets/images/users/avatar-8.jpg",
-    "memberName": "Jennifer Carter",
-    "position": "UI/UX Designer",
-    "projects": "241",
-    "tasks": "204"
+    id: 9,
+    coverImg: new URL('@/assets/images/small/img-1.jpg', import.meta.url).href,
+    memberImg: new URL('@/assets/images/users/avatar-8.jpg', import.meta.url).href,
+    bookmark: true,
+    memberName: "Jennifer Carter",
+    position: "UI/UX Designer",
+    projects: "241",
+    tasks: "204"
   },
   {
-    "id": 8,
-    "coverImg": "@/assets/images/small/img-10.jpg",
-    "bookmark": false,
-    "memberImg": "",
-    "nickname": "ME",
-    "memberName": "Megan Elmore",
-    "position": "Team Leader & Web Developer",
-    "projects": "201",
-    "tasks": "263"
+    id: 8,
+    coverImg: new URL('@/assets/images/small/img-10.jpg', import.meta.url).href,
+    memberImg: "",
+    bookmark: false,
+    nickname: "ME",
+    memberName: "Megan Elmore",
+    position: "Team Leader & Web Developer",
+    projects: "201",
+    tasks: "263"
   },
   {
-    "id": 7,
-    "coverImg": "@/assets/images/small/img-2.jpg",
-    "bookmark": false,
-    "memberImg": "@/assets/images/users/avatar-4.jpg",
-    "memberName": "Alexis Clarke",
-    "position": "Backend Developer",
-    "projects": "132",
-    "tasks": "147"
+    id: 7,
+    coverImg: new URL('@/assets/images/small/img-2.jpg', import.meta.url).href,
+    memberImg: new URL('@/assets/images/users/avatar-4.jpg', import.meta.url).href,
+    bookmark: false,
+    memberName: "Alexis Clarke",
+    position: "Backend Developer",
+    projects: "132",
+    tasks: "147"
   },
   {
-    "id": 6,
-    "coverImg": "@/assets/images/small/img-4.jpg",
-    "bookmark": true,
-    "memberImg": "",
-    "nickname": "NC",
-    "memberName": "Nathan Cole",
-    "position": "Front-End Developer",
-    "projects": "352",
-    "tasks": "376"
+    id: 6,
+    coverImg: new URL('@/assets/images/small/img-4.jpg', import.meta.url).href,
+    memberImg: "",
+    bookmark: true,
+    nickname: "NC",
+    memberName: "Nathan Cole",
+    position: "Front-End Developer",
+    projects: "352",
+    tasks: "376"
   },
   {
-    "id": 5,
-    "coverImg": "@/assets/images/small/img-7.jpg",
-    "bookmark": true,
-    "memberImg": "@/assets/images/users/avatar-6.jpg",
-    "memberName": "Joseph Parker",
-    "position": "Full Stack Developer",
-    "projects": "64",
-    "tasks": "93"
+    id: 5,
+    coverImg: new URL('@/assets/images/small/img-7.jpg', import.meta.url).href,
+    memberImg: new URL('@/assets/images/users/avatar-6.jpg', import.meta.url).href,
+    bookmark: true,
+    memberName: "Joseph Parker",
+    position: "Full Stack Developer",
+    projects: "64",
+    tasks: "93"
   },
   {
-    "id": 4,
-    "coverImg": "@/assets/images/small/img-3.jpg",
-    "bookmark": false,
-    "memberImg": "@/assets/images/users/avatar-5.jpg",
-    "memberName": "Erica Kernan",
-    "position": "Web Designer",
-    "projects": "345",
-    "tasks": "298"
+    id: 4,
+    coverImg: new URL('@/assets/images/small/img-3.jpg', import.meta.url).href,
+    memberImg: new URL('@/assets/images/users/avatar-5.jpg', import.meta.url).href,
+    bookmark: false,
+    memberName: "Erica Kernan",
+    position: "Web Designer",
+    projects: "345",
+    tasks: "298"
   },
   {
-    "id": 3,
-    "coverImg": "@/assets/images/small/img-5.jpg",
-    "bookmark": true,
-    "memberImg": "",
-    "nickname": "DP",
-    "memberName": "Donald Palmer",
-    "position": "Wed Developer",
-    "projects": "97",
-    "tasks": "135"
+    id: 3,
+    coverImg: new URL('@/assets/images/small/img-5.jpg', import.meta.url).href,
+    memberImg: "",
+    bookmark: true,
+    nickname: "DP",
+    memberName: "Donald Palmer",
+    position: "Wed Developer",
+    projects: "97",
+    tasks: "135"
   },
   {
-    "id": 2,
-    "coverImg": "@/assets/images/small/img-8.jpg",
-    "bookmark": false,
-    "memberImg": "@/assets/images/users/avatar-7.jpg",
-    "memberName": "Jack Gough",
-    "position": "React Js Developer",
-    "projects": "87",
-    "tasks": "121"
+    id: 2,
+    coverImg: new URL('@/assets/images/small/img-8.jpg', import.meta.url).href,
+    memberImg: new URL('@/assets/images/users/avatar-7.jpg', import.meta.url).href,
+    bookmark: false,
+    memberName: "Jack Gough",
+    position: "React Js Developer",
+    projects: "87",
+    tasks: "121"
   },
   {
-    "id": 1,
-    "coverImg": "@/assets/images/small/img-6.jpg",
-    "bookmark": false,
-    "memberImg": "",
-    "nickname": "MW",
-    "memberName": "Marie Ward",
-    "position": "Backend Developer",
-    "projects": "145",
-    "tasks": "210"
+    id: 1,
+    coverImg: new URL('@/assets/images/small/img-6.jpg', import.meta.url).href,
+    memberImg: "",
+    bookmark: false,
+    nickname: "MW",
+    memberName: "Marie Ward",
+    position: "Backend Developer",
+    projects: "145",
+    tasks: "210"
   }
 ]);
 
@@ -203,12 +203,14 @@ onMounted(() => {
           <BCol sm="auto" class="ms-auto">
             <div class="list-grid-nav hstack gap-1">
               <BButton type="button" id="grid-view-button"
-                class="btn btn-soft-info nav-link btn-icon fs-14 active filter-button"><i class="ri-grid-fill"></i>
+                class="btn btn-soft-info nav-link btn-icon fs-14 active filter-button material-shadow-none"><i
+                  class="ri-grid-fill"></i>
               </BButton>
               <BButton type="button" id="list-view-button"
-                class="btn btn-soft-info nav-link  btn-icon fs-14 filter-button"><i class="ri-list-unordered"></i>
+                class="btn btn-soft-info nav-link  btn-icon fs-14 filter-button material-shadow-none"><i
+                  class="ri-list-unordered"></i>
               </BButton>
-              <BDropdown variant="soft-info" right toggle-class="arrow-none" class="btn-icon fs-14" no-caret>
+              <BDropdown variant="soft-info" right class="btn-icon fs-14 material-shadow-none" no-caret>
                 <template #button-content><i class="ri-more-2-fill"></i>
                 </template>
                 <BDropdownItem href="#">
@@ -238,7 +240,7 @@ onMounted(() => {
           <div id="teamlist">
             <BRow class="team-list grid-view-filter" id="team-member-list">
 
-              <BCol v-for="(teamData, index) of this.teammember" :key="index">
+              <BCol v-for="(teamData, index) in teammember" :key="index">
                 <BCard no-body class="team-box">
                   <div class="team-cover">
                     <img :src="teamData.coverImg" alt="" class="img-fluid" />
@@ -259,7 +261,8 @@ onMounted(() => {
                           </BCol>
 
                           <div class="dropdown col text-end">
-                            <BDropdown variant="link" toggle-class="m-n3 arrow-none text-light" menu-class="dropdown-menu-end">
+                            <BDropdown variant="link" toggle-class="m-n3 text-light" no-caret
+                              menu-class="dropdown-menu-end">
                               <template #button-content>
                                 <i class="ri-more-fill fs-17"></i>
                               </template>
@@ -278,17 +281,24 @@ onMounted(() => {
                       <BCol lg="4" col>
                         <div class="team-profile-img">
                           <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0">
-
-                            <img :src="teamData.memberImg" alt="" class="member-img img-fluid d-block rounded-circle"
-                              v-if="teamData.memberImg" />
-                            <div class="avatar-title border bg-light text-primary rounded-circle text-uppercase"
-                              v-if="!teamData.memberImg">{{ teamData.nickname }}</div>
+                            <img
+                              :src="teamData.memberImg"
+                              alt=""
+                              class="member-img img-fluid d-block rounded-circle w-100 h-100 object-cover"
+                              v-if="teamData.memberImg"
+                            />
+                            <div
+                              class="avatar-title rounded-circle text-uppercase d-flex align-items-center justify-content-center bg-light text-primary"
+                              v-else
+                            >
+                              {{ teamData.nickname || teamData.memberName?.charAt(0) }}
+                            </div>
                           </div>
                           <div class="team-content">
-                            <BLink class="member-name" data-bs-toggle="offcanvas" href="#member-overview"
+                            <a class="member-name" data-bs-toggle="offcanvas" href="#member-overview"
                               aria-controls="member-overview">
                               <h5 class="fs-16 mb-1">{{ teamData.memberName }}</h5>
-                            </BLink>
+                            </a>
                             <p class="text-muted member-designation mb-0">{{ teamData.position }}</p>
                           </div>
                         </div>
@@ -316,13 +326,18 @@ onMounted(() => {
               </BCol>
             </BRow>
             <div class="text-center mb-3">
-              <BLink href="javascript:void(0);" class="text-success"><i
-                  class="mdi mdi-loading mdi-spin fs-20 align-middle me-2"></i> Load More </BLink>
+              <a href="javascript:void(0);" class="text-success"><i
+                  class="mdi mdi-loading mdi-spin fs-20 align-middle me-2"></i> Load More </a>
             </div>
           </div>
           <div class="py-4 mt-4 text-center" id="noresult" style="display: none;">
-            <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
-              colors="primary:#405189,secondary:#0ab39c" style="width:72px;height:72px"></lord-icon>
+            <lord-icon
+              src="https://cdn.lordicon.com/tdrtiskw.json"
+              trigger="hover"
+              style="width:40px;height:40px">
+            </lord-icon>
+            <!-- <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
+              colors="primary:#405189,secondary:#0ab39c" style="width:72px;height:72px"></lord-icon> -->
             <h5 class="mt-4">Sorry! No Result Found</h5>
           </div>
           <!-- Modal -->
@@ -419,15 +434,15 @@ onMounted(() => {
                           class="ri-star-fill fs-14"></i> </BButton>
                     </BCol>
                     <BCol class="text-end dropdown">
-                      <BLink href="javascript:void(0);" id="dropdownMenuLink14" data-bs-toggle="dropdown"
+                      <a href="javascript:void(0);" id="dropdownMenuLink14" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <i class="ri-more-fill fs-17"></i>
-                      </BLink>
+                      </a>
                       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink14">
-                        <li><BLink class="dropdown-item" href="javascript:void(0);"><i
-                              class="ri-star-line me-2 align-middle"></i>Favorites</BLink></li>
-                        <li><BLink class="dropdown-item" href="javascript:void(0);"><i
-                              class="ri-delete-bin-5-line me-2 align-middle"></i>Delete</BLink></li>
+                        <li><a class="dropdown-item" href="javascript:void(0);"><i
+                              class="ri-star-line me-2 align-middle"></i>Favorites</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0);"><i
+                              class="ri-delete-bin-5-line me-2 align-middle"></i>Delete</a></li>
                       </ul>
                     </BCol>
                   </BRow>
@@ -442,19 +457,19 @@ onMounted(() => {
                 </div>
                 <div class="hstack gap-2 justify-content-center mt-4">
                   <div class="avatar-xs">
-                    <BLink href="javascript:void(0);" class="avatar-title bg-secondary-subtle text-secondary rounded fs-16">
+                    <a href="javascript:void(0);" class="avatar-title bg-secondary-subtle text-secondary rounded fs-16">
                       <i class="ri-slack-fill"></i>
-                    </BLink>
+                    </a>
                   </div>
                   <div class="avatar-xs">
-                    <BLink href="javascript:void(0);" class="avatar-title bg-info-subtle text-info rounded fs-16">
+                    <a href="javascript:void(0);" class="avatar-title bg-info-subtle text-info rounded fs-16">
                       <i class="ri-linkedin-fill"></i>
-                    </BLink>
+                    </a>
                   </div>
                   <div class="avatar-xs">
-                    <BLink href="javascript:void(0);" class="avatar-title bg-danger-subtle text-danger rounded fs-16">
+                    <a href="javascript:void(0);" class="avatar-title bg-danger-subtle text-danger rounded fs-16">
                       <i class="ri-dribbble-fill"></i>
-                    </BLink>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -496,7 +511,7 @@ onMounted(() => {
                     </div>
                   </div>
                   <div class="flex-grow-1 ms-3">
-                    <h6 class="mb-1"><BLink href="javascript:void(0);">Images</BLink></h6>
+                    <h6 class="mb-1"><a href="javascript:void(0);">Images</a></h6>
                     <p class="text-muted mb-0">4469 Files</p>
                   </div>
                   <div class="text-muted">
@@ -510,7 +525,7 @@ onMounted(() => {
                     </div>
                   </div>
                   <div class="flex-grow-1 ms-3">
-                    <h6 class="mb-1"><BLink href="javascript:void(0);">Documents</BLink></h6>
+                    <h6 class="mb-1"><a href="javascript:void(0);">Documents</a></h6>
                     <p class="text-muted mb-0">46 Files</p>
                   </div>
                   <div class="text-muted">
@@ -524,7 +539,7 @@ onMounted(() => {
                     </div>
                   </div>
                   <div class="flex-grow-1 ms-3">
-                    <h6 class="mb-1"><BLink href="javascript:void(0);">Media</BLink></h6>
+                    <h6 class="mb-1"><a href="javascript:void(0);">Media</a></h6>
                     <p class="text-muted mb-0">124 Files</p>
                   </div>
                   <div class="text-muted">
@@ -538,7 +553,7 @@ onMounted(() => {
                     </div>
                   </div>
                   <div class="flex-grow-1 ms-3">
-                    <h6 class="mb-1"><BLink href="javascript:void(0);">Others</BLink></h6>
+                    <h6 class="mb-1"><a href="javascript:void(0);">Others</a></h6>
                     <p class="text-muted mb-0">18 Files</p>
                   </div>
                   <div class="text-muted">
@@ -547,16 +562,33 @@ onMounted(() => {
                 </div>
               </div>
             </div>
-            <div class="offcanvas-foorter border p-3 hstack gap-3 text-center position-relative">
+            <div class="offcanvas-footer border p-3 hstack gap-3 text-center position-relative">
               <BButton variant="light" class="w-100"><i class="ri-question-answer-fill align-bottom ms-1"></i> Send
                 Message</BButton>
-              <router-link to="/pages/profile" class="btn btn-primary w-100"><i class="ri-user-3-fill align-bottom ms-1"></i>
+              <router-link to="/pages/profile" class="btn btn-primary w-100"><i
+                  class="ri-user-3-fill align-bottom ms-1"></i>
                 View Profile</router-link>
             </div>
           </div>
         </div>
       </BCol>
     </BRow>
-  </Layout>
-</template>
+</Layout></template>
     
+<style scoped>
+    .avatar-lg {
+      width: 80px;
+      height: 80px;
+    }
+
+    .avatar-title {
+      width: 80px;
+      height: 80px;
+      font-size: 24px; /* adjust for better initials */
+      font-weight: 600;
+      text-align: center;
+    }
+      .object-cover {
+      object-fit: cover;
+    }
+</style>

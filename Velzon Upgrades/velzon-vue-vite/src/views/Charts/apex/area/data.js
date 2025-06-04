@@ -1,6 +1,6 @@
 // Basic area Charts
 import { series, githubdata, dataSeries } from "../chart-series";
-// import moment from "moment";
+import moment from "moment";
 
 import getChartColorsArray from "@/common/getChartColorsArray";
 

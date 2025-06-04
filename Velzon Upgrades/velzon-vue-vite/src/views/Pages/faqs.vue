@@ -1,5 +1,9 @@
 <script setup>
 import Layout from "@/layouts/main.vue";
+import {
+  BAccordionItem,
+  BAccordion
+} from 'bootstrap-vue-next'
 </script>
 
 
@@ -16,10 +20,10 @@ import Layout from "@/layouts/main.vue";
                                     <p class="text-success fs-15 mt-3">If you can not find answer to your question in
                                         our FAQ, you can always contact us or email us. We will answer you shortly!</p>
                                     <div class="hstack flex-wrap gap-2">
-                                        <BButton pill variant="primary" type="button" class="btn-label"><i
+                                        <BButton pill variant="primary" type="button" class="btn-label-left"><i
                                                 class="ri-mail-line label-icon align-middle rounded-pill fs-16 me-2"></i>
                                             Email Us</BButton>
-                                        <BButton pill variant="info" type="button" class="btn-label"><i
+                                        <BButton pill variant="info" type="button" class="btn-label-left"><i
                                                 class="ri-twitter-line label-icon align-middle rounded-pill fs-16 me-2"></i>
                                             Send Us Tweet</BButton>
                                     </div>
