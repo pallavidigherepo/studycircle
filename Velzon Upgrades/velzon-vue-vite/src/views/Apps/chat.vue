@@ -131,7 +131,7 @@ onMounted(() => {
   <Layout>
 
     <div class="chat-wrapper d-lg-flex gap-1 mx-n4 mt-n4 p-1">
-      <div class="chat-leftsidebar">
+      <div class="chat-leftsidebar minimal-border">
         <div class="px-4 pt-4 mb-4">
           <div class="d-flex align-items-start">
             <div class="flex-grow-1">
@@ -139,7 +139,7 @@ onMounted(() => {
             </div>
             <div class="flex-shrink-0">
               <div v-b-tooltip.hover title="Add Contact">
-                <BButton type="button" variant="soft-success" size="sm">
+                <BButton variant="soft-success" size="sm" class="material-shadow-none">
                   <i class="ri-add-line align-bottom"></i>
                 </BButton>
               </div>
@@ -160,7 +160,7 @@ onMounted(() => {
             </div>
             <div class="flex-shrink-0">
               <div v-b-tooltip.hover title="New Message">
-                <BButton type="button" variant="soft-success" size="sm">
+                <BButton variant="soft-success" size="sm" class="material-shadow-none">
                   <i class="ri-add-line align-bottom"></i>
                 </BButton>
               </div>
@@ -305,7 +305,7 @@ onMounted(() => {
           </div>
         </simplebar>
       </div>
-      <div class="user-chat w-100 overflow-hidden">
+      <div class="user-chat w-100 overflow-hidden minimal-border">
         <div class="chat-content d-lg-flex">
           <div class="w-100 overflow-hidden position-relative">
             <div class="position-relative">
@@ -320,7 +320,7 @@ onMounted(() => {
                       <div class="flex-grow-1 overflow-hidden">
                         <div class="d-flex align-items-center">
                           <div class="flex-shrink-0 chat-user-img online user-own-img align-self-center me-3 ms-0">
-                            <img :src="profile ? profile : require('@/assets/images/users/user-dummy-img.jpg')"
+                            <img :src="profile ? profile :'@/assets/images/users/user-dummy-img.jpg'"
                               class="rounded-circle avatar-xs" alt="" />
                             <span class="user-status"></span>
                           </div>
@@ -340,8 +340,9 @@ onMounted(() => {
                   <BCol sm="8" cols="4">
                     <ul class="list-inline user-chat-nav text-end mb-0">
                       <li class="list-inline-item m-0">
-                        <BDropdown variant="link" class="btn btn-ghost-secondary btn-icon" toggle-class="arrow-none"
-                          menu-class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-lg" auto-close="outside">
+                        <BDropdown variant="link" class="btn btn-ghost-secondary btn-icon material-shadow-none"
+                          no-caret menu-class="dropdown-menu p-0 dropdown-menu-end dropdown-menu-lg"
+                          auto-close="outside">
                           <template #button-content> <search-icon class="icon-sm"></search-icon>
                           </template>
                           <BDropdownItemButton>
@@ -357,15 +358,15 @@ onMounted(() => {
                       </li>
 
                       <li class="list-inline-item d-none d-lg-inline-block m-0">
-                        <BButton type="button" variant="ghost-secondary" class="btn-icon"
+                        <BButton type="button" variant="ghost-secondary" class="btn-icon material-shadow-none"
                           @click="showOffcanvas = !showOffcanvas">
                           <info-icon class="icon-sm"></info-icon>
                         </BButton>
                       </li>
 
                       <li class="list-inline-item m-0">
-                        <BDropdown variant="link" class="btn btn-ghost-secondary btn-icon" toggle-class=" arrow-none"
-                          menu-class="dropdown-menu" aria-haspopup="true">
+                        <BDropdown variant="link" class="btn btn-ghost-secondary btn-icon material-shadow-none"
+                          no-caret menu-class="dropdown-menu" aria-haspopup="true">
                           <template #button-content> <more-vertical-icon class="icon-sm"></more-vertical-icon>
                           </template>
                           <BDropdownItem><i class="ri-inbox-archive-line align-bottom text-muted me-2"></i>
@@ -391,7 +392,7 @@ onMounted(() => {
                     }" class="chat-list">
                       <div class="conversation-list">
                         <div class="chat-avatar" v-if="data.align !== 'right'">
-                          <img :src="profile ? profile : require('@/assets/images/users/user-dummy-img.jpg')" alt="" />
+                          <img :src="profile ? profile : '@/assets/images/users/user-dummy-img.jpg'" alt="" />
                         </div>
                         <div class="user-chat-content">
                           <div class="ctext-wrap">
@@ -401,7 +402,7 @@ onMounted(() => {
                               </p>
                             </div>
                             <BDropdown variant="link" class="dropdown align-self-start message-box-drop"
-                              toggle-class=" arrow-none" menu-class="dropdown-menu" aria-haspopup="true">
+                              no-caret menu-class="dropdown-menu" aria-haspopup="true">
                               <template #button-content> <i class="ri-more-2-fill"></i>
                               </template>
                               <BDropdownItem> <i class="ri-reply-line me-2 text-muted align-bottom"></i> Reply
@@ -435,7 +436,6 @@ onMounted(() => {
                   Message copied
                 </div>
               </div>
-
 
               <div class="chat-input-section p-3 p-lg-4">
                 <form @submit.prevent="formSubmit">
@@ -516,22 +516,16 @@ onMounted(() => {
                   </BButton>
 
                   <div class="dropdown">
-                    <BLink class="btn nav-btn" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="btn nav-btn" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">
                       <i class="ri-more-2-fill"></i>
-                    </BLink>
+                    </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                      <li>
-                        <BLink class="dropdown-item" href="javascript:void(0);"><i
-                            class="ri-inbox-archive-line align-bottom text-muted me-2"></i>Archive</BLink>
-                      </li>
-                      <li>
-                        <BLink class="dropdown-item" href="javascript:void(0);"><i
-                            class="ri-mic-off-line align-bottom text-muted me-2"></i>Muted</BLink>
-                      </li>
-                      <li>
-                        <BLink class="dropdown-item" href="javascript:void(0);"><i
-                            class="ri-delete-bin-5-line align-bottom text-muted me-2"></i>Delete</BLink>
-                      </li>
+                      <li><a class="dropdown-item" href="javascript:void(0);"><i
+                            class="ri-inbox-archive-line align-bottom text-muted me-2"></i>Archive</a></li>
+                      <li><a class="dropdown-item" href="javascript:void(0);"><i
+                            class="ri-mic-off-line align-bottom text-muted me-2"></i>Muted</a></li>
+                      <li><a class="dropdown-item" href="javascript:void(0);"><i
+                            class="ri-delete-bin-5-line align-bottom text-muted me-2"></i>Delete</a></li>
                     </ul>
                   </div>
                 </div>
@@ -541,11 +535,16 @@ onMounted(() => {
           </div>
         </div>
         <div class="p-3 text-center">
-          <img :src="profile" alt="" class="avatar-lg img-thumbnail rounded-circle mx-auto profile-img">
+          <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0">
+           <img
+                              :src="profile" alt=""
+                              class="profile-img img-fluid d-block rounded-circle object-cover"
+                              
+                            />
+                            </div>
+          <!-- <img :src="profile" alt="" class="avatar-lg img-thumbnail rounded-circle mx-auto profile-img"> -->
           <div class="mt-3">
-            <h5 class="fs-16 mb-1">
-              <BLink href="javascript:void(0);" class="link-primary username"> {{ username }}</BLink>
-            </h5>
+            <h5 class="fs-16 mb-1"><a href="javascript:void(0);" class="link-primary username"> {{ username }}</a></h5>
             <p class="text-muted"><i class="ri-checkbox-blank-circle-fill me-1 align-bottom text-success"></i>Online</p>
           </div>
 
@@ -579,18 +578,12 @@ onMounted(() => {
               </BButton>
 
               <ul class="dropdown-menu dropdown-menu-end">
-                <li>
-                  <BLink class="dropdown-item" href="javascript:void(0);"><i
-                      class="ri-inbox-archive-line align-bottom text-muted me-2"></i>Archive</BLink>
-                </li>
-                <li>
-                  <BLink class="dropdown-item" href="javascript:void(0);"><i
-                      class="ri-mic-off-line align-bottom text-muted me-2"></i>Muted</BLink>
-                </li>
-                <li>
-                  <BLink class="dropdown-item" href="javascript:void(0);"><i
-                      class="ri-delete-bin-5-line align-bottom text-muted me-2"></i>Delete</BLink>
-                </li>
+                <li><a class="dropdown-item" href="javascript:void(0);"><i
+                      class="ri-inbox-archive-line align-bottom text-muted me-2"></i>Archive</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0);"><i
+                      class="ri-mic-off-line align-bottom text-muted me-2"></i>Muted</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0);"><i
+                      class="ri-delete-bin-5-line align-bottom text-muted me-2"></i>Delete</a></li>
               </ul>
             </div>
           </div>
@@ -626,33 +619,26 @@ onMounted(() => {
                   </div>
                 </div>
                 <div class="flex-grow-1 overflow-hidden">
-                  <h5 class="fs-13 mb-1">
-                    <BLink href="#" class="text-body text-truncate d-block">App pages.zip</BLink>
-                  </h5>
+                  <h5 class="fs-13 mb-1"><a href="#" class="text-body text-truncate d-block">App pages.zip</a></h5>
                   <div class="text-muted">2.2MB</div>
                 </div>
                 <div class="flex-shrink-0 ms-2">
                   <div class="d-flex gap-1">
-                    <BButton variant="white" class="btn-icon text-muted btn-sm fs-18"><i class="ri-download-2-line"></i>
+                    <BButton variant="white" class="btn-icon text-muted btn-sm fs-18 material-shadow-none"><i
+                        class="ri-download-2-line"></i>
                     </BButton>
                     <div class="dropdown">
-                      <BButton variant="white" class="btn-icon text-muted btn-sm fs-18 dropdown" type="button"
+                      <BButton variant="white" class="btn-icon text-muted btn-sm fs-18 dropdown material-shadow-none"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="ri-more-fill"></i>
                       </BButton>
                       <ul class="dropdown-menu">
-                        <li>
-                          <BLink class="dropdown-item" href="#"><i class="ri-share-line align-bottom me-2 text-muted"></i>
-                            Share</BLink>
-                        </li>
-                        <li>
-                          <BLink class="dropdown-item" href="#"><i
-                              class="ri-bookmark-line align-bottom me-2 text-muted"></i> Bookmark</BLink>
-                        </li>
-                        <li>
-                          <BLink class="dropdown-item" href="#"><i
-                              class="ri-delete-bin-line align-bottom me-2 text-muted"></i> Delete</BLink>
-                        </li>
+                        <li><a class="dropdown-item" href="#"><i class="ri-share-line align-bottom me-2 text-muted"></i>
+                            Share</a></li>
+                        <li><a class="dropdown-item" href="#"><i
+                              class="ri-bookmark-line align-bottom me-2 text-muted"></i> Bookmark</a></li>
+                        <li><a class="dropdown-item" href="#"><i
+                              class="ri-delete-bin-line align-bottom me-2 text-muted"></i> Delete</a></li>
                       </ul>
                     </div>
                   </div>
@@ -670,33 +656,26 @@ onMounted(() => {
                   </div>
                 </div>
                 <div class="flex-grow-1 overflow-hidden">
-                  <h5 class="fs-13 mb-1">
-                    <BLink href="#" class="text-body text-truncate d-block">Velzon admin.ppt</BLink>
-                  </h5>
+                  <h5 class="fs-13 mb-1"><a href="#" class="text-body text-truncate d-block">Velzon admin.ppt</a></h5>
                   <div class="text-muted">2.4MB</div>
                 </div>
                 <div class="flex-shrink-0 ms-2">
                   <div class="d-flex gap-1">
-                    <BButton variant="white" class="btn-icon text-muted btn-sm fs-18"><i class="ri-download-2-line"></i>
+                    <BButton variant="white" class="btn-icon text-muted btn-sm fs-18 material-shadow-none"><i
+                        class="ri-download-2-line"></i>
                     </BButton>
                     <div class="dropdown">
-                      <BButton variant="white" class="btn-icon text-muted btn-sm fs-18 dropdown" type="button"
+                      <BButton variant="white" class="btn-icon text-muted btn-sm fs-18 dropdown material-shadow-none"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="ri-more-fill"></i>
                       </BButton>
                       <ul class="dropdown-menu">
-                        <li>
-                          <BLink class="dropdown-item" href="#"><i class="ri-share-line align-bottom me-2 text-muted"></i>
-                            Share</BLink>
-                        </li>
-                        <li>
-                          <BLink class="dropdown-item" href="#"><i
-                              class="ri-bookmark-line align-bottom me-2 text-muted"></i> Bookmark</BLink>
-                        </li>
-                        <li>
-                          <BLink class="dropdown-item" href="#"><i
-                              class="ri-delete-bin-line align-bottom me-2 text-muted"></i> Delete</BLink>
-                        </li>
+                        <li><a class="dropdown-item" href="#"><i class="ri-share-line align-bottom me-2 text-muted"></i>
+                            Share</a></li>
+                        <li><a class="dropdown-item" href="#"><i
+                              class="ri-bookmark-line align-bottom me-2 text-muted"></i> Bookmark</a></li>
+                        <li><a class="dropdown-item" href="#"><i
+                              class="ri-delete-bin-line align-bottom me-2 text-muted"></i> Delete</a></li>
                       </ul>
                     </div>
                   </div>
@@ -714,89 +693,76 @@ onMounted(() => {
                   </div>
                 </div>
                 <div class="flex-grow-1 overflow-hidden">
-                  <h5 class="fs-13 mb-1">
-                    <BLink href="#" class="text-body text-truncate d-block">Images.zip</BLink>
-                </h5>
-                <div class="text-muted">1.2MB</div>
-              </div>
-              <div class="flex-shrink-0 ms-2">
-                <div class="d-flex gap-1">
-                  <BButton variant="white" class="btn-icon text-muted btn-sm fs-18"><i class="ri-download-2-line"></i>
-                  </BButton>
-                  <div class="dropdown">
-                    <BButton variant="white" class="btn-icon text-muted btn-sm fs-18 dropdown" type="button"
-                      data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="ri-more-fill"></i>
+                  <h5 class="fs-13 mb-1"><a href="#" class="text-body text-truncate d-block">Images.zip</a></h5>
+                  <div class="text-muted">1.2MB</div>
+                </div>
+                <div class="flex-shrink-0 ms-2">
+                  <div class="d-flex gap-1">
+                    <BButton variant="white" class="btn-icon text-muted btn-sm fs-18 material-shadow-none"><i
+                        class="ri-download-2-line"></i>
                     </BButton>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <BLink class="dropdown-item" href="#"><i class="ri-share-line align-bottom me-2 text-muted"></i>
-                          Share</BLink>
-                      </li>
-                      <li>
-                        <BLink class="dropdown-item" href="#"><i
-                            class="ri-bookmark-line align-bottom me-2 text-muted"></i> Bookmark</BLink>
-                      </li>
-                      <li>
-                        <BLink class="dropdown-item" href="#"><i
-                            class="ri-delete-bin-line align-bottom me-2 text-muted"></i> Delete</BLink>
-                      </li>
-                    </ul>
+                    <div class="dropdown">
+                      <BButton variant="white" class="btn-icon text-muted btn-sm fs-18 dropdown material-shadow-none"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="ri-more-fill"></i>
+                      </BButton>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#"><i class="ri-share-line align-bottom me-2 text-muted"></i>
+                            Share</a></li>
+                        <li><a class="dropdown-item" href="#"><i
+                              class="ri-bookmark-line align-bottom me-2 text-muted"></i> Bookmark</a></li>
+                        <li><a class="dropdown-item" href="#"><i
+                              class="ri-delete-bin-line align-bottom me-2 text-muted"></i> Delete</a></li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="border rounded border-dashed p-2">
-            <div class="d-flex align-items-center">
-              <div class="flex-shrink-0 me-3">
-                <div class="avatar-xs">
-                  <div class="avatar-title bg-light text-secondary rounded fs-20">
-                    <i class="ri-image-2-line"></i>
+            <div class="border rounded border-dashed p-2">
+              <div class="d-flex align-items-center">
+                <div class="flex-shrink-0 me-3">
+                  <div class="avatar-xs">
+                    <div class="avatar-title bg-light text-secondary rounded fs-20">
+                      <i class="ri-image-2-line"></i>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="flex-grow-1 overflow-hidden">
-                <h5 class="fs-13 mb-1">
-                  <BLink href="#" class="text-body text-truncate d-block">bg-pattern.png</BLink>
-                </h5>
-                <div class="text-muted">1.1MB</div>
-              </div>
-              <div class="flex-shrink-0 ms-2">
-                <div class="d-flex gap-1">
-                  <BButton variant="white" class="btn-icon text-muted btn-sm fs-18"><i class="ri-download-2-line"></i>
-                  </BButton>
-                  <div class="dropdown">
-                    <BButton variant="white" class="btn-icon text-muted btn-sm fs-18 dropdown" type="button"
-                      data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="ri-more-fill"></i>
+                <div class="flex-grow-1 overflow-hidden">
+                  <h5 class="fs-13 mb-1"><a href="#" class="text-body text-truncate d-block">bg-pattern.png</a></h5>
+                  <div class="text-muted">1.1MB</div>
+                </div>
+                <div class="flex-shrink-0 ms-2">
+                  <div class="d-flex gap-1">
+                    <BButton variant="white" class="btn-icon text-muted btn-sm fs-18 material-shadow-none"><i
+                        class="ri-download-2-line"></i>
                     </BButton>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <BLink class="dropdown-item" href="#"><i class="ri-share-line align-bottom me-2 text-muted"></i>
-                          Share</BLink>
-                      </li>
-                      <li>
-                        <BLink class="dropdown-item" href="#"><i
-                            class="ri-bookmark-line align-bottom me-2 text-muted"></i> Bookmark</BLink>
-                      </li>
-                      <li>
-                        <BLink class="dropdown-item" href="#"><i
-                            class="ri-delete-bin-line align-bottom me-2 text-muted"></i> Delete</BLink>
-                      </li>
-                    </ul>
+                    <div class="dropdown">
+                      <BButton variant="white" class="btn-icon text-muted btn-sm fs-18 dropdown material-shadow-none"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="ri-more-fill"></i>
+                      </BButton>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#"><i class="ri-share-line align-bottom me-2 text-muted"></i>
+                            Share</a></li>
+                        <li><a class="dropdown-item" href="#"><i
+                              class="ri-bookmark-line align-bottom me-2 text-muted"></i> Bookmark</a></li>
+                        <li><a class="dropdown-item" href="#"><i
+                              class="ri-delete-bin-line align-bottom me-2 text-muted"></i> Delete</a></li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="text-center mt-2">
-            <BButton variant="danger">Load more <i class="ri-arrow-right-fill align-bottom ms-1"></i></BButton>
+            <div class="text-center mt-2">
+              <BButton variant="danger">Load more <i class="ri-arrow-right-fill align-bottom ms-1"></i></BButton>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </BOffcanvas>
-</Layout></template>
+    </BOffcanvas>
+  </Layout>
+</template>

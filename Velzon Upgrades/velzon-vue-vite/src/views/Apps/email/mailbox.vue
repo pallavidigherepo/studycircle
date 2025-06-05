@@ -230,71 +230,52 @@ onMounted(() => {
 <template>
     <Layout>
         <div class="email-wrapper d-lg-flex gap-1 mx-n4 mt-n4 p-1">
-            <div class="email-menu-sidebar" id="menusidebar">
+            <div class="email-menu-sidebar minimal-border" id="menusidebar">
                 <div class="p-4 d-flex flex-column h-100">
                     <div class="pb-4 border-bottom border-bottom-dashed">
-                        <BButton type="button" variant="secondary" class="w-100" @click="modalShow = !modalShow">
+                        <BButton type="button" variant="danger" class="w-100" @click="modalShow = !modalShow">
                             <plus-circle-icon class="icon-xs me-1 icon-dual-light"></plus-circle-icon> Compose
                         </BButton>
                     </div>
 
                     <simplebar class="mx-n4 px-4 email-menu-sidebar-scroll" data-simplebar>
                         <div class="mail-list mt-3">
-                            <BLink href="#" class="active" @click="changemenu('all')"><i
-                                    class="ri-mail-fill me-3 align-middle fw-medium"></i> <span
-                                    class="mail-list-link">All</span>
+                            <BLink href="#" class="active" @click="changemenu('all')"><i class="ri-mail-fill me-3 align-middle fw-medium"></i> <span class="mail-list-link">All</span>
                                 <BBadge variant="success-subtle" class="bg-success-subtle text-success ms-auto  ">5</BBadge>
                             </BLink>
-                            <BLink href="#" @click="changemenu('Inbox')"><i
-                                    class="ri-inbox-archive-fill me-3 align-middle fw-medium"></i> Inbox <BBadge
-                                    variant="success-subtle" class="bg-success-subtle text-success ms-auto  ">5</BBadge>
+                            <BLink href="#" @click="changemenu('Inbox')"><i class="ri-inbox-archive-fill me-3 align-middle fw-medium"></i> Inbox <BBadge variant="success-subtle" class="bg-success-subtle text-success ms-auto  ">5</BBadge>
                             </BLink>
-                            <BLink href="#" @click="changemenu('Sent')"><i
-                                    class="ri-send-plane-2-fill me-3 align-middle fw-medium"></i> Sent</BLink>
-                            <BLink href="#" @click="changemenu('Draft')"><i
-                                    class="ri-edit-2-fill me-3 align-middle fw-medium"></i>Draft</BLink>
-                            <BLink href="#" @click="changemenu('Spam')"><i
-                                    class="ri-error-warning-fill me-3 align-middle fw-medium"></i>Spam</BLink>
-                            <BLink href="#" @click="changemenu('Trash')"><i
-                                    class="ri-delete-bin-5-fill me-3 align-middle fw-medium"></i>Trash</BLink>
-                            <BLink href="#" @click="changemenu('Starred')"><i
-                                    class="ri-star-fill me-3 align-middle fw-medium"></i>Starred</BLink>
-                            <BLink href="#" @click="changemenu('Important')"><i
-                                    class="ri-price-tag-3-fill me-3 align-middle fw-medium"></i>Important</BLink>
+                            <BLink href="#" @click="changemenu('Sent')"><i class="ri-send-plane-2-fill me-3 align-middle fw-medium"></i> Sent</BLink>
+                            <BLink href="#" @click="changemenu('Draft')"><i class="ri-edit-2-fill me-3 align-middle fw-medium"></i>Draft</BLink>
+                            <BLink href="#" @click="changemenu('Spam')"><i class="ri-error-warning-fill me-3 align-middle fw-medium"></i>Spam</BLink>
+                            <BLink href="#" @click="changemenu('Trash')"><i class="ri-delete-bin-5-fill me-3 align-middle fw-medium"></i>Trash</BLink>
+                            <BLink href="#" @click="changemenu('Starred')"><i class="ri-star-fill me-3 align-middle fw-medium"></i>Starred</BLink>
+                            <BLink href="#" @click="changemenu('Important')"><i class="ri-price-tag-3-fill me-3 align-middle fw-medium"></i>Important</BLink>
                         </div>
 
                         <div>
                             <h5 class="fs-12 text-uppercase text-muted mt-4">Labels</h5>
 
                             <div class="mail-list mt-1">
-                                <BLink href="#" @click="changelable('Support')"><span
-                                        class="ri-checkbox-blank-circle-line me-2 text-info"></span> Support <BBadge
-                                        variant="success-subtle" class="bg-success-subtle text-success ms-auto">3</BBadge>
+                                <BLink href="#" @click="changelable('Support')"><span class="ri-checkbox-blank-circle-line me-2 text-info"></span> Support <BBadge variant="success-subtle" class="bg-success-subtle text-success ms-auto">3</BBadge>
                                 </BLink>
-                                <BLink href="#" @click="changelable('Freelance')"><span
-                                        class="ri-checkbox-blank-circle-line me-2 text-warning"></span> Freelance
+                                <BLink href="#" @click="changelable('Freelance')"><span class="ri-checkbox-blank-circle-line me-2 text-warning"></span> Freelance
                                 </BLink>
-                                <BLink href="#" @click="changelable('Social')"><span
-                                        class="ri-checkbox-blank-circle-line me-2 text-primary"></span> Social</BLink>
-                                <BLink href="#" @click="changelable('Friends')"><span
-                                        class="ri-checkbox-blank-circle-line me-2 text-danger"></span> Friends<BBadge
-                                        variant="success-subtle" class="bg-success-subtle text-success ms-auto">2</BBadge>
+                                <BLink href="#" @click="changelable('Social')"><span class="ri-checkbox-blank-circle-line me-2 text-primary"></span> Social</BLink>
+                                <BLink href="#" @click="changelable('Friends')"><span class="ri-checkbox-blank-circle-line me-2 text-danger"></span> Friends<BBadge variant="success-subtle" class="bg-success-subtle text-success ms-auto">2</BBadge>
                                 </BLink>
-                                <BLink href="#" @click="changelable('Family')"><span
-                                        class="ri-checkbox-blank-circle-line me-2 text-success"></span> Family</BLink>
+                                <BLink href="#" @click="changelable('Family')"><span class="ri-checkbox-blank-circle-line me-2 text-success"></span> Family</BLink>
                             </div>
                         </div>
 
                         <div class="border-top border-top-dashed pt-3 mt-3">
-                            <BLink href="#" class="btn btn-icon btn-sm btn-soft-info btn-rounded float-end"><i
-                                    class="bx bx-plus fs-16"></i></BLink>
+                            <BLink href="#" class="btn btn-icon btn-sm btn-soft-info rounded-pill float-end material-shadow-none"><i class="bx bx-plus fs-16"></i></BLink>
                             <h5 class="fs-12 text-uppercase text-muted mb-3">Chat</h5>
 
                             <div class="mt-2 vstack email-chat-list mx-n4">
                                 <BLink href="javascript: void(0);" class="d-flex align-items-center">
                                     <div class="flex-shrink-0 me-2 avatar-xxs chatlist-user-image">
-                                        <img class="img-fluid rounded-circle" src="@/assets/images/users/avatar-2.jpg"
-                                            alt="">
+                                        <img class="img-fluid rounded-circle" src="@/assets/images/users/avatar-2.jpg" alt="">
                                     </div>
 
                                     <div class="flex-grow-1 chat-user-box overflow-hidden" @click="changeUserScroll">
@@ -305,8 +286,7 @@ onMounted(() => {
 
                                 <BLink href="javascript: void(0);" class="d-flex align-items-center active">
                                     <div class="flex-shrink-0 me-2 avatar-xxs chatlist-user-image">
-                                        <img class="img-fluid rounded-circle" src="@/assets/images/users/avatar-4.jpg"
-                                            alt="">
+                                        <img class="img-fluid rounded-circle" src="@/assets/images/users/avatar-4.jpg" alt="">
                                     </div>
 
                                     <div class="flex-grow-1 chat-user-box overflow-hidden" @click="changeUserScroll">
@@ -317,8 +297,7 @@ onMounted(() => {
 
                                 <BLink href="javascript: void(0);" class="d-flex align-items-center">
                                     <div class="flex-shrink-0 me-2 avatar-xxs chatlist-user-image">
-                                        <img class="img-fluid rounded-circle" src="@/assets/images/users/avatar-3.jpg"
-                                            alt="">
+                                        <img class="img-fluid rounded-circle" src="@/assets/images/users/avatar-3.jpg" alt="">
                                     </div>
 
                                     <div class="flex-grow-1 chat-user-box overflow-hidden" @click="changeUserScroll">
@@ -329,8 +308,7 @@ onMounted(() => {
 
                                 <BLink href="javascript: void(0);" class="d-flex align-items-center">
                                     <div class="flex-shrink-0 me-2 avatar-xxs chatlist-user-image">
-                                        <img class="img-fluid rounded-circle" src="@/assets/images/users/avatar-5.jpg"
-                                            alt="">
+                                        <img class="img-fluid rounded-circle" src="@/assets/images/users/avatar-5.jpg" alt="">
                                     </div>
 
                                     <div class="flex-grow-1 chat-user-box overflow-hidden" @click="changeUserScroll">
@@ -345,21 +323,19 @@ onMounted(() => {
                     <div class="mt-auto">
                         <h5 class="fs-13">1.75 GB of 10 GB used</h5>
                         <div class="progress progress-sm">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
-                                aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
             </div>
 
 
-            <div class="email-content">
+            <div class="email-content minimal-border">
                 <div class="px-4 pt-4 pb-0">
                     <div class="border-bottom border-bottom-dashed">
                         <BRow class="mt-n2 mb-3 mb-sm-0">
                             <BCol sm="auto" order="1" class="d-block d-lg-none">
-                                <BButton type="button" variant="soft-success" size="sm"
-                                    class="btn-icon fs-16 email-menu-btn">
+                                <BButton type="button" variant="soft-success" size="sm" class="btn-icon fs-16 email-menu-btn material-shadow-none">
                                     <i class="ri-menu-2-fill align-bottom"></i>
                                 </BButton>
                             </BCol>
@@ -370,27 +346,21 @@ onMounted(() => {
                                         <label class="form-check-label" for="flexCheck18"></label>
                                     </div>
                                     <div id="email-topbar-actions">
-                                        <BButton type="button" variant="ghost-secondary" size="sm" class="btn-icon fs-16"
-                                            v-b-tooltip.hover title="Archive">
+                                        <BButton type="button" variant="ghost-secondary" size="sm" class="btn-icon fs-16 material-shadow-none" v-b-tooltip.hover title="Archive">
                                             <i class="ri-inbox-archive-fill align-bottom"></i>
                                         </BButton>
-                                        <BButton type="button" variant="ghost-secondary" size="sm" class="btn-icon fs-16"
-                                            v-b-tooltip.hover title="Report Spam">
+                                        <BButton type="button" variant="ghost-secondary" size="sm" class="btn-icon fs-16 material-shadow-none" v-b-tooltip.hover title="Report Spam">
                                             <i class="ri-error-warning-fill align-bottom"></i>
                                         </BButton>
-                                        <BButton type="button" variant="ghost-secondary" size="sm" class="btn-icon fs-16"
-                                            data-bs-trigger="hover" data-bs-placement="top" title="Trash"
-                                            @click="deleteMail">
+                                        <BButton type="button" variant="ghost-secondary" size="sm" class="btn-icon fs-16 material-shadow-none" data-bs-trigger="hover" data-bs-placement="top" title="Trash" @click="deleteMail">
                                             <i class="ri-delete-bin-5-fill align-bottom"></i>
                                         </BButton>
                                     </div>
                                     <div class="vr align-self-center mx-2"></div>
-                                    <BButton type="button" variant="ghost-secondary" size="sm" class="btn-icon fs-16"
-                                        v-b-tooltip.hover title="Labels">
+                                    <BButton type="button" variant="ghost-secondary" size="sm" class="btn-icon fs-16" v-b-tooltip.hover title="Labels">
                                         <i class="ri-mail-open-fill align-bottom"></i>
                                     </BButton>
-                                    <BButton type="button" variant="ghost-secondary" size="sm" class="btn-icon fs-16"
-                                        v-b-tooltip.hover title="Labels">
+                                    <BButton type="button" variant="ghost-secondary" size="sm" class="btn-icon fs-16" v-b-tooltip.hover title="Labels">
                                         <i class="ri-price-tag-3-fill align-bottom"></i>
                                     </BButton>
                                 </div>
@@ -400,8 +370,7 @@ onMounted(() => {
                                     <BButton type="button" variant="ghost-secondary" size="sm" class="btn-icon fs-16">
                                         <i class="ri-refresh-line align-bottom"></i>
                                     </BButton>
-                                    <BDropdown variant="link" class="btn btn-ghost-secondary btn-icon btn-sm fs-16"
-                                        toggle-class=" arrow-none" menu-class="dropdown-menu" aria-haspopup="true">
+                                    <BDropdown variant="link" class="btn btn-ghost-secondary btn-icon btn-sm fs-16 material-shadow-none" no-caret menu-class="dropdown-menu" aria-haspopup="true">
                                         <template #button-content> <i class="ri-more-2-fill align-bottom"></i>
                                         </template>
                                         <BDropdownItem>Mark as Unread</BDropdownItem>
@@ -416,11 +385,9 @@ onMounted(() => {
 
                         <BRow class="align-items-center mt-3">
                             <BCol>
-                                <ul class="nav nav-tabs nav-tabs-custom nav-success gap-1 text-center border-bottom-0"
-                                    role="tablist" id="mailfilter">
+                                <ul class="nav nav-tabs nav-tabs-custom nav-success gap-1 text-center border-bottom-0" role="tablist" id="mailfilter">
                                     <li class="nav-item tabtype">
-                                        <BLink class="nav-link fw-semibold active" id="primarytab" href="#"
-                                            @click="changetab('primary')">
+                                        <BLink class="nav-link fw-semibold active" id="primarytab" href="#" @click="changetab('primary')">
                                             <i class="ri-inbox-fill align-bottom d-inline-block"></i>
                                             <span class="ms-1 d-none d-sm-inline-block">Primary</span>
                                         </BLink>
@@ -453,19 +420,15 @@ onMounted(() => {
                         <ul class="message-list" id="mail-list-data" style="display: none">
                             <div v-if="tabtype == 'primary'">
                                 <div v-for="(data, index) of emailsdata[0].primary" :key="index">
-                                    <li :class="{ 'unread': data.readed == false }"
-                                        v-if="menutab == 'all' || data.tabtype == menutab || labeltype == 'all' || data.labeltype == labeltype">
+                                    <li :class="{ 'unread': data.readed == false }" v-if="menutab == 'all' || data.tabtype == menutab || labeltype == 'all' || data.labeltype == labeltype">
                                         <div>
                                             <div class="col-mail col-mail-1">
                                                 <div class="form-check checkbox-wrapper-mail fs-14">
                                                     <span id="id" hidden>{{ data.id }}</span>
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheck20">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheck20">
                                                     <label class="form-check-label" for="flexCheck20"></label>
                                                 </div>
-                                                <BButton type="button" variant="transparent"
-                                                    class="btn avatar-xs mt-n1 p-0 favourite-btn fs-15"
-                                                    :class="{ 'active': data.starred == true }" @click="toggleFavourite">
+                                                <BButton type="button" variant="transparent" class="btn avatar-xs mt-n1 p-0 favourite-btn fs-15" :class="{ 'active': data.starred == true }" @click="toggleFavourite">
                                                     <i class="ri-star-fill"></i>
                                                 </BButton>
 
@@ -474,9 +437,7 @@ onMounted(() => {
                                                 }}</BLink>
                                             </div>
                                             <div class="col-mail col-mail-2" @click="openemail">
-                                                <BLink href="javascript: void(0);" class="subject"> <span
-                                                        class="subject-title">{{ data.title }}</span> – <span
-                                                        class="teaser">{{ data.description }}</span>
+                                                <BLink href="javascript: void(0);" class="subject"> <span class="subject-title">{{ data.title }}</span> – <span class="teaser">{{ data.description }}</span>
                                                 </BLink>
                                                 <div class="date">{{ data.date }}</div>
                                             </div>
@@ -485,15 +446,13 @@ onMounted(() => {
                                 </div>
                             </div>
                             <div v-if="tabtype == 'social'">
-                                <li v-for="(data, index) of emailsdata[0].social" :key="index"
-                                    :class="{ 'unread': data.readed == false }">
+                                <li v-for="(data, index) of emailsdata[0].social" :key="index" :class="{ 'unread': data.readed == false }">
                                     <div class="col-mail col-mail-1" @click="openemail">
                                         <div class="form-check checkbox-wrapper-mail fs-14">
                                             <input class="form-check-input" type="checkbox" value="" id="flexCheck20">
                                             <label class="form-check-label" for="flexCheck20"></label>
                                         </div>
-                                        <BButton type="button" class="btn avatar-xs p-0 favourite-btn fs-15 sszxfsf"
-                                            :class="{ 'active': data.starred == true }" @click="toggleFavourite">
+                                        <BButton type="button" class="btn avatar-xs p-0 favourite-btn fs-15 sszxfsf" :class="{ 'active': data.starred == true }" @click="toggleFavourite">
                                             <i class="ri-star-fill"></i>
                                         </BButton>
                                         <BLink href="javascript: void(0);" class="title">{{ data.name }}</BLink>
@@ -509,15 +468,13 @@ onMounted(() => {
                                 </li>
                             </div>
                             <div v-if="tabtype == 'promotions'">
-                                <li v-for="(data, index) of emailsdata[0].promotions" :key="index"
-                                    :class="{ 'unread': data.readed == false }">
+                                <li v-for="(data, index) of emailsdata[0].promotions" :key="index" :class="{ 'unread': data.readed == false }">
                                     <div class="col-mail col-mail-1">
                                         <div class="form-check checkbox-wrapper-mail fs-14">
                                             <input class="form-check-input" type="checkbox" value="" id="flexCheck20">
                                             <label class="form-check-label" for="flexCheck20"></label>
                                         </div>
-                                        <BButton type="button" class="btn avatar-xs p-0 favourite-btn fs-15"
-                                            :class="{ 'active': data.starred == true }" @click="toggleFavourite">
+                                        <BButton type="button" class="btn avatar-xs p-0 favourite-btn fs-15" :class="{ 'active': data.starred == true }" @click="toggleFavourite">
                                             <i class="ri-star-fill"></i>
                                         </BButton>
                                         <BLink href="javascript: void(0);" class="title">{{ data.name }}</BLink>
@@ -533,8 +490,7 @@ onMounted(() => {
                                 </li>
                             </div>
                             <li class="bg-transparent text-center">
-                                <BButton type="button" pill variant="soft-info" size="sm" class="btn-rounded px-2"><i
-                                        class="mdi mdi-spin mdi-loading me-2"></i>Load More</BButton>
+                                <BButton type="button" pill variant="info-subtle" size="sm" class="btn-rounded px-2"><i class="mdi mdi-spin mdi-loading me-2"></i>Load More</BButton>
                             </li>
 
                         </ul>
@@ -543,34 +499,30 @@ onMounted(() => {
             </div>
 
 
-            <div class="email-detail-content">
+            <div class="email-detail-content minimal-border">
                 <div class="p-4 d-flex flex-column h-100">
                     <div class="pb-4 border-bottom border-bottom-dashed">
                         <BRow>
                             <BCol>
                                 <div class="">
-                                    <BButton type="button" variant="soft-danger" size="sm"
-                                        class="btn-icon fs-16 close-btn-email" id="close-btn-email">
+                                    <BButton type="button" variant="soft-danger" size="sm" class="btn-icon fs-16 close-btn-email material-shadow-none" id="close-btn-email">
                                         <i class="ri-close-fill align-bottom"></i>
                                     </BButton>
                                 </div>
                             </BCol>
                             <div class="col-auto">
                                 <div class="hstack gap-sm-1 align-items-center flex-wrap email-topbar-link">
-                                    <BButton type="button" variant="ghost-secondary" size="sm"
-                                        class=" btn-icon fs-16 favourite-btn active">
+                                    <BButton type="button" variant="ghost-secondary" size="sm" class=" btn-icon fs-16 favourite-btn active material-shadow-none">
                                         <i class="ri-star-fill align-bottom"></i>
                                     </BButton>
-                                    <BButton variant="ghost-secondary" size="sm" class="btn-icon fs-16">
+                                    <BButton variant="ghost-secondary" size="sm" class="btn-icon fs-16 material-shadow-none">
                                         <i class="ri-printer-fill align-bottom"></i>
                                     </BButton>
-                                    <BButton type="button" variant="ghost-secondary" size="sm"
-                                        class="btn-icon fs-16 remove-mail" @click="removeModal = !removeModal">
+                                    <BButton type="button" variant="ghost-secondary" size="sm" class="btn-icon fs-16 material-shadow-none remove-mail" @click="removeModal = !removeModal">
                                         <i class="ri-delete-bin-5-fill align-bottom"></i>
                                     </BButton>
                                     <div class="dropdown">
-                                        <BButton variant="ghost-secondary" size="sm" class="btn-icon fs-16" type="button"
-                                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <BButton variant="ghost-secondary" size="sm" class="btn-icon fs-16 material-shadow-none" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="ri-more-2-fill align-bottom"></i>
                                         </BButton>
                                         <div class="dropdown-menu dropdown-menu-end">
@@ -594,13 +546,10 @@ onMounted(() => {
                         <div class="accordion accordion-flush">
                             <div class="accordion-item border-dashed">
                                 <div class="accordion-header">
-                                    <BLink role="button"
-                                        class="btn w-100 text-start px-0 bg-transparent shadow-none collapsed"
-                                        v-b-toggle.email-collapseOne>
+                                    <BLink role="button" class="btn w-100 text-start px-0 bg-transparent shadow-none collapsed" v-b-toggle.email-collapseOne>
                                         <div class="d-flex align-items-center text-muted">
                                             <div class="flex-shrink-0 avatar-xs me-3">
-                                                <img src="@/assets/images//users/avatar-3.jpg" alt=""
-                                                    class="img-fluid rounded-circle">
+                                                <img src="@/assets/images//users/avatar-3.jpg" alt="" class="img-fluid rounded-circle">
                                             </div>
                                             <div class="flex-grow-1 overflow-hidden">
                                                 <h5 class="fs-14 text-truncate mb-0">Jack Davis</h5>
@@ -627,15 +576,13 @@ onMounted(() => {
 
                                             <div class="d-flex gap-3">
                                                 <div class="border rounded avatar-xl h-auto">
-                                                    <img src="@/assets/images/small/img-2.jpg" alt=""
-                                                        class="img-fluid rouned-top">
+                                                    <img src="@/assets/images/small/img-2.jpg" alt="" class="img-fluid rouned-top">
                                                     <div class="py-2 text-center">
                                                         <BLink href="" class="d-block fw-semibold">Download</BLink>
                                                     </div>
                                                 </div>
                                                 <div class="border rounded avatar-xl h-auto">
-                                                    <img src="@/assets/images/small/img-6.jpg" alt=""
-                                                        class="img-fluid rouned-top">
+                                                    <img src="@/assets/images/small/img-6.jpg" alt="" class="img-fluid rouned-top">
                                                     <div class="py-2 text-center">
                                                         <BLink href="" class="d-block fw-semibold">Download</BLink>
                                                     </div>
@@ -650,13 +597,10 @@ onMounted(() => {
 
                             <div class="accordion-item border-dashed">
                                 <div class="accordion-header">
-                                    <BLink role="button"
-                                        class="btn w-100 text-start px-0 bg-transparent shadow-none collapsed"
-                                        v-b-toggle.email-collapseTwo>
+                                    <BLink role="button" class="btn w-100 text-start px-0 bg-transparent shadow-none collapsed" v-b-toggle.email-collapseTwo>
                                         <div class="d-flex align-items-center text-muted">
                                             <div class="flex-shrink-0 avatar-xs me-3">
-                                                <img src="@/assets/images//users/avatar-1.jpg" alt=""
-                                                    class="img-fluid rounded-circle">
+                                                <img src="@/assets/images//users/avatar-1.jpg" alt="" class="img-fluid rounded-circle">
                                             </div>
                                             <div class="flex-grow-1 overflow-hidden">
                                                 <h5 class="fs-14 text-truncate mb-0">Anna Adame</h5>
@@ -684,12 +628,10 @@ onMounted(() => {
 
                             <div class="accordion-item border-dashed">
                                 <div class="accordion-header">
-                                    <BLink role="button" class="btn w-100 text-start px-0 bg-transparent shadow-none"
-                                        v-b-toggle.email-collapseThree>
+                                    <BLink role="button" class="btn w-100 text-start px-0 bg-transparent shadow-none" v-b-toggle.email-collapseThree>
                                         <div class="d-flex align-items-center text-muted">
                                             <div class="flex-shrink-0 avatar-xs me-3">
-                                                <img src="@/assets/images//users/avatar-3.jpg" alt=""
-                                                    class="img-fluid rounded-circle">
+                                                <img src="@/assets/images//users/avatar-3.jpg" alt="" class="img-fluid rounded-circle">
                                             </div>
                                             <div class="flex-grow-1 overflow-hidden">
                                                 <h5 class="fs-14 text-truncate mb-0">Jack Davis</h5>
@@ -719,42 +661,29 @@ onMounted(() => {
                         </div>
                     </div>
                     <div class="mt-auto">
-                        <BFrom class="mt-2">
+                        <b-form class="mt-2">
                             <div>
                                 <label for="exampleFormControlTextarea1" class="form-label">Reply :</label>
-                                <textarea class="form-control border-bottom-0 rounded-top rounded-0 border"
-                                    id="exampleFormControlTextarea1" rows="3" placeholder="Enter message"></textarea>
+                                <textarea class="form-control border-bottom-0 rounded-top rounded-0 border" id="exampleFormControlTextarea1" rows="3" placeholder="Enter message"></textarea>
                                 <div class="bg-light px-2 py-1 rouned-bottom border">
                                     <BRow>
                                         <BCol>
                                             <BButtonGroup>
-                                                <BButton variant="light" size="sm" class="py-0 fs-15"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Bold"><i
-                                                        class="ri-bold align-bottom"></i></BButton>
-                                                <BButton variant="light" size="sm" class="py-0 fs-15"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Italic"><i
-                                                        class="ri-italic align-bottom"></i></BButton>
-                                                <BButton variant="light" size="sm" class="py-0 fs-15"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Link"><i
-                                                        class="ri-link align-bottom"></i></BButton>
-                                                <BButton variant="light" size="sm" class="py-0 fs-15"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Image"><i
-                                                        class="ri-image-2-line align-bottom"></i></BButton>
+                                                <BButton type="button" variant="light" size="sm" class="py-0 fs-15 material-shadow-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Bold"><i class="ri-bold align-bottom"></i></BButton>
+                                                <BButton type="button" variant="light" size="sm" class="py-0 fs-15 material-shadow-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Italic"><i class="ri-italic align-bottom"></i></BButton>
+                                                <BButton type="button" variant="light" size="sm" class="py-0 fs-15 material-shadow-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Link"><i class="ri-link align-bottom"></i></BButton>
+                                                <BButton type="button" variant="light" size="sm" class="py-0 fs-15 material-shadow-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Image"><i class="ri-image-2-line align-bottom"></i></BButton>
                                             </BButtonGroup>
                                         </BCol>
                                         <div class="col-auto">
                                             <BButtonGroup class="btn-group">
-                                                <BButton variant="success" size="sm"><i
-                                                        class="ri-send-plane-2-fill align-bottom"></i></BButton>
-                                                <BButton variant="success" size="sm"
-                                                    class="dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
-                                                    aria-expanded="false">
+                                                <BButton type="button" variant="success" size="sm"><i class="ri-send-plane-2-fill align-bottom"></i></BButton>
+                                                <BButton variant="success" size="sm" class="dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                                                     <span class="visually-hidden">Toggle Dropdown</span>
                                                 </BButton>
                                                 <ul class="dropdown-menu dropdown-menu-end">
                                                     <li>
-                                                        <BLink class="dropdown-item" href="#"><i
-                                                                class="ri-timer-line text-muted me-1 align-bottom"></i>
+                                                        <BLink class="dropdown-item" href="#"><i class="ri-timer-line text-muted me-1 align-bottom"></i>
                                                             Schedule Send</BLink>
                                                     </li>
                                                 </ul>
@@ -763,7 +692,7 @@ onMounted(() => {
                                     </BRow>
                                 </div>
                             </div>
-                        </BFrom>
+                        </b-form>
                     </div>
                 </div>
             </div>
@@ -778,27 +707,23 @@ onMounted(() => {
                     </div>
                     <div class="flex-shrink-0">
                         <div class="mt-n3 me-n3">
-                            <BButton type="button" variant="link" class="text-white fs-16 text-decoration-none"
-                                id="emailchat-btn-close"><i class="ri-close-fill"></i></BButton>
+                            <BButton type="button" variant="link" class="text-white fs-16 text-decoration-none" id="emailchat-btn-close"><i class="ri-close-fill"></i></BButton>
                         </div>
                     </div>
                 </BCardHeader>
 
                 <BCardBody class="p-0">
                     <div id="users-chat">
-                        <div class="chat-conversation p-3" id="chat-conversation" data-simplebar="init"
-                            style="height: 250px;">
+                        <div class="chat-conversation p-3" id="chat-conversation" data-simplebar="init" style="height: 250px;">
                             <div class="simplebar-wrapper" style="margin: -16px;">
                                 <div class="simplebar-height-auto-observer-wrapper">
                                     <div class="simplebar-height-auto-observer"></div>
                                 </div>
                                 <div class="simplebar-mask">
                                     <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
-                                        <div class="simplebar-content-wrapper" tabindex="0" role="region"
-                                            aria-label="scrollable content" style="height: 100%; overflow: hidden scroll;">
+                                        <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: 100%; overflow: hidden scroll;">
                                             <div class="simplebar-content" style="padding: 16px;">
-                                                <ul class="list-unstyled chat-conversation-list chat-sm"
-                                                    id="users-conversation">
+                                                <ul class="list-unstyled chat-conversation-list chat-sm" id="users-conversation">
                                                     <li class="chat-list left">
                                                         <div class="conversation-list">
                                                             <div class="chat-avatar">
@@ -810,28 +735,18 @@ onMounted(() => {
                                                                         <p class="mb-0 ctext-content">Good morning 😊
                                                                         </p>
                                                                     </div>
-                                                                    <BDropdown variant="link"
-                                                                        class="btn btn-ghost-secondary btn-icon btn-sm fs-16"
-                                                                        toggle-class=" arrow-none"
-                                                                        menu-class="dropdown-menu" aria-haspopup="true">
-                                                                        <template #button-content> <i
-                                                                                class="ri-more-2-fill align-bottom"></i>
+                                                                    <BDropdown variant="link" class="btn btn-ghost-secondary btn-icon btn-sm fs-16" no-caret menu-class="dropdown-menu" aria-haspopup="true">
+                                                                        <template #button-content> <i class="ri-more-2-fill align-bottom"></i>
                                                                         </template>
-                                                                        <BDropdownItem><i
-                                                                                class="ri-reply-line me-2 text-muted align-bottom"></i>
+                                                                        <BDropdownItem><i class="ri-reply-line me-2 text-muted align-bottom"></i>
                                                                             Reply</BDropdownItem>
-                                                                        <BDropdownItem><i
-                                                                                class="ri-file-copy-line me-2 text-muted align-bottom"></i>
+                                                                        <BDropdownItem><i class="ri-file-copy-line me-2 text-muted align-bottom"></i>
                                                                             Copy</BDropdownItem>
-                                                                        <BDropdownItem><i
-                                                                                class="ri-delete-bin-5-line me-2 text-muted align-bottom"></i>
+                                                                        <BDropdownItem><i class="ri-delete-bin-5-line me-2 text-muted align-bottom"></i>
                                                                             Delete</BDropdownItem>
                                                                     </BDropdown>
                                                                 </div>
-                                                                <div class="conversation-name"><small
-                                                                        class="text-muted time">09:07 am</small> <span
-                                                                        class="text-success check-message-icon"><i
-                                                                            class="ri-check-double-line align-bottom"></i></span>
+                                                                <div class="conversation-name"><small class="text-muted time">09:07 am</small> <span class="text-success check-message-icon"><i class="ri-check-double-line align-bottom"></i></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -846,28 +761,18 @@ onMounted(() => {
                                                                         <p class="mb-0 ctext-content">Good morning, How
                                                                             are you? What about our next meeting?</p>
                                                                     </div>
-                                                                    <BDropdown variant="link"
-                                                                        class="btn btn-ghost-secondary btn-icon btn-sm fs-16"
-                                                                        toggle-class=" arrow-none"
-                                                                        menu-class="dropdown-menu" aria-haspopup="true">
-                                                                        <template #button-content> <i
-                                                                                class="ri-more-2-fill align-bottom"></i>
+                                                                    <BDropdown variant="link" class="btn btn-ghost-secondary btn-icon btn-sm fs-16" no-caret menu-class="dropdown-menu" aria-haspopup="true">
+                                                                        <template #button-content> <i class="ri-more-2-fill align-bottom"></i>
                                                                         </template>
-                                                                        <BDropdownItem><i
-                                                                                class="ri-reply-line me-2 text-muted align-bottom"></i>
+                                                                        <BDropdownItem><i class="ri-reply-line me-2 text-muted align-bottom"></i>
                                                                             Reply</BDropdownItem>
-                                                                        <BDropdownItem><i
-                                                                                class="ri-file-copy-line me-2 text-muted align-bottom"></i>
+                                                                        <BDropdownItem><i class="ri-file-copy-line me-2 text-muted align-bottom"></i>
                                                                             Copy</BDropdownItem>
-                                                                        <BDropdownItem><i
-                                                                                class="ri-delete-bin-5-line me-2 text-muted align-bottom"></i>
+                                                                        <BDropdownItem><i class="ri-delete-bin-5-line me-2 text-muted align-bottom"></i>
                                                                             Delete</BDropdownItem>
                                                                     </BDropdown>
                                                                 </div>
-                                                                <div class="conversation-name"><small
-                                                                        class="text-muted time">09:08 am</small> <span
-                                                                        class="text-success check-message-icon"><i
-                                                                            class="ri-check-double-line align-bottom"></i></span>
+                                                                <div class="conversation-name"><small class="text-muted time">09:08 am</small> <span class="text-success check-message-icon"><i class="ri-check-double-line align-bottom"></i></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -886,28 +791,18 @@ onMounted(() => {
                                                                             fine. Our next meeting tomorrow at 10.00 AM
                                                                         </p>
                                                                     </div>
-                                                                    <BDropdown variant="link"
-                                                                        class="btn btn-ghost-secondary btn-icon btn-sm fs-16"
-                                                                        toggle-class=" arrow-none"
-                                                                        menu-class="dropdown-menu" aria-haspopup="true">
-                                                                        <template #button-content> <i
-                                                                                class="ri-more-2-fill align-bottom"></i>
+                                                                    <BDropdown variant="link" class="btn btn-ghost-secondary btn-icon btn-sm fs-16" no-caret menu-class="dropdown-menu" aria-haspopup="true">
+                                                                        <template #button-content> <i class="ri-more-2-fill align-bottom"></i>
                                                                         </template>
-                                                                        <BDropdownItem><i
-                                                                                class="ri-reply-line me-2 text-muted align-bottom"></i>
+                                                                        <BDropdownItem><i class="ri-reply-line me-2 text-muted align-bottom"></i>
                                                                             Reply</BDropdownItem>
-                                                                        <BDropdownItem><i
-                                                                                class="ri-file-copy-line me-2 text-muted align-bottom"></i>
+                                                                        <BDropdownItem><i class="ri-file-copy-line me-2 text-muted align-bottom"></i>
                                                                             Copy</BDropdownItem>
-                                                                        <BDropdownItem><i
-                                                                                class="ri-delete-bin-5-line me-2 text-muted align-bottom"></i>
+                                                                        <BDropdownItem><i class="ri-delete-bin-5-line me-2 text-muted align-bottom"></i>
                                                                             Delete</BDropdownItem>
                                                                     </BDropdown>
                                                                 </div>
-                                                                <div class="conversation-name"><small
-                                                                        class="text-muted time">09:10 am</small> <span
-                                                                        class="text-success check-message-icon"><i
-                                                                            class="ri-check-double-line align-bottom"></i></span>
+                                                                <div class="conversation-name"><small class="text-muted time">09:10 am</small> <span class="text-success check-message-icon"><i class="ri-check-double-line align-bottom"></i></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -922,146 +817,128 @@ onMounted(() => {
                                                                         <p class="mb-0 ctext-content">Wow that's great
                                                                         </p>
                                                                     </div>
-                                                                    <BDropdown variant="link"
-                                                                        class="btn btn-ghost-secondary btn-icon btn-sm fs-16"
-                                                                        toggle-class=" arrow-none"
-                                                                        menu-class="dropdown-menu" aria-haspopup="true">
-                                                                        <template #button-content> <i
-                                                                                class="ri-more-2-fill align-bottom"></i>
+                                                                    <BDropdown variant="link" class="btn btn-ghost-secondary btn-icon btn-sm fs-16" no-caret menu-class="dropdown-menu" aria-haspopup="true">
+                                                                        <template #button-content> <i class="ri-more-2-fill align-bottom"></i>
                                                                         </template>
-                                                                        <BDropdownItem><i
-                                                                                class="ri-reply-line me-2 text-muted align-bottom"></i>
+                                                                        <BDropdownItem><i class="ri-reply-line me-2 text-muted align-bottom"></i>
                                                                             Reply</BDropdownItem>
-                                                                        <BDropdownItem><i
-                                                                                class="ri-file-copy-line me-2 text-muted align-bottom"></i>
+                                                                        <BDropdownItem><i class="ri-file-copy-line me-2 text-muted align-bottom"></i>
                                                                             Copy</BDropdownItem>
-                                                                        <BDropdownItem><i
-                                                                                class="ri-delete-bin-5-line me-2 text-muted align-bottom"></i>
+                                                                        <BDropdownItem><i class="ri-delete-bin-5-line me-2 text-muted align-bottom"></i>
                                                                             Delete</BDropdownItem>
                                                                     </BDropdown>
                                                                 </div>
-                                                                <div class="conversation-name"><small
-                                                                        class="text-muted time">09:12 am</small> <span
-                                                                        class="text-success check-message-icon"><i
-                                                                        class="ri-check-double-line align-bottom"></i></span>
+                                                                <div class="conversation-name"><small class="text-muted time">09:12 am</small> <span class="text-success check-message-icon"><i class="ri-check-double-line align-bottom"></i></span>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </li>
+                                                    </li>
 
 
-                                            </ul>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="simplebar-placeholder" style="width: auto; height: 479px;"></div>
                             </div>
-                            <div class="simplebar-placeholder" style="width: auto; height: 479px;"></div>
-                        </div>
-                        <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
-                            <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
-                        </div>
-                        <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
-                            <div class="simplebar-scrollbar"
-                                style="height: 130px; display: block; transform: translate3d(0px, 120px, 0px);">
+                            <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+                                <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
+                            </div>
+                            <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
+                                <div class="simplebar-scrollbar" style="height: 130px; display: block; transform: translate3d(0px, 120px, 0px);">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="border-top border-top-dashed">
-                    <BRow class="g-2 mx-3 mt-2 mb-3">
-                        <BCol>
-                            <div class="position-relative">
-                                <input type="text" class="form-control border-light bg-light"
-                                    placeholder="Enter Message...">
+                    <div class="border-top border-top-dashed">
+                        <BRow class="g-2 mx-3 mt-2 mb-3">
+                            <BCol>
+                                <div class="position-relative">
+                                    <input type="text" class="form-control border-light bg-light" placeholder="Enter Message...">
+                                </div>
+                            </BCol>
+                            <div class="col-auto">
+                                <BButton type="submit" variant="info"><i class="mdi mdi-send"></i></BButton>
                             </div>
-                        </BCol>
-                        <div class="col-auto">
-                            <BButton type="submit" variant="info"><i class="mdi mdi-send"></i></BButton>
-                        </div>
-                    </BRow>
-                </div>
-            </BCardBody>
-        </BCard>
-    </div>
+                        </BRow>
+                    </div>
+                </BCardBody>
+            </BCard>
+        </div>
 
-    <BModal v-model="modalShow" hide-footer title="New Message" header-class="p-3 bg-light" class="v-modal-custom"
-        size="lg" centered>
-        <div>
-            <div class="mb-3 position-relative">
-                <Multiselect v-model="value" mode="tags" class="form-control email-compose-input"
-                    :close-on-select="false" :searchable="true" :create-option="true" :options="[
+        <BModal v-model="modalShow" hide-footer title="New Message" header-class="p-3 bg-light" class="v-modal-custom" size="lg" centered>
+            <div>
+                <div class="mb-3 position-relative">
+                    <Multiselect v-model="value" mode="tags" class="form-control email-compose-input" :close-on-select="false" :searchable="true" :create-option="true" :options="[
                         { value: 'support@themesbrand.com', label: 'support@themesbrand.com' },
                         { value: 'photoshop', label: 'themesbrand@gmail.com' },
                     ]" />
-                <div class="position-absolute top-0 end-0">
-                    <div class="d-flex">
-                        <BButton variant="link" class="text-reset fw-semibold px-2" v-b-toggle.CcRecipientsCollapse>
-                            Cc
-                        </BButton>
-                        <BButton variant="link" class="text-reset fw-semibold px-2" v-b-toggle.BccRecipientsCollapse>
-                            Bcc
-                        </BButton>
+                    <div class="position-absolute top-0 end-0">
+                        <div class="d-flex">
+                            <BButton variant="link" class="text-reset fw-semibold px-2" type="button" v-b-toggle.CcRecipientsCollapse>
+                                Cc
+                            </BButton>
+                            <BButton variant="link" class="text-reset fw-semibold px-2" type="button" v-b-toggle.BccRecipientsCollapse>
+                                Bcc
+                            </BButton>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <BCollapse id="CcRecipientsCollapse">
+                <BCollapse id="CcRecipientsCollapse">
+                    <div class="mb-3">
+                        <label>Cc:</label>
+                        <input type="text" class="form-control" data-choices data-choices-limit="15" data-choices-removeItem placeholder="Cc recipients">
+                    </div>
+                </BCollapse>
+                <BCollapse id="BccRecipientsCollapse">
+                    <div class="mb-3">
+                        <label>Bcc:</label>
+                        <input type="text" class="form-control" data-choices data-choices-limit="15" data-choices-removeItem placeholder="Bcc recipients">
+                    </div>
+                </BCollapse>
+
                 <div class="mb-3">
-                    <label>Cc:</label>
-                    <input type="text" class="form-control" data-choices data-choices-limit="15" data-choices-removeItem
-                        placeholder="Cc recipients">
+                    <input type="text" class="form-control" placeholder="Subject">
                 </div>
-            </BCollapse>
-            <BCollapse id="BccRecipientsCollapse">
-                <div class="mb-3">
-                    <label>Bcc:</label>
-                    <input type="text" class="form-control" data-choices data-choices-limit="15" data-choices-removeItem
-                        placeholder="Bcc recipients">
+                <div class="ck-editor-reverse">
+                    <div id="email-editor"></div>
+                    <Ckeditor v-model="editorData" :editor="editor" id="email-editor"></Ckeditor>
                 </div>
-            </BCollapse>
 
-            <div class="mb-3">
-                <input type="text" class="form-control" placeholder="Subject">
             </div>
-            <div class="ck-editor-reverse">
-                <div id="email-editor"></div>
-                <Ckeditor v-model="editorData" :editor="editor" id="email-editor"></Ckeditor>
+            <div class="modal-footer v-modal-footer">
+                <BButton type="button" variant="ghost-danger" data-bs-dismiss="modal" @click="modalShow = false">Discard
+                </BButton>
+
+                <BButtonGroup class="dropend">
+                    <BDropdown split text="Send" variant="success">
+                        <BDropdownItem class="dropdown-item " href="#"><i class="ri-timer-line text-muted me-1 align-bottom"></i>
+                            Schedule Send</BDropdownItem>
+                    </BDropdown>
+
+                </BButtonGroup>
             </div>
+        </BModal>
 
-        </div>
-        <div class="modal-footer v-modal-footer">
-            <BButton type="button" variant="ghost-danger" data-bs-dismiss="modal" @click="modalShow = false">Discard
-            </BButton>
+        <!-- remove modal  -->
+        <BModal v-model="removeModal" id="removeItemModal" hide-footer header-class="p-3 bg-light" class="v-modal-custom" centered no-close-on-backdrop>
+            <div class="mt-2 text-center">
 
-            <BButtonGroup class="dropend">
-                <BDropdown split text="Send" variant="success">
-                    <BDropdownItem class="dropdown-item " href="#"><i
-                            class="ri-timer-line text-muted me-1 align-bottom"></i>
-                        Schedule Send</BDropdownItem>
-                </BDropdown>
+                <lottie colors="primary:#f7b84b,secondary:#f06548" trigger="loop" :options="defaultOptions" :height="100" :width="100" />
 
-            </BButtonGroup>
-        </div>
-    </BModal>
-
-    <!-- remove modal  -->
-    <BModal v-model="removeModal" id="removeItemModal" hide-footer header-class="p-3 bg-light" class="v-modal-custom"
-        centered no-close-on-backdrop>
-        <div class="mt-2 text-center">
-
-            <lottie colors="primary:#f7b84b,secondary:#f06548" trigger="loop" :options="defaultOptions" :height="100"
-                :width="100" />
-
-            <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                <h4>Are you Sure ?</h4>
-                <p class="text-muted mx-4 mb-0">Are you Sure You want to Remove this Record ?</p>
+                <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
+                    <h4>Are you Sure ?</h4>
+                    <p class="text-muted mx-4 mb-0">Are you Sure You want to Remove this Record ?</p>
+                </div>
             </div>
-        </div>
-        <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
-            <BButton type="button" variant="light" class="w-sm" id="btn-close" @click="removeModal = false">Close
-            </BButton>
-            <BButton type="button" variant="danger" class="w-sm" id="delete-record">Yes, Delete It!</BButton>
-        </div>
-    </BModal>
+            <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                <BButton type="button" variant="light" class="w-sm" id="btn-close" @click="removeModal = false">Close
+                </BButton>
+                <BButton type="button" variant="danger" class="w-sm" id="delete-record">Yes, Delete It!</BButton>
+            </div>
+        </BModal>
 
-</Layout></template>
+    </Layout>
+</template>

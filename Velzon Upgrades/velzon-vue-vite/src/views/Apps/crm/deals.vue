@@ -51,7 +51,7 @@ const timeConfig = {
                                 <i class="ri-add-fill align-bottom me-1"></i> Add Deals
                             </BButton>
                             <BDropdown variant="link" class="card-header-dropdown"
-                                toggle-class="btn btn-soft-info btn-icon fs-14 arrow-none" menu-class="dropdown-menu-end">
+                                toggle-class="btn btn-soft-info btn-icon fs-14" no-caret menu-class="dropdown-menu-end">
                                 <template #button-content><i class="ri-settings-4-line"></i></template>
                                 <BDropdownItem>Copy</BDropdownItem>
                                 <BDropdownItem>Move to pipline</BDropdownItem>
@@ -78,7 +78,7 @@ const timeConfig = {
                         <BCardBody>
                             <BLink class="d-flex align-items-center" role="button" v-b-toggle.leadDiscovered1>
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/users/avatar-1.jpg" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/users/avatar-1.jpg" alt="" class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Managing sales team meeting</h6>
@@ -141,7 +141,7 @@ const timeConfig = {
                         <BCardBody>
                             <BLink class="d-flex align-items-center" role="button" v-b-toggle.leadDiscovered2>
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/users/avatar-2.jpg" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/users/avatar-2.jpg" alt="" class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Airbnb React Development</h6>
@@ -205,7 +205,7 @@ const timeConfig = {
                         <BCardBody>
                             <BLink class="d-flex align-items-center" v-b-toggle.leadDiscovered3>
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/users/avatar-3.jpg" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/users/avatar-3.jpg" alt="" class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Discovery Capital</h6>
@@ -268,7 +268,7 @@ const timeConfig = {
                         <BCardBody>
                             <BLink class="d-flex align-items-center" v-b-toggle.leadDiscovered4>
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/users/avatar-4.jpg" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/users/avatar-4.jpg" alt="" class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Airbnb React Development</h6>
@@ -343,7 +343,7 @@ const timeConfig = {
                         <BCardBody>
                             <BLink class="d-flex align-items-center" role="button" v-b-toggle.contactInitiated1>
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/users/avatar-5.jpg" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/users/avatar-5.jpg" alt="" class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Custom Mobile Apps</h6>
@@ -406,7 +406,7 @@ const timeConfig = {
                         <BCardBody>
                             <BLink class="d-flex align-items-center" role="button" v-b-toggle.contactInitiated2>
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/brands/github.png" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/brands/github.png" alt="" class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Investment Deal for Zoetic Fashion</h6>
@@ -458,7 +458,7 @@ const timeConfig = {
                         <BCardBody>
                             <BLink class="d-flex align-items-center" role="button" v-b-toggle.contactInitiated3>
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/users/avatar-6.jpg" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/users/avatar-6.jpg" alt="" class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Modern Design</h6>
@@ -510,7 +510,7 @@ const timeConfig = {
                         <BCardBody>
                             <BLink class="d-flex align-items-center" role="button" v-b-toggle.contactInitiated4>
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/users/avatar-7.jpg" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/users/avatar-7.jpg" alt="" class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Hotel Logo Design</h6>
@@ -574,7 +574,7 @@ const timeConfig = {
                             <BLink class="d-flex align-items-center" role="button" v-b-toggle.contactInitiated5>
                                 <div class="flex-shrink-0">
                                     <img src="@/assets/images/brands/mail_chimp.png" alt=""
-                                        class="avatar-xs rounded-circle" />
+                                        class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Managing Sales</h6>
@@ -648,7 +648,7 @@ const timeConfig = {
                         <BCardBody>
                             <BLink class="d-flex align-items-center" v-b-toggle.needsIdentified1>
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/users/avatar-9.jpg" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/users/avatar-9.jpg" alt="" class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Art Studio Design</h6>
@@ -700,7 +700,7 @@ const timeConfig = {
                         <BCardBody>
                             <BLink class="d-flex align-items-center" v-b-toggle.needsIdentified2>
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/users/avatar-8.jpg" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/users/avatar-8.jpg" alt="" class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Billing Page Bug</h6>
@@ -764,7 +764,7 @@ const timeConfig = {
                             <BLink class="d-flex align-items-center" v-b-toggle.needsIdentified3>
                                 <div class="flex-shrink-0">
                                     <img src="@/assets/images/brands/dribbble.png" alt=""
-                                        class="avatar-xs rounded-circle" />
+                                        class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Food Selection Platform</h6>
@@ -828,7 +828,7 @@ const timeConfig = {
                         <BCardBody>
                             <BLink class="d-flex align-items-center" v-b-toggle.needsIdentified4>
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/users/avatar-1.jpg" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/users/avatar-1.jpg" alt="" class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Skote React Development</h6>
@@ -892,7 +892,7 @@ const timeConfig = {
                         <BCardBody>
                             <BLink class="d-flex align-items-center" v-b-toggle.needsIdentified5>
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/users/avatar-2.jpg" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/users/avatar-2.jpg" alt="" class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Velzon - Admin Dashboard</h6>
@@ -956,7 +956,7 @@ const timeConfig = {
                             <BLink class="d-flex align-items-center" v-b-toggle.needsIdentified6>
                                 <div class="flex-shrink-0">
                                     <img src="@/assets/images/companies/img-6.png" alt=""
-                                        class="avatar-xs rounded-circle" />
+                                        class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Wood Elements Design</h6>
@@ -1020,7 +1020,7 @@ const timeConfig = {
                             <BLink class="d-flex align-items-center" v-b-toggle.needsIdentified7>
                                 <div class="flex-shrink-0">
                                     <img src="@/assets/images/users/avatar-10.jpg" alt=""
-                                        class="avatar-xs rounded-circle" />
+                                        class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">PayPal SEO audit</h6>
@@ -1095,7 +1095,7 @@ const timeConfig = {
                             <BLink class="d-flex align-items-center" role="button" v-b-toggle.meetingArranged1>
                                 <div class="flex-shrink-0">
                                     <img src="@/assets/images/companies/img-5.png" alt=""
-                                        class="avatar-xs rounded-circle" />
+                                        class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">SASS app workflow diagram</h6>
@@ -1158,7 +1158,7 @@ const timeConfig = {
                         <BCardBody>
                             <BLink class="d-flex align-items-center" role="button" v-b-toggle.meetingArranged2>
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/users/avatar-3.jpg" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/users/avatar-3.jpg" alt="" class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Uber new brand system</h6>
@@ -1222,7 +1222,7 @@ const timeConfig = {
                             <BLink class="d-flex align-items-center" role="button" v-b-toggle.meetingArranged3>
                                 <div class="flex-shrink-0">
                                     <img src="@/assets/images/companies/img-8.png" alt=""
-                                        class="avatar-xs rounded-circle" />
+                                        class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">TripAdvisor</h6>
@@ -1297,7 +1297,7 @@ const timeConfig = {
                             <BLink class="d-flex align-items-center" role="button" v-b-toggle.offerAccepted1>
                                 <div class="flex-shrink-0">
                                     <img src="@/assets/images/users/avatar-10.jpg" alt=""
-                                        class="avatar-xs rounded-circle" />
+                                        class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Coupon Website</h6>
@@ -1361,7 +1361,7 @@ const timeConfig = {
                         <BCardBody>
                             <BLink class="d-flex align-items-center" role="button" v-b-toggle.offerAccepted2>
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/brands/slack.png" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/brands/slack.png" alt="" class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Marketing Automation Demo</h6>
@@ -1424,7 +1424,7 @@ const timeConfig = {
                         <BCardBody>
                             <BLink class="d-flex align-items-center" role="button" v-b-toggle.offerAccepted3>
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/users/avatar-4.jpg" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/users/avatar-4.jpg" alt="" class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">New Email Design Templates</h6>
@@ -1481,7 +1481,7 @@ const timeConfig = {
                         <BCardBody>
                             <BLink class="d-flex align-items-center" role="button" v-b-toggle.offerAccepted4>
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/users/avatar-7.jpg" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/users/avatar-7.jpg" alt="" class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Create New Components</h6>
@@ -1546,7 +1546,7 @@ const timeConfig = {
                             <BLink class="d-flex align-items-center" role="button" v-b-toggle.offerAccepted5>
                                 <div class="flex-shrink-0">
                                     <img src="@/assets/images/companies/img-3.png" alt=""
-                                        class="avatar-xs rounded-circle" />
+                                        class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">New Test Tickets</h6>
@@ -1610,7 +1610,7 @@ const timeConfig = {
                         <BCardBody>
                             <BLink class="d-flex align-items-center" role="button" v-b-toggle.offerAccepted6>
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/users/avatar-6.jpg" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/users/avatar-6.jpg" alt="" class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Recover Deleted Folder</h6>
@@ -1673,7 +1673,7 @@ const timeConfig = {
                         <BCardBody>
                             <BLink class="d-flex align-items-center" role="button" v-b-toggle.offerAccepted7>
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/brands/github.png" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/brands/github.png" alt="" class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Github SEO audit</h6>
@@ -1736,7 +1736,7 @@ const timeConfig = {
                         <BCardBody>
                             <BLink class="d-flex align-items-center" role="button" v-b-toggle.offerAccepted8>
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/users/avatar-2.jpg" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/users/avatar-2.jpg" alt="" class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fs-14 mb-1">Urban Modern Design</h6>
@@ -1799,49 +1799,9 @@ const timeConfig = {
             </BCol>
         </BRow>
 
-        <!-- <b-modal v-model="modalShow" body-class="p-0" header-class="bg-light p-3" hide-footer title="Create Deals"
-                class="v-modal-custom" centered>
-                <form>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="dealTitle" class="form-label">Deal Title</label>
-                            <input type="email" class="form-control" id="dealTitle" placeholder="Enter title">
-                        </div>
-                        <div class="mb-3">
-                            <label for="dealValue" class="form-label">Value (USD)</label>
-                            <input type="text" class="form-control" id="dealValue" placeholder="Enter value">
-                        </div>
-                        <div class="mb-3">
-                            <label for="dealOwner" class="form-label">Deals Owner</label>
-                            <input type="text" class="form-control" id="dealOwner" placeholder="Enter owner name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="dueDate" class="form-label">Due Date</label>
-                            <flat-pickr placeholder="Select date" v-model="date" :config="timeConfig"
-                                class="form-control flatpickr-input" id="adddate"></flat-pickr>
-                        </div>
-                        <div class="mb-3">
-                            <label for="contactNumber" class="form-label">Contact</label>
-                            <input type="text" class="form-control" id="contactNumber" placeholder="Enter contact number">
-                        </div>
-                        <div class="mb-3">
-                            <label for="contactNumber" class="form-label">Description</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                placeholder="Enter description"></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <BButton type="button" variant="light" @click="modalShow = false">Close
-                        </BButton>
-                        <BButton type="button" variant="success"><i class="ri-save-line align-bottom me-1"></i> Save
-                        </BButton>
-                    </div>
-                </BFrom>
-            </b-modal> -->
-
         <BModal v-model="modalShow" body-class="" header-class="bg-light p-3" hide-footer title="Create Deals"
             class="v-modal-custom" centered>
-            <BFrom class="needs-validation" novalidate id="deals-form" onsubmit="return false">
+            <b-form class="needs-validation" novalidate id="deals-form" onsubmit="return false">
                 <div class="mb-3">
                     <label for="deatType" class="form-label">Deals Type</label>
                     <select class="form-select" id="deatType" data-choices aria-label="Default select example" required>
@@ -1914,7 +1874,7 @@ const timeConfig = {
                     <BButton type="button" variant="light" id="close-modal" @click="modalShow = false"> Close </BButton>
                     <BButton type="submit" variant="success"><i class="ri-save-line align-bottom me-1"></i> Save </BButton>
                 </div>
-            </BFrom>
+            </b-form>
         </BModal>
     </Layout>
 </template>

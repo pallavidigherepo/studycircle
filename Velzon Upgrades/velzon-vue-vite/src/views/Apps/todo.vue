@@ -196,7 +196,7 @@ onMounted(() => {
     <Layout>
 
         <div class="chat-wrapper d-lg-flex gap-1 mx-n4 mt-n4 p-1">
-            <div class="file-manager-sidebar">
+            <div class="file-manager-sidebar minimal-border">
                 <div class="p-4 d-flex flex-column h-100">
                     <div class="mb-3">
                         <BButton variant="success" class="w-100" @click="projectModal = !projectModal"><i
@@ -318,7 +318,7 @@ onMounted(() => {
                 </div>
             </div>
             <!--end side content-->
-            <div class="file-manager-content w-100 p-4 pb-0">
+            <div class="file-manager-content minimal-border w-100 p-4 pb-0">
                 <BRow class="mb-4">
                     <div order="1" class="col-auto d-block d-lg-none">
                         <BButton variant="btn-soft-success" class="btn btn-icon btn-sm fs-16 file-menu-btn">
@@ -333,9 +333,9 @@ onMounted(() => {
                     <BCol order="2" order-sm="3" class="col-auto ms-auto">
                         <div class="hstack gap-2">
                             <BButton-group>
-                                <BButton variant="soft-danger" class="btn btn-icon fw-semibold"><i
+                                <BButton variant="soft-danger" class="btn btn-icon fw-semibold material-shadow-none"><i
                                         class="ri-arrow-go-back-line"></i></BButton>
-                                <BButton variant="soft-success" class="btn btn-icon fw-semibold"><i
+                                <BButton variant="soft-success" class="btn btn-icon fw-semibold material-shadow-none"><i
                                         class="ri-arrow-go-forward-line"></i></BButton>
                             </BButton-group>
                         </div>
@@ -500,7 +500,7 @@ onMounted(() => {
                 <div class="hstack gap-2 justify-content-end">
                     <BButton type="button" variant="ghost-success" id="addProjectBtn-close"
                         @click="projectModal = false"><i class="ri-close-line align-bottom"></i> Close</BButton>
-                    <BButton type="submit" variant="primary" id="addNewProject">Add Project
+                    <BButton type="submit" variant="primary" id="addNewProject" class="material-shadow-none">Add Project
                     </BButton>
                 </div>
             </BForm>

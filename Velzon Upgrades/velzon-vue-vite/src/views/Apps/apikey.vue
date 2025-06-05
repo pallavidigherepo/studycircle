@@ -265,7 +265,7 @@ const changestatus = (item) => {
               </BButton>
               <BLink class="btn btn-success button create-btn" type="button" id="addApi-btn"
                 @click="(e) => handleApikeydetails(e)"><i class="ri-add-line align-bottom me-1"></i>
-                Add </BLink>
+                Add API Key</BLink>
             </div>
           </BCardHeader>
           <BCardBody>
@@ -311,7 +311,7 @@ const changestatus = (item) => {
                       <td class="create_date">{{ data.create_date }}</td>
                       <td class="expiry_date">{{ data.expiry_date }}</td>
                       <td>
-                        <BDropdown variant="soft-secondary" size="sm" toggle-class="arrow-none"
+                        <BDropdown variant="soft-secondary" size="sm" no-caret
                           menu-class="dropdown-menu-end">
                           <template #button-content>
                             <i class="ri-more-fill align-middle"></i>

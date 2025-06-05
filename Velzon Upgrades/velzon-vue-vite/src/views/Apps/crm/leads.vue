@@ -220,7 +220,7 @@ onMounted(() => {
                     <i class="ri-add-line align-bottom me-1"></i> Add Leads
                   </BButton>
                   <BDropdown variant="link" class="card-header-dropdown"
-                    toggle-class="btn btn-soft-info btn-icon fs-14 arrow-none" menu-class="dropdown-menu-end">
+                    toggle-class="btn btn-soft-info btn-icon fs-14" no-caret menu-class="dropdown-menu-end">
                     <template #button-content><i class="ri-settings-4-line"></i></template>
                     <BDropdownItem>Copy</BDropdownItem>
                     <BDropdownItem>Move to pipline</BDropdownItem>
@@ -345,7 +345,7 @@ onMounted(() => {
             </div>
             <BOffcanvas v-model="rightOffcanvas" placement="end" title="Leads Filters" header-class="bg-light"
               body-class="p-0 overflow-hidden" footer-class="border-top p-3 text-center">
-              <BFrom action="" class="d-flex flex-column justify-content-end h-100">
+              <b-form action="" class="d-flex flex-column justify-content-end h-100">
                 <div class="offcanvas-body">
                   <div class="mb-4">
                     <label for="datepicker-range"
@@ -507,7 +507,7 @@ onMounted(() => {
                   </BButton>
                 </div>
                 <!--end offcanvas-footer-->
-              </BFrom>
+              </b-form>
             </BOffcanvas>
             <!--end offcanvas-->
           </BCardBody>
@@ -517,7 +517,7 @@ onMounted(() => {
 
     <BModal v-model="addLeadsModal" id="showmodal" hide-footer title-class="exampleModalLabel"
       :title="dataEdit ? 'Edit Lead' : 'Add Lead'" header-class="bg-light p-3" class="v-modal-custom" centered>
-      <BFrom action="" id="addform" class="tablelist-form" autocomplete="off">
+      <b-form action="" id="addform" class="tablelist-form" autocomplete="off">
         <input type="hidden" id="id" />
         <BRow class="g-3">
           <BCol lg="12">
@@ -606,7 +606,7 @@ onMounted(() => {
             </BButton>
           </div>
         </div>
-      </BFrom>
+      </b-form>
     </BModal>
 
     <!-- delete modal -->

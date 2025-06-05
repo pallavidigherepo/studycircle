@@ -261,7 +261,7 @@ function toggleFavourite(e) {
 <template>
   <Layout>
     <div class="chat-wrapper d-lg-flex gap-1 mx-n4 mt-n4 p-1">
-      <div class="file-manager-sidebar">
+      <div class="file-manager-sidebar minimal-border">
         <div class="p-3 d-flex flex-column h-100">
           <div class="mb-3">
             <h5 class="mb-0 fw-semibold">My Drive</h5>
@@ -342,7 +342,7 @@ function toggleFavourite(e) {
           </div>
         </div>
       </div>
-      <div class="file-manager-content w-100 p-3 py-0">
+      <div class="file-manager-content minimal-border w-100 p-3 py-0">
         <simplebar class="mx-n3 pt-4 px-4 file-manager-content-scroll" data-simplebar>
           <div id="folder-list" class="mb-2">
             <BRow class="justify-content-beetwen g-2 mb-3">
@@ -390,7 +390,7 @@ function toggleFavourite(e) {
                           v-if="!folder.ischecked" />
                         <label class="form-check-label" for="folderlistCheckbox_1"></label>
                       </div>
-                      <BDropdown variant="ghost-primary" size="sm" class="btn-icon" toggle-class="arrow-none"
+                      <BDropdown variant="ghost-primary" size="sm" class="btn-icon material-shadow-none" no-caret
                         menu-class="dropdown-menu-end" :offset="{ alignmentAxis: -125, crossAxis: 0, mainAxis: 0 }">
                         <template #button-content>
                           <i class="ri-more-2-fill fs-16 align-bottom"></i>
@@ -481,12 +481,12 @@ function toggleFavourite(e) {
                           v-if="fileData.starred" @click="togglefavorite">
                           <i class="ri-star-fill fs-13 align-bottom"></i>
                         </BButton>
-                        <BButton variant="ghost-primary" size="sm" class="btn-icon favourite-btn" v-if="!fileData.starred">
+                        <BButton variant="ghost-primary" size="sm" class="btn-icon favourite-btn"
+                          v-if="!fileData.starred">
                           <i class="ri-star-fill fs-13 align-bottom"></i>
                         </BButton>
 
-                        <BDropdown variant="light" size="sm" class="btn-icon" toggle-class="arrow-none"
-                          menu-class="dropdown-menu-end">
+                        <BDropdown variant="light" size="sm" class="btn-icon" no-caret menu-class="dropdown-menu-end">
                           <template #button-content>
                             <i class="ri-more-fill align-bottom"></i>
                           </template>
@@ -533,7 +533,7 @@ function toggleFavourite(e) {
           </div>
         </simplebar>
       </div>
-      <div class="file-manager-detail-content p-3 py-0">
+      <div class="file-manager-detail-content minimal-border p-3 py-0">
         <simplebar class="mx-n3 pt-3 px-3 file-detail-content-scroll" data-simplebar>
           <div id="folder-overview">
             <div class="d-flex align-items-center pb-3 border-bottom border-bottom-dashed">
@@ -749,7 +749,8 @@ function toggleFavourite(e) {
             @click="folderModal = false">
             <i class="ri-close-line align-bottom"></i> Close
           </BButton>
-          <BButton type="button" variant="success" id="updatefolder-btn" @click="updateFolder">
+          <BButton type="button" variant="success" class="material-shadow-none" id="updatefolder-btn"
+            @click="updateFolder">
             Update
           </BButton>
           <BButton type="button" variant="primary" id="createfolder-btn" @click="createfolder">
@@ -774,7 +775,7 @@ function toggleFavourite(e) {
           <BButton type="button" variant="ghost-success" id="addFileBtn-close" @click="fileModal = false">
             <i class="ri-close-line align-bottom"></i> Close
           </BButton>
-          <BButton type="button" variant="success" id="updatefile-btn" @click="updatefile">
+          <BButton type="button" variant="success" class="material-shadow-none" id="updatefile-btn" @click="updatefile">
             Update
           </BButton>
           <BButton type="button" variant="primary" id="createfile-btn" @click="createNewfile">

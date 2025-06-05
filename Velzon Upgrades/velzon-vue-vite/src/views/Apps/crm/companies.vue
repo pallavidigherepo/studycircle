@@ -242,14 +242,14 @@ onMounted(() => {
               </div>
               <div class="flex-shrink-0">
                 <div class="hstack text-nowrap gap-2">
-                  <BButton variant="soft-danger" id="remove-actions" @click="deleteMultiple">
+                  <BButton variant="soft-danger" id="remove-actions" class="material-shadow-none" @click="deleteMultiple">
                     <i class="ri-delete-bin-2-line"></i>
                   </BButton>
-                  <BButton variant="danger">
+                  <BButton variant="danger" class="material-shadow-none">
                     <i class="ri-filter-2-line me-1 align-bottom"></i> Filters
                   </BButton>
-                  <BButton variant="soft-success">Import</BButton>
-                  <BDropdown variant="link" class="card-header-dropdown" toggle-class="btn btn-soft-info arrow-none"
+                  <BButton variant="soft-success" class="material-shadow-none">Import</BButton>
+                  <BDropdown variant="link" class="card-header-dropdown material-shadow-none" toggle-class="btn btn-soft-info" no-caret
                     menu-class="dropdown-menu-end" :offset="{ alignmentAxis: -105, crossAxis: 0, mainAxis: 10 }">
                     <template #button-content><i class="ri-more-2-fill"></i></template>
                     <BDropdownItem>All</BDropdownItem>
@@ -495,7 +495,7 @@ onMounted(() => {
     <BModal v-model="addCompanyModal" id="showmodal" hide-footer title-class="exampleModalLabel"
       header-class="bg-info-subtle p-3" class="v-modal-custom" centered size="lg"
       :title="dataEdit ? 'Edit Company' : 'Add Company'">
-      <BFrom id="addform" class="tablelist-form" autocomplete="off">
+      <b-form id="addform" class="tablelist-form" autocomplete="off">
         <input type="hidden" id="id">
         <BRow class="g-3">
           <BCol lg="12">
@@ -607,7 +607,7 @@ onMounted(() => {
             {{ dataEdit ? 'Update' : 'Add Company' }}
           </BButton>
         </div>
-      </BFrom>
+      </b-form>
     </BModal>
 
     <!-- delete modal -->

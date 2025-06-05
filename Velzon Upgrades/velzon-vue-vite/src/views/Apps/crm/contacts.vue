@@ -221,14 +221,14 @@ onMounted(() => {
               </div>
               <div class="flex-shrink-0">
                 <div class="hstack text-nowrap gap-2">
-                  <BButton variant="soft-danger" id="remove-actions" @click="deleteMultiple">
+                  <BButton variant="soft-danger" id="remove-actions" class="deleteRecordModal" @click="deleteMultiple">
                     <i class="ri-delete-bin-2-line"></i>
                   </BButton>
-                  <BButton variant="danger">
+                  <BButton variant="danger" class="deleteRecordModal">
                     <i class="ri-filter-2-line me-1 align-bottom"></i> Filters
                   </BButton>
-                  <BButton variant="soft-success">Import</BButton>
-                  <BDropdown variant="link" class="card-header-dropdown" toggle-class="btn btn-soft-info arrow-none"
+                  <BButton variant="soft-success" class="deleteRecordModal">Import</BButton>
+                  <BDropdown variant="link" class="card-header-dropdown deleteRecordModal" toggle-class="btn btn-soft-info" no-caret
                     menu-class="dropdown-menu-end" :offset="{ alignmentAxis: -105, crossAxis: 0, mainAxis: 10 }">
                     <template #button-content><i class="ri-more-2-fill"></i></template>
                     <BDropdownItem>All</BDropdownItem>
@@ -343,7 +343,7 @@ onMounted(() => {
                             </BLink>
                           </li>
                           <li class="list-inline-item">
-                            <BDropdown variant="link" toggle-class="btn btn-soft-secondary btn-sm dropdown arrow-none"
+                            <BDropdown variant="link" toggle-class="btn btn-soft-secondary btn-sm dropdown" no-caret
                               menu-class="dropdown-menu-end"
                               :offset="{ alignmentAxis: -130, crossAxis: 0, mainAxis: 10 }">
                               <template #button-content><i class="ri-more-fill align-middle"></i></template>
@@ -475,7 +475,7 @@ onMounted(() => {
     <BModal v-model="addContactModal" id="showmodal" hide-footer title-class="exampleModalLabel"
       header-class="bg-info-subtle p-3" class="v-modal-custom" centered
       :title="dataEdit ? 'Edit Contact' : 'Add Contact'">
-      <BFrom action="" id="addform" class="tablelist-form" autocomplete="off">
+      <b-form action="" id="addform" class="tablelist-form" autocomplete="off">
         <input type="hidden" id="id" />
         <BRow class="g-3">
           <BCol lg="12">
@@ -561,7 +561,7 @@ onMounted(() => {
             {{ dataEdit ? 'Update' : 'Add Contact' }}
           </BButton>
         </div>
-      </BFrom>
+      </b-form>
     </BModal>
 
     <!-- delete modal -->
