@@ -27,16 +27,16 @@ const timeConfig = reactive({
 
 // Multiselect options
 const options = [
-  { name: 'James Forbes', value: require('@/assets/images/users/avatar-2.jpg') },
-  { name: 'John Robles', value: require('@/assets/images/users/avatar-3.jpg') },
-  { name: 'Mary Gant', value: require('@/assets/images/users/avatar-4.jpg') },
-  { name: 'Curtis Saenz', value: require('@/assets/images/users/avatar-1.jpg') },
-  { name: 'Virgie Price', value: require('@/assets/images/users/avatar-5.jpg') },
-  { name: 'Anthony Mills', value: require('@/assets/images/users/avatar-10.jpg') },
-  { name: 'Marian Angel', value: require('@/assets/images/users/avatar-6.jpg') },
-  { name: 'Johnnie Walton', value: require('@/assets/images/users/avatar-7.jpg') },
-  { name: 'Donna Weston', value: require('@/assets/images/users/avatar-8.jpg') },
-  { name: 'Diego Norris', value: require('@/assets/images/users/avatar-9.jpg') },
+  { name: 'James Forbes', value: '@/assets/images/users/avatar-2.jpg' },
+  { name: 'John Robles', value: '@/assets/images/users/avatar-3.jpg' },
+  { name: 'Mary Gant', value: '@/assets/images/users/avatar-4.jpg' },
+  { name: 'Curtis Saenz', value: '@/assets/images/users/avatar-1.jpg' },
+  { name: 'Virgie Price', value: '@/assets/images/users/avatar-5.jpg' },
+  { name: 'Anthony Mills', value: '@/assets/images/users/avatar-10.jpg' },
+  { name: 'Marian Angel', value: '@/assets/images/users/avatar-6.jpg' },
+  { name: 'Johnnie Walton', value: '@/assets/images/users/avatar-7.jpg' },
+  { name: 'Donna Weston', value: '@/assets/images/users/avatar-8.jpg' },
+  { name: 'Diego Norris', value: '@/assets/images/users/avatar-9.jpg' },
 ];
 
 // Computed: Filtered list based on query/status

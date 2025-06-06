@@ -114,21 +114,18 @@ const SearchData = () => {
               <BRow class="g-3">
                 <BCol xxl="4" sm="12">
                   <div class="search-box">
-                    <input type="text" class="form-control search bg-light border-light" id="searchJob" autocomplete="off"
-                      placeholder="Search for jobs or companies..." v-model="searchQuery">
+                    <input type="text" class="form-control search bg-light border-light" id="searchJob" autocomplete="off" placeholder="Search for jobs or companies..." v-model="searchQuery">
                     <i class="ri-search-line search-icon"></i>
                   </div>
                 </BCol>
 
                 <BCol xxl="3" sm="4">
-                  <flat-pickr v-model="date6" :config="rangeDateconfig" class="form-control bg-light border-light"
-                    placeholder="Select date"></flat-pickr>
+                  <flat-pickr v-model="date6" :config="rangeDateconfig" class="form-control bg-light border-light" placeholder="Select date"></flat-pickr>
                 </BCol>
 
                 <BCol xxl="2" sm="4">
                   <div class="input-light">
-                    <select class="form-control bg-light border-light" data-choices data-choices-search-false name="choices-idType" id="idType"
-                      v-model="value1">
+                    <select class="form-control bg-light border-light" data-choices data-choices-search-false name="choices-idType" id="idType" v-model="value1">
                       <option value="All" selected>All</option>
                       <option value="Full Time">Full Time</option>
                       <option value="Part Time">Part Time</option>
@@ -139,8 +136,7 @@ const SearchData = () => {
                 </BCol>
                 <BCol xxl="2" sm="4">
                   <div class="input-light">
-                    <select class="form-control bg-light border-light" data-choices data-choices-search-false name="choices-single-default"
-                      id="idStatus" v-model="status1">
+                    <select class="form-control bg-light border-light" data-choices data-choices-search-false name="choices-single-default" id="idStatus" v-model="status1">
                       <option value="All" selected>All</option>
                       <option value="Active">Active</option>
                       <option value="New">New</option>
@@ -165,16 +161,15 @@ const SearchData = () => {
           <div class="flex-grow-1">
             <p class="text-muted fs-14 mb-0">Result: <span id="total-result">{{ resultQuery.length }}</span></p>
           </div>
-          <div class="flex-shrink-0">
 
-            <div class="d-flex flex-wrap gap-3">
-              <BDropdown variant="link" text="All View">
-                <BDropdownItem href="#">Action</BDropdownItem>
-                <BDropdownItem href="#">Another action</BDropdownItem>
-                <BDropdownItem href="#">Something else here</BDropdownItem>
-              </BDropdown>
-            </div>
-          </div>
+          <BDropdown variant="link" class="card-header-dropdown" toggle-class="my-n3 text-reset dropdown-btn" no-caret menu-class="dropdown-menu-end" aria-haspopup="true" :offset="{ alignmentAxis: 2, crossAxis: 0, mainAxis: 0 }">
+            <template #button-content><span class="text-muted">All View<i class="mdi mdi-chevron-down ms-1"></i></span>
+            </template>
+            <BDropdownItem href="#">Action</BDropdownItem>
+            <BDropdownItem href="#">Another action</BDropdownItem>
+            <BDropdownItem href="#">Something else here</BDropdownItem>
+          </BDropdown>
+
         </div>
       </BCol>
     </BRow>
@@ -197,8 +192,7 @@ const SearchData = () => {
       <BCol lg="3" md="6" v-for="(data, index) of resultQuery" :key="index">
         <BCard no-body>
           <BCardBody>
-            <BButton type="button" variant="soft-primary" class="btn-icon float-end" data-bs-toggle="button"
-              aria-pressed="true">
+            <BButton type="button" variant="soft-primary" class="btn-icon float-end" data-bs-toggle="button" aria-pressed="true">
               <i class="mdi mdi-cards-heart fs-16"></i>
             </BButton>
             <div class="avatar-sm mb-4">
@@ -236,15 +230,12 @@ const SearchData = () => {
     </BRow>
     <BRow class="g-0 justify-content-end mb-4" id="pagination-element">
       <BCol sm="6">
-        <div
-          class="pagination-block pagination pagination-separated justify-content-center justify-content-sm-end mb-sm-0"
-          v-if="pages.length > 1">
+        <div class="pagination-block pagination pagination-separated justify-content-center justify-content-sm-end mb-sm-0" v-if="pages.length > 1">
           <div class="page-item">
             <BLink href="#" class="page-link" id="page-prev" :disabled="page <= 1" @click="page--">Previous</BLink>
           </div>
           <span id="page-num" class="pagination">
-            <div class="page-item" :class="{ active: pageNumber == page, disabled: pageNumber == '...', }"
-              v-for="(pageNumber, index) in pages" :key="index" @click="page = pageNumber">
+            <div class="page-item" :class="{ active: pageNumber == page, disabled: pageNumber == '...', }" v-for="(pageNumber, index) in pages" :key="index" @click="page = pageNumber">
               <BLink class="page-link clickPageNumber" href="javascript:void(0);">{{ pageNumber }}</BLink>
             </div>
           </span>

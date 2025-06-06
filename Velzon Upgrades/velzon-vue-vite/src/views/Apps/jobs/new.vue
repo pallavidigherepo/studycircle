@@ -154,7 +154,7 @@ const defaultDateConfig = ref({
 
                 <BCol lg="12">
                   <div class="hstack justify-content-end gap-2">
-                    <BButton type="button" variant="ghost-danger"><i class="ri-close-line align-bottom"></i>
+                    <BButton type="button" variant="ghost-danger" class="material-shadow-none"><i class="ri-close-line align-bottom"></i>
                       Cancel
                     </BButton>
                     <BButton type="submit" variant="primary">Add Job</BButton>

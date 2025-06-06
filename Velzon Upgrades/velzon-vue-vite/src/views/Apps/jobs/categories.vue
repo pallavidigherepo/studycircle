@@ -87,7 +87,7 @@ const defaultOptions14 = ref({
                   </BButton>
                   <BButton variant="danger"><i class="ri-filter-2-line me-1 align-bottom"></i> Filters</BButton>
 
-                  <BDropdown variant="link" right toggle-class="text-decoration-none arrow-none p-0"
+                  <BDropdown variant="link" right toggle-class="text-decoration-none p-0"
                     class="card-header-dropdown" no-caret>
                     <template #button-content> <span class="fs-18 btn btn-soft-info"><i class="ri-more-2-fill"></i></span>
                     </template>
@@ -291,7 +291,7 @@ const defaultOptions14 = ref({
     <BRow>
       <BCol lg="12">
         <div class="text-center mb-3">
-          <BButton variant="link" class="text-success mt-2" id="loadmore"><i
+          <BButton variant="link" class="text-success mt-2 material-shadow-none" id="loadmore"><i
               class="mdi mdi-loading mdi-spin fs-20 align-middle me-2"></i> Load More </BButton>
         </div>
       </BCol>

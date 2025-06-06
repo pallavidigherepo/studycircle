@@ -37,13 +37,13 @@ import Layout from "@/layouts/main.vue";
                 </BCol>
                 <BCol md="auto">
                   <div class="hstack gap-1 flex-wrap mt-4 mt-md-0">
-                    <BButton type="button" variant="ghost-warning" size="sm" class="btn-icon fs-16">
+                    <BButton type="button" variant="ghost-warning" size="sm" class="btn-icon fs-16 material-shadow-none">
                       <i class="ri-star-fill"></i>
                     </BButton>
-                    <BButton type="button" variant="ghost-primary" size="sm" class="btn-icon fs-16">
+                    <BButton type="button" variant="ghost-primary" size="sm" class="btn-icon fs-16 material-shadow-none">
                       <i class="ri-share-line"></i>
                     </BButton>
-                    <BButton type="button" variant="ghost-primary" size="sm" class="btn-icon fs-16">
+                    <BButton type="button" variant="ghost-primary" size="sm" class="btn-icon fs-16 material-shadow-none">
                       <i class="ri-flag-line"></i>
                     </BButton>
                   </div>
@@ -151,7 +151,7 @@ import Layout from "@/layouts/main.vue";
                 <h5 class="mb-0">Related Jobs</h5>
               </div>
               <div class="flex-shrink-0">
-                <BLink href="#!" class="btn btn-ghost-success">View All <i
+                <BLink href="#!" class="btn btn-ghost-success material-shadow-none">View All <i
                     class="ri-arrow-right-line ms-1 align-bottom"></i></BLink>
               </div>
             </div>

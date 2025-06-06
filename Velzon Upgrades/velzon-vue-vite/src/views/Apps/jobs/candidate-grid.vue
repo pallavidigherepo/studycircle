@@ -11,6 +11,21 @@ const perPage = ref(20);
 const pages = ref([]);
 const candidateGrid = ref(candidategrid);
 
+// Methods
+const setPages = () => {
+  let numberOfPages = Math.ceil(candidateGrid.value.length / perPage.value);
+  pages.value = [];
+  for (let index = 1; index <= numberOfPages; index++) {
+    pages.value.push(index);
+  }
+};
+
+const paginate = (data) => {
+  let from = page.value * perPage.value - perPage.value;
+  let to = page.value * perPage.value;
+  return data.slice(from, to);
+};
+
 // Computed properties
 const displayedPosts = computed(() => paginate(candidateGrid.value));
 const resultQuery = computed(() => {
@@ -38,22 +53,8 @@ watch(candidateGrid, setPages);
 onMounted(() => {
   setPages();
 });
-
-// Methods
-const setPages = () => {
-  let numberOfPages = Math.ceil(candidateGrid.value.length / perPage.value);
-  pages.value = [];
-  for (let index = 1; index <= numberOfPages; index++) {
-    pages.value.push(index);
-  }
-};
-
-const paginate = (data) => {
-  let from = page.value * perPage.value - perPage.value;
-  let to = page.value * perPage.value;
-  return data.slice(from, to);
-};
 </script>
+
 
 <template>
   <Layout>
@@ -114,7 +115,7 @@ const paginate = (data) => {
                     <span class="badge" :class="{
                       'bg-success-subtle text-success': data.type == 'Full Time',
                       'bg-danger-subtle text-danger': data.type == 'Part Time',
-                      'bg-primary-subtle text-primary': data.type == 'Freelancer',
+                      'bg-secondary-subtle text-secondary': data.type == 'Freelancer',
                     }">{{ data.type }}</span>
                   </div>
                 </div>

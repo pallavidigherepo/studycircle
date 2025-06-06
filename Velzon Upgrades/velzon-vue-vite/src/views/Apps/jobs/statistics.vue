@@ -208,9 +208,9 @@ const chartoptions = ref({
             <div class="d-flex">
               <h5 class="card-title mb-0 flex-grow-1  ">Visitor Graph</h5>
               <div class="flex-shrink-0">
-                <BDropdown variant="link" class="card-header-dropdown"
-                  toggle-class="my-n3 text-reset dropdown-btn arrow-none" menu-class="dropdown-menu-end"
-                  aria-haspopup="true" :offset="{ alignmentAxis: 2, crossAxis: 0, mainAxis: 0 }">
+                <BDropdown variant="link" class="card-header-dropdown" toggle-class="my-n3 text-reset dropdown-btn"
+                  no-caret menu-class="dropdown-menu-end" aria-haspopup="true"
+                  :offset="{ alignmentAxis: 2, crossAxis: 0, mainAxis: 0 }">
                   <template #button-content><span class="fw-semibold text-uppercase fs-12">Sort by: </span><span
                       class="text-muted">Current
                       Week<i class="mdi mdi-chevron-down ms-1"></i></span>
@@ -235,9 +235,9 @@ const chartoptions = ref({
           <BCardHeader class="align-items-center d-flex">
             <BCardTitle class="mb-0 flex-grow-1">Users by Device</BCardTitle>
             <div class="flex-shrink-0">
-              <BDropdown variant="link" class="card-header-dropdown"
-                toggle-class="my-n3 text-reset dropdown-btn arrow-none" menu-class="dropdown-menu-end"
-                aria-haspopup="true" :offset="{ alignmentAxis: 2, crossAxis: 0, mainAxis: 0 }">
+              <BDropdown variant="link" class="card-header-dropdown" toggle-class="my-n3 text-reset dropdown-btn" no-caret
+                menu-class="dropdown-menu-end" aria-haspopup="true"
+                :offset="{ alignmentAxis: 2, crossAxis: 0, mainAxis: 0 }">
                 <template #button-content><span class="text-muted fs-16"><i
                       class="mdi mdi-dots-vertical align-middle"></i></span>
                 </template>
@@ -316,9 +316,9 @@ const chartoptions = ref({
           <BCardHeader class="align-items-center d-flex">
             <BCardTitle class="mb-0 flex-grow-1">Your Network Summary</BCardTitle>
             <div class="flex-shrink-0">
-              <BDropdown variant="link" class="card-header-dropdown"
-                toggle-class="my-n3 text-reset dropdown-btn arrow-none" menu-class="dropdown-menu-end"
-                aria-haspopup="true" :offset="{ alignmentAxis: -45, crossAxis: 0, mainAxis: 0 }">
+              <BDropdown variant="link" class="card-header-dropdown" toggle-class="my-n3 text-reset dropdown-btn" no-caret
+                menu-class="dropdown-menu-end" aria-haspopup="true"
+                :offset="{ alignmentAxis: -45, crossAxis: 0, mainAxis: 0 }">
                 <template #button-content><span class="fw-semibold text-uppercase fs-12">Sort by: </span><span
                     class="text-muted">Monthly<i class="mdi mdi-chevron-down ms-1"></i></span>
                 </template>
@@ -342,9 +342,9 @@ const chartoptions = ref({
           <BCardHeader class="align-items-center d-flex">
             <BCardTitle class="mb-0 flex-grow-1">Jobs Summary</BCardTitle>
             <div class="flex-shrink-0">
-              <BDropdown variant="link" class="card-header-dropdown"
-                toggle-class="my-n3 text-reset dropdown-btn arrow-none" menu-class="dropdown-menu-end"
-                aria-haspopup="true" :offset="{ alignmentAxis: -45, crossAxis: 0, mainAxis: 0 }">
+              <BDropdown variant="link" class="card-header-dropdown" toggle-class="my-n3 text-reset dropdown-btn" no-caret
+                menu-class="dropdown-menu-end" aria-haspopup="true"
+                :offset="{ alignmentAxis: -45, crossAxis: 0, mainAxis: 0 }">
                 <template #button-content>
                   <span class="fw-semibold text-uppercase fs-12">Sort by: </span><span class="text-muted">Current Year<i
                       class="mdi mdi-chevron-down ms-1"></i></span>

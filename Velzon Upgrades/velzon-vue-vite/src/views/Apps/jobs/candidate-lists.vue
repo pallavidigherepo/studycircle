@@ -11,6 +11,21 @@ const perPage = ref(8);
 const pages = ref([]);
 const candidateList = ref(candidatelist);
 
+// Methods
+const setPages = () => {
+  let numberOfPages = Math.ceil(candidateList.value.length / perPage.value);
+  pages.value = [];
+  for (let index = 1; index <= numberOfPages; index++) {
+    pages.value.push(index);
+  }
+};
+
+const paginate = (data) => {
+  let from = page.value * perPage.value - perPage.value;
+  let to = page.value * perPage.value;
+  return data.slice(from, to);
+};
+
 // Computed properties
 const displayedPosts = computed(() => paginate(candidateList.value));
 const resultQuery = computed(() => {
@@ -43,22 +58,8 @@ onMounted(() => {
     });
   });
 });
-
-// Methods
-const setPages = () => {
-  let numberOfPages = Math.ceil(candidateList.value.length / perPage.value);
-  pages.value = [];
-  for (let index = 1; index <= numberOfPages; index++) {
-    pages.value.push(index);
-  }
-};
-
-const paginate = (data) => {
-  let from = page.value * perPage.value - perPage.value;
-  let to = page.value * perPage.value;
-  return data.slice(from, to);
-};
 </script>
+
 
 <template>
   <Layout>

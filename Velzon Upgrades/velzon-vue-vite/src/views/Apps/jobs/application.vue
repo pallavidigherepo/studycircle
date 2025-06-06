@@ -252,7 +252,6 @@ onMounted(() => {
 });
 </script>
 
-
 <template>
   <Layout>
     <PageHeader title="Application" pageTitle="Jobs" />

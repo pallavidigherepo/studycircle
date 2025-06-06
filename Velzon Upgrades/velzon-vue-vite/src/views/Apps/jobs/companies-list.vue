@@ -284,7 +284,7 @@ const showdetail = (data) => {
             </div>
 
             <div class="hstack gap-3">
-              <BButton type="button" variant="soft-success" class="custom-toggle w-100" data-bs-toggle="button">
+              <BButton type="button" variant="soft-success" class="custom-toggle w-100 material-shadow-none" data-bs-toggle="button">
                 <span class="icon-on"><i class="ri-add-line align-bottom me-1"></i> Follow</span>
                 <span class="icon-off"><i class="ri-user-unfollow-line align-bottom me-1"></i> Unfollow</span>
               </BButton>
