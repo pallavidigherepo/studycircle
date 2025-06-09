@@ -8,13 +8,14 @@ import "swiper/css/autoplay";
 import 'swiper/css/mousewheel';
 import Layout from "@/layouts/main.vue";
 import PageHeader from "@/components/page-header.vue";
-// import { productsData } from "@/common/data";
+import { productsData as importedProducts } from "@/common/data";
 
 // Declare reactive state using ref or reactive
 const page = ref(1);
 const perPage = ref(10);
 const pages = ref([]);
 const searchQuery = ref(null);
+
 
 const series = ref([{
   name: "Orders",
@@ -142,7 +143,7 @@ const chartOptions = ref({
   },
 });
 
-const productsData = ref(productsData);
+const productsData = ref(importedProducts);
 // const Autoplay = Autoplay;
 // const Mousewheel = Mousewheel;
 
@@ -189,12 +190,10 @@ const onSort = (column) => {
   productsData.value = sortedArray;
 };
 
-const paginate = (productsData) => {
-  let page = page.value;
-  let perPage = perPage.value;
-  let from = page * perPage - perPage;
-  let to = page * perPage;
-  return productsData.slice(from, to);
+const paginate = (data) => {
+  let from = page.value * perPage.value - perPage.value;
+  let to = page.value * perPage.value;
+  return data.slice(from, to);
 };
 
 // Watchers
@@ -212,7 +211,6 @@ const trimWords = (value) => {
   return value.split(" ").splice(0, 20).join(" ") + "...";
 };
 </script>
-
 
 <template>
   <Layout>
@@ -593,7 +591,7 @@ const trimWords = (value) => {
               <BCol cols="6" sm="3">
                 <div class="p-3 border border-dashed border-start-0">
                   <h5 class="mb-1">
-                    $<count-to :duration="5000" :startVal="0" :endVal="22.89" :decimals="2"></count-to>k
+                    $<count-to :duration="5000" :startVal="0" :endVal="22.89"></count-to>k
                   </h5>
                   <p class="text-muted mb-0">Earnings</p>
                 </div>
@@ -699,7 +697,7 @@ const trimWords = (value) => {
                     </td>
                     <td data-column-id="action" class="gridjs-td">
                       <span>
-                        <BDropdown variant="link" toggle-class="btn btn-soft-secondary btn-sm dropdown arrow-none"
+                        <BDropdown variant="link" toggle-class="btn btn-soft-secondary btn-sm dropdown" no-caret
                           menu-class="dropdown-menu-end" :offset="{ alignmentAxis: -130, crossAxis: 0, mainAxis: 10 }">
                           <template #button-content><i class="ri-more-fill align-middle"></i></template>
                           <BDropdownItem to="/ecommerce/product-details"> <i

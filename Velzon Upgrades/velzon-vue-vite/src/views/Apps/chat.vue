@@ -1,38 +1,94 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue';
-import simplebar from "simplebar-vue";
+import { ref, reactive, computed, onMounted } from 'vue';
+import simplebar from 'simplebar-vue';
 import { SearchIcon, InfoIcon, MoreVerticalIcon } from '@zhuowenli/vue-feather-icons';
+import { required, helpers } from '@vuelidate/validators';
+import useVuelidate from '@vuelidate/core';
+import Layout from '@/layouts/main.vue';
 
-import { required, helpers } from "@vuelidate/validators";
-import useVuelidate from "@vuelidate/core";
+import { chatData as chatDataSource, chatMessagesData as initialMessages } from '@/common/data';
 
-import Layout from "@/layouts/main.vue";
-import { chatData as initialChatData, chatMessagesData as initialMessages } from "@/common/data";
-
-// Form state
-const form = ref({ message: "" });
+// Form state and validation
+const form = reactive({
+  message: ''
+});
 const submitted = ref(false);
 
-// Validation
 const rules = {
   form: {
     message: {
-      required: helpers.withMessage("Message is required", required),
+      required: helpers.withMessage('Message is required', required),
     },
   },
 };
+
 const v$ = useVuelidate(rules, { form });
 
-// Reactive state
-const searchQuery = ref('');
+// UI and chat data
 const showOffcanvas = ref(false);
-const chatData = ref([...initialChatData]);
+const chatData = ref(chatDataSource);
 const chatMessagesData = ref([...initialMessages]);
-const username = ref("Steven Franklin");
-const profile = ref("@/assets/images/users/avatar-2.jpg");
-const usermessage = ref("");
 
-// Computed
+const username = ref('Steven Franklin');
+const profile = ref('@/assets/images/users/avatar-2.jpg');
+const searchQuery = ref(null);
+
+const usermessage = ref('');
+
+// Methods
+
+function scrollToBottom(id) {
+  setTimeout(() => {
+    const chatContainer = document.getElementById(id)?.querySelector('#chat-conversation .simplebar-content-wrapper');
+    const chatList = document.getElementById(id)?.getElementsByClassName('chat-conversation-list')[0];
+    const offsetHeight = chatList ? chatList.scrollHeight - window.innerHeight + 600 : 0;
+
+    if (offsetHeight && chatContainer) {
+      chatContainer.scrollTo({
+        top: offsetHeight,
+        behavior: 'smooth',
+      });
+    }
+  }, 300);
+}
+
+function chatUsername(name, image) {
+  username.value = name;
+  profile.value = image;
+  usermessage.value = 'Hello';
+  chatMessagesData.value = [];
+
+  const now = new Date();
+  const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+  chatMessagesData.value.push({
+    name: username.value,
+    message: usermessage.value,
+    time,
+  });
+}
+
+function formSubmit() {
+  submitted.value = true;
+  v$.value.$touch();
+
+  if (v$.value.$invalid) return;
+
+  const now = new Date();
+  const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+  chatMessagesData.value.push({
+    align: 'right',
+    name: 'Henry Wells',
+    message: form.message,
+    time,
+  });
+
+  scrollToBottom('users-chat');
+  submitted.value = false;
+  form.message = '';
+}
+
 const resultQuery = computed(() => {
   if (searchQuery.value) {
     const search = searchQuery.value.toLowerCase();
@@ -44,83 +100,27 @@ const resultQuery = computed(() => {
   }
 });
 
-// Methods
-function scrollToBottom(id) {
-  setTimeout(() => {
-    const container = document.getElementById(id);
-    const simpleBar = container?.querySelector("#chat-conversation .simplebar-content-wrapper");
-    const scrollHeight = container?.getElementsByClassName("chat-conversation-list")[0]?.scrollHeight || 0;
-    const offsetHeight = scrollHeight - window.innerHeight + 600;
-
-    if (simpleBar && offsetHeight) {
-      simpleBar.scrollTo({
-        top: offsetHeight,
-        behavior: "smooth"
-      });
-    }
-  }, 300);
-}
-
-function chatUsername(name, image) {
-  username.value = name;
-  profile.value = image;
-  usermessage.value = "Hello";
-  chatMessagesData.value = [];
-
-  const now = new Date();
-  const time = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-
-  chatMessagesData.value.push({
-    name: username.value,
-    message: usermessage.value,
-    time
-  });
-}
-
-function formSubmit() {
-  submitted.value = true;
-  v$.value.$touch();
-
-  if (v$.value.$invalid) return;
-
-  const now = new Date();
-  const time = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-
-  chatMessagesData.value.push({
-    align: "right",
-    name: "Henry Wells",
-    message: form.value.message,
-    time
-  });
-
-  scrollToBottom("users-chat");
-
-  submitted.value = false;
-  form.value = { message: "" };
-}
-
-// DOM Events Setup
 onMounted(() => {
-  scrollToBottom("users-chat");
+  scrollToBottom('users-chat');
 
-  const clipboard = document.getElementById("copyClipBoard");
+  const clipboard = document.getElementById('copyClipBoard');
   if (clipboard) clipboard.style.display = 'none';
 
-  const userChatElements = document.querySelectorAll(".user-chat");
+  const userChatElement = document.querySelectorAll('.user-chat');
 
-  document.querySelectorAll(".chat-user-list li a").forEach((item) => {
-    item.addEventListener("click", function () {
-      userChatElements.forEach(el => el.classList.add("user-chat-show"));
+  document.querySelectorAll('.chat-user-list li a').forEach((item) => {
+    item.addEventListener('click', function () {
+      userChatElement.forEach((elm) => elm.classList.add('user-chat-show'));
 
-      const activeItem = document.querySelector(".chat-user-list li.active");
-      if (activeItem) activeItem.classList.remove("active");
-      this.parentNode.classList.add("active");
+      const active = document.querySelector('.chat-user-list li.active');
+      if (active) active.classList.remove('active');
+      this.parentNode.classList.add('active');
     });
   });
 
-  document.querySelectorAll(".user-chat-remove").forEach((item) => {
-    item.addEventListener("click", () => {
-      userChatElements.forEach(el => el.classList.remove("user-chat-show"));
+  document.querySelectorAll('.user-chat-remove').forEach((item) => {
+    item.addEventListener('click', () => {
+      userChatElement.forEach((elm) => elm.classList.remove('user-chat-show'));
     });
   });
 });
@@ -499,7 +499,7 @@ onMounted(() => {
         </div>
       </div>
     </div>
-    <BOffcanvas v-model="showOffcanvas" body-class="border-0 p-0 overflow-hidden" header-class="border-bottom">
+    <BOffcanvas v-model="showOffcanvas" placement="end" body-class="border-0 p-0 overflow-hidden" header-class="border-bottom">
       <div class="offcanvas-body profile-offcanvas p-0">
         <div class="team-cover">
           <img src="@/assets/images/small/img-9.jpg" alt="" class="img-fluid" />
@@ -535,13 +535,15 @@ onMounted(() => {
           </div>
         </div>
         <div class="p-3 text-center">
-          <div class="avatar-lg img-thumbnail rounded-circle flex-shrink-0">
-           <img
-                              :src="profile" alt=""
-                              class="profile-img img-fluid d-block rounded-circle object-cover"
-                              
-                            />
-                            </div>
+          <div class="d-flex justify-content-center">
+            <div class="avatar-lg img-thumbnail rounded-circle">
+              <img
+                :src="profile"
+                alt=""
+                class="profile-img img-fluid d-block rounded-circle object-cover"
+              />
+            </div>
+          </div>
           <!-- <img :src="profile" alt="" class="avatar-lg img-thumbnail rounded-circle mx-auto profile-img"> -->
           <div class="mt-3">
             <h5 class="fs-16 mb-1"><a href="javascript:void(0);" class="link-primary username"> {{ username }}</a></h5>
@@ -766,3 +768,9 @@ onMounted(() => {
     </BOffcanvas>
   </Layout>
 </template>
+<style scoped>
+.profile-offcanvas {
+  max-height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+</style>

@@ -6,7 +6,7 @@ import Layout from "@/layouts/main.vue";
 import PageHeader from "@/components/page-header.vue";
 import flatPickr from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
-// import { sellersList } from "@/common/data";
+import { sellersList as sellerLists } from "@/common/data";
 import Lottie from "@/components/widgets/lottie.vue";
 import animationData from "@/components/widgets/msoeawqm.json";
 
@@ -66,7 +66,7 @@ const defaultOptions = ref({
 });
 
 // Sellers list
-const sellersList = ref(sellersList);
+const sellersList = ref(sellerLists);
 
 // Computed property for filtering sellers
 const resultQuery = computed(() => {
@@ -84,7 +84,6 @@ const resultQuery = computed(() => {
   }
 });
 </script>
-
 
 <template>
   <Layout>
@@ -202,7 +201,7 @@ const resultQuery = computed(() => {
       <div class="modal-body">
         <BTabs nav-class="nav-tabs-custom nav-success p-2 pb-0 bg-light">
           <BTab title="Personal Details" class="nav-link py-3" active>
-            <BFrom action="#">
+            <b-form action="#">
               <BRow>
                 <BCol lg="6">
                   <div class="mb-3">
@@ -279,10 +278,10 @@ const resultQuery = computed(() => {
                   </div>
                 </BCol>
               </BRow>
-            </BFrom>
+            </b-form>
           </BTab>
           <BTab title="Business Details" class="nav-link py-3">
-            <BFrom action="#">
+            <b-form action="#">
               <BRow>
                 <BCol lg="12">
                   <div class="mb-3">
@@ -351,10 +350,10 @@ const resultQuery = computed(() => {
                   </div>
                 </BCol>
               </BRow>
-            </BFrom>
+            </b-form>
           </BTab>
           <BTab title="Bank Details" class="nav-link py-3">
-            <BFrom action="#">
+            <b-form action="#">
               <BRow>
                 <BCol lg="6">
                   <div class="mb-3">
@@ -400,7 +399,7 @@ const resultQuery = computed(() => {
                   </div>
                 </BCol>
               </BRow>
-            </BFrom>
+            </b-form>
           </BTab>
         </BTabs>
       </div>

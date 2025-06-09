@@ -515,7 +515,7 @@ onMounted(() => {
                 </div>
                 <div class="avatar-lg p-1">
                   <div class="avatar-title bg-light rounded-circle">
-                    <img :src="event.image_src || require('@/assets/images/users/multi-user.jpg')" id="companylogo-img"
+                    <img :src="event.image_src || '@/assets/images/users/multi-user.jpg'" id="companylogo-img"
                       class="avatar-md rounded-circle object-fit-cover">
                   </div>
                 </div>

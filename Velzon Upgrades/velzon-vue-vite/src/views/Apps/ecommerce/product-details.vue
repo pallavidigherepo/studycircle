@@ -52,6 +52,8 @@ onMounted(() => {
             <BRow class="gx-lg-5">
               <BCol xl="4" md="8" class="mx-auto">
                 <div class="product-img-slider sticky-side-div">
+
+
                   <swiper :modules="[Navigation, Thumbs]" class="product-thumbnail-slider p-2 rounded bg-light"
                     :navigation="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev', }"
                     :thumbs="{ swiper: thumbsSwiper }">
@@ -69,8 +71,8 @@ onMounted(() => {
                     </swiper-slide>
                   </swiper>
 
-                  <div class="swiper-button-next"></div>
-                  <div class="swiper-button-prev"></div>
+                  <div class="swiper-button-next material-shadow"></div>
+                  <div class="swiper-button-prev material-shadow"></div>
 
                   <swiper :modules="[Thumbs]" class="product-nav-slider mt-2" :loop="false" :spaceBetween="10"
                     :slidesPerView="4" :freeMode="true" watch-slides-progress @swiper="setThumbsSwiper">
@@ -526,15 +528,15 @@ onMounted(() => {
                                   <div class="d-flex flex-grow-1 gap-2 mb-3">
                                     <BLink href="#" class="d-block">
                                       <img src="@/assets/images/small/img-12.jpg" alt
-                                        class="avatar-sm rounded object-fit-cover" />
+                                        class="avatar-sm rounded object-fit-cover material-shadow" />
                                     </BLink>
                                     <BLink href="#" class="d-block">
                                       <img src="@/assets/images/small/img-11.jpg" alt
-                                        class="avatar-sm rounded object-fit-cover" />
+                                        class="avatar-sm rounded object-fit-cover material-shadow" />
                                     </BLink>
                                     <BLink href="#" class="d-block">
                                       <img src="@/assets/images/small/img-10.jpg" alt
-                                        class="avatar-sm rounded object-fit-cover" />
+                                        class="avatar-sm rounded object-fit-cover material-shadow" />
                                     </BLink>
                                   </div>
 

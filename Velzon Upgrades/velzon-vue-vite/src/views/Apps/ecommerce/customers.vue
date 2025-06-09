@@ -99,10 +99,16 @@ watch(customerList, setPages);
 onBeforeMount(async () => {
   try {
     const res = await axios.get('https://api-node.themesbrand.website/apps/customer');
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    customerList.value = res.data.data.map(row => {
-      const dd = new Date(row.date);
-      row.date = `${dd.getDate()} ${monthNames[dd.getMonth()]}, ${dd.getFullYear()}`;
+    // console.log('API response:', res.data);
+
+    const apiData = res.data?.data ?? []; // fallback to empty array if undefined
+
+    customerList.value = apiData.map(row => {
+      if (row.date) {
+        const dd = new Date(row.date);
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        row.date = `${dd.getDate()} ${monthNames[dd.getMonth()]}, ${dd.getFullYear()}`;
+      }
       return row;
     });
   } catch (error) {

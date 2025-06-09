@@ -321,7 +321,7 @@ onMounted(() => {
                 </td>
                 <td class="currency_name">
                   <div class="d-flex align-items-center">
-                    <img :src="data.image" alt="" class="avatar-xxs me-2" />
+                    <img :src="data.image" alt="" class="avatar-xxs me-2 material-shadow" />
                     {{ data.currency }}
                   </div>
                 </td>

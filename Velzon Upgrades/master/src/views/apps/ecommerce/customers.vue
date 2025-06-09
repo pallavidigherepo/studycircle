@@ -354,7 +354,7 @@ export default {
             </BRow>
           </BCardHeader>
           <BCardBody class="border-bottom-dashed border-bottom">
-            <b-form>
+            <BFrom>
               <BRow class="g-3">
                 <BCol xl="6">
                   <div class="search-box">
@@ -393,7 +393,7 @@ export default {
                   </BRow>
                 </BCol>
               </BRow>
-            </b-form>
+            </BFrom>
           </BCardBody>
           <BCardBody>
             <div>
@@ -491,7 +491,7 @@ export default {
     <!-- customer modal  -->
     <BModal v-model="addCustomerModal" id="showModal" hide-footer :title="dataEdit ? 'Edit Customer' : 'Add Customer'"
       header-class="p-3 bg-light" class="v-modal-custom" centered>
-      <b-form action="#" id="addform" class="tablelist-form" autocomplete="off">
+      <BFrom action="#" id="addform" class="tablelist-form" autocomplete="off">
         <input type="hidden" id="id-field" />
 
         <div class="mb-3" id="modal-id" style="display: none">
@@ -544,7 +544,7 @@ export default {
             {{ dataEdit ? 'Update' : 'Add Customer' }}
           </BButton>
         </div>
-      </b-form>
+      </BFrom>
     </BModal>
 
     <!-- delete modal -->

@@ -130,7 +130,6 @@ onMounted(() => {
 });
 </script>
 
-
 <template>
   <Layout>
     <PageHeader title="Shopping Cart" pageTitle="Ecommerce" />
@@ -170,9 +169,9 @@ onMounted(() => {
                 </ul>
 
                 <div class="input-step">
-                  <BButton class="minus">–</BButton>
+                  <BButton class="minus material-shadow">–</BButton>
                   <input type="number" class="product-quantity" v-model="value" min="0" max="100" />
-                  <BButton class="plus">+</BButton>
+                  <BButton class="plus material-shadow">+</BButton>
                 </div>
               </BCol>
               <BCol sm="auto">
@@ -238,9 +237,9 @@ onMounted(() => {
                 </ul>
 
                 <div class="input-step">
-                  <BButton class="minus">–</BButton>
+                  <BButton class="minus material-shadow">–</BButton>
                   <input type="number" class="product-quantity" v-model="value1" min="0" max="100" />
-                  <BButton class="plus">+</BButton>
+                  <BButton class="plus material-shadow">+</BButton>
                 </div>
               </BCol>
               <BCol sm="auto">
@@ -306,9 +305,9 @@ onMounted(() => {
                 </ul>
 
                 <div class="input-step">
-                  <BButton class="minus">–</BButton>
+                  <BButton class="minus material-shadow">–</BButton>
                   <input type="number" class="product-quantity" v-model="value2" min="0" max="100" />
-                  <BButton class="plus">+</BButton>
+                  <BButton class="plus material-shadow">+</BButton>
                 </div>
               </BCol>
               <BCol sm="auto">
@@ -425,7 +424,7 @@ onMounted(() => {
                   Gift wrap and personalized message on card, <br />Only for
                   <span class="fw-semibold">$9.99</span> USD
                 </p>
-                <BButton variant="link" class="btn ps-0 btn-sm text-danger text-uppercase">
+                <BButton variant="link" class="btn ps-0 btn-sm material-shadow-none text-danger text-uppercase">
                   Add Gift Wrap
                 </BButton>
               </div>

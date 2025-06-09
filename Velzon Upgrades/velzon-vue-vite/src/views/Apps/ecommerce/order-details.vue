@@ -143,10 +143,10 @@ const defaultOptions = {
             <div class="d-sm-flex align-items-center">
               <h5 class="card-title flex-grow-1 mb-0">Order Status</h5>
               <div class="flex-shrink-0 mt-2 mt-sm-0">
-                <BLink href="javascript:void(0);" class="btn btn-soft-info btn-sm mt-2 mt-sm-0"><i
+                <BLink href="javascript:void(0);" class="btn btn-soft-info material-shadow-none btn-sm mt-2 mt-sm-0"><i
                     class="ri-map-pin-line align-middle me-1"></i> Change
                   Address</BLink>
-                <BLink href="javascript:void(0);" class="btn btn-soft-danger btn-sm mt-2 mt-sm-0 ms-1"><i
+                <BLink href="javascript:void(0);" class="btn btn-soft-danger material-shadow-none btn-sm mt-2 mt-sm-0 ms-1"><i
                     class="mdi mdi-archive-remove-outline align-middle me-1"></i>
                   Cancel Order</BLink>
               </div>
@@ -160,7 +160,7 @@ const defaultOptions = {
                     <BLink class="accordion-button p-2 shadow-none" v-b-toggle.collapseOne>
                       <div class="d-flex align-items-center">
                         <div class="flex-shrink-0 avatar-xs">
-                          <div class="avatar-title bg-success rounded-circle">
+                          <div class="avatar-title bg-success rounded-circle material-shadow-none">
                             <i class="ri-shopping-bag-line"></i>
                           </div>
                         </div>
@@ -187,7 +187,7 @@ const defaultOptions = {
                     <BLink class="accordion-button p-2 shadow-none" v-b-toggle.collapseTwo>
                       <div class="d-flex align-items-center">
                         <div class="flex-shrink-0 avatar-xs">
-                          <div class="avatar-title bg-success rounded-circle">
+                          <div class="avatar-title bg-success rounded-circle material-shadow-none">
                             <i class="mdi mdi-gift-outline"></i>
                           </div>
                         </div>
@@ -214,7 +214,7 @@ const defaultOptions = {
                     <BLink class="accordion-button p-2 shadow-none" v-b-toggle.collapseThree>
                       <div class="d-flex align-items-center">
                         <div class="flex-shrink-0 avatar-xs">
-                          <div class="avatar-title bg-success rounded-circle">
+                          <div class="avatar-title bg-success rounded-circle material-shadow-none">
                             <i class="ri-truck-line"></i>
                           </div>
                         </div>
@@ -241,7 +241,7 @@ const defaultOptions = {
                       aria-expanded="false">
                       <div class="d-flex align-items-center">
                         <div class="flex-shrink-0 avatar-xs">
-                          <div class="avatar-title bg-light text-success rounded-circle">
+                          <div class="avatar-title bg-light text-success rounded-circle material-shadow-none">
                             <i class="ri-takeaway-fill"></i>
                           </div>
                         </div>
@@ -260,7 +260,7 @@ const defaultOptions = {
                       aria-expanded="false">
                       <div class="d-flex align-items-center">
                         <div class="flex-shrink-0 avatar-xs">
-                          <div class="avatar-title bg-light text-success rounded-circle">
+                          <div class="avatar-title bg-light text-success rounded-circle material-shadow-none">
                             <i class="mdi mdi-package-variant"></i>
                           </div>
                         </div>
@@ -313,7 +313,7 @@ const defaultOptions = {
               <li>
                 <div class="d-flex align-items-center">
                   <div class="flex-shrink-0">
-                    <img src="@/assets/images/users/avatar-3.jpg" alt="" class="avatar-sm rounded" />
+                    <img src="@/assets/images/users/avatar-3.jpg" alt="" class="avatar-sm rounded material-shadow" />
                   </div>
                   <div class="flex-grow-1 ms-3">
                     <h6 class="fs-14 mb-1">Joseph Parkers</h6>

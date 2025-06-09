@@ -344,7 +344,7 @@ const deleteRecord = (ele) => {
                   </p>
 
                   <div class="hstack justify-content-center gap-2">
-                    <BButton type="button" variant="ghost-success" @click="modalShow = false">
+                    <BButton type="button" variant="ghost-success" class="material-shadow-none" @click="modalShow = false">
                       Done
                       <i class="ri-thumb-up-fill align-bottom me-1"></i>
                     </BButton>

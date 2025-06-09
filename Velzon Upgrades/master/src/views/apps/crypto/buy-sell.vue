@@ -1,7 +1,7 @@
 <script>
 import { CountTo } from "vue3-count-to";
 import Layout from "@/layouts/main.vue";
-import PageHeader from "@/components/page-header";
+import PageHeader from "@/components/page-header.vue";
 import { buySellList } from "@/common/data";
 
 export default {

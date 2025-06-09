@@ -129,31 +129,38 @@ const paginate = (productsData) => {
 };
 
 // Lifecycle hooks
+
 onMounted(() => {
   axios.get('https://api-node.themesbrand.website/apps/product')
-    .then((data) => {
+    .then((response) => {
       productsData.value = [];
+
+      const productList = response?.data?.data ?? [];
+
       const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      data.data.data.forEach((row) => {
+
+      productList.forEach((row) => {
         const dd = new Date(row.publishedDate);
         row.publishedDate = `${dd.getDate()} ${monthNames[dd.getMonth()]}, ${dd.getFullYear()}`;
+
         let hours = dd.getHours();
         let minutes = dd.getMinutes();
         const ampm = hours >= 12 ? 'PM' : 'AM';
-        hours = hours % 12;
-        hours = hours ? hours : 12; 
+        hours = hours % 12 || 12;
         hours = hours < 10 ? `0${hours}` : hours;
         minutes = minutes < 10 ? `0${minutes}` : minutes;
-        const strTime = `${hours}:${minutes} ${ampm}`;
-        row.publishedtime = strTime;
+        row.publishedtime = `${hours}:${minutes} ${ampm}`;
+
         row.image_src = `https://api-node.themesbrand.website/images/products/${row.image}`;
+
         productsData.value.push(row);
       });
     })
-    .catch((er) => {
-      console.log(er);
+    .catch((error) => {
+      console.error("Error loading products:", error);
     });
 });
+
 </script>
 
 <template>
@@ -485,7 +492,7 @@ onMounted(() => {
                       Select
                       <div id="select-content" class="text-body fw-semibold px-1"></div>
                       Result
-                      <BButton type="button" variant="link" class="link-danger p-0 ms-3" @click="deleteMultiple">
+                      <BButton type="button" variant="link" class="link-danger p-0 ms-3 material-shadow-none" @click="deleteMultiple">
                         Remove
                       </BButton>
                     </div>
@@ -567,7 +574,7 @@ onMounted(() => {
                           <td data-column-id="action" class="gridjs-td">
                             <span>
                               <div class="dropdown">
-                                <BDropdown variant="link" toggle-class="btn btn-soft-secondary btn-sm dropdown arrow-none"
+                                <BDropdown variant="link" toggle-class="btn btn-soft-secondary btn-sm dropdown" no-caret
                                   menu-class="dropdown-menu-end"
                                   :offset="{ alignmentAxis: -130, crossAxis: 0, mainAxis: 10 }">
                                   <template #button-content> <i class="ri-more-fill"></i>

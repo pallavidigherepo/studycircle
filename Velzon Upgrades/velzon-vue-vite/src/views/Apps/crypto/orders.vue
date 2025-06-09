@@ -130,8 +130,7 @@ const onSort = (column) => {
             <BRow class="g-2">
               <BCol xl="4" md="6">
                 <div class="search-box">
-                  <input type="text" class="form-control search" placeholder="Search to orders..."
-                    v-model="searchQuery" />
+                  <input type="text" class="form-control search" placeholder="Search to orders..." v-model="searchQuery" />
                   <i class="ri-search-line search-icon"></i>
                 </div>
               </BCol>
@@ -144,19 +143,17 @@ const onSort = (column) => {
                 </div>
               </BCol>
               <BCol xl="2" md="4">
-                <Multiselect class="form-control" v-model="value2" :close-on-select="true" placeholder="Select Type"
-                  :searchable="true" :create-option="true" name="idType" id="idType" :options="[
-                    { value: 'Buy', label: 'Buy' },
-                    { value: 'Sell', label: 'Sell' },
-                  ]" />
+                <Multiselect class="form-control" v-model="value2" :close-on-select="true" placeholder="Select Type" :searchable="true" :create-option="true" name="idType" id="idType" :options="[
+                  { value: 'Buy', label: 'Buy' },
+                  { value: 'Sell', label: 'Sell' },
+                ]" />
               </BCol>
               <BCol xl="2" md="4">
-                <Multiselect class="form-control" v-model="status1" :close-on-select="true" placeholder="Select Status"
-                  :searchable="true" :create-option="true" name="idStatus" id="idStatus" :options="[
-                    { value: 'Successful', label: 'Successful' },
-                    { value: 'Cancelled', label: 'Cancelled' },
-                    { value: 'Pending', label: 'Pending' },
-                  ]" />
+                <Multiselect class="form-control" v-model="status1" :close-on-select="true" placeholder="Select Status" :searchable="true" :create-option="true" name="idStatus" id="idStatus" :options="[
+                  { value: 'Successful', label: 'Successful' },
+                  { value: 'Cancelled', label: 'Cancelled' },
+                  { value: 'Pending', label: 'Pending' },
+                ]" />
               </BCol>
               <BCol xl="1" md="4">
                 <BButton variant="success" class="w-100" @click="SearchData">Filters</BButton>
@@ -164,7 +161,7 @@ const onSort = (column) => {
             </BRow>
           </BCardBody>
           <BCardBody>
-            <div class="table-responsive table-card">
+            <div class="table-responsive table-card pb-3">
               <table class="table align-middle table-nowrap" id="customerTable">
                 <thead class="table-light text-muted">
                   <tr>
@@ -215,17 +212,15 @@ const onSort = (column) => {
                     <td class="avg_price sort-avg_price" data-av-price="46154.30">{{ data.avgPrice }}</td>
                     <td class="price sort-price" data-price="46335.40">{{ data.price }}</td>
                     <td class="status">
-                      <span
-                        :class="{ 'badge bg-success-subtle text-success text-uppercase': data.status == 'Successful', 'badge bg-danger-subtle text-danger text-uppercase': data.status == 'Cancelled', 'badge bg-warning-subtle text-warning text-uppercase': data.status == 'Pending' }">{{
-                          data.status }}</span>
+                      <span :class="{ 'badge bg-success-subtle text-success text-uppercase': data.status == 'Successful', 'badge bg-danger-subtle text-danger text-uppercase': data.status == 'Cancelled', 'badge bg-warning-subtle text-warning text-uppercase': data.status == 'Pending' }">{{
+                        data.status }}</span>
                     </td>
                   </tr>
                 </tbody>
               </table>
               <div class="noresult" v-if="resultQuery.length < 1">
                 <div class="text-center">
-                  <lottie class="avatar-xl" colors="primary:#121331,secondary:#08a88a" :options="defaultOptions"
-                    :height="75" :width="75" />
+                  <lottie class="avatar-xl" colors="primary:#121331,secondary:#08a88a" :options="defaultOptions" :height="75" :width="75" />
                   <h5 class="mt-2">Sorry! No Result Found</h5>
                   <p class="text-muted mb-0">
                     We've searched more than 150+ orders We did not find any

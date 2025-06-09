@@ -1,19 +1,30 @@
 <script setup>
-import { ref, reactive, computed, watch, onMounted, onBeforeMount } from 'vue';
+import { ref, reactive, computed, onMounted, watch } from "vue";
 import Multiselect from "@vueform/multiselect";
-import flatPickr from "vue-flatpickr-component";
-import Swal from "sweetalert2";
-import axios from 'axios';
-
 import "@vueform/multiselect/themes/default.css";
+import flatPickr from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
+import Swal from "sweetalert2";
+import axios from "axios";
 
+import Layout from "@/layouts/main.vue";
+import PageHeader from "@/components/page-header.vue";
 import Lottie from "@/components/widgets/lottie.vue";
 import animationData from "@/components/widgets/msoeawqm.json";
 import animationData1 from "@/components/widgets/gsqxdxog.json";
 
-// Refs and Reactive State
+const rightOffcanvas = ref(false);
+const addLeadsModal = ref(false);
+const submitted = ref(false);
+const dataEdit = ref(false);
+const deleteModal = ref(false);
+const page = ref(1);
+const perPage = ref(8);
+const pages = ref([]);
+const searchQuery = ref("");
 const leads = ref([]);
+const value = ref("");
+
 const event = reactive({
   _id: "",
   leadsId: "",
@@ -24,126 +35,125 @@ const event = reactive({
   score: "",
   tags: [],
   date: "",
-  location: "",
+  location: ""
 });
 
-const addLeadsModal = ref(false);
-const deleteModal = ref(false);
-const dataEdit = ref(false);
-const submitted = ref(false);
-const searchQuery = ref("");
-const page = ref(1);
-const perPage = ref(8);
-const pages = ref([]);
-const value = ref(null);
-const tagvalue = ref(null);
+const tagoption = [
+  { value: "Lead", label: "Lead" },
+  { value: "Partner", label: "Partner" },
+  { value: "Exiting", label: "Exiting" },
+  { value: "Long-tern", label: "Long-tern" }
+];
 
 const timeConfig = { enableTime: false, dateFormat: "d M, Y" };
 const rangeDateconfig = { mode: "range", dateFormat: "d M, Y" };
-
-const tagoption = [
-  { value: 'Lead', label: 'Lead' },
-  { value: 'Partner', label: 'Partner' },
-  { value: 'Exiting', label: 'Exiting' },
-  { value: 'Long-tern', label: 'Long-tern' },
-];
-
 const defaultOptions = { animationData };
 const defaultOptions1 = { animationData: animationData1 };
 
-// Computed Properties
 const displayedPosts = computed(() => paginate(leads.value));
 const resultQuery = computed(() => {
   if (searchQuery.value) {
     const search = searchQuery.value.toLowerCase();
     return displayedPosts.value.filter((data) =>
-      data.leadsId?.toLowerCase().includes(search) ||
-      data.name?.toLowerCase().includes(search) ||
-      data.company?.toLowerCase().includes(search) ||
-      data.score?.toString().toLowerCase().includes(search) ||
-      data.phone?.toLowerCase().includes(search) ||
-      data.location?.toLowerCase().includes(search) ||
-      data.date?.toLowerCase().includes(search)
+      ["leadsId", "name", "company", "score", "phone", "location", "date"].some(key =>
+        data[key].toString().toLowerCase().includes(search)
+      )
     );
+  } else {
+    return displayedPosts.value;
   }
-  return displayedPosts.value;
 });
-
-// Watchers
-watch(leads, () => {
-  setPages();
-});
-
-// Methods
-function paginate(array) {
-  const from = page.value * perPage.value - perPage.value;
-  const to = page.value * perPage.value;
-  return array.slice(from, to);
-}
 
 function setPages() {
-  const numberOfPages = Math.ceil(leads.value.length / perPage.value);
+  let numberOfPages = Math.ceil(leads.value.length / perPage.value);
   pages.value = Array.from({ length: numberOfPages }, (_, i) => i + 1);
+}
+
+watch(leads, () => setPages());
+// onMounted(() => {
+//   axios.get("https://api-node.themesbrand.website/apps/lead")
+//     .then((res) => {
+//       const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+//       leads.value = res.data.data.map(row => {
+//         const dd = new Date(row.date);
+//         return {
+//           ...row,
+//           date: `${dd.getDate()} ${monthNames[dd.getMonth()]}, ${dd.getFullYear()}`,
+//           image_src: `https://api-node.themesbrand.website/images/users/${row.image_src}`
+//         };
+//       });
+//     })
+//     .catch(console.error);
+// });
+onMounted(() => {
+  axios.get("https://api-node.themesbrand.website/apps/lead")
+    .then((res) => {
+      const result = res.data;
+
+      //console.log("API response:", result); // Debugging log
+
+      if (Array.isArray(result?.data)) {
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        leads.value = result.data.map(row => {
+          const dd = new Date(row.date);
+          return {
+            ...row,
+            date: `${dd.getDate()} ${monthNames[dd.getMonth()]}, ${dd.getFullYear()}`,
+            image_src: `https://api-node.themesbrand.website/images/users/${row.image_src}`
+          };
+        });
+      } else {
+        console.error("Expected array at res.data.data, but got:", result);
+      }
+    })
+    .catch((error) => {
+      console.error("API call failed:", error);
+    });
+});
+
+function paginate(items) {
+  const from = page.value * perPage.value - perPage.value;
+  const to = page.value * perPage.value;
+  return items.slice(from, to);
 }
 
 function handleSubmit() {
   submitted.value = true;
-
-  const isValid = event.name && event.company && event.score && event.phone && event.location && event.tags && event.date;
-  if (!isValid) return;
-
-  const endpoint = dataEdit.value
-    ? `https://api-node.themesbrand.website/apps/lead/${event._id}`
-    : `https://api-node.themesbrand.website/apps/lead`;
-
-  const method = dataEdit.value ? 'patch' : 'post';
-  const payload = dataEdit.value
-    ? event
-    : {
-        _id: Math.floor(Math.random() * 100 + 20) - 20,
-        image_src: require("@/assets/images/users/multi-user.jpg"),
-        ...event,
-      };
-
-  axios[method](endpoint, payload)
-    .then((response) => {
-      if (dataEdit.value) {
-        leads.value = leads.value.map((item) =>
-          item._id.toString() === response.data.data._id.toString()
-            ? { ...item, ...response.data.data }
-            : item
-        );
-      } else {
-        leads.value.unshift(response.data.data);
-      }
-    })
-    .catch(console.error);
-
+  if (!(event.name && event.company && event.score && event.phone && event.location && event.tags.length && event.date)) return;
   addLeadsModal.value = false;
+
+  if (dataEdit.value) {
+    axios.patch(`https://api-node.themesbrand.website/apps/lead/${event._id}`, event)
+      .then((response) => {
+        const updated = response.data.data;
+        leads.value = leads.value.map(item => item._id === updated._id ? { ...item, ...updated } : item);
+      })
+      .catch(console.error);
+  } else {
+    const data = {
+      _id: Math.floor(Math.random() * 100),
+      image_src: require("@/assets/images/users/multi-user.jpg"),
+      ...event
+    };
+    axios.post("https://api-node.themesbrand.website/apps/lead", data)
+      .then((response) => {
+        leads.value.unshift(response.data.data);
+      })
+      .catch(console.error);
+  }
 }
 
 function editDetails(data) {
-  Object.assign(event, data);
   dataEdit.value = true;
   addLeadsModal.value = true;
+  Object.assign(event, data);
   submitted.value = false;
 }
 
 function toggleModal() {
-  Object.assign(event, {
-    _id: "",
-    leadsId: "",
-    image_src: "",
-    name: "",
-    company: "",
-    phone: "",
-    score: "",
-    tags: [],
-    date: "",
-    location: "",
-  });
   addLeadsModal.value = true;
   dataEdit.value = false;
+  Object.assign(event, {});
   submitted.value = false;
 }
 
@@ -153,43 +163,48 @@ function deleteModalToggle(data) {
 }
 
 function deleteData() {
-  if (!event._id) return;
-
-  axios
-    .delete(`https://api-node.themesbrand.website/apps/lead/${event._id}`)
-    .then((response) => {
-      if (response.data.status === 'success') {
-        leads.value = leads.value.filter((item) => item._id !== event._id);
-        deleteModal.value = false;
+  axios.delete(`https://api-node.themesbrand.website/apps/lead/${event._id}`)
+    .then((res) => {
+      if (res.data.status === "success") {
+        leads.value = leads.value.filter(item => item._id !== event._id);
       }
     })
     .catch(console.error);
+  deleteModal.value = false;
 }
 
 function deleteMultiple() {
-  // You can also port this logic using refs and `document.querySelectorAll` if needed
-  // Or update your markup logic with `v-model` instead for full Vue-style implementation
+  const ids_array = [];
+  const items = document.getElementsByName("chk_child");
+  items.forEach(function (ele) {
+    if (ele.checked === true) {
+      const trNode = ele.parentNode.parentNode.parentNode;
+      const id = trNode.querySelector(".id a").innerHTML;
+      ids_array.push(id);
+    }
+  });
+
+  if (ids_array.length > 0) {
+    if (confirm("Are you sure you want to delete this?")) {
+      leads.value = leads.value.filter((lead) => !ids_array.includes(lead._id));
+      document.getElementById("checkAll").checked = false;
+
+      const childCheckboxes = document.getElementsByName("chk_child");
+      childCheckboxes.forEach((ele) => {
+        ele.checked = false;
+        ele.closest("tr").classList.remove("table-active");
+      });
+    }
+  } else {
+    Swal.fire({
+      title: "Please select at least one checkbox",
+      confirmButtonClass: "btn btn-info",
+      buttonsStyling: false,
+      showCloseButton: true,
+    });
+  }
 }
 
-// Lifecycle Hooks
-onBeforeMount(() => {
-  axios.get('https://api-node.themesbrand.website/apps/lead')
-    .then((res) => {
-      leads.value = res.data.data.map((row) => {
-        const dateObj = new Date(row.date);
-        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",
-          "Oct", "Nov", "Dec"];
-        row.date = `${dateObj.getDate()} ${monthNames[dateObj.getMonth()]}, ${dateObj.getFullYear()}`;
-        row.image_src = `https://api-node.themesbrand.website/images/users/${row.image_src}`;
-        return row;
-      });
-    })
-    .catch(console.error);
-});
-
-onMounted(() => {
-  // Convert checkbox-related logic if needed
-});
 </script>
 
 
@@ -350,33 +365,39 @@ onMounted(() => {
                   <div class="mb-4">
                     <label for="datepicker-range"
                       class="form-label text-muted text-uppercase fw-semibold mb-3">Date</label>
-                    <flat-pickr placeholder="Select date" v-model="date" :config="rangeDateconfig"
+                    <flat-pickr placeholder="Select date" v-model="event.date" :config="rangeDateconfig"
                       class="form-control flatpickr-input" id="demo-datepicker"></flat-pickr>
                   </div>
                   <div class="mb-4">
                     <label for="country-select"
                       class="form-label text-muted text-uppercase fw-semibold mb-3">Country</label>
 
-                    <Multiselect class="form-control" v-model="value" :close-on-select="true" :searchable="true"
-                      :create-option="true" :options="[
-                        { value: '', label: 'Select country' },
-                        { value: 'Argentina', label: 'Argentina' },
-                        { value: 'Belgium', label: 'Belgium' },
-                        { value: 'Brazil', label: 'Brazil' },
-                        { value: 'Colombia', label: 'Colombia' },
-                        { value: 'Denmark', label: 'Denmark' },
-                        { value: 'France', label: 'France' },
-                        { value: 'Germany', label: 'Germany' },
-                        { value: 'Mexico', label: 'Mexico' },
-                        { value: 'Russia', label: 'Russia' },
-                        { value: 'Spain', label: 'Spain' },
-                        { value: 'Syria', label: 'Syria' },
-                        { value: 'United Kingdom', label: 'United Kingdom' },
-                        {
-                          value: 'United States of America',
-                          label: 'United States of America',
-                        },
-                      ]" />
+                      <Multiselect
+                        class="form-control"
+                        v-model="value"
+                        :close-on-select="true"
+                        :searchable="true"
+                        :create-option="true"
+                        :options="[
+                          { value: '', label: 'Select country' },
+                          { value: 'Argentina', label: 'Argentina' },
+                          { value: 'Belgium', label: 'Belgium' },
+                          { value: 'Brazil', label: 'Brazil' },
+                          { value: 'Colombia', label: 'Colombia' },
+                          { value: 'Denmark', label: 'Denmark' },
+                          { value: 'France', label: 'France' },
+                          { value: 'Germany', label: 'Germany' },
+                          { value: 'Mexico', label: 'Mexico' },
+                          { value: 'Russia', label: 'Russia' },
+                          { value: 'Spain', label: 'Spain' },
+                          { value: 'Syria', label: 'Syria' },
+                          { value: 'United Kingdom', label: 'United Kingdom' },
+                          {
+                            value: 'United States of America',
+                            label: 'United States of America',
+                          },
+                        ]"
+                      />
                   </div>
                   <div class="mb-4">
                     <label for="status-select"
@@ -537,7 +558,7 @@ onMounted(() => {
                 </div>
                 <div class="avatar-lg p-1">
                   <div class="avatar-title bg-light rounded-circle">
-                    <img :src="event.image_src || require('@/assets/images/users/user-dummy-img.jpg')" id="lead-img"
+                    <img :src="event.image_src || '@/assets/images/users/user-dummy-img.jpg'" id="lead-img"
                       class="avatar-md rounded-circle object-fit-cover">
                   </div>
                 </div>

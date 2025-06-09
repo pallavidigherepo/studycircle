@@ -217,17 +217,25 @@ const changecategory = (val) => {
 
 const direction = ref('asc');
 
-onBeforeMount(() => {
+onBeforeMount(() => { 
   axios.get('https://api-node.themesbrand.website/apps/order')
     .then(response => {
+      // console.log('API response:', response.data);
+
       const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      orders.value = response.data.data.map(order => {
+      const orderData = response.data?.data ?? []; // Use empty array if data is undefined
+
+      orders.value = orderData.map(order => {
         const dd = new Date(order.orderDate);
         order.orderDate = `${dd.getDate()} ${monthNames[dd.getMonth()]}, ${dd.getFullYear()}`;
         return order;
       });
+    })
+    .catch(error => {
+      console.error("Error fetching orders:", error);
     });
 });
+
 
 onMounted(() => {
   const checkAll = document.getElementById("checkAll");
@@ -278,7 +286,7 @@ onMounted(() => {
             </BRow>
           </BCardHeader>
           <BCardBody class="border border-dashed border-end-0 border-start-0">
-            <BFrom>
+            <b-form>
               <BRow class="g-3">
                 <BCol xxl="5" sm="6">
                   <div class="search-box">
@@ -330,7 +338,7 @@ onMounted(() => {
                   </div>
                 </BCol>
               </BRow>
-            </BFrom>
+            </b-form>
           </BCardBody>
           <BCardBody class="pt-0">
             <div>
@@ -482,7 +490,7 @@ onMounted(() => {
     <!-- order modal -->
     <BModal v-model="createModal" hide-footer :title="dataEdit ? 'Edit Order' : 'Add Order'" header-class="p-3 bg-light"
       class="v-modal-custom" centered>
-      <BFrom action="#" id="addform" class="tablelist-form" autocomplete="off">
+      <b-form action="#" id="addform" class="tablelist-form" autocomplete="off">
         <input type="hidden" id="id-field" />
 
         <div class="mb-3">
@@ -589,7 +597,7 @@ onMounted(() => {
             {{ dataEdit ? 'Update' : 'Add Order' }}
           </BButton>
         </div>
-      </BFrom>
+      </b-form>
     </BModal>
 
     <!-- delete modal -->

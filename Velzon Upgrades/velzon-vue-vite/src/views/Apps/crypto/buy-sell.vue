@@ -4,6 +4,7 @@ import { CountTo } from "vue3-count-to";
 import Layout from "@/layouts/main.vue";
 import PageHeader from "@/components/page-header.vue";
 import { buySellList } from "@/common/data";
+import apexchart from "vue3-apexcharts";
 
 // Pagination state
 const posts = ref([...buySellList]);
@@ -12,57 +13,58 @@ const perPage = ref(8);
 const pages = ref([]);
 const searchQuery = ref(null);
 
-// Chart options and series
 const options = {
-  chart: {
-    type: "candlestick",
-    height: 360,
-    toolbar: { show: false },
-  },
-  plotOptions: {
-    candlestick: {
-      colors: {
-        upward: "#0AB39C",
-        downward: "#F06548",
+  chartOptions: {
+    chart: {
+      type: "candlestick",
+      height: 360,
+      toolbar: { show: false },
+    },
+    plotOptions: {
+      candlestick: {
+        colors: {
+          upward: "#0AB39C",
+          downward: "#F06548",
+        },
       },
     },
-  },
-  xaxis: {
-    type: "datetime",
-  },
-  yaxis: {
-    tooltip: { enabled: true },
-    labels: {
-      formatter: value => `$${value}`,
+    xaxis: {
+      type: "datetime",
+    },
+    yaxis: {
+      tooltip: { enabled: true },
+      labels: {
+        formatter: (value) => `$${value}`,
+      },
+    },
+    tooltip: {
+      shared: true,
+      y: [
+        {
+          formatter: (y) => (typeof y !== "undefined" ? y.toFixed(0) : y),
+        },
+        {
+          formatter: (y) => (typeof y !== "undefined" ? `$${y.toFixed(2)}k` : y),
+        },
+        {
+          formatter: (y) => (typeof y !== "undefined" ? `${y.toFixed(0)} Sales` : y),
+        },
+      ],
     },
   },
-  tooltip: {
-    shared: true,
-    y: [
-      {
-        formatter: y => (typeof y !== "undefined" ? y.toFixed(0) : y),
-      },
-      {
-        formatter: y => (typeof y !== "undefined" ? `$${y.toFixed(2)}k` : y),
-      },
-      {
-        formatter: y => (typeof y !== "undefined" ? `${y.toFixed(0)} Sales` : y),
-      },
-    ],
-  },
+  series: [
+    {
+      data: [
+        {
+          x: new Date(1538778600000),
+          y: [6629.81, 6650.5, 6623.04, 6633.33],
+        },
+        // more data...
+      ],
+    },
+  ],
 };
 
-const series = [
-  {
-    data: [
-      {
-        x: new Date(1538778600000),
-        y: [6629.81, 6650.5, 6623.04, 6633.33],
-      },
-      // ... more data points
-    ],
-  },
-];
 
 // Computed pagination
 const displayedPosts = computed(() => {
@@ -207,19 +209,19 @@ const trimWords = (value) => {
           <BCardHeader class="border-0 align-items-center d-flex">
             <BCardTitle class="mb-0 flex-grow-1">Market Graph</BCardTitle>
             <div class="hstack gap-1">
-              <BButton type="button" variant="soft-secondary" size="sm">
+              <BButton type="button" variant="soft-secondary" size="sm" class="material-shadow-none">
                 1H
               </BButton>
-              <BButton type="button" variant="soft-secondary" size="sm">
+              <BButton type="button" variant="soft-secondary" size="sm" class="material-shadow-none">
                 7D
               </BButton>
-              <BButton type="button" variant="soft-secondary" size="sm">
+              <BButton type="button" variant="soft-secondary" size="sm" class="material-shadow-none">
                 1M
               </BButton>
-              <BButton type="button" variant="soft-secondary" size="sm">
+              <BButton type="button" variant="soft-secondary" size="sm" class="material-shadow-none">
                 1Y
               </BButton>
-              <BButton type="button" variant="soft-primary" size="sm">
+              <BButton type="button" variant="soft-primary" size="sm" class="material-shadow-none">
                 ALL
               </BButton>
             </div>
@@ -519,7 +521,7 @@ const trimWords = (value) => {
                   </h6>
                 </td>
                 <td>
-                  <BButton variant="soft-info" size="sm">Trade Now</BButton>
+                  <BButton variant="soft-info" size="sm" class="material-shadow-none">Trade Now</BButton>
                 </td>
               </tr>
             </tbody>

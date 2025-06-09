@@ -5,6 +5,9 @@ import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/autoplay'
 
+import {
+ BButtonGroup
+} from 'bootstrap-vue-next'
 import Layout from '@/layouts/main.vue'
 import PageHeader from '@/components/page-header.vue'
 import Lottie from '@/components/widgets/lottie.vue'
@@ -735,16 +738,16 @@ watch(market, () => {
                 <h5 class="card-title mb-0">My Portfolio Statistics</h5>
               </div>
               <div class="toolbar d-flex align-items-start justify-content-center flex-wrap gap-2">
-                <BButton type="button" variant="soft-primary" size="sm" class="timeline-btn" id="one_month">
+                <BButton type="button" variant="soft-primary" size="sm" class="timeline-btn material-shadow-none" id="one_month">
                   1M
                 </BButton>
-                <BButton type="button" variant="soft-primary" size="sm" class="timeline-btn" id="six_months">
+                <BButton type="button" variant="soft-primary" size="sm" class="timeline-btn material-shadow-none" id="six_months">
                   6M
                 </BButton>
-                <BButton type="button" variant="soft-primary" size="sm" class="timeline-btn" id="one_year">
+                <BButton type="button" variant="soft-primary" size="sm" class="timeline-btn material-shadow-none" id="one_year">
                   1Y
                 </BButton>
-                <BButton type="button" variant="soft-primary" size="sm" class="timeline-btn active" id="all">
+                <BButton type="button" variant="soft-primary" size="sm" class="timeline-btn active material-shadow-none" id="all">
                   ALL
                 </BButton>
               </div>
@@ -769,23 +772,20 @@ watch(market, () => {
           </div>
         </div>
 
-        <swiper class="cryptoSlider" :slidesPerView="1" :loop="false" :spaceBetween="24" :modules="[Autoplay]"
-          :autoplay="{ delay: 2500, disableOnInteraction: false, }"
-          :breakpoints="{ 640: { slidesPerView: 2, }, 1024: { slidesPerView: 3, }, 1600: { slidesPerView: 4, }, }">
+        <swiper class="cryptoSlider" :slidesPerView="1" :loop="false" :spaceBetween="24" :modules="[Autoplay]" :autoplay="{ delay: 2500, disableOnInteraction: false, }" :breakpoints="{ 640: { slidesPerView: 2, }, 1024: { slidesPerView: 3, }, 1600: { slidesPerView: 4, }, }">
           <template v-for="(item, index) of cryptoSlider" :key="index">
             <swiper-slide>
               <BCard no-body>
                 <BCardBody>
                   <div class="float-end">
-                    <BDropdown variant="link" toggle-class="fs-18 arrow-none" menu-class="dropdown-menu-end"
-                      :offset="{ alignmentAxis: -105, crossAxis: 0, mainAxis: 10 }">
+                    <BDropdown variant="link" toggle-class="fs-18" no-caret menu-class="dropdown-menu-end" :offset="{ alignmentAxis: -105, crossAxis: 0, mainAxis: 10 }">
                       <template #button-content><i class="mdi mdi-dots-horizontal"></i></template>
                       <BDropdownItem>View Details</BDropdownItem>
                       <BDropdownItem>Remove Watchlist</BDropdownItem>
                     </BDropdown>
                   </div>
                   <div class="d-flex align-items-center">
-                    <img :src="item.img" class="bg-light rounded-circle p-1 avatar-xs img-fluid" alt />
+                    <img :src="item.img" class="bg-light rounded-circle p-1 avatar-xs img-fluid material-shadow" alt />
                     <h6 class="ms-2 mb-0 fs-14">{{ item.label }}</h6>
                   </div>
                   <BRow class="align-items-end g-0">
@@ -797,8 +797,7 @@ watch(market, () => {
                       </p>
                     </BCol>
                     <BCol cols="6">
-                      <apexchart class="apex-charts" :options="item.chartOptions" height="50" dir="ltr"
-                        :series="item.series.length > 0 ? item.series : []" :key="item.id"></apexchart>
+                      <apexchart class="apex-charts" :options="item.chartOptions" height="50" dir="ltr" :series="item.series.length > 0 ? item.series : []" :key="item.id"></apexchart>
                     </BCol>
                   </BRow>
                 </BCardBody>
@@ -822,7 +821,7 @@ watch(market, () => {
             </div>
           </BCardHeader>
           <BCardBody>
-            <div class="table-responsive table-card">
+            <div class="table-responsive table-card pb-3">
               <table class="table align-middle table-nowrap" id="customerTable">
                 <thead class="table-light text-muted">
                   <tr>
@@ -853,7 +852,7 @@ watch(market, () => {
                     </td>
                     <td>
                       <div class="d-flex align-items-center fw-medium">
-                        <img :src="data.image" alt="" class="avatar-xxs me-2" />
+                        <img :src="data.image" alt="" class="avatar-xxs me-2 material-shadow" />
                         <BLink href="javascript:void(0)" class="currency_name">{{
                           data.currency_name
                         }}</BLink>
@@ -868,9 +867,8 @@ watch(market, () => {
                         'text-danger': data.volume > 1,
                         'text-success': data.volume < 1,
                       }">
-                        <i
-                          :class="{ 'mdi mdi-trending-up align-middle me-1': data.volume < 1, 'mdi mdi-trending-down align-middle me-1': data.volume > 1 }"></i>{{
-                            data.volume }}%
+                        <i :class="{ 'mdi mdi-trending-up align-middle me-1': data.volume < 1, 'mdi mdi-trending-down align-middle me-1': data.volume > 1 }"></i>{{
+                          data.volume }}%
                       </h6>
                     </td>
                   </tr>
@@ -878,8 +876,7 @@ watch(market, () => {
               </table>
               <div class="noresult" v-if="resultQuery.length < 1">
                 <div class="text-center">
-                  <lottie class="avatar-xl" colors="primary:#121331,secondary:#08a88a" :options="defaultOptions"
-                    :height="75" :width="75" />
+                  <lottie class="avatar-xl" colors="primary:#121331,secondary:#08a88a" :options="defaultOptions" :height="75" :width="75" />
                   <h5 class="mt-2">Sorry! No Result Found</h5>
                   <p class="text-muted mb-0">
                     We've searched more than 150+ Currencies We did not find any
@@ -893,8 +890,7 @@ watch(market, () => {
               <div class="pagination-wrap hstack gap-2">
                 <BLink class="page-item pagination-prev" href="#" :disabled="page <= 1" @click="page--"> Previous </BLink>
                 <ul class="pagination listjs-pagination mb-0">
-                  <li :class="{ active: pageNumber == page, disabled: pageNumber == '...', }"
-                    v-for="(pageNumber, index) in pages" :key="index" @click="page = pageNumber">
+                  <li :class="{ active: pageNumber == page, disabled: pageNumber == '...', }" v-for="(pageNumber, index) in pages" :key="index" @click="page = pageNumber">
                     <BLink class="page" href="#" data-i="1" data-page="8">{{ pageNumber }}</BLink>
                   </li>
                 </ul>
@@ -917,8 +913,7 @@ watch(market, () => {
                 <h2>$61,91,967<small class="text-muted fs-14">.29</small></h2>
                 <p class="text-muted mb-0">
                   $25,10,974
-                  <BBadge tag="small" variant="success-subtle" class="bg-success-subtle text-success"><i
-                      class="ri-arrow-right-up-line fs-13 align-bottom"></i>4.37%</BBadge>
+                  <BBadge tag="small" variant="success-subtle" class="bg-success-subtle text-success"><i class="ri-arrow-right-up-line fs-13 align-bottom"></i>4.37%</BBadge>
                 </p>
               </div>
               <div class="flex-shrink-0">
@@ -935,8 +930,7 @@ watch(market, () => {
                 <h2>$2,74,365<small class="text-muted fs-14">.84</small></h2>
                 <p class="text-muted mb-0">
                   $9,10,564
-                  <BBadge tag="small" variant="success-subtle" class="bg-success-subtle text-success"><i
-                      class="ri-arrow-right-up-line fs-13 align-bottom"></i>1.25%</BBadge>
+                  <BBadge tag="small" variant="success-subtle" class="bg-success-subtle text-success"><i class="ri-arrow-right-up-line fs-13 align-bottom"></i>1.25%</BBadge>
                 </p>
               </div>
               <div class="flex-shrink-0">
@@ -953,8 +947,7 @@ watch(market, () => {
                 <h2>$32,67,120<small class="text-muted fs-14">.42</small></h2>
                 <p class="text-muted mb-0">
                   $18,22,730
-                  <BBadge tag="small" variant="success-subtle" class="bg-success-subtle text-success"><i
-                      class="ri-arrow-right-up-line fs-13 align-bottom"></i>8.34%</BBadge>
+                  <BBadge tag="small" variant="success-subtle" class="bg-success-subtle text-success"><i class="ri-arrow-right-up-line fs-13 align-bottom"></i>8.34%</BBadge>
                 </p>
               </div>
               <div class="flex-shrink-0">
@@ -970,7 +963,7 @@ watch(market, () => {
           <BCardBody>
             <div class="d-flex mb-3">
               <div class="flex-shrink-0">
-                <img src="@/assets/images/svg/crypto-icons/btc.svg" alt="" class="avatar-xxs" />
+                <img src="@/assets/images/svg/crypto-icons/btc.svg" alt="" class="avatar-xxs material-shadow" />
               </div>
               <div class="flex-grow-1 ms-3">
                 <h6 class="mb-1">Bitcoin (BTC)</h6>
@@ -982,7 +975,7 @@ watch(market, () => {
             </div>
             <div class="d-flex mb-3">
               <div class="flex-shrink-0">
-                <img src="@/assets/images/svg/crypto-icons/ltc.svg" alt="" class="avatar-xxs" />
+                <img src="@/assets/images/svg/crypto-icons/ltc.svg" alt="" class="avatar-xxs material-shadow" />
               </div>
               <div class="flex-grow-1 ms-3">
                 <h6 class="mb-1">Litecoin (LTC)</h6>
@@ -994,7 +987,7 @@ watch(market, () => {
             </div>
             <div class="d-flex mb-3">
               <div class="flex-shrink-0">
-                <img src="@/assets/images/svg/crypto-icons/xmr.svg" alt="" class="avatar-xxs" />
+                <img src="@/assets/images/svg/crypto-icons/xmr.svg" alt="" class="avatar-xxs material-shadow" />
               </div>
               <div class="flex-grow-1 ms-3">
                 <h6 class="mb-1">Monero (XMR)</h6>
@@ -1006,7 +999,7 @@ watch(market, () => {
             </div>
             <div class="d-flex mb-3">
               <div class="flex-shrink-0">
-                <img src="@/assets/images/svg/crypto-icons/fil.svg" alt="" class="avatar-xxs" />
+                <img src="@/assets/images/svg/crypto-icons/fil.svg" alt="" class="avatar-xxs material-shadow" />
               </div>
               <div class="flex-grow-1 ms-3">
                 <h6 class="mb-1">Filecoin (FIL)</h6>
@@ -1018,7 +1011,7 @@ watch(market, () => {
             </div>
             <div class="d-flex mb-3">
               <div class="flex-shrink-0">
-                <img src="@/assets/images/svg/crypto-icons/dot.svg" alt="" class="avatar-xxs" />
+                <img src="@/assets/images/svg/crypto-icons/dot.svg" alt="" class="avatar-xxs material-shadow" />
               </div>
               <div class="flex-grow-1 ms-3">
                 <h6 class="mb-1">Polkadot (DOT)</h6>
