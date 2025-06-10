@@ -121,12 +121,14 @@ const toggleCollapse = () => {
                                 class="mdi mdi-cards-heart fs-16"></i></BButton>
                     </div>
                     <BCardBody>
-                        <p class="fw-medium mb-0 float-end"><i class="mdi mdi-heart text-danger align-middle"></i>
+                        <div>
+                        <p class="fw-medium mb-0"><i class="mdi mdi-heart text-danger align-middle"></i>
                             37.41k </p>
                         <h5 class="mb-1">
                             <router-link to="/apps/nft-item-detail">Walking on air</router-link>
                         </h5>
                         <p class="text-muted mb-0">Artwork</p>
+                        </div>
                     </BCardBody>
                     <BCardFooter class="border-top border-top-dashed">
                         <div class="d-flex align-items-center">
@@ -155,7 +157,7 @@ const toggleCollapse = () => {
                                 class="mdi mdi-cards-heart fs-16"></i></BButton>
                     </div>
                     <BCardBody>
-                        <p class="fw-medium mb-0 float-end"><i class="mdi mdi-heart text-danger align-middle"></i>
+                        <p class="fw-medium mb-0"><i class="mdi mdi-heart text-danger align-middle"></i>
                             19.29k </p>
                         <h5 class="mb-1">
                             <router-link to="/apps/nft-item-detail">Creative filtered portrait</router-link>
@@ -189,7 +191,7 @@ const toggleCollapse = () => {
                                 class="mdi mdi-cards-heart fs-16"></i></BButton>
                     </div>
                     <BCardBody>
-                        <p class="fw-medium mb-0 float-end"><i class="mdi mdi-heart text-danger align-middle"></i>
+                        <p class="fw-medium mb-0"><i class="mdi mdi-heart text-danger align-middle"></i>
                             23.63k </p>
                         <h5 class="mb-1">
                             <router-link to="/apps/nft-item-detail">The Chirstoper</router-link>
@@ -224,7 +226,7 @@ const toggleCollapse = () => {
                                 class="mdi mdi-cards-heart fs-16"></i></BButton>
                     </div>
                     <BCardBody>
-                        <p class="fw-medium mb-0 float-end"><i class="mdi mdi-heart text-danger align-middle"></i>
+                        <p class="fw-medium mb-0"><i class="mdi mdi-heart text-danger align-middle"></i>
                             15.93k </p>
                         <h5 class="mb-1">
                             <router-link to="/apps/nft-item-detail">Evolved Reality</router-link>
@@ -254,11 +256,11 @@ const toggleCollapse = () => {
                         </div>
                     </div>
                     <div class="bookmark-icon position-absolute top-0 end-0 p-2">
-                        <BButton  class="btn btn-icon" data-bs-toggle="button" aria-pressed="true"><i
+                        <BButton class="btn btn-icon" data-bs-toggle="button" aria-pressed="true"><i
                                 class="mdi mdi-cards-heart fs-16"></i></BButton>
                     </div>
                     <BCardBody>
-                        <p class="fw-medium mb-0 float-end"><i class="mdi mdi-heart text-danger align-middle"></i>
+                        <p class="fw-medium mb-0"><i class="mdi mdi-heart text-danger align-middle"></i>
                             14.85k </p>
                         <h5 class="mb-1">
                             <router-link to="/apps/nft-item-detail">Abstract face painting</router-link>
@@ -292,7 +294,7 @@ const toggleCollapse = () => {
                                 class="mdi mdi-cards-heart fs-16"></i></BButton>
                     </div>
                     <BCardBody>
-                        <p class="fw-medium mb-0 float-end"><i class="mdi mdi-heart text-danger align-middle"></i>
+                        <p class="fw-medium mb-0"><i class="mdi mdi-heart text-danger align-middle"></i>
                             64.10k </p>
                         <h5 class="mb-1">
                             <router-link to="/apps/nft-item-detail">Long-tailed macaque</router-link>
@@ -326,7 +328,7 @@ const toggleCollapse = () => {
                                 class="mdi mdi-cards-heart fs-16"></i></BButton>
                     </div>
                     <BCardBody>
-                        <p class="fw-medium mb-0 float-end"><i class="mdi mdi-heart text-danger align-middle"></i>
+                        <p class="fw-medium mb-0"><i class="mdi mdi-heart text-danger align-middle"></i>
                             36.42k </p>
                         <h5 class="mb-1">
                             <router-link to="/apps/nft-item-detail">Robotic Body Art</router-link>
@@ -361,7 +363,7 @@ const toggleCollapse = () => {
                                 class="mdi mdi-cards-heart fs-16"></i></BButton>
                     </div>
                     <BCardBody>
-                        <p class="fw-medium mb-0 float-end"><i class="mdi mdi-heart text-danger align-middle"></i> 94.1k
+                        <p class="fw-medium mb-0"><i class="mdi mdi-heart text-danger align-middle"></i> 94.1k
                         </p>
                         <h5 class="mb-1">
                             <router-link to="/apps/nft-item-detail">Trendy Fashion Portraits</router-link>
@@ -395,7 +397,7 @@ const toggleCollapse = () => {
                                 class="mdi mdi-cards-heart fs-16"></i></BButton>
                     </div>
                     <BCardBody>
-                        <p class="fw-medium mb-0 float-end"><i class="mdi mdi-heart text-danger align-middle"></i>
+                        <p class="fw-medium mb-0"><i class="mdi mdi-heart text-danger align-middle"></i>
                             34.12k </p>
                         <h5 class="mb-1">
                             <router-link to="/apps/nft-item-detail">Smillevers Crypto</router-link>
@@ -430,7 +432,7 @@ const toggleCollapse = () => {
                                 class="mdi mdi-cards-heart fs-16"></i></BButton>
                     </div>
                     <BCardBody>
-                        <p class="fw-medium mb-0 float-end"><i class="mdi mdi-heart text-danger align-middle"></i> 8.42k
+                        <p class="fw-medium mb-0"><i class="mdi mdi-heart text-danger align-middle"></i> 8.42k
                         </p>
                         <h5 class="mb-1">
                             <router-link to="/apps/nft-item-detail">Patterns arts & culture</router-link>
@@ -450,7 +452,7 @@ const toggleCollapse = () => {
             </BCol>
         </BRow>
         <div class="text-center mb-3">
-            <BButton variant="link" class="text-success mt-2"><i
+            <BButton variant="link" class="text-success mt-2 material-shadow-none"><i
                     class="mdi mdi-loading mdi-spin fs-20 align-middle me-2"></i> Load more </BButton>
         </div>
     </Layout>

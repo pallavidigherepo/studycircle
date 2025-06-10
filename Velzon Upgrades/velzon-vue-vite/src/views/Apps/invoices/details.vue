@@ -3,6 +3,8 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import Layout from '@/layouts/main.vue';
 import PageHeader from '@/components/page-header.vue';
+import { useRoute } from 'vue-router';
+const route = useRoute();
 
 // Reactive state
 const amount = ref(875);
@@ -52,8 +54,8 @@ const website = ref("www.themesbrand.com");
 
 // Fetch data on component mount
 onMounted(() => {
-  if (useRoute().params.id) {
-    axios.get(`https://api-node.themesbrand.website/apps/invoice/${useRoute().params.id}`)
+  if (route.params.id) {
+    axios.get(`https://api-node.themesbrand.website/apps/invoice/${route.params.id}`)
       .then((response) => {
         const data = response.data.data;
         const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

@@ -49,7 +49,7 @@ import PageHeader from "@/components/page-header.vue";
                                 </p>
                             </div>
                             <BDropdown class="float-end" variant="button"
-                                toggle-class="btn btn-ghost-primary btn-icon arrow-none" size="sm" no-caret
+                                toggle-class="btn btn-ghost-primary btn-icon" size="sm" no-caret
                                 :offset="{ alignmentAxis: -130, crossAxis: 0, mainAxis: 10 }">
                                 <template #button-content> <i class="ri-more-fill align-middle fs-16"></i> </template>
                                 <BDropdownItem>Share</BDropdownItem>
@@ -76,7 +76,7 @@ import PageHeader from "@/components/page-header.vue";
                             </div>
                             <div>
                                 <BDropdown class="float-end" variant="button"
-                                    toggle-class="btn btn-ghost-primary btn-icon arrow-none" size="sm" no-caret
+                                    toggle-class="btn btn-ghost-primary btn-icon" size="sm" no-caret
                                     :offset="{ alignmentAxis: -130, crossAxis: 0, mainAxis: 10 }">
                                     <template #button-content> <i class="ri-more-fill align-middle fs-16"></i> </template>
                                     <BDropdownItem>Share</BDropdownItem>
@@ -103,7 +103,7 @@ import PageHeader from "@/components/page-header.vue";
                             </div>
                             <div>
                                 <BDropdown class="float-end" variant="button"
-                                    toggle-class="btn btn-ghost-primary btn-icon arrow-none" size="sm" no-caret
+                                    toggle-class="btn btn-ghost-primary btn-icon" size="sm" no-caret
                                     :offset="{ alignmentAxis: -130, crossAxis: 0, mainAxis: 10 }">
                                     <template #button-content> <i class="ri-more-fill align-middle fs-16"></i> </template>
                                     <BDropdownItem>Share</BDropdownItem>
@@ -131,7 +131,7 @@ import PageHeader from "@/components/page-header.vue";
                             </div>
                             <div>
                                 <BDropdown class="float-end" variant="button"
-                                    toggle-class="btn btn-ghost-primary btn-icon arrow-none" size="sm" no-caret
+                                    toggle-class="btn btn-ghost-primary btn-icon" size="sm" no-caret
                                     :offset="{ alignmentAxis: -130, crossAxis: 0, mainAxis: 10 }">
                                     <template #button-content> <i class="ri-more-fill align-middle fs-16"></i> </template>
                                     <BDropdownItem>Share</BDropdownItem>
@@ -159,7 +159,7 @@ import PageHeader from "@/components/page-header.vue";
                             </div>
                             <div>
                                 <BDropdown class="float-end" variant="button"
-                                    toggle-class="btn btn-ghost-primary btn-icon arrow-none" size="sm" no-caret
+                                    toggle-class="btn btn-ghost-primary btn-icon" size="sm" no-caret
                                     :offset="{ alignmentAxis: -130, crossAxis: 0, mainAxis: 10 }">
                                     <template #button-content> <i class="ri-more-fill align-middle fs-16"></i> </template>
                                     <BDropdownItem>Share</BDropdownItem>
@@ -186,7 +186,7 @@ import PageHeader from "@/components/page-header.vue";
                             </div>
                             <div>
                                 <BDropdown class="float-end" variant="button"
-                                    toggle-class="btn btn-ghost-primary btn-icon arrow-none" size="sm" no-caret
+                                    toggle-class="btn btn-ghost-primary btn-icon" size="sm" no-caret
                                     :offset="{ alignmentAxis: -130, crossAxis: 0, mainAxis: 10 }">
                                     <template #button-content> <i class="ri-more-fill align-middle fs-16"></i> </template>
                                     <BDropdownItem>Share</BDropdownItem>
@@ -213,7 +213,7 @@ import PageHeader from "@/components/page-header.vue";
                             </div>
                             <div>
                                 <BDropdown class="float-end" variant="button"
-                                    toggle-class="btn btn-ghost-primary btn-icon arrow-none" size="sm" no-caret
+                                    toggle-class="btn btn-ghost-primary btn-icon" size="sm" no-caret
                                     :offset="{ alignmentAxis: -130, crossAxis: 0, mainAxis: 10 }">
                                     <template #button-content> <i class="ri-more-fill align-middle fs-16"></i> </template>
                                     <BDropdownItem>Share</BDropdownItem>
@@ -240,7 +240,7 @@ import PageHeader from "@/components/page-header.vue";
                             </div>
                             <div>
                                 <BDropdown class="float-end" variant="button"
-                                    toggle-class="btn btn-ghost-primary btn-icon arrow-none" size="sm" no-caret
+                                    toggle-class="btn btn-ghost-primary btn-icon" size="sm" no-caret
                                     :offset="{ alignmentAxis: -130, crossAxis: 0, mainAxis: 10 }">
                                     <template #button-content> <i class="ri-more-fill align-middle fs-16"></i> </template>
                                     <BDropdownItem>Share</BDropdownItem>

@@ -223,29 +223,42 @@ watch(invoiceList, setPages);
 
 // Lifecycle Hooks
 onMounted(() => {
-  axios.get('https://api-node.themesbrand.website/apps/invoice').then((data) => {
-    invoiceList.value = [];
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    data.data.data.forEach(row => {
-      var dd = new Date(row.date);
-      var hours = dd.getHours();
-      var minutes = dd.getMinutes();
-      var ampm = hours >= 12 ? 'PM' : 'AM';
-      hours = hours % 12;
-      hours = hours ? hours : 12; // the hour '0' should be '12'
-      hours = hours < 10 ? '0' + hours : hours;
-      minutes = minutes < 10 ? '0' + minutes : minutes;
-      var strTime = hours + ':' + minutes + ' ' + ampm;
-      var dt = dd.getDate() < 10 ? '0' + dd.getDate() : dd.getDate();
-      row.date = dt + " " + monthNames[dd.getMonth()] + ", " + dd.getFullYear();
-      row.time = strTime;
-      row.image_src = 'https://api-node.themesbrand.website/images/users/' + row.img;
-      invoiceList.value.push(row);
+  axios.get('https://api-node.themesbrand.website/apps/invoice')
+    .then((res) => {
+      invoiceList.value = [];
+
+      const invoiceData = res?.data?.data?.data;
+      if (!Array.isArray(invoiceData)) {
+        console.error("Invalid invoice data:", res);
+        return;
+      }
+
+      const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+      invoiceData.forEach(row => {
+        const dd = new Date(row.date);
+        let hours = dd.getHours();
+        let minutes = dd.getMinutes();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12 || 12;
+        hours = hours < 10 ? '0' + hours : hours;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        const strTime = `${hours}:${minutes} ${ampm}`;
+        const dt = dd.getDate() < 10 ? '0' + dd.getDate() : dd.getDate();
+
+        row.date = `${dt} ${monthNames[dd.getMonth()]}, ${dd.getFullYear()}`;
+        row.time = strTime;
+        row.image_src = 'https://api-node.themesbrand.website/images/users/' + row.img;
+
+        invoiceList.value.push(row);
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching invoice list:", error);
     });
-  }).catch((er) => {
-    console.log(er);
-  });
 });
+
+
 </script>
 
 

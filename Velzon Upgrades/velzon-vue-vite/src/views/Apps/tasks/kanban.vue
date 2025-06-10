@@ -3,6 +3,9 @@ import { ref } from "vue";
 import { VueDraggableNext } from "vue-draggable-next";
 import flatPickr from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
+import {
+  BForm
+} from 'bootstrap-vue-next'
 
 import Layout from "@/layouts/main.vue";
 import PageHeader from "@/components/page-header.vue";
@@ -96,24 +99,29 @@ const addNewTask = () => {
                     </BCol>
                     <div class="col-auto ms-sm-auto">
                         <div class="avatar-group" id="newMembar">
-                            <BLink href="javascript: void(0);" class="avatar-group-item" v-b-tooltip.hover title="Nancy">
+                            <BLink href="javascript: void(0);" class="avatar-group-item material-shadow" v-b-tooltip.hover
+                                title="Nancy">
                                 <img src="@/assets/images/users/avatar-5.jpg" alt="" class="rounded-circle avatar-xs">
                             </BLink>
-                            <BLink href="javascript: void(0);" class="avatar-group-item" v-b-tooltip.hover title="Frank">
+                            <BLink href="javascript: void(0);" class="avatar-group-item material-shadow" v-b-tooltip.hover
+                                title="Frank">
                                 <img src="@/assets/images/users/avatar-3.jpg" alt="" class="rounded-circle avatar-xs">
                             </BLink>
-                            <BLink href="javascript: void(0);" class="avatar-group-item" v-b-tooltip.hover title="Tonya">
+                            <BLink href="javascript: void(0);" class="avatar-group-item material-shadow" v-b-tooltip.hover
+                                title="Tonya">
                                 <img src="@/assets/images/users/avatar-10.jpg" alt="" class="rounded-circle avatar-xs">
                             </BLink>
-                            <BLink href="javascript: void(0);" class="avatar-group-item" v-b-tooltip.hover title="Thomas">
+                            <BLink href="javascript: void(0);" class="avatar-group-item material-shadow" v-b-tooltip.hover
+                                title="Thomas">
                                 <img src="@/assets/images/users/avatar-8.jpg" alt="" class="rounded-circle avatar-xs">
                             </BLink>
-                            <BLink href="javascript: void(0);" class="avatar-group-item" v-b-tooltip.hover title="Herbert">
+                            <BLink href="javascript: void(0);" class="avatar-group-item material-shadow" v-b-tooltip.hover
+                                title="Herbert">
                                 <img src="@/assets/images/users/avatar-2.jpg" alt="" class="rounded-circle avatar-xs">
                             </BLink>
                             <BLink class="avatar-group-item" @click="modalShow = !modalShow">
                                 <div class="avatar-xs">
-                                    <div class="avatar-title rounded-circle">
+                                    <div class="avatar-title rounded-circle material-shadow">
                                         +
                                     </div>
                                 </div>
@@ -133,7 +141,7 @@ const addNewTask = () => {
                         </h6>
                     </div>
                     <div class="flex-shrink-0">
-                        <BDropdown variant="link" class="card-header-dropdown" toggle-class="p-0 arrow-none"
+                        <BDropdown variant="link" class="card-header-dropdown" toggle-class="p-0" no-caret
                             menu-class="dropdown-menu-end" :offset="{ alignmentAxis: -70, crossAxis: 0, mainAxis: 10 }">
                             <template #button-content><span class="fw-medium text-muted fs-12">Priority<i
                                         class="mdi mdi-chevron-down ms-1"></i></span></template>
@@ -151,7 +159,7 @@ const addNewTask = () => {
                                         <h6 class="fs-15 mb-0 flex-grow-1 text-truncate">
                                             <router-link to="/apps/tasks-details">{{ data.title }}</router-link>
                                         </h6>
-                                        <BDropdown variant="link" toggle-class="text-muted p-0 arrow-none"
+                                        <BDropdown variant="link" toggle-class="text-muted p-0" no-caret
                                             :offset="{ alignmentAxis: -130, crossAxis: 0, mainAxis: 10 }">
                                             <template #button-content><i class="ri-more-fill "></i></template>
                                             <BDropdownItem to="/apps/tasks-details"><i
@@ -188,7 +196,8 @@ const addNewTask = () => {
                                         <div class="flex-shrink-0">
                                             <div class="avatar-group">
                                                 <BLink href="javascript: void(0);" v-for="(item, index) of data.users"
-                                                    :key="index" class="avatar-group-item" v-b-tooltip.hover title="Alexis">
+                                                    :key="index" class="avatar-group-item material-shadow" v-b-tooltip.hover
+                                                    title="Alexis">
                                                     <img :src="item" alt="" class="rounded-circle avatar-xxs">
                                                 </BLink>
                                             </div>
@@ -235,7 +244,7 @@ const addNewTask = () => {
                         </h6>
                     </div>
                     <div class="flex-shrink-0">
-                        <BDropdown variant="link" class="card-header-dropdown" toggle-class="p-0 arrow-none"
+                        <BDropdown variant="link" class="card-header-dropdown" toggle-class="p-0" no-caret
                             menu-class="dropdown-menu-end" :offset="{ alignmentAxis: -70, crossAxis: 0, mainAxis: 10 }">
                             <template #button-content><span class="fw-medium text-muted fs-12">Priority<i
                                         class="mdi mdi-chevron-down ms-1"></i></span></template>
@@ -253,7 +262,7 @@ const addNewTask = () => {
                                         <h6 class="fs-15 mb-0 flex-grow-1 text-truncate">
                                             <router-link to="/apps/tasks-details">{{ data.title }}</router-link>
                                         </h6>
-                                        <BDropdown variant="link" toggle-class="text-muted p-0 arrow-none"
+                                        <BDropdown variant="link" toggle-class="text-muted p-0" no-caret
                                             :offset="{ alignmentAxis: -130, crossAxis: 0, mainAxis: 10 }">
                                             <template #button-content><i class="ri-more-fill "></i></template>
                                             <BDropdownItem to="/apps/tasks-details"><i
@@ -337,7 +346,7 @@ const addNewTask = () => {
                         </h6>
                     </div>
                     <div class="flex-shrink-0">
-                        <BDropdown variant="link" class="card-header-dropdown" toggle-class="p-0 arrow-none"
+                        <BDropdown variant="link" class="card-header-dropdown" toggle-class="p-0" no-caret
                             menu-class="dropdown-menu-end" :offset="{ alignmentAxis: -70, crossAxis: 0, mainAxis: 10 }">
                             <template #button-content><span class="fw-medium text-muted fs-12">Priority<i
                                         class="mdi mdi-chevron-down ms-1"></i></span></template>
@@ -355,7 +364,7 @@ const addNewTask = () => {
                                         <h6 class="fs-15 mb-0 flex-grow-1 text-truncate">
                                             <router-link to="/apps/tasks-details">{{ data.title }}</router-link>
                                         </h6>
-                                        <BDropdown variant="link" toggle-class="text-muted p-0 arrow-none"
+                                        <BDropdown variant="link" toggle-class="text-muted p-0" no-caret
                                             :offset="{ alignmentAxis: -130, crossAxis: 0, mainAxis: 10 }">
                                             <template #button-content><i class="ri-more-fill "></i></template>
                                             <BDropdownItem to="/apps/tasks-details"><i
@@ -439,7 +448,7 @@ const addNewTask = () => {
                         </h6>
                     </div>
                     <div class="flex-shrink-0">
-                        <BDropdown variant="link" class="card-header-dropdown" toggle-class="p-0 arrow-none"
+                        <BDropdown variant="link" class="card-header-dropdown" toggle-class="p-0" no-caret
                             menu-class="dropdown-menu-end" :offset="{ alignmentAxis: -70, crossAxis: 0, mainAxis: 10 }">
                             <template #button-content><span class="fw-medium text-muted fs-12">Priority<i
                                         class="mdi mdi-chevron-down ms-1"></i></span></template>
@@ -457,7 +466,7 @@ const addNewTask = () => {
                                         <h6 class="fs-15 mb-0 flex-grow-1 text-truncate">
                                             <router-link to="/apps/tasks-details">{{ data.title }}</router-link>
                                         </h6>
-                                        <BDropdown variant="link" toggle-class="text-muted p-0 arrow-none"
+                                        <BDropdown variant="link" toggle-class="text-muted p-0" no-caret
                                             :offset="{ alignmentAxis: -130, crossAxis: 0, mainAxis: 10 }">
                                             <template #button-content><i class="ri-more-fill "></i></template>
                                             <BDropdownItem to="/apps/tasks-details"><i
@@ -541,7 +550,7 @@ const addNewTask = () => {
                         </h6>
                     </div>
                     <div class="flex-shrink-0">
-                        <BDropdown variant="link" class="card-header-dropdown" toggle-class="p-0 arrow-none"
+                        <BDropdown variant="link" class="card-header-dropdown" toggle-class="p-0" no-caret
                             menu-class="dropdown-menu-end" :offset="{ alignmentAxis: -70, crossAxis: 0, mainAxis: 10 }">
                             <template #button-content><span class="fw-medium text-muted fs-12">Priority<i
                                         class="mdi mdi-chevron-down ms-1"></i></span></template>
@@ -559,7 +568,7 @@ const addNewTask = () => {
                                         <h6 class="fs-15 mb-0 flex-grow-1 text-truncate">
                                             <router-link to="/apps/tasks-details">{{ data.title }}</router-link>
                                         </h6>
-                                        <BDropdown variant="link" toggle-class="text-muted p-0 arrow-none"
+                                        <BDropdown variant="link" toggle-class="text-muted p-0" no-caret
                                             :offset="{ alignmentAxis: -130, crossAxis: 0, mainAxis: 10 }">
                                             <template #button-content><i class="ri-more-fill "></i></template>
                                             <BDropdownItem to="/apps/tasks-details"><i
@@ -643,7 +652,7 @@ const addNewTask = () => {
                         </h6>
                     </div>
                     <div class="flex-shrink-0">
-                        <BDropdown variant="link" class="card-header-dropdown" toggle-class="p-0 arrow-none"
+                        <BDropdown variant="link" class="card-header-dropdown" toggle-class="p-0" no-caret
                             menu-class="dropdown-menu-end" :offset="{ alignmentAxis: -70, crossAxis: 0, mainAxis: 10 }">
                             <template #button-content><span class="fw-medium text-muted fs-12">Priority<i
                                         class="mdi mdi-chevron-down ms-1"></i></span></template>
@@ -661,7 +670,7 @@ const addNewTask = () => {
                                         <h6 class="fs-15 mb-0 flex-grow-1 text-truncate">
                                             <router-link to="/apps/tasks-details">{{ data.title }}</router-link>
                                         </h6>
-                                        <BDropdown variant="link" toggle-class="text-muted p-0 arrow-none"
+                                        <BDropdown variant="link" toggle-class="text-muted p-0" no-caret
                                             :offset="{ alignmentAxis: -130, crossAxis: 0, mainAxis: 10 }">
                                             <template #button-content><i class="ri-more-fill "></i></template>
                                             <BDropdownItem to="/apps/tasks-details"><i
@@ -742,7 +751,7 @@ const addNewTask = () => {
 
         <BModal v-model="modalShow" header-class="p-3 bg-warning-subtle" content-class="border-0" hide-footer
             title="Add Member" class="v-modal-custom">
-            <BFrom>
+            <b-form>
                 <BRow class="g-3">
                     <BCol lg="12">
                         <label for="submissionidInput" class="form-label">Submission ID</label>
@@ -783,7 +792,7 @@ const addNewTask = () => {
                         <input type="email" class="form-control" id="emailInput" placeholder="Email">
                     </BCol>
                 </BRow>
-            </BFrom>
+            </b-form>
             <div class="modal-footer v-modal-footer">
                 <BButton type="button" variant="light" @click="modalShow = false"><i
                         class="ri-close-line align-bottom me-1"></i> Close</BButton>
@@ -793,7 +802,7 @@ const addNewTask = () => {
 
         <BModal v-model="modalShow1" header-class="p-3 bg-info-subtle" content-class="border-0" hide-footer
             title="Add Board" class="v-modal-custom" centered>
-            <BFrom action="#">
+            <b-form action="#">
                 <BRow>
                     <BCol lg="12">
                         <label for="boardName" class="form-label">Board Name</label>
@@ -806,12 +815,12 @@ const addNewTask = () => {
                         </div>
                     </div>
                 </BRow>
-            </BFrom>
+            </b-form>
         </BModal>
 
         <BModal v-model="modalShow2" header-class="p-3 bg-info-subtle" content-class="border-0" hide-footer
             title="Create New Task" class="v-modal-custom" size="lg" centered>
-            <BFrom action="#">
+            <b-form action="#">
                 <BRow class="g-3">
                     <BCol lg="12">
                         <label for="projectName" class="form-label">Project Name</label>
@@ -970,7 +979,7 @@ const addNewTask = () => {
                         </div>
                     </div>
                 </BRow>
-            </BFrom>
+            </b-form>
         </BModal>
 
         <BModal v-model="modalShow3" id="deleteTask" modal-class="zoomIn" hide-footer class="v-modal-custom" centered>
@@ -985,8 +994,7 @@ const addNewTask = () => {
             <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
                 <BButton type="button" variant="light" class="w-sm" data-bs-dismiss="modal">Close</BButton>
                 <BButton type="button" variant="danger" class="w-sm" id="delete-record">Yes, Delete It!</BButton>
-            </div>
-        </BModal>
+        </div>
+    </BModal>
 
-    </Layout>
-</template>
+</Layout></template>

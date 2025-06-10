@@ -904,7 +904,7 @@ onMounted(() => {
                 </div>
                 <div class="ck-editor-reverse">
                     <div id="email-editor"></div>
-                    <Ckeditor v-model="editorData" :editor="editor" id="email-editor"></Ckeditor>
+                    <Ckeditor v-model="editorData" :editor="editor" id="email-editor"/>
                 </div>
 
             </div>

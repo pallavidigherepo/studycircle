@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, nextTick } from 'vue';
 import axios from 'axios';
 import Multiselect from '@vueform/multiselect';
 import '@vueform/multiselect/themes/default.css';
@@ -32,20 +32,175 @@ const productvalue = ref(null);
 const newproductvalue = ref(['', '']);
 const productids = ref([]);
 
-// Methods
+// Watcher to track changes in selected product
+watch(productvalue, (value) => {
+  if (Array.isArray(newproductvalue.value)) {
+    newproductvalue.value.forEach((e) => {
+      console.log('the value', e);
+    });
+  }
+
+  const priceInput = document.getElementById('productprice');
+  if (priceInput) priceInput.value = '';
+
+  if (value) {
+    const result = allproductdata.value.findIndex((o) => o.name === value);
+    if (result !== -1 && allproductdata.value[result]) {
+      if (priceInput) priceInput.value = allproductdata.value[result].price;
+      productids.value.push(allproductdata.value[result]._id);
+    }
+  }
+});
+
+// Load product list
+onMounted(() => {
+  axios.get('https://api-node.themesbrand.website/apps/product')
+    .then((res) => {
+      allproductdata.value = res.data.data;
+      products.value = res.data.data.map(item => ({
+        value: item.name,
+        label: item.name
+      }));
+    })
+    .catch(console.error);
+
+  initRemoveButtons();
+});
+
+// Select product and assign price
 const selectedv = (val) => {
   if (val) {
-    let result = allproductdata.value.findIndex((o) => o.name === val);
-    let darray = [...newproductvalue.value];
-    for (let i = 1; i <= darray.length; i++) {
-      if (darray[i - 1] === val) {
-        document.getElementById('productprice' + i).value = allproductdata.value[result].price;
-      }
+    const index = allproductdata.value.findIndex((o) => o.name === val);
+    if (index !== -1) {
+      const product = allproductdata.value[index];
+      newproductvalue.value.forEach((item, i) => {
+        if (item === val) {
+          const input = document.getElementById('productprice' + (i + 1));
+          if (input) input.value = product.price;
+        }
+      });
+      productids.value.push(product._id);
     }
-    productids.value.push(allproductdata.value[result]._id);
   }
 };
 
+// Add a new product row
+const new_link = () => {
+  newproductvalue.value.push('');
+  count.value++;
+  nextTick(() => {
+    initRemoveButtons();
+  });
+};
+
+// Init remove buttons
+const initRemoveButtons = () => {
+  document.querySelectorAll('.product-removal a').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      removeItem(e);
+      resetRow();
+      count.value--;
+    });
+  });
+};
+
+// Remove row and recalculate
+const removeItem = (e) => {
+  const row = e.target.closest('tr');
+  if (row) row.remove();
+  recalculateCart();
+};
+
+// Reassign row numbers after removal
+const resetRow = () => {
+  const rows = document.getElementById('newlink')?.querySelectorAll('tr') || [];
+  rows.forEach((row, i) => {
+    row.querySelector('.product-id').innerHTML = i + 1;
+  });
+};
+
+// Quantity increase/decrease and cart recalculation
+const isData = () => {
+  const plusBtns = document.getElementsByClassName('plus');
+  const minusBtns = document.getElementsByClassName('minus');
+
+  Array.from(plusBtns).forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const input = btn.previousElementSibling;
+      if (input && parseInt(input.value) < 10) {
+        input.value++;
+        updateRowPrice(btn);
+      }
+    });
+  });
+
+  Array.from(minusBtns).forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const input = btn.nextElementSibling;
+      if (input && parseInt(input.value) > 1) {
+        input.value--;
+        updateRowPrice(btn);
+      }
+    });
+  });
+};
+
+// Update row line price and cart
+const updateRowPrice = (el) => {
+  const quantity = el.parentElement.querySelector('.product-quantity').value;
+  const price = el.parentElement.parentElement.previousElementSibling.querySelector('.product-price').value;
+  const priceEl = el.parentElement.parentElement.nextElementSibling.querySelector('.product-line-price');
+  updateQuantity(quantity, price, priceEl);
+};
+
+// Calculate line price
+const updateQuantity = (qty, price, outputEl) => {
+  const linePrice = (qty * price).toFixed(2);
+  if (outputEl) outputEl.value = paymentSign.value + linePrice;
+  recalculateCart();
+};
+
+// Manual amount input keyup
+const amountKeyup = () => {
+  Array.from(document.getElementsByClassName('product-price')).forEach((input) => {
+    input.addEventListener('keyup', (e) => {
+      const price = e.target.value;
+      const qty = input.parentElement.nextElementSibling.querySelector('.product-quantity').value;
+      const priceEl = input.parentElement.nextElementSibling.nextElementSibling.querySelector('.product-line-price');
+      updateQuantity(qty, price, priceEl);
+    });
+  });
+};
+
+// Calculate totals
+const recalculateCart = () => {
+  let subtotal = 0;
+  nextTick(() => {
+    Array.from(document.getElementsByClassName('product')).forEach((row) => {
+      Array.from(row.getElementsByClassName('product-line-price')).forEach((priceEl) => {
+        if (priceEl.value) {
+          subtotal += parseFloat(priceEl.value.slice(1));
+        }
+      });
+    });
+
+    const tax = subtotal * taxRate.value;
+    const discount = subtotal * discountRate.value;
+    const shipping = subtotal > 0 ? shippingRate.value : 0;
+    const total = subtotal + tax + shipping - discount;
+
+    document.getElementById('cart-subtotal').value = paymentSign.value + subtotal.toFixed(2);
+    document.getElementById('cart-tax').value = paymentSign.value + tax.toFixed(2);
+    document.getElementById('cart-shipping').value = paymentSign.value + shipping.toFixed(2);
+    document.getElementById('cart-total').value = paymentSign.value + total.toFixed(2);
+    document.getElementById('cart-discount').value = paymentSign.value + discount.toFixed(2);
+    document.getElementById('totalamountInput').value = paymentSign.value + total.toFixed(2);
+    document.getElementById('amountTotalPay').value = paymentSign.value + total.toFixed(2);
+  });
+};
+
+// Create invoice request
 const createinvoice = () => {
   const data = {
     company_address: document.getElementById('companyAddress').value,
@@ -75,175 +230,13 @@ const createinvoice = () => {
     notes: document.getElementById('exampleFormControlTextarea1').value,
     productDetails: productids.value,
   };
+
   axios.post('https://api-node.themesbrand.website/apps/invoice', data)
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((er) => {
-      console.log(er);
-    });
+    .then((res) => console.log(res))
+    .catch((err) => console.error(err));
 };
-
-const new_link = () => {
-  newproductvalue.value[count.value] = '';
-  count.value++;
-  setTimeout(() => {
-    remove();
-  }, 400);
-};
-
-const remove = () => {
-  document.querySelectorAll('.product-removal a').forEach((el) => {
-    el.addEventListener('click', (e) => {
-      removeItem(e);
-      resetRow();
-      count.value--;
-    });
-  });
-};
-
-const resetRow = () => {
-  document.getElementById('newlink').querySelectorAll('tr').forEach((subItem, index) => {
-    const incid = index + 1;
-    subItem.querySelector('.product-id').innerHTML = incid;
-  });
-};
-
-const removeItem = (removeButton) => {
-  removeButton.target.closest('tr').remove();
-  recalculateCart();
-};
-
-const recalculateCart = () => {
-  let subtotal = 0;
-  setTimeout(() => {
-    Array.prototype.forEach.call(document.getElementsByClassName('product'), (item) => {
-      Array.prototype.forEach.call(item.getElementsByClassName('product-line-price'), (e) => {
-        if (e.value) {
-          subtotal += parseFloat(e.value.slice(1));
-        }
-      });
-    });
-    const tax = subtotal * taxRate.value;
-    const discount = subtotal * discountRate.value;
-    const shipping = subtotal > 0 ? shippingRate.value : 0;
-    const total = subtotal + tax + shipping - discount;
-
-    document.getElementById('cart-subtotal').value = paymentSign.value + subtotal.toFixed(2);
-    document.getElementById('cart-tax').value = paymentSign.value + tax.toFixed(2);
-    document.getElementById('cart-shipping').value = paymentSign.value + shipping.toFixed(2);
-    document.getElementById('cart-total').value = paymentSign.value + total.toFixed(2);
-    document.getElementById('cart-discount').value = paymentSign.value + discount.toFixed(2);
-    document.getElementById('totalamountInput').value = paymentSign.value + total.toFixed(2);
-    document.getElementById('amountTotalPay').value = paymentSign.value + total.toFixed(2);
-  }, 100);
-};
-
-const isData = () => {
-  const plus = document.getElementsByClassName('plus');
-  const minus = document.getElementsByClassName('minus');
-
-  if (plus) {
-    Array.prototype.forEach.call(plus, (e) => {
-      e.addEventListener('click', (event) => {
-        if (parseInt(e.previousElementSibling.value) < 10) {
-          event.target.previousElementSibling.value++;
-          const itemAmount = e.parentElement.parentElement.previousElementSibling.querySelector('.product-price').value;
-          const priceselection = e.parentElement.parentElement.nextElementSibling.querySelector('.product-line-price');
-          const productQty = e.parentElement.querySelector('.product-quantity').value;
-          updateQuantity(productQty, itemAmount, priceselection);
-        }
-      });
-    });
-  }
-
-  if (minus) {
-    Array.prototype.forEach.call(minus, (e) => {
-      e.addEventListener('click', (event) => {
-        if (parseInt(e.nextElementSibling.value) > 1) {
-          event.target.nextElementSibling.value--;
-          const itemAmount = e.parentElement.parentElement.previousElementSibling.querySelector('.product-price').value;
-          const priceselection = e.parentElement.parentElement.nextElementSibling.querySelector('.product-line-price');
-          const productQty = e.parentElement.querySelector('.product-quantity').value;
-          updateQuantity(productQty, itemAmount, priceselection);
-        }
-      });
-    });
-  }
-};
-
-const updateQuantity = (amount, itemQuntity, priceselection) => {
-  let linePrice = amount * itemQuntity;
-  linePrice = linePrice.toFixed(2);
-  priceselection.value = paymentSign.value + linePrice;
-  recalculateCart();
-};
-
-const amountKeyup = () => {
-  Array.prototype.forEach.call(document.getElementsByClassName('product-price'), (item) => {
-    item.addEventListener('keyup', (e) => {
-      const priceselection = item.parentElement.nextElementSibling.nextElementSibling.querySelector('.product-line-price');
-      const amount = e.target.value;
-      const itemQuntity = item.parentElement.nextElementSibling.querySelector('.product-quantity').value;
-      updateQuantity(amount, itemQuntity, priceselection);
-    });
-  });
-};
-
-const plusamount = () => {
-  event.target.previousElementSibling.value++;
-  const itemAmount = event.target.parentElement.parentElement.previousElementSibling.querySelector('.product-price').value;
-  const priceselection = event.target.parentElement.parentElement.nextElementSibling.querySelector('.product-line-price');
-  const productQty = event.target.parentElement.querySelector('.product-quantity').value;
-  updateQuantity(productQty, itemAmount, priceselection);
-};
-
-const minusamount = () => {
-  event.target.nextElementSibling.value--;
-  const itemAmount = event.target.parentElement.parentElement.previousElementSibling.querySelector('.product-price').value;
-  const priceselection = event.target.parentElement.parentElement.nextElementSibling.querySelector('.product-line-price');
-  const productQty = event.target.parentElement.querySelector('.product-quantity').value;
-  updateQuantity(productQty, itemAmount, priceselection);
-};
-
-// Watchers
-watch(newproductvalue, () => {
-  console.log('this.newproductvalue');
-});
-
-watch(productvalue, (value) => {
-  console.log(newproductvalue.value);
-  newproductvalue.value.forEach((e) => {
-    console.log('the value', e);
-  });
-  document.getElementById('productprice').value = '';
-  if (value) {
-    const result = allproductdata.value.findIndex((o) => o.name === value);
-    document.getElementById('productprice').value = allproductdata.value[result].price;
-    productids.value.push(allproductdata.value[result]._id);
-  }
-});
-
-// Fetch product data
-onMounted(() => {
-  axios.get('https://api-node.themesbrand.website/apps/product')
-    .then((data) => {
-      allproductdata.value = data.data.data;
-      data.data.data.forEach((item) => {
-        const ndata = {
-          value: item.name,
-          label: item.name,
-        };
-        products.value.push(ndata);
-      });
-    })
-    .catch((er) => {
-      console.log(er);
-    });
-
-  remove();
-});
 </script>
+
 
 
 <template>
@@ -386,7 +379,8 @@ onMounted(() => {
                     </div>
                   </div>
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="same" name="same" onchange="billingFunction()" />
+                    <input type="checkbox" class="form-check-input" id="same" name="same"
+                      onchange="billingFunction()" />
                     <label class="form-check-label" for="same">
                       Will your Billing and Shipping address same?
                     </label>
@@ -468,8 +462,8 @@ onMounted(() => {
                           @select="selectedv(newproductvalue[n - 1])" />
                       </td>
                       <td>
-                        <input type="number" :id="'productprice' + n" class="form-control product-price bg-light border-0"
-                          placeholder="0.00" required />
+                        <input type="number" :id="'productprice' + n"
+                          class="form-control product-price bg-light border-0" placeholder="0.00" required />
                         <div class="invalid-feedback">Please enter a rate</div>
                       </td>
                       <td>
@@ -481,8 +475,8 @@ onMounted(() => {
                       </td>
                       <td class="text-end">
                         <div>
-                          <input type="text" class="form-control bg-light border-0 product-line-price" placeholder="$0.00"
-                            readonly />
+                          <input type="text" class="form-control bg-light border-0 product-line-price"
+                            placeholder="$0.00" readonly />
                         </div>
                       </td>
                       <td class="product-removal">

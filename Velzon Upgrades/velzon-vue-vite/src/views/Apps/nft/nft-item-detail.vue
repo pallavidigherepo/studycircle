@@ -42,7 +42,6 @@ onMounted(() => {
 });
 </script>
 
-
 <template>
     <Layout>
         <PageHeader title="Item Details" pageTitle="NFT Marketplace" />
@@ -83,7 +82,7 @@ onMounted(() => {
                     <BCol lg="8">
                         <div>
                             <BDropdown class="float-end" variant="button"
-                                toggle-class="btn btn-ghost-primary btn-icon arrow-none" size="sm" no-caret
+                                toggle-class="btn btn-ghost-primary btn-icon" size="sm" no-caret
                                 >
                                 <template #button-content> <i class="ri-more-fill align-middle fs-16"></i> </template>
                                 <BDropdownItem><i class="ri-eye-fill align-bottom me-2 text-muted"></i>View</BDropdownItem>

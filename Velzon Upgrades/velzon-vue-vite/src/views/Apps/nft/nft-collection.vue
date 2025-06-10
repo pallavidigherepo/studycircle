@@ -24,15 +24,17 @@ onMounted(() => {
                         <input type="text" class="form-control" placeholder="Search...">
                         <i class="ri-search-line search-icon"></i>
                     </div>
-                    <select class="form-control w-md" data-choices data-choices-search-false>
-                        <option value="All">All</option>
-                        <option value="Today" selected>Today</option>
-                        <option value="Yesterday">Yesterday</option>
-                        <option value="Last 7 Days">Last 7 Days</option>
-                        <option value="Last 30 Days">Last 30 Days</option>
-                        <option value="This Month">This Month</option>
-                        <option value="Last Year">Last Year</option>
-                    </select>
+                    <div class="w-md">
+                        <select class="form-control w-md" data-choices data-choices-search-false>
+                            <option value="All">All</option>
+                            <option value="Today" selected>Today</option>
+                            <option value="Yesterday">Yesterday</option>
+                            <option value="Last 7 Days">Last 7 Days</option>
+                            <option value="Last 30 Days">Last 30 Days</option>
+                            <option value="This Month">This Month</option>
+                            <option value="Last Year">Last Year</option>
+                        </select>
+                    </div>
                 </div>
             </BCol>
         </BRow>
@@ -56,9 +58,7 @@ onMounted(() => {
                         <BLink href="#!" class="float-end"> View All <i class="ri-arrow-right-line align-bottom"></i>
                         </BLink>
                         <h5 class="mb-0 fs-16">
-                            <BLink href="#!">Artwork <BBadge variant="success-subtle"
-                                    class="bg-success-subtle text-success">206</BBadge>
-                            </BLink>
+                            <BLink href="#!">Artwork <BBadge variant="success-subtle" class="bg-success-subtle text-success">206</BBadge></BLink>
                         </h5>
                     </BCardBody>
                 </BCard>
@@ -81,9 +81,7 @@ onMounted(() => {
                         <BLink href="#!" class="float-end"> View All <i class="ri-arrow-right-line align-bottom"></i>
                         </BLink>
                         <h5 class="mb-0 fs-16">
-                            <BLink href="#!">Crypto Card <BBadge variant="success-subtle"
-                                    class="bg-success-subtle text-success">743</BBadge>
-                            </BLink>
+                            <BLink href="#!">Crypto Card <BBadge variant="success-subtle" class="bg-success-subtle text-success">743</BBadge></BLink>
                         </h5>
                     </BCardBody>
                 </BCard>
@@ -106,9 +104,7 @@ onMounted(() => {
                         <BLink href="#!" class="float-end"> View All <i class="ri-arrow-right-line align-bottom"></i>
                         </BLink>
                         <h5 class="mb-0 fs-16">
-                            <BLink href="#!">Music <BBadge variant="success-subtle"
-                                    class="bg-success-subtle text-success">679</BBadge>
-                            </BLink>
+                            <BLink href="#!">Music <BBadge variant="success-subtle" class="bg-success-subtle text-success">679</BBadge></BLink>
                         </h5>
                     </BCardBody>
                 </BCard>
@@ -131,9 +127,7 @@ onMounted(() => {
                         <BLink href="#!" class="float-end"> View All <i class="ri-arrow-right-line align-bottom"></i>
                         </BLink>
                         <h5 class="mb-0 fs-16">
-                            <BLink href="#!">Games <BBadge variant="success-subtle"
-                                    class="bg-success-subtle text-success">341</BBadge>
-                            </BLink>
+                            <BLink href="#!">Games <BBadge variant="success-subtle" class="bg-success-subtle text-success">341</BBadge></BLink>
                         </h5>
                     </BCardBody>
                 </BCard>
@@ -156,9 +150,7 @@ onMounted(() => {
                         <BLink href="#!" class="float-end"> View All <i class="ri-arrow-right-line align-bottom"></i>
                         </BLink>
                         <h5 class="mb-0 fs-16">
-                            <BLink href="#!">Photography <BBadge variant="success-subtle"
-                                    class="bg-success-subtle text-success">1452</BBadge>
-                            </BLink>
+                            <BLink href="#!">Photography <BBadge variant="success-subtle" class="bg-success-subtle text-success">1452</BBadge></BLink>
                         </h5>
                     </BCardBody>
                 </BCard>
@@ -181,9 +173,7 @@ onMounted(() => {
                         <BLink href="#!" class="float-end"> View All <i class="ri-arrow-right-line align-bottom"></i>
                         </BLink>
                         <h5 class="mb-0 fs-16">
-                            <BLink href="#!">3d Style <BBadge variant="success-subtle"
-                                    class="bg-success-subtle text-success">4781</BBadge>
-                            </BLink>
+                            <BLink href="#!">3d Style <BBadge variant="success-subtle" class="bg-success-subtle text-success">4781</BBadge></BLink>
                         </h5>
                     </BCardBody>
                 </BCard>
@@ -206,9 +196,7 @@ onMounted(() => {
                         <BLink href="#!" class="float-end"> View All <i class="ri-arrow-right-line align-bottom"></i>
                         </BLink>
                         <h5 class="mb-0 fs-16">
-                            <BLink href="#!">Collectibles <BBadge variant="success-subtle"
-                                    class="bg-success-subtle text-success">3468</BBadge>
-                            </BLink>
+                            <BLink href="#!">Collectibles <BBadge variant="success-subtle" class="bg-success-subtle text-success">3468</BBadge></BLink>
                         </h5>
                     </BCardBody>
                 </BCard>
@@ -231,9 +219,7 @@ onMounted(() => {
                         <BLink href="#!" class="float-end"> View All <i class="ri-arrow-right-line align-bottom"></i>
                         </BLink>
                         <h5 class="mb-0 fs-16">
-                            <BLink href="#!">Videos <BBadge variant="success-subtle"
-                                    class="bg-success-subtle text-success">1674</BBadge>
-                            </BLink>
+                            <BLink href="#!">Videos <BBadge variant="success-subtle" class="bg-success-subtle text-success">1674</BBadge></BLink>
                         </h5>
                     </BCardBody>
                 </BCard>

@@ -39,7 +39,6 @@ const deleteRecord = (ele) => {
 }
 </script>
 
-
 <template>
     <Layout>
         <PageHeader title="Create NFT" pageTitle="NFT Marketplace" />

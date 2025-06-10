@@ -283,7 +283,7 @@ onMounted(setupCheckboxListeners);
               <div>
                 <p class="fw-medium text-muted mb-0">Deleted Tickets</p>
                 <h2 class="mt-4 ff-secondary fw-semibold">
-                  <count-to :duration="1000" :startVal="0" :endVal="15.95" :decimals="2"></count-to>%
+                  <count-to :duration="1000" :startVal="0" :endVal="15"></count-to>%
                 </h2>
                 <p class="mb-0 text-muted">
                   <BBadge class="bg-light text-success mb-0">
@@ -415,7 +415,7 @@ onMounted(setupCheckboxListeners);
                       }">{{ data.priority }}</span>
                     </td>
                     <td>
-                      <BDropdown toggle-class="btn btn-soft-secondary btn-sm arrow-none" size="sm" no-caret>
+                      <BDropdown toggle-class="btn btn-soft-secondary btn-sm" no-caret size="sm">
                         <template #button-content> <i class="ri-more-fill align-middle"></i> </template>
                         <BDropdownItem to="/apps/tickets-details"><i
                             class="ri-eye-fill align-bottom me-2 text-muted"></i>View</BDropdownItem>
@@ -466,7 +466,7 @@ onMounted(setupCheckboxListeners);
     <BModal v-model="modalShow" id="showModal" modal-class="zoomIn" :title="dataEdit ? 'Edit Ticket' : 'Add Ticket'"
       title-class="exampleModalLabel" hide-footer header-class="p-3 bg-info-subtle" class="v-modal-custom" size="lg"
       centered>
-      <BFrom id="addform" class="tablelist-form" autocomplete="off">
+      <b-form id="addform" class="tablelist-form" autocomplete="off">
         <BRow class="g-3">
           <BCol lg="12">
             <div id="modal-id" style="display: none;">
@@ -544,7 +544,7 @@ onMounted(setupCheckboxListeners);
             </BButton>
           </div>
         </div>
-      </BFrom>
+      </b-form>
     </BModal>
 
     <!-- delete modal -->

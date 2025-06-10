@@ -4,6 +4,10 @@ import Layout from "@/layouts/main.vue";
 import PageHeader from "@/components/page-header.vue";
 import { LockIcon } from "@zhuowenli/vue-feather-icons";
 
+import {
+ BButtonGroup
+} from 'bootstrap-vue-next'
+
 const handleMouseOver = (event) => {
   event.target.style.background = "#099885";
 };

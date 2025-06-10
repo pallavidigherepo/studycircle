@@ -425,19 +425,19 @@ onMounted(() => {
                             <div class="flex-shrink-0 mt-4 mt-lg-0">
                                 <ul class="nav nav-pills filter-btns" role="tablist">
                                     <li class="nav-item" role="presentation">
-                                        <BButton variant="link" class="nav-link fw-medium active" data-filter="all">All
+                                        <BButton variant="link" class="nav-link fw-medium active" type="button" data-filter="all">All
                                             Items</BButton>
                                     </li>
                                     <li class="nav-item" role="presentation">
-                                        <BButton variant="link" class="nav-link fw-medium" data-filter="upto-15">Up to
+                                        <BButton variant="link" class="nav-link fw-medium" type="button" data-filter="upto-15">Up to
                                             15%</BButton>
                                     </li>
                                     <li class="nav-item" role="presentation">
-                                        <BButton variant="link" class="nav-link fw-medium" data-filter="upto-30">Up to
+                                        <BButton variant="link" class="nav-link fw-medium" type="button" data-filter="upto-30">Up to
                                             30%</BButton>
                                     </li>
                                     <li class="nav-item" role="presentation">
-                                        <BButton variant="link" class="nav-link fw-medium" data-filter="upto-40">Up to
+                                        <BButton variant="link" class="nav-link fw-medium" type="button" data-filter="upto-40">Up to
                                             40%</BButton>
                                     </li>
                                 </ul>
@@ -455,14 +455,14 @@ onMounted(() => {
                                 </div>
                             </div>
                             <BCardBody>
-                                <p class="fw-medium mb-0 float-end"><i class="mdi mdi-heart text-danger align-middle"></i>
-                                    19.29k </p>
+                                <p class="fw-medium mb-0 float-end"><i
+                                        class="mdi mdi-heart text-danger align-middle"></i> 19.29k </p>
                                 <h5 class="text-success"><i class="mdi mdi-ethereum"></i> 97.8 ETH </h5>
                                 <h6 class="fs-16 mb-3">
                                     <router-link to="/apps/nft-item-detail">Abstract face painting</router-link>
                                 </h6>
                                 <div>
-                                    <span class="text-muted float-end">Available: 436</span>
+                                    <span class="text-muted ">Available: 436</span>
                                     <span class="text-muted">Sold: 4187</span>
                                     <BProgress striped :value="67" class="progress-sm mt-2" variant="warning" />
                                 </div>
@@ -479,14 +479,14 @@ onMounted(() => {
                                 </div>
                             </div>
                             <BCardBody>
-                                <p class="fw-medium mb-0 float-end"><i class="mdi mdi-heart text-danger align-middle"></i>
-                                    8.42k </p>
+                                <p class="fw-medium mb-0 float-end"><i
+                                        class="mdi mdi-heart text-danger align-middle"></i> 8.42k </p>
                                 <h5 class="text-success"><i class="mdi mdi-ethereum"></i> 245.23ETH </h5>
                                 <h6 class="fs-16 mb-3">
                                     <router-link to="/apps/nft-item-detail">Patterns arts & culture</router-link>
                                 </h6>
                                 <div>
-                                    <span class="text-muted float-end">Available: 8974</span>
+                                    <span class="text-muted ">Available: 8974</span>
                                     <span class="text-muted">Sold: 13</span>
                                     <BProgress striped :value="10" class="progress-sm mt-2" variant="primary" />
                                 </div>
@@ -502,14 +502,14 @@ onMounted(() => {
                                 </div>
                             </div>
                             <BCardBody>
-                                <p class="fw-medium mb-0 float-end"><i class="mdi mdi-heart text-danger align-middle"></i>
-                                    19.29k </p>
+                                <p class="fw-medium mb-0 float-end"><i
+                                        class="mdi mdi-heart text-danger align-middle"></i> 19.29k </p>
                                 <h5 class="text-success"><i class="mdi mdi-ethereum"></i> 67.36 ETH </h5>
                                 <h6 class="fs-16 mb-3">
                                     <router-link to="/apps/nft-item-detail">Creative filtered portrait</router-link>
                                 </h6>
                                 <div>
-                                    <span class="text-muted float-end">Available: 3620</span>
+                                    <span class="text-muted ">Available: 3620</span>
                                     <span class="text-muted">Sold: 345</span>
                                     <BProgress striped :value="45" class="progress-sm mt-2" variant="warning" />
                                 </div>
@@ -525,14 +525,14 @@ onMounted(() => {
                                 </div>
                             </div>
                             <BCardBody>
-                                <p class="fw-medium mb-0 float-end"><i class="mdi mdi-heart text-danger align-middle"></i>
-                                    34.12k </p>
+                                <p class="fw-medium mb-0 float-end"><i
+                                        class="mdi mdi-heart text-danger align-middle"></i> 34.12k </p>
                                 <h5 class="text-success"><i class="mdi mdi-ethereum"></i> 34.81 ETH </h5>
                                 <h6 class="fs-16 mb-3">
                                     <router-link to="/apps/nft-item-detail">Smillevers Crypto</router-link>
                                 </h6>
                                 <div>
-                                    <span class="text-muted float-end">Available: 3521</span>
+                                    <span class="text-muted ">Available: 3521</span>
                                     <span class="text-muted">Sold: 1457</span>
                                     <BProgress striped :value="67" class="progress-sm mt-2" variant="warning" />
                                 </div>
@@ -549,14 +549,14 @@ onMounted(() => {
                                 </div>
                             </div>
                             <BCardBody>
-                                <p class="fw-medium mb-0 float-end"><i class="mdi mdi-heart text-danger align-middle"></i>
-                                    47.12k </p>
+                                <p class="fw-medium mb-0 float-end"><i
+                                        class="mdi mdi-heart text-danger align-middle"></i> 47.12k </p>
                                 <h5 class="text-success"><i class="mdi mdi-ethereum"></i> 245.23ETH </h5>
                                 <h6 class="fs-16 mb-3">
                                     <router-link to="/apps/nft-item-detail">Long-tailed Macaque</router-link>
                                 </h6>
                                 <div>
-                                    <span class="text-muted float-end">Available: 30</span>
+                                    <span class="text-muted ">Available: 30</span>
                                     <span class="text-muted">Sold: 1369</span>
                                     <BProgress striped :value="95" class="progress-sm mt-2" variant="danger" />
                                 </div>
@@ -572,14 +572,14 @@ onMounted(() => {
                                 </div>
                             </div>
                             <BCardBody>
-                                <p class="fw-medium mb-0 float-end"><i class="mdi mdi-heart text-danger align-middle"></i>
-                                    23.63k </p>
+                                <p class="fw-medium mb-0 float-end"><i
+                                        class="mdi mdi-heart text-danger align-middle"></i> 23.63k </p>
                                 <h5 class="text-success"><i class="mdi mdi-ethereum"></i> 394.7 ETH </h5>
                                 <h6 class="fs-16 mb-3">
                                     <router-link to="/apps/nft-item-detail">The Chirstoper</router-link>
                                 </h6>
                                 <div>
-                                    <span class="text-muted float-end">Available: 1474</span>
+                                    <span class="text-muted ">Available: 1474</span>
                                     <span class="text-muted">Sold: 7451</span>
                                     <BProgress striped :value="83" class="progress-sm mt-2" variant="warning" />
                                 </div>
@@ -595,14 +595,14 @@ onMounted(() => {
                                 </div>
                             </div>
                             <BCardBody>
-                                <p class="fw-medium mb-0 float-end"><i class="mdi mdi-heart text-danger align-middle"></i>
-                                    36.42k </p>
+                                <p class="fw-medium mb-0 float-end"><i
+                                        class="mdi mdi-heart text-danger align-middle"></i> 36.42k </p>
                                 <h5 class="text-success"><i class="mdi mdi-ethereum"></i> 745.14 ETH </h5>
                                 <h6 class="fs-16 mb-3">
                                     <router-link to="/apps/nft-item-detail">Robotic Body Art</router-link>
                                 </h6>
                                 <div>
-                                    <span class="text-muted float-end">Available: 4563</span>
+                                    <span class="text-muted ">Available: 4563</span>
                                     <span class="text-muted">Sold: 1024</span>
                                     <BProgress striped :value="24" class="progress-sm mt-2" variant="primary" />
                                 </div>
@@ -619,14 +619,14 @@ onMounted(() => {
                                 </div>
                             </div>
                             <BCardBody>
-                                <p class="fw-medium mb-0 float-end"><i class="mdi mdi-heart text-danger align-middle"></i>
-                                    94.1k </p>
+                                <p class="fw-medium mb-0 float-end"><i
+                                        class="mdi mdi-heart text-danger align-middle"></i> 94.1k </p>
                                 <h5 class="text-success"><i class="mdi mdi-ethereum"></i> 245.23ETH </h5>
                                 <h6 class="fs-16 mb-3">
                                     <router-link to="/apps/nft-item-detail">Evolved Reality</router-link>
                                 </h6>
                                 <div>
-                                    <span class="text-muted float-end">Available: 26</span>
+                                    <span class="text-muted">Available: 26</span>
                                     <span class="text-muted">Sold: 9974</span>
                                     <BProgress striped :value="97" class="progress-sm mt-2" variant="danger" />
                                 </div>
@@ -637,8 +637,7 @@ onMounted(() => {
                 <BRow>
                     <BCol lg="12">
                         <div class="text-center mb-3">
-                            <BButton variant="link" class="text-success mt-2"><i
-                                    class="mdi mdi-loading mdi-spin fs-20 align-middle me-2"></i> Load more </BButton>
+                            <BButton variant="link" class="text-success mt-2 material-shadow-none"><i class="mdi mdi-loading mdi-spin fs-20 align-middle me-2"></i> Load more </BButton>
                         </div>
                     </BCol>
                 </BRow>
@@ -774,9 +773,7 @@ onMounted(() => {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>
-                                            <BButton variant="success" size="sm">Follow</BButton>
-                                        </td>
+                                        <td><BButton variant="success" size="sm">Follow</BButton></td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -791,9 +788,7 @@ onMounted(() => {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>
-                                            <BButton variant="soft-success" size="sm">Unfllow</BButton>
-                                        </td>
+                                        <td><BButton variant="soft-success" size="sm">Unfllow</BButton></td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -808,9 +803,7 @@ onMounted(() => {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>
-                                            <BButton variant="success" size="sm">Follow</BButton>
-                                        </td>
+                                        <td><BButton variant="success" size="sm">Follow</BButton></td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -825,9 +818,7 @@ onMounted(() => {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>
-                                            <BButton variant="success" size="sm">Follow</BButton>
-                                        </td>
+                                        <td><BButton variant="success" size="sm">Follow</BButton></td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -842,15 +833,14 @@ onMounted(() => {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>
-                                            <BButton variant="soft-success" size="sm">Unfllow</BButton>
-                                        </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </BCardBody>
-            </BCard>
-        </BCol>
-    </BRow>
-</Layout></template>
+                                        <td><BButton variant="soft-success" size="sm">Unfllow</BButton></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </BCardBody>
+                </BCard>
+            </BCol>
+        </BRow>
+    </Layout>
+</template>

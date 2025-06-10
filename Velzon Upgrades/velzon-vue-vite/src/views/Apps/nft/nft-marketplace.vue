@@ -13,7 +13,7 @@ import PageHeader from "@/components/page-header.vue";
                     <BCol lg="4" md="6">
                         <BCard no-body>
                             <BCardBody>
-                                <BRow class="g-1 mb-3">
+                                <BRow class="g-1 mb-3 mt-3">
                                     <BCol lg="6">
                                         <img src="@/assets/images/nft/img-05.jpg" alt="" class="img-fluid rounded">
                                         <img src="https://img.themesbrand.com/velzon/images/img-1.gif" alt=""
@@ -37,7 +37,7 @@ import PageHeader from "@/components/page-header.vue";
                     <BCol lg="4" md="6">
                         <BCard no-body>
                             <BCardBody>
-                                <BRow class="g-1 mb-3">
+                                <BRow class="g-1 mb-3 mt-3">
                                     <BCol lg="6">
                                         <img src="@/assets/images/nft/img-06.jpg" alt="" class="img-fluid rounded">
                                         <img src="https://img.themesbrand.com/velzon/images/img-2.gif" alt=""
@@ -60,7 +60,7 @@ import PageHeader from "@/components/page-header.vue";
                     <BCol lg="4" md="6">
                         <BCard no-body>
                             <BCardBody>
-                                <BRow class="g-1 mb-3">
+                                <BRow class="g-1 mb-3 mt-3">
                                     <BCol lg="6">
                                         <img src="@/assets/images/nft/img-02.jpg" alt="" class="img-fluid rounded">
                                         <img src="https://img.themesbrand.com/velzon/images/img-3.gif" alt=""
@@ -104,7 +104,7 @@ import PageHeader from "@/components/page-header.vue";
 
         <BRow>
             <BCol lg="12">
-                <BCard no-body class="overflow-hidden shadow-none">
+                <BCard no-body class="overflow-hidden shadow-none material-shadow">
                     <BCardBody class="bg-success-subtle text-success fw-semibold d-flex">
                         <marquee class="fs-14">
                             NFT art is a digital asset that is collectable, unique, and non-transferrable, Cortes
@@ -141,7 +141,7 @@ import PageHeader from "@/components/page-header.vue";
                                 <p class="mb-0 text-muted">Owners</p>
                             </div>
                             <div class="bookmark-icon">
-                                <BButton variant="link" class="btn-icon active" data-bs-toggle="button"
+                                <BButton variant="link" class="btn btn-icon active" data-bs-toggle="button"
                                     aria-pressed="true"><i class="mdi mdi-cards-heart fs-16"></i></BButton>
                             </div>
                         </div>
@@ -175,7 +175,7 @@ import PageHeader from "@/components/page-header.vue";
                                 <p class="mb-0 text-muted">Creators</p>
                             </div>
                             <div class="bookmark-icon">
-                                <BButton variant="link" class="btn-icon" data-bs-toggle="button"
+                                <BButton variant="link" class="btn btn-icon" data-bs-toggle="button"
                                     aria-pressed="true"><i class="mdi mdi-cards-heart fs-16"></i></BButton>
                             </div>
                         </div>
@@ -209,7 +209,7 @@ import PageHeader from "@/components/page-header.vue";
                                 <p class="mb-0 text-muted">Owners</p>
                             </div>
                             <div class="bookmark-icon">
-                                <BButton variant="link" class="btn-icon active" data-bs-toggle="button"
+                                <BButton variant="link" class="btn btn-icon active" data-bs-toggle="button"
                                     aria-pressed="true"><i class="mdi mdi-cards-heart fs-16"></i></BButton>
                             </div>
                         </div>
@@ -244,7 +244,7 @@ import PageHeader from "@/components/page-header.vue";
                                 <p class="mb-0 text-muted">Owners</p>
                             </div>
                             <div class="bookmark-icon">
-                                <BButton variant="link" class="btn-icon" data-bs-toggle="button"
+                                <BButton variant="link" class="btn btn-icon" data-bs-toggle="button"
                                     aria-pressed="true"><i class="mdi mdi-cards-heart fs-16"></i></BButton>
                             </div>
                         </div>
@@ -278,7 +278,7 @@ import PageHeader from "@/components/page-header.vue";
                                 <p class="mb-0 text-muted">Creators</p>
                             </div>
                             <div class="bookmark-icon">
-                                <BButton variant="link" class="btn-icon" data-bs-toggle="button"
+                                <BButton variant="link" class="btn btn-icon" data-bs-toggle="button"
                                     aria-pressed="true"><i class="mdi mdi-cards-heart fs-16"></i></BButton>
                             </div>
                         </div>
@@ -324,7 +324,7 @@ import PageHeader from "@/components/page-header.vue";
             <BCol>
                 <BCard no-body class="explore-box card-animate">
                     <div class="bookmark-icon position-absolute top-0 end-0 p-2">
-                        <BButton variant="link" class="btn-icon active" data-bs-toggle="button" aria-pressed="true"><i
+                        <BButton variant="link" class="btn btn-icon active" data-bs-toggle="button" aria-pressed="true"><i
                                 class="mdi mdi-cards-heart fs-16"></i></BButton>
                     </div>
                     <div class="explore-place-bid-img">
@@ -358,7 +358,7 @@ import PageHeader from "@/components/page-header.vue";
             <BCol>
                 <BCard no-body class="explore-box card-animate">
                     <div class="bookmark-icon position-absolute top-0 end-0 p-2">
-                        <BButton variant="link" class="btn-icon active" data-bs-toggle="button" aria-pressed="true"><i
+                        <BButton variant="link" class="btn btn-icon active" data-bs-toggle="button" aria-pressed="true"><i
                                 class="mdi mdi-cards-heart fs-16"></i></BButton>
                     </div>
                     <div class="explore-place-bid-img">
@@ -393,7 +393,7 @@ import PageHeader from "@/components/page-header.vue";
             <BCol>
                 <BCard no-body class="explore-box card-animate">
                     <div class="bookmark-icon position-absolute top-0 end-0 p-2">
-                        <BButton variant="link" class="btn-icon active" data-bs-toggle="button" aria-pressed="true"><i
+                        <BButton variant="link" class="btn btn-icon active" data-bs-toggle="button" aria-pressed="true"><i
                                 class="mdi mdi-cards-heart fs-16"></i></BButton>
                     </div>
                     <div class="explore-place-bid-img">
@@ -427,7 +427,7 @@ import PageHeader from "@/components/page-header.vue";
             <BCol>
                 <BCard no-body class="explore-box card-animate">
                     <div class="bookmark-icon position-absolute top-0 end-0 p-2">
-                        <BButton variant="link" class="btn-icon active" data-bs-toggle="button" aria-pressed="true"><i
+                        <BButton variant="link" class="btn btn-icon active" data-bs-toggle="button" aria-pressed="true"><i
                                 class="mdi mdi-cards-heart fs-16"></i></BButton>
                     </div>
                     <div class="explore-place-bid-img">
@@ -462,7 +462,7 @@ import PageHeader from "@/components/page-header.vue";
             <BCol>
                 <BCard no-body class="explore-box card-animate">
                     <div class="bookmark-icon position-absolute top-0 end-0 p-2">
-                        <BButton variant="link" class="btn-icon active" data-bs-toggle="button" aria-pressed="true"><i
+                        <BButton variant="link" class="btn btn-icon active" data-bs-toggle="button" aria-pressed="true"><i
                                 class="mdi mdi-cards-heart fs-16"></i></BButton>
                     </div>
                     <div class="explore-place-bid-img">

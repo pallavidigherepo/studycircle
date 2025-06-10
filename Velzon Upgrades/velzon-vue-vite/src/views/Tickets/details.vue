@@ -50,13 +50,14 @@ const value = ref('new');
                                 </BCol>
                                 <BCol md="auto" class="mt-md-0 mt-4">
                                     <div class="hstack gap-1 flex-wrap">
-                                        <BButton variant="link" class="avatar-xs mt-n1 p-0 favourite-btn active">
+                                        <BButton variant="link"
+                                            class="avatar-xs mt-n1 p-0 favourite-btn active material-shadow-none">
                                             <span class="avatar-title bg-transparent fs-15">
                                                 <i class="ri-star-fill"></i>
                                             </span>
                                         </BButton>
-                                        <BDropdown variant="transparent" toggle-class="fs-16 text-body arrow-none" size="sm"
-                                            no-caret>
+                                        <BDropdown variant="transparent" toggle-class="fs-16 text-body material-shadow-none"
+                                            no-caret size="sm">
                                             <template #button-content> <i class="ri-share-line"></i>
                                             </template>
                                             <BDropdownItem to="/apps/tickets-details">
@@ -70,7 +71,7 @@ const value = ref('new');
                                                 <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
                                             </BDropdownItem>
                                         </BDropdown>
-                                        <BButton variant="link" class="py-0 fs-16 text-body">
+                                        <BButton variant="link" class="py-0 fs-16 text-body material-shadow-none">
                                             <i class="ri-flag-line"></i>
                                         </BButton>
                                     </div>
@@ -129,7 +130,8 @@ userIdx: {}
                         <simplebar data-simplebar style="height: 300px;" class="px-3 mx-n3">
                             <div class="d-flex mb-4">
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/users/avatar-8.jpg" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/users/avatar-8.jpg" alt=""
+                                        class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h5 class="fs-13">Joseph Parker <small class="text-muted">20 Dec 2021 -
@@ -141,7 +143,7 @@ userIdx: {}
                                     <div class="d-flex mt-4">
                                         <div class="flex-shrink-0">
                                             <img src="@/assets/images/users/avatar-10.jpg" alt=""
-                                                class="avatar-xs rounded-circle" />
+                                                class="avatar-xs rounded-circle material-shadow" />
                                         </div>
                                         <div class="flex-grow-1 ms-3">
                                             <h5 class="fs-13">Alexis Clarke <small class="text-muted">22 Dec 2021 -
@@ -156,7 +158,8 @@ userIdx: {}
                             </div>
                             <div class="d-flex mb-4">
                                 <div class="flex-shrink-0">
-                                    <img src="@/assets/images/users/avatar-6.jpg" alt="" class="avatar-xs rounded-circle" />
+                                    <img src="@/assets/images/users/avatar-6.jpg" alt=""
+                                        class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h5 class="fs-13">Donald Palmer <small class="text-muted">24 Dec 2021 -
@@ -171,7 +174,7 @@ userIdx: {}
                             <div class="d-flex">
                                 <div class="flex-shrink-0">
                                     <img src="@/assets/images/users/avatar-10.jpg" alt=""
-                                        class="avatar-xs rounded-circle" />
+                                        class="avatar-xs rounded-circle material-shadow" />
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h5 class="fs-13">Alexis Clarke <small class="text-muted">26 min ago</small></h5>
@@ -193,7 +196,7 @@ userIdx: {}
                                     <div class="d-flex mt-4">
                                         <div class="flex-shrink-0">
                                             <img src="@/assets/images/users/avatar-6.jpg" alt=""
-                                                class="avatar-xs rounded-circle" />
+                                                class="avatar-xs rounded-circle material-shadow" />
                                         </div>
                                         <div class="flex-grow-1 ms-3">
                                             <h5 class="fs-13">Donald Palmer <small class="text-muted">8 sec ago</small>
@@ -247,22 +250,22 @@ userIdx: {}
                                         <td class="fw-medium">Assigned To:</td>
                                         <td>
                                             <div class="avatar-group">
-                                                <BLink href="javascript:void(0);" class="avatar-group-item"
+                                                <BLink href="javascript:void(0);" class="avatar-group-item material-shadow"
                                                     v-b-tooltip.hover title="Erica Kernan">
                                                     <img src="@/assets/images/users/avatar-4.jpg" alt=""
                                                         class="rounded-circle avatar-xs" />
                                                 </BLink>
-                                                <BLink href="javascript:void(0);" class="avatar-group-item"
+                                                <BLink href="javascript:void(0);" class="avatar-group-item material-shadow"
                                                     v-b-tooltip.hover title="Alexis Clarke">
                                                     <img src="@/assets/images/users/avatar-10.jpg" alt=""
                                                         class="rounded-circle avatar-xs" />
                                                 </BLink>
-                                                <BLink href="javascript:void(0);" class="avatar-group-item"
+                                                <BLink href="javascript:void(0);" class="avatar-group-item material-shadow"
                                                     v-b-tooltip.hover title="James Price">
                                                     <img src="@/assets/images/users/avatar-3.jpg" alt=""
                                                         class="rounded-circle avatar-xs" />
                                                 </BLink>
-                                                <BLink href="javascript: void(0);" class="avatar-group-item"
+                                                <BLink href="javascript: void(0);" class="avatar-group-item material-shadow"
                                                     v-b-tooltip.hover title="Add Members">
                                                     <div class="avatar-xs">
                                                         <div

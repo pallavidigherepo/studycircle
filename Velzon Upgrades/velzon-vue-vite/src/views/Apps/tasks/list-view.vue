@@ -322,7 +322,7 @@ function onSelectAll() {
               <div>
                 <p class="fw-medium text-muted mb-0">Deleted Tasks</p>
                 <h2 class="mt-4 ff-secondary fw-semibold">
-                  <count-to :startVal="0" :endVal="14.84" :duration="5000" :decimals="2"></count-to>%
+                  <count-to :startVal="0" :endVal="14" :duration="5000"></count-to>%
                 </h2>
                 <p class="mb-0 text-muted">
                   <BBadge class="bg-light text-success mb-0">
@@ -363,7 +363,7 @@ function onSelectAll() {
             </div>
           </BCardHeader>
           <BCardBody class="border border-dashed border-end-0 border-start-0">
-            <BFrom>
+            <b-form>
               <BRow class="g-3">
                 <BCol xxl="5" sm="12">
                   <div class="search-box">
@@ -397,7 +397,7 @@ function onSelectAll() {
                   </BButton>
                 </BCol>
               </BRow>
-            </BFrom>
+            </b-form>
           </BCardBody>
           <BCardBody>
             <div class="table-responsive table-card mb-4">
@@ -521,7 +521,7 @@ function onSelectAll() {
     <BModal v-model="taskListModal" id="showmodal" modal-class="zoomIn" hide-footer
       header-class="p-3 bg-info-subtle taskModal" class="v-modal-custom" centered size="lg"
       :title="dataEdit ? 'Edit Task' : 'Add Task'">
-      <BFrom id="addform" class="tablelist-form" autocomplete="off">
+      <b-form id="addform" class="tablelist-form" autocomplete="off">
         <BRow class="g-3">
           <input type="hidden" id="id" name="">
           <BCol lg="12">
@@ -709,7 +709,7 @@ function onSelectAll() {
             {{ dataEdit ? 'Update' : 'Add Task' }}
           </BButton>
         </div>
-      </BFrom>
+      </b-form>
     </BModal>
 
     <!-- delete modal -->
@@ -724,7 +724,7 @@ function onSelectAll() {
       </div>
       <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
         <BButton variant="light" size="w-sm" @click="deleteModal = false">Close</BButton>
-          <BButton variant="danger" size="w-sm" id="delete-record" @click="deleteData">Yes, Delete It!</BButton>
+        <BButton variant="danger" size="w-sm" id="delete-record" @click="deleteData">Yes, Delete It!</BButton>
       </div>
     </BModal>
   </Layout>
