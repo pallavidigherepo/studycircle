@@ -12,7 +12,7 @@ const defaultOptions = {
         <div class="bg-overlay"></div>
         <div class="auth-page-content overflow-hidden pt-lg-5">
             <BContainer>
-                <BRow class="justify-content-center">
+                <BRow class="justify-content-center card-bg-fill galaxy-border-none">
                     <BCol xl="5">
                         <BCard no-body class="overflow-hidden">
                             <BCardBody class="p-4">

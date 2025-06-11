@@ -29,7 +29,7 @@ const pagination = {
             <BContainer>
                 <BRow>
                     <BCol lg="12">
-                        <BCard no-body class="overflow-hidden">
+                        <BCard no-body class="overflow-hidden  card-bg-fill galaxy-border-none">
                             <BRow class="justify-content-center g-0">
                                 <BCol lg="6">
                                     <div class="p-lg-5 p-4 auth-one-bg h-100">
@@ -101,7 +101,7 @@ const pagination = {
             </BContainer>
         </div>
 
-        <footer class="footer">
+        <footer class="footer galaxy-border-none">
             <BContainer>
                 <BRow>
                     <BCol lg="12">

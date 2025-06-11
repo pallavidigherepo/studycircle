@@ -9,7 +9,7 @@
             <BContainer>
                 <BRow class="justify-content-center">
                     <BCol xl="5">
-                        <Bcard no-body class="card overflow-hidden">
+                        <Bcard no-body class="card overflow-hidden card-bg-fill">
                             <BCardBody class="p-4">
                                 <div class="text-center">
                                     <img src="https://img.themesbrand.com/velzon/images/auth-offline.gif" alt=""

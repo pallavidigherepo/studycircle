@@ -82,7 +82,7 @@ onMounted(() => {
 
                 <BRow class="justify-content-center">
                     <BCol md="8" lg="6" xl="5">
-                        <BCard no-body class="mt-4">
+                        <BCard no-body class="mt-4 card-bg-fill">
 
                             <BCardBody class="p-4">
                                 <div class="text-center mt-2">
@@ -119,7 +119,7 @@ onMounted(() => {
                                                     aria-describedby="passwordInput"
                                                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
                                                 <BButton variant="link"
-                                                    class="position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
+                                                    class="position-absolute end-0 top-0 text-decoration-none text-muted password-addon material-shadow-none"
                                                     type="button" id="password-addon"><i
                                                         class="ri-eye-fill align-middle"></i></BButton>
                                                 <div class="invalid-feedback">

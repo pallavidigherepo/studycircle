@@ -2,6 +2,7 @@
 
 </script>
 
+
 <template>
   <div class="auth-page-wrapper pt-5">
     <div class="auth-one-bg-position auth-one-bg" id="auth-particles">
@@ -33,7 +34,7 @@
 
         <BRow class="justify-content-center">
           <BCol md="8" lg="6" xl="5">
-            <BCard no-body class="mt-4">
+            <BCard no-body class="mt-4 card-bg-fill">
 
               <BCardBody class="p-4">
                 <div class="text-center mt-2">
@@ -41,7 +42,7 @@
                   <p class="text-muted">Enter your password to unlock the screen!</p>
                 </div>
                 <div class="user-thumb text-center">
-                  <img src="@/assets/images/users/avatar-1.jpg" class="rounded-circle img-thumbnail avatar-lg"
+                  <img src="@/assets/images/users/avatar-1.jpg" class="rounded-circle img-thumbnail avatar-lg material-shadow"
                     alt="thumbnail">
                   <h5 class="font-size-15 mt-3">Anna Adame</h5>
                 </div>
@@ -71,7 +72,7 @@
       </BContainer>
     </div>
 
-    <footer class="footer">
+    <footer class="footer galaxy-border-none">
       <BContainer>
         <BRow>
           <BCol lg="12">

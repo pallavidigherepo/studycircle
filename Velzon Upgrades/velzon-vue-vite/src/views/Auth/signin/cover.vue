@@ -32,7 +32,7 @@ const pagination = {
             <BContainer>
                 <BRow>
                     <BCol lg="12">
-                        <BCard no-body class="overflow-hidden">
+                        <BCard no-body class="overflow-hidden  card-bg-fill galaxy-border-none">
                             <BRow class="g-0">
                                 <BCol lg="6">
                                     <div class="p-lg-5 p-4 auth-one-bg h-100">
@@ -107,7 +107,7 @@ const pagination = {
                                                             class="form-control pe-5" placeholder="Enter password"
                                                             id="password-input">
                                                         <BButton variant="link"
-                                                            class="position-absolute end-0 top-0 text-decoration-none text-muted"
+                                                            class="position-absolute end-0 top-0 text-decoration-none text-muted material-shadow-none"
                                                             type="button" id="password-addon"
                                                             @click="togglePassword = !togglePassword"><i
                                                                 class="ri-eye-fill align-middle"></i></BButton>
@@ -161,7 +161,7 @@ const pagination = {
             </BContainer>
         </div>
 
-        <footer class="footer">
+        <footer class="footer galaxy-border-none">
             <BContainer>
                 <BRow>
                     <BCol lg="12">

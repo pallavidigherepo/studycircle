@@ -17,7 +17,6 @@ const pagination = {
   },
 };
 </script>
-
 <template>
     <div class="auth-page-wrapper auth-bg-cover py-5 d-flex justify-content-center align-items-center min-vh-100">
         <div class="bg-overlay"></div>
@@ -25,7 +24,7 @@ const pagination = {
             <BContainer>
                 <BRow>
                     <BCol lg="12">
-                        <BCard no-body class="overflow-hidden">
+                        <BCard no-body class="overflow-hidden galaxy-border-none card-bg-fill">
                             <BRow class="justify-content-center g-0">
                                 <BCol lg="6">
                                     <div class="p-lg-5 p-4 auth-one-bg h-100">
@@ -81,7 +80,7 @@ const pagination = {
                                         </div>
                                         <div class="user-thumb text-center">
                                             <img src="@/assets/images/users/avatar-1.jpg"
-                                                class="rounded-circle img-thumbnail avatar-lg" alt="thumbnail">
+                                                class="rounded-circle img-thumbnail avatar-lg material-shadow" alt="thumbnail">
                                             <h5 class="font-size-15 mt-3">Anna Adame</h5>
                                         </div>
 
@@ -113,7 +112,7 @@ const pagination = {
             </BContainer>
         </div>
 
-        <footer class="footer">
+        <footer class="footer galaxy-border-none">
             <BContainer>
                 <BRow>
                     <BCol lg="12">

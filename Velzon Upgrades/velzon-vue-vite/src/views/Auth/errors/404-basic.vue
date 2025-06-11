@@ -38,7 +38,7 @@
       </BContainer>
     </div>
 
-    <footer class="footer">
+    <footer class="footer  galaxy-border-none">
       <BContainer>
         <BRow>
           <BCol lg="12">
