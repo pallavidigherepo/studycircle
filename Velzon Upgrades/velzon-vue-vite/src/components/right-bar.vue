@@ -1250,7 +1250,7 @@ const components = { simpleBar };
               </BCol>
               <BCol cols="4">
                 <BButton variant="link" class="avatar-md w-100 p-0 overflow-hidden border"
-                  v-show="'collapseBgGradient'" @click="onSideBarColorClick('gradient')">
+                  v-b-toggle="'collapseBgGradient'" @click="onSideBarColorClick('gradient')">
                   <span class="d-flex gap-1 h-100">
                     <span class="flex-shrink-0">
                       <span class="bg-vertical-gradient d-flex h-100 flex-column gap-1 p-1">
@@ -1446,8 +1446,8 @@ const components = { simpleBar };
             </BRow>
           </div>
 
-           <div id="body-img" v-if="layoutTheme == 'galaxy' ||
-            (layoutTheme === 'galaxy' && visibility === 'show')">
+          <div id="body-img" v-if="layoutThemes == 'galaxy' ||
+            (layoutThemes === 'galaxy' && visibility === 'show')">
             <h6 class="mt-4 mb-0 fw-semibold text-uppercase">Background Image</h6>
             <p class="text-muted">Choose a body background image.</p>
 
