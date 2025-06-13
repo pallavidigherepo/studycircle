@@ -10,9 +10,15 @@ import simplebar from "simplebar-vue";
 import i18n from "../i18n";
 import { useAttrs, useSlots, defineEmits } from "vue";
 import { Import } from "lucide-vue-next";
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
 import { useLayoutStore } from '@/state/modules/layout'; 
 const store = useLayoutStore()
+
+const isMenuCondensed = ref(false);
+const hoverd = ref(localStorage.getItem('hoverd') === 'true');
+const sidebarSize = ref('');
 
 const emit = defineEmits(["cart-item-price"]);
 
@@ -115,10 +121,22 @@ function toggleHamburgerMenu() {
   }
 }
 
-function toggleMenu() {
-  // must be emitted or use global event bus
-  // Use defineExpose or emit upward to parent
-}
+const toggleMenu = () => {
+  document.body.classList.toggle('sidebar-enable');
+  if (window.screen.width >= 992) {
+    router.afterEach(() => {
+      document.body.classList.remove('sidebar-enable');
+      document.body.classList.remove('vertical-collpsed');
+    });
+    document.body.classList.toggle('vertical-collpsed');
+  } else {
+    router.afterEach(() => {
+      document.body.classList.remove('sidebar-enable');
+    });
+    document.body.classList.remove('vertical-collpsed');
+  }
+  isMenuCondensed.value = !isMenuCondensed.value;
+};
 
 function toggleRightSidebar() {
   // must be emitted or use global event bus

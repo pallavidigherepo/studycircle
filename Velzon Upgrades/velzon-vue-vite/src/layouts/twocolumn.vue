@@ -7,10 +7,9 @@ import Menu from '@/components/menu.vue';
 import NavBar from '@/components/nav-bar.vue';
 import RightBar from '@/components/right-bar.vue';
 import Footer from '@/components/footer.vue';
-
 import { useI18n } from 'vue-i18n';
-const { t } = useI18n();
 
+const { t } = useI18n();
 const router = useRouter();
 
 // Reactive state
@@ -70,7 +69,9 @@ const removeActivation = (items) => {
       if (!item.classList.contains('active')) {
         item.setAttribute('aria-expanded', false);
       }
-      item.nextElementSibling.classList.remove('show');
+      if (item.nextElementSibling) {
+        item.nextElementSibling.classList.remove('show');
+      }
     }
     if (item.classList.contains('nav-link')) {
       if (item.nextElementSibling) {
@@ -275,8 +276,8 @@ onMounted(() => {
         </div>
         <div id="scrollbar" v-if="rmenu == 'twocolumn'">
           <BContainer fluid>
-            <div id="two-column-menu">
-              <simplebar class="twocolumn-iconview list-unstyled">
+            <!-- <div id="two-column-menu">
+              <simplebar class="twocolumn-iconview list-unstyled" style="height: calc(100vh - 70px);">
                 <a class="logo"><img src="@/assets/images/logo-sm.png" alt="Logo" height="22" /></a>
                 <li>
                   <a href="#sidebarDashboards" class="nav-icon" role="button"
@@ -365,9 +366,9 @@ onMounted(() => {
                   </a>
                 </li>
               </simplebar>
-            </div>
+            </div> -->
             <template v-if="layoutType === 'twocolumn'">
-              <simplebar class="navbar-nav" id="navbar-nav">
+              <simplebar class="navbar-nav" id="navbar-nav" style="height: calc(100vh - 70px);">
                 <li class="menu-title">
                   <span data-key="t-menu"> {{ t("t-menu") }}</span>
                 </li>
@@ -1716,3 +1717,63 @@ onMounted(() => {
     <RightBar />
   </div>
 </template>  
+
+<style scoped>
+/* Two Column Menu Styles */
+.twocolumn-iconview {
+  width: 70px;
+  background-color: var(--bs-vertical-menu-bg);
+  border-right: 1px solid var(--bs-border-color);
+}
+
+.twocolumn-iconview .nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 56px;
+  color: var(--bs-menu-item-color);
+  transition: all 0.3s;
+}
+
+.twocolumn-iconview .nav-icon:hover,
+.twocolumn-iconview .nav-icon.active {
+  color: var(--bs-menu-item-active-color);
+  background-color: var(--bs-menu-item-active-bg);
+}
+
+.twocolumn-iconview .nav-icon i {
+  font-size: 20px;
+}
+
+.navbar-nav {
+  width: calc(100% - 70px);
+  padding: 0 1rem;
+}
+
+/* Ensure proper height for scrollable areas */
+#scrollbar {
+  height: calc(100vh - 70px);
+}
+
+/* Logo styles */
+.navbar-brand-box {
+  padding: 0 1.5rem;
+  width: 250px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .twocolumn-iconview {
+    display: none;
+  }
+  
+  .navbar-nav {
+    width: 100%;
+  }
+}
+</style>
