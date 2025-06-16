@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onBeforeMount, watch, defineProps, defineEmits } from 'vue';
+import { ref, computed, onMounted, onBeforeMount, watch, defineProps, defineEmits } from 'vue';
 import simpleBar from "simplebar-vue";
 import { layoutMethods, layoutComputed } from '@/state/helpers'
 
@@ -26,6 +26,11 @@ const props = defineProps({
   },
 });
 
+const layoutType = computed({
+  get: () => store.layoutType,
+  set: (val) => store.changeLayoutType({ layoutType: val })
+});
+
 // Emits (for emitting events to parent components)
 const emit = defineEmits([]);
 
@@ -38,7 +43,7 @@ const dataSidebarUserShow = ref(false);
 // Watchers
 const mode = ref("");
 const preloader = ref("");
-const layoutType = ref("");
+// const layoutType = ref("");
 const sidebarSize = ref("");
 const layoutWidth = ref("");
 const position = ref("");

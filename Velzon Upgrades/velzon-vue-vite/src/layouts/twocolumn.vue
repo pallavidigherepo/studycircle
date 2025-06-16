@@ -252,122 +252,129 @@ onMounted(() => {
         <!-- LOGO -->
         <div class="navbar-brand-box">
           <!-- Dark Logo-->
-          <router-link to="/" class="logo logo-dark">
+          <!-- <router-link to="/" class="logo logo-dark">
             <span class="logo-sm">
               <img src="@/assets/images/logo-sm.png" alt="" height="22" />
             </span>
             <span class="logo-lg">
               <img src="@/assets/images/logo-dark.png" alt="" height="17" />
             </span>
-          </router-link>
+          </router-link> -->
           <!-- Light Logo-->
-          <router-link to="/" class="logo logo-light">
+          <!-- <router-link to="/" class="logo logo-light">
             <span class="logo-sm">
               <img src="@/assets/images/logo-sm.png" alt="" height="22" />
             </span>
             <span class="logo-lg">
               <img src="@/assets/images/logo-light.png" alt="" height="17" />
             </span>
-          </router-link>
-          <BButton size="sm" class=" btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
+          </router-link> -->
+          <!-- <BButton size="sm" class=" btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
             id="vertical-hover">
             <i class="ri-record-circle-line"></i>
-          </BButton>
+          </BButton> -->
         </div>
         <div id="scrollbar" v-if="rmenu == 'twocolumn'">
           <BContainer fluid>
-            <!-- <div id="two-column-menu">
-              <simplebar class="twocolumn-iconview list-unstyled" style="height: calc(100vh - 70px);">
-                <a class="logo"><img src="@/assets/images/logo-sm.png" alt="Logo" height="22" /></a>
-                <li>
-                  <a href="#sidebarDashboards" class="nav-icon" role="button"
-                    @click.prevent="updateMenu('sidebarDashboards', $event)">
-                    <i class="ri-dashboard-2-line"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#sidebarApps" class="nav-icon" role="button"
-                    @click.prevent="updateMenu('sidebarApps', $event)">
-                    <i class="ri-apps-2-line"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#sidebarAuth" class="nav-icon" role="button"
-                    @click.prevent="updateMenu('sidebarAuth', $event)">
-                    <i class="ri-account-circle-line"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#sidebarPages" class="nav-icon" role="button"
-                    @click.prevent="updateMenu('sidebarPages', $event)">
-                    <i class="ri-pages-line"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#sidebarlanding" class="nav-icon" role="button"
-                    @click.prevent="updateMenu('sidebarlanding', $event)">
-                    <i class="ri-rocket-line"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#sidebarUI" class="nav-icon" role="button" @click.prevent="updateMenu('sidebarUI', $event)">
-                    <i class="ri-pencil-ruler-2-line"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#sidebarAdvanceUI" class="nav-icon" role="button"
-                    @click.prevent="updateMenu('sidebarAdvanceUI', $event)">
-                    <i class="ri-stack-line"></i>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <router-link class="nav-icon" to="/widgets">
-                    <i class="ri-honour-line"></i>
-                  </router-link>
-                </li>
-                <li>
-                  <a href="#sidebarForms" class="nav-icon" role="button"
-                    @click.prevent="updateMenu('sidebarForms', $event)">
-                    <i class="ri-file-list-3-line"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#sidebarTables" class="nav-icon" role="button"
-                    @click.prevent="updateMenu('sidebarTables', $event)">
-                    <i class="ri-layout-grid-line"></i>
-                  </a>
-                </li>
+            <div class="twocolumn-sidebar-container">
+              <div class="twocolumn-icon-col">
+                <div class="twocolumn-logo">
+                  <a class="logo"><img src="@/assets/images/logo-sm.png" alt="Logo" height="22" /></a>
+                </div>
+                <simplebar class="twocolumn-iconview list-unstyled" style="height: calc(100vh - 100px);">
+                  <!-- <a class="logo"><img src="@/assets/images/logo-sm.png" alt="Logo" height="22" /></a> -->
+                  <li>
+                    <a href="#sidebarDashboards" class="nav-icon" role="button"
+                      @click.prevent="updateMenu('sidebarDashboards', $event)">
+                      <i class="ri-dashboard-2-line"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#sidebarApps" class="nav-icon" role="button"
+                      @click.prevent="updateMenu('sidebarApps', $event)">
+                      <i class="ri-apps-2-line"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#sidebarAuth" class="nav-icon" role="button"
+                      @click.prevent="updateMenu('sidebarAuth', $event)">
+                      <i class="ri-account-circle-line"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#sidebarPages" class="nav-icon" role="button"
+                      @click.prevent="updateMenu('sidebarPages', $event)">
+                      <i class="ri-pages-line"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#sidebarlanding" class="nav-icon" role="button"
+                      @click.prevent="updateMenu('sidebarlanding', $event)">
+                      <i class="ri-rocket-line"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#sidebarUI" class="nav-icon" role="button" @click.prevent="updateMenu('sidebarUI', $event)">
+                      <i class="ri-pencil-ruler-2-line"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#sidebarAdvanceUI" class="nav-icon" role="button"
+                      @click.prevent="updateMenu('sidebarAdvanceUI', $event)">
+                      <i class="ri-stack-line"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <router-link class="nav-icon" to="/widgets">
+                      <i class="ri-honour-line"></i>
+                    </router-link>
+                  </li>
+                  <li>
+                    <a href="#sidebarForms" class="nav-icon" role="button"
+                      @click.prevent="updateMenu('sidebarForms', $event)">
+                      <i class="ri-file-list-3-line"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#sidebarTables" class="nav-icon" role="button"
+                      @click.prevent="updateMenu('sidebarTables', $event)">
+                      <i class="ri-layout-grid-line"></i>
+                    </a>
+                  </li>
 
-                <li>
-                  <a href="#sidebarCharts" class="nav-icon" role="button"
-                    @click.prevent="updateMenu('sidebarCharts', $event)">
-                    <i class="ri-pie-chart-line"></i>
-                  </a>
-                </li>
+                  <li>
+                    <a href="#sidebarCharts" class="nav-icon" role="button"
+                      @click.prevent="updateMenu('sidebarCharts', $event)">
+                      <i class="ri-pie-chart-line"></i>
+                    </a>
+                  </li>
 
-                <li>
-                  <a href="#sidebarIcons" class="nav-icon" role="button"
-                    @click.prevent="updateMenu('sidebarIcons', $event)">
-                    <i class="ri-compasses-2-line"></i>
-                  </a>
-                </li>
+                  <li>
+                    <a href="#sidebarIcons" class="nav-icon" role="button"
+                      @click.prevent="updateMenu('sidebarIcons', $event)">
+                      <i class="ri-compasses-2-line"></i>
+                    </a>
+                  </li>
 
-                <li>
-                  <a href="#sidebarMaps" class="nav-icon" role="button"
-                    @click.prevent="updateMenu('sidebarMaps', $event)">
-                    <i class="ri-map-pin-line"></i>
-                  </a>
-                </li>
+                  <li>
+                    <a href="#sidebarMaps" class="nav-icon" role="button"
+                      @click.prevent="updateMenu('sidebarMaps', $event)">
+                      <i class="ri-map-pin-line"></i>
+                    </a>
+                  </li>
 
-                <li>
-                  <a href="#sidebarMultilevel" class="nav-icon" role="button"
-                    @click.prevent="updateMenu('sidebarMultilevel', $event)">
-                    <i class="ri-share-line"></i>
-                  </a>
-                </li>
-              </simplebar>
-            </div> -->
-            <template v-if="layoutType === 'twocolumn'">
+                  <li>
+                    <a href="#sidebarMultilevel" class="nav-icon" role="button"
+                      @click.prevent="updateMenu('sidebarMultilevel', $event)">
+                      <i class="ri-share-line"></i>
+                    </a>
+                  </li>
+                </simplebar>
+              </div>
+            </div>
+          </BContainer>
+
+            <template v-if="layout.layoutType === 'twocolumn'">
               <simplebar class="navbar-nav" id="navbar-nav" style="height: calc(100vh - 70px);">
                 <li class="menu-title">
                   <span data-key="t-menu"> {{ t("t-menu") }}</span>
@@ -1685,7 +1692,7 @@ onMounted(() => {
                 </li>
               </simplebar>
             </template>
-          </BContainer>
+          
         </div>
 
         <!-- </BContainer>
@@ -1720,10 +1727,30 @@ onMounted(() => {
 
 <style scoped>
 /* Two Column Menu Styles */
+
+#layout-wrapper,
+.app-menu.navbar-menu,
+#scrollbar,
+.simplebar,
+.simplebar > .simplebar-wrapper,
+.simplebar > .simplebar-mask,
+.simplebar > .simplebar-content-wrapper,
+.simplebar > .simplebar-content {
+  height: 100vh !important;
+  min-height: 100vh !important;
+  box-sizing: border-box;
+}
 .twocolumn-iconview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  min-height: 100vh;
   width: 70px;
   background-color: var(--bs-vertical-menu-bg);
   border-right: 1px solid var(--bs-border-color);
+  box-sizing: border-box;
 }
 
 .twocolumn-iconview .nav-icon {
@@ -1747,6 +1774,7 @@ onMounted(() => {
 }
 
 .navbar-nav {
+  height: 100%;
   width: calc(100% - 70px);
   padding: 0 1rem;
 }
