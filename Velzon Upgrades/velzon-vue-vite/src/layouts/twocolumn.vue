@@ -245,139 +245,137 @@ onMounted(() => {
 <template>
   <div id="layout-wrapper">
     <NavBar />
-    <div>
+    <div class="layout-body">
       <!-- ========== Left Sidebar Start ========== -->
       <!-- ========== App Menu ========== -->
       <div class="app-menu navbar-menu">
-        <!-- LOGO -->
-        <div class="navbar-brand-box">
-          <!-- Dark Logo-->
-          <!-- <router-link to="/" class="logo logo-dark">
-            <span class="logo-sm">
-              <img src="@/assets/images/logo-sm.png" alt="" height="22" />
-            </span>
-            <span class="logo-lg">
-              <img src="@/assets/images/logo-dark.png" alt="" height="17" />
-            </span>
-          </router-link> -->
-          <!-- Light Logo-->
-          <!-- <router-link to="/" class="logo logo-light">
-            <span class="logo-sm">
-              <img src="@/assets/images/logo-sm.png" alt="" height="22" />
-            </span>
-            <span class="logo-lg">
-              <img src="@/assets/images/logo-light.png" alt="" height="17" />
-            </span>
-          </router-link> -->
-          <!-- <BButton size="sm" class=" btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
-            id="vertical-hover">
-            <i class="ri-record-circle-line"></i>
-          </BButton> -->
-        </div>
+       
         <div id="scrollbar" v-if="rmenu == 'twocolumn'">
           <BContainer fluid>
-            <div class="twocolumn-sidebar-container">
-              <div class="twocolumn-icon-col">
-                <div class="twocolumn-logo">
-                  <a class="logo"><img src="@/assets/images/logo-sm.png" alt="Logo" height="22" /></a>
-                </div>
-                <simplebar class="twocolumn-iconview list-unstyled" style="height: calc(100vh - 100px);">
-                  <!-- <a class="logo"><img src="@/assets/images/logo-sm.png" alt="Logo" height="22" /></a> -->
-                  <li>
-                    <a href="#sidebarDashboards" class="nav-icon" role="button"
-                      @click.prevent="updateMenu('sidebarDashboards', $event)">
-                      <i class="ri-dashboard-2-line"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#sidebarApps" class="nav-icon" role="button"
-                      @click.prevent="updateMenu('sidebarApps', $event)">
-                      <i class="ri-apps-2-line"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#sidebarAuth" class="nav-icon" role="button"
-                      @click.prevent="updateMenu('sidebarAuth', $event)">
-                      <i class="ri-account-circle-line"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#sidebarPages" class="nav-icon" role="button"
-                      @click.prevent="updateMenu('sidebarPages', $event)">
-                      <i class="ri-pages-line"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#sidebarlanding" class="nav-icon" role="button"
-                      @click.prevent="updateMenu('sidebarlanding', $event)">
-                      <i class="ri-rocket-line"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#sidebarUI" class="nav-icon" role="button" @click.prevent="updateMenu('sidebarUI', $event)">
-                      <i class="ri-pencil-ruler-2-line"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#sidebarAdvanceUI" class="nav-icon" role="button"
-                      @click.prevent="updateMenu('sidebarAdvanceUI', $event)">
-                      <i class="ri-stack-line"></i>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <router-link class="nav-icon" to="/widgets">
-                      <i class="ri-honour-line"></i>
-                    </router-link>
-                  </li>
-                  <li>
-                    <a href="#sidebarForms" class="nav-icon" role="button"
-                      @click.prevent="updateMenu('sidebarForms', $event)">
-                      <i class="ri-file-list-3-line"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#sidebarTables" class="nav-icon" role="button"
-                      @click.prevent="updateMenu('sidebarTables', $event)">
-                      <i class="ri-layout-grid-line"></i>
-                    </a>
-                  </li>
+            <div class="twocolumn-flex-container">
+            <div id="two-column-menu">
+              <simplebar class="twocolumn-iconview list-unstyled">
+                <a class="logo"><img src="@/assets/images/logo-sm.png" alt="Logo" height="22" /></a>
+                <ul class="list-unstyled">
+                <li>
+                  <a href="#sidebarDashboards" class="nav-icon" role="button"
+                    @click.prevent="updateMenu('sidebarDashboards', $event)">
+                    <i class="ri-dashboard-2-line"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#sidebarApps" class="nav-icon" role="button"
+                    @click.prevent="updateMenu('sidebarApps', $event)">
+                    <i class="ri-apps-2-line"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#sidebarAuth" class="nav-icon" role="button"
+                    @click.prevent="updateMenu('sidebarAuth', $event)">
+                    <i class="ri-account-circle-line"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#sidebarPages" class="nav-icon" role="button"
+                    @click.prevent="updateMenu('sidebarPages', $event)">
+                    <i class="ri-pages-line"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#sidebarlanding" class="nav-icon" role="button"
+                    @click.prevent="updateMenu('sidebarlanding', $event)">
+                    <i class="ri-rocket-line"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#sidebarUI" class="nav-icon" role="button" @click.prevent="updateMenu('sidebarUI', $event)">
+                    <i class="ri-pencil-ruler-2-line"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#sidebarAdvanceUI" class="nav-icon" role="button"
+                    @click.prevent="updateMenu('sidebarAdvanceUI', $event)">
+                    <i class="ri-stack-line"></i>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <router-link class="nav-icon" to="/widgets">
+                    <i class="ri-honour-line"></i>
+                  </router-link>
+                </li>
+                <li>
+                  <a href="#sidebarForms" class="nav-icon" role="button"
+                    @click.prevent="updateMenu('sidebarForms', $event)">
+                    <i class="ri-file-list-3-line"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#sidebarTables" class="nav-icon" role="button"
+                    @click.prevent="updateMenu('sidebarTables', $event)">
+                    <i class="ri-layout-grid-line"></i>
+                  </a>
+                </li>
 
-                  <li>
-                    <a href="#sidebarCharts" class="nav-icon" role="button"
-                      @click.prevent="updateMenu('sidebarCharts', $event)">
-                      <i class="ri-pie-chart-line"></i>
-                    </a>
-                  </li>
+                <li>
+                  <a href="#sidebarCharts" class="nav-icon" role="button"
+                    @click.prevent="updateMenu('sidebarCharts', $event)">
+                    <i class="ri-pie-chart-line"></i>
+                  </a>
+                </li>
 
-                  <li>
-                    <a href="#sidebarIcons" class="nav-icon" role="button"
-                      @click.prevent="updateMenu('sidebarIcons', $event)">
-                      <i class="ri-compasses-2-line"></i>
-                    </a>
-                  </li>
+                <li>
+                  <a href="#sidebarIcons" class="nav-icon" role="button"
+                    @click.prevent="updateMenu('sidebarIcons', $event)">
+                    <i class="ri-compasses-2-line"></i>
+                  </a>
+                </li>
 
-                  <li>
-                    <a href="#sidebarMaps" class="nav-icon" role="button"
-                      @click.prevent="updateMenu('sidebarMaps', $event)">
-                      <i class="ri-map-pin-line"></i>
-                    </a>
-                  </li>
+                <li>
+                  <a href="#sidebarMaps" class="nav-icon" role="button"
+                    @click.prevent="updateMenu('sidebarMaps', $event)">
+                    <i class="ri-map-pin-line"></i>
+                  </a>
+                </li>
 
-                  <li>
-                    <a href="#sidebarMultilevel" class="nav-icon" role="button"
-                      @click.prevent="updateMenu('sidebarMultilevel', $event)">
-                      <i class="ri-share-line"></i>
-                    </a>
-                  </li>
-                </simplebar>
-              </div>
+                <li>
+                  <a href="#sidebarMultilevel" class="nav-icon" role="button"
+                    @click.prevent="updateMenu('sidebarMultilevel', $event)">
+                    <i class="ri-share-line"></i>
+                  </a>
+                </li>
+              </ul>
+              </simplebar>
             </div>
-          </BContainer>
 
-            <template v-if="layout.layoutType === 'twocolumn'">
-              <simplebar class="navbar-nav" id="navbar-nav" style="height: calc(100vh - 70px);">
+            <div class="twocolumn-menu-panel">
+              <div class="navbar-brand-box">
+                 <!-- LOGO -->
+                <!-- Dark Logo-->
+                <router-link to="/" class="logo logo-dark">
+                  <span class="logo-sm">
+                    <img src="@/assets/images/logo-sm.png" alt="" height="22" />
+                  </span>
+                  <span class="logo-lg">
+                    <img src="@/assets/images/logo-dark.png" alt="" height="17" />
+                  </span>
+                </router-link>
+                <!-- Light Logo-->
+                <router-link to="/" class="logo logo-light">
+                  <span class="logo-sm">
+                    <img src="@/assets/images/logo-sm.png" alt="" height="22" />
+                  </span>
+                  <span class="logo-lg">
+                    <img src="@/assets/images/logo-light.png" alt="" height="17" />
+                  </span>
+                </router-link>
+                <BButton size="sm" class=" btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
+                  id="vertical-hover">
+                  <i class="ri-record-circle-line"></i>
+                </BButton>
+              </div>
+              <simplebar class="navbar-nav" id="navbar-nav">
                 <li class="menu-title">
-                  <span data-key="t-menu"> {{ t("t-menu") }}</span>
+                  <span data-key="t-menu"> {{ $t("t-menu") }}</span>
                 </li>
                 <li class="nav-item">
 
@@ -386,43 +384,43 @@ onMounted(() => {
                     <ul class="nav nav-sm flex-column">
                       <li class="nav-item">
                         <router-link to="/dashboard/analytics" class="nav-link custom-abc" data-key="t-analytics">
-                          {{ t("t-analytics") }}
+                          {{ $t("t-analytics") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/dashboard/crm" class="nav-link" data-key="t-crm">
-                          {{ t("t-crm") }}
+                          {{ $t("t-crm") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/" class="nav-link" data-key="t-ecommerce">
-                          {{ t("t-ecommerce") }}
+                          {{ $t("t-ecommerce") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/dashboard/crypto" class="nav-link" data-key="t-crypto">
-                          {{ t("t-crypto") }}
+                          {{ $t("t-crypto") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/dashboard/projects" class="nav-link" data-key="t-projects">
-                          {{ t("t-projects") }}
+                          {{ $t("t-projects") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/dashboard/nft" class="nav-link" data-key="t-nft">
-                          {{ t("t-nft") }}
+                          {{ $t("t-nft") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/dashboard/job" class="nav-link" data-key="t-job">
-                          {{ t("t-job") }}
+                          {{ $t("t-job") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/dashboard/blog" class="nav-link" data-key="t-blog">
-                          {{ t("t-blog") }}
-                          <span class="badge badge-pill bg-success">{{ t('t-new')}}</span>
+                          {{ $t("t-blog") }}
+                          <span class="badge badge-pill bg-success">{{ $t('t-new')}}</span>
                         </router-link>
                       </li>
                     </ul>
@@ -437,58 +435,58 @@ onMounted(() => {
                       <li class="nav-item">
                         <a class="nav-link" href="#sidebarCalendar" data-bs-toggle="collapse" role="button"
                           aria-expanded="false" aria-controls="sidebaremail" data-key="t-calendar">
-                          {{ t("t-calendar") }}
+                          {{ $t("t-calendar") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarCalendar">
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/main-calendar" class="nav-link" data-key="t-main-calender"> {{
-                                t("t-main-calender") }}
+                                $t("t-main-calender") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/month-grid" class="nav-link" data-key="t-month-grid"> {{
-                                t("t-month-grid") }} </router-link>
+                                $t("t-month-grid") }} </router-link>
                             </li>
                           </ul>
                         </div>
                       </li>
                       <li class="nav-item">
                         <router-link to="/chat" class="nav-link" data-key="t-chat">
-                          {{ t("t-chat") }}
+                          {{ $t("t-chat") }}
                         </router-link>
                       </li>
 
                       <li class="nav-item">
                         <a class="nav-link" href="#sidebaremail" data-bs-toggle="collapse" role="button"
                           aria-expanded="false" aria-controls="sidebaremail" data-key="t-projects">
-                          {{ t("t-email") }}
+                          {{ $t("t-email") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebaremail">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/mailbox" class="nav-link" data-key="t-mailbox">
-                                {{ t("t-mailbox") }}
+                                {{ $t("t-mailbox") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
 
                               <a class="nav-link" href="#sidebarsubemail" data-bs-toggle="collapse" role="button"
                                 aria-expanded="false" aria-controls="sidebarsubemail" data-key="t-projects">
-                                {{ t("t-email-templates") }}
+                                {{ $t("t-email-templates") }}
                               </a>
                               <div class="collapse menu-dropdown" id="sidebarsubemail">
 
                                 <ul class="nav nav-sm flex-column">
                                   <li class="nav-item">
                                     <router-link to="/email/email-basic" class="nav-link" data-key="t-products">
-                                      {{ t("t-basic-action") }}
+                                      {{ $t("t-basic-action") }}
                                     </router-link>
                                   </li>
                                   <li class="nav-item">
                                     <router-link to="/email/email-ecommerce" class="nav-link" data-key="t-products">
-                                      {{ t("t-ecommerce-action") }}
+                                      {{ $t("t-ecommerce-action") }}
                                     </router-link>
                                   </li>
                                 </ul>
@@ -501,59 +499,59 @@ onMounted(() => {
 
                         <a class="nav-link" href="#sidebarEcommerce" data-bs-toggle="collapse" role="button"
                           aria-expanded="false" aria-controls="sidebarEcommerce" data-key="t-ecommerce">
-                          {{ t("t-ecommerce") }}
+                          {{ $t("t-ecommerce") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarEcommerce">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/ecommerce/products" class="nav-link" data-key="t-products">
-                                {{ t("t-products") }}
+                                {{ $t("t-products") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/ecommerce/product-details" class="nav-link" data-key="t-product-Details">
-                                {{ t("t-product-Details") }}
+                                {{ $t("t-product-Details") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/ecommerce/add-product" class="nav-link" data-key="t-create-product">
-                                {{ t("t-create-product") }}
+                                {{ $t("t-create-product") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/ecommerce/orders" class="nav-link" data-key="t-orders">
-                                {{ t("t-orders") }}
+                                {{ $t("t-orders") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/ecommerce/order-details" class="nav-link" data-key="t-order-details">
-                                {{ t("t-order-details") }}
+                                {{ $t("t-order-details") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/ecommerce/customers" class="nav-link" data-key="t-customers">
-                                {{ t("t-customers") }}
+                                {{ $t("t-customers") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/ecommerce/shopping-cart" class="nav-link" data-key="t-shopping-cart">
-                                {{ t("t-shopping-cart") }}
+                                {{ $t("t-shopping-cart") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/ecommerce/checkout" class="nav-link" data-key="t-checkout">
-                                {{ t("t-checkout") }}
+                                {{ $t("t-checkout") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/ecommerce/sellers" class="nav-link" data-key="t-sellers">
-                                {{ t("t-sellers") }}
+                                {{ $t("t-sellers") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/ecommerce/seller-details" class="nav-link" data-key="t-sellers-details">
-                                {{ t("t-sellers-details") }}
+                                {{ $t("t-sellers-details") }}
                               </router-link>
                             </li>
                           </ul>
@@ -563,24 +561,24 @@ onMounted(() => {
 
                         <a class="nav-link" href="#sidebarProjects" data-bs-toggle="collapse" role="button"
                           aria-expanded="false" aria-controls="sidebarProjects" data-key="t-projects">
-                          {{ t("t-projects") }}
+                          {{ $t("t-projects") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarProjects">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/apps/projects-list" class="nav-link" data-key="t-list">
-                                {{ t("t-list") }}
+                                {{ $t("t-list") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/apps/projects-overview" class="nav-link" data-key="t-overview">
-                                {{ t("t-overview") }}
+                                {{ $t("t-overview") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/apps/projects-create" class="nav-link" data-key="t-create-project">
-                                {{ t("t-create-project") }}
+                                {{ $t("t-create-project") }}
                               </router-link>
                             </li>
                           </ul>
@@ -590,24 +588,24 @@ onMounted(() => {
 
                         <a class="nav-link" href="#sidebarTasks" data-bs-toggle="collapse" role="button"
                           aria-expanded="false" aria-controls="sidebarTasks" data-key="t-tasks">
-                          {{ t("t-tasks") }}
+                          {{ $t("t-tasks") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarTasks">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/apps/tasks-kanban" class="nav-link" data-key="t-kanbanboard">
-                                {{ t("t-kanbanboard") }}
+                                {{ $t("t-kanbanboard") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/apps/tasks-list-view" class="nav-link" data-key="t-list-view">
-                                {{ t("t-list-view") }}
+                                {{ $t("t-list-view") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/apps/tasks-details" class="nav-link" data-key="t-task-details">
-                                {{ t("t-task-details") }}
+                                {{ $t("t-task-details") }}
                               </router-link>
                             </li>
                           </ul>
@@ -617,29 +615,29 @@ onMounted(() => {
 
                         <a class="nav-link" href="#sidebarCRM" data-bs-toggle="collapse" role="button"
                           aria-expanded="false" aria-controls="sidebarCRM" data-key="t-crm">
-                          {{ t("t-crm") }}
+                          {{ $t("t-crm") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarCRM">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/apps/crm-contacts" class="nav-link" data-key="t-contacts">
-                                {{ t("t-contacts") }}
+                                {{ $t("t-contacts") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/apps/crm-companies" class="nav-link" data-key="t-companies">
-                                {{ t("t-companies") }}
+                                {{ $t("t-companies") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/apps/crm-deals" class="nav-link" data-key="t-deals">
-                                {{ t("t-deals") }}
+                                {{ $t("t-deals") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/apps/crm-leads" class="nav-link" data-key="t-leads">
-                                {{ t("t-leads") }}
+                                {{ $t("t-leads") }}
                               </router-link>
                             </li>
                           </ul>
@@ -649,39 +647,39 @@ onMounted(() => {
 
                         <a class="nav-link" href="#sidebarCrypto" data-bs-toggle="collapse" role="button"
                           aria-expanded="false" aria-controls="sidebarCrypto" data-key="t-crypto">
-                          {{ t("t-crypto") }}
+                          {{ $t("t-crypto") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarCrypto">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/crypto/transactions" class="nav-link" data-key="t-transactions">
-                                {{ t("t-transactions") }}
+                                {{ $t("t-transactions") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/crypto/buy-sell" class="nav-link" data-key="t-buy-sell">
-                                {{ t("t-buy-sell") }}
+                                {{ $t("t-buy-sell") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/crypto/orders" class="nav-link" data-key="t-orders">
-                                {{ t("t-orders") }}
+                                {{ $t("t-orders") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/crypto/wallet" class="nav-link" data-key="t-my-wallet">
-                                {{ t("t-my-wallet") }}
+                                {{ $t("t-my-wallet") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/crypto/ico" class="nav-link" data-key="t-ico-list">
-                                {{ t("t-ico-list") }}
+                                {{ $t("t-ico-list") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/crypto/kyc" class="nav-link" data-key="t-kyc-application">
-                                {{ t("t-kyc-application") }}
+                                {{ $t("t-kyc-application") }}
                               </router-link>
                             </li>
                           </ul>
@@ -691,24 +689,24 @@ onMounted(() => {
 
                         <a class="nav-link" href="#sidebarInvoices" data-bs-toggle="collapse" role="button"
                           aria-expanded="false" aria-controls="sidebarInvoices" data-key="t-invoices">
-                          {{ t("t-invoices") }}
+                          {{ $t("t-invoices") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarInvoices">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/invoices/list" class="nav-link" data-key="t-list-view">
-                                {{ t("t-list-view") }}
+                                {{ $t("t-list-view") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/invoices/detail" class="nav-link" data-key="t-details">
-                                {{ t("t-details") }}
+                                {{ $t("t-details") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/invoices/create" class="nav-link" data-key="t-create-invoice">
-                                {{ t("t-create-invoice") }}
+                                {{ $t("t-create-invoice") }}
                               </router-link>
                             </li>
                           </ul>
@@ -718,19 +716,19 @@ onMounted(() => {
 
                         <a class="nav-link" href="#sidebarTickets" data-bs-toggle="collapse" role="button"
                           aria-expanded="false" aria-controls="sidebarTickets" data-key="t-supprt-tickets">
-                          {{ t("t-supprt-tickets") }}
+                          {{ $t("t-supprt-tickets") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarTickets">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/apps/tickets-list" class="nav-link" data-key="t-list-view">
-                                {{ t("t-list-view") }}
+                                {{ $t("t-list-view") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/apps/tickets-details" class="nav-link" data-key="t-ticket-details">
-                                {{ t("t-ticket-details") }}
+                                {{ $t("t-ticket-details") }}
                               </router-link>
                             </li>
                           </ul>
@@ -740,7 +738,7 @@ onMounted(() => {
 
                         <a class="nav-link" href="#nftmarketplace" data-bs-toggle="collapse" role="button"
                           aria-expanded="false" aria-controls="nftmarketplace" data-key="t-supprt-tickets">
-                          {{ t("t-nft-marketplace") }}
+                          {{ $t("t-nft-marketplace") }}
                         </a>
                         <div class="collapse menu-dropdown" id="nftmarketplace">
 
@@ -748,47 +746,47 @@ onMounted(() => {
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/apps/nft-marketplace" class="nav-link" data-key="t-list-view">
-                                {{ t("t-marketplace") }}
+                                {{ $t("t-marketplace") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/apps/nft-explore" class="nav-link" data-key="t-ticket-details">
-                                {{ t("t-explore-now") }}
+                                {{ $t("t-explore-now") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/apps/nft-auction" class="nav-link" data-key="t-ticket-details">
-                                {{ t("t-live-auction") }}
+                                {{ $t("t-live-auction") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/apps/nft-item-detail" class="nav-link" data-key="t-ticket-details">
-                                {{ t("t-item-details") }}
+                                {{ $t("t-item-details") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/apps/nft-collection" class="nav-link" data-key="t-ticket-details">
-                                {{ t("t-collections") }}
+                                {{ $t("t-collections") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/apps/nft-creators" class="nav-link" data-key="t-ticket-details">
-                                {{ t("t-creators") }}
+                                {{ $t("t-creators") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/apps/nft-ranking" class="nav-link" data-key="t-ticket-details">
-                                {{ t("t-ranking") }}
+                                {{ $t("t-ranking") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/apps/nft-wallet" class="nav-link" data-key="t-ticket-details">
-                                {{ t("t-wallet-connect") }}
+                                {{ $t("t-wallet-connect") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/apps/nft-create" class="nav-link" data-key="t-ticket-details">
-                                {{ t("t-create-nft") }}
+                                {{ $t("t-create-nft") }}
                               </router-link>
                             </li>
                           </ul>
@@ -796,26 +794,26 @@ onMounted(() => {
                       </li>
                       <li class="nav-item">
                         <router-link to="/apps-file-manager" class="nav-link" data-key="t-file-manager">
-                          {{ t("t-file-manager") }}
+                          {{ $t("t-file-manager") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/apps-todo" class="nav-link" data-key="t-to-do">
-                          {{ t("t-to-do") }}
+                          {{ $t("t-to-do") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
 
                         <a class="nav-link" href="#jobs" data-bs-toggle="collapse" role="button" aria-expanded="false"
                           aria-controls="jobs" data-key="t-jobs">
-                          {{ t("t-jobs") }}
+                          {{ $t("t-jobs") }}
                         </a>
                         <div class="collapse menu-dropdown" id="jobs">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/jobs/statistics" class="nav-link" data-key="t-job-statistics">
-                                {{ t("t-statistics") }}
+                                {{ $t("t-statistics") }}
                               </router-link>
                             </li>
 
@@ -823,24 +821,24 @@ onMounted(() => {
 
                               <a class="nav-link" href="#sidebarjoblist" data-bs-toggle="collapse" role="button"
                                 aria-expanded="false" aria-controls="sidebarjoblist" data-key="t-job-list">
-                                {{ t("t-job-lists") }}
+                                {{ $t("t-job-lists") }}
                               </a>
                               <div class="collapse menu-dropdown" id="sidebarjoblist">
 
                                 <ul class="nav nav-sm flex-column">
                                   <li class="nav-item">
                                     <router-link to="/jobs/lists" class="nav-link" data-key="t-lists">
-                                      {{ t("t-list") }}
+                                      {{ $t("t-list") }}
                                     </router-link>
                                   </li>
                                   <li class="nav-item">
                                     <router-link to="/jobs/grid-lists" class="nav-link" data-key="t-grid">
-                                      {{ t("t-grid") }}
+                                      {{ $t("t-grid") }}
                                     </router-link>
                                   </li>
                                   <li class="nav-item">
                                     <router-link to="/jobs/details" class="nav-link" data-key="t-overview">
-                                      {{ t("t-overview") }}
+                                      {{ $t("t-overview") }}
                                     </router-link>
                                   </li>
                                 </ul>
@@ -851,19 +849,19 @@ onMounted(() => {
 
                               <a class="nav-link" href="#sidebarcandidatelists" data-bs-toggle="collapse" role="button"
                                 aria-expanded="false" aria-controls="sidebarcandidatelists" data-key="t-job-list">
-                                {{ t("t-candidate-lists") }}
+                                {{ $t("t-candidate-lists") }}
                               </a>
                               <div class="collapse menu-dropdown" id="sidebarcandidatelists">
 
                                 <ul class="nav nav-sm flex-column">
                                   <li class="nav-item">
                                     <router-link to="/jobs/candidate-lists" class="nav-link" data-key="t-lists">
-                                      {{ t("t-list-view") }}
+                                      {{ $t("t-list-view") }}
                                     </router-link>
                                   </li>
                                   <li class="nav-item">
                                     <router-link to="/jobs/candidate-grid" class="nav-link" data-key="t-grid">
-                                      {{ t("t-grid-view") }}
+                                      {{ $t("t-grid-view") }}
                                     </router-link>
                                   </li>
                                 </ul>
@@ -871,22 +869,22 @@ onMounted(() => {
                             </li>
                             <li class="nav-item">
                               <router-link to="/jobs/application" class="nav-link" data-key="t-application">
-                                {{ t("t-application") }}
+                                {{ $t("t-application") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/jobs/new" class="nav-link" data-key="t-new">
-                                {{ t("t-new-job") }}
+                                {{ $t("t-new-job") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/jobs/companies-list" class="nav-link" data-key="t-companies-list">
-                                {{ t("t-companies-list") }}
+                                {{ $t("t-companies-list") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/jobs/categories" class="nav-link" data-key="t-job-categories">
-                                {{ t("t-job-categories") }}
+                                {{ $t("t-job-categories") }}
                               </router-link>
                             </li>
                           </ul>
@@ -894,7 +892,7 @@ onMounted(() => {
                       </li>
                       <li class="nav-item">
                         <router-link to="/apps-api-key" class="nav-link" data-key="t-api-key">
-                          {{ t("t-api-key") }}
+                          {{ $t("t-api-key") }}
                         </router-link>
                       </li>
                     </ul>
@@ -907,19 +905,19 @@ onMounted(() => {
                       <li class="nav-item">
 
                         <a class="nav-link" href="#sidebarSignIn" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarSignIn" data-key="t-signin">{{ t("t-signin") }}
+                          aria-expanded="false" aria-controls="sidebarSignIn" data-key="t-signin">{{ $t("t-signin") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarSignIn">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/auth/signin-basic" class="nav-link" data-key="t-basic">
-                                {{ t("t-basic") }}
+                                {{ $t("t-basic") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/auth/signin-cover" class="nav-link" data-key="t-cover">
-                                {{ t("t-cover") }}
+                                {{ $t("t-cover") }}
                               </router-link>
                             </li>
                           </ul>
@@ -928,19 +926,19 @@ onMounted(() => {
                       <li class="nav-item">
 
                         <a class="nav-link" href="#sidebarSignUp" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarSignUp" data-key="t-signup">{{ t("t-signup") }}
+                          aria-expanded="false" aria-controls="sidebarSignUp" data-key="t-signup">{{ $t("t-signup") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarSignUp">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/auth/signup-basic" class="nav-link" data-key="t-basic">
-                                {{ t("t-basic") }}
+                                {{ $t("t-basic") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/auth/signup-cover" class="nav-link" data-key="t-cover">
-                                {{ t("t-cover") }}
+                                {{ $t("t-cover") }}
                               </router-link>
                             </li>
                           </ul>
@@ -951,19 +949,19 @@ onMounted(() => {
 
                         <a class="nav-link" href="#sidebarResetPass" data-bs-toggle="collapse" role="button"
                           aria-expanded="false" aria-controls="sidebarResetPass" data-key="t-password-reset">
-                          {{ t("t-password-reset") }}
+                          {{ $t("t-password-reset") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarResetPass">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/auth/reset-pwd-basic" class="nav-link" data-key="t-basic">
-                                {{ t("t-basic") }}
+                                {{ $t("t-basic") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/auth/reset-pwd-cover" class="nav-link" data-key="t-cover">
-                                {{ t("t-cover") }}
+                                {{ $t("t-cover") }}
                               </router-link>
                             </li>
                           </ul>
@@ -973,19 +971,19 @@ onMounted(() => {
 
                         <a class="nav-link" href="#sidebarcreatepass" data-bs-toggle="collapse" role="button"
                           aria-expanded="false" aria-controls="sidebarcreatepass" data-key="t-password-reset">
-                          {{ t("t-password-create") }}
+                          {{ $t("t-password-create") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarcreatepass">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/auth/create-pwd-basic" class="nav-link" data-key="t-basic">
-                                {{ t("t-basic") }}
+                                {{ $t("t-basic") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/auth/create-pwd-cover" class="nav-link" data-key="t-cover">
-                                {{ t("t-cover") }}
+                                {{ $t("t-cover") }}
                               </router-link>
                             </li>
                           </ul>
@@ -995,19 +993,19 @@ onMounted(() => {
 
                         <a class="nav-link" href="#sidebarLockScreen" data-bs-toggle="collapse" role="button"
                           aria-expanded="false" aria-controls="sidebarLockScreen" data-key="t-lock-screen">
-                          {{ t("t-lock-screen") }}
+                          {{ $t("t-lock-screen") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarLockScreen">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/auth/lockscreen-basic" class="nav-link" data-key="t-basic">
-                                {{ t("t-basic") }}
+                                {{ $t("t-basic") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/auth/lockscreen-cover" class="nav-link" data-key="t-cover">
-                                {{ t("t-cover") }}
+                                {{ $t("t-cover") }}
                               </router-link>
                             </li>
                           </ul>
@@ -1018,19 +1016,19 @@ onMounted(() => {
 
                         <a class="nav-link" href="#sidebarLogout" data-bs-toggle="collapse" role="button"
                           aria-expanded="false" aria-controls="sidebarLogout" data-key="t-logout">
-                          {{ t("t-logout") }}
+                          {{ $t("t-logout") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarLogout">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/auth/logout-basic" class="nav-link" data-key="t-basic">
-                                {{ t("t-basic") }}
+                                {{ $t("t-basic") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/auth/logout-cover" class="nav-link" data-key="t-cover">
-                                {{ t("t-cover") }}
+                                {{ $t("t-cover") }}
                               </router-link>
                             </li>
                           </ul>
@@ -1040,19 +1038,19 @@ onMounted(() => {
 
                         <a class="nav-link" href="#sidebarSuccessMsg" data-bs-toggle="collapse" role="button"
                           aria-expanded="false" aria-controls="sidebarSuccessMsg" data-key="t-success-message">
-                          {{ t("t-success-message") }}
+                          {{ $t("t-success-message") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarSuccessMsg">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/auth/success-msg-basic" class="nav-link" data-key="t-basic">
-                                {{ t("t-basic") }}
+                                {{ $t("t-basic") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/auth/success-msg-cover" class="nav-link" data-key="t-cover">
-                                {{ t("t-cover") }}
+                                {{ $t("t-cover") }}
                               </router-link>
                             </li>
                           </ul>
@@ -1062,19 +1060,19 @@ onMounted(() => {
 
                         <a class="nav-link" href="#sidebarTwoStep" data-bs-toggle="collapse" role="button"
                           aria-expanded="false" aria-controls="sidebarTwoStep" data-key="t-two-step-verification">
-                          {{ t("t-two-step-verification") }}
+                          {{ $t("t-two-step-verification") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarTwoStep">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/auth/twostep-basic" class="nav-link" data-key="t-basic">
-                                {{ t("t-basic") }}
+                                {{ $t("t-basic") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/auth/twostep-cover" class="nav-link" data-key="t-cover">
-                                {{ t("t-cover") }}
+                                {{ $t("t-cover") }}
                               </router-link>
                             </li>
                           </ul>
@@ -1084,34 +1082,34 @@ onMounted(() => {
 
                         <a class="nav-link" href="#sidebarErrors" data-bs-toggle="collapse" role="button"
                           aria-expanded="false" aria-controls="sidebarErrors" data-key="t-errors">
-                          {{ t("t-errors") }}
+                          {{ $t("t-errors") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarErrors">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/auth/404-basic" class="nav-link" data-key="t-404-basic">
-                                {{ t("t-404-basic") }}
+                                {{ $t("t-404-basic") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/auth/404-cover" class="nav-link" data-key="t-404-cover">
-                                {{ t("t-404-cover") }}
+                                {{ $t("t-404-cover") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/auth/404" class="nav-link" data-key="t-404-alt">
-                                {{ t("t-404-alt") }}
+                                {{ $t("t-404-alt") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/auth/500" class="nav-link" data-key="t-500">
-                                {{ t("t-500") }}
+                                {{ $t("t-500") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/auth/ofline" class="nav-link" data-key="t-500">
-                                {{ t("t-offline-page") }}
+                                {{ $t("t-offline-page") }}
                               </router-link>
                             </li>
                           </ul>
@@ -1125,13 +1123,13 @@ onMounted(() => {
                   <div class="collapse menu-dropdown" id="sidebarPages">
                     <ul class="nav nav-sm flex-column">
                       <li class="nav-item">
-                        <router-link to="/pages/starter" class="nav-link" data-key="t-starter">{{ t("t-starter") }}
+                        <router-link to="/pages/starter" class="nav-link" data-key="t-starter">{{ $t("t-starter") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
 
                         <a class="nav-link" href="#sidebarProfile" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarProfile" data-key="t-profile">{{ t("t-profile")
+                          aria-expanded="false" aria-controls="sidebarProfile" data-key="t-profile">{{ $t("t-profile")
                           }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarProfile">
@@ -1139,12 +1137,12 @@ onMounted(() => {
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/pages/profile" class="nav-link" data-key="t-simple-page">
-                                {{ t("t-simple-page") }}
+                                {{ $t("t-simple-page") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/pages/profile-setting" class="nav-link" data-key="t-settings">
-                                {{ t("t-settings") }}
+                                {{ $t("t-settings") }}
                               </router-link>
                             </li>
                           </ul>
@@ -1152,75 +1150,75 @@ onMounted(() => {
                       </li>
                       <li class="nav-item">
                         <router-link to="/pages/team" class="nav-link" data-key="t-team">
-                          {{ t("t-team") }}
+                          {{ $t("t-team") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/pages/timeline" class="nav-link" data-key="t-timeline">
-                          {{ t("t-timeline") }}
+                          {{ $t("t-timeline") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/pages/faqs" class="nav-link" data-key="t-faqs">
-                          {{ t("t-faqs") }}
+                          {{ $t("t-faqs") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/pages/pricing" class="nav-link" data-key="t-pricing">
-                          {{ t("t-pricing") }}
+                          {{ $t("t-pricing") }}
                         </router-link>
                       </li>
 
                       <li class="nav-item">
                         <router-link to="/pages/maintenance" class="nav-link" data-key="t-maintenance">
-                          {{ t("t-maintenance") }}
+                          {{ $t("t-maintenance") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/pages/coming-soon" class="nav-link" data-key="t-coming-soon">
-                          {{ t("t-coming-soon") }}
+                          {{ $t("t-coming-soon") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/pages/sitemap" class="nav-link" data-key="t-sitemap">
-                          {{ t("t-sitemap") }}
+                          {{ $t("t-sitemap") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/pages/search-results" class="nav-link" data-key="t-search-results">
-                          {{ t("t-search-results") }}
+                          {{ $t("t-search-results") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/pages/privacy-policy" class="nav-link" data-key="t-privacy-policy">
-                          {{ t("t-privacy-policy") }}
+                          {{ $t("t-privacy-policy") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/pages/term-conditions" class="nav-link" data-key="t-term-conditions">
-                          {{ t("t-term-conditions") }}
+                          {{ $t("t-term-conditions") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#sidebarBlogs" data-bs-toggle="collapse" role="button"
-                          aria-expanded="false" aria-controls="sidebarBlogs" data-key="t-blogs">{{ t("t-blogs") }}
-                          <BBadge variant="success" class="badge-pill" data-key="t-new">{{ t("t-new") }}</BBadge>
+                          aria-expanded="false" aria-controls="sidebarBlogs" data-key="t-blogs">{{ $t("t-blogs") }}
+                          <BBadge variant="success" class="badge-pill" data-key="t-new">{{ $t("t-new") }}</BBadge>
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarBlogs">
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/blogs/list-view" class="nav-link" data-key="t-list-view">
-                                {{ t("t-list-view") }}
+                                {{ $t("t-list-view") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/blogs/grid-view" class="nav-link" data-key="t-grid-view">
-                                {{ t("t-grid-view") }}
+                                {{ $t("t-grid-view") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/blogs/overview" class="nav-link" data-key="t-overview">
-                                {{ t("t-overview") }}
+                                {{ $t("t-overview") }}
                               </router-link>
                             </li>
                           </ul>
@@ -1234,17 +1232,17 @@ onMounted(() => {
                     <ul class="nav nav-sm flex-column">
                       <li class="nav-item">
                         <router-link to="/landing" target="_blank" class="nav-link" data-key="t-one-page">{{
-                          t("t-one-page") }}</router-link>
+                          $t("t-one-page") }}</router-link>
                       </li>
 
                       <li class="nav-item">
                         <router-link to="/nft-landing" target="_blank" class="nav-link" data-key="t-nft-landing">{{
-                          t("t-nft-landing") }}</router-link>
+                          $t("t-nft-landing") }}</router-link>
                       </li>
 
                       <li class="nav-item">
                         <router-link to="/job-landing" target="_blank" class="nav-link" data-key="t-nft-landing">{{
-                          t("t-job") }}</router-link>
+                          $t("t-job") }}</router-link>
                       </li>
 
                     </ul>
@@ -1256,35 +1254,35 @@ onMounted(() => {
                       <BCol lg="4">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
-                            <router-link to="/ui/alerts" class="nav-link" data-key="t-alerts">{{ t("t-alerts") }}
+                            <router-link to="/ui/alerts" class="nav-link" data-key="t-alerts">{{ $t("t-alerts") }}
                             </router-link>
                           </li>
                           <li class="nav-item">
-                            <router-link to="/ui/badges" class="nav-link" data-key="t-badges">{{ t("t-badges") }}
+                            <router-link to="/ui/badges" class="nav-link" data-key="t-badges">{{ $t("t-badges") }}
                             </router-link>
                           </li>
                           <li class="nav-item">
-                            <router-link to="/ui/buttons" class="nav-link" data-key="t-buttons">{{ t("t-buttons") }}
+                            <router-link to="/ui/buttons" class="nav-link" data-key="t-buttons">{{ $t("t-buttons") }}
                             </router-link>
                           </li>
                           <li class="nav-item">
-                            <router-link to="/ui/colors" class="nav-link" data-key="t-colors">{{ t("t-colors") }}
+                            <router-link to="/ui/colors" class="nav-link" data-key="t-colors">{{ $t("t-colors") }}
                             </router-link>
                           </li>
                           <li class="nav-item">
-                            <router-link to="/ui/cards" class="nav-link" data-key="t-cards">{{ t("t-cards") }}
+                            <router-link to="/ui/cards" class="nav-link" data-key="t-cards">{{ $t("t-cards") }}
                             </router-link>
                           </li>
                           <li class="nav-item">
-                            <router-link to="/ui/carousel" class="nav-link" data-key="t-carousel">{{ t("t-carousel") }}
+                            <router-link to="/ui/carousel" class="nav-link" data-key="t-carousel">{{ $t("t-carousel") }}
                             </router-link>
                           </li>
                           <li class="nav-item">
                             <router-link to="/ui/dropdowns" class="nav-link" data-key="t-dropdowns">
-                              {{ t("t-dropdowns") }}</router-link>
+                              {{ $t("t-dropdowns") }}</router-link>
                           </li>
                           <li class="nav-item">
-                            <router-link to="/ui/grid" class="nav-link" data-key="t-grid">{{ t("t-grid") }}
+                            <router-link to="/ui/grid" class="nav-link" data-key="t-grid">{{ $t("t-grid") }}
                             </router-link>
                           </li>
                         </ul>
@@ -1292,36 +1290,36 @@ onMounted(() => {
                       <BCol lg="4">
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
-                            <router-link to="/ui/images" class="nav-link" data-key="t-images">{{ t("t-images") }}
+                            <router-link to="/ui/images" class="nav-link" data-key="t-images">{{ $t("t-images") }}
                             </router-link>
                           </li>
                           <li class="nav-item">
-                            <router-link to="/ui/tabs" class="nav-link" data-key="t-tabs">{{ t("t-tabs") }}
+                            <router-link to="/ui/tabs" class="nav-link" data-key="t-tabs">{{ $t("t-tabs") }}
                             </router-link>
                           </li>
                           <li class="nav-item">
                             <router-link to="/ui/accordions" class="nav-link" data-key="t-accordion-collapse">
-                              {{ t("t-accordion-collapse") }}</router-link>
+                              {{ $t("t-accordion-collapse") }}</router-link>
                           </li>
                           <li class="nav-item">
-                            <router-link to="/ui/modals" class="nav-link" data-key="t-modals">{{ t("t-modals") }}
+                            <router-link to="/ui/modals" class="nav-link" data-key="t-modals">{{ $t("t-modals") }}
                             </router-link>
                           </li>
                           <li class="nav-item">
                             <router-link to="/ui/offcanvas" class="nav-link" data-key="t-offcanvas">
-                              {{ t("t-offcanvas") }}</router-link>
+                              {{ $t("t-offcanvas") }}</router-link>
                           </li>
                           <li class="nav-item">
                             <router-link to="/ui/placeholders" class="nav-link" data-key="t-placeholders">
-                              {{ t("t-placeholders") }}</router-link>
+                              {{ $t("t-placeholders") }}</router-link>
                           </li>
                           <li class="nav-item">
-                            <router-link to="/ui/progress" class="nav-link" data-key="t-progress">{{ t("t-progress") }}
+                            <router-link to="/ui/progress" class="nav-link" data-key="t-progress">{{ $t("t-progress") }}
                             </router-link>
                           </li>
                           <li class="nav-item">
                             <router-link to="/ui/notifications" class="nav-link" data-key="t-notifications">
-                              {{ t("t-notifications") }}</router-link>
+                              {{ $t("t-notifications") }}</router-link>
                           </li>
                         </ul>
                       </BCol>
@@ -1329,36 +1327,36 @@ onMounted(() => {
                         <ul class="nav nav-sm flex-column">
                           <li class="nav-item">
                             <router-link to="/ui/media" class="nav-link" data-key="t-media-object">
-                              {{ t("t-media-object") }}</router-link>
+                              {{ $t("t-media-object") }}</router-link>
                           </li>
                           <li class="nav-item">
                             <router-link to="/ui/embed-video" class="nav-link" data-key="t-embed-video">
-                              {{ t("t-embed-video") }}</router-link>
+                              {{ $t("t-embed-video") }}</router-link>
                           </li>
                           <li class="nav-item">
                             <router-link to="/ui/typography" class="nav-link" data-key="t-typography">
-                              {{ t("t-typography") }}</router-link>
+                              {{ $t("t-typography") }}</router-link>
                           </li>
                           <li class="nav-item">
-                            <router-link to="/ui/lists" class="nav-link" data-key="t-lists">{{ t("t-lists")
+                            <router-link to="/ui/lists" class="nav-link" data-key="t-lists">{{ $t("t-lists")
                             }}</router-link>
                           </li>
                           <li class="nav-item">
-                            <router-link to="/ui/links" class="nav-link" data-key="t-links">{{ t("t-links") }}
-                              <BBadge variant="success" class="badge-pill" data-key="t-new">{{ t("t-new") }}</BBadge>
+                            <router-link to="/ui/links" class="nav-link" data-key="t-links">{{ $t("t-links") }}
+                              <BBadge variant="success" class="badge-pill" data-key="t-new">{{ $t("t-new") }}</BBadge>
                             </router-link>
                           </li>
                           <li class="nav-item">
-                            <router-link to="/ui/general" class="nav-link" data-key="t-general">{{ t("t-general")
+                            <router-link to="/ui/general" class="nav-link" data-key="t-general">{{ $t("t-general")
                             }}</router-link>
                           </li>
                           <li class="nav-item">
-                            <router-link to="/ui/ribbons" class="nav-link" data-key="t-ribbons">{{ t("t-ribbons") }}
+                            <router-link to="/ui/ribbons" class="nav-link" data-key="t-ribbons">{{ $t("t-ribbons") }}
                             </router-link>
                           </li>
                           <li class="nav-item">
                             <router-link to="/ui/utilities" class="nav-link" data-key="t-utilities">
-                              {{ t("t-utilities") }}</router-link>
+                              {{ $t("t-utilities") }}</router-link>
                           </li>
                         </ul>
                       </BCol>
@@ -1371,29 +1369,29 @@ onMounted(() => {
                     <ul class="nav nav-sm flex-column">
                       <li class="nav-item">
                         <router-link to="/advance-ui/sweetalerts" class="nav-link" data-key="t-sweet-alerts">
-                          {{ t("t-sweet-alerts") }}</router-link>
+                          {{ $t("t-sweet-alerts") }}</router-link>
                       </li>
 
                       <li class="nav-item">
                         <router-link to="/advance-ui/scrollbar" class="nav-link" data-key="t-scrollbar">
-                          {{ t("t-scrollbar") }}</router-link>
+                          {{ $t("t-scrollbar") }}</router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/advance-ui/animation" class="nav-link" data-key="t-animation">
-                          {{ t("t-animation") }}</router-link>
+                          {{ $t("t-animation") }}</router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/advance-ui/swiper" class="nav-link" data-key="t-swiper-slider">
-                          {{ t("t-swiper-slider") }}</router-link>
+                          {{ $t("t-swiper-slider") }}</router-link>
                       </li>
 
                       <li class="nav-item">
                         <router-link to="/advance-ui/highlight" class="nav-link" data-key="t-highlight">
-                          {{ t("t-highlight") }}</router-link>
+                          {{ $t("t-highlight") }}</router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/advance-ui/scrollspy" class="nav-link" data-key="t-scrollSpy">
-                          {{ t("t-scrollSpy") }}</router-link>
+                          {{ $t("t-scrollSpy") }}</router-link>
                       </li>
                     </ul>
                   </div>
@@ -1404,53 +1402,53 @@ onMounted(() => {
                     <ul class="nav nav-sm flex-column">
                       <li class="nav-item">
                         <router-link to="/form/elements" class="nav-link" data-key="t-basic-elements">
-                          {{ t("t-basic-elements") }}</router-link>
+                          {{ $t("t-basic-elements") }}</router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/form/select" class="nav-link" data-key="t-form-select">
-                          {{ t("t-form-select") }}</router-link>
+                          {{ $t("t-form-select") }}</router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/form/checkboxs-radios" class="nav-link" data-key="t-checkboxs-radios">
-                          {{ t("t-checkboxs-radios") }}</router-link>
+                          {{ $t("t-checkboxs-radios") }}</router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/form/pickers" class="nav-link" data-key="t-pickers">
-                          {{ t("t-pickers") }}
+                          {{ $t("t-pickers") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/form/masks" class="nav-link" data-key="t-input-masks">
-                          {{ t("t-input-masks") }}</router-link>
+                          {{ $t("t-input-masks") }}</router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/form/advanced" class="nav-link" data-key="t-advanced">
-                          {{ t("t-advanced") }}</router-link>
+                          {{ $t("t-advanced") }}</router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/form/range-sliders" class="nav-link" data-key="t-range-slider">
-                          {{ t("t-range-slider") }}
+                          {{ $t("t-range-slider") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/form/validation" class="nav-link" data-key="t-validation">
-                          {{ t("t-validation") }}</router-link>
+                          {{ $t("t-validation") }}</router-link>
                       </li>
                       <li class="nav-item">
-                        <router-link to="/form/wizard" class="nav-link" data-key="t-wizard">{{ t("t-wizard") }}
+                        <router-link to="/form/wizard" class="nav-link" data-key="t-wizard">{{ $t("t-wizard") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
-                        <router-link to="/form/editors" class="nav-link" data-key="t-editors">{{ t("t-editors") }}
+                        <router-link to="/form/editors" class="nav-link" data-key="t-editors">{{ $t("t-editors") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/form/file-uploads" class="nav-link" data-key="t-file-uploads">
-                          {{ t("t-file-uploads") }}</router-link>
+                          {{ $t("t-file-uploads") }}</router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/form/layouts" class="nav-link" data-key="t-form-layouts">
-                          {{ t("t-form-layouts") }}</router-link>
+                          {{ $t("t-form-layouts") }}</router-link>
                       </li>
                     </ul>
                   </div>
@@ -1461,10 +1459,10 @@ onMounted(() => {
                     <ul class="nav nav-sm flex-column">
                       <li class="nav-item">
                         <router-link to="/tables/basic" class="nav-link" data-key="t-basic-tables">
-                          {{ t("t-basic-tables") }}</router-link>
+                          {{ $t("t-basic-tables") }}</router-link>
                       </li>
                       <li class="nav-item">
-                        <router-link to="/tables/gridjs" class="nav-link" data-key="t-grid-js">{{ t("t-grid-js") }}
+                        <router-link to="/tables/gridjs" class="nav-link" data-key="t-grid-js">{{ $t("t-grid-js") }}
                         </router-link>
                       </li>
                     </ul>
@@ -1478,111 +1476,111 @@ onMounted(() => {
 
                         <a class="nav-link" href="#sidebarApexcharts" data-bs-toggle="collapse" role="button"
                           aria-expanded="false" aria-controls="sidebarApexcharts" data-key="t-apexcharts">
-                          {{ t("t-apexcharts") }}
+                          {{ $t("t-apexcharts") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarApexcharts">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <router-link to="/charts/apex-line" class="nav-link" data-key="t-line">
-                                {{ t("t-line") }}
+                                {{ $t("t-line") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/charts/apex-area" class="nav-link" data-key="t-area">
-                                {{ t("t-area") }}
+                                {{ $t("t-area") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/charts/apex-column" class="nav-link" data-key="t-column">
-                                {{ t("t-column") }}
+                                {{ $t("t-column") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/charts/apex-bar" class="nav-link" data-key="t-bar">
-                                {{ t("t-bar") }}
+                                {{ $t("t-bar") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
-                              <router-link to="/charts/apex-mixed" class="nav-link" data-key="t-mixed">{{ t("t-mixed")
+                              <router-link to="/charts/apex-mixed" class="nav-link" data-key="t-mixed">{{ $t("t-mixed")
                               }}</router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/charts/apex-range-area" class="nav-link" data-key="t-range-area">{{
-                                t("t-range-area") }}
-                                <BBadge variant="success" class="badge-pill" data-key="t-new">{{ t("t-new") }}</BBadge>
+                                $t("t-range-area") }}
+                                <BBadge variant="success" class="badge-pill" data-key="t-new">{{ $t("t-new") }}</BBadge>
                               </router-link>
                             </li>
                             <li class="nav-item">
-                              <router-link to="/charts/apex-funnel" class="nav-link" data-key="t-funnel">{{ t("t-funnel")
+                              <router-link to="/charts/apex-funnel" class="nav-link" data-key="t-funnel">{{ $t("t-funnel")
                               }}
-                                <BBadge variant="success" class="badge-pill" data-key="t-new">{{ t("t-new") }}</BBadge>
+                                <BBadge variant="success" class="badge-pill" data-key="t-new">{{ $t("t-new") }}</BBadge>
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/charts/apex-candlestick" class="nav-link" data-key="t-candlstick">
-                                {{ t("t-candlstick") }}
+                                {{ $t("t-candlstick") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/charts/apex-boxplot" class="nav-link" data-key="t-boxplot">
-                                {{ t("t-boxplot") }}
+                                {{ $t("t-boxplot") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/charts/apex-bubble" class="nav-link" data-key="t-bubble">
-                                {{ t("t-bubble") }}
+                                {{ $t("t-bubble") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/charts/apex-scatter" class="nav-link" data-key="t-scatter">
-                                {{ t("t-scatter") }}
+                                {{ $t("t-scatter") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/charts/apex-heatmap" class="nav-link" data-key="t-heatmap">
-                                {{ t("t-heatmap") }}
+                                {{ $t("t-heatmap") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/charts/apex-treemap" class="nav-link" data-key="t-treemap">
-                                {{ t("t-treemap") }}
+                                {{ $t("t-treemap") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/charts/apex-pie" class="nav-link" data-key="t-pie">
-                                {{ t("t-pie") }}
+                                {{ $t("t-pie") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/charts/apex-radialbar" class="nav-link" data-key="t-radialbar">
-                                {{ t("t-radialbar") }}
+                                {{ $t("t-radialbar") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/charts/apex-radar" class="nav-link" data-key="t-radar">
-                                {{ t("t-radar") }}
+                                {{ $t("t-radar") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
                               <router-link to="/charts/apex-polararea" class="nav-link" data-key="t-polar-area">
-                                {{ t("t-polar-area") }}
+                                {{ $t("t-polar-area") }}
                               </router-link>
                             </li>
                             <li class="nav-item">
-                              <router-link to="/charts/apex-slope" class="nav-link" data-key="t-slope">{{ t("t-slope") }}
-                                <BBadge variant="success" class="badge-pill" data-key="t-new">{{ t("t-new") }}</BBadge>
+                              <router-link to="/charts/apex-slope" class="nav-link" data-key="t-slope">{{ $t("t-slope") }}
+                                <BBadge variant="success" class="badge-pill" data-key="t-new">{{ $t("t-new") }}</BBadge>
                               </router-link>
                             </li>
                           </ul>
                         </div>
                       </li>
                       <li class="nav-item">
-                        <router-link to="/charts/chartjs" class="nav-link" data-key="t-chartjs">{{ t("t-chartjs") }}
+                        <router-link to="/charts/chartjs" class="nav-link" data-key="t-chartjs">{{ $t("t-chartjs") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
-                        <router-link to="/charts/echart" class="nav-link" data-key="t-echarts">{{ t("t-echarts") }}
+                        <router-link to="/charts/echart" class="nav-link" data-key="t-echarts">{{ $t("t-echarts") }}
                         </router-link>
                       </li>
                     </ul>
@@ -1593,27 +1591,27 @@ onMounted(() => {
                   <div class="collapse menu-dropdown" id="sidebarIcons">
                     <ul class="nav nav-sm flex-column">
                       <li class="nav-item">
-                        <router-link to="/icons/remix" class="nav-link" data-key="t-remix">{{ t("t-remix") }}
+                        <router-link to="/icons/remix" class="nav-link" data-key="t-remix">{{ $t("t-remix") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
-                        <router-link to="/icons/boxicons" class="nav-link" data-key="t-boxicons">{{ t("t-boxicons") }}
+                        <router-link to="/icons/boxicons" class="nav-link" data-key="t-boxicons">{{ $t("t-boxicons") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/icons/materialdesign" class="nav-link" data-key="t-material-design">
-                          {{ t("t-material-design") }}</router-link>
+                          {{ $t("t-material-design") }}</router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/icons/lineawesome" class="nav-link" data-key="t-line-awesome">
-                          {{ t("t-line-awesome") }}</router-link>
+                          {{ $t("t-line-awesome") }}</router-link>
                       </li>
                       <li class="nav-item">
-                        <router-link to="/icons/feather" class="nav-link" data-key="t-feather">{{ t("t-feather") }}
+                        <router-link to="/icons/feather" class="nav-link" data-key="t-feather">{{ $t("t-feather") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
-                        <router-link to="/icons/crypto" class="nav-link" data-key="t-feather">{{ t("t-crypto-svg")
+                        <router-link to="/icons/crypto" class="nav-link" data-key="t-feather">{{ $t("t-crypto-svg")
                         }}
                         </router-link>
                       </li>
@@ -1626,12 +1624,12 @@ onMounted(() => {
                     <ul class="nav nav-sm flex-column">
                       <li class="nav-item">
                         <router-link to="/maps/google" class="nav-link" data-key="t-google">
-                          {{ t("t-google") }}
+                          {{ $t("t-google") }}
                         </router-link>
                       </li>
                       <li class="nav-item">
                         <router-link to="/maps/leaflet" class="nav-link" data-key="t-leaflet">
-                          {{ t("t-leaflet") }}
+                          {{ $t("t-leaflet") }}
                         </router-link>
                       </li>
                     </ul>
@@ -1645,40 +1643,40 @@ onMounted(() => {
 
                         <a class="nav-link" data-key="t-level-1.1">
 
-                          {{ t("t-level-1.1") }}
+                          {{ $t("t-level-1.1") }}
                         </a>
                       </li>
                       <li class="nav-item">
 
                         <a class="nav-link" href="#sidebarAccount" data-bs-toggle="collapse" role="button"
                           aria-expanded="false" aria-controls="sidebarAccount" data-key="t-level-1.2">
-                          {{ t("t-level-1.2") }}
+                          {{ $t("t-level-1.2") }}
                         </a>
                         <div class="collapse menu-dropdown" id="sidebarAccount">
 
                           <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                               <a class="nav-link" data-key="t-level-2.1">
-                                {{ t("t-level-2.1") }}
+                                {{ $t("t-level-2.1") }}
                               </a>
                             </li>
                             <li class="nav-item">
 
                               <a class="nav-link" href="#sidebarCrm" data-bs-toggle="collapse" role="button"
                                 aria-expanded="false" aria-controls="sidebarCrm" data-key="t-level-2.2">
-                                {{ t("t-level-2.2") }}
+                                {{ $t("t-level-2.2") }}
                               </a>
                               <div class="collapse menu-dropdown" id="sidebarCrm">
 
                                 <ul class="nav nav-sm flex-column">
                                   <li class="nav-item">
                                     <a class="nav-link" data-key="t-level-3.1">
-                                      {{ t("t-level-3.1") }}
+                                      {{ $t("t-level-3.1") }}
                                     </a>
                                   </li>
                                   <li class="nav-item">
                                     <a class="nav-link" data-key="t-level-3.2">
-                                      {{ t("t-level-3.2") }}
+                                      {{ $t("t-level-3.2") }}
                                     </a>
                                   </li>
                                 </ul>
@@ -1691,12 +1689,10 @@ onMounted(() => {
                   </div>
                 </li>
               </simplebar>
-            </template>
-          
+            </div>
+          </div>
+          </BContainer>
         </div>
-
-        <!-- </BContainer>
-      </div> -->
 
         <simplebar id="scrollbar" class="h-100" ref="scrollbar" v-if="rmenu == 'vertical'">
           <Menu></Menu>
@@ -1723,23 +1719,51 @@ onMounted(() => {
     </div>
     <RightBar />
   </div>
-</template>  
+</template>
 
 <style scoped>
-/* Two Column Menu Styles */
-
-#layout-wrapper,
-.app-menu.navbar-menu,
-#scrollbar,
-.simplebar,
-.simplebar > .simplebar-wrapper,
-.simplebar > .simplebar-mask,
-.simplebar > .simplebar-content-wrapper,
-.simplebar > .simplebar-content {
-  height: 100vh !important;
-  min-height: 100vh !important;
+.twocolumn-menu-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  min-width: 250px;
+  height: 100vh;
+  background: var(--bs-vertical-menu-bg, #fff);
+  border-right: 1px solid var(--bs-border-color, #e9ecef);
   box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+  padding-top: 0;
 }
+
+.twocolumn-menu-panel .navbar-brand-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center logo horizontally */
+  height: 70px;
+  border-bottom: 1px solid var(--bs-border-color, #e9ecef);
+  background: inherit;
+  position: relative;
+}
+
+.twocolumn-menu-panel .btn-vertical-sm-hover {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.twocolumn-menu-panel .navbar-nav {
+  flex: 1 1 auto;
+  width: 100%;
+  overflow-y: auto;
+  padding: 0 0.5rem;
+  background: inherit;
+}
+
+/* Icon view container */
 .twocolumn-iconview {
   display: flex;
   flex-direction: column;
@@ -1748,60 +1772,60 @@ onMounted(() => {
   height: 100vh;
   min-height: 100vh;
   width: 70px;
-  background-color: var(--bs-vertical-menu-bg);
-  border-right: 1px solid var(--bs-border-color);
+  background-color: var(--bs-vertical-menu-bg, #f8f9fa);
+  border-right: 1px solid var(--bs-border-color, #e9ecef);
   box-sizing: border-box;
+  padding-top: 24px;
 }
 
+/* Remove default ul styles */
+.twocolumn-iconview ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+/* Each icon item */
+.twocolumn-iconview li {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Icon link/button */
 .twocolumn-iconview .nav-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 56px;
-  color: var(--bs-menu-item-color);
-  transition: all 0.3s;
+  width: 48px;
+  height: 48px;
+  margin: 4px 0;
+  border-radius: 8px;
+  color: var(--bs-menu-item-color, #6c757d);
+  font-size: 22px;
+  transition: background 0.2s, color 0.2s;
 }
 
 .twocolumn-iconview .nav-icon:hover,
 .twocolumn-iconview .nav-icon.active {
-  color: var(--bs-menu-item-active-color);
-  background-color: var(--bs-menu-item-active-bg);
+  background: var(--bs-menu-item-active-bg, #e9ecef);
+  color: var(--bs-menu-item-active-color, #0d6efd);
 }
 
+/* Icon itself */
 .twocolumn-iconview .nav-icon i {
-  font-size: 20px;
+  font-size: 22px;
+  line-height: 1;
 }
 
-.navbar-nav {
-  height: 100%;
-  width: calc(100% - 70px);
-  padding: 0 1rem;
-}
-
-/* Ensure proper height for scrollable areas */
-#scrollbar {
-  height: calc(100vh - 70px);
-}
-
-/* Logo styles */
-.navbar-brand-box {
-  padding: 0 1.5rem;
-  width: 250px;
-  height: 70px;
+/* Optional: Logo at the top of icon bar */
+.twocolumn-iconview .logo {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-}
-
-/* Responsive adjustments */
-@media (max-width: 767.98px) {
-  .twocolumn-iconview {
-    display: none;
-  }
-  
-  .navbar-nav {
-    width: 100%;
-  }
+  justify-content: center;
+  margin-bottom: 24px;
+  width: 100%;
 }
 </style>
+
