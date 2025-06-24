@@ -3,6 +3,8 @@ import { ref, onMounted, onBeforeUnmount, computed, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import simplebar from 'simplebar-vue';
 import { layoutComputed } from '@/state/helpers';
+import { useLayoutStore } from '@/state/modules/layout'
+const store = useLayoutStore()
 
 import NavBar from '@/components/nav-bar.vue';
 import Menu from '@/components/menu.vue';
@@ -18,7 +20,7 @@ const sidebarSize = ref('');
 const router = useRouter();
 
 // Computed property for layout
-const layout = computed(() => layoutComputed);
+const layout = computed(() => store.layoutType)
 
 // Method to update the sidebar size
 const updateSidebarSize = () => {
@@ -129,14 +131,14 @@ onBeforeUnmount(() => {
             </span>
           </router-link>
           <BButton size="sm" class="p-0 fs-20 header-item float-end btn-vertical-sm-hover"
-            id="vertical-hover" @click="initActiveMenu">
+            id="vertical-hover" @click="toggleMenu">
             <i class="ri-record-circle-line"></i>
           </BButton>
         </div>
 
             
         <simplebar id="scrollbar" class="h-100" ref="scrollbar">
-          <Menu></Menu>
+          <Menu :key="layout"></Menu>
         </simplebar>
         <div class="sidebar-background"></div>
       </div>

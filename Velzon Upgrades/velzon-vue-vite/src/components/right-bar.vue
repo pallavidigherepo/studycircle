@@ -252,6 +252,10 @@ watch(preloader, (newVal, oldVal) => {
 
 watch(layoutType, (newVal, oldVal) => {
   if (newVal !== oldVal) {
+    // Reset layout-related attributes if needed
+    document.documentElement.removeAttribute("data-sidebar-size");
+    document.documentElement.removeAttribute("data-layout-style");
+    document.documentElement.removeAttribute("data-sidebar-visibility");
     switch (newVal) {
       case "horizontal":
         document.documentElement.setAttribute("data-layout", "horizontal");
@@ -264,6 +268,11 @@ watch(layoutType, (newVal, oldVal) => {
         break;
       case "semibox":
         document.documentElement.setAttribute("data-layout", "semibox");
+        // Always show sidebar for semibox
+        document.documentElement.setAttribute("data-sidebar-visibility", visibility.value || "show");
+        // Force sidebar size (optional, adjust as needed)
+        document.documentElement.setAttribute("data-sidebar-size", sidebarSize.value || "lg");
+        // If you have a sidebar/menu component, force re-render by updating a key (see below)
         break;
     }
   }
@@ -1255,7 +1264,7 @@ const components = { simpleBar };
               </BCol>
               <BCol cols="4">
                 <BButton variant="link" class="avatar-md w-100 p-0 overflow-hidden border"
-                  v-b-toggle="'collapseBgGradient'" @click="onSideBarColorClick('gradient')">
+                  @click="showGradients = !showGradients">
                   <span class="d-flex gap-1 h-100">
                     <span class="flex-shrink-0">
                       <span class="bg-vertical-gradient d-flex h-100 flex-column gap-1 p-1">
@@ -1276,7 +1285,7 @@ const components = { simpleBar };
                 <h5 class="fs-13 text-center mt-2">Gradient</h5>
               </BCol>
             </BRow>
-            <BCollapse v-if="showGradients" id="collapseBgGradient">
+            <BCollapse :visible="showGradients" id="collapseBgGradient">
               <div class="d-flex gap-2 flex-wrap img-switch p-2 px-3 bg-light rounded">
                 <div class="form-check sidebar-setting card-radio">
                   <input class="form-check-input" type="radio" name="data-sidebar" id="sidebar-color-gradient"

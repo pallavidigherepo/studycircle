@@ -28,27 +28,6 @@ const onRoutechange = (path) => {
     }
   }
 };
-const initActiveMenu = (pathName = window.location.pathname) => {
-  const ul = document.getElementById("navbar-nav");
-  if (ul) {
-    const items = Array.from(ul.querySelectorAll("a.nav-link"));
-    let activeItems = items.filter((x) => x.classList.contains("active"));
-    removeActivation(activeItems);
-    let matchingMenuItem = items.find((x) => x.getAttribute("href") === pathName);
-    if (matchingMenuItem) {
-      activateParentDropdown(matchingMenuItem);
-    } else {
-      const id = pathName.replace("/", "");
-      if (id) document.body.classList.add("twocolumn-panel");
-      activateIconSidebarActive(pathName);
-    }
-  }
-};
-
-watch(() => route.path, (newPath) => onRoutechange(newPath), { immediate: true, deep: true });
-
-
-
 
 const removeActivation = (items) => {
   items.forEach((item) => {
@@ -66,6 +45,17 @@ const removeActivation = (items) => {
     }
     item.classList.remove("active");
   });
+};
+
+const activateIconSidebarActive = (id) => {
+  const menu = document.querySelector(
+    "#two-column-menu .simplebar-content.wrapper a[href='" +
+    id +
+    "'].nav-icon"
+  );
+  if (menu !== null) {
+    menu.classList.add("active");
+  }
 };
 
 const activateParentDropdown = (item) => {
@@ -86,16 +76,24 @@ const activateParentDropdown = (item) => {
   }
 };
 
-const activateIconSidebarActive = (id) => {
-  const menu = document.querySelector(
-    "#two-column-menu .simplebar-content.wrapper a[href='" +
-    id +
-    "'].nav-icon"
-  );
-  if (menu !== null) {
-    menu.classList.add("active");
+const initActiveMenu = (pathName = window.location.pathname) => {
+  const ul = document.getElementById("navbar-nav");
+  if (ul) {
+    const items = Array.from(ul.querySelectorAll("a.nav-link"));
+    let activeItems = items.filter((x) => x.classList.contains("active"));
+    removeActivation(activeItems);
+    let matchingMenuItem = items.find((x) => x.getAttribute("href") === pathName);
+    if (matchingMenuItem) {
+      activateParentDropdown(matchingMenuItem);
+    } else {
+      const id = pathName.replace("/", "");
+      if (id) document.body.classList.add("twocolumn-panel");
+      activateIconSidebarActive(pathName);
+    }
   }
 };
+
+watch(() => route.path, (newPath) => onRoutechange(newPath), { immediate: true, deep: true });
 
 onMounted(() => {
   // Check if the element with ID 'overlay' exists

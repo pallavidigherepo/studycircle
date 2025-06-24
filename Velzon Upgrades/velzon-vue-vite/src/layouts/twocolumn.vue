@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch, nextTick } from 'vue';
+import { ref, onMounted, watch, nextTick, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import simplebar from 'simplebar-vue';
 import { layoutComputed } from '@/state/helpers';
@@ -8,6 +8,8 @@ import NavBar from '@/components/nav-bar.vue';
 import RightBar from '@/components/right-bar.vue';
 import Footer from '@/components/footer.vue';
 import { useI18n } from 'vue-i18n';
+import { useLayoutStore } from '@/state/modules/layout'
+const store = useLayoutStore()
 
 const { t } = useI18n();
 const router = useRouter();
@@ -17,7 +19,7 @@ const isMenuCondensed = ref(false);
 const rmenu = ref(localStorage.getItem('rmenu') ? localStorage.getItem('rmenu') : 'twocolumn');
 
 // Computed property for layout
-const layout = layoutComputed;
+const layout = computed(() => store.layoutType)
 
 // Method to initialize the active menu
 const initActiveMenu = () => {
@@ -369,7 +371,8 @@ onMounted(() => {
                   </span>
                 </router-link>
                 <BButton size="sm" class=" btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
-                  id="vertical-hover">
+                  id="vertical-hover"
+                   @click="toggleMenu">
                   <i class="ri-record-circle-line"></i>
                 </BButton>
               </div>
@@ -383,7 +386,7 @@ onMounted(() => {
 
                     <ul class="nav nav-sm flex-column">
                       <li class="nav-item">
-                        <router-link to="/dashboard/analytics" class="nav-link custom-abc" data-key="t-analytics">
+                        <router-link to="/" class="nav-link custom-abc" data-key="t-analytics">
                           {{ t("t.analytics") }}
                         </router-link>
                       </li>
@@ -1368,29 +1371,29 @@ onMounted(() => {
                   <div class="collapse menu-dropdown" id="sidebarAdvanceUI">
                     <ul class="nav nav-sm flex-column">
                       <li class="nav-item">
-                        <router-link to="/advance-ui/sweetalerts" class="nav-link" data-key="t-sweet-alerts">
+                        <router-link to="/sweetalerts" class="nav-link" data-key="t-sweet-alerts">
                           {{ t("t.sweetalerts") }}</router-link>
                       </li>
 
                       <li class="nav-item">
-                        <router-link to="/advance-ui/scrollbar" class="nav-link" data-key="t-scrollbar">
+                        <router-link to="/scrollbar" class="nav-link" data-key="t-scrollbar">
                           {{ t("t.scrollbar") }}</router-link>
                       </li>
                       <li class="nav-item">
-                        <router-link to="/advance-ui/animation" class="nav-link" data-key="t-animation">
+                        <router-link to="/animation" class="nav-link" data-key="t-animation">
                           {{ t("t.animation") }}</router-link>
                       </li>
                       <li class="nav-item">
-                        <router-link to="/advance-ui/swiper" class="nav-link" data-key="t-swiper-slider">
+                        <router-link to="/swiper" class="nav-link" data-key="t-swiper-slider">
                           {{ t("t.swiper-slider") }}</router-link>
                       </li>
 
                       <li class="nav-item">
-                        <router-link to="/advance-ui/highlight" class="nav-link" data-key="t-highlight">
+                        <router-link to="/highlight" class="nav-link" data-key="t-highlight">
                           {{ t("t.highlight") }}</router-link>
                       </li>
                       <li class="nav-item">
-                        <router-link to="/advance-ui/scrollspy" class="nav-link" data-key="t-scrollSpy">
+                        <router-link to="/scrollspy" class="nav-link" data-key="t-scrollSpy">
                           {{ t("t.scrollSpy") }}</router-link>
                       </li>
                     </ul>
@@ -1695,7 +1698,7 @@ onMounted(() => {
         </div>
 
         <simplebar id="scrollbar" class="h-100" ref="scrollbar" v-if="rmenu == 'vertical'">
-          <Menu></Menu>
+          <Menu :key="store.layoutType"></Menu>
         </simplebar>
 
         <div class="sidebar-background"></div>
