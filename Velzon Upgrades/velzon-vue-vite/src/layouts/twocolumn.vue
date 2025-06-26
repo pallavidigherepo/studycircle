@@ -370,16 +370,16 @@ onMounted(() => {
                     <img src="@/assets/images/logo-light.png" alt="" height="17" />
                   </span>
                 </router-link>
-                <BButton size="sm" class=" btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
+                <!-- <BButton size="sm" class=" btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
                   id="vertical-hover"
                    @click="toggleMenu">
                   <i class="ri-record-circle-line"></i>
-                </BButton>
+                </BButton> -->
               </div>
               <simplebar class="navbar-nav" id="navbar-nav">
-                <li class="menu-title">
+                <!-- <li class="menu-title">
                   <span data-key="t-menu"> {{ t("t.menu") }}</span>
-                </li>
+                </li> -->
                 <li class="nav-item">
 
                   <div class="collapse menu-dropdown" id="sidebarDashboards">
@@ -1725,47 +1725,35 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.twocolumn-menu-panel {
+.twocolumn-flex-container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  align-items: stretch; 
+}
+
+
+#two-column-menu {
+  width: 60px;
+  min-width: 60px;
+  background: #fff;
+  border-right: 1px solid #eee;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 250px;
-  min-width: 250px;
+  flex-shrink: 0; 
+  align-self: stretch; 
+}
+
+.twocolumn-menu-panel {
+  flex: 1;
+  min-width: 0;
+  background: #f8f9fa;
   height: 100vh;
-  background: var(--bs-vertical-menu-bg, #fff);
-  border-right: 1px solid var(--bs-border-color, #e9ecef);
-  box-sizing: border-box;
-  position: relative;
-  z-index: 2;
-  padding-top: 0;
-}
-
-.twocolumn-menu-panel .navbar-brand-box {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Center logo horizontally */
-  height: 70px;
-  border-bottom: 1px solid var(--bs-border-color, #e9ecef);
-  background: inherit;
-  position: relative;
-}
-
-.twocolumn-menu-panel .btn-vertical-sm-hover {
-  position: absolute;
-  right: 1.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.twocolumn-menu-panel .navbar-nav {
-  flex: 1 1 auto;
-  width: 100%;
   overflow-y: auto;
-  padding: 0 0.5rem;
-  background: inherit;
+  transition: width 0.3s, opacity 0.3s;
 }
-
 /* Icon view container */
 .twocolumn-iconview {
   display: flex;
@@ -1781,7 +1769,7 @@ onMounted(() => {
   padding-top: 24px;
 }
 
-/* Remove default ul styles */
+
 .twocolumn-iconview ul {
   list-style: none;
   padding: 0;
@@ -1789,14 +1777,14 @@ onMounted(() => {
   width: 100%;
 }
 
-/* Each icon item */
+
 .twocolumn-iconview li {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-/* Icon link/button */
+
 .twocolumn-iconview .nav-icon {
   display: flex;
   align-items: center;
@@ -1816,13 +1804,13 @@ onMounted(() => {
   color: var(--bs-menu-item-active-color, #0d6efd);
 }
 
-/* Icon itself */
+
 .twocolumn-iconview .nav-icon i {
   font-size: 22px;
   line-height: 1;
 }
 
-/* Optional: Logo at the top of icon bar */
+
 .twocolumn-iconview .logo {
   display: flex;
   align-items: center;

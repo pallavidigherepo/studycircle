@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
 import { layoutMethods } from "@/state/helpers";
 import { useLayoutStore } from '@/state/modules/layout'; 
 import img1 from "../assets/images/products/img-1.png";
@@ -22,6 +22,21 @@ const layoutType = computed(() => store.layoutType);
 const isMenuCondensed = ref(false);
 const hoverd = ref(localStorage.getItem('hoverd') === 'true');
 const sidebarSize = ref('');
+
+// const dataSidebarUserShow = computed(() => {
+//   return document.documentElement.getAttribute('data-sidebar-user-show') === 'true';
+// });
+const dataSidebarUserShow = ref(document.documentElement.getAttribute('data-sidebar-user-show') === 'true');
+let observer;
+onMounted(() => {
+  observer = new MutationObserver(() => {
+    dataSidebarUserShow.value = document.documentElement.getAttribute('data-sidebar-user-show') === 'true';
+  });
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-sidebar-user-show'] });
+});
+onUnmounted(() => {
+  if (observer) observer.disconnect();
+});
 
 const emit = defineEmits(["cart-item-price"]);
 
@@ -790,7 +805,7 @@ onMounted(() => {
             </BTabs>
           </BDropdown>
 
-          <BDropdown variant="link" class="ms-sm-3 header-item topbar-user" toggle-class="rounded-circle arrow-none"
+          <BDropdown v-if="!dataSidebarUserShow" variant="link" class="ms-sm-3 header-item topbar-user" toggle-class="rounded-circle arrow-none"
             menu-class="dropdown-menu-end" :offset="{ alignmentAxis: -14, crossAxis: 0, mainAxis: 0 }">
             <template #button-content>
               <span class="d-flex align-items-center">

@@ -220,6 +220,8 @@ onMounted(() => {
         }
       );
     }
+
+    dataSidebarUserShow.value = document.documentElement.getAttribute('data-sidebar-user-show') === 'true';
 });
 
 // Watchers for reactive state
