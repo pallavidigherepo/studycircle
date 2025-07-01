@@ -1328,7 +1328,7 @@ const components = { simpleBar };
             <h6 class="mt-4 mb-0 fw-semibold text-uppercase">Sidebar Images</h6>
             <p class="text-muted">Choose a image of Sidebar.</p>
 
-            <div class="d-flex gap-2 flex-wrap img-switch">
+            <div class="d-flex gap-1 flex-wrap img-switch">
               <div class="form-check sidebar-setting card-radio">
                 <input class="form-check-input" v-model="sidebarImage" type="radio" name="data-sidebar-img"
                   id="sidebarimg-none" value="none" />
@@ -1379,22 +1379,30 @@ const components = { simpleBar };
               <div class="form-check sidebar-setting card-radio">
                 <input class="form-check-input" type="radio" name="data-theme-colors" id="themeColor-01" value="default"
                   v-model="themeColor">
-                <label class="form-check-label avatar-xs p-0" for="themeColor-01"></label>
+                <label class="form-check-label avatar-xs p-0" for="themeColor-01">
+                  <span class="d-inline-block" style="width:30px;height:30px;background:#556ee6;border:1px solid #ccc;"></span>
+                </label>
               </div>
               <div class="form-check sidebar-setting card-radio">
                 <input class="form-check-input" type="radio" name="data-theme-colors" id="themeColor-02" value="green"
                   v-model="themeColor">
-                <label class="form-check-label avatar-xs p-0" for="themeColor-02"></label>
+                <label class="form-check-label avatar-xs p-0" for="themeColor-02">
+                   <span class="d-inline-block" style="width:30px;height:30px;background:#34c38f;border:1px solid #ccc;"></span>
+                </label>
               </div>
               <div class="form-check sidebar-setting card-radio">
                 <input class="form-check-input" type="radio" name="data-theme-colors" id="themeColor-03" value="purple"
                   v-model="themeColor">
-                <label class="form-check-label avatar-xs p-0" for="themeColor-03"></label>
+                <label class="form-check-label avatar-xs p-0" for="themeColor-03">
+                    <span class="d-inline-block" style="width:30px;height:30px;background:#6f42c1;border:1px solid #ccc;"></span>
+                </label>
               </div>
               <div class="form-check sidebar-setting card-radio">
                 <input class="form-check-input" type="radio" name="data-theme-colors" id="themeColor-04" value="blue"
                   v-model="themeColor">
-                <label class="form-check-label avatar-xs p-0" for="themeColor-04"></label>
+                <label class="form-check-label avatar-xs p-0" for="themeColor-04">
+                  <span class="d-inline-block" style="width:30px;height:30px;background:#50a5f1;border:1px solid #ccc;"></span>
+                </label>
               </div>
             </div>
           </div>
@@ -1549,5 +1557,9 @@ const components = { simpleBar };
   .b-overlay {
     z-index: 1005 !important;
   }
+}
+
+.form-check.sidebar-setting.card-radio {
+  padding-left: 0 !important;
 }
 </style>

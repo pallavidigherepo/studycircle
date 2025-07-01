@@ -10,6 +10,13 @@ import NavBar from '@/components/nav-bar.vue';
 import Menu from '@/components/menu.vue';
 import RightBar from '@/components/right-bar.vue';
 import Footer from '@/components/footer.vue';
+import logoDark from '@/assets/images/logo-dark.png'
+import logoLight from '@/assets/images/logo-light.png'
+
+import sidebarImg1 from '@/assets/images/sidebar/img-1.jpg'
+import sidebarImg2 from '@/assets/images/sidebar/img-2.jpg'
+import sidebarImg3 from '@/assets/images/sidebar/img-3.jpg'
+import sidebarImg4 from '@/assets/images/sidebar/img-4.jpg'
 
 // Reactive state
 const isMenuCondensed = ref(false);
@@ -21,6 +28,27 @@ const router = useRouter();
 
 // Computed property for layout
 const layout = computed(() => store.layoutType)
+
+const sidebarColorRef = ref(document.documentElement.getAttribute('data-sidebar'));
+
+const sidebarImageAttr = ref(document.documentElement.getAttribute('data-sidebar-image'))
+
+onMounted(() => {
+  const observer = new MutationObserver(() => {
+    sidebarImageAttr.value = document.documentElement.getAttribute('data-sidebar-image')
+  })
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-sidebar-image'] })
+})
+
+const sidebarBgImage = computed(() => {
+  switch (sidebarImageAttr.value) {
+    case 'img-1': return sidebarImg1
+    case 'img-2': return sidebarImg2
+    case 'img-3': return sidebarImg3
+    case 'img-4': return sidebarImg4
+    default: return null
+  }
+})
 
 // Method to update the sidebar size
 const updateSidebarSize = () => {
@@ -96,6 +124,19 @@ onMounted(() => {
   });
 });
 
+onMounted(() => {
+  const observer = new MutationObserver(() => {
+    sidebarColorRef.value = document.documentElement.getAttribute('data-sidebar');
+  });
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-sidebar'] });
+});
+
+const sidebarLogo = computed(() => {
+  return sidebarColorRef.value === 'dark' || sidebarColorRef.value?.includes('gradient')
+    ? logoLight
+    : logoDark;
+});
+
 // Cleanup on unmounted
 onBeforeUnmount(() => {
   window.removeEventListener('resize', updateSidebarSize);
@@ -110,24 +151,17 @@ onBeforeUnmount(() => {
       <!-- ========== Left Sidebar Start ========== -->
       <!-- ========== App Menu ========== -->
       <div class="app-menu navbar-menu">
+        <div v-if="sidebarBgImage" class="sidebar-bg-image">
+          <img :src="sidebarBgImage" alt="Sidebar Background" />
+        </div>
         <!-- LOGO -->
-        <div class="navbar-brand-box">
-          <!-- Dark Logo-->
-          <router-link to="/" class="logo logo-dark">
+       <div class="navbar-brand-box">
+          <router-link to="/" class="logo">
             <span class="logo-sm">
-              <img src="@/assets/images/logo-sm.png" alt="" height="22" />
+              <img :src="sidebarLogo" alt="logo" height="22" />
             </span>
             <span class="logo-lg">
-              <img src="@/assets/images/logo-dark.png" alt="" height="17" />
-            </span>
-          </router-link>
-          <!-- Light Logo-->
-          <router-link to="/" class="logo logo-light">
-            <span class="logo-sm">
-              <img src="@/assets/images/logo-sm.png" alt="" height="22" />
-            </span>
-            <span class="logo-lg">
-              <img src="@/assets/images/logo-light.png" alt="" height="17" />
+              <img :src="sidebarLogo" alt="logo" height="17" />
             </span>
           </router-link>
           <BButton size="sm" class="p-0 fs-20 header-item float-end btn-vertical-sm-hover"
@@ -135,8 +169,7 @@ onBeforeUnmount(() => {
             <i class="ri-record-circle-line"></i>
           </BButton>
         </div>
-
-            
+        
         <simplebar id="scrollbar" class="h-100" ref="scrollbar">
           <Menu :key="layout"></Menu>
         </simplebar>
@@ -162,3 +195,23 @@ onBeforeUnmount(() => {
     <RightBar />
   </div>
 </template>
+
+<style scoped>
+.sidebar-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;      /* Fills the sidebar width */
+  height: 100%;     /* Fills the sidebar height */
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.15;
+}
+
+.sidebar-bg-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+</style>
