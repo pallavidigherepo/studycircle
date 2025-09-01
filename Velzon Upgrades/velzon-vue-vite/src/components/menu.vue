@@ -1062,7 +1062,7 @@ onMounted(() => {
                 </router-link>
               </li>
               <li class="nav-item">
-                <BLink class="nav-link menu-link" target="_blank" href="/nft.landing">
+                <BLink class="nav-link menu-link" target="_blank" href="/nft-landing">
                   <span data-key="t.landing">{{ t("t.nftlanding") }}</span>
                 </BLink>
               </li>
